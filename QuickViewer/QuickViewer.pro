@@ -27,7 +27,6 @@ SOURCES += main.cpp\
     filevolumedirectory.cpp \
     filevolumeziparchive.cpp \
     filevolume7zarchive.cpp \
-    settings.cpp \
     qvapplication.cpp
 
 HEADERS  += mainwindow.h \
@@ -36,7 +35,6 @@ HEADERS  += mainwindow.h \
     filevolumedirectory.h \
     filevolumeziparchive.h \
     filevolume7zarchive.h \
-    settings.h \
     qv_init.h \
     qvapplication.h
 
@@ -47,10 +45,6 @@ RESOURCES += \
 
 RC_ICONS = icons/appicon.ico
 
-quickviewer_dist.path = $$OUT_PWD/dist
-quickviewer_dist.files = ./dist/*
-
-INSTALLS += quickviewer_dist
 
 VERSION = 0.1.7
 QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
@@ -61,3 +55,24 @@ QMAKE_TARGET_COPYRIGHT = (C) 2017 KATO Kanryu
 DEFINES += \
   APP_VERSION=\\\"$$VERSION\\\" \
   APP_NAME=\\\"$$QMAKE_TARGET_PRODUCT\\\" \
+
+CODECFORSRC = UTF-8
+TRANSLATIONS = translations/quickviewer_ja.ts
+
+lupdate_only {
+    SOURCES += mainwindow.ui
+}
+DISTFILES += \
+    translations/quickviewer_ja.qm
+
+#transfiles.target = translations/quickviewer_jaaa.qm
+#transfiles.command = $(COPY) $$transfiles.depends $$transfiles.target
+#transfiles.depends = $$PWD/translations/quickviewer_ja.qm
+
+#QMAKE_EXTRA_TARGETS += transfiles
+#POST_TARGETDEPS += $$transfiles.target
+
+quickviewer_dist.path = $$OUT_PWD/dist
+quickviewer_dist.files = ./dist/*
+
+INSTALLS += quickviewer_dist

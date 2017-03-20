@@ -76,7 +76,7 @@
        <item>
         <widget class="QLabel" name="pageLabel">
          <property name="text">
-          <string>フォルダまたはアーカイブが読み込まれていません。</string>
+          <string>any folder or archive loaded.</string>
          </property>
         </widget>
        </item>
@@ -112,11 +112,11 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>ファイル(&amp;F)</string>
+     <string>&amp;File</string>
     </property>
     <widget class="QMenu" name="menuHistory">
      <property name="title">
-      <string>最近開いたフォルダまたはアーカイブ(&amp;H)</string>
+      <string>&amp;Histories</string>
      </property>
     </widget>
     <addaction name="actionAutoLoaded"/>
@@ -126,7 +126,7 @@
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>表示(&amp;V)</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionNextPage"/>
     <addaction name="actionPrevPage"/>
@@ -142,7 +142,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>ヘルプ(&amp;H)</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAppVersion"/>
    </widget>
@@ -170,7 +170,7 @@
   </widget>
   <action name="actionExit">
    <property name="text">
-    <string>終了(&amp;X)</string>
+    <string>E&amp;xit</string>
    </property>
   </action>
   <action name="actionNextPage">
@@ -180,10 +180,10 @@
     </iconset>
    </property>
    <property name="text">
-    <string>次の画像(&amp;N)</string>
+    <string>&amp;NextPage</string>
    </property>
    <property name="toolTip">
-    <string>次の画像</string>
+    <string>NextPage</string>
    </property>
   </action>
   <action name="actionPrevPage">
@@ -192,10 +192,10 @@
      <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
    </property>
    <property name="text">
-    <string>前の画像(&amp;P)</string>
+    <string>&amp;PrevPage</string>
    </property>
    <property name="toolTip">
-    <string>前の画像</string>
+    <string>PrevPage</string>
    </property>
   </action>
   <action name="actionScaleUp">
@@ -204,7 +204,7 @@
      <normaloff>:/icons/power_plus_icon</normaloff>:/icons/power_plus_icon</iconset>
    </property>
    <property name="text">
-    <string>ズームイン</string>
+    <string>Scale&amp;Up</string>
    </property>
   </action>
   <action name="actionScaleDown">
@@ -213,10 +213,10 @@
      <normaloff>:/icons/power_minus_icon</normaloff>:/icons/power_minus_icon</iconset>
    </property>
    <property name="text">
-    <string>ズームアウト</string>
+    <string>Scale&amp;Out</string>
    </property>
    <property name="toolTip">
-    <string>ズームアウト</string>
+    <string>ScaleOut</string>
    </property>
   </action>
   <action name="actionFitting">
@@ -228,10 +228,10 @@
      <normaloff>:/icons/maximize_icon</normaloff>:/icons/maximize_icon</iconset>
    </property>
    <property name="text">
-    <string>フィット表示(&amp;F)</string>
+    <string>&amp;Fitting</string>
    </property>
    <property name="toolTip">
-    <string>フィット表示</string>
+    <string>Fitting</string>
    </property>
   </action>
   <action name="actionDualView">
@@ -243,10 +243,13 @@
      <normaloff>:/icons/dualview</normaloff>:/icons/dualview</iconset>
    </property>
    <property name="text">
-    <string>見開き表示(&amp;D)</string>
+    <string>&amp;Spread Viewing</string>
+   </property>
+   <property name="iconText">
+    <string>Spread Viewing</string>
    </property>
    <property name="toolTip">
-    <string>見開き表示</string>
+    <string>Spread Viewing</string>
    </property>
   </action>
   <action name="actionFullscreen">
@@ -258,7 +261,7 @@
      <normaloff>:/icons/fullscreen2</normaloff>:/icons/fullscreen2</iconset>
    </property>
    <property name="text">
-    <string>フルスクリーン(&amp;F)</string>
+    <string>&amp;Fullscreen</string>
    </property>
   </action>
   <action name="actionAppVersion">
@@ -267,7 +270,7 @@
      <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
    </property>
    <property name="text">
-    <string>バージョン情報(&amp;V)</string>
+    <string>&amp;Version</string>
    </property>
   </action>
   <action name="actionAutoLoaded">
@@ -275,7 +278,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>起動時に前回終了時に復元(&amp;A)</string>
+    <string>&amp;Auto loading the last</string>
    </property>
   </action>
   <action name="actionRightSideBook">
@@ -283,7 +286,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>右開きで表示(&amp;R)</string>
+    <string>Bound on the &amp;right side book</string>
    </property>
   </action>
  </widget>

@@ -1,3 +1,4 @@
+SET DIRPROJECT="%~dp0"
 set DEPROY_VER=QuickViewer-0.1.7-x64
 set DIR_RELEASE="..\build-QVproject-Desktop_Qt_5_7_0_MSVC2015_64bit-Release\QuickViewer\release"
 rem set DIR_DEPLOY="C:\Users\hanakawa2\Desktop\amazon.com\%DEPROY_VER%"
@@ -16,5 +17,10 @@ copy *.dll %DIR_DEPLOY%
 cd /D %DIR_DEPLOY%
 
 %DEPLOYQT% --release --compiler-runtime %EXECTABLE%
+
+cd /D %DIRPROJECT%
+
+copy QuickViewer\translations\quickviewer_ja.qm %DIR_DEPLOY%\translations
+copy README.md %DIR_DEPLOY%
 
 pause
