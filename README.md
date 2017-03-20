@@ -17,7 +17,12 @@ A image viewer application for folders/archives, it can show images very fast
 
 ## 1 page viewing
 
-## 2 page viewing
+
+![1 page viewing](wiki/images/singleview.jpg)
+
+## Spread viewing
+
+![Spread viewing](wiki/images/dualview.jpg)
 
 # Features
 
@@ -29,11 +34,13 @@ A image viewer application for folders/archives, it can show images very fast
  - Fittng (To fit images up to window size)
 
 # Report issues
+
 Please report issues as well as configuration details for your working 
 QuickViewer installations at <k.kanryu@gmail.com>
 
 Thus, your feedback is welcome at <k.kanryu@gmail.com>.
 
-#License
+# License
+
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
