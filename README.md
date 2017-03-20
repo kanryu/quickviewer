@@ -3,7 +3,7 @@ QuickViewer
 
 A image viewer application for folders/archives, it can show images very fast
 
-# Features
+# Summary
 
  - To show images very fast (using OpenGL)
  - Spread viewing(two images once) supported(for digital books)
@@ -19,7 +19,14 @@ A image viewer application for folders/archives, it can show images very fast
 
 ## 2 page viewing
 
+# Features
 
+ - Next Page (Press 'right Arrow Key', or Click left end of window)
+ - Prev Page (Press 'left Arrow Key', or Click right end of window)
+ - Fullscreen (Press 'F11 Key', or 'ESC'(to windowed only))
+ - Spread viewing (two image once)
+ - Auto loading (auto loading the last book when the app executed)
+ - Fittng (To fit images up to window size)
 
 # Report issues
 Please report issues as well as configuration details for your working 
