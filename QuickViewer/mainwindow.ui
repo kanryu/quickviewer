@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>702</width>
+    <height>589</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QuickViewer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="verticalWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="ImageView" name="graphicsView">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <property name="backgroundBrush">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="pageFrame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>2</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>2</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="pageLabel">
+         <property name="text">
+          <string>フォルダまたはアーカイブが読み込まれていません。</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="pageSlider">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::NoTicks</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>702</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>ファイル(&amp;F)</string>
+    </property>
+    <widget class="QMenu" name="menuHistory">
+     <property name="title">
+      <string>最近開いたフォルダまたはアーカイブ(&amp;H)</string>
+     </property>
+    </widget>
+    <addaction name="actionAutoLoaded"/>
+    <addaction name="menuHistory"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>表示(&amp;V)</string>
+    </property>
+    <addaction name="actionNextPage"/>
+    <addaction name="actionPrevPage"/>
+    <addaction name="actionRightSideBook"/>
+    <addaction name="separator"/>
+    <addaction name="actionScaleUp"/>
+    <addaction name="actionScaleDown"/>
+    <addaction name="separator"/>
+    <addaction name="actionFitting"/>
+    <addaction name="actionDualView"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullscreen"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>ヘルプ(&amp;H)</string>
+    </property>
+    <addaction name="actionAppVersion"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionPrevPage"/>
+   <addaction name="actionNextPage"/>
+   <addaction name="separator"/>
+   <addaction name="actionScaleUp"/>
+   <addaction name="actionScaleDown"/>
+   <addaction name="separator"/>
+   <addaction name="actionFitting"/>
+   <addaction name="actionDualView"/>
+   <addaction name="separator"/>
+   <addaction name="actionFullscreen"/>
+  </widget>
+  <action name="actionExit">
+   <property name="text">
+    <string>終了(&amp;X)</string>
+   </property>
+  </action>
+  <action name="actionNextPage">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/arrow_right_icon</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>次の画像(&amp;N)</string>
+   </property>
+   <property name="toolTip">
+    <string>次の画像</string>
+   </property>
+  </action>
+  <action name="actionPrevPage">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
+   </property>
+   <property name="text">
+    <string>前の画像(&amp;P)</string>
+   </property>
+   <property name="toolTip">
+    <string>前の画像</string>
+   </property>
+  </action>
+  <action name="actionScaleUp">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/power_plus_icon</normaloff>:/icons/power_plus_icon</iconset>
+   </property>
+   <property name="text">
+    <string>ズームイン</string>
+   </property>
+  </action>
+  <action name="actionScaleDown">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/power_minus_icon</normaloff>:/icons/power_minus_icon</iconset>
+   </property>
+   <property name="text">
+    <string>ズームアウト</string>
+   </property>
+   <property name="toolTip">
+    <string>ズームアウト</string>
+   </property>
+  </action>
+  <action name="actionFitting">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/maximize_icon</normaloff>:/icons/maximize_icon</iconset>
+   </property>
+   <property name="text">
+    <string>フィット表示(&amp;F)</string>
+   </property>
+   <property name="toolTip">
+    <string>フィット表示</string>
+   </property>
+  </action>
+  <action name="actionDualView">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/dualview</normaloff>:/icons/dualview</iconset>
+   </property>
+   <property name="text">
+    <string>見開き表示(&amp;D)</string>
+   </property>
+   <property name="toolTip">
+    <string>見開き表示</string>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/fullscreen2</normaloff>:/icons/fullscreen2</iconset>
+   </property>
+   <property name="text">
+    <string>フルスクリーン(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionAppVersion">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
+   </property>
+   <property name="text">
+    <string>バージョン情報(&amp;V)</string>
+   </property>
+  </action>
+  <action name="actionAutoLoaded">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>起動時に前回終了時に復元(&amp;A)</string>
+   </property>
+  </action>
+  <action name="actionRightSideBook">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>右開きで表示(&amp;R)</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ImageView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">imageview.h</header>
+   <slots>
+    <slot>on_image_changing(QImage)</slot>
+    <slot>on_fitting_triggered(bool)</slot>
+    <slot>on_dualView_triggered(bool)</slot>
+    <slot>on_scaleUp_triggered()</slot>
+    <slot>on_scaleDown_triggered()</slot>
+    <slot>on_rightSideBook_triggered(bool)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="toolbar.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionNextPage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_nextPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrevPage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_prevPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionScaleUp</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_scaleUp_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionScaleDown</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_scaleDown_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFitting</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_fitting_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDualView</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_dualView_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFullscreen</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_fullscreen_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>243</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAppVersion</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_appVersion_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAutoLoaded</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_autoloaded_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRightSideBook</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_rightSideBook_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_file_changed(QString)</slot>
+  <slot>on_nextPage_triggered()</slot>
+  <slot>on_prevPage_triggered()</slot>
+  <slot>on_scaleUp_triggered()</slot>
+  <slot>on_scaleDown_triggered()</slot>
+  <slot>on_fullscreen_triggered()</slot>
+  <slot>on_appVersion_triggered()</slot>
+  <slot>on_autoloaded_triggered(bool)</slot>
+ </slots>
+</ui>

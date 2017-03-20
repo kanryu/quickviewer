@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="arrow_left_icon">icons/arrow_left.png</file>
+        <file alias="arrow_right_icon">icons/arrow_right.png</file>
+        <file alias="page_next_icon">icons/page_next.png</file>
+        <file alias="page_previous_icon">icons/page_previous.png</file>
+        <file alias="power_minus_icon">icons/power_minus.png</file>
+        <file alias="power_plus_icon">icons/power_plus.png</file>
+        <file alias="star_icon">icons/star.png</file>
+        <file alias="star_2_icon">icons/star_2.png</file>
+        <file alias="star_3_icon">icons/star_3.png</file>
+        <file alias="volume_backward_icon">icons/volume_backward.png</file>
+        <file alias="volume_forward_icon">icons/volume_forward.png</file>
+        <file alias="vote_no_icon">icons/vote_no.png</file>
+        <file alias="vote_yes_icon">icons/vote_yes.png</file>
+        <file alias="maximize_icon">icons/maximize.png</file>
+        <file alias="2pages">icons/education_017.png</file>
+        <file alias="appicon">icons/appicon.ico</file>
+        <file alias="dualview">icons/dualview.png</file>
+        <file alias="fullscreen">icons/fullscreen.png</file>
+        <file alias="fullscreen2">icons/fullscreen2.png</file>
+    </qresource>
+</RCC>
