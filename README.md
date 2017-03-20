@@ -11,7 +11,7 @@ A image viewer application for folders/archives, it can show images very fast
 
 # Download
 
-[binary distributions](https://github.com/kanryu/quickviewer/latest)
+[binary distributions](https://github.com/kanryu/quickviewer/releases)
 
 # Screenshots
 
