@@ -18,11 +18,11 @@ A image viewer application for folders/archives, it can show images very fast
 ## 1 page viewing
 
 
-![1 page viewing](wiki/images/singleview.jpg)
+![1 page viewing](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
 
 ## Spread viewing
 
-![Spread viewing](wiki/images/dualview.jpg)
+![Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
 # Features
 
