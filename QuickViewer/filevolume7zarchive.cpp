@@ -47,16 +47,6 @@ bool FileVolume7zArchive::setIndexedFile(int idx)
     return true;
 }
 
-bool FileVolume7zArchive::nextVolume()
-{
-    return false;
-}
-
-bool FileVolume7zArchive::prevVolume()
-{
-    return false;
-}
-
 int FileVolume7zArchive::size()
 {
     return m_filelist.size();
@@ -68,7 +58,7 @@ QString FileVolume7zArchive::currentPath()
     return m_current;
 }
 
-QImage FileVolume7zArchive::currentImage()
+QPixmap FileVolume7zArchive::currentImage()
 {
     if(m_cachedPath == currentPath()) {
         return m_cachedImage;
@@ -80,7 +70,8 @@ QImage FileVolume7zArchive::currentImage()
     iobuffer.open(QIODevice::WriteOnly);
     bool result = m_reader.extractFile(currentPath(), &iobuffer);
     //QByteArray bytes2 = iobuffer.readAll();
-    m_cachedImage = QImage::fromData(bytes);
+    m_cachedImage = QPixmap();
+    m_cachedImage.loadFromData(bytes);
 //    qDebug() << m_cachedImage << m_cachedImage.size();
     return m_cachedImage;
 }

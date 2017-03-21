@@ -46,16 +46,6 @@ bool FileVolumeZipArchive::setIndexedFile(int idx)
     return true;
 }
 
-bool FileVolumeZipArchive::nextVolume()
-{
-    return false;
-}
-
-bool FileVolumeZipArchive::prevVolume()
-{
-    return false;
-}
-
 int FileVolumeZipArchive::size()
 {
     return m_filelist.size();
@@ -66,13 +56,14 @@ QString FileVolumeZipArchive::currentPath()
     return m_current;
 }
 
-QImage FileVolumeZipArchive::currentImage()
+QPixmap FileVolumeZipArchive::currentImage()
 {
     if(m_cachedPath == currentPath()) {
         return m_cachedImage;
     }
     QByteArray bytes = m_reader.fileData(currentPath());
-    m_cachedImage = QImage::fromData(bytes);
+    m_cachedImage = QPixmap();
+    m_cachedImage.loadFromData(bytes);
 //    qDebug() << m_cachedImage << m_cachedImage.size();
     return m_cachedImage;
 }

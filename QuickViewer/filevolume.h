@@ -4,14 +4,14 @@
 #include <QList>
 #include <QObject>
 #include <QDir>
-#include <QImage>
+#include <QPixmap>
 
 class IFileVolume : public QObject
 {
     Q_OBJECT
 //    Q_DISABLE_COPY(IFileVolume)
 public:
-    explicit IFileVolume(QObject *parent=0) : QObject(parent) {}
+    explicit IFileVolume(QObject *parent=0);
     virtual ~IFileVolume() {}
     /**
      * @brief 指定されたファイルまたはディレクトリのpathからIFileVolumeのインスタンスを返すファクトリ関数
@@ -27,9 +27,8 @@ public:
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
      * @return
      */
-    virtual QImage currentImage()=0;
+    virtual QPixmap currentImage()=0;
 
-public:
     /**
      * @brief 一つ次のページに移動する（一度に複数の画像を表示する場合、その最初の画像に制御が移る）
      * @return 成功/失敗(ファイルリスト終端等)
@@ -61,70 +60,34 @@ public:
      */
     virtual int size()=0;
     /**
-     * @brief 次のディレクトリまたはアーカイブに移動する
-     * @return 成功/失敗(正常にファイルリストを取得できなかった場合)
-     */
-    virtual bool nextVolume()=0;
-    /**
-     * @brief 前のディレクトリまたはアーカイブに移動する
-     * @return 成功/失敗(正常にファイルリストを取得できなかった場合)
-     */
-    virtual bool prevVolume()=0;
-    /**
      * @brief on_ready アプリの準備が終わった段階で呼び出される。最初に、あるいは次に表示すべき画像およびそのファイルパスがemitされる
      */
     void on_ready();
+    /**
+     * @brief pageCount 現在のページを返す
+     */
+    int pageCount() { return m_cnt; }
 
-signals:
-    /**
-     * @brief changing 次に表示すべき画像が通知される。View側はその画像を画面に表示すべきである
-     */
-    void changing(QImage image) const;
-    /**
-     * @brief changed 次に表示される画像のファイルパスが通知される。アプリ本体が情報を得るのはこのタイミング
-     * @param path
-     */
-    void changed(QString path) const;
-};
+//signals:
+//    /**
+//     * @brief changing 次に表示すべき画像が通知される。View側はその画像を画面に表示すべきである
+//     */
+//    void changing(QImage image) const;
+//    /**
+//     * @brief changed 次に表示される画像のファイルパスが通知される。アプリ本体が情報を得るのはこのタイミング
+//     * @param path
+//     */
+//    void changed(QString path) const;
 
-class FileVolumeArchive : public IFileVolume
-{
-public:
+protected:
     /**
-     * @brief 新しいアーカイブを設定する
-     * @param dir
+     * @brief 6ページ分の画像をキャッシュする。
+     * 単ページの場合m_cachedImages[2]、見開きの場合m_cachedImages[2],m_cachedImages[3]が使われる。
+     * ページ変更が行われた場合、前進するならば[0][1]を破棄し[3][4]を先読み、後退するならば[3][4]を破棄し[0][1]を先読みする。
+     * 無効なページの場合QImage()で置き換える。
      */
-    explicit FileVolumeArchive(QString archivePath);
-
-    /**
-     * @brief 現在のファイルリストの中で次のファイルに移動する
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
-    bool nextFile();
-    /**
-     * @brief 現在のファイルリストの中で前のファイルに移動する
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
-    bool prevFile();
-    /**
-     * @brief 現在のファイルリストの中で指定されたidx値に対応するファイルに移動する(最大値はディレクトリまたはアーカイブの画像数-1)
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
-    bool setIndexedFile(int idx);
-    /**
-     * @brief 次のディレクトリまたはアーカイブに移動する
-     * @return 成功/失敗(正常にファイルリストを取得できなかった場合)
-     */
-    bool nextVolume();
-    /**
-     * @brief 前のディレクトリまたはアーカイブに移動する
-     * @return 成功/失敗(正常にファイルリストを取得できなかった場合)
-     */
-    bool prevVolume();
-
-    QString currentPath();
-    QImage currentImage();
-
+    QList<QPixmap> m_cachedImages;
+    int m_cnt;
 };
 
 

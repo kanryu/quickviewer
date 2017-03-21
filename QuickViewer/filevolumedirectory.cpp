@@ -41,16 +41,6 @@ bool FileVolumeDirectory::setIndexedFile(int idx)
     return true;
 }
 
-bool FileVolumeDirectory::nextVolume()
-{
-    return false;
-}
-
-bool FileVolumeDirectory::prevVolume()
-{
-    return false;
-}
-
 int FileVolumeDirectory::size()
 {
     return m_filelist.size();
@@ -61,10 +51,10 @@ QString FileVolumeDirectory::currentPath()
     return m_directory.absoluteFilePath(m_current);
 }
 
-QImage FileVolumeDirectory::currentImage()
+QPixmap FileVolumeDirectory::currentImage()
 {
     if(m_cachedPath == currentPath()) {
         return m_cachedImage;
     }
-    return m_cachedImage = QImage(currentPath());
+    return m_cachedImage = QPixmap(currentPath());
 }

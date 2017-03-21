@@ -16,7 +16,7 @@ public:
     explicit FileVolumeZipArchive(QObject* parent, QString zippath);
 
     QString currentPath();
-    QImage currentImage();
+    QPixmap currentImage();
 
 public:
     /**
@@ -34,16 +34,7 @@ public:
      * @return 成功/失敗(ファイルリスト終端等)
      */
     bool setIndexedFile(int idx);
-    /**
-     * @brief 次のディレクトリまたはアーカイブに移動する
-     * @return 成功/失敗(正常にファイルリストを取得できなかった場合)
-     */
-    bool nextVolume();
-    /**
-     * @brief 前のディレクトリまたはアーカイブに移動する
-     * @return 成功/失敗(正常にファイルリストを取得できなかった場合)
-     */
-    bool prevVolume();
+
     /**
      * @brief ボリュームが持つページ数を返す
      * @return ボリュームが持つページ数
@@ -54,7 +45,6 @@ protected:
     QString m_zipfilepath;
     QZipReader m_reader;
     QList<QString> m_filelist;
-    int m_cnt;
     /**
      * @brief m_current　現在選択中のファイル名
      */
@@ -66,7 +56,7 @@ protected:
     /**
      * @brief m_cachedImage キャッシュされた現在の画像
      */
-    QImage m_cachedImage;
+    QPixmap m_cachedImage;
 };
 
 #endif // FILEVOLUMEZIPARCHIVE_H

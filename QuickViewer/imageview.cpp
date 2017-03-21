@@ -10,10 +10,6 @@
 ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
     , m_renderer(Native)
-    , m_maximized(false)
-//    , my_gpi(nullptr)
-    , m_dualImage(false)
-    , m_rightSideBook(false)
     , m_fileVolume(nullptr)
     , m_hoverState(Qt::AnchorHorizontalCenter)
     , m_currentPage(0)
@@ -36,20 +32,19 @@ ImageView::ImageView(QWidget *parent)
 }
 
 
-void ImageView::setImage(QImage image)
+void ImageView::setImage(QPixmap pixmap)
 {
     if(m_fileVolume == nullptr) return;
     clearImages();
-    addImage(image, true);
+    addImage(pixmap, true);
 }
 
-void ImageView::addImage(QImage image, bool pageNext)
+void ImageView::addImage(QPixmap pixmap, bool pageNext)
 {
     if(m_fileVolume == nullptr) return;
     m_ptLeftTop.reset();
     QGraphicsScene *s = scene();
 
-    QPixmap pixmap = QPixmap::fromImage(image);
     if(pageNext)
         m_imgs.push_back(pixmap);
     else
@@ -78,10 +73,13 @@ void ImageView::clearImages()
 
 void ImageView::nextPage()
 {
+    qDebug() << "ImageView::nextPage()";
     if(m_fileVolume == nullptr) return;
-    bool result = m_fileVolume->nextFile();
+    bool result = (qApp->DualView() && m_fileVolume->pageCount() == m_fileVolume->size() - 2) ||  m_fileVolume->nextFile();
     if(!result) return;
-    m_currentPage += m_dualImage ? 2 : 1;
+    m_currentPage += qApp->DualView() ? 2 : 1;
+    if(m_currentPage >= m_fileVolume->size() - 2)
+        m_currentPage = m_fileVolume->size() - 2;
 
     reloadCurrentPage();
     emit pageChanged();
@@ -89,39 +87,46 @@ void ImageView::nextPage()
 
 void ImageView::reloadCurrentPage()
 {
+    qDebug() << "ImageView::reloadCurrentPage()";
     if(m_fileVolume == nullptr) return;
     clearImages();
 
     addImage(m_fileVolume->currentImage(), true);
-    if(m_dualImage) {
-        bool result = m_fileVolume->nextFile();
-        if(!result) return;
-        addImage(m_fileVolume->currentImage(), true);
+    if(qApp->DualView()) {
+        if(m_fileVolume->nextFile())
+            addImage(m_fileVolume->currentImage(), true);
     }
-    emit pageChanged();
+    readyForPaint();
 }
 
 
 void ImageView::prevPage()
 {
     if(m_fileVolume == nullptr) return;
-    bool result = m_fileVolume->prevFile();
-    if(!result) return;
-    clearImages();
-    m_currentPage -= m_dualImage ? 2 : 1;
+//    bool result = (qApp->DualView() && m_fileVolume->pageCount() == 1) || m_fileVolume->prevFile();
+//    if(!result) return;
+//    clearImages();
+//    m_currentPage -= qApp->DualView() ? 2 : 1;
+//    if(m_currentPage < 0)
+//        m_currentPage = 0;
 
 
-    addImage(m_fileVolume->currentImage(), false);
-    if(m_dualImage) {
-        result = m_fileVolume->prevFile();
-        if(!result) return;
-        addImage(m_fileVolume->currentImage(), false);
-    }
-    emit pageChanged();
+//    addImage(m_fileVolume->currentImage(), false);
+//    if(qApp->DualView()) {
+//        if(m_fileVolume->prevFile())
+//            addImage(m_fileVolume->currentImage(), false);
+//    }
+//    emit pageChanged();
+    if(m_fileVolume->pageCount() == (qApp->DualView() ? 1 : 0)) return;
+    m_currentPage -= qApp->DualView() ? 2 : 1;
+    if(m_currentPage < 0)
+        m_currentPage = 0;
+    setIndexedPage(m_currentPage);
 }
 
 void ImageView::setIndexedPage(int idx)
 {
+    qDebug() << "ImageView::setIndexedPage()" << idx;
     if(m_fileVolume == nullptr) return;
     clearImages();
     bool result = m_fileVolume->setIndexedFile(idx);
@@ -129,12 +134,12 @@ void ImageView::setIndexedPage(int idx)
     m_currentPage = idx;
 
     addImage(m_fileVolume->currentImage(), true);
-    if(m_dualImage) {
-        result = m_fileVolume->nextFile();
-        if(!result) return;
-        addImage(m_fileVolume->currentImage(), true);
+    if(qApp->DualView()) {
+        if(m_fileVolume->nextFile())
+            addImage(m_fileVolume->currentImage(), true);
     }
     emit pageChanged();
+    readyForPaint();
 }
 
 void ImageView::setRenderer(RendererType type)
@@ -145,9 +150,6 @@ void ImageView::setRenderer(RendererType type)
 #ifndef QT_NO_OPENGL
         QGLWidget* w = new QGLWidget(QGLFormat(QGL::SampleBuffers));
         setViewport(w);
-//        setRenderHint(QPainter::HighQualityAntialiasing, true);
-//        setRenderHint(QPainter::Antialiasing, true);
-//        setRenderHint(QPainter::SmoothPixmapTransform, true);
 #endif
     } else {
         setViewport(new QWidget);
@@ -156,30 +158,29 @@ void ImageView::setRenderer(RendererType type)
 
 QString ImageView::currentPageAsString() const
 {
-    if(m_dualImage) {
+    if(qApp->DualView()) {
         return QString("%1-%2/%3").arg(m_currentPage+1).arg(m_currentPage+2).arg(m_fileVolume->size());
     } else {
         return QString("%1/%3").arg(m_currentPage+1).arg(m_fileVolume->size());
     }
 }
-
-void ImageView::paintEvent( QPaintEvent *event )
-{
+void ImageView::readyForPaint() {
+    qDebug() << "readyForPaint";
     if(!m_gpiImages.empty()) {
-        if(m_maximized) {
+        if(qApp->Fitting()) {
             for(int i = 0; i < m_gpiImages.size(); i++) {
                 QSize size = viewport()->size();
                 QSize imgsize = m_imgs[i].size();
-                QSize sizeofview = m_dualImage ? QSize(size.width()/2,size.height()) : size;
+                QSize sizeofview = qApp->DualView() ? QSize(size.width()/2,size.height()) : size;
 
                 QSize newsize = imgsize.scaled(sizeofview, Qt::KeepAspectRatio);
                 m_gpiImages[i]->setScale(1.0*newsize.width()/imgsize.width());
 
-                int offset = m_rightSideBook ? -i : i-1;
+                int offset = qApp->RightSideBook() ? -i : i-1;
                 if(newsize.height() == size.height()) { // 上下に内接
-                    m_gpiImages[i]->setPos(m_dualImage ? sizeofview.width()+offset*newsize.width() : (size.width()-newsize.width())/2, 0);
+                    m_gpiImages[i]->setPos(qApp->DualView() ? sizeofview.width()+offset*newsize.width() : (size.width()-newsize.width())/2, 0);
                 } else { // 左右に内接
-                    m_gpiImages[i]->setPos(m_dualImage ? sizeofview.width()+offset*newsize.width() : 0, (size.height()-newsize.height())/2);
+                    m_gpiImages[i]->setPos(qApp->DualView() ? sizeofview.width()+offset*newsize.width() : 0, (size.height()-newsize.height())/2);
                 }
             }
         } else {
@@ -189,17 +190,21 @@ void ImageView::paintEvent( QPaintEvent *event )
                 QSize size = viewport()->size();
                 QSize imgsize = m_imgs[i].size();
                 imgsize *= scale;
-                if(m_dualImage)
+                if(qApp->DualView())
                     m_gpiImages[i]->setPos(size.width()/2-i*imgsize.width(), 0);
                 else
                     m_gpiImages[i]->setPos(size.width()/2-imgsize.width()/2, 0);
             }
-//            my_gpi->parentItem()->setScale(1.0);
         }
-
     }
-    QGraphicsView::paintEvent(event);
+    repaint();
 }
+
+//void ImageView::paintEvent( QPaintEvent *event )
+//{
+//    qDebug() << event;
+//    QGraphicsView::paintEvent(event);
+//}
 
 void ImageView::resizeEvent(QResizeEvent *event)
 {
@@ -207,6 +212,7 @@ void ImageView::resizeEvent(QResizeEvent *event)
         scene()->setSceneRect(QRect(QPoint(), event->size()));
     }
     QGraphicsView::resizeEvent(event);
+    readyForPaint();
 }
 
 #define HOVER_BORDER 20
@@ -263,50 +269,45 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
 //    }
 //}
 
-void ImageView::on_image_changing(QImage image)
+void ImageView::on_image_changing(QPixmap image)
 {
     setImage(image);
-    repaint();
+    readyForPaint();
 }
 
 void ImageView::on_fitting_triggered(bool maximized)
 {
-    m_maximized = maximized;
     qApp->setFitting(maximized);
-    repaint();
+    readyForPaint();
 }
 
 void ImageView::on_dualView_triggered(bool viewdual)
 {
-    bool before = m_dualImage;
-    m_dualImage = viewdual;
     qApp->setDualView(viewdual);
 
-    if(before)
-        prevPage();
-    else
-        reloadCurrentPage();
-    repaint();
+    if(!viewdual && m_fileVolume)
+        m_fileVolume->prevFile();
+    reloadCurrentPage();
+    readyForPaint();
 }
 
 void ImageView::on_rightSideBook_triggered(bool rightSideBook)
 {
-    m_rightSideBook = rightSideBook;
     qApp->setRightSideBook(rightSideBook);
-    repaint();
+    readyForPaint();
 }
 
 void ImageView::on_scaleUp_triggered()
 {
     if(viewSizeIdx < viewSizeList.size() -1)
         viewSizeIdx++;
-    repaint();
+    readyForPaint();
 }
 
 void ImageView::on_scaleDown_triggered()
 {
     if(viewSizeIdx > 0)
         viewSizeIdx--;
-    repaint();
+    readyForPaint();
 }
 

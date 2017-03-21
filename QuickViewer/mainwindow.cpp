@@ -11,9 +11,11 @@
 #include <QMimeData>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+    , m_sliderChanging(false)
+    , m_viewerWindowStateMaximized(false)
 {
     ui->setupUi(this);
     setAcceptDrops(true);
@@ -103,11 +105,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     QDropEvent *dropEvent = NULL;//event data, if this is a keystroke event
     bool result = false;//return true to consume the keystroke
 
-    if(obj == ui->graphicsView) {
-        qDebug() << "graphicsView <= " << event->type();
-    } else {
-        qDebug() << obj << " <= " << event->type();
-    }
+//    if(obj == ui->graphicsView) {
+//        qDebug() << "graphicsView <= " << event->type();
+//    } else {
+//        qDebug() << obj << " <= " << event->type();
+//    }
 
     switch (event->type()) {
     case QEvent::KeyPress:
@@ -245,7 +247,7 @@ void MainWindow::on_fullscreen_triggered()
 {
 
     if(isFullScreen()) {
-        if(viewerWindowStateMaximized) {
+        if(m_viewerWindowStateMaximized) {
             showMaximized();
         } else {
             showNormal();
@@ -257,7 +259,7 @@ void MainWindow::on_fullscreen_triggered()
 //        statusBar()->show();
         ui->actionFullscreen->setChecked(false);
     } else {
-        viewerWindowStateMaximized = isMaximized();
+        m_viewerWindowStateMaximized = isMaximized();
         showFullScreen();
 
         menuBar()->hide();
@@ -290,20 +292,21 @@ void MainWindow::on_pageChanged_triggered()
     qDebug() << "on_pageChanged_triggered";
     ui->pageLabel->setText(QString("(%1)").arg(ui->graphicsView->currentPageAsString()));
     ui->pageSlider->setMaximum(m_fileVolume->size());
+    m_sliderChanging = true;
     ui->pageSlider->setValue(ui->graphicsView->currentPage());
+    m_sliderChanging = false;
     ui->pageSlider->show();
 }
 
 
 void MainWindow::on_pageSlider_changed(int value)
 {
-    static bool sliderChanging = false;
-    qDebug() << "on_pageSlider_changed " << value << sliderChanging;
-    if(sliderChanging)
+    qDebug() << "on_pageSlider_changed " << value << m_sliderChanging;
+    if(m_sliderChanging)
         return;
-    sliderChanging = true;
+    m_sliderChanging = true;
     ui->graphicsView->setIndexedPage(value-1);
-    sliderChanging = false;
+    m_sliderChanging = false;
 }
 
 void MainWindow::on_appVersion_triggered()

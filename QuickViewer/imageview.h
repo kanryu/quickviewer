@@ -49,9 +49,9 @@ class ImageView : public QGraphicsView
 public:
     enum RendererType { Native, OpenGL, Image };
     explicit ImageView(QWidget *parent = Q_NULLPTR);
-    void setImage(QImage image);
+    void setImage(QPixmap image);
     void setRenderer(RendererType type = Native);
-    void addImage(QImage image, bool pageNext);
+    void addImage(QPixmap image, bool pageNext);
     void clearImages();
     void nextPage();
     void prevPage();
@@ -62,6 +62,7 @@ public:
     int currentPage() const {return m_currentPage+1; }
     QString currentPageAsString() const;
     Qt::AnchorPoint hoverState() const { return m_hoverState; }
+    void readyForPaint();
 
 signals:
     /**
@@ -71,7 +72,7 @@ signals:
     void pageChanged() const;
 
 protected:
-    void paintEvent( QPaintEvent *event );
+//    void paintEvent( QPaintEvent *event );
     void mouseMoveEvent(QMouseEvent *event);
 //    void mousePressEvent(QMouseEvent *event);
 //    void mouseReleaseEvent(QMouseEvent *event);
@@ -81,7 +82,7 @@ protected:
 //    void dragMoveEvent( QDragMoveEvent *e ) {qDebug() << "ImageView::dragMoveEvent";}
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 public slots:
-    void on_image_changing(QImage image);
+    void on_image_changing(QPixmap image);
     void on_fitting_triggered(bool maximized);
     void on_dualView_triggered(bool viewdual);
     void on_rightSideBook_triggered(bool rightSideBook);
@@ -100,9 +101,6 @@ private:
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
     bool m_isMouseDown;
-    bool m_maximized;
-    bool m_dualImage;
-    bool m_rightSideBook;
     Qt::AnchorPoint m_hoverState;
     /**
      * @brief 現在表示しているページのうち最も若い番号。filevolume側の内部ページと異なる場合があるので注意
@@ -110,8 +108,11 @@ private:
     int m_currentPage;
 
     IFileVolume* m_fileVolume;
+    /**
+     * @brief マニュアル拡大縮小するときの倍率を保持するリスト
+     */
     QList<int> viewSizeList;
-    uint viewSizeIdx;
+    int viewSizeIdx;
 };
 
 

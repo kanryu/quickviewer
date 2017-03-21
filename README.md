@@ -26,12 +26,13 @@ A image viewer application for folders/archives, it can show images very fast
 
 # Features
 
- - Next Page (Press 'right Arrow Key', or Click left end of window)
- - Prev Page (Press 'left Arrow Key', or Click right end of window)
- - Fullscreen (Press 'F11 Key', or 'ESC'(to windowed only))
- - Spread viewing (two image once)
- - Auto loading (auto loading the last book when the app executed)
- - Fittng (To fit images up to window size)
+- Next Page (Press 'right Arrow Key', 'Mouse wheel down', 'Mouse forward button', or Click left end of window)
+- Prev Page (Press 'left Arrow Key', 'Mouse wheel up', 'Mouse back button', or Click right end of window)
+- Fullscreen (Press 'F11 Key', click Mouse wheel, or 'Esc Key'(to windowed only))
+- Auto loading (auto loading the last book when the app executed)
+- Fittng (To fit images up to window size)
+- Spread viewing (two image once)
+    - Bound on the right side book(e.g. Japanese Style)
 
 # Report issues
 

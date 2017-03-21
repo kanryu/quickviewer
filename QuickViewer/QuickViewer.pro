@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl
+QT       += core gui opengl concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     filevolumedirectory.cpp \
     filevolumeziparchive.cpp \
     filevolume7zarchive.cpp \
-    qvapplication.cpp
+    qvapplication.cpp \
+    concurrentimage.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     filevolumeziparchive.h \
     filevolume7zarchive.h \
     qv_init.h \
-    qvapplication.h
+    qvapplication.h \
+    concurrentimage.h
 
 FORMS    += mainwindow.ui
 
@@ -46,7 +48,7 @@ RESOURCES += \
 RC_ICONS = icons/appicon.ico
 
 
-VERSION = 0.1.7
+VERSION = 0.1.8
 QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
 QMAKE_TARGET_PRODUCT = QuickViewer
 QMAKE_TARGET_DESCRIPTION = A image viewer for folders/archives, it can show images very fast
@@ -57,7 +59,7 @@ DEFINES += \
   APP_NAME=\\\"$$QMAKE_TARGET_PRODUCT\\\" \
 
 CODECFORSRC = UTF-8
-TRANSLATIONS = translations/quickviewer_ja.ts
+#TRANSLATIONS = translations/quickviewer_ja.ts
 
 lupdate_only {
     SOURCES += mainwindow.ui

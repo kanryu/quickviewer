@@ -48,7 +48,8 @@ private:
     Ui::MainWindow *ui;
 //    QImage *m_img;
     IFileVolume* m_fileVolume;
-    bool viewerWindowStateMaximized;
+    bool m_viewerWindowStateMaximized;
+    bool m_sliderChanging;
 };
 
 #endif // MAINWINDOW_H
