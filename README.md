@@ -11,7 +11,7 @@ A image viewer application for folders/archives, it can show images very fast
 
 # Download
 
-[binary distributions](https://github.com/kanryu/quickviewer/releases)
+[binary distributions](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
 
 # Screenshots
 
@@ -23,6 +23,12 @@ A image viewer application for folders/archives, it can show images very fast
 ## Spread viewing
 
 ![Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
+
+# How to use
+
+- Run the app, and drop image folder/archive to the window.
+- Create shortcut, and drop image folder/archive on it.
+
 
 # Features
 
@@ -40,6 +46,8 @@ Please report issues as well as configuration details for your working
 QuickViewer installations at <k.kanryu@gmail.com>
 
 Thus, your feedback is welcome at <k.kanryu@gmail.com>.
+
+https://github.com/kanryu/quickviewer
 
 # License
 

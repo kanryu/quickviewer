@@ -38,13 +38,42 @@ bool FileVolume7zArchive::prevFile()
     return true;
 }
 
-bool FileVolume7zArchive::setIndexedFile(int idx)
+bool FileVolume7zArchive::findImageByIndex(int idx)
 {
     if(idx < 0 || idx >= m_filelist.size())
         return false;
     m_cnt = idx;
     m_current = m_filelist[m_cnt];
     return true;
+}
+
+bool FileVolume7zArchive::findImageByName(QString name)
+{
+    for(int i = 0; i < m_filelist.size(); i++) {
+        if(name == m_filelist[i]) {
+            m_cnt = i;
+            m_current = name;
+            return true;
+        }
+    }
+    return false;
+}
+
+QPixmap FileVolume7zArchive::loadImageByName(QString name)
+{
+    QPixmap ret = QPixmap();
+    foreach(const QString& e, m_filelist) {
+        if(name == e) {
+            Qt7zFileInfo info = m_fileinfomap[name];
+            QByteArray bytes;
+            QBuffer iobuffer(&bytes, this);
+            iobuffer.open(QIODevice::WriteOnly);
+            bool result = m_reader.extractFile(name, &iobuffer);
+            ret.loadFromData(bytes);
+            return ret;
+        }
+    }
+    return ret;
 }
 
 int FileVolume7zArchive::size()

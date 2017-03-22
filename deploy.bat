@@ -1,7 +1,7 @@
 SET DIRPROJECT="%~dp0"
 set CPU=x86
 rem set CPU=x64
-set DEPROY_VER=QuickViewer-0.1.8-%CPU%
+set DEPROY_VER=QuickViewer-0.1.9-%CPU%
 
 if %CPU%==x64 (
 	set ENV_BUILD=build-QVproject-Desktop_Qt_5_7_0_MSVC2015_64bit

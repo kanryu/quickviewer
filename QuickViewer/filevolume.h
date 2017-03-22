@@ -1,16 +1,16 @@
 #ifndef FILELIST_H
 #define FILELIST_H
 
-#include <QList>
-#include <QObject>
-#include <QDir>
 #include <QPixmap>
+#include <QtConcurrent>
 
 class IFileVolume : public QObject
 {
     Q_OBJECT
 //    Q_DISABLE_COPY(IFileVolume)
 public:
+    typedef QFuture<QPixmap> future_pixmap;
+
     explicit IFileVolume(QObject *parent=0);
     virtual ~IFileVolume() {}
     /**
@@ -18,6 +18,14 @@ public:
      * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
      */
     static IFileVolume* CreateVolume(QObject* parent, QString path);
+    /**
+     * @brief isImageFile そのファイルが画像ファイルかを拡張子から調べる
+     * @param path
+     * @return 画像と思われる場合true
+     */
+    static bool isImageFile(QString path);
+
+    static QPixmap futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
     /**
      * @brief 現在のファイルパスを返す
      * @return
@@ -28,7 +36,10 @@ public:
      * @return
      */
     virtual QPixmap currentImage()=0;
-
+    /**
+     * @brief volumePath ボリュームのpathを返す。通常コンストラクタのpathがそのまま返ってくる
+     */
+    virtual QString volumePath()=0;
     /**
      * @brief 一つ次のページに移動する（一度に複数の画像を表示する場合、その最初の画像に制御が移る）
      * @return 成功/失敗(ファイルリスト終端等)
@@ -53,7 +64,17 @@ public:
      * @brief 現在のファイルリストの中で指定されたidx値に対応するファイルに移動する(最大値はディレクトリまたはアーカイブの画像数-1)
      * @return 成功/失敗(ファイルリスト終端等)
      */
-    virtual bool setIndexedFile(int idx)=0;
+    virtual bool findImageByIndex(int idx)=0;
+    /**
+     * @brief 現在のファイルリストの中で指定されたファイル名に対応するファイルに移動する
+     * @return 成功/失敗(ファイルが見つからない等)
+     */
+    virtual bool findImageByName(QString name)=0;
+    /**
+     * @brief loadImageByName 内部カウンタを進めずにファイルリストの中で指定されたファイル名に対応する画像を読み込んで返す
+     * @return ロードに失敗すれば空インスタンス
+     */
+    virtual QPixmap loadImageByName(QString name)=0;
     /**
      * @brief ボリュームが持つページ数を返す
      * @return ボリュームが持つページ数
@@ -68,26 +89,19 @@ public:
      */
     int pageCount() { return m_cnt; }
 
-//signals:
-//    /**
-//     * @brief changing 次に表示すべき画像が通知される。View側はその画像を画面に表示すべきである
-//     */
-//    void changing(QImage image) const;
-//    /**
-//     * @brief changed 次に表示される画像のファイルパスが通知される。アプリ本体が情報を得るのはこのタイミング
-//     * @param path
-//     */
-//    void changed(QString path) const;
 
 protected:
     /**
-     * @brief 6ページ分の画像をキャッシュする。
-     * 単ページの場合m_cachedImages[2]、見開きの場合m_cachedImages[2],m_cachedImages[3]が使われる。
-     * ページ変更が行われた場合、前進するならば[0][1]を破棄し[3][4]を先読み、後退するならば[3][4]を破棄し[0][1]を先読みする。
-     * 無効なページの場合QImage()で置き換える。
+     * @brief m_cnt ボリューム内のファイルカウンタ
      */
-    QList<QPixmap> m_cachedImages;
     int m_cnt;
+    /**
+     * @brief 3つのリストで合計6ページ分の画像をキャッシュする。それぞれのリストで2ページずつ保持する。
+     * 各リストのページはQFutureクラスのインスタンスであり、それぞれが非同期でロード作業が行われる。ImageViewに引き渡す際にロードが完了していない場合は待機が必要。
+     */
+    QList<future_pixmap> m_prevCache;
+    QList<future_pixmap> m_currentCache;
+    QList<future_pixmap> m_nextCache;
 };
 
 

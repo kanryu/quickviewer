@@ -1,7 +1,7 @@
 #ifndef CONCURRENTIMAGE_H
 #define CONCURRENTIMAGE_H
 
-#include <QImage>
+#include <QPixmap>
 #include <QtConcurrentRun>
 #include "filevolume.h"
 
@@ -9,10 +9,9 @@ class ConcurrentImage : public QObject
 {
     Q_OBJECT
 public:
-    typedef QVector<QImage> result_type;
     explicit ConcurrentImage(QObject *parent, IFileVolume* filevolume);
 
-    QFuture<result_type> loadConcurrent(QStringList paths);
+    QFuture<QPixmap> loadConcurrent(QStringList paths);
 
 signals:
 

@@ -44,6 +44,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historymenu_triggered(QAction*)) );
 
     QVApplication* myapp = qApp;
+    QStringList args = qApp->arguments();
+    qDebug() << args;
+    if(qApp->arguments().length() >= 2) {
+        loadVolume(qApp->arguments().last());
+        return;
+    }
     if(qApp->AutoLoaded() && qApp->History().size() > 0) {
         loadVolume(qApp->History().at(0));
     }
@@ -167,8 +173,8 @@ void MainWindow::loadVolume(QString path)
     if(fv) {
         m_fileVolume = fv;
         ui->graphicsView->setFileVolume(m_fileVolume);
-        ui->graphicsView->setIndexedPage(0);
-        qApp->addHistory(path);
+        ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
+        qApp->addHistory(m_fileVolume->volumePath());
 
         setWindowTitle(QString("%1 - %2").arg(path).arg(qApp->applicationName()));
         makeHistoryMenu();

@@ -32,13 +32,36 @@ bool FileVolumeDirectory::prevFile()
     return true;
 }
 
-bool FileVolumeDirectory::setIndexedFile(int idx)
+bool FileVolumeDirectory::findImageByIndex(int idx)
 {
     if(idx < 0 || idx >= m_filelist.size())
         return false;
     m_cnt = idx;
     m_current = m_filelist[m_cnt];
     return true;
+}
+
+bool FileVolumeDirectory::findImageByName(QString name)
+{
+    for(int i = 0; i < m_filelist.size(); i++) {
+        if(name == m_filelist[i]) {
+            m_cnt = i;
+            m_current = name;
+            return true;
+        }
+    }
+    return false;
+}
+
+QPixmap FileVolumeDirectory::loadImageByName(QString name)
+{
+    foreach(const QString& e, m_filelist) {
+        if(name == e) {
+            QString path = m_directory.absoluteFilePath(name);
+            return QPixmap(path);
+        }
+    }
+    return QPixmap();
 }
 
 int FileVolumeDirectory::size()

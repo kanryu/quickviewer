@@ -17,6 +17,7 @@ public:
 
     QString currentPath();
     QPixmap currentImage();
+    QString volumePath() { return m_zipfilepath; }
 
 public:
     /**
@@ -33,7 +34,9 @@ public:
      * @brief 現在のファイルリストの中で指定されたidx値に対応するファイルに移動する(最大値はディレクトリまたはアーカイブの画像数-1)
      * @return 成功/失敗(ファイルリスト終端等)
      */
-    bool setIndexedFile(int idx);
+    bool findImageByIndex(int idx);
+    bool findImageByName(QString name);
+    QPixmap loadImageByName(QString name);
 
     /**
      * @brief ボリュームが持つページ数を返す

@@ -129,7 +129,7 @@ void ImageView::setIndexedPage(int idx)
     qDebug() << "ImageView::setIndexedPage()" << idx;
     if(m_fileVolume == nullptr) return;
     clearImages();
-    bool result = m_fileVolume->setIndexedFile(idx);
+    bool result = m_fileVolume->findImageByIndex(idx);
     if(!result) return;
     m_currentPage = idx;
 
