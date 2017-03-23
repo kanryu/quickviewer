@@ -1,5 +1,5 @@
-title: Merlot theme
-description: Merlot is a theme for GitHub Pages.
+title: QuickViewer Project
+description: Introducing the application, manual, distribution
 show_downloads: true
 google_analytics:
-theme: 
+theme: jekyll-theme-merlot

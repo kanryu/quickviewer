@@ -2,14 +2,6 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
-
-[Link to another page](another-page).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
 # [](#header-1)QuickViewer
 
 ** QuickViewer** は、たくさんの画像を快適に閲覧するための画像ビューアです。
