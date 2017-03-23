@@ -10,17 +10,46 @@ There should be whitespace between paragraphs.
 
 There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
 
-# [](#header-1)Header 1
+# [](#header-1)QuickViewer
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+** QuickViewer** は、たくさんの画像を快適に閲覧するための画像ビューアです。
 
-## [](#header-2)Header 2
+画像データの読み込みを先回りして行い、読み込んだ画像データをOpenGLで画面に描画することで、これまでにない軽快さで画像を閲覧できるようになります。
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+**QuickViewer** は GPLv3 のフリーソフトウェアです。
 
-### [](#header-3)Header 3
+
+
+## 使い方
+
+
+1. アプリを起動し、ウィンドウを表示します
+1. メインメニューの選択してダイアログからフォルダを選ぶ、もしくはエクスプローラーから画像ファイルの入ったフォルダをアプリのウィンドウにDrag&Dropします
+1. 画面に読み込んだ画像が表示されます。ツールバーの「←」「→」ボタン、マウスホイール、マウスの進む戻るボタン、ウィンドウの左右端クリックなどで画像を切り替えます
+
+
+
+
+
+## 機能紹介
+
+### 通常表示(1ページ表示)
+
+
+![通常表示](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
+
+
+『見開き表示』をオフにしている場合、このような表示になります。
+
+### 見開き表示
+
+
+![見開き表示](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
+
+
+『見開き表示』をオンにしている場合、このような表示になります。
+
+
 
 ```js
 // Javascript code with syntax highlighting.
