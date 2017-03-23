@@ -31,6 +31,7 @@ void QVApplication::loadSettings()
     m_fitting = m_settings.value("Fitting", false).toBool();
     m_dualView = m_settings.value("DualView", false).toBool();
     m_rightSideBook = m_settings.value("RightSideBook", bRightSideBookDefault).toBool();
+    m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("File");
@@ -46,6 +47,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("Fitting", m_fitting);
     m_settings.setValue("DualView", m_dualView);
     m_settings.setValue("RightSideBook", m_rightSideBook);
+    m_settings.setValue("WideImageAsOnePageInDualView", m_wideImageAsOnePageInDualView);
     m_settings.endGroup();
 
     m_settings.beginGroup("File");

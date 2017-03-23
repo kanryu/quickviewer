@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>ImageView</name>
+    <message>
+        <source>NOT IMAGE</source>
+        <translation>画像以外のファイルです</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>any folder or archive loaded.</source>
@@ -90,6 +97,14 @@
     <message>
         <source>Bound on the &amp;right side book</source>
         <translation>右開きで表示(&amp;R)</translation>
+    </message>
+    <message>
+        <source>&amp;Open Image Folder</source>
+        <translation>画像のフォルダを開く(&amp;O)</translation>
+    </message>
+    <message>
+        <source>&amp;Always open wide images as one view</source>
+        <translation>横長の画像は見開き表示でも1枚だけ表示する(&amp;A)</translation>
     </message>
 </context>
 </TS>

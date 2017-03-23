@@ -4,9 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl concurrent
+QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+VERSION = 0.1.10
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -48,7 +50,6 @@ RESOURCES += \
 RC_ICONS = icons/appicon.ico
 
 
-VERSION = 0.1.9
 QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
 QMAKE_TARGET_PRODUCT = QuickViewer
 QMAKE_TARGET_DESCRIPTION = A image viewer for folders/archives, it can show images very fast

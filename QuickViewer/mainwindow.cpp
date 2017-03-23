@@ -10,6 +10,7 @@
 #include <QWheelEvent>
 #include <QMimeData>
 #include <QMessageBox>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->on_rightSideBook_triggered(qApp->RightSideBook());
     ui->actionRightSideBook->setChecked(qApp->RightSideBook());
+
+    ui->actionWideImageAsOneView->setChecked(qApp->WideImageAsOnePageInDualView());
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
     makeHistoryMenu();
@@ -340,4 +343,13 @@ void MainWindow::on_historymenu_triggered(QAction *action)
 {
     qDebug() << action;
     loadVolume(action->text().mid(4));
+}
+
+void MainWindow::on_openfolder_triggered()
+{
+    QString folder = QFileDialog::getExistingDirectory(this, "Open a image folder");
+    qDebug() << folder;
+    QDir dir(folder);
+    if(dir.exists())
+        loadVolume(folder);
 }

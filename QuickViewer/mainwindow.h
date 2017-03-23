@@ -38,6 +38,7 @@ public slots:
     void on_appVersion_triggered();
     void on_autoloaded_triggered(bool autoreload);
     void on_historymenu_triggered(QAction *action);
+    void on_openfolder_triggered();
 
 private slots:
     void on_actionExit_triggered();

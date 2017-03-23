@@ -13,11 +13,16 @@ ImageView::ImageView(QWidget *parent)
     , m_fileVolume(nullptr)
     , m_hoverState(Qt::AnchorHorizontalCenter)
     , m_currentPage(0)
+    , m_wideImage(false)
 {
     viewSizeList << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 4; // 100
 
-    setScene(new QGraphicsScene(this));
+    QGraphicsScene* scene = new QGraphicsScene(this);
+//    scene->setForegroundBrush(QBrush(QColor("white")));
+//    scene->setBackgroundBrush(QBrush(QColor("black")));
+//    scene->setPalette(QPalette(Qt::white));
+    setScene(scene);
 //    setTransformationAnchor(AnchorUnderMouse);
 //    setDragMode(ScrollHandDrag);
 //    setViewportUpdateMode(FullViewportUpdate);
@@ -39,24 +44,38 @@ void ImageView::setImage(QPixmap pixmap)
     addImage(pixmap, true);
 }
 
-void ImageView::addImage(QPixmap pixmap, bool pageNext)
+bool ImageView::addImage(QPixmap pixmap, bool pageNext)
 {
-    if(m_fileVolume == nullptr) return;
+    if(m_fileVolume == nullptr) return false;
     m_ptLeftTop.reset();
     QGraphicsScene *s = scene();
 
-    if(pageNext)
-        m_imgs.push_back(pixmap);
-    else
-        m_imgs.push_front(pixmap);
 
-    QGraphicsPixmapItem* gpi = s->addPixmap(pixmap);
-    // if we show the image with resizing more smooth, must be called
-    gpi->setTransformationMode(Qt::SmoothTransformation);
+    QGraphicsItem* gitem;
+    QSize size;
+    if(pixmap.width() > 0) {
+        QGraphicsPixmapItem* gpi = s->addPixmap(pixmap);
+        // if we show the image with resizing more smooth, must be called
+        gpi->setTransformationMode(Qt::SmoothTransformation);
+        gitem = gpi;
+        size = pixmap.size();
+    } else {
+        QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE"));
+        gtext->setDefaultTextColor(Qt::white);
+        qDebug() << gtext;
+        gitem = gtext;
+        size = QSize(100, 100);
+    }
     if(pageNext)
-        m_gpiImages.push_back(gpi);
+        m_gpiImages.push_back(gitem);
     else
-        m_gpiImages.push_front(gpi);
+        m_gpiImages.push_front(gitem);
+    if(pageNext)
+        m_pagesizes.push_back(size);
+    else
+        m_pagesizes.push_front(size);
+
+    return size.width() > size.height();
 }
 
 void ImageView::clearImages()
@@ -68,7 +87,7 @@ void ImageView::clearImages()
         delete m_gpiImages[i];
     }
     m_gpiImages.resize(0);
-    m_imgs.resize(0);
+    m_pagesizes.resize(0);
 }
 
 void ImageView::nextPage()
@@ -77,9 +96,11 @@ void ImageView::nextPage()
     if(m_fileVolume == nullptr) return;
     bool result = (qApp->DualView() && m_fileVolume->pageCount() == m_fileVolume->size() - 2) ||  m_fileVolume->nextFile();
     if(!result) return;
-    m_currentPage += qApp->DualView() ? 2 : 1;
-    if(m_currentPage >= m_fileVolume->size() - 2)
-        m_currentPage = m_fileVolume->size() - 2;
+
+    int pageIncr = qApp->DualView() ? 2 : 1;
+    m_currentPage += pageIncr;
+    if(m_currentPage >= m_fileVolume->size() - pageIncr)
+        m_currentPage = m_fileVolume->size() - pageIncr;
 
     reloadCurrentPage();
     emit pageChanged();
@@ -91,10 +112,20 @@ void ImageView::reloadCurrentPage()
     if(m_fileVolume == nullptr) return;
     clearImages();
 
-    addImage(m_fileVolume->currentImage(), true);
-    if(qApp->DualView()) {
-        if(m_fileVolume->nextFile())
-            addImage(m_fileVolume->currentImage(), true);
+    bool wide = addImage(m_fileVolume->currentImage(), true);
+    m_wideImage = wide;
+    if(qApp->DualView() && wideImageAsDualView()) {
+        if(m_fileVolume->nextFile()) {
+            if(addImage(m_fileVolume->currentImage(), true) && qApp->WideImageAsOnePageInDualView()) {
+                // if 2nd page is wide, will be canceled
+                m_fileVolume->prevPage();
+                scene()->removeItem(m_gpiImages[1]);
+                delete m_gpiImages[1];
+                m_gpiImages.remove(1);
+                m_pagesizes.remove(1);
+                m_currentPage--;
+            }
+        }
     }
     readyForPaint();
 }
@@ -128,18 +159,21 @@ void ImageView::setIndexedPage(int idx)
 {
     qDebug() << "ImageView::setIndexedPage()" << idx;
     if(m_fileVolume == nullptr) return;
-    clearImages();
+//    clearImages();
     bool result = m_fileVolume->findImageByIndex(idx);
     if(!result) return;
     m_currentPage = idx;
 
-    addImage(m_fileVolume->currentImage(), true);
-    if(qApp->DualView()) {
-        if(m_fileVolume->nextFile())
-            addImage(m_fileVolume->currentImage(), true);
-    }
+//    bool wide = addImage(m_fileVolume->currentImage(), true);
+//    m_wideImage = wide;
+//    if(qApp->DualView() && !m_wideImage) {
+//        if(m_fileVolume->nextFile())
+//            addImage(m_fileVolume->currentImage(), true);
+//    }
+//    emit pageChanged();
+//    readyForPaint();
+    reloadCurrentPage();
     emit pageChanged();
-    readyForPaint();
 }
 
 void ImageView::setRenderer(RendererType type)
@@ -167,20 +201,21 @@ QString ImageView::currentPageAsString() const
 void ImageView::readyForPaint() {
     qDebug() << "readyForPaint";
     if(!m_gpiImages.empty()) {
+        bool dualview = qApp->DualView() && wideImageAsDualView();
         if(qApp->Fitting()) {
             for(int i = 0; i < m_gpiImages.size(); i++) {
                 QSize size = viewport()->size();
-                QSize imgsize = m_imgs[i].size();
-                QSize sizeofview = qApp->DualView() ? QSize(size.width()/2,size.height()) : size;
+                QSize imgsize = m_pagesizes[i];
+                QSize sizeofview = dualview ? QSize(size.width()/2,size.height()) : size;
 
                 QSize newsize = imgsize.scaled(sizeofview, Qt::KeepAspectRatio);
                 m_gpiImages[i]->setScale(1.0*newsize.width()/imgsize.width());
 
                 int offset = qApp->RightSideBook() ? -i : i-1;
                 if(newsize.height() == size.height()) { // 上下に内接
-                    m_gpiImages[i]->setPos(qApp->DualView() ? sizeofview.width()+offset*newsize.width() : (size.width()-newsize.width())/2, 0);
+                    m_gpiImages[i]->setPos(dualview ? sizeofview.width()+offset*newsize.width() : (size.width()-newsize.width())/2, 0);
                 } else { // 左右に内接
-                    m_gpiImages[i]->setPos(qApp->DualView() ? sizeofview.width()+offset*newsize.width() : 0, (size.height()-newsize.height())/2);
+                    m_gpiImages[i]->setPos(dualview ? sizeofview.width()+offset*newsize.width() : 0, (size.height()-newsize.height())/2);
                 }
             }
         } else {
@@ -188,9 +223,9 @@ void ImageView::readyForPaint() {
                 qreal scale = 1.0*currentViewSize()/100;
                 m_gpiImages[i]->setScale(scale);
                 QSize size = viewport()->size();
-                QSize imgsize = m_imgs[i].size();
+                QSize imgsize = m_pagesizes[i];
                 imgsize *= scale;
-                if(qApp->DualView())
+                if(dualview)
                     m_gpiImages[i]->setPos(size.width()/2-i*imgsize.width(), 0);
                 else
                     m_gpiImages[i]->setPos(size.width()/2-imgsize.width()/2, 0);
@@ -309,5 +344,18 @@ void ImageView::on_scaleDown_triggered()
     if(viewSizeIdx > 0)
         viewSizeIdx--;
     readyForPaint();
+}
+
+void ImageView::on_wideImageAsOneView_triggered(bool wideImage)
+{
+    qApp->setWideImageAsOnePageInDualView(wideImage);
+    reloadCurrentPage();
+    readyForPaint();
+}
+
+bool ImageView::wideImageAsDualView() const
+{
+    QVApplication* myapp = qApp;
+    return !(m_wideImage && myapp->WideImageAsOnePageInDualView());
 }
 

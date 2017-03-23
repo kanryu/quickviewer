@@ -2,7 +2,7 @@
 #define FILEVOLUMEZIPARCHIVE_H
 
 #include <QObject>
-#include <QtGui/5.7.0/QtGui/private/qzipreader_p.h>
+#include <QtGui/private/qzipreader_p.h>
 #include "filevolume.h"
 
 class FileVolumeZipArchive : public IFileVolume

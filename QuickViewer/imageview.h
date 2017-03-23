@@ -51,7 +51,7 @@ public:
     explicit ImageView(QWidget *parent = Q_NULLPTR);
     void setImage(QPixmap image);
     void setRenderer(RendererType type = Native);
-    void addImage(QPixmap image, bool pageNext);
+    bool addImage(QPixmap image, bool pageNext);
     void clearImages();
     void nextPage();
     void prevPage();
@@ -88,16 +88,17 @@ public slots:
     void on_rightSideBook_triggered(bool rightSideBook);
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
+    void on_wideImageAsOneView_triggered(bool wideImage);
 
 private:
     RendererType m_renderer;
 //    QImage m_img;
-    QVector<QPixmap> m_imgs;
+    QVector<QSize> m_pagesizes;
     /**
      * @brief m_gpiImages
      * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
      */
-    QVector<QGraphicsPixmapItem*> m_gpiImages;
+    QVector<QGraphicsItem*> m_gpiImages;
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
     bool m_isMouseDown;
@@ -113,6 +114,9 @@ private:
      */
     QList<int> viewSizeList;
     int viewSizeIdx;
+    QFont m_font;
+    bool m_wideImage;
+    bool wideImageAsDualView() const;
 };
 
 

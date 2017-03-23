@@ -119,8 +119,10 @@
       <string>&amp;Histories</string>
      </property>
     </widget>
-    <addaction name="actionAutoLoaded"/>
+    <addaction name="actionOpenFolder"/>
     <addaction name="menuHistory"/>
+    <addaction name="separator"/>
+    <addaction name="actionAutoLoaded"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -137,6 +139,7 @@
     <addaction name="separator"/>
     <addaction name="actionFitting"/>
     <addaction name="actionDualView"/>
+    <addaction name="actionWideImageAsOneView"/>
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
    </widget>
@@ -289,6 +292,19 @@
     <string>Bound on the &amp;right side book</string>
    </property>
   </action>
+  <action name="actionOpenFolder">
+   <property name="text">
+    <string>&amp;Open Image Folder</string>
+   </property>
+  </action>
+  <action name="actionWideImageAsOneView">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Always open wide images as one view</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -303,6 +319,7 @@
     <slot>on_scaleUp_triggered()</slot>
     <slot>on_scaleDown_triggered()</slot>
     <slot>on_rightSideBook_triggered(bool)</slot>
+    <slot>on_wideImageAsOneView_triggered(bool)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -470,6 +487,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionOpenFolder</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_openfolder_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionWideImageAsOneView</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_wideImageAsOneView_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -480,5 +529,6 @@
   <slot>on_fullscreen_triggered()</slot>
   <slot>on_appVersion_triggered()</slot>
   <slot>on_autoloaded_triggered(bool)</slot>
+  <slot>on_openfolder_triggered()</slot>
  </slots>
 </ui>

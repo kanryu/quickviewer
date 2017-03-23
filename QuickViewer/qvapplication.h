@@ -21,6 +21,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool RightSideBook READ RightSideBook WRITE setRightSideBook)
     Q_PROPERTY(int MaxHistoryCount READ MaxHistoryCount WRITE setMaxHistoryCount)
     Q_PROPERTY(bool AutoLoaded READ AutoLoaded WRITE setAutoLoaded)
+    Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
 
 public:
     explicit QVApplication(int &argc, char **argv);
@@ -30,6 +31,9 @@ public:
     void setDualView (bool dualView) { m_dualView = dualView; }
     bool RightSideBook() { return m_rightSideBook; }
     void setRightSideBook (bool rightSideBook) { m_rightSideBook = rightSideBook; }
+    bool WideImageAsOnePageInDualView() { return m_wideImageAsOnePageInDualView; }
+    void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
+
     int MaxHistoryCount() { return m_maxHistoryCount; }
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     bool AutoLoaded() { return m_autoLoaded; }
@@ -59,6 +63,10 @@ private:
     bool m_rightSideBook;
     int m_maxHistoryCount;
     bool m_autoLoaded;
+    /**
+     * @brief if true, a wide image must be one view whether dual view is enabled
+     */
+    bool m_wideImageAsOnePageInDualView;
     QSettings m_settings;
     QStringList m_history;
 };
