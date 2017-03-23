@@ -2,17 +2,13 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# [](#header-1)QuickViewer
 
-[Link to another page](another-page).
+** QuickViewer** は、たくさんの画像を快適に閲覧するための画像ビューアです。
 
-There should be whitespace between paragraphs. *aaaaaa*
+画像データの読み込みを先回りして行い、読み込んだ画像データをOpenGLで画面に描画することで、これまでにない軽快さで画像を閲覧できるようになります。
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# [](#header-1)Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+**QuickViewer** は GPLv3 のフリーソフトウェアです。
 
 ## [](#header-2)Header 2
 
