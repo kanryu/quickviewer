@@ -39,6 +39,7 @@ A image viewer application for folders/archives, it can show images very fast
 - Fittng (To fit images up to window size)
 - Spread viewing (two image once)
     - Bound on the right side book(e.g. Japanese Style)
+- Pre page loading(via v0.2.0)
 
 # Report issues
 
