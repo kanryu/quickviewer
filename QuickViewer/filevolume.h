@@ -17,7 +17,7 @@ public:
      * @brief 指定されたファイルまたはディレクトリのpathからIFileVolumeのインスタンスを返すファクトリ関数
      * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
      */
-    static IFileVolume* CreateVolume(QObject* parent, QString path);
+    static IFileVolume* CreateVolume(QObject* parent, QString path, QString subfilename=nullptr);
     /**
      * @brief isImageFile そのファイルが画像ファイルかを拡張子から調べる
      * @param path
@@ -50,6 +50,7 @@ public:
      * @return 成功/失敗(ファイルリスト終端等)
      */
     bool prevPage();
+    bool findPageByIndex(int idx);
     /**
      * @brief 現在のファイルリストの中で次のファイルに移動する
      * @return 成功/失敗(ファイルリスト終端等)
@@ -95,12 +96,13 @@ protected:
      * @brief m_cnt ボリューム内のファイルカウンタ
      */
     int m_cnt;
+    QList<QString> m_filelist;
     /**
      * @brief 3つのリストで合計6ページ分の画像をキャッシュする。それぞれのリストで2ページずつ保持する。
      * 各リストのページはQFutureクラスのインスタンスであり、それぞれが非同期でロード作業が行われる。ImageViewに引き渡す際にロードが完了していない場合は待機が必要。
      */
     QList<future_pixmap> m_prevCache;
-    QList<future_pixmap> m_currentCache;
+    future_pixmap m_currentCache;
     QList<future_pixmap> m_nextCache;
 };
 

@@ -50,7 +50,6 @@ public:
 protected:
     QString m_7zfilepath;
     Qt7zPackage m_reader;
-    QList<QString> m_filelist;
     QMap<QString, Qt7zFileInfo> m_fileinfomap;
 
     /**

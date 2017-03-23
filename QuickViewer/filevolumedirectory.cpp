@@ -79,5 +79,9 @@ QPixmap FileVolumeDirectory::currentImage()
     if(m_cachedPath == currentPath()) {
         return m_cachedImage;
     }
-    return m_cachedImage = QPixmap(currentPath());
+    if(!m_currentCache.isFinished())
+        m_currentCache.waitForFinished();
+
+    return m_cachedImage = m_currentCache;
+//    return m_cachedImage = QPixmap(currentPath());
 }

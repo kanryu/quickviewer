@@ -94,7 +94,7 @@ void ImageView::nextPage()
 {
     qDebug() << "ImageView::nextPage()";
     if(m_fileVolume == nullptr) return;
-    bool result = (qApp->DualView() && m_fileVolume->pageCount() == m_fileVolume->size() - 2) ||  m_fileVolume->nextFile();
+    bool result = (qApp->DualView() && m_fileVolume->pageCount() == m_fileVolume->size() - 2) ||  m_fileVolume->nextPage();
     if(!result) return;
 
     int pageIncr = qApp->DualView() ? 2 : 1;
@@ -115,7 +115,7 @@ void ImageView::reloadCurrentPage()
     bool wide = addImage(m_fileVolume->currentImage(), true);
     m_wideImage = wide;
     if(qApp->DualView() && wideImageAsDualView()) {
-        if(m_fileVolume->nextFile()) {
+        if(m_fileVolume->nextPage()) {
             if(addImage(m_fileVolume->currentImage(), true) && qApp->WideImageAsOnePageInDualView()) {
                 // if 2nd page is wide, will be canceled
                 m_fileVolume->prevPage();
@@ -160,14 +160,14 @@ void ImageView::setIndexedPage(int idx)
     qDebug() << "ImageView::setIndexedPage()" << idx;
     if(m_fileVolume == nullptr) return;
 //    clearImages();
-    bool result = m_fileVolume->findImageByIndex(idx);
+    bool result = m_fileVolume->findPageByIndex(idx);
     if(!result) return;
     m_currentPage = idx;
 
 //    bool wide = addImage(m_fileVolume->currentImage(), true);
 //    m_wideImage = wide;
 //    if(qApp->DualView() && !m_wideImage) {
-//        if(m_fileVolume->nextFile())
+//        if(m_fileVolume->nextPage())
 //            addImage(m_fileVolume->currentImage(), true);
 //    }
 //    emit pageChanged();
@@ -321,7 +321,7 @@ void ImageView::on_dualView_triggered(bool viewdual)
     qApp->setDualView(viewdual);
 
     if(!viewdual && m_fileVolume)
-        m_fileVolume->prevFile();
+        m_fileVolume->prevPage();
     reloadCurrentPage();
     readyForPaint();
 }

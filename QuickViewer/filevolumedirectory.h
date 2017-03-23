@@ -45,7 +45,6 @@ public:
 
 protected:
     QDir m_directory;
-    QList<QString> m_filelist;
     /**
      * @brief m_current　現在選択中のファイル名
      */

@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , m_sliderChanging(false)
     , m_viewerWindowStateMaximized(false)
+    , m_fileVolume(nullptr)
 {
     ui->setupUi(this);
     setAcceptDrops(true);
@@ -174,6 +175,8 @@ void MainWindow::loadVolume(QString path)
 {
     IFileVolume* fv = IFileVolume::CreateVolume(this, path);
     if(fv) {
+        if(m_fileVolume)
+            delete m_fileVolume;
         m_fileVolume = fv;
         ui->graphicsView->setFileVolume(m_fileVolume);
         ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());

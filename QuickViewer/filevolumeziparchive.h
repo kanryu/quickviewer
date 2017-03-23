@@ -47,7 +47,6 @@ public:
 protected:
     QString m_zipfilepath;
     QZipReader m_reader;
-    QList<QString> m_filelist;
     /**
      * @brief m_current　現在選択中のファイル名
      */
