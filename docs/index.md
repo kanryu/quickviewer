@@ -4,19 +4,31 @@ layout: default
 
 # [](#header-1)QuickViewer
 
-** QuickViewer** は、たくさんの画像を快適に閲覧するための画像ビューアです。
+**QuickViewer** は、たくさんの画像を快適に閲覧するための画像ビューアです。
 
 画像データの読み込みを先回りして行い、読み込んだ画像データをOpenGLで画面に描画することで、これまでにない軽快さで画像を閲覧できるようになります。
 
 **QuickViewer** は GPLv3 のフリーソフトウェアです。
 
-## [](#header-2)Header 2
+## 使い方
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
 
-### [](#header-3)Header 3
+1. アプリを起動し、ウィンドウを表示します
+1. メインメニューの選択してダイアログからフォルダを選ぶ、もしくはエクスプローラーから画像ファイルの入ったフォルダをアプリのウィンドウにDrag Dropします
+1. 画面に読み込んだ画像が表示されます。ツールバーの「←」「→」ボタン、マウスホイール、マウスの進む戻るボタン、ウィンドウの左右端クリックなどで画像を切り替えます
+
+
+
+
+
+## 機能紹介
+
+### 通常表示(1ページ表示)
+
+![通常表示](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
+
+『見開き表示』をオフにしている場合、このような表示になります。
+
 
 ```js
 // Javascript code with syntax highlighting.
