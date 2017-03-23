@@ -3,6 +3,7 @@
 
 #include <QPixmap>
 #include <QtConcurrent>
+#include <QMutex>
 
 class IFileVolume : public QObject
 {
@@ -104,6 +105,8 @@ protected:
     QList<future_pixmap> m_prevCache;
     future_pixmap m_currentCache;
     QList<future_pixmap> m_nextCache;
+
+    QMutex m_mutex;
 };
 
 
