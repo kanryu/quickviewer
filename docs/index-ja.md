@@ -10,6 +10,8 @@ layout: default
 
 **QuickViewer** は GPLv3 のフリーソフトウェアです。
 
+[英語表記](https://kanryu.github.io/quickviewer/) / [日本語表記](https://kanryu.github.io/quickviewer/index-ja)
+
 ## 使い方
 
 
