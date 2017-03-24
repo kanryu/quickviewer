@@ -53,7 +53,7 @@ Thus, your feedback is welcome at <k.kanryu@gmail.com>.
 
 https://kanryu.github.io/quickviewer/
 
-# Project Sourcecode Repository
+# Project Source Code Repository
 
 https://github.com/kanryu/quickviewer
 

@@ -4,29 +4,24 @@ layout: default
 
 # [](#header-1)QuickViewer
 
-**QuickViewer** is an graphic image viewer for comfortable browsing of many images.
+**QuickViewer** は、たくさんの画像を快適に閲覧するための画像ビューアです。
 
-This software performs reading of image data in advance.
-And loading the imported image data on the screen with OpenGL.
-You can browse images with less lightness than ever before.
+画像データの読み込みを先回りして行い、読み込んだ画像データをOpenGLで画面に描画することで、これまでにない軽快さで画像を閲覧できるようになります。
 
 **QuickViewer** は GPLv3 のフリーソフトウェアです。
 
-[in English](https://kanryu.github.io/quickviewer/) / [in Japanese](https://kanryu.github.io/quickviewer/index-ja)
+## 使い方
 
 
+1. アプリを起動し、ウィンドウを表示します
+1. メインメニューの選択してダイアログからフォルダを選ぶ、もしくはエクスプローラーから画像ファイルの入ったフォルダをアプリのウィンドウにDrag Dropします
+1. 画面に読み込んだ画像が表示されます。ツールバーの「←」「→」ボタン、マウスホイール、マウスの進む戻るボタン、ウィンドウの左右端クリックなどで画像を切り替えます
 
-## How to use
+## ダウンロード
 
-1. Launch the application and display the window
-1. Select a menu on the main menu which choose the folder from the dialog, or Drag Drop the folder containing the image file from Windows Explorer to the application window
-1. A image loaded on the screen is displayed. Browse the images with the "←" or "→" button on the toolbar, the mouse wheel up/down, the forward button of the mouse, or the left and right edge click of the window
+[ビルド済みリリース版](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
 
-## Download
-
-[Release Builded Binary](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
-
-Please clone the latest source code from [this repository.](https://github.com/kanryu/quickviewer)
+ソースコードについては [リポジトリ](https://github.com/kanryu/quickviewer) から最新のソースコードをcloneして入手してください。
 
 ## 機能紹介
 
