@@ -48,6 +48,13 @@ QuickViewer installations at <k.kanryu@gmail.com>
 
 Thus, your feedback is welcome at <k.kanryu@gmail.com>.
 
+
+# The QuickViewer Project(Japanese)
+
+https://kanryu.github.io/quickviewer/
+
+# Project Sourcecode Repository
+
 https://github.com/kanryu/quickviewer
 
 # License
