@@ -42,9 +42,6 @@ If **Spread Viewing** is off, the window shows one image.
 
 ![Spread Viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
-
-『見開き表示』をオンにしている場合、画像を2枚横に並べて表示します。
-
 If **Spread Viewing** is on, the window shows two images on side by side.
 
 
