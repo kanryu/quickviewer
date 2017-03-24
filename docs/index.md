@@ -61,7 +61,7 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |           | Keyboard | ESC Key | Fullscreen exitting only |
 |           | Mouse | Wheel Clicked | as Center Button |
 | Scale Up | Keyboard | Ten keys(+) | do nothing with Fitting |
-| 画像縮小 | キーボード | テンキー(-) | do nothing with Fitting |
+| Scale Down | Keyboard | Ten keys(-) | do nothing with Fitting |
 
 
 
