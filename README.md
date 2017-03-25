@@ -46,7 +46,7 @@ A image viewer application for folders/archives, it can show images very fast
 Please report issues as well as configuration details for your working 
 QuickViewer installations at <k.kanryu@gmail.com>
 
-Thus, your feedback is welcome at <k.kanryu@gmail.com>.
+Thus, your feedback is welcome at KATO Kanryu<k.kanryu@gmail.com>.
 
 
 # The QuickViewer Project(Japanese)

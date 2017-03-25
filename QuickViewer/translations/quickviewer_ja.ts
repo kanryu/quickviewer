@@ -106,5 +106,21 @@
         <source>&amp;Always open wide images as one view</source>
         <translation>横長の画像は見開き表示でも1枚だけ表示する(&amp;A)</translation>
     </message>
+    <message>
+        <source>open error</source>
+        <translation>開くときに問題がありました</translation>
+    </message>
+    <message>
+        <source>Can&apos;t be opened. Is there no images?</source>
+        <translation>開くことができませんでした。画像ファイルが見つかりません。</translation>
+    </message>
+    <message>
+        <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z)</source>
+        <translation>全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z</translation>
+    </message>
+    <message>
+        <source>Open a image or archive</source>
+        <translation>閲覧したい画像またはアーカイブを選択してください</translation>
+    </message>
 </context>
 </TS>

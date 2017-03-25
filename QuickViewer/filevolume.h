@@ -98,13 +98,10 @@ protected:
      */
     int m_cnt;
     QList<QString> m_filelist;
-    /**
-     * @brief 3つのリストで合計6ページ分の画像をキャッシュする。それぞれのリストで2ページずつ保持する。
-     * 各リストのページはQFutureクラスのインスタンスであり、それぞれが非同期でロード作業が行われる。ImageViewに引き渡す際にロードが完了していない場合は待機が必要。
-     */
-    QList<future_pixmap> m_prevCache;
     future_pixmap m_currentCache;
-    QList<future_pixmap> m_nextCache;
+
+    QMap<int, future_pixmap> m_imageCache;
+    QList<int> m_pageCache;
 
     QMutex m_mutex;
 };

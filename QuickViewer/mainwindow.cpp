@@ -174,17 +174,27 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::loadVolume(QString path)
 {
     IFileVolume* fv = IFileVolume::CreateVolume(this, path);
-    if(fv) {
-        if(m_fileVolume)
-            delete m_fileVolume;
-        m_fileVolume = fv;
-        ui->graphicsView->setFileVolume(m_fileVolume);
-        ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
-        qApp->addHistory(m_fileVolume->volumePath());
-
-        setWindowTitle(QString("%1 - %2").arg(path).arg(qApp->applicationName()));
-        makeHistoryMenu();
+    if(!fv) {
+        QMessageBox msgBox(this);
+        msgBox.setWindowTitle(tr("open error"));
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText(QApplication::applicationVersion());
+        QString message = QString("<h2>%1</h2><p>%2</p>")
+                .arg(tr("Can't be opened. Is there no images?"))
+                .arg(path);
+        msgBox.setText(message);
+        msgBox.exec();
+        return;
     }
+    if(m_fileVolume)
+        delete m_fileVolume;
+    m_fileVolume = fv;
+    ui->graphicsView->setFileVolume(m_fileVolume);
+    ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
+    qApp->addHistory(m_fileVolume->volumePath());
+
+    setWindowTitle(QString("%1 - %2").arg(path).arg(qApp->applicationName()));
+    makeHistoryMenu();
 }
 
 
@@ -303,9 +313,10 @@ void MainWindow::on_pageChanged_triggered()
 {
     qDebug() << "on_pageChanged_triggered";
     ui->pageLabel->setText(QString("(%1)").arg(ui->graphicsView->currentPageAsString()));
-    ui->pageSlider->setMaximum(m_fileVolume->size());
     m_sliderChanging = true;
-    ui->pageSlider->setValue(ui->graphicsView->currentPage());
+    ui->pageSlider->setMaximum(m_fileVolume->size());
+    int currentPage = ui->graphicsView->currentPage();
+    ui->pageSlider->setValue(currentPage);
     m_sliderChanging = false;
     ui->pageSlider->show();
 }
@@ -350,9 +361,15 @@ void MainWindow::on_historymenu_triggered(QAction *action)
 
 void MainWindow::on_openfolder_triggered()
 {
-    QString folder = QFileDialog::getExistingDirectory(this, "Open a image folder");
-    qDebug() << folder;
-    QDir dir(folder);
-    if(dir.exists())
+    QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z)");
+    QString folder = QFileDialog::getOpenFileName(this, tr("Open a image or archive"), "", filter);
+//    QFileDialog dialog = QFileDialog(this, tr("Open a image folder"));
+//    if(dialog.exec()) {
+    if(folder.length() > 0) {
+        qDebug() << folder;
+//        QDir dir(folder);
+//        if(dir.exists())
+//            loadVolume(folder);
         loadVolume(folder);
+    }
 }
