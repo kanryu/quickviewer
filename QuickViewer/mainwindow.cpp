@@ -215,7 +215,7 @@ void MainWindow::makeHistoryMenu()
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key()) {
-    case Qt::Key_F11:
+    case Qt::Key_F11: case Qt::Key_Enter: case Qt::Key_Return:
         on_fullscreen_triggered();
         break;
     case Qt::Key_Escape:
@@ -225,8 +225,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Left:case Qt::Key_ApplicationLeft:
         on_prevPage_triggered();
         break;
-    case Qt::Key_Right:case Qt::Key_ApplicationRight:
+    case Qt::Key_Right:case Qt::Key_ApplicationRight: case Qt::Key_Space:
         on_nextPage_triggered();
+        break;
+    case Qt::Key_Home:
+        on_firstPage_triggered();
+        break;
+    case Qt::Key_End:
+        on_lastPage_triggered();
         break;
     case Qt::Key_Plus:
         ui->graphicsView->on_scaleUp_triggered();
@@ -263,6 +269,17 @@ void MainWindow::on_prevPage_triggered()
 {
 //    m_fileVolume->prevFile();
     ui->graphicsView->prevPage();
+}
+
+void MainWindow::on_firstPage_triggered()
+{
+    ui->graphicsView->setIndexedPage(0);
+}
+
+void MainWindow::on_lastPage_triggered()
+{
+    if(m_fileVolume && m_fileVolume->size() > 0)
+        ui->graphicsView->setIndexedPage(m_fileVolume->size()-1);
 }
 
 void MainWindow::on_fullscreen_triggered()
@@ -339,7 +356,8 @@ void MainWindow::on_appVersion_triggered()
     msgBox.setIcon(QMessageBox::Information);
     msgBox.setTextFormat(Qt::RichText);
 //    msgBox.setText(QApplication::applicationVersion());
-    QString message = QString("<h1>%1 %2</h1><p>%3 All rights reserved.</p>"
+    QString message = QString("<h1>%1 %2</h1><p>%3&lt;<a href=\"mailto:k.kanryu@gmail.com\">k.kanryu@gmail.com&gt;</a> All rights reserved.</p>"
+                              "<p>Project Webpage: <a href=\"https://kanryu.github.io/quickviewer/\">https://kanryu.github.io/quickviewer/</a></p>"
                               "<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>")
             .arg(QApplication::applicationName())
             .arg(QApplication::applicationVersion())

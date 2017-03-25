@@ -20,7 +20,7 @@
     </message>
     <message>
         <source>&amp;Histories</source>
-        <translation>最近開いたフォルダまたはアーカイブ(&amp;H)</translation>
+        <translation type="vanished">最近開いたフォルダまたはアーカイブ(&amp;H)</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -88,7 +88,7 @@
     </message>
     <message>
         <source>&amp;Auto loading the last</source>
-        <translation>起動時に前回終了時に復元(&amp;A)</translation>
+        <translation type="vanished">起動時に前回終了時に復元(&amp;A)</translation>
     </message>
     <message>
         <source>QuickViewer</source>
@@ -121,6 +121,22 @@
     <message>
         <source>Open a image or archive</source>
         <translation>閲覧したい画像またはアーカイブを選択してください</translation>
+    </message>
+    <message>
+        <source>&amp;History</source>
+        <translation>最近開いたフォルダまたはアーカイブ(&amp;H)</translation>
+    </message>
+    <message>
+        <source>&amp;Auto load last used</source>
+        <translation>起動時に前回終了時に復元(&amp;A)</translation>
+    </message>
+    <message>
+        <source>&amp;LastPage</source>
+        <translation>最後のページ(&amp;L)</translation>
+    </message>
+    <message>
+        <source>&amp;FirstPage</source>
+        <translation>最初のページ(&amp;F)</translation>
     </message>
 </context>
 </TS>

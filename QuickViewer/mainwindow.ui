@@ -116,7 +116,7 @@
     </property>
     <widget class="QMenu" name="menuHistory">
      <property name="title">
-      <string>&amp;Histories</string>
+      <string>&amp;History</string>
      </property>
     </widget>
     <addaction name="actionOpenFolder"/>
@@ -133,6 +133,9 @@
     <addaction name="actionNextPage"/>
     <addaction name="actionPrevPage"/>
     <addaction name="actionRightSideBook"/>
+    <addaction name="separator"/>
+    <addaction name="actionFirstPage"/>
+    <addaction name="actionLastPage"/>
     <addaction name="separator"/>
     <addaction name="actionScaleUp"/>
     <addaction name="actionScaleDown"/>
@@ -163,6 +166,9 @@
    <addaction name="actionPrevPage"/>
    <addaction name="actionNextPage"/>
    <addaction name="separator"/>
+   <addaction name="actionFirstPage"/>
+   <addaction name="actionLastPage"/>
+   <addaction name="separator"/>
    <addaction name="actionScaleUp"/>
    <addaction name="actionScaleDown"/>
    <addaction name="separator"/>
@@ -178,9 +184,8 @@
   </action>
   <action name="actionNextPage">
    <property name="icon">
-    <iconset>
-     <normalon>:/icons/arrow_right_icon</normalon>
-    </iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/page_next_icon2</normaloff>:/icons/page_next_icon2</iconset>
    </property>
    <property name="text">
     <string>&amp;NextPage</string>
@@ -192,7 +197,7 @@
   <action name="actionPrevPage">
    <property name="icon">
     <iconset resource="toolbar.qrc">
-     <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
+     <normaloff>:/icons/page_previous_icon2</normaloff>:/icons/page_previous_icon2</iconset>
    </property>
    <property name="text">
     <string>&amp;PrevPage</string>
@@ -281,7 +286,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Auto loading the last</string>
+    <string>&amp;Auto load last used</string>
    </property>
   </action>
   <action name="actionRightSideBook">
@@ -303,6 +308,24 @@
    </property>
    <property name="text">
     <string>&amp;Always open wide images as one view</string>
+   </property>
+  </action>
+  <action name="actionLastPage">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/page_last_icon</normaloff>:/icons/page_last_icon</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;LastPage</string>
+   </property>
+  </action>
+  <action name="actionFirstPage">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/page_first_icon</normaloff>:/icons/page_first_icon</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;FirstPage</string>
    </property>
   </action>
  </widget>
@@ -519,6 +542,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFirstPage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_firstPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLastPage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_lastPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -530,5 +585,7 @@
   <slot>on_appVersion_triggered()</slot>
   <slot>on_autoloaded_triggered(bool)</slot>
   <slot>on_openfolder_triggered()</slot>
+  <slot>on_firstPage_triggered()</slot>
+  <slot>on_lastPage_triggered()</slot>
  </slots>
 </ui>

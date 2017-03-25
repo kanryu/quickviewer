@@ -2,8 +2,26 @@
 #define FILELIST_H
 
 #include <QPixmap>
+#include <QImage>
 #include <QtConcurrent>
 #include <QMutex>
+#include <QtGui/private/qjpeghandler_p.h>
+
+struct PixmapConcurrent
+{
+public:
+    QImage Image;
+    QJpegHandler JpegHandler;
+    bool IsHandlerValid;
+
+    explicit PixmapConcurrent(QImage image):
+        Image(image), IsHandlerValid(false) {
+        IsHandlerValid = JpegHandler.read(&image);
+    }
+
+};
+
+
 
 class IFileVolume : public QObject
 {

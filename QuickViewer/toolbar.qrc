@@ -19,5 +19,9 @@
         <file alias="dualview">icons/dualview.png</file>
         <file alias="fullscreen">icons/fullscreen.png</file>
         <file alias="fullscreen2">icons/fullscreen2.png</file>
+        <file alias="page_first_icon">icons/page_first.png</file>
+        <file alias="page_last_icon">icons/page_last.png</file>
+        <file alias="page_next_icon2">icons/page_next2.png</file>
+        <file alias="page_previous_icon2">icons/page_previous2.png</file>
     </qresource>
 </RCC>
