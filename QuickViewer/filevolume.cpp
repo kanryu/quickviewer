@@ -15,20 +15,24 @@ void IFileVolume::on_ready()
     if(m_cnt < 0 || m_cnt >= m_filelist.size())
         return;
 
-    QVector<int> offsets = {0, 1, 2, 3, 4, 5, -1, -2, 6, 7, -3, -4, -5, -6};
+    QVector<int> offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
-        if(cnt < 0 || cnt >= m_filelist.size() || m_imageCache.contains(cnt))
+        if(cnt < 0 || cnt >= m_filelist.size())
             continue;
-        m_imageCache[cnt] = QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]);
-        if(m_pageCache.size() > 0)
+        if(m_pageCache.contains(cnt))
             m_pageCache.removeOne(cnt);
+        else {
+            qDebug() << "add cached:" << cnt;
+            m_imageCache[cnt] = QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]);
+        }
         m_pageCache.push_front(cnt);
     }
     m_currentCache = m_imageCache[m_cnt];
     while(m_pageCache.size() > 16) {
         int cnt = m_pageCache.takeLast();
         m_imageCache.remove(cnt);
+        qDebug() << "remove cached:" << cnt;
     }
 }
 
