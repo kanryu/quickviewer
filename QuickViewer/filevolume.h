@@ -7,18 +7,28 @@
 #include <QMutex>
 #include <QtGui/private/qjpeghandler_p.h>
 
-struct PixmapConcurrent
+struct ImageContent
 {
 public:
-    QImage Image;
-    QJpegHandler JpegHandler;
-    bool IsHandlerValid;
+    QPixmap Image;
+    QSize BaseSize;
+    QString Path;
 
-    explicit PixmapConcurrent(QImage image):
-        Image(image), IsHandlerValid(false) {
-        IsHandlerValid = JpegHandler.read(&image);
+    ImageContent(){}
+    ImageContent(QPixmap image, QString path, QSize size)
+        : Image(image), Path(path), BaseSize(size) {
     }
 
+    ImageContent(const ImageContent& rhs)
+        : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize) {
+    }
+    inline ImageContent& ImageContent::operator=(const ImageContent &rhs)
+    {
+        Image = rhs.Image;
+        Path = rhs.Path;
+        BaseSize = rhs.BaseSize;
+        return *this;
+    }
 };
 
 
@@ -28,7 +38,7 @@ class IFileVolume : public QObject
     Q_OBJECT
 //    Q_DISABLE_COPY(IFileVolume)
 public:
-    typedef QFuture<QPixmap> future_pixmap;
+    typedef QFuture<ImageContent> future_image;
 
     explicit IFileVolume(QObject *parent=0);
     virtual ~IFileVolume() {}
@@ -44,7 +54,7 @@ public:
      */
     static bool isImageFile(QString path);
 
-    static QPixmap futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
+    static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
     /**
      * @brief 現在のファイルパスを返す
      * @return
@@ -54,7 +64,7 @@ public:
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
      * @return
      */
-    virtual QPixmap currentImage()=0;
+    virtual const QPixmap currentImage()=0;
     /**
      * @brief volumePath ボリュームのpathを返す。通常コンストラクタのpathがそのまま返ってくる
      */
@@ -94,7 +104,7 @@ public:
      * @brief loadImageByName 内部カウンタを進めずにファイルリストの中で指定されたファイル名に対応する画像を読み込んで返す
      * @return ロードに失敗すれば空インスタンス
      */
-    virtual QPixmap loadImageByName(const QString& name)=0;
+    virtual QImage loadImageByName(const QString& name)=0;
     /**
      * @brief ボリュームが持つページ数を返す
      * @return ボリュームが持つページ数
@@ -109,9 +119,10 @@ public:
      */
     int pageCount() { return m_cnt; }
 
-    QPixmap getIndexedImage(int idx);
-    QString getIndexedImageName(int idx) { return m_filelist[idx]; }
-    QString currentImageName() const { return m_filelist[m_cnt]; }
+//    QPixmap getIndexedImage(int idx);
+//    QString getIndexedImageName(int idx) { return m_filelist[idx]; }
+//    QString currentImageName() const { return m_filelist[m_cnt]; }
+    const ImageContent getIndexedImageContent(int idx);
 
 
 protected:
@@ -120,9 +131,9 @@ protected:
      */
     int m_cnt;
     QList<QString> m_filelist;
-    future_pixmap m_currentCache;
+    future_image m_currentCache;
 
-    QMap<int, future_pixmap> m_imageCache;
+    QMap<int, future_image> m_imageCache;
     QList<int> m_pageCache;
 
     QMutex m_mutex;

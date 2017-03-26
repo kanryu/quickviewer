@@ -16,7 +16,7 @@ public:
     explicit FileVolumeZipArchive(QObject* parent, QString zippath);
 
     QString currentPath();
-    QPixmap currentImage();
+    const QPixmap currentImage();
     QString volumePath() { return m_zipfilepath; }
 
 public:
@@ -36,7 +36,7 @@ public:
      */
     bool findImageByIndex(int idx);
     bool findImageByName(QString name);
-    QPixmap loadImageByName(const QString& name);
+    QImage loadImageByName(const QString& name);
 
     /**
      * @brief ボリュームが持つページ数を返す

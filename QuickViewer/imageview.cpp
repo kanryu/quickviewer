@@ -74,10 +74,10 @@ bool ImageView::addImage(QPixmap pixmap, bool pageNext)
         m_pagesizes.push_back(size);
     else
         m_pagesizes.push_front(size);
-    if(pageNext)
-        m_pageFilenames.push_back(m_fileVolume->currentImageName());
-    else
-        m_pageFilenames.push_front(m_fileVolume->currentImageName());
+//    if(pageNext)
+//        m_pageFilenames.push_back(m_fileVolume->currentImageName());
+//    else
+//        m_pageFilenames.push_front(m_fileVolume->currentImageName());
 
     return size.width() > size.height();
 }
@@ -92,17 +92,18 @@ void ImageView::clearImages()
     }
     m_gpiImages.resize(0);
     m_pagesizes.resize(0);
-    m_pageFilenames.resize(0);
+//    m_pageFilenames.resize(0);
 }
 
 void ImageView::nextPage()
 {
-    qDebug() << "ImageView::nextPage()";
+    qDebug() << "ImageView::nextPage()" << m_currentPage;
     if(m_fileVolume == nullptr) return;
-    bool result = (qApp->DualView() && m_fileVolume->pageCount() == m_fileVolume->size() - 2) ||  m_fileVolume->nextPage();
+    bool result = (m_fileVolume->pageCount() == m_fileVolume->size() -1) ||  m_fileVolume->nextPage();
     if(!result) return;
 
-    int pageIncr = qApp->DualView() ? 2 : 1;
+    int pageIncr = m_gpiImages.size();
+//    int pageIncr = qApp->DualView() ? 2 : 1;
     m_currentPage += pageIncr;
     if(m_currentPage >= m_fileVolume->size() - pageIncr)
         m_currentPage = m_fileVolume->size() - pageIncr;
@@ -119,18 +120,25 @@ void ImageView::reloadCurrentPage()
 
     bool wide = addImage(m_fileVolume->currentImage(), true);
     m_wideImage = wide;
-    if(qApp->DualView() && wideImageAsDualView()) {
-        if(m_fileVolume->nextPage()) {
-            if(addImage(m_fileVolume->currentImage(), true) && qApp->WideImageAsOnePageInDualView()) {
-                // if 2nd page is wide, will be canceled
-                m_fileVolume->prevPage();
-                scene()->removeItem(m_gpiImages[1]);
-                delete m_gpiImages[1];
-                m_gpiImages.remove(1);
-                m_pagesizes.remove(1);
-                m_currentPage--;
+    if(canDualView()) {
+        if(m_fileVolume->pageCount() < m_fileVolume->size()-1) {
+            ImageContent ic = m_fileVolume->getIndexedImageContent(m_fileVolume->pageCount());
+            if(ic.BaseSize.width() < ic.BaseSize.height()) {
+                m_fileVolume->nextPage();
+                addImage(m_fileVolume->currentImage(), true);
             }
         }
+//        if(m_fileVolume->nextPage()) {
+//            if(addImage(m_fileVolume->currentImage(), true) && qApp->WideImageAsOnePageInDualView()) {
+//                // if 2nd page is wide, will be canceled
+//                m_fileVolume->prevPage();
+//                scene()->removeItem(m_gpiImages[1]);
+//                delete m_gpiImages[1];
+//                m_gpiImages.remove(1);
+//                m_pagesizes.remove(1);
+//                m_currentPage--;
+//            }
+//        }
     }
     readyForPaint();
 }
@@ -153,8 +161,8 @@ void ImageView::prevPage()
 //            addImage(m_fileVolume->currentImage(), false);
 //    }
 //    emit pageChanged();
-    if(m_fileVolume->pageCount() == (qApp->DualView() ? 1 : 0)) return;
-    m_currentPage -= qApp->DualView() ? 2 : 1;
+    if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
+    m_currentPage -= m_gpiImages.size();
     if(m_currentPage < 0)
         m_currentPage = 0;
     setIndexedPage(m_currentPage);
@@ -197,7 +205,7 @@ void ImageView::setRenderer(RendererType type)
 
 QString ImageView::currentPageAsString() const
 {
-    if(qApp->DualView()) {
+    if(m_gpiImages.size() == 2) {
         return QString("%1-%2/%3").arg(m_currentPage+1).arg(m_currentPage+2).arg(m_fileVolume->size());
     } else {
         return QString("%1/%3").arg(m_currentPage+1).arg(m_fileVolume->size());
@@ -206,7 +214,7 @@ QString ImageView::currentPageAsString() const
 void ImageView::readyForPaint() {
     qDebug() << "readyForPaint";
     if(!m_gpiImages.empty()) {
-        bool dualview = qApp->DualView() && wideImageAsDualView();
+        bool dualview = qApp->DualView() && canDualView();
         if(qApp->Fitting()) {
             for(int i = 0; i < m_gpiImages.size(); i++) {
                 QSize size = viewport()->size();
@@ -358,9 +366,9 @@ void ImageView::on_wideImageAsOneView_triggered(bool wideImage)
     readyForPaint();
 }
 
-bool ImageView::wideImageAsDualView() const
+bool ImageView::canDualView() const
 {
     QVApplication* myapp = qApp;
-    return !(m_wideImage && myapp->WideImageAsOnePageInDualView());
+    return qApp->DualView() && !(m_wideImage && myapp->WideImageAsOnePageInDualView());
 }
 

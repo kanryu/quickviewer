@@ -58,9 +58,9 @@ bool FileVolumeZipArchive::findImageByName(QString name)
     return false;
 }
 
-QPixmap FileVolumeZipArchive::loadImageByName(const QString& name)
+QImage FileVolumeZipArchive::loadImageByName(const QString& name)
 {
-    QPixmap ret = QPixmap();
+    QImage ret = QImage();
     foreach(const QString& e, m_filelist) {
         if(name == e) {
             m_mutex.lock();
@@ -84,7 +84,7 @@ QString FileVolumeZipArchive::currentPath()
     return m_current;
 }
 
-QPixmap FileVolumeZipArchive::currentImage()
+const QPixmap FileVolumeZipArchive::currentImage()
 {
     if(m_cachedPath == currentPath()) {
         return m_cachedImage;
@@ -92,11 +92,7 @@ QPixmap FileVolumeZipArchive::currentImage()
     if(!m_currentCache.isFinished())
         m_currentCache.waitForFinished();
 
-    return m_cachedImage = m_currentCache;
-
-//    QByteArray bytes = m_reader.fileData(currentPath());
-//    m_cachedImage = QPixmap();
-//    m_cachedImage.loadFromData(bytes);
-////    qDebug() << m_cachedImage << m_cachedImage.size();
-//    return m_cachedImage;
+    const ImageContent& ic = m_currentCache;
+    m_cachedImage = ic.Image;
+    return m_cachedImage;
 }

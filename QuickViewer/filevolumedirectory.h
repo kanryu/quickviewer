@@ -15,7 +15,7 @@ public:
     explicit FileVolumeDirectory(QObject* parent, QString dir);
 
     QString currentPath();
-    QPixmap currentImage();
+    const QPixmap currentImage();
     QString volumePath() { return m_directory.path(); }
 
 public:
@@ -35,7 +35,7 @@ public:
      */
     bool findImageByIndex(int idx);
     bool findImageByName(QString name);
-    QPixmap loadImageByName(const QString& name);
+    QImage loadImageByName(const QString& name);
 
     /**
      * @brief ボリュームが持つページ数を返す

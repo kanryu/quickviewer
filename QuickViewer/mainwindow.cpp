@@ -352,23 +352,20 @@ void MainWindow::on_pageChanged_triggered()
     int pages = ui->graphicsView->currentPageCount();
     QString status;
     if(pages == 1) {
-        QSize size1 = ui->graphicsView->PageSizes()[0];
-        QString page1 = ui->graphicsView->PageFileNames()[0];
+        const ImageContent ic1 = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage()-1);
         status = QString("%1 %2[%3x%4]")
-                    .arg(page1)
+                    .arg(ic1.Path)
                     .arg(pagestr)
-                    .arg(size1.width()).arg(size1.height());
+                    .arg(ic1.BaseSize.width()).arg(ic1.BaseSize.height());
     } else {
-        QSize size1 = ui->graphicsView->PageSizes()[0];
-        QSize size2 = ui->graphicsView->PageSizes()[1];
-        QString page1 = ui->graphicsView->PageFileNames()[0];
-        QString page2 = ui->graphicsView->PageFileNames()[1];
+        const ImageContent ic1 = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage()-1);
+        const ImageContent ic2 = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage());
         status = QString("%1 %2[%3x%4] | %5 [%6x%7]")
-                    .arg(page1)
+                    .arg(ic1.Path)
                     .arg(pagestr)
-                    .arg(size1.width()).arg(size1.height())
-                    .arg(page2)
-                    .arg(size2.width()).arg(size2.height());
+                    .arg(ic1.BaseSize.width()).arg(ic1.BaseSize.height())
+                    .arg(ic2.Path)
+                    .arg(ic2.BaseSize.width()).arg(ic2.BaseSize.height());
     }
     ui->statusBar->showMessage(status);
     m_pageCaption = QString("%1 - %2").arg(status).arg(qApp->applicationName());

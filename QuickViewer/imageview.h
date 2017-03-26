@@ -65,7 +65,7 @@ public:
     void readyForPaint();
     int currentPageCount() const { return m_pagesizes.size(); }
     const QVector<QSize> PageSizes() const { return  m_pagesizes; }
-    const QVector<QString> PageFileNames() const { return  m_pageFilenames; }
+//    const QVector<QString> PageFileNames() const { return  m_pageFilenames; }
 
 signals:
     /**
@@ -102,7 +102,7 @@ private:
      * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
      */
     QVector<QGraphicsItem*> m_gpiImages;
-    QVector<QString> m_pageFilenames;
+//    QVector<QString> m_pageFilenames;
 
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
@@ -121,7 +121,7 @@ private:
     int viewSizeIdx;
     QFont m_font;
     bool m_wideImage;
-    bool wideImageAsDualView() const;
+    bool canDualView() const;
 };
 
 

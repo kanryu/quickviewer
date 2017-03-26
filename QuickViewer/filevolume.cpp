@@ -3,6 +3,7 @@
 #include "filevolumedirectory.h"
 #include "filevolumeziparchive.h"
 #include "filevolume7zarchive.h"
+#include "ResizeHalf.h"
 
 IFileVolume::IFileVolume(QObject *parent)
     : QObject(parent)
@@ -15,6 +16,7 @@ void IFileVolume::on_ready()
     if(m_cnt < 0 || m_cnt >= m_filelist.size())
         return;
 
+    qDebug() << "on_ready: m_cnt" << m_cnt;
     QVector<int> offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
@@ -36,12 +38,12 @@ void IFileVolume::on_ready()
     }
 }
 
-QPixmap IFileVolume::getIndexedImage(int idx)
+const ImageContent IFileVolume::getIndexedImageContent(int idx)
 {
-    future_pixmap& cache = m_imageCache[idx];
+    future_image cache = m_imageCache[idx];
     if(!cache.isFinished())
         cache.waitForFinished();
-    return cache;
+    return cache.result();
 }
 
 bool IFileVolume::nextPage()
@@ -127,7 +129,28 @@ bool IFileVolume::isImageFile(QString path)
     return false;
 }
 
-QPixmap IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
+ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {
-    return volume->loadImageByName(path);
+    QImage ret = volume->loadImageByName(path);
+    if(ret.size().width() <= 4096 && ret.size().height() <= 4096)
+        return ImageContent(QPixmap::fromImage(ret), path, ret.size());
+
+    qDebug() << path << "[1]Source:" <<  ret;
+    QSize srcSize = QSize((ret.width() >> 5) << 5, (ret.height() >> 1) << 1);
+    QSize halfSize = QSize(srcSize.width()/2, srcSize.height()/2);
+    ResizeHalf resizer(halfSize.width(), halfSize.height());
+
+    int width = srcSize.width();
+    switch(ret.depth()) {
+    case 8: width = srcSize.width() / 4; break;
+    case 16: width = srcSize.width() / 2; break;
+    case 24: width = srcSize.width() / 4 * 3; break;
+    }
+    qDebug() << path << "[3]width:" << width << srcSize;
+    resizer.resizeHV(ret.bits(), width, srcSize.height(), ret.bytesPerLine());
+
+    QImage half = QImage(resizer.data(), halfSize.width(), halfSize.height(), ret.format());
+    qDebug() << path << "[2]Dest:" <<  half;
+    return ImageContent(QPixmap::fromImage(half.copy()), path, ret.size());
 }
+
