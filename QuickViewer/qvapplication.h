@@ -22,6 +22,8 @@ class QVApplication : public QApplication
     Q_PROPERTY(int MaxHistoryCount READ MaxHistoryCount WRITE setMaxHistoryCount)
     Q_PROPERTY(bool AutoLoaded READ AutoLoaded WRITE setAutoLoaded)
     Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
+    Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
+    Q_PROPERTY(bool ShowStatusBar READ ShowStatusBar WRITE setShowStatusBar)
 
 public:
     explicit QVApplication(int &argc, char **argv);
@@ -33,6 +35,10 @@ public:
     void setRightSideBook (bool rightSideBook) { m_rightSideBook = rightSideBook; }
     bool WideImageAsOnePageInDualView() { return m_wideImageAsOnePageInDualView; }
     void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
+    bool ShowSliderBar() { return m_showSliderBar; }
+    void setShowSliderBar (bool showSliderBar) { m_showSliderBar = showSliderBar; }
+    bool ShowStatusBar() { return m_showStatusBar; }
+    void setShowStatusBar (bool showStatusBar) { m_showStatusBar = showStatusBar; }
 
     int MaxHistoryCount() { return m_maxHistoryCount; }
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
@@ -63,6 +69,8 @@ private:
     bool m_rightSideBook;
     int m_maxHistoryCount;
     bool m_autoLoaded;
+    bool m_showSliderBar;
+    bool m_showStatusBar;
     /**
      * @brief if true, a wide image must be one view whether dual view is enabled
      */

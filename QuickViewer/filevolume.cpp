@@ -36,6 +36,14 @@ void IFileVolume::on_ready()
     }
 }
 
+QPixmap IFileVolume::getIndexedImage(int idx)
+{
+    future_pixmap& cache = m_imageCache[idx];
+    if(!cache.isFinished())
+        cache.waitForFinished();
+    return cache;
+}
+
 bool IFileVolume::nextPage()
 {
 //    qDebug() << "nextPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();

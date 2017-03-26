@@ -81,7 +81,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSlider" name="pageSlider">
+        <widget class="PageSlider" name="pageSlider">
          <property name="minimum">
           <number>1</number>
          </property>
@@ -132,17 +132,20 @@
     </property>
     <addaction name="actionNextPage"/>
     <addaction name="actionPrevPage"/>
-    <addaction name="actionRightSideBook"/>
     <addaction name="separator"/>
     <addaction name="actionFirstPage"/>
     <addaction name="actionLastPage"/>
     <addaction name="separator"/>
     <addaction name="actionScaleUp"/>
     <addaction name="actionScaleDown"/>
-    <addaction name="separator"/>
     <addaction name="actionFitting"/>
+    <addaction name="separator"/>
     <addaction name="actionDualView"/>
+    <addaction name="actionRightSideBook"/>
     <addaction name="actionWideImageAsOneView"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowPageBar"/>
+    <addaction name="actionShowStatusBar"/>
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
    </widget>
@@ -177,6 +180,7 @@
    <addaction name="separator"/>
    <addaction name="actionFullscreen"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
    <property name="text">
     <string>E&amp;xit</string>
@@ -328,6 +332,25 @@
     <string>&amp;FirstPage</string>
    </property>
   </action>
+  <action name="actionShowStatusBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>ShowStatus&amp;Bar</string>
+   </property>
+  </action>
+  <action name="actionShowPageBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show&amp;PageBar</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -344,6 +367,11 @@
     <slot>on_rightSideBook_triggered(bool)</slot>
     <slot>on_wideImageAsOneView_triggered(bool)</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>PageSlider</class>
+   <extends>QSlider</extends>
+   <header>pageslider.h</header>
   </customwidget>
  </customwidgets>
  <resources>
@@ -574,6 +602,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowPageBar</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_showSliderBar_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowStatusBar</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_showStatusBar_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -587,5 +647,7 @@
   <slot>on_openfolder_triggered()</slot>
   <slot>on_firstPage_triggered()</slot>
   <slot>on_lastPage_triggered()</slot>
+  <slot>on_showSliderBar_triggered(bool)</slot>
+  <slot>on_showStatusBar_triggered(bool)</slot>
  </slots>
 </ui>

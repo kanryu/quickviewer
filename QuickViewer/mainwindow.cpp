@@ -35,6 +35,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionWideImageAsOneView->setChecked(qApp->WideImageAsOnePageInDualView());
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
+
+    ui->actionShowPageBar->setChecked(qApp->ShowSliderBar());
+    on_showSliderBar_triggered(qApp->ShowSliderBar());
+    ui->actionShowStatusBar->setChecked(qApp->ShowStatusBar());
+    on_showStatusBar_triggered(qApp->ShowStatusBar());
+
     makeHistoryMenu();
 
     ui->graphicsView->installEventFilter(this);
@@ -192,8 +198,8 @@ void MainWindow::loadVolume(QString path)
     ui->graphicsView->setFileVolume(m_fileVolume);
     ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
     qApp->addHistory(m_fileVolume->volumePath());
-
-    setWindowTitle(QString("%1 - %2").arg(path).arg(qApp->applicationName()));
+    m_volumeCaption = QString("%1 - %2").arg(path).arg(qApp->applicationName());
+    setWindowTitle(m_volumeCaption);
     makeHistoryMenu();
 }
 
@@ -294,8 +300,10 @@ void MainWindow::on_fullscreen_triggered()
 
         menuBar()->show();
         ui->mainToolBar->show();
-        ui->pageFrame->show();
-//        statusBar()->show();
+        if(qApp->ShowSliderBar())
+            ui->pageFrame->show();
+        if(qApp->ShowStatusBar())
+            statusBar()->show();
         ui->actionFullscreen->setChecked(false);
     } else {
         m_viewerWindowStateMaximized = isMaximized();
@@ -304,7 +312,7 @@ void MainWindow::on_fullscreen_triggered()
         menuBar()->hide();
         ui->mainToolBar->hide();
         ui->pageFrame->hide();
-//        statusBar()->hide();
+        statusBar()->hide();
         ui->actionFullscreen->setChecked(true);
     }
 }
@@ -318,7 +326,8 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
         ui->mainToolBar->show();
     }
     if(anchor == Qt::AnchorBottom) {
-        ui->pageFrame->show();
+        if(qApp->ShowSliderBar())
+            ui->pageFrame->show();
     }
     if(anchor == Qt::AnchorHorizontalCenter) {
         ui->mainToolBar->hide();
@@ -329,13 +338,42 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
 void MainWindow::on_pageChanged_triggered()
 {
     qDebug() << "on_pageChanged_triggered";
-    ui->pageLabel->setText(QString("(%1)").arg(ui->graphicsView->currentPageAsString()));
+    // PageSlider
+    QString pagestr = QString("(%1)").arg(ui->graphicsView->currentPageAsString());
+    ui->pageLabel->setText(pagestr);
     m_sliderChanging = true;
     ui->pageSlider->setMaximum(m_fileVolume->size());
     int currentPage = ui->graphicsView->currentPage();
     ui->pageSlider->setValue(currentPage);
     m_sliderChanging = false;
     ui->pageSlider->show();
+
+    // StatusBar
+    int pages = ui->graphicsView->currentPageCount();
+    QString status;
+    if(pages == 1) {
+        QSize size1 = ui->graphicsView->PageSizes()[0];
+        QString page1 = ui->graphicsView->PageFileNames()[0];
+        status = QString("%1 %2[%3x%4]")
+                    .arg(page1)
+                    .arg(pagestr)
+                    .arg(size1.width()).arg(size1.height());
+    } else {
+        QSize size1 = ui->graphicsView->PageSizes()[0];
+        QSize size2 = ui->graphicsView->PageSizes()[1];
+        QString page1 = ui->graphicsView->PageFileNames()[0];
+        QString page2 = ui->graphicsView->PageFileNames()[1];
+        status = QString("%1 %2[%3x%4] | %5 [%6x%7]")
+                    .arg(page1)
+                    .arg(pagestr)
+                    .arg(size1.width()).arg(size1.height())
+                    .arg(page2)
+                    .arg(size2.width()).arg(size2.height());
+    }
+    ui->statusBar->showMessage(status);
+    m_pageCaption = QString("%1 - %2").arg(status).arg(qApp->applicationName());
+    if(!qApp->ShowStatusBar())
+        setWindowTitle(m_pageCaption);
 }
 
 
@@ -390,4 +428,26 @@ void MainWindow::on_openfolder_triggered()
 //            loadVolume(folder);
         loadVolume(folder);
     }
+}
+
+void MainWindow::on_showSliderBar_triggered(bool showSliderBar)
+{
+    if(showSliderBar)
+        ui->pageFrame->show();
+    else
+        ui->pageFrame->hide();
+    qApp->setShowSliderBar(showSliderBar);
+}
+
+void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
+{
+    if(showStatusBar) {
+        setWindowTitle(m_volumeCaption);
+        ui->statusBar->show();
+        ui->statusBar->showMessage(m_pageCaption);
+    } else {
+        ui->statusBar->hide();
+        setWindowTitle(m_pageCaption);
+    }
+    qApp->setShowStatusBar(showStatusBar);
 }

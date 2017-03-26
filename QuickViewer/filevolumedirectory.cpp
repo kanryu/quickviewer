@@ -12,7 +12,6 @@ FileVolumeDirectory::FileVolumeDirectory(QObject* parent, QString dir) : IFileVo
 
     m_filelist = m_directory.entryList(QDir::Files, QDir::Name);
     m_current = m_filelist[m_cnt];
-
 }
 
 
@@ -53,15 +52,22 @@ bool FileVolumeDirectory::findImageByName(QString name)
     return false;
 }
 
-QPixmap FileVolumeDirectory::loadImageByName(QString name)
+QPixmap FileVolumeDirectory::loadImageByName(const QString& name)
 {
-    foreach(const QString& e, m_filelist) {
-        if(name == e) {
-            QString path = m_directory.absoluteFilePath(name);
-            return QPixmap(path);
-        }
+    QPixmap ret = QPixmap();
+    int idx = m_filelist.indexOf(name);
+    if(idx >= 0) {
+        const QString abso = m_directory.absoluteFilePath(name);
+
+        QFile file(abso);
+        bool result = file.open(QIODevice::ReadOnly);
+        QByteArray bytes = file.readAll();
+
+        ret.loadFromData(bytes);
+
+        return ret;
     }
-    return QPixmap();
+    return ret;
 }
 
 int FileVolumeDirectory::size()

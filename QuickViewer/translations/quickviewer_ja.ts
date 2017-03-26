@@ -138,5 +138,13 @@
         <source>&amp;FirstPage</source>
         <translation>最初のページ(&amp;F)</translation>
     </message>
+    <message>
+        <source>ShowStatus&amp;Bar</source>
+        <translation>ステータスバーを表示(&amp;B)</translation>
+    </message>
+    <message>
+        <source>Show&amp;PageBar</source>
+        <translation>ページバーを表示(&amp;P)</translation>
+    </message>
 </context>
 </TS>

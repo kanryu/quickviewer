@@ -74,6 +74,10 @@ bool ImageView::addImage(QPixmap pixmap, bool pageNext)
         m_pagesizes.push_back(size);
     else
         m_pagesizes.push_front(size);
+    if(pageNext)
+        m_pageFilenames.push_back(m_fileVolume->currentImageName());
+    else
+        m_pageFilenames.push_front(m_fileVolume->currentImageName());
 
     return size.width() > size.height();
 }
@@ -88,6 +92,7 @@ void ImageView::clearImages()
     }
     m_gpiImages.resize(0);
     m_pagesizes.resize(0);
+    m_pageFilenames.resize(0);
 }
 
 void ImageView::nextPage()

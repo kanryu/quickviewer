@@ -94,7 +94,7 @@ public:
      * @brief loadImageByName 内部カウンタを進めずにファイルリストの中で指定されたファイル名に対応する画像を読み込んで返す
      * @return ロードに失敗すれば空インスタンス
      */
-    virtual QPixmap loadImageByName(QString name)=0;
+    virtual QPixmap loadImageByName(const QString& name)=0;
     /**
      * @brief ボリュームが持つページ数を返す
      * @return ボリュームが持つページ数
@@ -108,6 +108,10 @@ public:
      * @brief pageCount 現在のページを返す
      */
     int pageCount() { return m_cnt; }
+
+    QPixmap getIndexedImage(int idx);
+    QString getIndexedImageName(int idx) { return m_filelist[idx]; }
+    QString currentImageName() const { return m_filelist[m_cnt]; }
 
 
 protected:

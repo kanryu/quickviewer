@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.2.3
+VERSION = 0.2.4
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     filevolumedirectory.cpp \
     filevolumeziparchive.cpp \
     filevolume7zarchive.cpp \
-    qvapplication.cpp
+    qvapplication.cpp \
+    pageslider.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -38,7 +39,8 @@ HEADERS  += mainwindow.h \
     filevolumeziparchive.h \
     filevolume7zarchive.h \
     qv_init.h \
-    qvapplication.h
+    qvapplication.h \
+    pageslider.h
 
 FORMS    += mainwindow.ui
 

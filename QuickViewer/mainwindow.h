@@ -41,6 +41,8 @@ public slots:
     void on_autoloaded_triggered(bool autoreload);
     void on_historymenu_triggered(QAction *action);
     void on_openfolder_triggered();
+    void on_showSliderBar_triggered(bool showSliderBar);
+    void on_showStatusBar_triggered(bool showStatusBar);
 
 private slots:
     void on_actionExit_triggered();
@@ -53,6 +55,9 @@ private:
     IFileVolume* m_fileVolume;
     bool m_viewerWindowStateMaximized;
     bool m_sliderChanging;
+
+    QString m_volumeCaption;
+    QString m_pageCaption;
 };
 
 #endif // MAINWINDOW_H

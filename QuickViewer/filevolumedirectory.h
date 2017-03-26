@@ -35,7 +35,7 @@ public:
      */
     bool findImageByIndex(int idx);
     bool findImageByName(QString name);
-    QPixmap loadImageByName(QString name);
+    QPixmap loadImageByName(const QString& name);
 
     /**
      * @brief ボリュームが持つページ数を返す
@@ -45,6 +45,7 @@ public:
 
 protected:
     QDir m_directory;
+
     /**
      * @brief m_current　現在選択中のファイル名
      */

@@ -63,6 +63,9 @@ public:
     QString currentPageAsString() const;
     Qt::AnchorPoint hoverState() const { return m_hoverState; }
     void readyForPaint();
+    int currentPageCount() const { return m_pagesizes.size(); }
+    const QVector<QSize> PageSizes() const { return  m_pagesizes; }
+    const QVector<QString> PageFileNames() const { return  m_pageFilenames; }
 
 signals:
     /**
@@ -99,6 +102,8 @@ private:
      * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
      */
     QVector<QGraphicsItem*> m_gpiImages;
+    QVector<QString> m_pageFilenames;
+
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
     bool m_isMouseDown;

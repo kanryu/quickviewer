@@ -59,7 +59,7 @@ bool FileVolume7zArchive::findImageByName(QString name)
     return false;
 }
 
-QPixmap FileVolume7zArchive::loadImageByName(QString name)
+QPixmap FileVolume7zArchive::loadImageByName(const QString& name)
 {
     QPixmap ret = QPixmap();
     foreach(const QString& e, m_filelist) {

@@ -58,7 +58,7 @@ bool FileVolumeZipArchive::findImageByName(QString name)
     return false;
 }
 
-QPixmap FileVolumeZipArchive::loadImageByName(QString name)
+QPixmap FileVolumeZipArchive::loadImageByName(const QString& name)
 {
     QPixmap ret = QPixmap();
     foreach(const QString& e, m_filelist) {
