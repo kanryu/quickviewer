@@ -49,7 +49,7 @@ QuickViewer installations at <k.kanryu@gmail.com>
 Thus, your feedback is welcome at KATO Kanryu<k.kanryu@gmail.com>.
 
 
-# The QuickViewer Project(Japanese)
+# The QuickViewer Project(in English / Japanese)
 
 https://kanryu.github.io/quickviewer/
 
