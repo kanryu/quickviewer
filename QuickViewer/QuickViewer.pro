@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.2.5
+VERSION = 0.2.6
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -19,10 +19,10 @@ INCLUDEPATH += ../ResizeHalf/ResizeHalf
 
 CONFIG(debug,debug|release) {
 LIBS += -L../Qt7z/Qt7z/debug -lQt7z
-LIBS += -L../ResizeHalf/debug -lrisizehalf
+LIBS += -L../ResizeHalf/debug -lresizehalf
 } else {
 LIBS += -L../Qt7z/Qt7z/release -lQt7z
-LIBS += -L../ResizeHalf/release -lrisizehalf
+LIBS += -L../ResizeHalf/release -lresizehalf
 }
 
 SOURCES += main.cpp\

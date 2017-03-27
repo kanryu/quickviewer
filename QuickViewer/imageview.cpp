@@ -112,7 +112,7 @@ void ImageView::nextPage()
     emit pageChanged();
 }
 
-void ImageView::reloadCurrentPage()
+void ImageView::reloadCurrentPage(bool pageNext)
 {
     qDebug() << "ImageView::reloadCurrentPage()";
     if(m_fileVolume == nullptr) return;
@@ -122,10 +122,11 @@ void ImageView::reloadCurrentPage()
     m_wideImage = wide;
     if(canDualView()) {
         if(m_fileVolume->pageCount() < m_fileVolume->size()-1) {
-            ImageContent ic = m_fileVolume->getIndexedImageContent(m_fileVolume->pageCount());
-            if(ic.BaseSize.width() < ic.BaseSize.height()) {
-                m_fileVolume->nextPage();
-                addImage(m_fileVolume->currentImage(), true);
+            const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
+            const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage+1);
+            if(!qApp->WideImageAsOnePageInDualView() || (!ic0.wideImage() && !ic1.wideImage())) {
+                    m_fileVolume->nextPage();
+                    addImage(m_fileVolume->currentImage(), pageNext);
             }
         }
 //        if(m_fileVolume->nextPage()) {
@@ -147,25 +148,47 @@ void ImageView::reloadCurrentPage()
 void ImageView::prevPage()
 {
     if(m_fileVolume == nullptr) return;
-//    bool result = (qApp->DualView() && m_fileVolume->pageCount() == 1) || m_fileVolume->prevFile();
-//    if(!result) return;
-//    clearImages();
-//    m_currentPage -= qApp->DualView() ? 2 : 1;
+
+    if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
+//    m_currentPage -= m_gpiImages.size();
 //    if(m_currentPage < 0)
 //        m_currentPage = 0;
+//    setIndexedPage(m_currentPage);
 
-
-//    addImage(m_fileVolume->currentImage(), false);
-//    if(qApp->DualView()) {
-//        if(m_fileVolume->prevFile())
-//            addImage(m_fileVolume->currentImage(), false);
-//    }
-//    emit pageChanged();
-    if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
-    m_currentPage -= m_gpiImages.size();
+    QVApplication* app = qApp;
+    m_currentPage--;
+    if(qApp->DualView() && m_currentPage >= 1) {
+        const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
+        const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage-1);
+        if(!qApp->WideImageAsOnePageInDualView() || (!ic0.wideImage() && !ic1.wideImage()))
+            m_currentPage--;
+    }
     if(m_currentPage < 0)
         m_currentPage = 0;
     setIndexedPage(m_currentPage);
+
+
+
+
+
+//    if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
+//    const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
+//    const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage-1);
+//    const ImageContent ic2 = m_fileVolume->getIndexedImageContent(m_currentPage-2);
+//    QVApplication* app = qApp;
+////    m_currentPage -= m_gpiImages.size();
+//    m_currentPage--;
+//    if(m_currentPage > 0
+//            && m_gpiImages.size() == 1
+//            && qApp->DualView()
+//            && !m_fileVolume->getIndexedImageContent(m_currentPage).wideImage()) {
+//        m_currentPage--;
+//        if(qApp->WideImageAsOnePageInDualView()
+//                && m_fileVolume->getIndexedImageContent(m_currentPage).wideImage()) {
+//            m_currentPage++;
+//        }
+//    }
+//    setIndexedPage(m_currentPage);
 }
 
 void ImageView::setIndexedPage(int idx)

@@ -11,12 +11,17 @@ void PageSlider::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
+        int newValue = 0;
         if (orientation() == Qt::Vertical)
-            setValue(minimum() + ((maximum()-minimum()) * (height()-event->y())) / height() ) ;
+            newValue = minimum() + ((maximum()-minimum()) * (height()-event->y())) / height() ;
         else
-            setValue(minimum() + ((maximum()-minimum()) * event->x()) / width() ) ;
+            newValue = minimum() + ((maximum()-minimum()+1) * event->x()) / width();
 
-        event->accept();
+        if(newValue != value()) {
+            setValue(newValue);
+            event->accept();
+            return;
+        }
     }
     QSlider::mousePressEvent(event);
 }

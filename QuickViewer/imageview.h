@@ -55,7 +55,7 @@ public:
     void clearImages();
     void nextPage();
     void prevPage();
-    void reloadCurrentPage();
+    void reloadCurrentPage(bool pageNext=true);
     void setIndexedPage(int idx);
     void setFileVolume(IFileVolume* vol) { m_fileVolume = vol; }
     int currentViewSize() { return viewSizeList[viewSizeIdx]; }

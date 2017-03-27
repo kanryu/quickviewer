@@ -29,6 +29,7 @@ public:
         BaseSize = rhs.BaseSize;
         return *this;
     }
+    bool wideImage() const {return BaseSize.width() > BaseSize.height(); }
 };
 
 

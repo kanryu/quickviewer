@@ -6,7 +6,7 @@
 
 QT       -= core
 
-TARGET = risizehalf
+TARGET = resizehalf
 TEMPLATE = lib
 CONFIG += staticlib
 

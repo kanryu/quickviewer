@@ -131,26 +131,36 @@ bool IFileVolume::isImageFile(QString path)
 
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {
-    QImage ret = volume->loadImageByName(path);
-    if(ret.size().width() <= 4096 && ret.size().height() <= 4096)
-        return ImageContent(QPixmap::fromImage(ret), path, ret.size());
+    QImage src = volume->loadImageByName(path);
+    if(src.size().width() <= 4096 && src.size().height() <= 4096)
+        return ImageContent(QPixmap::fromImage(src), path, src.size());
 
-    qDebug() << path << "[1]Source:" <<  ret;
-    QSize srcSize = QSize((ret.width() >> 5) << 5, (ret.height() >> 1) << 1);
+    qDebug() << path << "[1]Source:" <<  src;
+    QSize srcSize = QSize((src.width() >> 5) << 5, (src.height() >> 1) << 1);
     QSize halfSize = QSize(srcSize.width()/2, srcSize.height()/2);
-    ResizeHalf resizer(halfSize.width(), halfSize.height());
+//    ResizeHalf resizer(ResizeHalf::GREY8);
+    ResizeHalf resizer(src.depth() == 8 ? ResizeHalf::GREY8 : ResizeHalf::RGBA8888);
 
+//    int width = srcSize.width();
+//    switch(src.depth()) {
+//    case 8: width = srcSize.width(); break;
+//    case 16: width = srcSize.width() * 2; break;
+//    case 24: width = srcSize.width() * 3; break;
+//    case 32: width = srcSize.width() * 4; break;
+//    }
     int width = srcSize.width();
-    switch(ret.depth()) {
-    case 8: width = srcSize.width() / 4; break;
+    switch(src.depth()) {
+    case 8: width = srcSize.width(); break;
     case 16: width = srcSize.width() / 2; break;
     case 24: width = srcSize.width() / 4 * 3; break;
+    case 32: width = srcSize.width(); break;
     }
     qDebug() << path << "[3]width:" << width << srcSize;
-    resizer.resizeHV(ret.bits(), width, srcSize.height(), ret.bytesPerLine());
-
-    QImage half = QImage(resizer.data(), halfSize.width(), halfSize.height(), ret.format());
+    QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
     qDebug() << path << "[2]Dest:" <<  half;
-    return ImageContent(QPixmap::fromImage(half.copy()), path, ret.size());
+//    resizer.resizeHV(src.bits(), width, srcSize.height(), src.bytesPerLine());
+    resizer.resizeHV(half.bits(), src.bits(), width, srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
+
+    return ImageContent(QPixmap::fromImage(half), path, src.size());
 }
 
