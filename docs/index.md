@@ -44,6 +44,21 @@ If **Spread Viewing** is off, the window shows one image.
 
 If **Spread Viewing** is on, the window shows two images on side by side.
 
+### JPEG EXIF Information
+
+![EXIF Information](https://github.com/kanryu/quickviewer/wiki/images/exifdialog.jpg)
+
+デジタルカメラなどで撮影したJPEG画像について、画像ファイルの中のEXIF情報を確認することができます。
+画面を右クリックしてコンテキストメニューを表示し、『Exif情報を表示する』を選択してください。
+
+You can checkout EXIF Information of the current JPEG image which you have taken picture by a digital camera.
+Click right button on the image view, to be shown a context menu, select 'Exif Information' menu.
+
+### Checkout the location of the image file
+
+You can checkout with Windows Explorer for the current image file.
+Click right button on the image view, to be shown a context menu, select 'Open Explorer' menu.
+
 
 ## Screen operations
 
