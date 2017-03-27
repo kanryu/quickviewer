@@ -48,9 +48,6 @@ If **Spread Viewing** is on, the window shows two images on side by side.
 
 ![EXIF Information](https://github.com/kanryu/quickviewer/wiki/images/exifdialog.jpg)
 
-デジタルカメラなどで撮影したJPEG画像について、画像ファイルの中のEXIF情報を確認することができます。
-画面を右クリックしてコンテキストメニューを表示し、『Exif情報を表示する』を選択してください。
-
 You can checkout EXIF Information of the current JPEG image which you have taken picture by a digital camera.
 Click right button on the image view, to be shown a context menu, select 'Exif Information' menu.
 
