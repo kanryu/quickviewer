@@ -351,6 +351,16 @@
     <string>Show&amp;PageBar</string>
    </property>
   </action>
+  <action name="actionOpenFiler">
+   <property name="text">
+    <string>Open &amp;Explorer</string>
+   </property>
+  </action>
+  <action name="actionOpenExif">
+   <property name="text">
+    <string>Exif &amp;Information</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -366,6 +376,8 @@
     <slot>on_scaleDown_triggered()</slot>
     <slot>on_rightSideBook_triggered(bool)</slot>
     <slot>on_wideImageAsOneView_triggered(bool)</slot>
+    <slot>on_openFiler_triggered()</slot>
+    <slot>on_openExifDialog_triggered()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -631,6 +643,38 @@
     <hint type="destinationlabel">
      <x>350</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpenExif</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_openExifDialog_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpenFiler</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_openFiler_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>296</y>
     </hint>
    </hints>
   </connection>

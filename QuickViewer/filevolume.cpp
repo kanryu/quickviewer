@@ -131,11 +131,27 @@ bool IFileVolume::isImageFile(QString path)
 
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {
-    QImage src = volume->loadImageByName(path);
+    QByteArray bytes = volume->loadByteArrayByName(path);
+    QImage src;
+    src.loadFromData(bytes);
+
+    easyexif::EXIFInfo info;
+    QString lower = path.toLower();
+    if(lower.endsWith(".jpg") || lower.endsWith(".jpeg")) {
+        int result = info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
+    }
+
+
     if(src.size().width() <= 4096 && src.size().height() <= 4096)
-        return ImageContent(QPixmap::fromImage(src), path, src.size());
+        return ImageContent(QPixmap::fromImage(src), path, src.size(), info);
 
     qDebug() << path << "[1]Source:" <<  src;
+
+    QSize srcSizeReal = src.size();
+    // if src is RGBA8888, that must be 4 multiples of width
+    if(src.depth() == 32 && (src.width() | 0x3) > 0)
+        src = src.copy(QRect(0, 0, src.width() << 2 >> 2, src.height() << 1 >> 1));
+
     QSize srcSize = QSize((src.width() >> 5) << 5, (src.height() >> 1) << 1);
     QSize halfSize = QSize(srcSize.width()/2, srcSize.height()/2);
 //    ResizeHalf resizer(ResizeHalf::GREY8);
@@ -161,6 +177,6 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
 //    resizer.resizeHV(src.bits(), width, srcSize.height(), src.bytesPerLine());
     resizer.resizeHV(half.bits(), src.bits(), width, srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
 
-    return ImageContent(QPixmap::fromImage(half), path, src.size());
+    return ImageContent(QPixmap::fromImage(half), path, srcSizeReal, info);
 }
 

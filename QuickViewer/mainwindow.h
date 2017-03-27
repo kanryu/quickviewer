@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMenu>
 #include "filevolume.h"
 #include "imageview.h"
 
@@ -55,6 +56,8 @@ private:
     IFileVolume* m_fileVolume;
     bool m_viewerWindowStateMaximized;
     bool m_sliderChanging;
+
+    QMenu contextMenu;
 
     QString m_volumeCaption;
     QString m_pageCaption;

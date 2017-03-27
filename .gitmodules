@@ -1,3 +1,6 @@
 [submodule "ResizeHalf/ResizeHalf"]
 	path = ResizeHalf/ResizeHalf
 	url = https://github.com/chikuzen/ResizeHalf
+[submodule "easyexif/easyexif"]
+	path = easyexif/easyexif
+	url = https://github.com/mayanklahiri/easyexif

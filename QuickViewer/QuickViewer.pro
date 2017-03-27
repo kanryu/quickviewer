@@ -8,21 +8,24 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.2.6
+VERSION = 0.3.0
 
 TARGET = QuickViewer
 TEMPLATE = app
 
 INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
+INCLUDEPATH += ../easyexif/easyexif
 
 
 CONFIG(debug,debug|release) {
 LIBS += -L../Qt7z/Qt7z/debug -lQt7z
 LIBS += -L../ResizeHalf/debug -lresizehalf
+LIBS += -L../easyexif/debug -leasyexif
 } else {
 LIBS += -L../Qt7z/Qt7z/release -lQt7z
 LIBS += -L../ResizeHalf/release -lresizehalf
+LIBS += -L../easyexif/release -leasyexif
 }
 
 SOURCES += main.cpp\
@@ -33,7 +36,8 @@ SOURCES += main.cpp\
     filevolumeziparchive.cpp \
     filevolume7zarchive.cpp \
     qvapplication.cpp \
-    pageslider.cpp
+    pageslider.cpp \
+    exifdialog.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -43,9 +47,11 @@ HEADERS  += mainwindow.h \
     filevolume7zarchive.h \
     qv_init.h \
     qvapplication.h \
-    pageslider.h
+    pageslider.h \
+    exifdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    exifdialog.ui
 
 RESOURCES += \
     toolbar.qrc
@@ -67,6 +73,7 @@ CODECFORSRC = UTF-8
 
 lupdate_only {
     SOURCES += mainwindow.ui
+    SOURCES += exifdialog.ui
 }
 DISTFILES += \
     translations/quickviewer_ja.qm

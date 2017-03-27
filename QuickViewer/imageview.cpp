@@ -1,11 +1,15 @@
 #include "imageview.h"
 #include "qvapplication.h"
+#include "exifdialog.h"
 
 #include <QMouseEvent>
 #include <QtDebug>
 #include <QPainter>
 #include <QGLWidget>
 #include <QGraphicsPixmapItem>
+#include <QDesktopServices>
+#include <QProcessEnvironment>
+#include <QMessageBox>
 
 ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
@@ -14,6 +18,7 @@ ImageView::ImageView(QWidget *parent)
     , m_hoverState(Qt::AnchorHorizontalCenter)
     , m_currentPage(0)
     , m_wideImage(false)
+    , exifDialog(this)
 {
     viewSizeList << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 4; // 100
@@ -37,14 +42,14 @@ ImageView::ImageView(QWidget *parent)
 }
 
 
-void ImageView::setImage(QPixmap pixmap)
+void ImageView::setImage(ImageContent pixmap)
 {
     if(m_fileVolume == nullptr) return;
     clearImages();
     addImage(pixmap, true);
 }
 
-bool ImageView::addImage(QPixmap pixmap, bool pageNext)
+bool ImageView::addImage(ImageContent ic, bool pageNext)
 {
     if(m_fileVolume == nullptr) return false;
     m_ptLeftTop.reset();
@@ -53,12 +58,27 @@ bool ImageView::addImage(QPixmap pixmap, bool pageNext)
 
     QGraphicsItem* gitem;
     QSize size;
-    if(pixmap.width() > 0) {
-        QGraphicsPixmapItem* gpi = s->addPixmap(pixmap);
+    QPoint offset;
+    if(ic.BaseSize.width() > 0) {
+        QGraphicsPixmapItem* gpi = s->addPixmap(ic.Image);
         // if we show the image with resizing more smooth, must be called
         gpi->setTransformationMode(Qt::SmoothTransformation);
         gitem = gpi;
-        size = pixmap.size();
+        size = ic.Image.size();
+        if(ic.Info.ImageWidth > 0 && ic.Info.Orientation != 1) {
+            switch(ic.Info.Orientation) {
+            case 6: // left 90 digree turned
+                gpi->setRotation(90);
+                size = QSize(ic.Image.height(), ic.Image.width());
+                offset = QPoint(size.width(), 0);
+                break;
+            case 8: // right 90 digree turned
+                gpi->setRotation(270);
+                size = QSize(ic.Image.height(), ic.Image.width());
+                offset = QPoint(0, size.height());
+                break;
+            }
+        }
     } else {
         QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE"));
         gtext->setDefaultTextColor(Qt::white);
@@ -74,7 +94,12 @@ bool ImageView::addImage(QPixmap pixmap, bool pageNext)
         m_pagesizes.push_back(size);
     else
         m_pagesizes.push_front(size);
-//    if(pageNext)
+    if(pageNext)
+        m_gpiOffsets.push_back(offset);
+    else
+        m_gpiOffsets.push_front(offset);
+
+    //    if(pageNext)
 //        m_pageFilenames.push_back(m_fileVolume->currentImageName());
 //    else
 //        m_pageFilenames.push_front(m_fileVolume->currentImageName());
@@ -92,6 +117,7 @@ void ImageView::clearImages()
     }
     m_gpiImages.resize(0);
     m_pagesizes.resize(0);
+    m_gpiOffsets.resize(0);
 //    m_pageFilenames.resize(0);
 }
 
@@ -245,13 +271,15 @@ void ImageView::readyForPaint() {
                 QSize sizeofview = dualview ? QSize(size.width()/2,size.height()) : size;
 
                 QSize newsize = imgsize.scaled(sizeofview, Qt::KeepAspectRatio);
-                m_gpiImages[i]->setScale(1.0*newsize.width()/imgsize.width());
+                qreal scale = 1.0*newsize.width()/imgsize.width();
+                QPoint of = QPoint(scale*m_gpiOffsets[i].x(), scale*m_gpiOffsets[i].y());
+                m_gpiImages[i]->setScale(scale);
 
                 int offset = qApp->RightSideBook() ? -i : i-1;
                 if(newsize.height() == size.height()) { // 上下に内接
-                    m_gpiImages[i]->setPos(dualview ? sizeofview.width()+offset*newsize.width() : (size.width()-newsize.width())/2, 0);
+                    m_gpiImages[i]->setPos(of.x() + (dualview ? sizeofview.width()+offset*newsize.width() : (size.width()-newsize.width())/2), of.y());
                 } else { // 左右に内接
-                    m_gpiImages[i]->setPos(dualview ? sizeofview.width()+offset*newsize.width() : 0, (size.height()-newsize.height())/2);
+                    m_gpiImages[i]->setPos(of.x() + (dualview ? sizeofview.width()+offset*newsize.width() : 0), of.y() + (size.height()-newsize.height())/2);
                 }
             }
         } else {
@@ -261,10 +289,11 @@ void ImageView::readyForPaint() {
                 QSize size = viewport()->size();
                 QSize imgsize = m_pagesizes[i];
                 imgsize *= scale;
+                QPoint of = QPoint(scale*m_gpiOffsets[i].x(), scale*m_gpiOffsets[i].y());
                 if(dualview)
-                    m_gpiImages[i]->setPos(size.width()/2-i*imgsize.width(), 0);
+                    m_gpiImages[i]->setPos(of.x() + size.width()/2-i*imgsize.width(), of.y());
                 else
-                    m_gpiImages[i]->setPos(size.width()/2-imgsize.width()/2, 0);
+                    m_gpiImages[i]->setPos(of.x() + size.width()/2-imgsize.width()/2, of.y());
             }
         }
     }
@@ -325,11 +354,14 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
 
 //void ImageView::mousePressEvent(QMouseEvent *e)
 //{
-//    if(e->button() && Qt::LeftButton) {
-//        m_isMouseDown = true;
-//        m_ptLeftTop.start(e->pos());
-////        qDebug("mousePressEvent x:%d y:%d button:%x\n", e->x(), e->y(), e->button());
+//    qDebug() << e->button();
+//    if(e->button() == Qt::RightButton && m_fileVolume) {
+////        on_openFiler_triggered();
+//        on_openExifDialog_triggered();
+//        e->accept();
+//        return;
 //    }
+//    e->ignore();
 //}
 
 //void ImageView::mouseReleaseEvent(QMouseEvent *)
@@ -340,11 +372,11 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
 //    }
 //}
 
-void ImageView::on_image_changing(QPixmap image)
-{
-    setImage(image);
-    readyForPaint();
-}
+//void ImageView::on_image_changing(QPixmap image)
+//{
+//    setImage(image);
+//    readyForPaint();
+//}
 
 void ImageView::on_fitting_triggered(bool maximized)
 {
@@ -387,6 +419,51 @@ void ImageView::on_wideImageAsOneView_triggered(bool wideImage)
     qApp->setWideImageAsOnePageInDualView(wideImage);
     reloadCurrentPage();
     readyForPaint();
+}
+
+void ImageView::on_openFiler_triggered()
+{
+    if(!m_fileVolume)
+        return;
+    QString path = m_fileVolume->volumePath();
+    if(!m_fileVolume->isArchive()) {
+        path = m_fileVolume->currentPath();
+    }
+#if defined(Q_OS_WIN)
+    //const QString explorer = QProcessEnvironment::systemEnvironment().searchInPath(QLatin1String("explorer.exe"));
+    const QString explorer = QLatin1String("explorer.exe");
+    if (explorer.isEmpty()) {
+        QMessageBox::warning(this,
+                             tr("Launching Windows Explorer failed"),
+                             tr("Could not find explorer.exe in path to launch Windows Explorer."));
+        return;
+    }
+    QString param;
+    if (!QFileInfo(path).isDir())
+        param = QLatin1String("/select,");
+    param += QDir::toNativeSeparators(path);
+    QString command = explorer + " " + param;
+    QProcess::startDetached(command);
+#else
+    if(!QFileInfo(path).isDir()) {
+        QDir dir(path);
+        dir.cdUp();
+        path = dir.path();
+    }
+    QUrl url = QString("file:///%1").arg(path);
+    QDesktopServices::openUrl(url);
+#endif
+}
+
+void ImageView::on_openExifDialog_triggered()
+{
+    if(!m_fileVolume)
+        return;
+    const easyexif::EXIFInfo& info = m_fileVolume->currentImage().Info;
+    if(info.ImageWidth == 0)
+        return;
+    exifDialog.setExif(info);
+    exifDialog.open();
 }
 
 bool ImageView::canDualView() const

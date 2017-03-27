@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QDragEnterEvent>
 #include "filevolume.h"
+#include "exifdialog.h"
 
 /**
  * @brief The SavedPoint class
@@ -49,9 +50,9 @@ class ImageView : public QGraphicsView
 public:
     enum RendererType { Native, OpenGL, Image };
     explicit ImageView(QWidget *parent = Q_NULLPTR);
-    void setImage(QPixmap image);
+    void setImage(ImageContent image);
     void setRenderer(RendererType type = Native);
-    bool addImage(QPixmap image, bool pageNext);
+    bool addImage(ImageContent image, bool pageNext);
     void clearImages();
     void nextPage();
     void prevPage();
@@ -85,13 +86,15 @@ protected:
 //    void dragMoveEvent( QDragMoveEvent *e ) {qDebug() << "ImageView::dragMoveEvent";}
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 public slots:
-    void on_image_changing(QPixmap image);
+//    void on_image_changing(QPixmap image);
     void on_fitting_triggered(bool maximized);
     void on_dualView_triggered(bool viewdual);
     void on_rightSideBook_triggered(bool rightSideBook);
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
     void on_wideImageAsOneView_triggered(bool wideImage);
+    void on_openFiler_triggered();
+    void on_openExifDialog_triggered();
 
 private:
     RendererType m_renderer;
@@ -103,6 +106,7 @@ private:
      */
     QVector<QGraphicsItem*> m_gpiImages;
 //    QVector<QString> m_pageFilenames;
+    QVector<QPoint> m_gpiOffsets;
 
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
@@ -122,6 +126,8 @@ private:
     QFont m_font;
     bool m_wideImage;
     bool canDualView() const;
+
+    ExifDialog exifDialog;
 };
 
 

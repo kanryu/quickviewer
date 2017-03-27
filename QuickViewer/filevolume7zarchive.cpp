@@ -59,24 +59,24 @@ bool FileVolume7zArchive::findImageByName(QString name)
     return false;
 }
 
-QImage FileVolume7zArchive::loadImageByName(const QString& name)
+QByteArray FileVolume7zArchive::loadByteArrayByName(const QString& name)
 {
-    QImage ret = QImage();
+    QByteArray bytes;
     foreach(const QString& e, m_filelist) {
         if(name == e) {
             m_mutex.lock();
             Qt7zFileInfo info = m_fileinfomap[name];
-            QByteArray bytes;
+
             QBuffer iobuffer(&bytes, this);
             iobuffer.open(QIODevice::WriteOnly);
             bool result = m_reader.extractFile(name, &iobuffer);
             m_mutex.unlock();
 
-            ret.loadFromData(bytes);
-            return ret;
+//            ret.loadFromData(bytes);
+            return bytes;
         }
     }
-    return ret;
+    return bytes;
 }
 
 int FileVolume7zArchive::size()
@@ -90,15 +90,16 @@ QString FileVolume7zArchive::currentPath()
     return m_current;
 }
 
-const QPixmap FileVolume7zArchive::currentImage()
+const ImageContent FileVolume7zArchive::currentImage()
 {
-    if(m_cachedPath == currentPath()) {
-        return m_cachedImage;
-    }
+//    if(m_cachedPath == currentPath()) {
+//        return m_cachedImage;
+//    }
     if(!m_currentCache.isFinished())
         m_currentCache.waitForFinished();
+    return m_currentCache.result();
 
-    const ImageContent& ic = m_currentCache.result();
-    m_cachedImage = ic.Image;
-    return m_cachedImage;
+//    const ImageContent& ic = m_currentCache.result();
+//    m_cachedImage = ic.Image;
+//    return m_cachedImage;
 }

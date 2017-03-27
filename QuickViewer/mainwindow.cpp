@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_sliderChanging(false)
     , m_viewerWindowStateMaximized(false)
     , m_fileVolume(nullptr)
+    , contextMenu(this)
 {
     ui->setupUi(this);
     setAcceptDrops(true);
@@ -47,6 +48,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->mainToolBar->installEventFilter(this);
     ui->pageFrame->installEventFilter(this);
 //    ui->graphicsView->scene()->installEventFilter(this);
+
+    // Context menus
+    contextMenu.addAction(ui->actionOpenFiler);
+    contextMenu.addAction(ui->actionOpenExif);
 
     connect(ui->graphicsView, SIGNAL(anchorHovered(Qt::AnchorPoint)), this, SLOT(on_hover_anchor(Qt::AnchorPoint)) );
     connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
@@ -109,8 +114,12 @@ void MainWindow::wheelEvent(QWheelEvent *e)
 
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
-    if(e->button() == Qt::MiddleButton)
+    if(e->button() == Qt::MiddleButton) {
         on_fullscreen_triggered();
+    }
+    if(e->button() == Qt::RightButton) {
+        contextMenu.exec(QCursor::pos());
+    }
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)

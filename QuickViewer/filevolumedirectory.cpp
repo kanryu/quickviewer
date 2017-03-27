@@ -52,22 +52,22 @@ bool FileVolumeDirectory::findImageByName(QString name)
     return false;
 }
 
-QImage FileVolumeDirectory::loadImageByName(const QString& name)
+QByteArray FileVolumeDirectory::loadByteArrayByName(const QString& name)
 {
-    QImage ret = QImage();
+    QByteArray bytes;
     int idx = m_filelist.indexOf(name);
     if(idx >= 0) {
         const QString abso = m_directory.absoluteFilePath(name);
 
         QFile file(abso);
         bool result = file.open(QIODevice::ReadOnly);
-        QByteArray bytes = file.readAll();
+        bytes = file.readAll();
 
-        ret.loadFromData(bytes);
+//        ret.loadFromData(bytes);
 
-        return ret;
+        return bytes;
     }
-    return ret;
+    return bytes;
 }
 
 int FileVolumeDirectory::size()
@@ -80,15 +80,16 @@ QString FileVolumeDirectory::currentPath()
     return m_directory.absoluteFilePath(m_current);
 }
 
-const QPixmap FileVolumeDirectory::currentImage()
+const ImageContent FileVolumeDirectory::currentImage()
 {
-    if(m_cachedPath == currentPath()) {
-        return m_cachedImage;
-    }
+//    if(m_cachedPath == currentPath()) {
+//        return m_cachedImage;
+//    }
     if(!m_currentCache.isFinished())
         m_currentCache.waitForFinished();
+    return m_currentCache.result();
 
-    const ImageContent& ic = m_currentCache.result();
-    m_cachedImage = ic.Image;
-    return m_cachedImage;
+//    const ImageContent& ic = m_currentCache.result();
+//    m_cachedImage = ic.Image;
+//    return m_cachedImage;
 }

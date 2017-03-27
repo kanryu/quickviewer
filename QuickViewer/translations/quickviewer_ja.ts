@@ -2,10 +2,237 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>ExifDialog</name>
+    <message>
+        <source>Exif Information</source>
+        <translation>Exif情報</translation>
+    </message>
+    <message>
+        <source>ImageDescription</source>
+        <translation>画像の説明</translation>
+    </message>
+    <message>
+        <source>Make</source>
+        <translation>メーカー</translation>
+    </message>
+    <message>
+        <source>Model</source>
+        <translation>機種</translation>
+    </message>
+    <message>
+        <source>Orientation</source>
+        <translation>カメラの向き</translation>
+    </message>
+    <message>
+        <source>BitsPerSample</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DateTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DateTimeOriginal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DateTimeDigitized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SubSecTimeOriginal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ExposureTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FNumber</source>
+        <translation>F値</translation>
+    </message>
+    <message>
+        <source>ISOSpeedRatings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ShutterSpeedValue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ExposureBiasValue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SubjectDistance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FocalLength</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FocalLengthIn35mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash</source>
+        <translation>フラッシュ</translation>
+    </message>
+    <message>
+        <source>MeteringMode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ImageWidth</source>
+        <translation>画像幅</translation>
+    </message>
+    <message>
+        <source>ImageHeight</source>
+        <translation>画像高さ</translation>
+    </message>
+    <message>
+        <source>Flash did not fire</source>
+        <translation>フラッシュなし</translation>
+    </message>
+    <message>
+        <source>Flash fired</source>
+        <translation>フラッシュあり</translation>
+    </message>
+    <message>
+        <source>Strobe return light not detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strobe return light detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, compulsory flash mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, compulsory flash mode, return light not detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, compulsory flash mode, return light detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash did not fire, compulsory flash mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash did not fire, auto mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, auto mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, auto mode, return light not detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, auto mode, return light detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No flash function</source>
+        <translation>フラッシュ機能なし</translation>
+    </message>
+    <message>
+        <source>Flash fired, red-eye reduction mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, red-eye reduction mode, return light not detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, red-eye reduction mode, return light detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, compulsory flash mode, red-eye reduction mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, auto mode, red-eye reduction mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, auto mode, return light not detected, red-eye reduction mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash fired, auto mode, return light detected, red-eye reduction mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Horizontal (normal)</source>
+        <translation>水平(標準)</translation>
+    </message>
+    <message>
+        <source>Mirror horizontal</source>
+        <translation>上下反転</translation>
+    </message>
+    <message>
+        <source>Rotate 180</source>
+        <translation>180°回転</translation>
+    </message>
+    <message>
+        <source>Mirror vertical</source>
+        <translation>左右反転</translation>
+    </message>
+    <message>
+        <source>Mirror horizontal and rotate 270 CW</source>
+        <translation>上下反転、時計回りに270°回転</translation>
+    </message>
+    <message>
+        <source>Rotate 90 CW</source>
+        <translation>時計回りに90°回転</translation>
+    </message>
+    <message>
+        <source>Mirror horizontal and rotate 90 CW</source>
+        <translation>上下反転、時計回りに90°回転</translation>
+    </message>
+    <message>
+        <source>Rotate 270 CW</source>
+        <translation>時計回りに270°回転</translation>
+    </message>
+</context>
+<context>
     <name>ImageView</name>
     <message>
         <source>NOT IMAGE</source>
         <translation>画像以外のファイルです</translation>
+    </message>
+    <message>
+        <source>Launching Windows Explorer failed</source>
+        <translation>エクスプローラーを開くことができませんでした</translation>
+    </message>
+    <message>
+        <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
+        <translation>&apos;explorer.exe&apos;がPATHに見つからなかったため、起動できませんでした</translation>
     </message>
 </context>
 <context>
@@ -145,6 +372,18 @@
     <message>
         <source>Show&amp;PageBar</source>
         <translation>ページバーを表示(&amp;P)</translation>
+    </message>
+    <message>
+        <source>Open &amp;Explorer</source>
+        <translation>エクスプローラで開く(&amp;E)</translation>
+    </message>
+    <message>
+        <source>&amp;Exif Information</source>
+        <translation type="vanished">Exif情報を表示する(&amp;I)</translation>
+    </message>
+    <message>
+        <source>Exif &amp;Information</source>
+        <translation>Exif情報を表示する(&amp;I)</translation>
     </message>
 </context>
 </TS>

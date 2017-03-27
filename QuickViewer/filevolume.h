@@ -5,7 +5,7 @@
 #include <QImage>
 #include <QtConcurrent>
 #include <QMutex>
-#include <QtGui/private/qjpeghandler_p.h>
+#include "exif.h"
 
 struct ImageContent
 {
@@ -13,20 +13,22 @@ public:
     QPixmap Image;
     QSize BaseSize;
     QString Path;
+    easyexif::EXIFInfo Info;
 
     ImageContent(){}
-    ImageContent(QPixmap image, QString path, QSize size)
-        : Image(image), Path(path), BaseSize(size) {
+    ImageContent(QPixmap image, QString path, QSize size, easyexif::EXIFInfo info)
+        : Image(image), Path(path), BaseSize(size), Info(info) {
     }
 
     ImageContent(const ImageContent& rhs)
-        : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize) {
+        : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize), Info(rhs.Info) {
     }
     inline ImageContent& ImageContent::operator=(const ImageContent &rhs)
     {
         Image = rhs.Image;
         Path = rhs.Path;
         BaseSize = rhs.BaseSize;
+        Info = rhs.Info;
         return *this;
     }
     bool wideImage() const {return BaseSize.width() > BaseSize.height(); }
@@ -56,6 +58,7 @@ public:
     static bool isImageFile(QString path);
 
     static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
+    virtual bool isArchive() const { return true; }
     /**
      * @brief 現在のファイルパスを返す
      * @return
@@ -65,7 +68,7 @@ public:
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
      * @return
      */
-    virtual const QPixmap currentImage()=0;
+    virtual const ImageContent currentImage()=0;
     /**
      * @brief volumePath ボリュームのpathを返す。通常コンストラクタのpathがそのまま返ってくる
      */
@@ -105,7 +108,7 @@ public:
      * @brief loadImageByName 内部カウンタを進めずにファイルリストの中で指定されたファイル名に対応する画像を読み込んで返す
      * @return ロードに失敗すれば空インスタンス
      */
-    virtual QImage loadImageByName(const QString& name)=0;
+    virtual QByteArray loadByteArrayByName(const QString& name)=0;
     /**
      * @brief ボリュームが持つページ数を返す
      * @return ボリュームが持つページ数
