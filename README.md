@@ -4,7 +4,7 @@ QuickViewer
 A image viewer application for folders/archives, it can show images very fast
 
 
-## The QuickViewer Project Website(in English / Japanese)
+## Project Website(in English / Japanese)
 
 https://kanryu.github.io/quickviewer/
 
