@@ -4,38 +4,38 @@ QuickViewer
 A image viewer application for folders/archives, it can show images very fast
 
 
-# The QuickViewer Project Website(in English / Japanese)
+## The QuickViewer Project Website(in English / Japanese)
 
 https://kanryu.github.io/quickviewer/
 
-# Summary
+## Summary
 
  - To show images very fast (using OpenGL)
  - Spread viewing(two images once) supported(for digital books)
  - To read archives directly(zip or 7z)
 
-# Download
+## Download
 
 [binary distributions](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
 
-# Screenshots
+## Screenshots
 
-## 1 page viewing
+### 1 page viewing
 
 
 ![1 page viewing](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
 
-## Spread viewing
+### Spread viewing
 
 ![Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
-# How to use
+## How to use
 
 - Run the app, and drop image folder/archive to the window.
 - Create shortcut, and drop image folder/archive on it.
 
 
-# Features
+## Features
 
 - Next Page (Press 'right Arrow Key', 'Mouse wheel down', 'Mouse forward button', or Click left end of window)
 - Prev Page (Press 'left Arrow Key', 'Mouse wheel up', 'Mouse back button', or Click right end of window)
@@ -45,8 +45,29 @@ https://kanryu.github.io/quickviewer/
 - Spread viewing (two image once)
     - Bound on the right side book(e.g. Japanese Style)
 - Pre page loading(via v0.2.0)
+- Exif Information(via v0.3.0)
+- Show Windows Explorer for the current image
 
-# Report issues
+## Screen operations
+
+You can do screen operations with the main menu, tool bar, mouse button, wheel, keyboard and so on.
+
+| Operation   | Device | Input | Remarks |
+|:-------------|:-------|:--------|:--------|
+| Next Page | Keyboard | Right Key(→) | |
+|           | Mouse Wheel | Downword rotation | |
+|           | Mouse | Forward Button   | |
+| Prev Page | Keyboard | Left Key(←) | |
+|           | Mouse Wheel | Upword rotation | |
+|           | Mouse | Back Button | |
+| Fullscreen | Keyboard | F11 Key | |
+|           | Keyboard | ESC Key | Fullscreen exitting only |
+|           | Mouse | Wheel Clicked | as Center Button |
+| Scale Up | Keyboard | Ten keys(+) | do nothing with Fitting |
+| Scale Down | Keyboard | Ten keys(-) | do nothing with Fitting |
+
+
+## Report issues
 
 Please report issues as well as configuration details for your working 
 QuickViewer installations at <k.kanryu@gmail.com>
@@ -54,11 +75,11 @@ QuickViewer installations at <k.kanryu@gmail.com>
 Thus, your feedback is welcome at KATO Kanryu<<k.kanryu@gmail.com>>.
 
 
-# Project Source Code Repository
+## Project Source Code Repository
 
 https://github.com/kanryu/quickviewer
 
-# License
+## License
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
