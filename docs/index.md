@@ -61,18 +61,21 @@ Click right button on the image view, to be shown a context menu, select 'Open E
 
 You can do screen operations with the main menu, tool bar, mouse button, wheel, keyboard and so on.
 
-| Operation   | Device | Input | Remarks |
+| Operation    | Device | Input   | Remarks |
 |:-------------|:-------|:--------|:--------|
 | Next Page | Keyboard | Right Key(→) | |
+|           | Keyboard | Space Key | |
 |           | Mouse Wheel | Downword rotation | |
 |           | Mouse | Forward Button   | |
 | Prev Page | Keyboard | Left Key(←) | |
 |           | Mouse Wheel | Upword rotation | |
 |           | Mouse | Back Button | |
+| First Page | Keyboard | Home Key | |
+| Last Page | Keyboard | End Key | |
 | Fullscreen | Keyboard | F11 Key | |
 |           | Keyboard | ESC Key | Fullscreen exitting only |
 |           | Mouse | Wheel Clicked | as Center Button |
-| Scale Up | Keyboard | Ten keys(+) | do nothing with Fitting |
+| Scale Up  | Keyboard | Ten keys(+) | do nothing with Fitting |
 | Scale Down | Keyboard | Ten keys(-) | do nothing with Fitting |
 
 
