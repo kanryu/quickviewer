@@ -60,6 +60,8 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Prev Page | Keyboard | Left Key(←) | |
 |           | Mouse Wheel | Upword rotation | |
 |           | Mouse | Back Button | |
+| First Page | Keyboard | Home Key | |
+| Last Page | Keyboard | End Key | |
 | Fullscreen | Keyboard | F11 Key | |
 |           | Keyboard | ESC Key | Fullscreen exitting only |
 |           | Mouse | Wheel Clicked | as Center Button |
