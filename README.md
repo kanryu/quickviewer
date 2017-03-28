@@ -3,6 +3,11 @@ QuickViewer
 
 A image viewer application for folders/archives, it can show images very fast
 
+
+# The QuickViewer Project Website(in English / Japanese)
+
+https://kanryu.github.io/quickviewer/
+
 # Summary
 
  - To show images very fast (using OpenGL)
@@ -48,10 +53,6 @@ QuickViewer installations at <k.kanryu@gmail.com>
 
 Thus, your feedback is welcome at KATO Kanryu<<k.kanryu@gmail.com>>.
 
-
-# The QuickViewer Project(in English / Japanese)
-
-https://kanryu.github.io/quickviewer/
 
 # Project Source Code Repository
 
