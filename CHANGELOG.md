@@ -1,6 +1,18 @@
 # CHANGELOG
 
 - other commits
+    -  add keyconfig dialog (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
+    -  refactoring (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
+    -  add FileLoader object(supports external plugin) (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
+    - Update index.md (Thu Mar 30 03:16:49 2017 +0900) [96a4008](https://github.com/kanryu/quickviewer/commit/96a4008d34fee6203f9457e015ff23d23756fddb)
+    - Update index.md (Thu Mar 30 03:16:04 2017 +0900) [cedc13b](https://github.com/kanryu/quickviewer/commit/cedc13bc70e8cf821feb963662946361bb73a509)
+    - Update index.md (Thu Mar 30 03:05:39 2017 +0900) [12d8c97](https://github.com/kanryu/quickviewer/commit/12d8c976552e594a897030f5146adc139d40d3c1)
+    - Update index.md (Thu Mar 30 03:02:32 2017 +0900) [1b2b76e](https://github.com/kanryu/quickviewer/commit/1b2b76eed4f2d257a2c0fafd6c6466998dfd6d8f)
+    - Update index.md (Thu Mar 30 02:57:34 2017 +0900) [3614ab8](https://github.com/kanryu/quickviewer/commit/3614ab8d4e3895fa55e95393cf0a0752788a4e3e)
+    - Update README.md (Thu Mar 30 02:57:17 2017 +0900) [f0e5a94](https://github.com/kanryu/quickviewer/commit/f0e5a947c01bdec31069d8301771d4f4d888d37f)
+    - Update index.md (Thu Mar 30 02:50:25 2017 +0900) [d782f7b](https://github.com/kanryu/quickviewer/commit/d782f7b1b0dada061efb0b5f1ab8467ceca20f3c)
+    - Update index.md (Thu Mar 30 02:46:24 2017 +0900) [1954621](https://github.com/kanryu/quickviewer/commit/195462191a8badc09fe7d464532ed09e6b9de649)
+    - Create CHANGELOG.md (Thu Mar 30 00:46:26 2017 +0900) [ff5caa2](https://github.com/kanryu/quickviewer/commit/ff5caa2a4faea8726f82d0481ed52b20099d35f4)
     - Update README.md (Wed Mar 29 00:19:45 2017 +0900) [9f131e7](https://github.com/kanryu/quickviewer/commit/9f131e72cf28b177cc7965768f46297a1b0464ec)
     - Update index.md (Tue Mar 28 23:17:13 2017 +0900) [2b5fb49](https://github.com/kanryu/quickviewer/commit/2b5fb494bf4aa122803d3374b11d334e4ea5863a)
     - Update README.md (Tue Mar 28 23:16:42 2017 +0900) [33a76c5](https://github.com/kanryu/quickviewer/commit/33a76c5666e4f3d315134e4f45bed96d3f8a9473)
