@@ -8,7 +8,7 @@ layout: default
 
 This software performs reading of image data in advance.
 And loading the imported image data on the screen with OpenGL.
-You can browse images with less lightness than ever before.
+You can browse images with much smoother than ever before.
 
 **QuickViewer** is a free software lisenced under GPLv3.
 
