@@ -19,7 +19,7 @@ You can browse images with much smoother response than ever before.
 ## How to use
 
 1. Launch the application and display the window
-1. Select a menu on the main menu which choose a folder from the dialog, or Drag Drop the folder containing the image file from Windows Explorer to the window
+1. Select a menu on the main menu which choose a folder from the dialog, or Drag Drop a folder contains image files from Windows Explorer to the window
 1. A image loaded on the screen is displayed. Browse the images with the "←" or "→" button on the toolbar, the mouse wheel up/down, the forward button of the mouse, or the left and right edge click of the window
 
 ## Download
