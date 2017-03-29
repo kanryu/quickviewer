@@ -7,7 +7,7 @@ layout: default
 **QuickViewer** is a graphic image viewer for comfortable browsing of many images.
 
 This software performs reading of image data in advance.
-And loading the imported image data on the screen with OpenGL.
+And drawing the imported image data on the screen with OpenGL.
 You can browse images with much smoother than ever before.
 
 **QuickViewer** is a free software lisenced under GPLv3.
@@ -19,7 +19,7 @@ You can browse images with much smoother than ever before.
 ## How to use
 
 1. Launch the application and display the window
-1. Select a menu on the main menu which choose the folder from the dialog, or Drag Drop the folder containing the image file from Windows Explorer to the application window
+1. Select a menu on the main menu which choose a folder from the dialog, or Drag Drop the folder containing the image file from Windows Explorer to the window
 1. A image loaded on the screen is displayed. Browse the images with the "←" or "→" button on the toolbar, the mouse wheel up/down, the forward button of the mouse, or the left and right edge click of the window
 
 ## Download
@@ -73,10 +73,13 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | First Page | Keyboard | Home Key | |
 | Last Page | Keyboard | End Key | |
 | Fullscreen | Keyboard | F11 Key | |
-|           | Keyboard | ESC Key | Fullscreen exitting only |
 |           | Mouse | Wheel Clicked | as Center Button |
+|           | Keyboard | ESC Key | Fullscreen mode only |
+| Exit App  | Keyboard | ESC Key | not Fullscreen mode only |
 | Scale Up  | Keyboard | Ten keys(+) | do nothing with Fitting |
 | Scale Down | Keyboard | Ten keys(-) | do nothing with Fitting |
+| Fitting | Keyboard | F12 Key |  |
+|         | Keyboard | Ten keys(-) | |
 
 
 
