@@ -64,10 +64,14 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | First Page | Keyboard | Home Key | |
 | Last Page | Keyboard | End Key | |
 | Fullscreen | Keyboard | F11 Key | |
-|           | Keyboard | ESC Key | Fullscreen exitting only |
 |           | Mouse | Wheel Clicked | as Center Button |
+|           | Keyboard | ESC Key | Fullscreen mode only |
+| Exit App  | Keyboard | ESC Key | not Fullscreen mode only |
 | Scale Up  | Keyboard | Ten keys(+) | do nothing with Fitting |
 | Scale Down | Keyboard | Ten keys(-) | do nothing with Fitting |
+| Fitting | Keyboard | F12 Key |  |
+|         | Keyboard | Ten keys(-) | |
+
 
 
 ## Report issues
