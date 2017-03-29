@@ -4,7 +4,7 @@ layout: default
 
 # [](#header-1)QuickViewer
 
-**QuickViewer** is an graphic image viewer for comfortable browsing of many images.
+**QuickViewer** is a graphic image viewer for comfortable browsing of many images.
 
 This software performs reading of image data in advance.
 And loading the imported image data on the screen with OpenGL.
