@@ -48,6 +48,9 @@ If **Spread Viewing** is on, the window shows two images on side by side.
 
 ![EXIF Information](https://github.com/kanryu/quickviewer/wiki/images/exifdialog.jpg)
 
+It draws JPEG images with auto rotation which contained in EXIF Information.
+You can see images as long as taken picure with digital camera.
+
 You can checkout EXIF Information of the current JPEG image which you have taken picture by a digital camera.
 Click right button on the image view, to be shown a context menu, select 'Exif Information' menu.
 
