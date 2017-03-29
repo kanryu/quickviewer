@@ -236,6 +236,113 @@
     </message>
 </context>
 <context>
+    <name>KeyConfigDialog</name>
+    <message>
+        <source>Keybord Input Configuration</source>
+        <translation>キーボード入力設定</translation>
+    </message>
+    <message>
+        <source>Next Page</source>
+        <translation>次のページ</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>右キー</translation>
+    </message>
+    <message>
+        <source>Space</source>
+        <translation>スペースキー</translation>
+    </message>
+    <message>
+        <source>Prev Page</source>
+        <translation>前のページ</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation>左キー</translation>
+    </message>
+    <message>
+        <source>First Page</source>
+        <translation>最初のページ</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation>Homeキー</translation>
+    </message>
+    <message>
+        <source>Last Page</source>
+        <translation>最後のページ</translation>
+    </message>
+    <message>
+        <source>End</source>
+        <translation>Endキー</translation>
+    </message>
+    <message>
+        <source>Toggle Fullscreen</source>
+        <translation>フルスクリーン表示切り替え</translation>
+    </message>
+    <message>
+        <source>F11</source>
+        <translation>F11キー</translation>
+    </message>
+    <message>
+        <source>Return</source>
+        <translation>本体Enterキー</translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <translation>テンキーEnterキー</translation>
+    </message>
+    <message>
+        <source>Exit Fullscreen</source>
+        <translation>フルスクリーン表示解除</translation>
+    </message>
+    <message>
+        <source>ESC</source>
+        <translation>ESCキー</translation>
+    </message>
+    <message>
+        <source>on Fullscreen only</source>
+        <translation>フルスクリーン表示時のみ有効</translation>
+    </message>
+    <message>
+        <source>Exit Application</source>
+        <translation>アプリケーション終了</translation>
+    </message>
+    <message>
+        <source>not on Fullscreen only</source>
+        <translation>フルスクリーン表示以外の時のみ有効</translation>
+    </message>
+    <message>
+        <source>Scale Up</source>
+        <translation>拡大表示</translation>
+    </message>
+    <message>
+        <source>Plus(+)</source>
+        <translation>テンキー(+)</translation>
+    </message>
+    <message>
+        <source>Scale Out</source>
+        <translation>縮小表示</translation>
+    </message>
+    <message>
+        <source>Minus(-)</source>
+        <translation>テンキー(-)</translation>
+    </message>
+    <message>
+        <source>Fitting</source>
+        <translation>フィット表示</translation>
+    </message>
+    <message>
+        <source>F12</source>
+        <translation>F12キー</translation>
+    </message>
+    <message>
+        <source>Asterisk(*)</source>
+        <translation>テンキー(*)</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>any folder or archive loaded.</source>
@@ -384,6 +491,10 @@
     <message>
         <source>Exif &amp;Information</source>
         <translation>Exif情報を表示する(&amp;I)</translation>
+    </message>
+    <message>
+        <source>&amp;Key Config</source>
+        <translation>キーボード入力設定(&amp;K)</translation>
     </message>
 </context>
 </TS>

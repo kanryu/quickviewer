@@ -1,14 +1,16 @@
 #include "filevolume.h"
 #include <QDir>
-#include "filevolumedirectory.h"
-#include "filevolumeziparchive.h"
-#include "filevolume7zarchive.h"
+#include "fileloaderdirectory.h"
+#include "fileloaderziparchive.h"
+#include "fileloader7zarchive.h"
 #include "ResizeHalf.h"
 
-IFileVolume::IFileVolume(QObject *parent)
+IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
     : QObject(parent)
     , m_cnt(0)
+    , m_loader(loader)
 {
+    m_filelist = m_loader->contents();
 }
 
 void IFileVolume::on_ready()
@@ -49,9 +51,9 @@ const ImageContent IFileVolume::getIndexedImageContent(int idx)
 bool IFileVolume::nextPage()
 {
 //    qDebug() << "nextPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();
-    if(!nextFile()) {
+    if(m_cnt >= m_filelist.size())
         return false;
-    }
+    m_cnt++;
     on_ready();
     return true;
 }
@@ -59,9 +61,9 @@ bool IFileVolume::nextPage()
 bool IFileVolume::prevPage()
 {
 //    qDebug() << "prevPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();
-    if(!prevFile()) {
+    if(m_cnt <= 0)
         return false;
-    }
+    m_cnt--;
     on_ready();
     return true;
 }
@@ -72,7 +74,8 @@ bool IFileVolume::findPageByIndex(int idx)
         return true;
     if(idx < 0 || idx >= m_filelist.size())
         return false;
-    bool result = findImageByIndex(idx);
+    m_cnt = idx;
+//    bool result = findImageByIndex(idx);
     on_ready();
     return true;
 }
@@ -82,19 +85,19 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
     QDir dir(path);
 
     if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
-        return new FileVolumeDirectory(parent, path);
+        return new IFileVolume(parent, new FileLoaderDirectory(parent, path));
     }
     QString lower = path.toLower();
     if(lower.endsWith(".zip")) {
-        return new FileVolumeZipArchive(parent, path);
+        return new IFileVolume(parent, new FileLoaderZipArchive(parent, path));
     }
     if(lower.endsWith(".7z")) {
-        return new FileVolume7zArchive(parent, path);
+        return new IFileVolume(parent, new FileLoader7zArchive(parent, path));
     }
     if(IFileVolume::isImageFile(path)) {
         dir.cdUp();
         QString dirpath = dir.canonicalPath();
-        FileVolumeDirectory* fvd = new FileVolumeDirectory(parent, dirpath);
+        IFileVolume* fvd = new IFileVolume(parent, new FileLoaderDirectory(parent, dirpath));
         bool result = fvd->findImageByName(path.mid(dirpath.length()+1));
         return fvd;
     }
@@ -148,12 +151,22 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     qDebug() << path << "[1]Source:" <<  src;
 
     QSize srcSizeReal = src.size();
+    QImage src2;
     // if src is RGBA8888, that must be 4 multiples of width
-    if(src.depth() == 32 && (src.width() | 0x3) > 0)
-        src = src.copy(QRect(0, 0, src.width() << 2 >> 2, src.height() << 1 >> 1));
+    if(src.depth() == 32 && (src.width() | 0x3) > 0) {
+        src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
+        qDebug() << path << "[4]Source:" <<  src2;
+        src = src2;
+    }
+    if(src.depth() < 32 && (src.width() | 0xF) > 0) {
+        src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
+        qDebug() << path << "[4]Source:" <<  src2;
+        src = src2;
+    }
 
-    QSize srcSize = QSize((src.width() >> 5) << 5, (src.height() >> 1) << 1);
-    QSize halfSize = QSize(srcSize.width()/2, srcSize.height()/2);
+//    QSize srcSize = QSize((src.width() >> 5) << 5, (src.height() >> 1) << 1);
+    QSize srcSize = src.size();
+    QSize halfSize = QSize((srcSize.width()+1)/2, (srcSize.height()+1)/2);
 //    ResizeHalf resizer(ResizeHalf::GREY8);
     ResizeHalf resizer(src.depth() == 8 ? ResizeHalf::GREY8 : ResizeHalf::RGBA8888);
 

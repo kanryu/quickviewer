@@ -6,6 +6,7 @@
 #include <QtConcurrent>
 #include <QMutex>
 #include "exif.h"
+#include "fileloader.h"
 
 struct ImageContent
 {
@@ -43,8 +44,13 @@ class IFileVolume : public QObject
 public:
     typedef QFuture<ImageContent> future_image;
 
-    explicit IFileVolume(QObject *parent=0);
-    virtual ~IFileVolume() {}
+    explicit IFileVolume(QObject *parent, IFileLoader* loader);
+    ~IFileVolume() {
+        if(m_loader) {
+            delete m_loader;
+            m_loader = nullptr;
+        }
+    }
     /**
      * @brief 指定されたファイルまたはディレクトリのpathからIFileVolumeのインスタンスを返すファクトリ関数
      * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
@@ -58,21 +64,21 @@ public:
     static bool isImageFile(QString path);
 
     static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
-    virtual bool isArchive() const { return true; }
+    bool isArchive() const { return m_loader->isArchive(); }
     /**
      * @brief 現在のファイルパスを返す
      * @return
      */
-    virtual QString currentPath()=0;
+    QString currentPath() { return m_filelist[m_cnt]; }
     /**
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
      * @return
      */
-    virtual const ImageContent currentImage()=0;
+    const ImageContent currentImage() { return m_currentCache.result(); }
     /**
      * @brief volumePath ボリュームのpathを返す。通常コンストラクタのpathがそのまま返ってくる
      */
-    virtual QString volumePath()=0;
+    QString volumePath() { return m_loader->volumePath(); }
     /**
      * @brief 一つ次のページに移動する（一度に複数の画像を表示する場合、その最初の画像に制御が移る）
      * @return 成功/失敗(ファイルリスト終端等)
@@ -84,36 +90,49 @@ public:
      */
     bool prevPage();
     bool findPageByIndex(int idx);
-    /**
-     * @brief 現在のファイルリストの中で次のファイルに移動する
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
-    virtual bool nextFile()=0;
-    /**
-     * @brief 現在のファイルリストの中で前のファイルに移動する
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
-    virtual bool prevFile()=0;
+//    /**
+//     * @brief 現在のファイルリストの中で次のファイルに移動する
+//     * @return 成功/失敗(ファイルリスト終端等)
+//     */
+//    virtual bool nextFile()=0;
+//    /**
+//     * @brief 現在のファイルリストの中で前のファイルに移動する
+//     * @return 成功/失敗(ファイルリスト終端等)
+//     */
+//    virtual bool prevFile()=0;
     /**
      * @brief 現在のファイルリストの中で指定されたidx値に対応するファイルに移動する(最大値はディレクトリまたはアーカイブの画像数-1)
      * @return 成功/失敗(ファイルリスト終端等)
      */
-    virtual bool findImageByIndex(int idx)=0;
+    bool findImageByIndex(int idx) {
+        if(idx < 0 || idx >= m_filelist.size())
+            return false;
+        m_cnt = idx;
+        return true;
+    }
+
     /**
      * @brief 現在のファイルリストの中で指定されたファイル名に対応するファイルに移動する
      * @return 成功/失敗(ファイルが見つからない等)
      */
-    virtual bool findImageByName(QString name)=0;
+    bool findImageByName(QString name) {
+        int idx = m_filelist.indexOf(name);
+        if(idx < 0)
+            return false;
+        m_cnt = idx;
+        return true;
+    }
+
     /**
      * @brief loadImageByName 内部カウンタを進めずにファイルリストの中で指定されたファイル名に対応する画像を読み込んで返す
      * @return ロードに失敗すれば空インスタンス
      */
-    virtual QByteArray loadByteArrayByName(const QString& name)=0;
+    QByteArray loadByteArrayByName(const QString& name) { return m_loader->getFile(name, m_mutex); }
     /**
      * @brief ボリュームが持つページ数を返す
      * @return ボリュームが持つページ数
      */
-    virtual int size()=0;
+    int size() { return m_filelist.size(); }
     /**
      * @brief on_ready アプリの準備が終わった段階で呼び出される。最初に、あるいは次に表示すべき画像およびそのファイルパスがemitされる
      */
@@ -141,6 +160,8 @@ protected:
     QList<int> m_pageCache;
 
     QMutex m_mutex;
+
+    IFileLoader* m_loader;
 };
 
 

@@ -44,6 +44,7 @@ public slots:
     void on_openfolder_triggered();
     void on_showSliderBar_triggered(bool showSliderBar);
     void on_showStatusBar_triggered(bool showStatusBar);
+    void on_openKeyConfig_triggered();
 
 private slots:
     void on_actionExit_triggered();

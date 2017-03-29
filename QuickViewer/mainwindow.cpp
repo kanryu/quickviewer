@@ -1,16 +1,17 @@
-#include "mainwindow.h"
-#include "imageview.h"
-#include "ui_mainwindow.h"
-#include "filevolumedirectory.h"
-#include "qv_init.h"
-#include "qvapplication.h"
-
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QWheelEvent>
 #include <QMimeData>
 #include <QMessageBox>
 #include <QFileDialog>
+
+#include "mainwindow.h"
+#include "imageview.h"
+#include "ui_mainwindow.h"
+#include "fileloaderdirectory.h"
+#include "qv_init.h"
+#include "qvapplication.h"
+#include "keyconfigdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -74,6 +75,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    if(m_fileVolume)
+        delete m_fileVolume;
     qApp->saveSettings();
 }
 
@@ -229,31 +232,37 @@ void MainWindow::makeHistoryMenu()
  */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    int key = event->key();
     switch(event->key()) {
     case Qt::Key_F11: case Qt::Key_Enter: case Qt::Key_Return:
-        on_fullscreen_triggered();
+        ui->actionFullscreen->trigger();
         break;
     case Qt::Key_Escape:
         if(isFullScreen())
-            on_fullscreen_triggered();
+            ui->actionFullscreen->trigger();
+        else
+            ui->actionExit->trigger();
         break;
     case Qt::Key_Left:case Qt::Key_ApplicationLeft:
-        on_prevPage_triggered();
+        ui->actionPrevPage->trigger();
         break;
     case Qt::Key_Right:case Qt::Key_ApplicationRight: case Qt::Key_Space:
-        on_nextPage_triggered();
+        ui->actionNextPage->trigger();
         break;
     case Qt::Key_Home:
-        on_firstPage_triggered();
+        ui->actionFirstPage->trigger();
         break;
     case Qt::Key_End:
-        on_lastPage_triggered();
+        ui->actionLastPage->trigger();
+        break;
+    case Qt::Key_F12: case Qt::Key_Asterisk:
+        ui->actionFitting->trigger();
         break;
     case Qt::Key_Plus:
-        ui->graphicsView->on_scaleUp_triggered();
+        ui->actionScaleUp->trigger();
         break;
     case Qt::Key_Minus:
-        ui->graphicsView->on_scaleDown_triggered();
+        ui->actionScaleDown->trigger();
         break;
     }
 }
@@ -456,4 +465,10 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
         setWindowTitle(m_pageCaption);
     }
     qApp->setShowStatusBar(showStatusBar);
+}
+
+void MainWindow::on_openKeyConfig_triggered()
+{
+    KeyConfigDialog dialog(this);
+    dialog.exec();
 }

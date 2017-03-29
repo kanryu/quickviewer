@@ -12,6 +12,7 @@ VERSION = 0.3.0
 
 TARGET = QuickViewer
 TEMPLATE = app
+CONFIG += plugin
 
 INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
@@ -32,23 +33,27 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     imageview.cpp \
     filevolume.cpp \
-    filevolumedirectory.cpp \
-    filevolumeziparchive.cpp \
-    filevolume7zarchive.cpp \
     qvapplication.cpp \
     pageslider.cpp \
-    exifdialog.cpp
+    exifdialog.cpp \
+    keyconfigdialog.cpp \
+    fileloader.cpp \
+    fileloader7zarchive.h.cpp \
+    fileloaderdirectory.cpp \
+    fileloaderziparchive.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
     filevolume.h \
-    filevolumedirectory.h \
-    filevolumeziparchive.h \
-    filevolume7zarchive.h \
     qv_init.h \
     qvapplication.h \
     pageslider.h \
-    exifdialog.h
+    exifdialog.h \
+    keyconfigdialog.h \
+    fileloader.h \
+    fileloader7zarchive.h \
+    fileloaderdirectory.h \
+    fileloaderziparchive.h
 
 FORMS    += mainwindow.ui \
     exifdialog.ui
