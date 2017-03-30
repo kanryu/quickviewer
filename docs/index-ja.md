@@ -12,6 +12,15 @@ layout: default
 
 [英語表記](https://kanryu.github.io/quickviewer/) / [日本語表記](https://kanryu.github.io/quickviewer/index-ja)
 
+
+## こういうソフトです
+
+- 画像切り替えメチャ早(OpenGL使用)
+- 本を読むのに便利な見開き表示
+- アーカイブファイルの直接読み込み(zip/7z/rar)
+- これらの画像形式に対応(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
+- デジカメで撮影した画像は自動回転(JPEG EXIF)
+
 ## 使い方
 
 
