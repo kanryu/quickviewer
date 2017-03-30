@@ -85,7 +85,7 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 - Memory
     - over 1GB free Memory(strongly recommended on x64 architecture)
 
-## Wanted collaborators!
+## Looking for collaborators!
 
 - Spanish Speakers
 - French Speakers
