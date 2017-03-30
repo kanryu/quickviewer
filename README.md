@@ -12,7 +12,9 @@ https://kanryu.github.io/quickviewer/
 
  - To show images very fast (using OpenGL)
  - Spread viewing(two images once) supported(for digital books)
- - To read archives directly(zip or 7z)
+ - To read archives directly(zip/7z/rar)
+ - To show images(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
+ - Auto rotation(using JPEG EXIF)
 
 ## Download
 
@@ -72,7 +74,18 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Fitting | Keyboard | F12 Key |  |
 |         | Keyboard | Ten keys(-) | |
 
+## System Requirement
 
+- Operating System
+    - Windows Vista,7 or newer
+    - Windows Sever 2008 or newer
+    - Nearly, Linux Desktops will be supported
+- CPU
+    - minimum Dual Core(more better with internal GPU or external GPU)
+- Memory
+    - over 1GB free Memory(strongly recommended on x64 architecture)
+
+Mac will be able to be supported. We need a collaborator.
 
 ## Report issues
 
