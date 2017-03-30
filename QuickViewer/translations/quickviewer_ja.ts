@@ -346,7 +346,7 @@
     <name>MainWindow</name>
     <message>
         <source>any folder or archive loaded.</source>
-        <translation>フォルダまたはアーカイブが読み込まれていません。</translation>
+        <translation type="vanished">フォルダまたはアーカイブが読み込まれていません。</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -495,6 +495,10 @@
     <message>
         <source>&amp;Key Config</source>
         <translation>キーボード入力設定(&amp;K)</translation>
+    </message>
+    <message>
+        <source>any folder or archive is not loaded.</source>
+        <translation>フォルダまたはアーカイブが読み込まれていません</translation>
     </message>
 </context>
 </TS>

@@ -14,19 +14,23 @@ TARGET = QuickViewer
 TEMPLATE = app
 CONFIG += plugin
 
+equals(QMAKE_CC,"cl") {
+    QMAKE_CXXFLAGS += /wd4819
+}
+
 INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 
 
 CONFIG(debug,debug|release) {
-LIBS += -L../Qt7z/Qt7z/debug -lQt7z
-LIBS += -L../ResizeHalf/debug -lresizehalf
-LIBS += -L../easyexif/debug -leasyexif
+    LIBS += -L../Qt7z/Qt7z/debug -lQt7z
+    LIBS += -L../ResizeHalf/debug -lresizehalf
+    LIBS += -L../easyexif/debug -leasyexif
 } else {
-LIBS += -L../Qt7z/Qt7z/release -lQt7z
-LIBS += -L../ResizeHalf/release -lresizehalf
-LIBS += -L../easyexif/release -leasyexif
+    LIBS += -L../Qt7z/Qt7z/release -lQt7z
+    LIBS += -L../ResizeHalf/release -lresizehalf
+    LIBS += -L../easyexif/release -leasyexif
 }
 
 SOURCES += main.cpp\

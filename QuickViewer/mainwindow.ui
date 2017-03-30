@@ -76,7 +76,7 @@
        <item>
         <widget class="QLabel" name="pageLabel">
          <property name="text">
-          <string>any folder or archive loaded.</string>
+          <string>any folder or archive is not loaded.</string>
          </property>
         </widget>
        </item>

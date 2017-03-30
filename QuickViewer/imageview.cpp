@@ -24,16 +24,12 @@ ImageView::ImageView(QWidget *parent)
     viewSizeIdx = 4; // 100
 
     QGraphicsScene* scene = new QGraphicsScene(this);
-//    scene->setForegroundBrush(QBrush(QColor("white")));
-//    scene->setBackgroundBrush(QBrush(QColor("black")));
-//    scene->setPalette(QPalette(Qt::white));
     setScene(scene);
 //    setTransformationAnchor(AnchorUnderMouse);
 //    setDragMode(ScrollHandDrag);
 //    setViewportUpdateMode(FullViewportUpdate);
     setAcceptDrops(false);
 //    setDragMode(DragDropMode::InternalMove);
-//    setBackgroundBrush(QBrush(Qt::gray));
     setRenderer(OpenGL);
 
     setMouseTracking(true);
@@ -99,11 +95,6 @@ bool ImageView::addImage(ImageContent ic, bool pageNext)
     else
         m_gpiOffsets.push_front(offset);
 
-    //    if(pageNext)
-//        m_pageFilenames.push_back(m_fileVolume->currentImageName());
-//    else
-//        m_pageFilenames.push_front(m_fileVolume->currentImageName());
-
     return size.width() > size.height();
 }
 
@@ -129,7 +120,6 @@ void ImageView::nextPage()
     if(!result) return;
 
     int pageIncr = m_gpiImages.size();
-//    int pageIncr = qApp->DualView() ? 2 : 1;
     m_currentPage += pageIncr;
     if(m_currentPage >= m_fileVolume->size() - pageIncr)
         m_currentPage = m_fileVolume->size() - pageIncr;
@@ -155,17 +145,6 @@ void ImageView::reloadCurrentPage(bool pageNext)
                     addImage(m_fileVolume->currentImage(), pageNext);
             }
         }
-//        if(m_fileVolume->nextPage()) {
-//            if(addImage(m_fileVolume->currentImage(), true) && qApp->WideImageAsOnePageInDualView()) {
-//                // if 2nd page is wide, will be canceled
-//                m_fileVolume->prevPage();
-//                scene()->removeItem(m_gpiImages[1]);
-//                delete m_gpiImages[1];
-//                m_gpiImages.remove(1);
-//                m_pagesizes.remove(1);
-//                m_currentPage--;
-//            }
-//        }
     }
     readyForPaint();
 }
@@ -176,12 +155,8 @@ void ImageView::prevPage()
     if(m_fileVolume == nullptr) return;
 
     if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
-//    m_currentPage -= m_gpiImages.size();
-//    if(m_currentPage < 0)
-//        m_currentPage = 0;
-//    setIndexedPage(m_currentPage);
 
-    QVApplication* app = qApp;
+    //QVApplication* app = qApp;
     m_currentPage--;
     if(qApp->DualView() && m_currentPage >= 1) {
         const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
@@ -192,48 +167,16 @@ void ImageView::prevPage()
     if(m_currentPage < 0)
         m_currentPage = 0;
     setIndexedPage(m_currentPage);
-
-
-
-
-
-//    if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
-//    const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
-//    const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage-1);
-//    const ImageContent ic2 = m_fileVolume->getIndexedImageContent(m_currentPage-2);
-//    QVApplication* app = qApp;
-////    m_currentPage -= m_gpiImages.size();
-//    m_currentPage--;
-//    if(m_currentPage > 0
-//            && m_gpiImages.size() == 1
-//            && qApp->DualView()
-//            && !m_fileVolume->getIndexedImageContent(m_currentPage).wideImage()) {
-//        m_currentPage--;
-//        if(qApp->WideImageAsOnePageInDualView()
-//                && m_fileVolume->getIndexedImageContent(m_currentPage).wideImage()) {
-//            m_currentPage++;
-//        }
-//    }
-//    setIndexedPage(m_currentPage);
 }
 
 void ImageView::setIndexedPage(int idx)
 {
     qDebug() << "ImageView::setIndexedPage()" << idx;
     if(m_fileVolume == nullptr) return;
-//    clearImages();
     bool result = m_fileVolume->findPageByIndex(idx);
     if(!result) return;
     m_currentPage = idx;
 
-//    bool wide = addImage(m_fileVolume->currentImage(), true);
-//    m_wideImage = wide;
-//    if(qApp->DualView() && !m_wideImage) {
-//        if(m_fileVolume->nextPage())
-//            addImage(m_fileVolume->currentImage(), true);
-//    }
-//    emit pageChanged();
-//    readyForPaint();
     reloadCurrentPage();
     emit pageChanged();
 }
@@ -300,12 +243,6 @@ void ImageView::readyForPaint() {
     repaint();
 }
 
-//void ImageView::paintEvent( QPaintEvent *event )
-//{
-//    qDebug() << event;
-//    QGraphicsView::paintEvent(event);
-//}
-
 void ImageView::resizeEvent(QResizeEvent *event)
 {
     if(scene()) {
@@ -316,11 +253,12 @@ void ImageView::resizeEvent(QResizeEvent *event)
 }
 
 #define HOVER_BORDER 20
+#define NOT_HOVER_AREA 100
 
 void ImageView::mouseMoveEvent(QMouseEvent *e)
 {
 //    qDebug() << e;
-    if(e->pos().x() < HOVER_BORDER) {
+    if(e->pos().x() < HOVER_BORDER && e->pos().y() < height()-NOT_HOVER_AREA) {
         if(m_hoverState != Qt::AnchorLeft)
             emit anchorHovered(Qt::AnchorLeft);
         m_hoverState = Qt::AnchorLeft;
@@ -341,7 +279,7 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
         m_hoverState = Qt::AnchorTop;
         return;
     }
-    if(e->pos().y() > height()-HOVER_BORDER) {
+    if(e->pos().y() > height()-HOVER_BORDER && e->pos().x() > NOT_HOVER_AREA) {
         if(m_hoverState != Qt::AnchorBottom)
            emit anchorHovered(Qt::AnchorBottom);
         m_hoverState = Qt::AnchorBottom;
@@ -351,32 +289,6 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
        emit anchorHovered(Qt::AnchorHorizontalCenter);
     m_hoverState = Qt::AnchorHorizontalCenter;
 }
-
-//void ImageView::mousePressEvent(QMouseEvent *e)
-//{
-//    qDebug() << e->button();
-//    if(e->button() == Qt::RightButton && m_fileVolume) {
-////        on_openFiler_triggered();
-//        on_openExifDialog_triggered();
-//        e->accept();
-//        return;
-//    }
-//    e->ignore();
-//}
-
-//void ImageView::mouseReleaseEvent(QMouseEvent *)
-//{
-//    if(m_isMouseDown) {
-//        m_isMouseDown = false;
-////        qDebug("mouseReleaseEvent x:%d y:%d\n", e->x(), e->y());
-//    }
-//}
-
-//void ImageView::on_image_changing(QPixmap image)
-//{
-//    setImage(image);
-//    readyForPaint();
-//}
 
 void ImageView::on_fitting_triggered(bool maximized)
 {

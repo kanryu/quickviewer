@@ -22,15 +22,15 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent) :
     tags << linefmt.arg(tr("Prev Page")).arg(tr("Left")).arg("");
     tags << linefmt.arg(tr("First Page")).arg(tr("Home")).arg("");
     tags << linefmt.arg(tr("Last Page")).arg(tr("End")).arg("");
-    tags << linefmt.arg(tr("Toggle Fullscreen")).arg(tr("F11").arg(""));
+    tags << linefmt.arg(tr("Toggle Fullscreen")).arg(tr("F11")).arg("");
     tags << linefmt.arg("").arg(tr("Return")).arg("");
     tags << linefmt.arg("").arg(tr("Enter")).arg("");
     tags << linefmt.arg(tr("Exit Fullscreen")).arg(tr("ESC")).arg(tr("on Fullscreen only"));
     tags << linefmt.arg(tr("Exit Application")).arg(tr("ESC")).arg(tr("not on Fullscreen only"));
-    tags << linefmt.arg(tr("Scale Up")).arg(tr("Plus(+)")).arg("");
-    tags << linefmt.arg(tr("Scale Out")).arg(tr("Minus(-)")).arg("");
     tags << linefmt.arg(tr("Fitting")).arg(tr("F12")).arg("");
     tags << linefmt.arg("").arg(tr("Asterisk(*)")).arg("");
+    tags << linefmt.arg(tr("Scale Up")).arg(tr("Plus(+)")).arg("");
+    tags << linefmt.arg(tr("Scale Out")).arg(tr("Minus(-)")).arg("");
 
 
     QString text = QString("<style>th {text-align: right;padding-right: 10px;} </style><table>%1</table>").arg(tags.join(""));

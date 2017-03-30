@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
     connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historymenu_triggered(QAction*)) );
 
+    setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     QVApplication* myapp = qApp;
     QStringList args = qApp->arguments();
     qDebug() << args;
@@ -129,9 +130,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
     QKeyEvent *keyEvent = NULL;//event data, if this is a keystroke event
     QMouseEvent *mouseEvent = NULL;//event data, if this is a keystroke event
-    QDragEnterEvent  *dragEnterEvent = NULL;//event data, if this is a keystroke event
-    QDropEvent *dropEvent = NULL;//event data, if this is a keystroke event
-    bool result = false;//return true to consume the keystroke
+    //QDragEnterEvent  *dragEnterEvent = NULL;//event data, if this is a keystroke event
+    //QDropEvent *dropEvent = NULL;//event data, if this is a keystroke event
 
 //    if(obj == ui->graphicsView) {
 //        qDebug() << "graphicsView <= " << event->type();

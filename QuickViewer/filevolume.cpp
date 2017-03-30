@@ -138,6 +138,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     QImage src;
     src.loadFromData(bytes);
 
+    // parsing JPEG EXIF
     easyexif::EXIFInfo info;
     QString lower = path.toLower();
     if(lower.endsWith(".jpg") || lower.endsWith(".jpeg")) {
@@ -148,47 +149,40 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     if(src.size().width() <= 4096 && src.size().height() <= 4096)
         return ImageContent(QPixmap::fromImage(src), path, src.size(), info);
 
+    // resample for too big images
     qDebug() << path << "[1]Source:" <<  src;
-
     QSize srcSizeReal = src.size();
     QImage src2;
-    // if src is RGBA8888, that must be 4 multiples of width
-    if(src.depth() == 32 && (src.width() | 0x3) > 0) {
-        src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
-        qDebug() << path << "[4]Source:" <<  src2;
-        src = src2;
-    }
-    if(src.depth() < 32 && (src.width() | 0xF) > 0) {
-        src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
-        qDebug() << path << "[4]Source:" <<  src2;
-        src = src2;
-    }
-
-//    QSize srcSize = QSize((src.width() >> 5) << 5, (src.height() >> 1) << 1);
-    QSize srcSize = src.size();
-    QSize halfSize = QSize((srcSize.width()+1)/2, (srcSize.height()+1)/2);
-//    ResizeHalf resizer(ResizeHalf::GREY8);
-    ResizeHalf resizer(src.depth() == 8 ? ResizeHalf::GREY8 : ResizeHalf::RGBA8888);
-
-//    int width = srcSize.width();
-//    switch(src.depth()) {
-//    case 8: width = srcSize.width(); break;
-//    case 16: width = srcSize.width() * 2; break;
-//    case 24: width = srcSize.width() * 3; break;
-//    case 32: width = srcSize.width() * 4; break;
-//    }
-    int width = srcSize.width();
     switch(src.depth()) {
-    case 8: width = srcSize.width(); break;
-    case 16: width = srcSize.width() / 2; break;
-    case 24: width = srcSize.width() / 4 * 3; break;
-    case 32: width = srcSize.width(); break;
+    case 32:
+        if((src.width() | 0x3) > 0) {
+            src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
+            qDebug() << path << "[4]Source:" <<  src2;
+            src = src2;
+        }
+        break;
+    default:
+        if(src.format() != QImage::Format::Format_Grayscale8) {
+            src = src.convertToFormat(QImage::Format::Format_RGB888);
+        }
+        if((src.width() | 0xF) > 0) {
+            src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
+            qDebug() << path << "[4]Source:" <<  src2;
+            src = src2;
+        }
+        break;
     }
-    qDebug() << path << "[3]width:" << width << srcSize;
+
+    QSize srcSize = src.size();
+    QSize halfSize = QSize((srcSize.width())/2, (srcSize.height())/2);
+
+    qDebug() << path << "[3]width:" << srcSize;
     QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
     qDebug() << path << "[2]Dest:" <<  half;
-//    resizer.resizeHV(src.bits(), width, srcSize.height(), src.bytesPerLine());
-    resizer.resizeHV(half.bits(), src.bits(), width, srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
+
+    ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
+    ResizeHalf resizer(fmt);
+    resizer.resizeHV(half.bits(), src.bits(), src.width(), srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
 
     return ImageContent(QPixmap::fromImage(half), path, srcSizeReal, info);
 }
