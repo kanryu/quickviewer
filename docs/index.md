@@ -84,7 +84,16 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Fitting | Keyboard | F12 Key |  |
 |         | Keyboard | Ten keys(-) | |
 
+## System Requirement
 
+- Operationg System
+    - Windows Vista,7 or newer
+    - Windows Sever 2008 or newer
+    - Nearly, Linux Desktops
+- CPU
+    - minimum Dual Core(more better with internal GPU or external GPU)
+- Memory
+    - over 1GB free Memory(strongly recommended on x64 architecture)
 
 ```
 The final element.
