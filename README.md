@@ -85,7 +85,13 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 - Memory
     - over 1GB free Memory(strongly recommended on x64 architecture)
 
-Mac will be able to be supported. We need a collaborator.
+## Wanted collaborators!
+
+- Spanish Speakers
+- French Speakers
+- Chinese Speakers
+- Mac software engeneers
+
 
 ## Report issues
 
