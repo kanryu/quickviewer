@@ -86,7 +86,7 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 
 ## System Requirement
 
-- Operationg System
+- Operating System
     - Windows Vista,7 or newer
     - Windows Sever 2008 or newer
     - Nearly, Linux Desktops
