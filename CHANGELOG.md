@@ -1,5 +1,22 @@
 # CHANGELOG
 
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Mar 31 06:28:17 2017 +0900) [cb7b450](https://github.com/kanryu/quickviewer/commit/cb7b4501030df65048821b669ab071dce7b37aa1)
+
+## v0.3.2 (Fri Mar 31 06:27:49 2017 +0900) [c6ff3be](https://github.com/kanryu/quickviewer/commit/c6ff3be94044612100b06d54fe4bb7f3f0a93406)
+
+fixed when png file dropped
+
+- other commits
+    - Update README.md (Fri Mar 31 05:28:30 2017 +0900) [f00c36d](https://github.com/kanryu/quickviewer/commit/f00c36de540508aec55d0797c43e5690dba12854)
+    - Update README.md (Fri Mar 31 05:27:16 2017 +0900) [8bd3ccd](https://github.com/kanryu/quickviewer/commit/8bd3ccd9e07a09c73099c56fcae3646da8c1fdc8)
+    - Update index-ja.md (Fri Mar 31 05:23:53 2017 +0900) [6f0cc66](https://github.com/kanryu/quickviewer/commit/6f0cc660ff91e15a67d0469b8b63314d1eebbe15)
+    - Update index.md (Fri Mar 31 05:20:07 2017 +0900) [9c09be0](https://github.com/kanryu/quickviewer/commit/9c09be0591b8292d4eeb68e69e11e623d6f52432)
+    - Update README.md (Fri Mar 31 05:19:21 2017 +0900) [fda1e21](https://github.com/kanryu/quickviewer/commit/fda1e21fd60367747356fb19a325b9153f032b40)
+    - Update index.md (Fri Mar 31 05:06:35 2017 +0900) [9f484f3](https://github.com/kanryu/quickviewer/commit/9f484f3c8529c06e9375a830521abe40fd43c857)
+    - Update index.md (Fri Mar 31 05:06:15 2017 +0900) [f763498](https://github.com/kanryu/quickviewer/commit/f76349814736a8e6e8ed4cfb7785c80f17f1b393)
+    - CHANGELOG (Fri Mar 31 04:37:29 2017 +0900) [283d783](https://github.com/kanryu/quickviewer/commit/283d783a4221deae190328808ebe63f296ff5c42)
+
 ## v0.3.1 (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
 
 - refactoring
