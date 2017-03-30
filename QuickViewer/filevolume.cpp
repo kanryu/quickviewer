@@ -98,7 +98,7 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
     if(lower.endsWith(".rar")) {
         return new IFileVolume(parent, new FileLoaderRarArchive(parent, path));
     }
-    if(IFileVolume::isImageFile(path)) {
+    if(IFileLoader::isImageFile(path)) {
         dir.cdUp();
         QString dirpath = dir.canonicalPath();
         IFileVolume* fvd = new IFileVolume(parent, new FileLoaderDirectory(parent, dirpath));
@@ -125,16 +125,6 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, QString su
     return fv;
 }
 
-bool IFileVolume::isImageFile(QString path)
-{
-    QStringList exts = {".jpg", ".jpeg", ".bmp", ".gif", ".dds", ".ico", ".tga", ".tif", ".tiff", ".webp", ".wbp"};
-    QString lower = path.toLower();
-    foreach(const QString& e, exts) {
-        if(lower.endsWith(e))
-            return true;
-    }
-    return false;
-}
 
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {

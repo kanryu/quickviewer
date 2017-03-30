@@ -56,12 +56,6 @@ public:
      * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
      */
     static IFileVolume* CreateVolume(QObject* parent, QString path, QString subfilename=nullptr);
-    /**
-     * @brief isImageFile そのファイルが画像ファイルかを拡張子から調べる
-     * @param path
-     * @return 画像と思われる場合true
-     */
-    static bool isImageFile(QString path);
 
     static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
     bool isArchive() const { return m_loader->isArchive(); }
