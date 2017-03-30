@@ -1,9 +1,17 @@
 # CHANGELOG
 
+## v0.3.1 (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
+
+- refactoring
+- support RAR archive
+- add Key Config Dialog
+- improve behavior of changing between normal and fullscreen
+
 - other commits
+    - CHANGELOG (Thu Mar 30 14:25:48 2017 +0900) [e9f8189](https://github.com/kanryu/quickviewer/commit/e9f81892e517f505d38951b5405b079fdcd61708)
     - CHANGELOG (Thu Mar 30 14:22:50 2017 +0900) [661a7b1](https://github.com/kanryu/quickviewer/commit/661a7b17fdac7fb78275bfcc6ebd381f1f7054ac)
 
-## v0.3.1_pre2 (Thu Mar 30 14:22:50 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
+## v0.3.1_pre2 (Thu Mar 30 14:19:25 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
 
 refactoring
 
@@ -14,7 +22,7 @@ refactoring
     - Update CHANGELOG.md (Thu Mar 30 05:30:03 2017 +0900) [d348354](https://github.com/kanryu/quickviewer/commit/d348354dd8b1d79cdd9bf5ad02bd94e78d42db27)
     - Update CHANGELOG.md (Thu Mar 30 05:23:40 2017 +0900) [4381c43](https://github.com/kanryu/quickviewer/commit/4381c437506434746dedb8df31d02fa83584539f)
 
-## v0.3.1_pre (Thu Mar 30 05:23:40 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
+## v0.3.1_pre (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
 
 - add keyconfig dialog
 - refactoring
@@ -42,7 +50,7 @@ refactoring
     - Update index-ja.md (Tue Mar 28 03:16:33 2017 +0900) [6b743a9](https://github.com/kanryu/quickviewer/commit/6b743a9be639874ad1b423eddb39a3b412a1e12d)
     - avoid error submodle problem (Tue Mar 28 01:16:32 2017 +0900) [b691ef1](https://github.com/kanryu/quickviewer/commit/b691ef15b38f2ec486adc11bd3d66f7d30c01c77)
 
-## v0.3.0 (Tue Mar 28 01:16:32 2017 +0900) [deea997](https://github.com/kanryu/quickviewer/commit/deea9979e39777bfeaba9e5130b2da809e24b6ca)
+## v0.3.0 (Tue Mar 28 00:27:51 2017 +0900) [deea997](https://github.com/kanryu/quickviewer/commit/deea9979e39777bfeaba9e5130b2da809e24b6ca)
 
 - support JPEG EXIF
 - support opening explorer(filer) for current image file or archive
@@ -52,7 +60,7 @@ refactoring
 - other commits
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Mar 27 17:28:50 2017 +0900) [2b514bf](https://github.com/kanryu/quickviewer/commit/2b514bfcf96795512aa355c9009c3fb2ed9c1229)
 
-## v0.2.6 (Mon Mar 27 17:28:50 2017 +0900) [c5217cc](https://github.com/kanryu/quickviewer/commit/c5217cc7e5febbae460a585438ff15381812ce7f)
+## v0.2.6 (Mon Mar 27 17:25:52 2017 +0900) [c5217cc](https://github.com/kanryu/quickviewer/commit/c5217cc7e5febbae460a585438ff15381812ce7f)
 
 - followed for version up of ResizeHalf
 - fixed behavior of knob on page slider
@@ -62,23 +70,23 @@ refactoring
     - Update README.md (Mon Mar 27 06:55:32 2017 +0900) [4c27474](https://github.com/kanryu/quickviewer/commit/4c27474ce32a8f117e64a82b572190160bf649a9)
     - Update README.md (Mon Mar 27 06:52:42 2017 +0900) [ec1151d](https://github.com/kanryu/quickviewer/commit/ec1151df295dfed8aaae748e1b22a0f934b635a6)
 
-## v0.2.5 (Mon Mar 27 06:52:42 2017 +0900) [f54ba2a](https://github.com/kanryu/quickviewer/commit/f54ba2a2f0c77b92e53f46c1436247f9bce4dae1)
+## v0.2.5 (Mon Mar 27 06:38:26 2017 +0900) [f54ba2a](https://github.com/kanryu/quickviewer/commit/f54ba2a2f0c77b92e53f46c1436247f9bce4dae1)
 
 - supported about big images over 4096px, which are auto half-resized with using ResizeHalf
 - improved pre-load mechanism
 - fixed page counter with Spread Viewing
 
-## v0.2.4 (Mon Mar 27 06:38:26 2017 +0900) [2ca08a2](https://github.com/kanryu/quickviewer/commit/2ca08a230000aef01144fc5c4788ed0475bb690b)
+## v0.2.4 (Sun Mar 26 16:15:53 2017 +0900) [2ca08a2](https://github.com/kanryu/quickviewer/commit/2ca08a230000aef01144fc5c4788ed0475bb690b)
 
 - fixed heap freeing error with directory paging
 - add statusbar
 - to show filename, image size to WindowTitle or statusbar
 
-## v0.2.3 (Sun Mar 26 16:15:53 2017 +0900) [8f01a93](https://github.com/kanryu/quickviewer/commit/8f01a9343f3bd01a6199817ca7915d35968d11cd)
+## v0.2.3 (Sat Mar 25 21:50:07 2017 +0900) [8f01a93](https://github.com/kanryu/quickviewer/commit/8f01a9343f3bd01a6199817ca7915d35968d11cd)
 
 fixed pre load cache algorithm
 
-## v0.2.2 (Sat Mar 25 21:50:07 2017 +0900) [a37f5b0](https://github.com/kanryu/quickviewer/commit/a37f5b0d4fba528646a0abc5c9adbb90e27cd4e4)
+## v0.2.2 (Sat Mar 25 20:03:47 2017 +0900) [a37f5b0](https://github.com/kanryu/quickviewer/commit/a37f5b0d4fba528646a0abc5c9adbb90e27cd4e4)
 
 0.2.2
 
@@ -87,7 +95,7 @@ fixed pre load cache algorithm
     -  fixed some menu phrases (Sat Mar 25 17:51:55 2017 +0900) [be87ef9](https://github.com/kanryu/quickviewer/commit/be87ef956ccf8374c86816dff7c2847ac643254f)
     -  Fullscreen toggled when Enter Key Pressed (Sat Mar 25 17:51:55 2017 +0900) [be87ef9](https://github.com/kanryu/quickviewer/commit/be87ef956ccf8374c86816dff7c2847ac643254f)
 
-## v0.2.1 (Sat Mar 25 17:51:55 2017 +0900) [51cfb6e](https://github.com/kanryu/quickviewer/commit/51cfb6ef9fddfe742c141b42d91abfe4a69a8314)
+## v0.2.1 (Sat Mar 25 16:20:14 2017 +0900) [51cfb6e](https://github.com/kanryu/quickviewer/commit/51cfb6ef9fddfe742c141b42d91abfe4a69a8314)
 
 - fixed pre loading
 - fixed open file dialog
@@ -111,7 +119,7 @@ fixed pre load cache algorithm
     - index (Thu Mar 23 22:19:28 2017 +0900) [b80b5b0](https://github.com/kanryu/quickviewer/commit/b80b5b054a687a6855a006254dd0723f65555391)
     - project web page (Thu Mar 23 21:58:57 2017 +0900) [3c29e76](https://github.com/kanryu/quickviewer/commit/3c29e769aef6489e14be72f289301c61887de444)
 
-## v0.2.0 (Thu Mar 23 21:58:57 2017 +0900) [946e367](https://github.com/kanryu/quickviewer/commit/946e367cc058051479d4ff15ac255a2b2a7ee069)
+## v0.2.0 (Thu Mar 23 17:41:34 2017 +0900) [946e367](https://github.com/kanryu/quickviewer/commit/946e367cc058051479d4ff15ac255a2b2a7ee069)
 
 fixed bug about archive pre loading
 
@@ -119,25 +127,25 @@ fixed bug about archive pre loading
     - README (Thu Mar 23 17:15:32 2017 +0900) [8e3cdd6](https://github.com/kanryu/quickviewer/commit/8e3cdd667958c2c1977d98ebb4264313ecfd6d63)
     - implements a feature about page pre loading (Thu Mar 23 17:13:52 2017 +0900) [d8fe6cd](https://github.com/kanryu/quickviewer/commit/d8fe6cd5534d2ea87d720bb42f3b67ec9a02db19)
 
-## v0.1.10 (Thu Mar 23 17:13:52 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
+## v0.1.10 (Thu Mar 23 17:02:37 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
 
 - add a menu which open a image folder
 - to show "NOT IMAGE" which the page is not a valid image file
 - add a menu "always open wide image as one view"
 - fixed a bug which there is page number wrong when one page viewing
 
-## v_0.1.9 (Thu Mar 23 17:02:37 2017 +0900) [45f44d8](https://github.com/kanryu/quickviewer/commit/45f44d8f9e055c5cae556037cbc2b402f9c9d975)
+## v_0.1.9 (Wed Mar 22 15:11:22 2017 +0900) [45f44d8](https://github.com/kanryu/quickviewer/commit/45f44d8f9e055c5cae556037cbc2b402f9c9d975)
 
 can open image with dropping directly && can open image when dropped to app-icon on explorer
 
-## v_0.1.8 (Wed Mar 22 15:11:22 2017 +0900) [0c4b311](https://github.com/kanryu/quickviewer/commit/0c4b3119478dd5f51f360fdfde51ef423d184d54)
+## v_0.1.8 (Tue Mar 21 19:23:33 2017 +0900) [0c4b311](https://github.com/kanryu/quickviewer/commit/0c4b3119478dd5f51f360fdfde51ef423d184d54)
 
 refactoring, event handler fix, dual view pageing fix
 
 - other commits
     - release url (Mon Mar 20 22:42:34 2017 +0900) [4a95280](https://github.com/kanryu/quickviewer/commit/4a952800d45a566b6dcb476c77c8ba4283e34fc9)
 
-## v_0.1.7 (Mon Mar 20 22:42:34 2017 +0900) [227f3b0](https://github.com/kanryu/quickviewer/commit/227f3b01c1588f9d5be1883c3b465e525394740c)
+## v_0.1.7 (Mon Mar 20 22:35:48 2017 +0900) [227f3b0](https://github.com/kanryu/quickviewer/commit/227f3b01c1588f9d5be1883c3b465e525394740c)
 
 i18n between English and Japanese
 
@@ -147,6 +155,6 @@ i18n between English and Japanese
     - README (Mon Mar 20 20:52:37 2017 +0900) [77bff1a](https://github.com/kanryu/quickviewer/commit/77bff1a08544f6db5825d0fa948a7aa85291ff61)
     - initial version (Mon Mar 20 20:31:18 2017 +0900) [a5e2d86](https://github.com/kanryu/quickviewer/commit/a5e2d860b48060c1088e32241f691aa89d68291c)
 
-## v_0.1.0 (Mon Mar 20 20:31:18 2017 +0900) [cf7a533](https://github.com/kanryu/quickviewer/commit/cf7a533b634deb04eeff4036958bc934215920c9)
+## v_0.1.0 (Mon Mar 20 20:20:42 2017 +0900) [cf7a533](https://github.com/kanryu/quickviewer/commit/cf7a533b634deb04eeff4036958bc934215920c9)
 
 Initial commit
