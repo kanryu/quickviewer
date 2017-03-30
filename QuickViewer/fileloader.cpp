@@ -2,7 +2,7 @@
 
 bool IFileLoader::isImageFile(QString path)
 {
-    QStringList exts = {".jpg", ".jpeg", ".bmp", ".gif", ".dds", ".ico", ".tga", ".tif", ".tiff", ".webp", ".wbp"};
+    QStringList exts = {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".dds", ".ico", ".tga", ".tif", ".tiff", ".webp", ".wbp"};
     QString lower = path.toLower();
     foreach(const QString& e, exts) {
         if(lower.endsWith(e))

@@ -3,6 +3,7 @@
 #include "fileloaderdirectory.h"
 #include "fileloaderziparchive.h"
 #include "fileloader7zarchive.h"
+#include "fileloaderrararchive.h"
 #include "ResizeHalf.h"
 
 IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
@@ -93,6 +94,9 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
     }
     if(lower.endsWith(".7z")) {
         return new IFileVolume(parent, new FileLoader7zArchive(parent, path));
+    }
+    if(lower.endsWith(".rar")) {
+        return new IFileVolume(parent, new FileLoaderRarArchive(parent, path));
     }
     if(IFileVolume::isImageFile(path)) {
         dir.cdUp();

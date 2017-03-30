@@ -95,8 +95,11 @@ public slots:
     void on_wideImageAsOneView_triggered(bool wideImage);
     void on_openFiler_triggered();
     void on_openExifDialog_triggered();
+    void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
 
 private:
+    bool canDualView() const;
+
     RendererType m_renderer;
 //    QImage m_img;
     QVector<QSize> m_pagesizes;
@@ -125,7 +128,7 @@ private:
     int viewSizeIdx;
     QFont m_font;
     bool m_wideImage;
-    bool canDualView() const;
+    bool m_skipResizeEvent;
 
     ExifDialog exifDialog;
 };

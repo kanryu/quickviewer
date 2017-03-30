@@ -16,21 +16,29 @@ CONFIG += plugin
 
 equals(QMAKE_CC,"cl") {
     QMAKE_CXXFLAGS += /wd4819
+    #QtRAR
+    LIBS += -luser32 -ladvapi32
 }
 
 INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
+INCLUDEPATH += ../QtRAR/src
 
+DEFINES += QTRAR_STATIC
 
 CONFIG(debug,debug|release) {
     LIBS += -L../Qt7z/Qt7z/debug -lQt7z
     LIBS += -L../ResizeHalf/debug -lresizehalf
     LIBS += -L../easyexif/debug -leasyexif
+    LIBS += -L../qtrar/src/debug -lQtRAR
+    LIBS += -L../qtrar/src/unrar/debug -lunrar
 } else {
     LIBS += -L../Qt7z/Qt7z/release -lQt7z
     LIBS += -L../ResizeHalf/release -lresizehalf
     LIBS += -L../easyexif/release -leasyexif
+    LIBS += -L../qtrar/src/release -lQtRAR
+    LIBS += -L../qtrar/src/unrar/release -lunrar
 }
 
 SOURCES += main.cpp\
@@ -42,9 +50,10 @@ SOURCES += main.cpp\
     exifdialog.cpp \
     keyconfigdialog.cpp \
     fileloader.cpp \
-    fileloader7zarchive.h.cpp \
+    fileloader7zarchive.cpp \
     fileloaderdirectory.cpp \
-    fileloaderziparchive.cpp
+    fileloaderziparchive.cpp \
+    fileloaderrararchive.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -57,7 +66,8 @@ HEADERS  += mainwindow.h \
     fileloader.h \
     fileloader7zarchive.h \
     fileloaderdirectory.h \
-    fileloaderziparchive.h
+    fileloaderziparchive.h \
+    fileloaderrararchive.h
 
 FORMS    += mainwindow.ui \
     exifdialog.ui

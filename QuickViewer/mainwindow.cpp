@@ -310,12 +310,7 @@ void MainWindow::on_fullscreen_triggered()
 {
 
     if(isFullScreen()) {
-        if(m_viewerWindowStateMaximized) {
-            showMaximized();
-        } else {
-            showNormal();
-        }
-
+        ui->graphicsView->skipRisizeEvent(true);
         menuBar()->show();
         ui->mainToolBar->show();
         if(qApp->ShowSliderBar())
@@ -323,15 +318,25 @@ void MainWindow::on_fullscreen_triggered()
         if(qApp->ShowStatusBar())
             statusBar()->show();
         ui->actionFullscreen->setChecked(false);
+        ui->graphicsView->skipRisizeEvent(false);
+
+        if(m_viewerWindowStateMaximized) {
+            showMaximized();
+        } else {
+            showNormal();
+        }
+        ui->graphicsView->readyForPaint();
     } else {
+        ui->graphicsView->skipRisizeEvent(true);
         m_viewerWindowStateMaximized = isMaximized();
-        showFullScreen();
 
         menuBar()->hide();
         ui->mainToolBar->hide();
         ui->pageFrame->hide();
         statusBar()->hide();
         ui->actionFullscreen->setChecked(true);
+        showFullScreen();
+        ui->graphicsView->readyForPaint();
     }
 }
 

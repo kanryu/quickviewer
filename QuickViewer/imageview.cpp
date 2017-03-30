@@ -19,6 +19,7 @@ ImageView::ImageView(QWidget *parent)
     , m_currentPage(0)
     , m_wideImage(false)
     , exifDialog(this)
+    , m_skipResizeEvent(false)
 {
     viewSizeList << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 4; // 100
@@ -249,6 +250,8 @@ void ImageView::resizeEvent(QResizeEvent *event)
         scene()->setSceneRect(QRect(QPoint(), event->size()));
     }
     QGraphicsView::resizeEvent(event);
+    if(m_skipResizeEvent)
+        return;
     readyForPaint();
 }
 

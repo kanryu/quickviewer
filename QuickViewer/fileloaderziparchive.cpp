@@ -29,7 +29,7 @@ QByteArray FileLoaderZipArchive::getFile(QString name, QMutex& mutex)
     QByteArray bytes;
     if(m_imageFileList.contains(name)) {
         mutex.lock();
-        QByteArray bytes = m_reader.fileData(name);
+        bytes = m_reader.fileData(name);
         mutex.unlock();
 
     }
