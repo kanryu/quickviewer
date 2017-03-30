@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## -> () [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
+- other commits
+    - CHANGELOG (Thu Mar 30 14:22:50 2017 +0900) [661a7b1](https://github.com/kanryu/quickviewer/commit/661a7b17fdac7fb78275bfcc6ebd381f1f7054ac)
+
+## v0.3.1_pre2 (Thu Mar 30 14:22:50 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
 
 refactoring
 
