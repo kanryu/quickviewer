@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Version Checking
+# Checking Version
 
 Current QuickViewer version is: 4.44
 
