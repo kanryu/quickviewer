@@ -4,9 +4,9 @@ layout: default
 
 # Checking Version
 
-Current QuickViewer version is: 4.44
+Current QuickViewer version is: 0.3.3
 
-Your QuickViewer version is: 4.25
+Your QuickViewer version is: 0.3.3
 
 You have an older version, please visit the QuickViewer [Release page](https://github.com/kanryu/quickviewer/releases) if you want to update.
 
