@@ -15,6 +15,12 @@ https://kanryu.github.io/quickviewer/
  - To read archives directly(zip/7z/rar)
  - To show images(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
  - Auto rotation(using JPEG EXIF)
+ - To show Raw digital camera images
+   - Canon(crw, cr2)
+   - Nicon(nef)
+   - Sony(arw)
+   - Ricoh(dng)
+   - etc..
 
 ## Download
 
