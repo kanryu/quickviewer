@@ -354,10 +354,12 @@ void ImageView::on_openFiler_triggered()
         return;
     }
     QString param;
+    QString select;
     if (!QFileInfo(path).isDir())
-        param = QLatin1String("/select,");
-    param += QDir::toNativeSeparators(path);
-    QString command = explorer + " " + param;
+        select = QLatin1String("/select,");
+    param = QDir::toNativeSeparators(path);
+//    param += path;
+    QString command = QString("%1 %2%3").arg(explorer).arg(select).arg(param);
     QProcess::startDetached(command);
 #else
     if(!QFileInfo(path).isDir()) {

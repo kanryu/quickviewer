@@ -125,18 +125,37 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, QString su
     return fv;
 }
 
+static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
+{
+    info.Make = img.text("Make").toStdString();
+    info.Model = img.text("Model").toStdString();
+    info.Orientation = img.text("Software").toInt();
+    info.BitsPerSample = img.text("BitsPerSample").toInt();
+    info.Software = img.text("Software").toStdString();
+    info.DateTime = img.text("DateTime").toStdString();
+    info.ExposureTime = img.text("ExposureTime").toDouble();
+    info.FNumber = img.text("FNumber").toDouble();
+    info.ISOSpeedRatings = img.text("ISOSpeedRatings").toInt();
+    info.Flash = img.text("Flash").toInt();
+    info.ImageWidth = img.text("ImageWidth").toInt();
+    info.ImageHeight = img.text("ImageHeight").toInt();
+}
 
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {
     QByteArray bytes = volume->loadByteArrayByName(path);
+    QByteArray aformat = QFileInfo(path.toLower()).suffix().toUtf8();
     QImage src;
-    src.loadFromData(bytes);
+    src.loadFromData(bytes, aformat);
 
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;
-    QString lower = path.toLower();
-    if(lower.endsWith(".jpg") || lower.endsWith(".jpeg")) {
+    if(src.width() > 0 && IFileLoader::isExifJpegImageFile(path)) {
         int result = info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
+    }
+
+    if(src.width() > 0 && IFileLoader::isExifRawImageFile(path)) {
+        parseExifTextExtents(src, info);
     }
 
 
@@ -156,7 +175,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         }
         break;
     default:
-        if(src.format() != QImage::Format::Format_Grayscale8) {
+        if(src.format() != QImage::Format::Format_Grayscale8 && src.format() != QImage::Format::Format_RGB888) {
             src = src.convertToFormat(QImage::Format::Format_RGB888);
         }
         if((src.width() | 0xF) > 0) {

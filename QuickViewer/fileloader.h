@@ -31,6 +31,13 @@ public:
      */
     static bool isArchiveFile(QString path);
     /**
+     * @brief isExifImageFile check the file will have exif
+     * @param path
+     * @return return true, if path of file maybe have exif
+     */
+    static bool isExifJpegImageFile(QString path);
+    static bool isExifRawImageFile(QString path);
+    /**
      * @brief fileSort sort the filenames as current sorting policy
      * @param filenames
      * @return
@@ -68,6 +75,11 @@ public:
      * @return file binary data
      */
     virtual QByteArray getFile(QString filename, QMutex& mutex)=0;
+
+private:
+    static QList<QByteArray> st_supportedImageFormats;
+    static QStringList st_exifJpegImageFormats;
+    static QStringList st_exifRawImageFormats;
 };
 
 class FileLoaderPluginInterface

@@ -63,7 +63,12 @@ public:
      * @brief 現在のファイルパスを返す
      * @return
      */
-    QString currentPath() { return m_filelist[m_cnt]; }
+    QString currentPath() {
+        if(m_loader->isArchive())
+            return m_filelist[m_cnt];
+        else
+            return QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[m_cnt]);
+    }
     /**
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
      * @return

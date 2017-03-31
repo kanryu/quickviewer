@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.3.2
+VERSION = 0.3.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -40,6 +40,8 @@ CONFIG(debug,debug|release) {
     LIBS += -L../qtrar/src/release -lQtRAR
     LIBS += -L../qtrar/src/unrar/release -lunrar
 }
+
+QTPLUGIN += qtraw
 
 SOURCES += main.cpp\
         mainwindow.cpp \

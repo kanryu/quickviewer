@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>&amp;Version</source>
-        <translation>バージョン情報(&amp;V)</translation>
+        <translation type="vanished">バージョン情報(&amp;V)</translation>
     </message>
     <message>
         <source>&amp;Auto loading the last</source>
@@ -499,6 +499,14 @@
     <message>
         <source>any folder or archive is not loaded.</source>
         <translation>フォルダまたはアーカイブが読み込まれていません</translation>
+    </message>
+    <message>
+        <source>&amp;About QuickViewer</source>
+        <translation>QuickViewerについて(&amp;A)</translation>
+    </message>
+    <message>
+        <source>Check &amp;Version by your browser</source>
+        <translation>ブラウザを開いてバージョンを確認する(&amp;V)</translation>
     </message>
 </context>
 </TS>

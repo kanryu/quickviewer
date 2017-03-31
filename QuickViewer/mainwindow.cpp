@@ -4,6 +4,7 @@
 #include <QMimeData>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QDesktopServices>
 
 #include "mainwindow.h"
 #include "imageview.h"
@@ -152,22 +153,28 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             mouseEvent = dynamic_cast<QMouseEvent*>(event);
             // 5 buttons mouse forward for browsers
             if(mouseEvent->button() == Qt::ForwardButton) {
-                this->on_nextPage_triggered();
+                ui->actionNextPage->trigger();
                 return true;
             }
             // 5 buttons mouse back for browsers
             if(mouseEvent->button() == Qt::BackButton) {
-                this->on_prevPage_triggered();
+                ui->actionPrevPage->trigger();
                 return true;
             }
             // tap left/right of window
             if(mouseEvent->button() == Qt::LeftButton) {
                 if(ui->graphicsView->hoverState() == Qt::AnchorLeft) {
-                    this->on_nextPage_triggered();
+                    if(qApp->RightSideBook())
+                        ui->actionNextPage->trigger();
+                    else
+                        ui->actionPrevPage->trigger();
                     return true;
                 }
                 if(ui->graphicsView->hoverState() == Qt::AnchorRight) {
-                    this->on_prevPage_triggered();
+                    if(qApp->RightSideBook())
+                        ui->actionPrevPage->trigger();
+                    else
+                        ui->actionNextPage->trigger();
                     return true;
                 }
             }
@@ -476,4 +483,10 @@ void MainWindow::on_openKeyConfig_triggered()
 {
     KeyConfigDialog dialog(this);
     dialog.exec();
+}
+
+void MainWindow::on_checkVersion_triggered()
+{
+    QUrl url = QString("https://kanryu.github.io/quickviewer/checkversion/?ver=%1").arg(qApp->applicationVersion());
+    QDesktopServices::openUrl(url);
 }
