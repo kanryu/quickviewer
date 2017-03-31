@@ -19,7 +19,13 @@ layout: default
 - 本を読むのに便利な見開き表示
 - アーカイブファイルの直接読み込み(zip/7z/rar)
 - これらの画像形式に対応(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
-- デジカメで撮影した画像は自動回転(JPEG EXIF)
+- JPEG EXIFに対応し、撮影したそのままの向きで画像を表示
+- 主要メーカーのRaw形式に対応
+    - Canon(crw, cr2)
+    - Nicon(nef)
+    - Sony(arw)
+    - Ricoh(dng)
+    - ...などなど
 
 ## 使い方
 
