@@ -1,6 +1,23 @@
 # CHANGELOG
 
 - other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Apr 1 01:58:59 2017 +0900) [6a6d0b5](https://github.com/kanryu/quickviewer/commit/6a6d0b5229aaf51b967f65af9702b8574a49df07)
+
+## v0.3.3 (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
+
+support Raw Images, check version
+
+- support Raw Images (Canon/Nicon/Sony/Ricoh/etc..)
+- test support for EXIF of Raw images (very rude behavior)
+- check version with browser
+
+- other commits
+    - Update index.md (Sat Apr 1 01:38:12 2017 +0900) [c260615](https://github.com/kanryu/quickviewer/commit/c260615697f40a60286159732d379b7733eda6c5)
+    - Update index.md (Sat Apr 1 01:30:04 2017 +0900) [f0a180f](https://github.com/kanryu/quickviewer/commit/f0a180fc6c0b01efdd4f3187e2c5faa9e5c4e890)
+    - Update index.md (Sat Apr 1 01:27:19 2017 +0900) [c2c1966](https://github.com/kanryu/quickviewer/commit/c2c1966a3e12339f29d716186c35e0ea6716d86c)
+    - Update index.md (Sat Apr 1 01:25:58 2017 +0900) [0c7cbe7](https://github.com/kanryu/quickviewer/commit/0c7cbe783e65074ecba033b6f408fc2fe8f96603)
+    - checkversion script (Sat Apr 1 01:21:50 2017 +0900) [ef673aa](https://github.com/kanryu/quickviewer/commit/ef673aa2f3150b8f8342e2c11b127b072a671cdc)
+    - CHANGELOG (Fri Mar 31 06:28:50 2017 +0900) [5ef95b5](https://github.com/kanryu/quickviewer/commit/5ef95b5e047ad7680ba8fa838e4d1df016e276b7)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Mar 31 06:28:17 2017 +0900) [cb7b450](https://github.com/kanryu/quickviewer/commit/cb7b4501030df65048821b669ab071dce7b37aa1)
 
 ## v0.3.2 (Fri Mar 31 06:27:49 2017 +0900) [c6ff3be](https://github.com/kanryu/quickviewer/commit/c6ff3be94044612100b06d54fe4bb7f3f0a93406)
