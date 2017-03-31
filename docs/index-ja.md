@@ -20,12 +20,12 @@ layout: default
 - アーカイブファイルの直接読み込み(zip/7z/rar)
 - これらの画像形式に対応(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
 - JPEG EXIFに対応し、撮影したそのままの向きで画像を表示
-- 主要メーカーのRaw形式に対応
+- 主要カメラメーカーのRaw画像形式に対応
     - Canon(crw, cr2)
     - Nicon(nef)
     - Sony(arw)
     - Ricoh(dng)
-    - ...などなど
+    - などなど
 
 ## 使い方
 
