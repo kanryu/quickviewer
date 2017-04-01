@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="/quickviewer/assets/css/style.css?v=e2f57f27b972d35c80d9e990a6f5d8580619d053" media="screen">
+    <link rel="stylesheet" href="/quickviewer/assets/css/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="/quickviewer/assets/css/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <script type="text/javascript" src="/quickviewer/assets/js/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/quickviewer/assets/js/headsmart.min.js"></script>
+    <script type="text/javascript">
+      var escapeMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        '`': '&#x60;'
+      };
+      var createEscaper = function(map) {
+        var escaper = function(match) {
+          return map[match];
+        };
+        var source = '(?:' + Object.keys(escapeMap).join('|') + ')';
+        var testRegexp = RegExp(source);
+        var replaceRegexp = RegExp(source, 'g');
+        return function(string) {
+          string = string == null ? '' : '' + string;
+          return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+        };
+      };
+      var escape = createEscaper(escapeMap);
+      
+      // replace current version from QuickViewer.pro
+      var prourl = 'https://raw.githubusercontent.com/kanryu/quickviewer/master/QuickViewer/QuickViewer.pro';
+      $.get(prourl, function(data) {
+        data.split("\n").forEach(function(line) {
+          if(!line.startsWith('VERSION = ')) return;
+          var current = line.substring(10);
+          $("#current").text(current);
+        });
+      });
+      
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+
+        // replace your version from ?ver=version_number
+        var version_param = $(location).attr('search').substring(5);
+        version_param = escape(decodeURIComponent(version_param));
+        if(version_param.length)
+          $("#version").text(version_param);
+      })
+
+    </script>
+    <title>QuickViewer Project by kanryu</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/kanryu/quickviewer">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>QuickViewer Project</h1>
+            <h2>Introducing the application, manual, distribution</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      
+        <section id="downloads">
+          <span class="inner">
+            <a href="https://github.com/kanryu/quickviewer/releases" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/kanryu/quickviewer/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+          </span>
+        </section>
+      
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1 id="checking-version">Checking Version</h1>
+
+<p>Current QuickViewer version is: <span id="current" >no version</span></p>
+
+<p>Your QuickViewer version is: <span id="version" >no version</span></p>
+
+<p>If you have an older version, please visit the QuickViewer <a href="https://github.com/kanryu/quickviewer/releases">Release page</a> if you want to update.</p>
+
+<p>Go back to <a href="https://kanryu.github.io/quickviewer/">QuickViewer Project Page</a></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>The final element.
+</code></pre>
+</div>
+
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            
+              <p>this project by <a href="https://github.com/kanryu">kanryu</a> can be found on <a href="https://github.com/kanryu/quickviewer">GitHub</a></p>
+            
+            
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-96340937-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>
