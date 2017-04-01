@@ -51,7 +51,8 @@
         // replace your version from ?ver=version_number
         var version_param = $(location).attr('search').substring(5);
         version_param = escape(decodeURIComponent(version_param));
-        $("#version").text(version_param);
+        if(version_param.length)
+          $("#version").text(version_param);
       })
 
     </script>
