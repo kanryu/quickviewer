@@ -1,6 +1,22 @@
 # CHANGELOG
 
+## v0.3.4 (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
+
+Merge branch 'master' of https://github.com/kanryu/quickviewer
+
+support NextVolume/PrevVolume
+
+- PrevPage by BackSpase Key pressed
+
 - other commits
+    - check version with JavaScript (Sat Apr 1 22:04:34 2017 +0900) [5e855f7](https://github.com/kanryu/quickviewer/commit/5e855f745df50aa79265335db075284437be1ea3)
+    - check version with JavaScript (Sat Apr 1 22:04:34 2017 +0900) [827dce5](https://github.com/kanryu/quickviewer/commit/827dce5e6c1a75805f7a16f58743c4899d4e068e)
+    - google analystics config (Sat Apr 1 21:09:32 2017 +0900) [e2f57f2](https://github.com/kanryu/quickviewer/commit/e2f57f27b972d35c80d9e990a6f5d8580619d053)
+    - Update index-ja.md (Sat Apr 1 02:10:47 2017 +0900) [7b39fe7](https://github.com/kanryu/quickviewer/commit/7b39fe7e72a7449781555c9257a7043026e9a3df)
+    - Update index-ja.md (Sat Apr 1 02:09:23 2017 +0900) [4960a19](https://github.com/kanryu/quickviewer/commit/4960a194c5bd52495432975050aee96196f35f7d)
+    - Update index.md (Sat Apr 1 02:07:22 2017 +0900) [86b35d7](https://github.com/kanryu/quickviewer/commit/86b35d7295601de507445c5259e4bc671564163e)
+    - Update README.md (Sat Apr 1 02:06:58 2017 +0900) [1f8554a](https://github.com/kanryu/quickviewer/commit/1f8554aba80e2915272ca3335e07ef0dcd987b53)
+    - changelog (Sat Apr 1 01:59:25 2017 +0900) [0139667](https://github.com/kanryu/quickviewer/commit/0139667ad5090dff73329f4a386e03cc69462119)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Apr 1 01:58:59 2017 +0900) [6a6d0b5](https://github.com/kanryu/quickviewer/commit/6a6d0b5229aaf51b967f65af9702b8574a49df07)
 
 ## v0.3.3 (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
