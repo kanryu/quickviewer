@@ -8,14 +8,13 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.3.3
+VERSION = 0.3.4
 
 TARGET = QuickViewer
 TEMPLATE = app
 CONFIG += plugin
 
 equals(QMAKE_CC,"cl") {
-    QMAKE_CXXFLAGS += /wd4819
     #QtRAR
     LIBS += -luser32 -ladvapi32
 }

@@ -22,6 +22,8 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent) :
     tags << linefmt.arg(tr("Prev Page")).arg(tr("Left")).arg("");
     tags << linefmt.arg(tr("First Page")).arg(tr("Home")).arg("");
     tags << linefmt.arg(tr("Last Page")).arg(tr("End")).arg("");
+    tags << linefmt.arg(tr("Next Volume")).arg(tr("Page Down")).arg(tr("open a folder/archive of neigibher"));
+    tags << linefmt.arg(tr("Prev Volume")).arg(tr("Page Up")).arg(tr("open a folder/archive of neigibher"));
     tags << linefmt.arg(tr("Toggle Fullscreen")).arg(tr("F11")).arg("");
     tags << linefmt.arg("").arg(tr("Return")).arg("");
     tags << linefmt.arg("").arg(tr("Enter")).arg("");

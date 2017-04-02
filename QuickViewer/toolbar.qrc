@@ -23,5 +23,11 @@
         <file alias="page_last_icon">icons/page_last.png</file>
         <file alias="page_next_icon2">icons/page_next2.png</file>
         <file alias="page_previous_icon2">icons/page_previous2.png</file>
+        <file alias="volume_next_icon">icons/volume_next.png</file>
+        <file alias="volume_next2_icon">icons/volume_next2.png</file>
+        <file alias="volume_next3_icon">icons/volume_next3.png</file>
+        <file alias="volume_prev_icon">icons/volume_prev.png</file>
+        <file alias="volume_prev2_icon">icons/volume_prev2.png</file>
+        <file alias="volume_prev3_icon">icons/volume_prev3.png</file>
     </qresource>
 </RCC>

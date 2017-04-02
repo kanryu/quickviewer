@@ -22,13 +22,15 @@ void QVApplication::addHistory(QString path)
         m_history.removeOne(path);
     }
     m_history.push_front(path);
+    while(m_history.size() > 36)
+        m_history.pop_back();
 }
 
 void QVApplication::loadSettings()
 {
     bool bRightSideBookDefault = QLocale::system().language() == QLocale::Japanese;
     m_settings.beginGroup("View");
-    m_fitting = m_settings.value("Fitting", false).toBool();
+    m_fitting = m_settings.value("Fitting", true).toBool();
     m_dualView = m_settings.value("DualView", false).toBool();
     m_rightSideBook = m_settings.value("RightSideBook", bRightSideBookDefault).toBool();
     m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", false).toBool();

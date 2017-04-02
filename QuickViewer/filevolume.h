@@ -56,6 +56,7 @@ public:
      * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
      */
     static IFileVolume* CreateVolume(QObject* parent, QString path, QString subfilename=nullptr);
+    static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path);
 
     static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
     bool isArchive() const { return m_loader->isArchive(); }
@@ -140,6 +141,11 @@ public:
      * @brief pageCount 現在のページを返す
      */
     int pageCount() { return m_cnt; }
+    /**
+     * @brief setSuppressCache set supressing to create image cache
+     * @param suppress
+     */
+    void setSuppressCache(bool suppress) { m_suppressCache = suppress; }
 
 //    QPixmap getIndexedImage(int idx);
 //    QString getIndexedImageName(int idx) { return m_filelist[idx]; }
@@ -161,6 +167,7 @@ protected:
     QMutex m_mutex;
 
     IFileLoader* m_loader;
+    bool m_suppressCache;
 };
 
 

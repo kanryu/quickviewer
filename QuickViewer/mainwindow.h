@@ -21,6 +21,7 @@ public:
     bool eventFilter(QObject *obj, QEvent *event);
     void loadVolume(QString path);
     void makeHistoryMenu();
+    void resetVolume(IFileVolume* newer);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);
@@ -35,6 +36,8 @@ public slots:
     void on_prevPage_triggered();
     void on_firstPage_triggered();
     void on_lastPage_triggered();
+    void on_nextVolume_triggered();
+    void on_prevVolume_triggered();
     void on_fullscreen_triggered();
     void on_pageChanged_triggered();
     void on_pageSlider_changed(int value);

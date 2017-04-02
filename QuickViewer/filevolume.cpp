@@ -10,6 +10,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
     : QObject(parent)
     , m_cnt(0)
     , m_loader(loader)
+    , m_suppressCache(false)
 {
     m_filelist = m_loader->contents();
 }
@@ -21,6 +22,8 @@ void IFileVolume::on_ready()
 
     qDebug() << "on_ready: m_cnt" << m_cnt;
     QVector<int> offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
+    if(m_suppressCache)
+        offsets = {0, 1, 2, 3};
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())
@@ -121,6 +124,20 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, QString su
     {
         fv->findImageByName(subfilename);
     }
+    fv->on_ready();
+    return fv;
+}
+
+IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path)
+{
+    IFileVolume* fv = CreateVolumeImpl(parent, path);
+    if(!fv)
+        return fv;
+    if(fv->size() == 0) {
+        delete fv;
+        return nullptr;
+    }
+    fv->setSuppressCache(true);
     fv->on_ready();
     return fv;
 }

@@ -199,27 +199,19 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::loadVolume(QString path)
 {
     IFileVolume* fv = IFileVolume::CreateVolume(this, path);
-    if(!fv) {
-        QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("open error"));
-        msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setText(QApplication::applicationVersion());
-        QString message = QString("<h2>%1</h2><p>%2</p>")
-                .arg(tr("Can't be opened. Is there no images?"))
-                .arg(path);
-        msgBox.setText(message);
-        msgBox.exec();
+    if(fv) {
+        resetVolume(fv);
         return;
     }
-    if(m_fileVolume)
-        delete m_fileVolume;
-    m_fileVolume = fv;
-    ui->graphicsView->setFileVolume(m_fileVolume);
-    ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
-    qApp->addHistory(m_fileVolume->volumePath());
-    m_volumeCaption = QString("%1 - %2").arg(path).arg(qApp->applicationName());
-    setWindowTitle(m_volumeCaption);
-    makeHistoryMenu();
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle(tr("open error"));
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText(QApplication::applicationVersion());
+    QString message = QString("<h2>%1</h2><p>%2</p>")
+            .arg(tr("Can't be opened. Is there no images?"))
+            .arg(path);
+    msgBox.setText(message);
+    msgBox.exec();
 }
 
 
@@ -232,6 +224,19 @@ void MainWindow::makeHistoryMenu()
         QString text = QString("&%1: %2").arg(shortcuts.mid(i, 1)).arg(history.at(i));
         ui->menuHistory->addAction(text);
     }
+}
+
+void MainWindow::resetVolume(IFileVolume *newer)
+{
+    if(m_fileVolume)
+        delete m_fileVolume;
+    m_fileVolume = newer;
+    ui->graphicsView->setFileVolume(m_fileVolume);
+    ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
+    qApp->addHistory(m_fileVolume->volumePath());
+    m_volumeCaption = QString("%1 - %2").arg(m_fileVolume->volumePath()).arg(qApp->applicationName());
+    setWindowTitle(m_volumeCaption);
+    makeHistoryMenu();
 }
 
 /**
@@ -250,11 +255,17 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         else
             ui->actionExit->trigger();
         break;
-    case Qt::Key_Left:case Qt::Key_ApplicationLeft:
+    case Qt::Key_Left: case Qt::Key_ApplicationLeft: case Qt::Key_Backspace:
         ui->actionPrevPage->trigger();
         break;
-    case Qt::Key_Right:case Qt::Key_ApplicationRight: case Qt::Key_Space:
+    case Qt::Key_Right: case Qt::Key_ApplicationRight: case Qt::Key_Space:
         ui->actionNextPage->trigger();
+        break;
+    case Qt::Key_PageDown:
+        ui->actionNextVolume->trigger();
+        break;
+    case Qt::Key_PageUp:
+        ui->actionPrevVolume->trigger();
         break;
     case Qt::Key_Home:
         ui->actionFirstPage->trigger();
@@ -311,6 +322,50 @@ void MainWindow::on_lastPage_triggered()
 {
     if(m_fileVolume && m_fileVolume->size() > 0)
         ui->graphicsView->setIndexedPage(m_fileVolume->size()-1);
+}
+
+void MainWindow::on_nextVolume_triggered()
+{
+    if(!m_fileVolume)
+        return;
+    QDir dir(m_fileVolume->volumePath());
+    QString current = dir.absolutePath();
+    if(!dir.cdUp())
+        return;
+    foreach (const QString& name, dir.entryList(QDir::Dirs | QDir::Files, QDir::Name)) {
+        QString path = dir.filePath(name);
+        if(path <= current)
+            continue;
+        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(this, path);
+        if(fv) {
+            resetVolume(fv);
+            fv->setSuppressCache(false);
+            return;
+        }
+    }
+}
+
+void MainWindow::on_prevVolume_triggered()
+{
+    if(!m_fileVolume)
+        return;
+    QDir dir(m_fileVolume->volumePath());
+    QString current = dir.absolutePath();
+    if(!dir.cdUp())
+        return;
+    QStringList list = dir.entryList(QDir::Dirs | QDir::Files, QDir::Name);
+    QListIterator<QString> it(list);it.toBack();
+    while(it.hasPrevious()) {
+        QString path = dir.filePath(it.previous());
+        if(path >= current)
+            continue;
+        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(this, path);
+        if(fv) {
+            resetVolume(fv);
+            fv->setSuppressCache(false);
+            return;
+        }
+    }
 }
 
 void MainWindow::on_fullscreen_triggered()

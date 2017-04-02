@@ -132,9 +132,11 @@
     </property>
     <addaction name="actionNextPage"/>
     <addaction name="actionPrevPage"/>
-    <addaction name="separator"/>
     <addaction name="actionFirstPage"/>
     <addaction name="actionLastPage"/>
+    <addaction name="separator"/>
+    <addaction name="actionNextVolume"/>
+    <addaction name="actionPrevVolume"/>
     <addaction name="separator"/>
     <addaction name="actionScaleUp"/>
     <addaction name="actionScaleDown"/>
@@ -171,9 +173,11 @@
    </attribute>
    <addaction name="actionPrevPage"/>
    <addaction name="actionNextPage"/>
-   <addaction name="separator"/>
    <addaction name="actionFirstPage"/>
    <addaction name="actionLastPage"/>
+   <addaction name="separator"/>
+   <addaction name="actionPrevVolume"/>
+   <addaction name="actionNextVolume"/>
    <addaction name="separator"/>
    <addaction name="actionScaleUp"/>
    <addaction name="actionScaleDown"/>
@@ -372,6 +376,24 @@
   <action name="actionCheckVersion">
    <property name="text">
     <string>Check &amp;Version by your browser</string>
+   </property>
+  </action>
+  <action name="actionNextVolume">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/volume_next_icon</normaloff>:/icons/volume_next_icon</iconset>
+   </property>
+   <property name="text">
+    <string>N&amp;extVolume</string>
+   </property>
+  </action>
+  <action name="actionPrevVolume">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/volume_prev_icon</normaloff>:/icons/volume_prev_icon</iconset>
+   </property>
+   <property name="text">
+    <string>P&amp;revVolume</string>
    </property>
   </action>
  </widget>
@@ -723,6 +745,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionNextVolume</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_nextVolume_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrevVolume</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_prevVolume_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -740,5 +794,7 @@
   <slot>on_showStatusBar_triggered(bool)</slot>
   <slot>on_openKeyConfig_triggered()</slot>
   <slot>on_checkVersion_triggered()</slot>
+  <slot>on_nextVolume_triggered()</slot>
+  <slot>on_prevVolume_triggered()</slot>
  </slots>
 </ui>

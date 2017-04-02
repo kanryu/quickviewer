@@ -341,6 +341,26 @@
         <source>Asterisk(*)</source>
         <translation>テンキー(*)</translation>
     </message>
+    <message>
+        <source>Next Volume</source>
+        <translation>次のボリューム</translation>
+    </message>
+    <message>
+        <source>Page Down</source>
+        <translation>Page Downキー</translation>
+    </message>
+    <message>
+        <source>open a folder/archive of neigibher</source>
+        <translation>隣り合ったフォルダまたはアーカイブを開きます</translation>
+    </message>
+    <message>
+        <source>Prev Volume</source>
+        <translation>前のボリューム</translation>
+    </message>
+    <message>
+        <source>Page Up</source>
+        <translation>Page Upキー</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -507,6 +527,14 @@
     <message>
         <source>Check &amp;Version by your browser</source>
         <translation>ブラウザを開いてバージョンを確認する(&amp;V)</translation>
+    </message>
+    <message>
+        <source>N&amp;extVolume</source>
+        <translation>次ののボリューム(&amp;E)</translation>
+    </message>
+    <message>
+        <source>P&amp;revVolume</source>
+        <translation>前のボリューム(&amp;R)</translation>
     </message>
 </context>
 </TS>
