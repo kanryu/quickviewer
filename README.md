@@ -60,25 +60,28 @@ https://kanryu.github.io/quickviewer/
 
 You can do screen operations with the main menu, tool bar, mouse button, wheel, keyboard and so on.
 
-| Operation    | Device | Input   | Remarks |
-|:-------------|:-------|:--------|:--------|
-| Next Page | Keyboard | Right Key(→) | |
-|           | Keyboard | Space Key | |
-|           | Mouse Wheel | Downword rotation | |
-|           | Mouse | Forward Button   | |
-| Prev Page | Keyboard | Left Key(←) | |
-|           | Mouse Wheel | Upword rotation | |
-|           | Mouse | Back Button | |
-| First Page | Keyboard | Home Key | |
-| Last Page | Keyboard | End Key | |
-| Fullscreen | Keyboard | F11 Key | |
-|           | Mouse | Wheel Clicked | as Center Button |
-|           | Keyboard | ESC Key | Fullscreen mode only |
-| Exit App  | Keyboard | ESC Key | not Fullscreen mode only |
-| Scale Up  | Keyboard | Ten keys(+) | do nothing with Fitting |
-| Scale Down | Keyboard | Ten keys(-) | do nothing with Fitting |
-| Fitting | Keyboard | F12 Key |  |
-|         | Keyboard | Ten keys(-) | |
+| Operation   | Device   | Input   | Remarks |
+|:------------|:---------|:--------|:--------|
+| Next Page   | Keyboard | Right Key(→) | |
+|             | Keyboard | Space Key | |
+|             | Mouse Wheel | Downword rotation | |
+|             | Mouse    | Forward Button   | |
+| Prev Page   | Keyboard | Left Key(←) | |
+|             | Keyboard | BackSpace Key | |
+|             | Mouse Wheel | Upword rotation | |
+|             | Mouse    | Back Button | |
+| First Page  | Keyboard | Home Key | |
+| Last Page   | Keyboard | End Key | |
+| Next Volume | Keyboard | Page Down Key | open a folder/archive of neighbor |
+| Prev Volume | Keyboard | Page Up Key | open a folder/archive of neighbor |
+| Fullscreen  | Keyboard | F11 Key | |
+|             | Mouse    | Wheel Clicked | as Center Button |
+|             | Keyboard | ESC Key | Fullscreen mode only |
+| Exit App    | Keyboard | ESC Key | not Fullscreen mode only |
+| Scale Up    | Keyboard | Ten keys(+) | do nothing with Fitting |
+| Scale Down  | Keyboard | Ten keys(-) | do nothing with Fitting |
+| Fitting     | Keyboard | F12 Key |  |
+|             | Keyboard | Ten keys(-) | |
 
 ## System Requirement
 
