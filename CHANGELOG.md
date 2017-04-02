@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.3.5 (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
+
+add NextOnePage/PrevOnePage, fixed Open Explorer
+
+- add NextOnePage/PrevOnePage (to next/prev 1 Page whether if DualView is on)
+- fixed Open Explorer(for spaces included file path), use as reference https://github.com/owncloud/client/blob/master/src/gui/openfilemanager.cpp
+
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Apr 3 02:07:43 2017 +0900) [e8794ca](https://github.com/kanryu/quickviewer/commit/e8794caafed8e143e664d69ef58e9044ca7e2aee)
+    - Update index-ja.md (Sun Apr 2 19:00:47 2017 +0900) [1318e14](https://github.com/kanryu/quickviewer/commit/1318e1402799f7965c59ff38941f175e3ac287dd)
+    - Update index.md (Sun Apr 2 18:52:32 2017 +0900) [247b297](https://github.com/kanryu/quickviewer/commit/247b297358589cee7d87eb2fd24d80b912804dae)
+    - Update README.md (Sun Apr 2 18:52:09 2017 +0900) [3f2ec39](https://github.com/kanryu/quickviewer/commit/3f2ec39d17bffdfdf10b57df5440ea4a1123defa)
+    - changelog (Sun Apr 2 17:53:20 2017 +0900) [77bfc81](https://github.com/kanryu/quickviewer/commit/77bfc81868e9b9e34a2e63b4a8e26df206fec02b)
+    - Update index.html (Sat Apr 1 22:17:46 2017 +0900) [668a936](https://github.com/kanryu/quickviewer/commit/668a936f227b0808851532c7fec60b6ed16c305b)
+    - Update index.html (Sat Apr 1 22:15:59 2017 +0900) [61ded06](https://github.com/kanryu/quickviewer/commit/61ded06c1381e23e1acccb9404fe145b773b9380)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 2 17:53:26 2017 +0900) [8f4876e](https://github.com/kanryu/quickviewer/commit/8f4876ee85163c80e0725a055069ba190dc9f763)
+    - changelog (Sun Apr 2 17:53:20 2017 +0900) [a87b92f](https://github.com/kanryu/quickviewer/commit/a87b92f52be3c2252f9104489fbc68f3b444de6c)
+
 ## v0.3.4 (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
 
 Merge branch 'master' of https://github.com/kanryu/quickviewer
@@ -9,6 +27,9 @@ support NextVolume/PrevVolume
 - PrevPage by BackSpase Key pressed
 
 - other commits
+    - Update index.html (Sat Apr 1 22:17:46 2017 +0900) [81a3303](https://github.com/kanryu/quickviewer/commit/81a330386ad2821f4cd3d6bfe27c9a406faf1ea9)
+    - Update index.html (Sat Apr 1 22:15:59 2017 +0900) [5724289](https://github.com/kanryu/quickviewer/commit/5724289024e24a17b876658d85ed97de0f0c99e7)
+    - Update index.html (Sat Apr 1 22:12:46 2017 +0900) [0d0ea78](https://github.com/kanryu/quickviewer/commit/0d0ea78ef1a97319ec59b48627e304745faf2dd5)
     - check version with JavaScript (Sat Apr 1 22:04:34 2017 +0900) [5e855f7](https://github.com/kanryu/quickviewer/commit/5e855f745df50aa79265335db075284437be1ea3)
     - check version with JavaScript (Sat Apr 1 22:04:34 2017 +0900) [827dce5](https://github.com/kanryu/quickviewer/commit/827dce5e6c1a75805f7a16f58743c4899d4e068e)
     - google analystics config (Sat Apr 1 21:09:32 2017 +0900) [e2f57f2](https://github.com/kanryu/quickviewer/commit/e2f57f27b972d35c80d9e990a6f5d8580619d053)

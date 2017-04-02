@@ -130,14 +130,6 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="actionNextPage"/>
-    <addaction name="actionPrevPage"/>
-    <addaction name="actionFirstPage"/>
-    <addaction name="actionLastPage"/>
-    <addaction name="separator"/>
-    <addaction name="actionNextVolume"/>
-    <addaction name="actionPrevVolume"/>
-    <addaction name="separator"/>
     <addaction name="actionScaleUp"/>
     <addaction name="actionScaleDown"/>
     <addaction name="actionFitting"/>
@@ -160,7 +152,22 @@
     <addaction name="actionCheckVersion"/>
     <addaction name="actionAppVersion"/>
    </widget>
+   <widget class="QMenu" name="menu_Navigation">
+    <property name="title">
+     <string>&amp;Navigation</string>
+    </property>
+    <addaction name="actionNextPage"/>
+    <addaction name="actionPrevPage"/>
+    <addaction name="actionFirstPage"/>
+    <addaction name="actionLastPage"/>
+    <addaction name="actionNextOnePage"/>
+    <addaction name="actionPrevOnePage"/>
+    <addaction name="separator"/>
+    <addaction name="actionNextVolume"/>
+    <addaction name="actionPrevVolume"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menu_Navigation"/>
    <addaction name="menuView"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -203,6 +210,12 @@
    </property>
    <property name="toolTip">
     <string>NextPage</string>
+   </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
    </property>
   </action>
   <action name="actionPrevPage">
@@ -396,6 +409,16 @@
     <string>P&amp;revVolume</string>
    </property>
   </action>
+  <action name="actionNextOnePage">
+   <property name="text">
+    <string>Next only &amp;one page</string>
+   </property>
+  </action>
+  <action name="actionPrevOnePage">
+   <property name="text">
+    <string>Prev only o&amp;ne page</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -413,6 +436,12 @@
     <slot>on_wideImageAsOneView_triggered(bool)</slot>
     <slot>on_openFiler_triggered()</slot>
     <slot>on_openExifDialog_triggered()</slot>
+    <slot>on_nextPage_triggered()</slot>
+    <slot>on_prevPage_triggered()</slot>
+    <slot>on_firstPage_triggered()</slot>
+    <slot>on_lastPage_triggered()</slot>
+    <slot>on_nextOnlyOnePage_triggered()</slot>
+    <slot>on_prevOnlyOnePage_triggered()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -428,7 +457,7 @@
   <connection>
    <sender>actionNextPage</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>on_nextPage_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -436,15 +465,15 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>243</y>
+     <x>350</x>
+     <y>296</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>actionPrevPage</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>on_prevPage_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -452,8 +481,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>264</x>
-     <y>243</y>
+     <x>350</x>
+     <y>296</y>
     </hint>
    </hints>
   </connection>
@@ -620,7 +649,7 @@
   <connection>
    <sender>actionFirstPage</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>on_firstPage_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -629,14 +658,14 @@
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
-     <y>294</y>
+     <y>296</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>actionLastPage</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>on_lastPage_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -645,7 +674,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
-     <y>294</y>
+     <y>296</y>
     </hint>
    </hints>
   </connection>
@@ -774,6 +803,38 @@
     <hint type="destinationlabel">
      <x>350</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNextOnePage</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_nextOnlyOnePage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrevOnePage</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_prevOnlyOnePage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>296</y>
     </hint>
    </hints>
   </connection>
