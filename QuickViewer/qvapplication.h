@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QSettings>
+#include <QMap>
 
 
 #if defined(qApp)
@@ -24,9 +25,11 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
     Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
     Q_PROPERTY(bool ShowStatusBar READ ShowStatusBar WRITE setShowStatusBar)
+    Q_PROPERTY(QMap<QString, QStringList> KeyConfigMap READ KeyConfigMap)
 
 public:
     explicit QVApplication(int &argc, char **argv);
+    // View
     bool Fitting() { return m_fitting; }
     void setFitting (bool fitting) { m_fitting = fitting; }
     bool DualView() { return m_dualView; }
@@ -40,11 +43,17 @@ public:
     bool ShowStatusBar() { return m_showStatusBar; }
     void setShowStatusBar (bool showStatusBar) { m_showStatusBar = showStatusBar; }
 
+    // File
     int MaxHistoryCount() { return m_maxHistoryCount; }
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     bool AutoLoaded() { return m_autoLoaded; }
     void setAutoLoaded (bool autoLoaded) { m_autoLoaded = autoLoaded; }
-    QStringList History() const { return m_history; }
+    const QStringList& History() const { return m_history; }
+
+    // Key Config
+    QMap<QString, QStringList>& KeyConfigMap() { return m_keyConfigs; }
+    void setKey (const QString& action, QStringList& keymap) { m_keyConfigs[action] = keymap; }
+    QStringList getKey (const QString& action) { return m_keyConfigs.contains(action) ? m_keyConfigs[action] : QStringList(); }
 
     /**
      * @brief addHistory add a path int History. if it is already in History, it will be top of this.
@@ -77,6 +86,7 @@ private:
     bool m_wideImageAsOnePageInDualView;
     QSettings m_settings;
     QStringList m_history;
+    QMap<QString, QStringList> m_keyConfigs;
 };
 
 #endif // QVAPPLICATION_H

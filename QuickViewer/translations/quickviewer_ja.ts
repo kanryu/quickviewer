@@ -228,11 +228,11 @@
     </message>
     <message>
         <source>Launching Windows Explorer failed</source>
-        <translation>エクスプローラーを開くことができませんでした</translation>
+        <translation type="vanished">エクスプローラーを開くことができませんでした</translation>
     </message>
     <message>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation>&apos;explorer.exe&apos;がPATHに見つからなかったため、起動できませんでした</translation>
+        <translation type="vanished">&apos;explorer.exe&apos;がPATHに見つからなかったため、起動できませんでした</translation>
     </message>
 </context>
 <context>
@@ -535,6 +535,22 @@
     <message>
         <source>P&amp;revVolume</source>
         <translation>前のボリューム(&amp;R)</translation>
+    </message>
+    <message>
+        <source>&amp;Navigation</source>
+        <translation>ページ移動(&amp;N)</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>右キー</translation>
+    </message>
+    <message>
+        <source>Next only &amp;one page</source>
+        <translation>1ページだけ進める(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Prev only o&amp;ne page</source>
+        <translation>1ページだけ戻る(&amp;N)</translation>
     </message>
 </context>
 </TS>

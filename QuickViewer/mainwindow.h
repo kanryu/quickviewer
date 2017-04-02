@@ -32,10 +32,12 @@ protected:
 
 public slots:
     void on_file_changed(QString path);
-    void on_nextPage_triggered();
-    void on_prevPage_triggered();
-    void on_firstPage_triggered();
-    void on_lastPage_triggered();
+//    void on_nextPage_triggered();
+//    void on_prevPage_triggered();
+//    void on_firstPage_triggered();
+//    void on_lastPage_triggered();
+//    void on_nextOnlyOnePage_triggered();
+//    void on_prevOnlyOnePage_triggered();
     void on_nextVolume_triggered();
     void on_prevVolume_triggered();
     void on_fullscreen_triggered();

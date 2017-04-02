@@ -2,6 +2,7 @@
 #include "qv_init.h"
 #include <QTextCodec>
 #include <QLocale>
+#include <QKeySequence>
 
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
@@ -43,6 +44,12 @@ void QVApplication::loadSettings()
     m_history = m_settings.value("History", QStringList()).value<QStringList>();
     m_maxHistoryCount = m_settings.value("MaxHistoryCount", 30).toInt();
     m_settings.endGroup();
+
+    m_settings.beginGroup("KeyConfig");
+    foreach(const QString& action, m_settings.childKeys()) {
+        m_keyConfigs[action] =  m_settings.value(action, QStringList()).value<QStringList>();
+    }
+    m_settings.endGroup();
 }
 
 void QVApplication::saveSettings()
@@ -60,6 +67,15 @@ void QVApplication::saveSettings()
     m_settings.setValue("AutoLoaded", m_autoLoaded);
     m_settings.setValue("MaxHistoryCount", m_maxHistoryCount);
     m_settings.setValue("History", QVariant::fromValue(m_history));
+    m_settings.endGroup();
+
+    m_settings.beginGroup("KeyConfig");
+    foreach(const QString& action, m_keyConfigs.keys()) {
+        m_settings.setValue(action, QVariant::fromValue(m_keyConfigs[action]));
+    }
+    m_settings.endGroup();
+
+
 
     m_settings.sync();
 }

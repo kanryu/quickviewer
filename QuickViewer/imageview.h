@@ -86,7 +86,12 @@ protected:
 //    void dragMoveEvent( QDragMoveEvent *e ) {qDebug() << "ImageView::dragMoveEvent";}
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 public slots:
-//    void on_image_changing(QPixmap image);
+    void on_nextPage_triggered();
+    void on_prevPage_triggered();
+    void on_firstPage_triggered();
+    void on_lastPage_triggered();
+    void on_nextOnlyOnePage_triggered();
+    void on_prevOnlyOnePage_triggered();
     void on_fitting_triggered(bool maximized);
     void on_dualView_triggered(bool viewdual);
     void on_rightSideBook_triggered(bool rightSideBook);

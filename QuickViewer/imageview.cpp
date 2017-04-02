@@ -255,6 +255,55 @@ void ImageView::resizeEvent(QResizeEvent *event)
     readyForPaint();
 }
 
+void ImageView::on_nextPage_triggered()
+{
+    nextPage();
+}
+
+void ImageView::on_prevPage_triggered()
+{
+    prevPage();
+}
+
+void ImageView::on_firstPage_triggered()
+{
+    setIndexedPage(0);
+}
+
+void ImageView::on_lastPage_triggered()
+{
+    if(m_fileVolume && m_fileVolume->size() > 0)
+        setIndexedPage(m_fileVolume->size()-1);
+
+}
+
+void ImageView::on_nextOnlyOnePage_triggered()
+{
+    if(m_fileVolume == nullptr) return;
+    bool result = (m_fileVolume->pageCount() == m_fileVolume->size() -1) ||  m_fileVolume->nextPage();
+    if(!result) return;
+
+    m_currentPage++;
+    if(m_currentPage >= m_fileVolume->size() - 1)
+        m_currentPage = m_fileVolume->size() - 1;
+
+    reloadCurrentPage();
+    emit pageChanged();
+}
+
+void ImageView::on_prevOnlyOnePage_triggered()
+{
+    if(m_fileVolume == nullptr) return;
+
+    if(m_fileVolume->pageCount() < m_gpiImages.size()) return;
+
+    //QVApplication* app = qApp;
+    m_currentPage--;
+    if(m_currentPage < 0)
+        m_currentPage = 0;
+    setIndexedPage(m_currentPage);
+}
+
 #define HOVER_BORDER 20
 #define NOT_HOVER_AREA 100
 
@@ -345,22 +394,28 @@ void ImageView::on_openFiler_triggered()
         path = m_fileVolume->currentPath();
     }
 #if defined(Q_OS_WIN)
-    //const QString explorer = QProcessEnvironment::systemEnvironment().searchInPath(QLatin1String("explorer.exe"));
-    const QString explorer = QLatin1String("explorer.exe");
-    if (explorer.isEmpty()) {
-        QMessageBox::warning(this,
-                             tr("Launching Windows Explorer failed"),
-                             tr("Could not find explorer.exe in path to launch Windows Explorer."));
-        return;
+    const QString explorer = QLatin1String("explorer.exe ");
+    QFileInfo fi(path);
+
+    // canonicalFilePath returns empty if the file does not exist
+    if( !fi.canonicalFilePath().isEmpty() ) {
+        QString nativeArgs;
+        if (!fi.isDir()) {
+            nativeArgs += QLatin1String("/select,");
+        }
+        nativeArgs += QLatin1Char('"');
+        nativeArgs += QDir::toNativeSeparators(fi.canonicalFilePath());
+        nativeArgs += QLatin1Char('"');
+
+        qDebug() << "OO Open explorer commandline:" << explorer << nativeArgs;
+        QProcess p;
+        // QProcess on Windows tries to wrap the whole argument/program string
+        // with quotes if it detects a space in it, but explorer wants the quotes
+        // only around the path. Use setNativeArguments to bypass this logic.
+        p.setNativeArguments(nativeArgs);
+        p.start(explorer);
+        p.waitForFinished(5000);
     }
-    QString param;
-    QString select;
-    if (!QFileInfo(path).isDir())
-        select = QLatin1String("/select,");
-    param = QDir::toNativeSeparators(path);
-//    param += path;
-    QString command = QString("%1 %2%3").arg(explorer).arg(select).arg(param);
-    QProcess::startDetached(command);
 #else
     if(!QFileInfo(path).isDir()) {
         QDir dir(path);

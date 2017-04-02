@@ -52,6 +52,8 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->graphicsView->scene()->installEventFilter(this);
 
     // Context menus
+    contextMenu.addAction(ui->actionNextOnePage);
+    contextMenu.addAction(ui->actionPrevOnePage);
     contextMenu.addAction(ui->actionOpenFiler);
     contextMenu.addAction(ui->actionOpenExif);
 
@@ -301,28 +303,38 @@ void MainWindow::on_file_changed(QString path)
 }
 
 
-void MainWindow::on_nextPage_triggered()
-{
-//    m_fileVolume->nextFile();
-    ui->graphicsView->nextPage();
-}
+//void MainWindow::on_nextPage_triggered()
+//{
+////    m_fileVolume->nextFile();
+//    ui->graphicsView->nextPage();
+//}
 
-void MainWindow::on_prevPage_triggered()
-{
-//    m_fileVolume->prevFile();
-    ui->graphicsView->prevPage();
-}
+//void MainWindow::on_prevPage_triggered()
+//{
+////    m_fileVolume->prevFile();
+//    ui->graphicsView->prevPage();
+//}
 
-void MainWindow::on_firstPage_triggered()
-{
-    ui->graphicsView->setIndexedPage(0);
-}
+//void MainWindow::on_firstPage_triggered()
+//{
+//    ui->graphicsView->setIndexedPage(0);
+//}
 
-void MainWindow::on_lastPage_triggered()
-{
-    if(m_fileVolume && m_fileVolume->size() > 0)
-        ui->graphicsView->setIndexedPage(m_fileVolume->size()-1);
-}
+//void MainWindow::on_lastPage_triggered()
+//{
+//    if(m_fileVolume && m_fileVolume->size() > 0)
+//        ui->graphicsView->setIndexedPage(m_fileVolume->size()-1);
+//}
+
+//void MainWindow::on_nextOnlyOnePage_triggered()
+//{
+
+//}
+
+//void MainWindow::on_prevOnlyOnePage_triggered()
+//{
+
+//}
 
 void MainWindow::on_nextVolume_triggered()
 {
