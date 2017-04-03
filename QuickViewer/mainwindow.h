@@ -51,9 +51,10 @@ public slots:
     void on_showStatusBar_triggered(bool showStatusBar);
     void on_openKeyConfig_triggered();
     void on_checkVersion_triggered();
+    void on_exitApplicationOrFullscreen_triggered();
+    void on_exit_triggered();
 
 private slots:
-    void on_actionExit_triggered();
     void on_hover_anchor(Qt::AnchorPoint anchor);
 
 

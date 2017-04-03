@@ -3,6 +3,7 @@
 #include <QTextCodec>
 #include <QLocale>
 #include <QKeySequence>
+#include <QDebug>
 
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
@@ -12,9 +13,26 @@ QVApplication::QVApplication(int &argc, char **argv)
     setApplicationName(APP_NAME);
     setOrganizationName(APP_ORGANIZATION);
 
+    m_keyConfigDefauls["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
+    m_keyConfigDefauls["actionNextPage"] = QKeySequence("Right, Space");
+    m_keyConfigDefauls["actionPrevPage"] = QKeySequence("Left, Backspace");
+    m_keyConfigDefauls["actionScaleUp"] = QKeySequence("+");
+    m_keyConfigDefauls["actionScaleDown"] = QKeySequence("-");
+    m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, *");
+    m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
+    m_keyConfigDefauls["actionLastPage"] = QKeySequence("End");
+    m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Home");
+    m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgUp");
+    m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgDown");
+    m_keyConfigs = m_keyConfigDefauls;
+    m_keyConfigs.detach();
+
+    qDebug() << m_keyConfigs;
+
     m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     loadSettings();
+    qDebug() << m_keyConfigs;
 }
 
 void QVApplication::addHistory(QString path)
@@ -23,7 +41,7 @@ void QVApplication::addHistory(QString path)
         m_history.removeOne(path);
     }
     m_history.push_front(path);
-    while(m_history.size() > 36)
+    while(m_history.size() > m_maxHistoryCount)
         m_history.pop_back();
 }
 
@@ -42,12 +60,13 @@ void QVApplication::loadSettings()
     m_settings.beginGroup("File");
     m_autoLoaded  = m_settings.value("AutoLoaded", false).toBool();
     m_history = m_settings.value("History", QStringList()).value<QStringList>();
-    m_maxHistoryCount = m_settings.value("MaxHistoryCount", 30).toInt();
+    m_maxHistoryCount = m_settings.value("MaxHistoryCount", 36).toInt();
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
     foreach(const QString& action, m_settings.childKeys()) {
-        m_keyConfigs[action] =  m_settings.value(action, QStringList()).value<QStringList>();
+        QString str = m_settings.value(action, "").toString();
+        m_keyConfigs[action] = QKeySequence(str);
     }
     m_settings.endGroup();
 }
@@ -71,7 +90,8 @@ void QVApplication::saveSettings()
 
     m_settings.beginGroup("KeyConfig");
     foreach(const QString& action, m_keyConfigs.keys()) {
-        m_settings.setValue(action, QVariant::fromValue(m_keyConfigs[action]));
+        QKeySequence seqs = m_keyConfigs[action];
+        m_settings.setValue(action, seqs.toString());
     }
     m_settings.endGroup();
 

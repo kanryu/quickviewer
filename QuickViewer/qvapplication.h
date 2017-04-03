@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QSettings>
 #include <QMap>
+#include <QKeySequence>
 
 
 #if defined(qApp)
@@ -13,6 +14,9 @@
 
 
 #define APP_INI "quickviewer.ini"
+
+class QAction;
+//typedef QList<QKeySequence> QKeySequenceList;
 
 class QVApplication : public QApplication
 {
@@ -25,7 +29,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
     Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
     Q_PROPERTY(bool ShowStatusBar READ ShowStatusBar WRITE setShowStatusBar)
-    Q_PROPERTY(QMap<QString, QStringList> KeyConfigMap READ KeyConfigMap)
+    Q_PROPERTY(QMap<QString, QKeySequence> KeyConfigMap READ KeyConfigMap)
 
 public:
     explicit QVApplication(int &argc, char **argv);
@@ -51,9 +55,76 @@ public:
     const QStringList& History() const { return m_history; }
 
     // Key Config
-    QMap<QString, QStringList>& KeyConfigMap() { return m_keyConfigs; }
-    void setKey (const QString& action, QStringList& keymap) { m_keyConfigs[action] = keymap; }
-    QStringList getKey (const QString& action) { return m_keyConfigs.contains(action) ? m_keyConfigs[action] : QStringList(); }
+    QMap<QString, QKeySequence>& KeyConfigMap() { return m_keyConfigs; }
+//    QString KeySequenceListToString(QKeySequenceList& list) const {
+//        QStringList strs;
+//        foreach(const QKeySequence& seq, list) {
+//            strs << seq.toString();
+//        }
+//        return strs.join(", ");
+//    }
+    QString getKeySequenceSerialized(const QString& actionName) {
+        if(!m_keyConfigs.contains(actionName))
+            return "";
+        QKeySequence seq = m_keyConfigs[actionName];
+        return seq.toString();
+    }
+
+    QKeySequence getKey (const QString& actionName) { return m_keyConfigs.contains(actionName) ? m_keyConfigs[actionName] : QKeySequence(); }
+    QKeySequence getKeyDefault (const QString& actionName) { return m_keyConfigDefauls.contains(actionName) ? m_keyConfigDefauls[actionName] : QKeySequence(); }
+    QMap<QString, QAction*>& ActionMapByName() { return m_actionsByName; }
+    QMap<QKeySequence, QString>& KeyConfigMapReverse() { return m_keyConfigsReverse; }
+    void registAction(const QString& actionName, QAction* action) {
+        m_actionsByName[actionName] = action;
+        QKeySequence seq = m_keyConfigs[actionName];
+        for(int i = 0; i < seq.count(); i++) {
+            m_keyConfigsReverse[seq[i]] = actionName;
+        }
+    }
+    void setKeySequence(const QString& actionName, const QKeySequence seq) {
+        if(!m_actionsByName.contains(actionName))
+            return;
+        QKeySequence old = m_keyConfigs[actionName];
+        for(int i = 0; i < old.count(); i++) {
+            m_keyConfigsReverse.remove(QKeySequence(old[i]));
+        }
+        m_keyConfigs[actionName] = seq;
+        for(int i = 0; i < seq.count(); i++) {
+            m_keyConfigsReverse[seq[i]] = actionName;
+        }
+    }
+    bool checkConflict(const QString& actionName, const QKeySequence seq) {
+        if(!m_actionsByName.contains(actionName))
+            return false;
+        foreach(const QString& action, m_keyConfigs.keys()) {
+            if(action == actionName)
+                continue;
+            QKeySequence current = m_keyConfigs[action];
+            if(seq.matches(current) >= QKeySequence::PartialMatch)
+                return false;
+        }
+        return true;
+    }
+
+    QAction* getAction(const QKeySequence seq) {
+        if(!m_keyConfigsReverse.contains(seq))
+            return nullptr;
+        QString name = m_keyConfigsReverse[seq];
+        return m_actionsByName[name];
+    }
+
+    void revertKeyMap(QMap<QString, QKeySequence> revertMap) {
+        foreach(const QString& action, revertMap.keys()) {
+            m_keyConfigs[action] = revertMap[action];
+        }
+        m_keyConfigsReverse.clear();
+        foreach(const QString& action, m_keyConfigs.keys()) {
+            QKeySequence seq = m_keyConfigs[action];
+            for(int i = 0; i < seq.count(); i++) {
+                m_keyConfigsReverse[seq[i]] = action;
+            }
+        }
+    }
 
     /**
      * @brief addHistory add a path int History. if it is already in History, it will be top of this.
@@ -86,7 +157,10 @@ private:
     bool m_wideImageAsOnePageInDualView;
     QSettings m_settings;
     QStringList m_history;
-    QMap<QString, QStringList> m_keyConfigs;
+    QMap<QString, QKeySequence> m_keyConfigs;
+    QMap<QString, QKeySequence> m_keyConfigDefauls;
+    QMap<QString, QAction*> m_actionsByName;
+    QMap<QKeySequence, QString> m_keyConfigsReverse;
 };
 
 #endif // QVAPPLICATION_H

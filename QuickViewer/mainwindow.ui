@@ -211,9 +211,6 @@
    <property name="toolTip">
     <string>NextPage</string>
    </property>
-   <property name="shortcut">
-    <string>Right</string>
-   </property>
    <property name="shortcutContext">
     <enum>Qt::WindowShortcut</enum>
    </property>
@@ -419,13 +416,18 @@
     <string>Prev only o&amp;ne page</string>
    </property>
   </action>
+  <action name="actionExitApplicationOrFullscreen">
+   <property name="text">
+    <string>ExitApplicationOrFullscreen</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>ImageView</class>
    <extends>QGraphicsView</extends>
-   <header location="global">imageview.h</header>
+   <header>imageview.h</header>
    <slots>
     <slot>on_image_changing(QImage)</slot>
     <slot>on_fitting_triggered(bool)</slot>
@@ -838,6 +840,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionExitApplicationOrFullscreen</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_exitApplicationOrFullscreen_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_exit_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -857,5 +891,7 @@
   <slot>on_checkVersion_triggered()</slot>
   <slot>on_nextVolume_triggered()</slot>
   <slot>on_prevVolume_triggered()</slot>
+  <slot>on_exitApplicationOrFullscreen_triggered()</slot>
+  <slot>on_exit_triggered()</slot>
  </slots>
 </ui>

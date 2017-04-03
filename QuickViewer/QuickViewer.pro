@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.3.5
+VERSION = 0.4.0
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -54,7 +54,8 @@ SOURCES += main.cpp\
     fileloader7zarchive.cpp \
     fileloaderdirectory.cpp \
     fileloaderziparchive.cpp \
-    fileloaderrararchive.cpp
+    fileloaderrararchive.cpp \
+    shortcutbutton.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -68,10 +69,12 @@ HEADERS  += mainwindow.h \
     fileloader7zarchive.h \
     fileloaderdirectory.h \
     fileloaderziparchive.h \
-    fileloaderrararchive.h
+    fileloaderrararchive.h \
+    shortcutbutton.h
 
 FORMS    += mainwindow.ui \
-    exifdialog.ui
+    exifdialog.ui \
+    keyconfigdialog.ui
 
 RESOURCES += \
     toolbar.qrc

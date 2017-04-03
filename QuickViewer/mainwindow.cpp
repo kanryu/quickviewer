@@ -26,6 +26,34 @@ MainWindow::MainWindow(QWidget *parent)
     setAcceptDrops(true);
     ui->pageSlider->hide();
 
+    qApp->registAction("actionExit", ui->actionExit);
+    qApp->registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
+    qApp->registAction("actionNextPage", ui->actionNextPage);
+    qApp->registAction("actionPrevPage", ui->actionPrevPage);
+    qApp->registAction("actionScaleUp", ui->actionScaleUp);
+    qApp->registAction("actionScaleDown", ui->actionScaleDown);
+    qApp->registAction("actionFitting", ui->actionFitting);
+    qApp->registAction("actionDualView", ui->actionDualView);
+    qApp->registAction("actionFullscreen", ui->actionFullscreen);
+    qApp->registAction("actionAppVersion", ui->actionAppVersion);
+    qApp->registAction("actionAutoLoaded", ui->actionAutoLoaded);
+    qApp->registAction("actionRightSideBook", ui->actionRightSideBook);
+    qApp->registAction("actionOpenFolder", ui->actionOpenFolder);
+    qApp->registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
+    qApp->registAction("actionLastPage", ui->actionLastPage);
+    qApp->registAction("actionFirstPage", ui->actionFirstPage);
+    qApp->registAction("actionShowStatusBar", ui->actionShowStatusBar);
+    qApp->registAction("actionShowPageBar", ui->actionShowPageBar);
+    qApp->registAction("actionOpenFiler", ui->actionOpenFiler);
+    qApp->registAction("actionOpenExif", ui->actionOpenExif);
+    qApp->registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
+    qApp->registAction("actionCheckVersion", ui->actionCheckVersion);
+    qApp->registAction("actionNextVolume", ui->actionNextVolume);
+    qApp->registAction("actionPrevVolume", ui->actionPrevVolume);
+    qApp->registAction("actionNextOnePage", ui->actionNextOnePage);
+    qApp->registAction("actionPrevOnePage", ui->actionPrevOnePage);
+
+
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());
 
@@ -54,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Context menus
     contextMenu.addAction(ui->actionNextOnePage);
     contextMenu.addAction(ui->actionPrevOnePage);
+    contextMenu.addSeparator();
     contextMenu.addAction(ui->actionOpenFiler);
     contextMenu.addAction(ui->actionOpenExif);
 
@@ -247,48 +276,14 @@ void MainWindow::resetVolume(IFileVolume *newer)
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
-    switch(event->key()) {
-    case Qt::Key_F11: case Qt::Key_Enter: case Qt::Key_Return:
-        ui->actionFullscreen->trigger();
-        break;
-    case Qt::Key_Escape:
-        if(isFullScreen())
-            ui->actionFullscreen->trigger();
-        else
-            ui->actionExit->trigger();
-        break;
-    case Qt::Key_Left: case Qt::Key_ApplicationLeft: case Qt::Key_Backspace:
-        ui->actionPrevPage->trigger();
-        break;
-    case Qt::Key_Right: case Qt::Key_ApplicationRight: case Qt::Key_Space:
-        ui->actionNextPage->trigger();
-        break;
-    case Qt::Key_PageDown:
-        ui->actionNextVolume->trigger();
-        break;
-    case Qt::Key_PageUp:
-        ui->actionPrevVolume->trigger();
-        break;
-    case Qt::Key_Home:
-        ui->actionFirstPage->trigger();
-        break;
-    case Qt::Key_End:
-        ui->actionLastPage->trigger();
-        break;
-    case Qt::Key_F12: case Qt::Key_Asterisk:
-        ui->actionFitting->trigger();
-        break;
-    case Qt::Key_Plus:
-        ui->actionScaleUp->trigger();
-        break;
-    case Qt::Key_Minus:
-        ui->actionScaleDown->trigger();
-        break;
-    }
+    QKeySequence seq(event->key());
+    QAction* action = qApp->getAction(seq);
+    if(action)
+        action->trigger();
 }
 
 
-void MainWindow::on_actionExit_triggered()
+void MainWindow::on_exit_triggered()
 {
     QApplication::quit();
     QCoreApplication::quit();
@@ -549,11 +544,22 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
 void MainWindow::on_openKeyConfig_triggered()
 {
     KeyConfigDialog dialog(this);
-    dialog.exec();
+    int result = dialog.exec();
+    if(result == QDialog::Rejected) {
+        dialog.revertKeyChanges();
+    }
 }
 
 void MainWindow::on_checkVersion_triggered()
 {
     QUrl url = QString("https://kanryu.github.io/quickviewer/checkversion/?ver=%1").arg(qApp->applicationVersion());
     QDesktopServices::openUrl(url);
+}
+
+void MainWindow::on_exitApplicationOrFullscreen_triggered()
+{
+    if(isFullScreen())
+        ui->actionFullscreen->trigger();
+    else
+        ui->actionExit->trigger();
 }

@@ -239,127 +239,171 @@
     <name>KeyConfigDialog</name>
     <message>
         <source>Keybord Input Configuration</source>
-        <translation>キーボード入力設定</translation>
+        <translation type="vanished">キーボード入力設定</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation>次のページ</translation>
+        <translation type="vanished">次のページ</translation>
     </message>
     <message>
         <source>Right</source>
-        <translation>右キー</translation>
+        <translation type="vanished">右キー</translation>
     </message>
     <message>
         <source>Space</source>
-        <translation>スペースキー</translation>
+        <translation type="vanished">スペースキー</translation>
     </message>
     <message>
         <source>Prev Page</source>
-        <translation>前のページ</translation>
+        <translation type="vanished">前のページ</translation>
     </message>
     <message>
         <source>Left</source>
-        <translation>左キー</translation>
+        <translation type="vanished">左キー</translation>
     </message>
     <message>
         <source>First Page</source>
-        <translation>最初のページ</translation>
+        <translation type="vanished">最初のページ</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation>Homeキー</translation>
+        <translation type="vanished">Homeキー</translation>
     </message>
     <message>
         <source>Last Page</source>
-        <translation>最後のページ</translation>
+        <translation type="vanished">最後のページ</translation>
     </message>
     <message>
         <source>End</source>
-        <translation>Endキー</translation>
+        <translation type="vanished">Endキー</translation>
     </message>
     <message>
         <source>Toggle Fullscreen</source>
-        <translation>フルスクリーン表示切り替え</translation>
+        <translation type="vanished">フルスクリーン表示切り替え</translation>
     </message>
     <message>
         <source>F11</source>
-        <translation>F11キー</translation>
+        <translation type="vanished">F11キー</translation>
     </message>
     <message>
         <source>Return</source>
-        <translation>本体Enterキー</translation>
+        <translation type="vanished">本体Enterキー</translation>
     </message>
     <message>
         <source>Enter</source>
-        <translation>テンキーEnterキー</translation>
+        <translation type="vanished">テンキーEnterキー</translation>
     </message>
     <message>
         <source>Exit Fullscreen</source>
-        <translation>フルスクリーン表示解除</translation>
+        <translation type="vanished">フルスクリーン表示解除</translation>
     </message>
     <message>
         <source>ESC</source>
-        <translation>ESCキー</translation>
+        <translation type="vanished">ESCキー</translation>
     </message>
     <message>
         <source>on Fullscreen only</source>
-        <translation>フルスクリーン表示時のみ有効</translation>
+        <translation type="vanished">フルスクリーン表示時のみ有効</translation>
     </message>
     <message>
         <source>Exit Application</source>
-        <translation>アプリケーション終了</translation>
+        <translation type="vanished">アプリケーション終了</translation>
     </message>
     <message>
         <source>not on Fullscreen only</source>
-        <translation>フルスクリーン表示以外の時のみ有効</translation>
+        <translation type="vanished">フルスクリーン表示以外の時のみ有効</translation>
     </message>
     <message>
         <source>Scale Up</source>
-        <translation>拡大表示</translation>
+        <translation type="vanished">拡大表示</translation>
     </message>
     <message>
         <source>Plus(+)</source>
-        <translation>テンキー(+)</translation>
+        <translation type="vanished">テンキー(+)</translation>
     </message>
     <message>
         <source>Scale Out</source>
-        <translation>縮小表示</translation>
+        <translation type="vanished">縮小表示</translation>
     </message>
     <message>
         <source>Minus(-)</source>
-        <translation>テンキー(-)</translation>
+        <translation type="vanished">テンキー(-)</translation>
     </message>
     <message>
         <source>Fitting</source>
-        <translation>フィット表示</translation>
+        <translation type="vanished">フィット表示</translation>
     </message>
     <message>
         <source>F12</source>
-        <translation>F12キー</translation>
+        <translation type="vanished">F12キー</translation>
     </message>
     <message>
         <source>Asterisk(*)</source>
-        <translation>テンキー(*)</translation>
+        <translation type="vanished">テンキー(*)</translation>
     </message>
     <message>
         <source>Next Volume</source>
-        <translation>次のボリューム</translation>
+        <translation type="vanished">次のボリューム</translation>
     </message>
     <message>
         <source>Page Down</source>
-        <translation>Page Downキー</translation>
+        <translation type="vanished">Page Downキー</translation>
     </message>
     <message>
         <source>open a folder/archive of neigibher</source>
-        <translation>隣り合ったフォルダまたはアーカイブを開きます</translation>
+        <translation type="vanished">隣り合ったフォルダまたはアーカイブを開きます</translation>
     </message>
     <message>
         <source>Prev Volume</source>
-        <translation>前のボリューム</translation>
+        <translation type="vanished">前のボリューム</translation>
     </message>
     <message>
         <source>Page Up</source>
-        <translation>Page Upキー</translation>
+        <translation type="vanished">Page Upキー</translation>
+    </message>
+    <message>
+        <source>KeyConfig</source>
+        <translation>キー入力設定</translation>
+    </message>
+    <message>
+        <source>Shortcut</source>
+        <translation>ショートカット</translation>
+    </message>
+    <message>
+        <source>Key Sequence:</source>
+        <translation>キー入力:</translation>
+    </message>
+    <message>
+        <source>Enter key sequence as text</source>
+        <translation>この入力欄にテキストで入力するか、または「記録」ボタンを押してください</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>記録</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>リセット</translation>
+    </message>
+    <message>
+        <source>Command</source>
+        <translation>動作</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>説明</translation>
+    </message>
+    <message>
+        <source>Target</source>
+        <translation>現在のショートカット</translation>
+    </message>
+    <message>
+        <source>Invalid key sequence.</source>
+        <translation>不正なキー入力です。</translation>
+    </message>
+    <message>
+        <source>Key sequence has potential conflicts.</source>
+        <translation>他のショートカットキーと競合しています。</translation>
     </message>
 </context>
 <context>
@@ -542,7 +586,7 @@
     </message>
     <message>
         <source>Right</source>
-        <translation>右キー</translation>
+        <translation type="vanished">右キー</translation>
     </message>
     <message>
         <source>Next only &amp;one page</source>
@@ -551,6 +595,25 @@
     <message>
         <source>Prev only o&amp;ne page</source>
         <translation>1ページだけ戻る(&amp;N)</translation>
+    </message>
+    <message>
+        <source>ExitApplicationOrFullscreen</source>
+        <translation>アプリ終了またはフルスクリーン解除</translation>
+    </message>
+</context>
+<context>
+    <name>ShortcutButton</name>
+    <message>
+        <source>Click and type the new key sequence.</source>
+        <translation>クリックして、新しいショートカットキーをキーボードで入力してください。</translation>
+    </message>
+    <message>
+        <source>Stop Recording</source>
+        <translation>記録を停止</translation>
+    </message>
+    <message>
+        <source>Record</source>
+        <translation>記録</translation>
     </message>
 </context>
 </TS>
