@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.4.0 (Mon Apr 3 21:57:02 2017 +0900) [20da721](https://github.com/kanryu/quickviewer/commit/20da721fca323590c9aa480fca24249dafa5e3e0)
+
+support Key Configs
+- support all actions save/load ini, customized run actions
+- add Key Config Dialog
+
+- other commits
+    - changelog (Mon Apr 3 03:10:41 2017 +0900) [af12a95](https://github.com/kanryu/quickviewer/commit/af12a95b70ef0e2b0c852859349ec1b1060c64e9)
+
 ## v0.3.5 (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
 
 add NextOnePage/PrevOnePage, fixed Open Explorer
