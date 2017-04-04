@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.4.1 (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
+
+JPEG/Raw loader plugin updated. 2 menus added
+
+- JPEG/Raw image loader plugin updated. much faster than before(especially on x64)
+- add flag to show toolbar
+- add flag that always first image is one view
+
+- other commits
+    - changelog (Mon Apr 3 22:00:11 2017 +0900) [9777572](https://github.com/kanryu/quickviewer/commit/977757234e442c58676aa57d2f8c119d3147ba6b)
+
 ## v0.4.0 (Mon Apr 3 21:57:02 2017 +0900) [20da721](https://github.com/kanryu/quickviewer/commit/20da721fca323590c9aa480fca24249dafa5e3e0)
 
 support Key Configs
