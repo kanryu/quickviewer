@@ -40,8 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->registAction("actionRightSideBook", ui->actionRightSideBook);
     qApp->registAction("actionOpenFolder", ui->actionOpenFolder);
     qApp->registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
+    qApp->registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
     qApp->registAction("actionLastPage", ui->actionLastPage);
     qApp->registAction("actionFirstPage", ui->actionFirstPage);
+    qApp->registAction("actionShowToolBar", ui->actionShowToolBar);
     qApp->registAction("actionShowStatusBar", ui->actionShowStatusBar);
     qApp->registAction("actionShowPageBar", ui->actionShowPageBar);
     qApp->registAction("actionOpenFiler", ui->actionOpenFiler);
@@ -64,13 +66,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionRightSideBook->setChecked(qApp->RightSideBook());
 
     ui->actionWideImageAsOneView->setChecked(qApp->WideImageAsOnePageInDualView());
+    ui->actionFirstImageAsOneView->setChecked(qApp->FirstImageAsOnePageInDualView());
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
 
+    ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
+    ui->actionShowToolBar->triggered(qApp->ShowToolBar());
     ui->actionShowPageBar->setChecked(qApp->ShowSliderBar());
-    on_showSliderBar_triggered(qApp->ShowSliderBar());
+    ui->actionShowPageBar->triggered(qApp->ShowSliderBar());
     ui->actionShowStatusBar->setChecked(qApp->ShowStatusBar());
-    on_showStatusBar_triggered(qApp->ShowStatusBar());
+    ui->actionShowStatusBar->triggered(qApp->ShowStatusBar());
 
     makeHistoryMenu();
 
@@ -85,6 +90,9 @@ MainWindow::MainWindow(QWidget *parent)
     contextMenu.addSeparator();
     contextMenu.addAction(ui->actionOpenFiler);
     contextMenu.addAction(ui->actionOpenExif);
+    contextMenu.addSeparator();
+    contextMenu.addAction(ui->actionWideImageAsOneView);
+    contextMenu.addAction(ui->actionFirstImageAsOneView);
 
     connect(ui->graphicsView, SIGNAL(anchorHovered(Qt::AnchorPoint)), this, SLOT(on_hover_anchor(Qt::AnchorPoint)) );
     connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
@@ -381,7 +389,8 @@ void MainWindow::on_fullscreen_triggered()
     if(isFullScreen()) {
         ui->graphicsView->skipRisizeEvent(true);
         menuBar()->show();
-        ui->mainToolBar->show();
+        if(qApp->ShowToolBar())
+            ui->mainToolBar->show();
         if(qApp->ShowSliderBar())
             ui->pageFrame->show();
         if(qApp->ShowStatusBar())
@@ -506,7 +515,7 @@ void MainWindow::on_historymenu_triggered(QAction *action)
 
 void MainWindow::on_openfolder_triggered()
 {
-    QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z)");
+    QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)");
     QString folder = QFileDialog::getOpenFileName(this, tr("Open a image or archive"), "", filter);
 //    QFileDialog dialog = QFileDialog(this, tr("Open a image folder"));
 //    if(dialog.exec()) {
@@ -517,6 +526,15 @@ void MainWindow::on_openfolder_triggered()
 //            loadVolume(folder);
         loadVolume(folder);
     }
+}
+
+void MainWindow::on_showToolBar_triggered(bool showToolBar)
+{
+    if(showToolBar)
+        ui->mainToolBar->show();
+    else
+        ui->mainToolBar->hide();
+    qApp->setShowToolBar(showToolBar);
 }
 
 void MainWindow::on_showSliderBar_triggered(bool showSliderBar)

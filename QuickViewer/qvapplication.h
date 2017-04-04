@@ -27,6 +27,8 @@ class QVApplication : public QApplication
     Q_PROPERTY(int MaxHistoryCount READ MaxHistoryCount WRITE setMaxHistoryCount)
     Q_PROPERTY(bool AutoLoaded READ AutoLoaded WRITE setAutoLoaded)
     Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
+    Q_PROPERTY(bool FirstImageAsOnePageInDualView READ FirstImageAsOnePageInDualView WRITE setFirstImageAsOnePageInDualView)
+    Q_PROPERTY(bool ShowToolBar READ ShowToolBar WRITE setShowToolBar)
     Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
     Q_PROPERTY(bool ShowStatusBar READ ShowStatusBar WRITE setShowStatusBar)
     Q_PROPERTY(QMap<QString, QKeySequence> KeyConfigMap READ KeyConfigMap)
@@ -42,6 +44,11 @@ public:
     void setRightSideBook (bool rightSideBook) { m_rightSideBook = rightSideBook; }
     bool WideImageAsOnePageInDualView() { return m_wideImageAsOnePageInDualView; }
     void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
+    bool FirstImageAsOnePageInDualView() { return m_firstImageAsOnePageInDualView; }
+    void setFirstImageAsOnePageInDualView (bool firstImageAsOnePageInDualView) { m_firstImageAsOnePageInDualView = firstImageAsOnePageInDualView; }
+
+    bool ShowToolBar() { return m_showToolBar; }
+    void setShowToolBar (bool showToolBar) { m_showToolBar = showToolBar; }
     bool ShowSliderBar() { return m_showSliderBar; }
     void setShowSliderBar (bool showSliderBar) { m_showSliderBar = showSliderBar; }
     bool ShowStatusBar() { return m_showStatusBar; }
@@ -149,12 +156,14 @@ private:
     bool m_rightSideBook;
     int m_maxHistoryCount;
     bool m_autoLoaded;
+    bool m_showToolBar;
     bool m_showSliderBar;
     bool m_showStatusBar;
     /**
      * @brief if true, a wide image must be one view whether dual view is enabled
      */
     bool m_wideImageAsOnePageInDualView;
+    bool m_firstImageAsOnePageInDualView;
     QSettings m_settings;
     QStringList m_history;
     QMap<QString, QKeySequence> m_keyConfigs;

@@ -98,6 +98,7 @@ public slots:
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
     void on_wideImageAsOneView_triggered(bool wideImage);
+    void on_firstImageAsOneView_triggered(bool firstImage);
     void on_openFiler_triggered();
     void on_openExifDialog_triggered();
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }

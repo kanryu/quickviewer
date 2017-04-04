@@ -12,9 +12,10 @@ bool IFileLoader::isImageFile(QString path)
         st_exifJpegImageFormats << "jpg" << "jpeg"; // standard
         st_exifRawImageFormats << "crw" << "cr2" << "arw" << "nef" << "raf" << "dng" << "tif" << "tiff"; // raw images
         st_supportedImageFormats = QImageReader::supportedImageFormats();
-        foreach(const QString& e, st_supportedImageFormats) {
-            qDebug() << QString(e);
-        }
+//        foreach(const QString& e, st_supportedImageFormats) {
+//            qDebug()<<  QString(e);
+//        }
+        qDebug() << st_supportedImageFormats;
     }
 //    QStringList exts = {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".dds", ".ico", ".tga", ".tif", ".tiff", ".webp", ".wbp"};
     QString lower = path.toLower();

@@ -137,7 +137,9 @@
     <addaction name="actionDualView"/>
     <addaction name="actionRightSideBook"/>
     <addaction name="actionWideImageAsOneView"/>
+    <addaction name="actionFirstImageAsOneView"/>
     <addaction name="separator"/>
+    <addaction name="actionShowToolBar"/>
     <addaction name="actionShowPageBar"/>
     <addaction name="actionShowStatusBar"/>
     <addaction name="separator"/>
@@ -421,6 +423,22 @@
     <string>ExitApplicationOrFullscreen</string>
    </property>
   </action>
+  <action name="actionShowToolBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show&amp;ToolBar</string>
+   </property>
+  </action>
+  <action name="actionFirstImageAsOneView">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Always open &amp;first images as one view</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -444,6 +462,7 @@
     <slot>on_lastPage_triggered()</slot>
     <slot>on_nextOnlyOnePage_triggered()</slot>
     <slot>on_prevOnlyOnePage_triggered()</slot>
+    <slot>on_firstImageAsOneView_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -872,6 +891,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowToolBar</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_showToolBar_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFirstImageAsOneView</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_firstImageAsOneView_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -893,5 +944,6 @@
   <slot>on_prevVolume_triggered()</slot>
   <slot>on_exitApplicationOrFullscreen_triggered()</slot>
   <slot>on_exit_triggered()</slot>
+  <slot>on_showToolBar_triggered(bool)</slot>
  </slots>
 </ui>

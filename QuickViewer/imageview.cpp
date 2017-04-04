@@ -137,7 +137,7 @@ void ImageView::reloadCurrentPage(bool pageNext)
 
     bool wide = addImage(m_fileVolume->currentImage(), true);
     m_wideImage = wide;
-    if(canDualView()) {
+    if(!(m_currentPage==0 && qApp->FirstImageAsOnePageInDualView()) && canDualView()) {
         if(m_fileVolume->pageCount() < m_fileVolume->size()-1) {
             const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
             const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage+1);
@@ -381,6 +381,13 @@ void ImageView::on_scaleDown_triggered()
 void ImageView::on_wideImageAsOneView_triggered(bool wideImage)
 {
     qApp->setWideImageAsOnePageInDualView(wideImage);
+    reloadCurrentPage();
+    readyForPaint();
+}
+
+void ImageView::on_firstImageAsOneView_triggered(bool firstImage)
+{
+    qApp->setFirstImageAsOnePageInDualView(firstImage);
     reloadCurrentPage();
     readyForPaint();
 }

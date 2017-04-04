@@ -514,7 +514,7 @@
     </message>
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z)</source>
-        <translation>全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z</translation>
+        <translation type="vanished">全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
@@ -574,7 +574,7 @@
     </message>
     <message>
         <source>N&amp;extVolume</source>
-        <translation>次ののボリューム(&amp;E)</translation>
+        <translation>次のボリューム(&amp;E)</translation>
     </message>
     <message>
         <source>P&amp;revVolume</source>
@@ -599,6 +599,18 @@
     <message>
         <source>ExitApplicationOrFullscreen</source>
         <translation>アプリ終了またはフルスクリーン解除</translation>
+    </message>
+    <message>
+        <source>Show&amp;ToolBar</source>
+        <translation>ツールバーを表示(&amp;T)</translation>
+    </message>
+    <message>
+        <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
+        <translation>全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z *.rar)</translation>
+    </message>
+    <message>
+        <source>Always open &amp;first images as one view</source>
+        <translation>最初(表紙)の画像は見開き表示でも1枚だけ表示する(&amp;F)</translation>
     </message>
 </context>
 <context>

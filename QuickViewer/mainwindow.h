@@ -47,6 +47,7 @@ public slots:
     void on_autoloaded_triggered(bool autoreload);
     void on_historymenu_triggered(QAction *action);
     void on_openfolder_triggered();
+    void on_showToolBar_triggered(bool showToolBar);
     void on_showSliderBar_triggered(bool showSliderBar);
     void on_showStatusBar_triggered(bool showStatusBar);
     void on_openKeyConfig_triggered();

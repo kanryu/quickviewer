@@ -161,7 +161,8 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {
     QByteArray bytes = volume->loadByteArrayByName(path);
-    QByteArray aformat = QFileInfo(path.toLower()).suffix().toUtf8();
+    QByteArray aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
+            ? "turbojpeg" : QFileInfo(path.toLower()).suffix().toUtf8();
     QImage src;
     src.loadFromData(bytes, aformat);
 
