@@ -88,13 +88,13 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 - Operating System
     - Windows Vista,7 or newer
     - Windows Sever 2008 or newer
-    - Nearly, Linux Desktops will be supported
+    - Running on Ubuntu Linux. but currently no supported because we need more contributers.
 - CPU
     - minimum Dual Core(more better with internal GPU or external GPU)
 - Memory
     - over 1GB free Memory(strongly recommended on x64 architecture)
 
-## Looking for collaborators!
+## Looking for contributers!
 
 - Spanish Speakers
 - French Speakers
