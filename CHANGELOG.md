@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v0.4.2 (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+
+Build Support on linux, can hide menubar, add 3 menus
+
+- Build Support for linux(tested on Ubuntu 16.02.2)
+- fixed a bug, Next only one page
+- can hide menubar on windows
+- add 3 menus
+- ShowMainMenu
+- ClearHistory
+- StayOnTop
+
+- other commits
+    - Linux Builde checked (Thu Apr 6 03:54:05 2017 +0900) [3858a36](https://github.com/kanryu/quickviewer/commit/3858a3655e68c2fd0d96aa5432159914cb37749a)
+    - changelog (Wed Apr 5 07:31:42 2017 +0900) [151203d](https://github.com/kanryu/quickviewer/commit/151203ddee158ec03bad4e81ec76b606d15520f5)
+
 ## v0.4.1 (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
 
 JPEG/Raw loader plugin updated. 2 menus added
