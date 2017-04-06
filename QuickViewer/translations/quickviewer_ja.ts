@@ -612,6 +612,41 @@
         <source>Always open &amp;first images as one view</source>
         <translation>最初(表紙)の画像は見開き表示でも1枚だけ表示する(&amp;F)</translation>
     </message>
+    <message>
+        <source>Show&amp;MenuBar</source>
+        <translation>メニューバーを表示する(&amp;M)</translation>
+    </message>
+    <message>
+        <source>&amp;Clear History</source>
+        <translation>履歴を削除(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Stay On &amp;Top</source>
+        <translation>常に手前に表示(&amp;T)</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Do you really want to clear the main menu?</source>
+        <translation>本当にメインメニューを表示にしますか？</translation>
+    </message>
+    <message>
+        <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
+        <translation>F8キー(デフォルト)を押すか、もしくはタイトルバー上でコンテキストメニューを表示し&lt;br /&gt;&lt;strong&gt;『メインメニューの表示／非表示切り替え』&lt;/strong&gt;を選択してください</translation>
+    </message>
+    <message>
+        <source>Sh&amp;ow/Hide MainMenuBar</source>
+        <translation>メインメニューの表示／非表示切り替え</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowForWindows</name>
+    <message>
+        <source>Sh&amp;ow/Hide MainMenuBar</source>
+        <translation>メインメニューの表示／非表示切り替え</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutButton</name>

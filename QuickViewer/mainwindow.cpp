@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDesktopServices>
+#include <QDesktopWidget>
+#include <QWindow>
 
 #include "mainwindow.h"
 #include "imageview.h"
@@ -26,7 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     setAcceptDrops(true);
     ui->pageSlider->hide();
 
+    // Mapping to Key-Action Table and Key Config Dialog
     qApp->registAction("actionExit", ui->actionExit);
+    qApp->registAction("actionClearHistory", ui->actionClearHistory);
     qApp->registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
     qApp->registAction("actionNextPage", ui->actionNextPage);
     qApp->registAction("actionPrevPage", ui->actionPrevPage);
@@ -35,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->registAction("actionFitting", ui->actionFitting);
     qApp->registAction("actionDualView", ui->actionDualView);
     qApp->registAction("actionFullscreen", ui->actionFullscreen);
+    qApp->registAction("actionStayOnTop", ui->actionStayOnTop);
     qApp->registAction("actionAppVersion", ui->actionAppVersion);
     qApp->registAction("actionAutoLoaded", ui->actionAutoLoaded);
     qApp->registAction("actionRightSideBook", ui->actionRightSideBook);
@@ -46,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->registAction("actionShowToolBar", ui->actionShowToolBar);
     qApp->registAction("actionShowStatusBar", ui->actionShowStatusBar);
     qApp->registAction("actionShowPageBar", ui->actionShowPageBar);
+    qApp->registAction("actionShowMenuBar", ui->actionShowMenuBar);
     qApp->registAction("actionOpenFiler", ui->actionOpenFiler);
     qApp->registAction("actionOpenExif", ui->actionOpenExif);
     qApp->registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
@@ -62,6 +68,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionDualView->setChecked(qApp->DualView());
     ui->graphicsView->on_dualView_triggered(qApp->DualView());
 
+    ui->actionStayOnTop->setChecked(qApp->StayOnTop());
+    ui->actionStayOnTop->triggered(qApp->StayOnTop());
+
     ui->graphicsView->on_rightSideBook_triggered(qApp->RightSideBook());
     ui->actionRightSideBook->setChecked(qApp->RightSideBook());
 
@@ -76,6 +85,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionShowPageBar->triggered(qApp->ShowSliderBar());
     ui->actionShowStatusBar->setChecked(qApp->ShowStatusBar());
     ui->actionShowStatusBar->triggered(qApp->ShowStatusBar());
+    ui->actionShowMenuBar->setChecked(qApp->ShowMenuBar());
+    if(!qApp->ShowMenuBar())
+        menuBar()->hide();
 
     makeHistoryMenu();
 
@@ -284,7 +296,7 @@ void MainWindow::resetVolume(IFileVolume *newer)
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
-    QKeySequence seq(event->key());
+    QKeySequence seq(event->key() | event->modifiers());
     QAction* action = qApp->getAction(seq);
     if(action)
         action->trigger();
@@ -303,6 +315,12 @@ void MainWindow::on_file_changed(QString path)
 {
     qDebug() << "[MainWindow] newImage:" << path;
 
+}
+
+void MainWindow::on_clearHistory_triggered()
+{
+    qApp->clearHistory();
+    makeHistoryMenu();
 }
 
 
@@ -388,7 +406,8 @@ void MainWindow::on_fullscreen_triggered()
 
     if(isFullScreen()) {
         ui->graphicsView->skipRisizeEvent(true);
-        menuBar()->show();
+        if(qApp->ShowMenuBar())
+            menuBar()->show();
         if(qApp->ShowToolBar())
             ui->mainToolBar->show();
         if(qApp->ShowSliderBar())
@@ -416,6 +435,20 @@ void MainWindow::on_fullscreen_triggered()
         showFullScreen();
         ui->graphicsView->readyForPaint();
     }
+}
+
+void MainWindow::on_stayOnTop_triggered(bool top)
+{
+    Qt::WindowFlags flags = windowFlags();
+    if(top) {
+        flags |= Qt::WindowStaysOnTopHint;
+    } else {
+        flags &= ~Qt::WindowStaysOnTopHint;
+    }
+    setWindowFlags(flags);
+    show();
+    setParent(nullptr);
+    qApp->setStayOnTop(top);
 }
 
 void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
@@ -557,6 +590,34 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
         setWindowTitle(m_pageCaption);
     }
     qApp->setShowStatusBar(showStatusBar);
+}
+
+void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
+{
+    if(!showMenuBar) {
+        QMessageBox msgBox(this);
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        msgBox.setWindowTitle(tr("Confirmation"));
+        msgBox.setIcon(QMessageBox::Warning);
+
+        msgBox.setTextFormat(Qt::RichText);
+        QString message = QString("<h2>%1</h2>"
+                                  "<p>%2</p>")
+                .arg(tr("Do you really want to clear the main menu?"))
+                .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>"));
+        msgBox.setText(message);
+        if(msgBox.exec() == QMessageBox::Cancel) {
+            ui->actionShowMenuBar->setChecked(true);
+            return;
+        }
+    }
+    if(showMenuBar)
+        menuBar()->show();
+    else
+        menuBar()->hide();
+    qApp->setShowMenuBar(showMenuBar);
+
 }
 
 void MainWindow::on_openKeyConfig_triggered()

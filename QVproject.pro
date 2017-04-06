@@ -15,17 +15,18 @@ TEMPLATE = subdirs
 #QuickViewer.depends = Qt7z ResizeHalf easyexif unrar src
 
 SUBDIRS = \
-    Qt7z \
-    ResizeHalf \
+    Qt7z/Qt7z/qt7z.pro \
+    ResizeHalf/resizehalf.pro \
     easyexif \
-    QtRAR \
+    QtRAR/qtrar.pro \
     QuickViewer
 
-Qt7z.subdir = Qt7z/Qt7z
+#Qt7z.subdir = Qt7z/Qt7z/qt7z.pro
+#QtRAR.subdir = QtRAR/qtrar.pro
+#ResizeHalf.subdir = ResizeHalf/resizehalf.pro
 
 
-
-QuickViewer.depends = Qt7z ResizeHalf easyexif QtRAR
+QuickViewer.depends = Qt7z/Qt7z/qt7z.pro ResizeHalf/resizehalf.pro easyexif QtRAR/qtrar.pro
 
 
 

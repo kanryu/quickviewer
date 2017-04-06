@@ -9,13 +9,14 @@ QT       -= core
 TARGET = resizehalf
 TEMPLATE = lib
 CONFIG += staticlib
+CONFIG += warn_off
 
 equals(QMAKE_CC,"cl") {
     QMAKE_CXXFLAGS += /wd4819
 }
 
 SOURCES += \
-    $$PWD/Resizehalf/ResizeHalf.cpp
+    $$PWD/ResizeHalf/ResizeHalf.cpp
 
 HEADERS += \
     $$PWD/ResizeHalf/ResizeHalf.h
@@ -26,4 +27,5 @@ HEADERS += \
 INCLUDEPATH += \
     $$PWD/ResizeHalf
 
+DESTDIR = ../lib
 

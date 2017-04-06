@@ -261,7 +261,7 @@ void KeyConfigDialog::on_currentCommandChanged(QTreeWidgetItem *item, QTreeWidge
     }
 }
 
-void KeyConfigDialog::on_keySequence_changed(QKeySequence &key)
+void KeyConfigDialog::on_keySequence_changed(QKeySequence key)
 {
     qDebug() << "on_keySequence_changed:" << key;
     if(!m_prevKeyConfigs.contains(m_actionName))

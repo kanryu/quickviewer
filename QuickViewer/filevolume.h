@@ -24,7 +24,7 @@ public:
     ImageContent(const ImageContent& rhs)
         : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize), Info(rhs.Info) {
     }
-    inline ImageContent& ImageContent::operator=(const ImageContent &rhs)
+    inline ImageContent& operator=(const ImageContent &rhs)
     {
         Image = rhs.Image;
         Path = rhs.Path;

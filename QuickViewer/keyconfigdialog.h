@@ -31,7 +31,7 @@ signals:
 public slots:
 //    void on_keySequenceItemSelected(QTree)
     void on_currentCommandChanged(QTreeWidgetItem* item, QTreeWidgetItem * previous);
-    void on_keySequence_changed(QKeySequence &key);
+    void on_keySequence_changed(QKeySequence key);
     void on_resetToDefault();
     void on_shortcutClearButton_triggered();
     void on_shortcutEdit_changed(QString text);

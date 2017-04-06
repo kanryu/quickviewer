@@ -120,8 +120,9 @@
      </property>
     </widget>
     <addaction name="actionOpenFolder"/>
-    <addaction name="menuHistory"/>
     <addaction name="separator"/>
+    <addaction name="menuHistory"/>
+    <addaction name="actionClearHistory"/>
     <addaction name="actionAutoLoaded"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -139,11 +140,14 @@
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
     <addaction name="separator"/>
+    <addaction name="actionShowMenuBar"/>
+    <addaction name="separator"/>
     <addaction name="actionShowToolBar"/>
     <addaction name="actionShowPageBar"/>
     <addaction name="actionShowStatusBar"/>
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
+    <addaction name="actionStayOnTop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -195,6 +199,8 @@
    <addaction name="actionDualView"/>
    <addaction name="separator"/>
    <addaction name="actionFullscreen"/>
+   <addaction name="separator"/>
+   <addaction name="actionStayOnTop"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
@@ -381,6 +387,10 @@
    </property>
   </action>
   <action name="actionOpenKeyConfig">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/preference_icon</normaloff>:/icons/preference_icon</iconset>
+   </property>
    <property name="text">
     <string>&amp;Key Config</string>
    </property>
@@ -437,6 +447,31 @@
    </property>
    <property name="text">
     <string>Always open &amp;first images as one view</string>
+   </property>
+  </action>
+  <action name="actionShowMenuBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show&amp;MenuBar</string>
+   </property>
+  </action>
+  <action name="actionClearHistory">
+   <property name="text">
+    <string>&amp;Clear History</string>
+   </property>
+  </action>
+  <action name="actionStayOnTop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/stayontop_icon</normaloff>:/icons/stayontop_icon</iconset>
+   </property>
+   <property name="text">
+    <string>Stay On &amp;Top</string>
    </property>
   </action>
  </widget>
@@ -923,6 +958,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowMenuBar</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_showMenuBar_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClearHistory</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_clearHistory_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionStayOnTop</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_stayOnTop_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -945,5 +1028,8 @@
   <slot>on_exitApplicationOrFullscreen_triggered()</slot>
   <slot>on_exit_triggered()</slot>
   <slot>on_showToolBar_triggered(bool)</slot>
+  <slot>on_showMenuBar_triggered(bool)</slot>
+  <slot>on_clearHistory_triggered()</slot>
+  <slot>on_stayOnTop_triggered(bool)</slot>
  </slots>
 </ui>

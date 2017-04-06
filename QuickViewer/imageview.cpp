@@ -279,14 +279,13 @@ void ImageView::on_lastPage_triggered()
 
 void ImageView::on_nextOnlyOnePage_triggered()
 {
-    if(m_fileVolume == nullptr) return;
-    bool result = (m_fileVolume->pageCount() == m_fileVolume->size() -1) ||  m_fileVolume->nextPage();
-    if(!result) return;
-
+    if(m_fileVolume == nullptr || m_fileVolume->pageCount() == m_fileVolume->size() -1) return;
+    if(m_gpiImages.size() == 1) {
+        m_fileVolume->nextPage();
+    }
     m_currentPage++;
     if(m_currentPage >= m_fileVolume->size() - 1)
         m_currentPage = m_fileVolume->size() - 1;
-
     reloadCurrentPage();
     emit pageChanged();
 }

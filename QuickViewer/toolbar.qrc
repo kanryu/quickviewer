@@ -29,5 +29,9 @@
         <file alias="volume_prev_icon">icons/volume_prev.png</file>
         <file alias="volume_prev2_icon">icons/volume_prev2.png</file>
         <file alias="volume_prev3_icon">icons/volume_prev3.png</file>
+        <file alias="preference_icon">icons/preference.png</file>
+        <file alias="preference_icon2">icons/preference2.png</file>
+        <file alias="stayontop_icon">icons/stayontop.png</file>
+        <file alias="stayontop_icon2">icons/stayontop2.png</file>
     </qresource>
 </RCC>

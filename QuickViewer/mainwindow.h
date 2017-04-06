@@ -32,15 +32,11 @@ protected:
 
 public slots:
     void on_file_changed(QString path);
-//    void on_nextPage_triggered();
-//    void on_prevPage_triggered();
-//    void on_firstPage_triggered();
-//    void on_lastPage_triggered();
-//    void on_nextOnlyOnePage_triggered();
-//    void on_prevOnlyOnePage_triggered();
+    void on_clearHistory_triggered();
     void on_nextVolume_triggered();
     void on_prevVolume_triggered();
     void on_fullscreen_triggered();
+    void on_stayOnTop_triggered(bool top);
     void on_pageChanged_triggered();
     void on_pageSlider_changed(int value);
     void on_appVersion_triggered();
@@ -50,6 +46,7 @@ public slots:
     void on_showToolBar_triggered(bool showToolBar);
     void on_showSliderBar_triggered(bool showSliderBar);
     void on_showStatusBar_triggered(bool showStatusBar);
+    void on_showMenuBar_triggered(bool showMenuBar);
     void on_openKeyConfig_triggered();
     void on_checkVersion_triggered();
     void on_exitApplicationOrFullscreen_triggered();
@@ -59,7 +56,7 @@ private slots:
     void on_hover_anchor(Qt::AnchorPoint anchor);
 
 
-private:
+protected:
     Ui::MainWindow *ui;
 //    QImage *m_img;
     IFileVolume* m_fileVolume;
@@ -71,5 +68,6 @@ private:
     QString m_volumeCaption;
     QString m_pageCaption;
 };
+
 
 #endif // MAINWINDOW_H

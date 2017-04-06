@@ -8,42 +8,34 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.4.1
+VERSION = 0.4.2
 
 TARGET = QuickViewer
 TEMPLATE = app
 CONFIG += plugin
-
-equals(QMAKE_CC,"cl") {
-    #QtRAR
-    LIBS += -luser32 -ladvapi32
-}
 
 INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../QtRAR/src
 
-DEFINES += QTRAR_STATIC
+LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar -lQtRAR
 
-CONFIG(debug,debug|release) {
-    LIBS += -L../Qt7z/Qt7z/debug -lQt7z
-    LIBS += -L../ResizeHalf/debug -lresizehalf
-    LIBS += -L../easyexif/debug -leasyexif
-    LIBS += -L../qtrar/src/debug -lQtRAR
-    LIBS += -L../qtrar/src/unrar/debug -lunrar
-} else {
-    LIBS += -L../Qt7z/Qt7z/release -lQt7z
-    LIBS += -L../ResizeHalf/release -lresizehalf
-    LIBS += -L../easyexif/release -leasyexif
-    LIBS += -L../qtrar/src/release -lQtRAR
-    LIBS += -L../qtrar/src/unrar/release -lunrar
+# qtrar
+DEFINES += QTRAR_STATIC RARDLL
+win32 {
+    QMAKE_CXXFLAGS += /wd4819
+    LIBS += -luser32 -ladvapi32
+}
+unix {
+    DEFINES += _UNIX
+    QMAKE_LFLAGS += -Wl,-rpath,../lib
 }
 
-#QTPLUGIN += qtraw qrawspeed
+DESTDIR = ../bin
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     imageview.cpp \
     filevolume.cpp \
     qvapplication.cpp \
@@ -55,7 +47,8 @@ SOURCES += main.cpp\
     fileloaderdirectory.cpp \
     fileloaderziparchive.cpp \
     fileloaderrararchive.cpp \
-    shortcutbutton.cpp
+    shortcutbutton.cpp \
+    mainwindowforwindows.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -70,7 +63,8 @@ HEADERS  += mainwindow.h \
     fileloaderdirectory.h \
     fileloaderziparchive.h \
     fileloaderrararchive.h \
-    shortcutbutton.h
+    shortcutbutton.h \
+    mainwindowforwindows.h
 
 FORMS    += mainwindow.ui \
     exifdialog.ui \
@@ -92,21 +86,15 @@ DEFINES += \
   APP_NAME=\\\"$$QMAKE_TARGET_PRODUCT\\\" \
 
 CODECFORSRC = UTF-8
-#TRANSLATIONS = translations/quickviewer_ja.ts
 
-lupdate_only {
-    SOURCES += mainwindow.ui
-    SOURCES += exifdialog.ui
-}
+#lupdate_only {
+#    SOURCES += mainwindow.ui
+#    SOURCES += exifdialog.ui
+#    SOURCES += keyconfigdialog.ui
+#}
 DISTFILES += \
     translations/quickviewer_ja.qm
 
-#transfiles.target = translations/quickviewer_jaaa.qm
-#transfiles.command = $(COPY) $$transfiles.depends $$transfiles.target
-#transfiles.depends = $$PWD/translations/quickviewer_ja.qm
-
-#QMAKE_EXTRA_TARGETS += transfiles
-#POST_TARGETDEPS += $$transfiles.target
 
 quickviewer_dist.path = $$OUT_PWD/dist
 quickviewer_dist.files = ./dist/*

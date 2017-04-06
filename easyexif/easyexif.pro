@@ -19,4 +19,4 @@ HEADERS += \
 INCLUDEPATH += \
     $$PWD/easyexif
 
-
+DESTDIR = ../lib

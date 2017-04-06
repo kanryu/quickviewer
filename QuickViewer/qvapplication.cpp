@@ -20,6 +20,8 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionScaleDown"] = QKeySequence("-");
     m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, *");
     m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
+    m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
+    m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
     m_keyConfigDefauls["actionLastPage"] = QKeySequence("End");
     m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Home");
     m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgUp");
@@ -51,12 +53,16 @@ void QVApplication::loadSettings()
     m_settings.beginGroup("View");
     m_fitting = m_settings.value("Fitting", true).toBool();
     m_dualView = m_settings.value("DualView", false).toBool();
+    m_stayOnTop = m_settings.value("StayOnTop", false).toBool();
+
     m_rightSideBook = m_settings.value("RightSideBook", bRightSideBookDefault).toBool();
     m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", false).toBool();
     m_firstImageAsOnePageInDualView = m_settings.value("FirstImageAsOnePageInDualView", false).toBool();
+
     m_showToolBar = m_settings.value("ShowToolBar", true).toBool();
     m_showSliderBar = m_settings.value("ShowSliderBar", true).toBool();
     m_showStatusBar = m_settings.value("ShowStatusBar", true).toBool();
+    m_showMenuBar = m_settings.value("ShowMenuBar", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("File");
@@ -78,12 +84,16 @@ void QVApplication::saveSettings()
     m_settings.beginGroup("View");
     m_settings.setValue("Fitting", m_fitting);
     m_settings.setValue("DualView", m_dualView);
+    m_settings.setValue("StayOnTop", m_stayOnTop);
+
     m_settings.setValue("RightSideBook", m_rightSideBook);
     m_settings.setValue("WideImageAsOnePageInDualView", m_wideImageAsOnePageInDualView);
     m_settings.setValue("FirstImageAsOnePageInDualView", m_firstImageAsOnePageInDualView);
+
     m_settings.setValue("ShowToolBar", m_showToolBar);
     m_settings.setValue("ShowSliderBar", m_showSliderBar);
     m_settings.setValue("ShowStatusBar", m_showStatusBar);
+    m_settings.setValue("ShowMenuBar", m_showMenuBar);
     m_settings.endGroup();
 
     m_settings.beginGroup("File");

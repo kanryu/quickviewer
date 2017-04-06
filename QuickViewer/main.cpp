@@ -1,4 +1,8 @@
-#include "mainwindow.h"
+#ifdef WIN32
+  #include "mainwindowforwindows.h"
+#else
+  #include "mainwindow.h"
+#endif
 #include "qv_init.h"
 #include "qvapplication.h"
 #include <QTranslator>
@@ -14,8 +18,11 @@ int main(int argc, char *argv[])
     if(exist) {
         app.installTranslator(&translator);
     }
-
+#ifdef WIN32
+    MainWindowForWindows w;
+#else
     MainWindow w;
+#endif
     w.show();
 
     return app.exec();

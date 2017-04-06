@@ -1,7 +1,7 @@
 SET DIRPROJECT="%~dp0"
 set CPU=x86
 rem set CPU=x64
-set DEPROY_VER=QuickViewer-0.4.1-%CPU%
+set DEPROY_VER=QuickViewer-0.4.2-%CPU%
 
 if %CPU%==x64 (
 	set ENV_BUILD=build-QVproject-Desktop_Qt_5_7_0_MSVC2015_64bit
@@ -13,7 +13,7 @@ if %CPU%==x64 (
 	set ENV_QT=msvc2015
 )
 
-set DIR_RELEASE="..\%ENV_BUILD%-Release\QuickViewer\release"
+set DIR_RELEASE="..\%ENV_BUILD%-Release\bin"
 rem set DIR_DEPLOY="C:\Users\hanakawa2\Desktop\amazon.com\%DEPROY_VER%"
 set DIR_DEPLOY=%~dp0%DEPROY_VER%
 set DEPLOYQT="E:\local\gnu\Qt-5.7\5.7\%ENV_QT%\bin\windeployqt.exe"

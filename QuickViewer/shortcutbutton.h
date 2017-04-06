@@ -22,7 +22,7 @@ public:
     QSize sizeHint() const;
 
 signals:
-    void keySequenceChanged(QKeySequence &sequence);
+    void keySequenceChanged(QKeySequence sequence);
 
 protected:
     bool eventFilter(QObject *obj, QEvent *evt);

@@ -10,9 +10,11 @@ TARGET = Qt7z
 TEMPLATE = lib
 CONFIG += staticlib
 
-include("Qt7z.pri")
+include("qt7z.pri")
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+DESTDIR = ../../lib
