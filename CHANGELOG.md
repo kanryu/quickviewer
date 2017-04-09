@@ -1,5 +1,20 @@
 # CHANGELOG
 
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Apr 10 04:57:52 2017 +0900) [ad5e04b](https://github.com/kanryu/quickviewer/commit/ad5e04b3e5865074e065b1f1fa49b03ebba74369)
+
+## v0.4.3 (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
+
+improve PageBar, add CopyImage/DeleteImage
+
+- improve PageBar(using QStyle::SH_Slider_AbsoluteSetButtons)
+- add CopyImage to clipboard
+- add DeleteImage to trashbox(referred to https://github.com/siliconscholar/sherman/blob/6397a274c704519f8e0b7f628ad0beadde0e1d53/src/win/deleter.cpp)
+
+- other commits
+    - Create .gitattributes (Sat Apr 8 00:01:41 2017 +0900) [ee555e3](https://github.com/kanryu/quickviewer/commit/ee555e3850fdb99b33f559cf92a8b2d274950dd3)
+    - changelog (Fri Apr 7 03:10:57 2017 +0900) [fd3f2f6](https://github.com/kanryu/quickviewer/commit/fd3f2f605f4a977584cf571a57c998b464da5f16)
+
 ## v0.4.2 (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
 
 Build Support on linux, can hide menubar, add 3 menus
