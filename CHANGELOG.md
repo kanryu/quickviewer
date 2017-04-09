@@ -1,17 +1,21 @@
 # CHANGELOG
 
+## v0.4.3 (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
+
+fixed bug, add shortcut newmenus
+
+- fixed bug NextVolume/PageVolume, default key configs were in the opposite direction by mistake
+- add shortcut DeletePage/CopyPage
+- change words, delete image -> move the image to trash box
+
 - other commits
+    - changelog (Mon Apr 10 04:59:05 2017 +0900) [d8477d1](https://github.com/kanryu/quickviewer/commit/d8477d100a36fe1f11cb92b4ac398861ca3a6a47)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Apr 10 04:57:52 2017 +0900) [ad5e04b](https://github.com/kanryu/quickviewer/commit/ad5e04b3e5865074e065b1f1fa49b03ebba74369)
-
-## v0.4.3 (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
-
-improve PageBar, add CopyImage/DeleteImage
-
-- improve PageBar(using QStyle::SH_Slider_AbsoluteSetButtons)
-- add CopyImage to clipboard
-- add DeleteImage to trashbox(referred to https://github.com/siliconscholar/sherman/blob/6397a274c704519f8e0b7f628ad0beadde0e1d53/src/win/deleter.cpp)
-
-- other commits
+    - improve PageBar, add CopyImage/DeleteImage (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
+    -  (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
+    -  improve PageBar(using QStyle::SH_Slider_AbsoluteSetButtons) (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
+    -  add CopyImage to clipboard (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
+    -  add DeleteImage to trashbox(referred to https://github.com/siliconscholar/sherman/blob/6397a274c704519f8e0b7f628ad0beadde0e1d53/src/win/deleter.cpp) (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
     - Create .gitattributes (Sat Apr 8 00:01:41 2017 +0900) [ee555e3](https://github.com/kanryu/quickviewer/commit/ee555e3850fdb99b33f559cf92a8b2d274950dd3)
     - changelog (Fri Apr 7 03:10:57 2017 +0900) [fd3f2f6](https://github.com/kanryu/quickviewer/commit/fd3f2f605f4a977584cf571a57c998b464da5f16)
 
