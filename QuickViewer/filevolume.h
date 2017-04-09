@@ -70,6 +70,18 @@ public:
         else
             return QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[m_cnt]);
     }
+    QString getPathByFileName(QString name) {
+        if(m_loader->isArchive())
+            return "";
+        else
+            return QDir(m_loader->volumePath()).absoluteFilePath(name);
+    }
+    QString getIndexedFileName(int idx) {
+        if(idx < 0 || idx >= m_filelist.size())
+            return "";
+        return m_filelist[idx];
+    }
+
     /**
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
      * @return

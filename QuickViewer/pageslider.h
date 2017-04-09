@@ -7,9 +7,6 @@ class PageSlider : public QSlider
 {
 public:
     PageSlider(QWidget* parent);
-
-protected:
-  void mousePressEvent ( QMouseEvent * event );
 };
 
 #endif // PAGESLIDER_H

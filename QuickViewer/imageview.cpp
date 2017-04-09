@@ -1,7 +1,3 @@
-#include "imageview.h"
-#include "qvapplication.h"
-#include "exifdialog.h"
-
 #include <QMouseEvent>
 #include <QtDebug>
 #include <QPainter>
@@ -10,6 +6,11 @@
 #include <QDesktopServices>
 #include <QProcessEnvironment>
 #include <QMessageBox>
+#include <QClipboard>
+
+#include "imageview.h"
+#include "qvapplication.h"
+#include "exifdialog.h"
 
 ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
@@ -57,6 +58,7 @@ bool ImageView::addImage(ImageContent ic, bool pageNext)
     QSize size;
     QPoint offset;
     if(ic.BaseSize.width() > 0) {
+        m_pageImages.append(ic.Image);
         QGraphicsPixmapItem* gpi = s->addPixmap(ic.Image);
         // if we show the image with resizing more smooth, must be called
         gpi->setTransformationMode(Qt::SmoothTransformation);
@@ -110,6 +112,7 @@ void ImageView::clearImages()
     m_gpiImages.resize(0);
     m_pagesizes.resize(0);
     m_gpiOffsets.resize(0);
+    m_pageImages.resize(0);
 //    m_pageFilenames.resize(0);
 }
 
@@ -443,6 +446,15 @@ void ImageView::on_openExifDialog_triggered()
     exifDialog.setExif(info);
     exifDialog.open();
 }
+
+void ImageView::on_copyPage_triggered()
+{
+    if(m_pageImages.empty())
+        return;
+    QClipboard* clip = qApp->clipboard();
+    clip->setImage(m_pageImages[0].toImage());
+}
+
 
 bool ImageView::canDualView() const
 {

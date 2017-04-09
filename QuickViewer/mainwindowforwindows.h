@@ -8,6 +8,7 @@ class MainWindowForWindows : public MainWindow
 {
 public:
     explicit MainWindowForWindows(QWidget *parent = 0);
+    bool moveToTrush(QString path);
 
 public slots:
 //    void showEvent(QShowEvent * event);
@@ -19,7 +20,6 @@ public slots:
 private:
     bool bFirstView;
     HMENU m_showMainMenu; // HMENU
-    QString m_menutext;
 
     static MainWindowForWindows* MainWindowForWindows_self;
     static WNDPROC DefStaticProc;

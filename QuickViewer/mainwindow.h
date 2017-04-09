@@ -17,6 +17,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    virtual bool moveToTrush(QString path) {return false;}
+
     void keyPressEvent(QKeyEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
     void loadVolume(QString path);
@@ -51,6 +53,7 @@ public slots:
     void on_checkVersion_triggered();
     void on_exitApplicationOrFullscreen_triggered();
     void on_exit_triggered();
+    void on_deletePage_triggered();
 
 private slots:
     void on_hover_anchor(Qt::AnchorPoint anchor);

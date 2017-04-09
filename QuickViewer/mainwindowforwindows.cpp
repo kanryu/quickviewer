@@ -1,6 +1,6 @@
-#include <QWindow>
-#include <QMenuBar>
-#include <qpa/qplatformnativeinterface.h>
+#include <Windows.h>
+#include <Shellapi.h>
+#include <QDebug>
 
 #include "qvapplication.h"
 #include "mainwindowforwindows.h"
@@ -17,6 +17,24 @@ MainWindowForWindows::MainWindowForWindows(QWidget *parent)
     MainWindowForWindows_self = this;
 }
 
+bool MainWindowForWindows::moveToTrush(QString path)
+{
+    WCHAR from[ MAX_PATH+2048 ] = {0};
+    path.toWCharArray( from );
+    SHFILEOPSTRUCT fileop = {0};
+    fileop.wFunc = FO_DELETE;
+    fileop.pFrom = from;
+    fileop.fFlags = FOF_ALLOWUNDO | FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
+    int rv = SHFileOperation( &fileop );
+    if( 0 != rv ){
+        qDebug() << rv << QString::number( rv ).toInt( 0, 8 );
+        return false;
+    }
+
+    qDebug() << rv << path;
+    return true;
+}
+
 // This method is used because QShowEvent may not be called
 bool MainWindowForWindows::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
@@ -24,14 +42,7 @@ bool MainWindowForWindows::nativeEvent(const QByteArray &eventType, void *messag
         return false;
 
     int mes = (int)message;
-    QWindow* window = windowHandle();
-    if (!window) {
-        const QWidget* f_native_parent = nativeParentWidget();
-        if (f_native_parent)
-            window = f_native_parent->windowHandle();
-    }
-    HWND hwnd = static_cast<HWND>(QGuiApplication::platformNativeInterface()
-                                    ->nativeResourceForWindow(QByteArrayLiteral("handle"), window));
+    auto hwnd = reinterpret_cast<HWND>(winId());
     m_showMainMenu = ::GetSystemMenu(hwnd, false);
 
     QString menutxt = tr("Sh&ow/Hide MainMenuBar");

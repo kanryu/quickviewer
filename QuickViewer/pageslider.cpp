@@ -1,27 +1,21 @@
 #include "pageslider.h"
-#include <QMouseEvent>
+#include <QProxyStyle>
+
+
+class PageStyle : public QProxyStyle {
+public:
+    PageStyle(QStyle* style) : QProxyStyle(style) {}
+    int styleHint(QStyle::StyleHint hint, const QStyleOption* option = 0, const QWidget* widget = 0, QStyleHintReturn* returnData = 0) const
+    {
+        if (hint == QStyle::SH_Slider_AbsoluteSetButtons)
+            return (Qt::LeftButton | Qt::MidButton | Qt::RightButton);
+        return QProxyStyle::styleHint(hint, option, widget, returnData);
+    }
+};
+
 
 PageSlider::PageSlider(QWidget* parent)
     : QSlider(parent)
 {
-
-}
-
-void PageSlider::mousePressEvent(QMouseEvent *event)
-{
-    if (event->button() == Qt::LeftButton)
-    {
-        int newValue = 0;
-        if (orientation() == Qt::Vertical)
-            newValue = minimum() + ((maximum()-minimum()) * (height()-event->y())) / height() ;
-        else
-            newValue = minimum() + ((maximum()-minimum()+1) * event->x()) / width();
-
-        if(newValue != value()) {
-            setValue(newValue);
-            event->accept();
-            return;
-        }
-    }
-    QSlider::mousePressEvent(event);
+    setStyle(new PageStyle(style()));
 }

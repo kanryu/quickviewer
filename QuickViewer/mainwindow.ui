@@ -10,8 +10,15 @@
     <height>589</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ActionsContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>QuickViewer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="toolbar.qrc">
+    <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -49,6 +56,9 @@
          <blue>0</blue>
         </color>
        </brush>
+      </property>
+      <property name="renderHints">
+       <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
       </property>
      </widget>
     </item>
@@ -474,6 +484,16 @@
     <string>Stay On &amp;Top</string>
    </property>
   </action>
+  <action name="actionCopyPage">
+   <property name="text">
+    <string>Copy Image</string>
+   </property>
+  </action>
+  <action name="actionDeletePage">
+   <property name="text">
+    <string>Delete Image</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -498,6 +518,7 @@
     <slot>on_nextOnlyOnePage_triggered()</slot>
     <slot>on_prevOnlyOnePage_triggered()</slot>
     <slot>on_firstImageAsOneView_triggered(bool)</slot>
+    <slot>on_copyPage_triggered()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1006,6 +1027,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionCopyPage</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_copyPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDeletePage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_deletePage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1031,5 +1084,6 @@
   <slot>on_showMenuBar_triggered(bool)</slot>
   <slot>on_clearHistory_triggered()</slot>
   <slot>on_stayOnTop_triggered(bool)</slot>
+  <slot>on_deletePage_triggered()</slot>
  </slots>
 </ui>

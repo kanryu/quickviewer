@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.4.2
+VERSION = 0.4.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -34,7 +34,7 @@ unix {
 
 DESTDIR = ../bin
 
-SOURCES += main.cpp\
+SOURCES += main.cpp \
     mainwindow.cpp \
     imageview.cpp \
     filevolume.cpp \
@@ -48,7 +48,7 @@ SOURCES += main.cpp\
     fileloaderziparchive.cpp \
     fileloaderrararchive.cpp \
     shortcutbutton.cpp \
-    mainwindowforwindows.cpp
+
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -64,7 +64,12 @@ HEADERS  += mainwindow.h \
     fileloaderziparchive.h \
     fileloaderrararchive.h \
     shortcutbutton.h \
-    mainwindowforwindows.h
+
+
+win32 {
+    SOURCES += mainwindowforwindows.cpp
+    HEADERS += mainwindowforwindows.h
+}
 
 FORMS    += mainwindow.ui \
     exifdialog.ui \
@@ -87,11 +92,6 @@ DEFINES += \
 
 CODECFORSRC = UTF-8
 
-#lupdate_only {
-#    SOURCES += mainwindow.ui
-#    SOURCES += exifdialog.ui
-#    SOURCES += keyconfigdialog.ui
-#}
 DISTFILES += \
     translations/quickviewer_ja.qm
 

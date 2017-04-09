@@ -67,6 +67,7 @@ public:
     int currentPageCount() const { return m_pagesizes.size(); }
     const QVector<QSize> PageSizes() const { return  m_pagesizes; }
 //    const QVector<QString> PageFileNames() const { return  m_pageFilenames; }
+    void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
 
 signals:
     /**
@@ -85,6 +86,7 @@ protected:
 //    void dropEvent( QDropEvent *e ) {qDebug() << "ImageView::dropEvent";}
 //    void dragMoveEvent( QDragMoveEvent *e ) {qDebug() << "ImageView::dragMoveEvent";}
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
+
 public slots:
     void on_nextPage_triggered();
     void on_prevPage_triggered();
@@ -92,16 +94,18 @@ public slots:
     void on_lastPage_triggered();
     void on_nextOnlyOnePage_triggered();
     void on_prevOnlyOnePage_triggered();
+
     void on_fitting_triggered(bool maximized);
     void on_dualView_triggered(bool viewdual);
     void on_rightSideBook_triggered(bool rightSideBook);
-    void on_scaleUp_triggered();
-    void on_scaleDown_triggered();
     void on_wideImageAsOneView_triggered(bool wideImage);
     void on_firstImageAsOneView_triggered(bool firstImage);
+
+    void on_scaleUp_triggered();
+    void on_scaleDown_triggered();
     void on_openFiler_triggered();
     void on_openExifDialog_triggered();
-    void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
+    void on_copyPage_triggered();
 
 private:
     bool canDualView() const;
@@ -114,7 +118,7 @@ private:
      * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
      */
     QVector<QGraphicsItem*> m_gpiImages;
-//    QVector<QString> m_pageFilenames;
+    QVector<QPixmap> m_pageImages;
     QVector<QPoint> m_gpiOffsets;
 
     SavedPoint m_ptLeftTop;

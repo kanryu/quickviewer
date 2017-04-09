@@ -100,6 +100,9 @@ MainWindow::MainWindow(QWidget *parent)
     contextMenu.addAction(ui->actionNextOnePage);
     contextMenu.addAction(ui->actionPrevOnePage);
     contextMenu.addSeparator();
+    contextMenu.addAction(ui->actionCopyPage);
+    contextMenu.addAction(ui->actionDeletePage);
+    contextMenu.addSeparator();
     contextMenu.addAction(ui->actionOpenFiler);
     contextMenu.addAction(ui->actionOpenExif);
     contextMenu.addSeparator();
@@ -641,4 +644,42 @@ void MainWindow::on_exitApplicationOrFullscreen_triggered()
         ui->actionFullscreen->trigger();
     else
         ui->actionExit->trigger();
+}
+
+void MainWindow::on_deletePage_triggered()
+{
+    if(ui->graphicsView->currentPageCount() <= 0 || !m_fileVolume || m_fileVolume->isArchive())
+        return;
+    ImageContent ic = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage()-1);
+    QString path = QDir::toNativeSeparators(m_fileVolume->getPathByFileName(ic.Path));
+    if(!path.length())
+        return;
+    QMessageBox msgBox(this);
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    msgBox.setWindowTitle(tr("Confirmation"));
+
+    //text
+    msgBox.setTextFormat(Qt::RichText);
+    QString message = QString("<h2>%1</h2><p>%2</p>" )
+            .arg(tr("Are you sure you delete the image?"))
+            .arg(path);
+    msgBox.setText(message);
+
+    //icon
+    QImage image = ic.Image.toImage();
+    image = image.scaled(QSize(100, 100), Qt::KeepAspectRatio);
+    msgBox.setIconPixmap(QPixmap::fromImage(image));
+
+
+    if(msgBox.exec() == QMessageBox::Cancel) {
+        return;
+    }
+    if(moveToTrush(path))  {
+        // if deletion successed, reload the volume
+        QString volumepath = m_fileVolume->volumePath();
+        if(m_fileVolume->getIndexedFileName(ui->graphicsView->currentPage()-2).length())
+            volumepath = m_fileVolume->getIndexedFileName(ui->graphicsView->currentPage()-2);
+        loadVolume(volumepath);
+    }
 }
