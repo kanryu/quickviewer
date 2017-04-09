@@ -13,6 +13,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     setApplicationName(APP_NAME);
     setOrganizationName(APP_ORGANIZATION);
 
+    // Default key configs
     m_keyConfigDefauls["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
     m_keyConfigDefauls["actionNextPage"] = QKeySequence("Right, Space");
     m_keyConfigDefauls["actionPrevPage"] = QKeySequence("Left, Backspace");
@@ -24,8 +25,11 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
     m_keyConfigDefauls["actionLastPage"] = QKeySequence("End");
     m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Home");
-    m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgUp");
-    m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgDown");
+    m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgDown");
+    m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgUp");
+    m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
+    m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
+
     m_keyConfigs = m_keyConfigDefauls;
     m_keyConfigs.detach();
 

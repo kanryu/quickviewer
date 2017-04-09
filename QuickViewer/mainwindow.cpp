@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->registAction("actionPrevVolume", ui->actionPrevVolume);
     qApp->registAction("actionNextOnePage", ui->actionNextOnePage);
     qApp->registAction("actionPrevOnePage", ui->actionPrevOnePage);
+    qApp->registAction("actionCopyPage", ui->actionCopyPage);
+    qApp->registAction("actionDeletePage", ui->actionDeletePage);
 
 
     ui->actionFitting->setChecked(qApp->Fitting());

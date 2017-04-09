@@ -491,7 +491,7 @@
   </action>
   <action name="actionDeletePage">
    <property name="text">
-    <string>Delete Image</string>
+    <string>Move the Image to trash box</string>
    </property>
   </action>
  </widget>

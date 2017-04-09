@@ -638,7 +638,23 @@
     </message>
     <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
-        <translation>メインメニューの表示／非表示切り替え</translation>
+        <translation type="vanished">メインメニューの表示／非表示切り替え</translation>
+    </message>
+    <message>
+        <source>Copy Image</source>
+        <translation>画像をクリップボードにコピー</translation>
+    </message>
+    <message>
+        <source>Delete Image</source>
+        <translation type="obsolete">現在のページの画像をゴミ箱に入れる</translation>
+    </message>
+    <message>
+        <source>Are you sure you delete the image?</source>
+        <translation>本当にこの画像をゴミ箱に入れますか？</translation>
+    </message>
+    <message>
+        <source>Move the Image to trash box</source>
+        <translation>現在のページの画像をゴミ箱に入れる</translation>
     </message>
 </context>
 <context>
