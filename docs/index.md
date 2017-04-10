@@ -99,17 +99,23 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Scale Down  | Keyboard | Ten keys(-) | do nothing with Fitting |
 | Fitting     | Keyboard | F12 Key |  |
 |             | Keyboard | Ten keys(-) | |
+| Image to trash box   | Keyboard | Delete Key | Move the Image of current page to trash box |
+| Copy Image   | Keyboard | Ctrl+C Key | Copy Image of current page |
+
+
+
 
 ## System Requirement
 
 - Operating System
     - Windows Vista,7 or newer
     - Windows Sever 2008 or newer
-    - Nearly, Linux Desktops
+    - Linux Desktops(need to build from source code )
 - CPU
     - minimum Dual Core(more better with internal GPU or external GPU)
+    - strongly recommended on x64 architecture
 - Memory
-    - over 1GB free Memory(strongly recommended on x64 architecture)
+    - over 1GB free Memory
 
 ```
 The final element.
