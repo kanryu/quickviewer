@@ -7,6 +7,8 @@
 #include <QDragEnterEvent>
 #include "filevolume.h"
 #include "exifdialog.h"
+#include "pagemanager.h"
+#include <QGraphicsPixmapItem>
 
 /**
  * @brief The SavedPoint class
@@ -37,7 +39,55 @@ private:
     QPoint m_ptSaved;
 };
 
+struct PageGraphicsItem
+{
+    QPixmap Image;
+    /**
+     * @brief GrItem
+     * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
+     */
+    QGraphicsItem* GrItem;
+    /**
+     * @brief Offset if GrItem is rolling, Offset is not Point(0,0)
+     */
+    QSize PageSize;
+    QPoint Offset;
+    enum Fitting {
+        FitCenter,
+        FitLeft,
+        FitRight
+    };
+    PageGraphicsItem()
+     : Image(), GrItem(nullptr), PageSize(), Offset(){}
+    PageGraphicsItem(QPixmap image, QGraphicsItem* item, QSize size, QPoint offset)
+        : Image(image), GrItem(item), PageSize(size), Offset(offset){}
 
+    /**
+     * @brief setPageLayout set each image on the page
+     * @param viewport: the image must be inscribed in the viewport area
+     */
+    void setPageLayoutFitting(QRect viewport, Fitting fitting) {
+        QSize newsize = PageSize.scaled(viewport.size(), Qt::KeepAspectRatio);
+        qreal scale = 1.0*newsize.width()/PageSize.width();
+        GrItem->setScale(scale);
+        QPoint of = QPoint(scale*Offset.x(), scale*Offset.y());
+        if(newsize.height() == viewport.height()) { // fitting on upper and bottom
+            int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+            GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
+        } else { // fitting on left and right
+            GrItem->setPos(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2);
+        }
+    }
+    void setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale) {
+        GrItem->setScale(scale);
+        QSize size = viewport.size();
+        QSize newsize = PageSize;
+        newsize *= scale;
+        QPoint of = QPoint(scale*Offset.x(), scale*Offset.y());
+        int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+        GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
+    }
+};
 
 /**
  * @brief The ImageView class
@@ -50,7 +100,7 @@ class ImageView : public QGraphicsView
 public:
     enum RendererType { Native, OpenGL, Image };
     explicit ImageView(QWidget *parent = Q_NULLPTR);
-    void setImage(ImageContent image);
+//    void setImage(ImageContent image);
     void setRenderer(RendererType type = Native);
     bool addImage(ImageContent image, bool pageNext);
     void clearImages();
@@ -59,13 +109,17 @@ public:
     void reloadCurrentPage(bool pageNext=true);
     void setIndexedPage(int idx);
     void setFileVolume(IFileVolume* vol) { m_fileVolume = vol; }
+    /**
+     * @brief currentViewSize returns current manual resizing magnification value
+     * @return
+     */
     int currentViewSize() { return viewSizeList[viewSizeIdx]; }
     int currentPage() const {return m_currentPage+1; }
     QString currentPageAsString() const;
     Qt::AnchorPoint hoverState() const { return m_hoverState; }
     void readyForPaint();
-    int currentPageCount() const { return m_pagesizes.size(); }
-    const QVector<QSize> PageSizes() const { return  m_pagesizes; }
+    int currentPageCount() const { return m_pages.size(); }
+//    const QVector<QSize> PageSizes() const { return  m_pagesizes; }
 //    const QVector<QString> PageFileNames() const { return  m_pageFilenames; }
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
 
@@ -112,14 +166,16 @@ private:
 
     RendererType m_renderer;
 //    QImage m_img;
-    QVector<QSize> m_pagesizes;
-    /**
-     * @brief m_gpiImages
-     * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
-     */
-    QVector<QGraphicsItem*> m_gpiImages;
-    QVector<QPixmap> m_pageImages;
-    QVector<QPoint> m_gpiOffsets;
+//    QVector<QSize> m_pagesizes;
+//    /**
+//     * @brief m_gpiImages
+//     * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
+//     */
+//    QVector<QGraphicsItem*> m_gpiImages;
+//    QVector<QPixmap> m_pageImages;
+//    QVector<QPoint> m_gpiOffsets;
+
+    QVector<PageGraphicsItem> m_pages;
 
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
@@ -141,6 +197,8 @@ private:
     bool m_skipResizeEvent;
 
     ExifDialog exifDialog;
+
+    PageManager* m_pageManager;
 };
 
 

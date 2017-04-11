@@ -15,6 +15,10 @@
 
 #define APP_INI "quickviewer.ini"
 
+namespace Ui {
+class MainWindow;
+}
+
 class QAction;
 //typedef QList<QKeySequence> QKeySequenceList;
 
@@ -97,6 +101,7 @@ public:
             m_keyConfigsReverse[seq[i]] = actionName;
         }
     }
+    void registActions(Ui::MainWindow* ui);
     void setKeySequence(const QString& actionName, const QKeySequence seq) {
         if(!m_actionsByName.contains(actionName))
             return;

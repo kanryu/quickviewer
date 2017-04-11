@@ -29,40 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pageSlider->hide();
 
     // Mapping to Key-Action Table and Key Config Dialog
-    qApp->registAction("actionExit", ui->actionExit);
-    qApp->registAction("actionClearHistory", ui->actionClearHistory);
-    qApp->registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
-    qApp->registAction("actionNextPage", ui->actionNextPage);
-    qApp->registAction("actionPrevPage", ui->actionPrevPage);
-    qApp->registAction("actionScaleUp", ui->actionScaleUp);
-    qApp->registAction("actionScaleDown", ui->actionScaleDown);
-    qApp->registAction("actionFitting", ui->actionFitting);
-    qApp->registAction("actionDualView", ui->actionDualView);
-    qApp->registAction("actionFullscreen", ui->actionFullscreen);
-    qApp->registAction("actionStayOnTop", ui->actionStayOnTop);
-    qApp->registAction("actionAppVersion", ui->actionAppVersion);
-    qApp->registAction("actionAutoLoaded", ui->actionAutoLoaded);
-    qApp->registAction("actionRightSideBook", ui->actionRightSideBook);
-    qApp->registAction("actionOpenFolder", ui->actionOpenFolder);
-    qApp->registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
-    qApp->registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
-    qApp->registAction("actionLastPage", ui->actionLastPage);
-    qApp->registAction("actionFirstPage", ui->actionFirstPage);
-    qApp->registAction("actionShowToolBar", ui->actionShowToolBar);
-    qApp->registAction("actionShowStatusBar", ui->actionShowStatusBar);
-    qApp->registAction("actionShowPageBar", ui->actionShowPageBar);
-    qApp->registAction("actionShowMenuBar", ui->actionShowMenuBar);
-    qApp->registAction("actionOpenFiler", ui->actionOpenFiler);
-    qApp->registAction("actionOpenExif", ui->actionOpenExif);
-    qApp->registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
-    qApp->registAction("actionCheckVersion", ui->actionCheckVersion);
-    qApp->registAction("actionNextVolume", ui->actionNextVolume);
-    qApp->registAction("actionPrevVolume", ui->actionPrevVolume);
-    qApp->registAction("actionNextOnePage", ui->actionNextOnePage);
-    qApp->registAction("actionPrevOnePage", ui->actionPrevOnePage);
-    qApp->registAction("actionCopyPage", ui->actionCopyPage);
-    qApp->registAction("actionDeletePage", ui->actionDeletePage);
-
+    qApp->registActions(ui);
 
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());

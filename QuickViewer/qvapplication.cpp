@@ -1,9 +1,11 @@
-#include "qvapplication.h"
-#include "qv_init.h"
 #include <QTextCodec>
 #include <QLocale>
 #include <QKeySequence>
 #include <QDebug>
+
+#include "qvapplication.h"
+#include "qv_init.h"
+#include "ui_mainwindow.h"
 
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
@@ -39,6 +41,43 @@ QVApplication::QVApplication(int &argc, char **argv)
 
     loadSettings();
     qDebug() << m_keyConfigs;
+}
+
+void QVApplication::registActions(Ui::MainWindow *ui)
+{
+    registAction("actionExit", ui->actionExit);
+    registAction("actionClearHistory", ui->actionClearHistory);
+    registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
+    registAction("actionNextPage", ui->actionNextPage);
+    registAction("actionPrevPage", ui->actionPrevPage);
+    registAction("actionScaleUp", ui->actionScaleUp);
+    registAction("actionScaleDown", ui->actionScaleDown);
+    registAction("actionFitting", ui->actionFitting);
+    registAction("actionDualView", ui->actionDualView);
+    registAction("actionFullscreen", ui->actionFullscreen);
+    registAction("actionStayOnTop", ui->actionStayOnTop);
+    registAction("actionAppVersion", ui->actionAppVersion);
+    registAction("actionAutoLoaded", ui->actionAutoLoaded);
+    registAction("actionRightSideBook", ui->actionRightSideBook);
+    registAction("actionOpenFolder", ui->actionOpenFolder);
+    registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
+    registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
+    registAction("actionLastPage", ui->actionLastPage);
+    registAction("actionFirstPage", ui->actionFirstPage);
+    registAction("actionShowToolBar", ui->actionShowToolBar);
+    registAction("actionShowStatusBar", ui->actionShowStatusBar);
+    registAction("actionShowPageBar", ui->actionShowPageBar);
+    registAction("actionShowMenuBar", ui->actionShowMenuBar);
+    registAction("actionOpenFiler", ui->actionOpenFiler);
+    registAction("actionOpenExif", ui->actionOpenExif);
+    registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
+    registAction("actionCheckVersion", ui->actionCheckVersion);
+    registAction("actionNextVolume", ui->actionNextVolume);
+    registAction("actionPrevVolume", ui->actionPrevVolume);
+    registAction("actionNextOnePage", ui->actionNextOnePage);
+    registAction("actionPrevOnePage", ui->actionPrevOnePage);
+    registAction("actionCopyPage", ui->actionCopyPage);
+    registAction("actionDeletePage", ui->actionDeletePage);
 }
 
 void QVApplication::addHistory(QString path)
