@@ -21,10 +21,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , m_sliderChanging(false)
     , m_viewerWindowStateMaximized(false)
-    , m_fileVolume(nullptr)
     , contextMenu(this)
+    , m_pageManager(this)
 {
     ui->setupUi(this);
+    ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
     ui->pageSlider->hide();
 
@@ -63,7 +64,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->installEventFilter(this);
     ui->mainToolBar->installEventFilter(this);
     ui->pageFrame->installEventFilter(this);
-//    ui->graphicsView->scene()->installEventFilter(this);
 
     // Context menus
     contextMenu.addAction(ui->actionNextOnePage);
@@ -82,6 +82,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
     connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
     connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historymenu_triggered(QAction*)) );
+    connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
+    connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     QVApplication* myapp = qApp;
@@ -100,8 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    if(m_fileVolume)
-        delete m_fileVolume;
+    m_pageManager.dispose();
     qApp->saveSettings();
 }
 
@@ -132,10 +133,10 @@ void MainWindow::dropEvent(QDropEvent *e)
 void MainWindow::wheelEvent(QWheelEvent *e)
 {
     if(e->delta() < 0) {
-        ui->graphicsView->nextPage();
+        ui->actionNextPage->trigger();
     }
     if(e->delta() > 0) {
-        ui->graphicsView->prevPage();
+        ui->actionPrevPage->trigger();
     }
     e->accept();
 }
@@ -221,9 +222,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::loadVolume(QString path)
 {
-    IFileVolume* fv = IFileVolume::CreateVolume(this, path);
-    if(fv) {
-        resetVolume(fv);
+    if(m_pageManager.loadVolume(path)) {
         return;
     }
     QMessageBox msgBox(this);
@@ -249,19 +248,6 @@ void MainWindow::makeHistoryMenu()
     }
 }
 
-void MainWindow::resetVolume(IFileVolume *newer)
-{
-    if(m_fileVolume)
-        delete m_fileVolume;
-    m_fileVolume = newer;
-    ui->graphicsView->setFileVolume(m_fileVolume);
-    ui->graphicsView->setIndexedPage(m_fileVolume->pageCount());
-    qApp->addHistory(m_fileVolume->volumePath());
-    m_volumeCaption = QString("%1 - %2").arg(m_fileVolume->volumePath()).arg(qApp->applicationName());
-    setWindowTitle(m_volumeCaption);
-    makeHistoryMenu();
-}
-
 /**
  * @brief 固定的なホットキーの設定
  */
@@ -285,7 +271,7 @@ void MainWindow::on_exit_triggered()
 
 void MainWindow::on_file_changed(QString path)
 {
-    qDebug() << "[MainWindow] newImage:" << path;
+    //qDebug() << "[MainWindow] newImage:" << path;
 
 }
 
@@ -295,82 +281,14 @@ void MainWindow::on_clearHistory_triggered()
     makeHistoryMenu();
 }
 
-
-//void MainWindow::on_nextPage_triggered()
-//{
-////    m_fileVolume->nextFile();
-//    ui->graphicsView->nextPage();
-//}
-
-//void MainWindow::on_prevPage_triggered()
-//{
-////    m_fileVolume->prevFile();
-//    ui->graphicsView->prevPage();
-//}
-
-//void MainWindow::on_firstPage_triggered()
-//{
-//    ui->graphicsView->setIndexedPage(0);
-//}
-
-//void MainWindow::on_lastPage_triggered()
-//{
-//    if(m_fileVolume && m_fileVolume->size() > 0)
-//        ui->graphicsView->setIndexedPage(m_fileVolume->size()-1);
-//}
-
-//void MainWindow::on_nextOnlyOnePage_triggered()
-//{
-
-//}
-
-//void MainWindow::on_prevOnlyOnePage_triggered()
-//{
-
-//}
-
 void MainWindow::on_nextVolume_triggered()
 {
-    if(!m_fileVolume)
-        return;
-    QDir dir(m_fileVolume->volumePath());
-    QString current = dir.absolutePath();
-    if(!dir.cdUp())
-        return;
-    foreach (const QString& name, dir.entryList(QDir::Dirs | QDir::Files, QDir::Name)) {
-        QString path = dir.filePath(name);
-        if(path <= current)
-            continue;
-        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(this, path);
-        if(fv) {
-            resetVolume(fv);
-            fv->setSuppressCache(false);
-            return;
-        }
-    }
+    m_pageManager.nextVolume();
 }
 
 void MainWindow::on_prevVolume_triggered()
 {
-    if(!m_fileVolume)
-        return;
-    QDir dir(m_fileVolume->volumePath());
-    QString current = dir.absolutePath();
-    if(!dir.cdUp())
-        return;
-    QStringList list = dir.entryList(QDir::Dirs | QDir::Files, QDir::Name);
-    QListIterator<QString> it(list);it.toBack();
-    while(it.hasPrevious()) {
-        QString path = dir.filePath(it.previous());
-        if(path >= current)
-            continue;
-        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(this, path);
-        if(fv) {
-            resetVolume(fv);
-            fv->setSuppressCache(false);
-            return;
-        }
-    }
+    m_pageManager.prevVolume();
 }
 
 void MainWindow::on_fullscreen_triggered()
@@ -443,50 +361,41 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
 
 void MainWindow::on_pageChanged_triggered()
 {
-    qDebug() << "on_pageChanged_triggered";
+    //qDebug() << "on_pageChanged_triggered";
     // PageSlider
-    QString pagestr = QString("(%1)").arg(ui->graphicsView->currentPageAsString());
-    ui->pageLabel->setText(pagestr);
+    ui->pageLabel->setText(m_pageManager.currentPageNumAsString());
     m_sliderChanging = true;
-    ui->pageSlider->setMaximum(m_fileVolume->size());
-    int currentPage = ui->graphicsView->currentPage();
-    ui->pageSlider->setValue(currentPage);
+    ui->pageSlider->setMaximum(m_pageManager.size());
+    ui->pageSlider->setValue(m_pageManager.currentPage());
     m_sliderChanging = false;
     ui->pageSlider->show();
 
     // StatusBar
-    int pages = ui->graphicsView->currentPageCount();
-    QString status;
-    if(pages == 1) {
-        const ImageContent ic1 = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage()-1);
-        status = QString("%1 %2[%3x%4]")
-                    .arg(ic1.Path)
-                    .arg(pagestr)
-                    .arg(ic1.BaseSize.width()).arg(ic1.BaseSize.height());
-    } else {
-        const ImageContent ic1 = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage()-1);
-        const ImageContent ic2 = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage());
-        status = QString("%1 %2[%3x%4] | %5 [%6x%7]")
-                    .arg(ic1.Path)
-                    .arg(pagestr)
-                    .arg(ic1.BaseSize.width()).arg(ic1.BaseSize.height())
-                    .arg(ic2.Path)
-                    .arg(ic2.BaseSize.width()).arg(ic2.BaseSize.height());
-    }
-    ui->statusBar->showMessage(status);
-    m_pageCaption = QString("%1 - %2").arg(status).arg(qApp->applicationName());
+    m_pageCaption = m_pageManager.currentPageStatusAsString();
+    ui->statusBar->showMessage(m_pageCaption);
     if(!qApp->ShowStatusBar())
-        setWindowTitle(m_pageCaption);
+        setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
+}
+
+void MainWindow::on_volumeChanged_triggered()
+{
+    qApp->addHistory(m_pageManager.volumePath());
+
+    m_volumeCaption = QString("%1 - %2")
+            .arg(m_pageManager.volumePath()).arg(qApp->applicationName());
+    setWindowTitle(m_volumeCaption);
+    makeHistoryMenu();
+
 }
 
 
 void MainWindow::on_pageSlider_changed(int value)
 {
-    qDebug() << "on_pageSlider_changed " << value << m_sliderChanging;
+    //qDebug() << "on_pageSlider_changed " << value << m_sliderChanging;
     if(m_sliderChanging)
         return;
     m_sliderChanging = true;
-    ui->graphicsView->setIndexedPage(value-1);
+    m_pageManager.selectPage(value-1);
     m_sliderChanging = false;
 }
 
@@ -514,7 +423,7 @@ void MainWindow::on_autoloaded_triggered(bool autoloaded)
 
 void MainWindow::on_historymenu_triggered(QAction *action)
 {
-    qDebug() << action;
+    //qDebug() << action;
     loadVolume(action->text().mid(4));
 }
 
@@ -525,7 +434,7 @@ void MainWindow::on_openfolder_triggered()
 //    QFileDialog dialog = QFileDialog(this, tr("Open a image folder"));
 //    if(dialog.exec()) {
     if(folder.length() > 0) {
-        qDebug() << folder;
+        //qDebug() << folder;
 //        QDir dir(folder);
 //        if(dir.exists())
 //            loadVolume(folder);
@@ -617,10 +526,9 @@ void MainWindow::on_exitApplicationOrFullscreen_triggered()
 
 void MainWindow::on_deletePage_triggered()
 {
-    if(ui->graphicsView->currentPageCount() <= 0 || !m_fileVolume || m_fileVolume->isArchive())
+    if(m_pageManager.currentPageCount() <= 0 || !m_pageManager.isFolder())
         return;
-    ImageContent ic = m_fileVolume->getIndexedImageContent(ui->graphicsView->currentPage()-1);
-    QString path = QDir::toNativeSeparators(m_fileVolume->getPathByFileName(ic.Path));
+    QString path = m_pageManager.currentPagePath();
     if(!path.length())
         return;
     QMessageBox msgBox(this);
@@ -636,7 +544,8 @@ void MainWindow::on_deletePage_triggered()
     msgBox.setText(message);
 
     //icon
-    QImage image = ic.Image.toImage();
+    QVector<ImageContent> ic = m_pageManager.currentPageContent();
+    QImage image = ic[0].Image.toImage();
     image = image.scaled(QSize(100, 100), Qt::KeepAspectRatio);
     msgBox.setIconPixmap(QPixmap::fromImage(image));
 
@@ -646,9 +555,9 @@ void MainWindow::on_deletePage_triggered()
     }
     if(moveToTrush(path))  {
         // if deletion successed, reload the volume
-        QString volumepath = m_fileVolume->volumePath();
-        if(m_fileVolume->getIndexedFileName(ui->graphicsView->currentPage()-2).length())
-            volumepath = m_fileVolume->getIndexedFileName(ui->graphicsView->currentPage()-2);
+        QString volumepath = m_pageManager.volumePath();
+        if(m_pageManager.nextPagePathAfterDeleted().length())
+            volumepath = m_pageManager.nextPagePathAfterDeleted();
         loadVolume(volumepath);
     }
 }

@@ -20,33 +20,39 @@ void IFileVolume::on_ready()
     if(m_cnt < 0 || m_cnt >= m_filelist.size())
         return;
 
-    qDebug() << "on_ready: m_cnt" << m_cnt;
+//    qDebug() << "on_ready: m_cnt" << m_cnt;
     QVector<int> offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
-    if(m_suppressCache)
-        offsets = {0, 1, 2, 3};
+    if(m_suppressCache) {
+        offsets = {0, 1};
+        m_suppressCache = false;
+    }
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())
             continue;
-        if(m_pageCache.contains(cnt))
-            m_pageCache.removeOne(cnt);
-        else {
-            qDebug() << "add cached:" << cnt;
-            m_imageCache[cnt] = QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]);
-        }
-        m_pageCache.push_front(cnt);
+//        if(m_pageCache.contains(cnt))
+//            m_pageCache.removeOne(cnt);
+//        else {
+////            qDebug() << "add cached:" << cnt;
+//            m_imageCache[cnt] = QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]);
+//        }
+//        m_pageCache.push_front(cnt);
+        if(m_imageCache.checkShouldBeInserted(cnt))
+            m_imageCache.insertNoChecked(cnt, QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]));
     }
-    m_currentCache = m_imageCache[m_cnt];
-    while(m_pageCache.size() > 16) {
-        int cnt = m_pageCache.takeLast();
-        m_imageCache.remove(cnt);
-        qDebug() << "remove cached:" << cnt;
-    }
+//    m_currentCache = m_imageCache[m_cnt];
+    m_currentCache = m_imageCache.object(m_cnt);
+//    while(m_pageCache.size() > 16) {
+//        int cnt = m_pageCache.takeLast();
+//        m_imageCache.remove(cnt);
+////        qDebug() << "remove cached:" << cnt;
+//    }
 }
 
 const ImageContent IFileVolume::getIndexedImageContent(int idx)
 {
-    future_image cache = m_imageCache[idx];
+//    future_image cache = m_imageCache[idx];
+    future_image cache = m_imageCache.object(idx);
     if(!cache.isFinished())
         cache.waitForFinished();
     return cache.result();
@@ -181,14 +187,14 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         return ImageContent(QPixmap::fromImage(src), path, src.size(), info);
 
     // resample for too big images
-    qDebug() << path << "[1]Source:" <<  src;
+//    qDebug() << path << "[1]Source:" <<  src;
     QSize srcSizeReal = src.size();
     QImage src2;
     switch(src.depth()) {
     case 32:
         if((src.width() | 0x3) > 0) {
             src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
-            qDebug() << path << "[4]Source:" <<  src2;
+            //qDebug() << path << "[4]Source:" <<  src2;
             src = src2;
         }
         break;
@@ -198,7 +204,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         }
         if((src.width() | 0xF) > 0) {
             src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
-            qDebug() << path << "[4]Source:" <<  src2;
+            //qDebug() << path << "[4]Source:" <<  src2;
             src = src2;
         }
         break;
@@ -207,9 +213,9 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     QSize srcSize = src.size();
     QSize halfSize = QSize((srcSize.width())/2, (srcSize.height())/2);
 
-    qDebug() << path << "[3]width:" << srcSize;
+    //qDebug() << path << "[3]width:" << srcSize;
     QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
-    qDebug() << path << "[2]Dest:" <<  half;
+    //qDebug() << path << "[2]Dest:" <<  half;
 
     ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
     ResizeHalf resizer(fmt);

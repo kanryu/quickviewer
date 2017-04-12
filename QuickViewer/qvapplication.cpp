@@ -35,12 +35,12 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigs = m_keyConfigDefauls;
     m_keyConfigs.detach();
 
-    qDebug() << m_keyConfigs;
+    //qDebug() << m_keyConfigs;
 
     m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     loadSettings();
-    qDebug() << m_keyConfigs;
+    //qDebug() << m_keyConfigs;
 }
 
 void QVApplication::registActions(Ui::MainWindow *ui)

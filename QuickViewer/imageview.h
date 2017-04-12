@@ -100,27 +100,15 @@ class ImageView : public QGraphicsView
 public:
     enum RendererType { Native, OpenGL, Image };
     explicit ImageView(QWidget *parent = Q_NULLPTR);
-//    void setImage(ImageContent image);
     void setRenderer(RendererType type = Native);
-    bool addImage(ImageContent image, bool pageNext);
-    void clearImages();
-    void nextPage();
-    void prevPage();
     void reloadCurrentPage(bool pageNext=true);
-    void setIndexedPage(int idx);
-    void setFileVolume(IFileVolume* vol) { m_fileVolume = vol; }
+    void setPageManager(PageManager* manager);
     /**
      * @brief currentViewSize returns current manual resizing magnification value
      * @return
      */
     int currentViewSize() { return viewSizeList[viewSizeIdx]; }
-    int currentPage() const {return m_currentPage+1; }
-    QString currentPageAsString() const;
     Qt::AnchorPoint hoverState() const { return m_hoverState; }
-    void readyForPaint();
-    int currentPageCount() const { return m_pages.size(); }
-//    const QVector<QSize> PageSizes() const { return  m_pagesizes; }
-//    const QVector<QString> PageFileNames() const { return  m_pageFilenames; }
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
 
 signals:
@@ -142,6 +130,10 @@ protected:
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 
 public slots:
+    bool addImage(ImageContent image, bool pageNext);
+    void clearImages();
+    void readyForPaint();
+
     void on_nextPage_triggered();
     void on_prevPage_triggered();
     void on_firstPage_triggered();
@@ -162,31 +154,14 @@ public slots:
     void on_copyPage_triggered();
 
 private:
-    bool canDualView() const;
 
     RendererType m_renderer;
-//    QImage m_img;
-//    QVector<QSize> m_pagesizes;
-//    /**
-//     * @brief m_gpiImages
-//     * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
-//     */
-//    QVector<QGraphicsItem*> m_gpiImages;
-//    QVector<QPixmap> m_pageImages;
-//    QVector<QPoint> m_gpiOffsets;
-
     QVector<PageGraphicsItem> m_pages;
 
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
     bool m_isMouseDown;
     Qt::AnchorPoint m_hoverState;
-    /**
-     * @brief 現在表示しているページのうち最も若い番号。filevolume側の内部ページと異なる場合があるので注意
-     */
-    int m_currentPage;
-
-    IFileVolume* m_fileVolume;
     /**
      * @brief マニュアル拡大縮小するときの倍率を保持するリスト
      */

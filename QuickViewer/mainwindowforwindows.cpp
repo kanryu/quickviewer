@@ -36,12 +36,12 @@ bool MainWindowForWindows::moveToTrush(QString path)
 }
 
 // This method is used because QShowEvent may not be called
-bool MainWindowForWindows::nativeEvent(const QByteArray &eventType, void *message, long *result)
+bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
 {
     if(!bFirstView)
         return false;
 
-    int mes = (int)message;
+//    int mes = reinterpret_cast<int>(message);
     auto hwnd = reinterpret_cast<HWND>(winId());
     m_showMainMenu = ::GetSystemMenu(hwnd, false);
 

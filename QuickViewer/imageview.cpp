@@ -14,9 +14,9 @@
 ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
     , m_renderer(Native)
-    , m_fileVolume(nullptr)
+    , m_pageManager(nullptr)
     , m_hoverState(Qt::AnchorHorizontalCenter)
-    , m_currentPage(0)
+//    , m_currentPage(0)
     , m_wideImage(false)
     , exifDialog(this)
     , m_skipResizeEvent(false)
@@ -38,17 +38,9 @@ ImageView::ImageView(QWidget *parent)
 
 }
 
-
-//void ImageView::setImage(ImageContent pixmap)
-//{
-//    if(m_fileVolume == nullptr) return;
-//    clearImages();
-//    addImage(pixmap, true);
-//}
-
 bool ImageView::addImage(ImageContent ic, bool pageNext)
 {
-    if(m_fileVolume == nullptr) return false;
+    if(m_pageManager == nullptr) return false;
     m_ptLeftTop.reset();
     QGraphicsScene *s = scene();
 
@@ -80,7 +72,7 @@ bool ImageView::addImage(ImageContent ic, bool pageNext)
     } else {
         QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE"));
         gtext->setDefaultTextColor(Qt::white);
-        qDebug() << gtext;
+        //qDebug() << gtext;
         gitem = gtext;
         size = QSize(100, 100);
     }
@@ -95,7 +87,7 @@ bool ImageView::addImage(ImageContent ic, bool pageNext)
 
 void ImageView::clearImages()
 {
-    if(m_fileVolume == nullptr) return;
+    if(m_pageManager == nullptr) return;
     QGraphicsScene *s = scene();
     for(int i = 0; i < m_pages.length(); i++) {
         s->removeItem(m_pages[i].GrItem);
@@ -105,74 +97,14 @@ void ImageView::clearImages()
     m_pages.resize(0);
 }
 
-void ImageView::nextPage()
+void ImageView::setPageManager(PageManager *manager)
 {
-    qDebug() << "ImageView::nextPage()" << m_currentPage;
-    if(m_fileVolume == nullptr) return;
-    bool result = (m_fileVolume->pageCount() == m_fileVolume->size() -1) ||  m_fileVolume->nextPage();
-    if(!result) return;
-
-    int pageIncr = m_pages.size();
-    m_currentPage += pageIncr;
-    if(m_currentPage >= m_fileVolume->size() - pageIncr)
-        m_currentPage = m_fileVolume->size() - pageIncr;
-
-    reloadCurrentPage();
-    emit pageChanged();
+    m_pageManager = manager;
+    connect(manager, SIGNAL(pagesNolongerNeeded()), this, SLOT(clearImages()));
+    connect(manager, SIGNAL(readyForPaint()), this, SLOT(readyForPaint()));
+    connect(manager, SIGNAL(pageAdded(ImageContent, bool)), this, SLOT(addImage(ImageContent, bool)));
 }
 
-void ImageView::reloadCurrentPage(bool pageNext)
-{
-    qDebug() << "ImageView::reloadCurrentPage()";
-    if(m_fileVolume == nullptr) return;
-    clearImages();
-
-    bool wide = addImage(m_fileVolume->currentImage(), true);
-    m_wideImage = wide;
-    if(!(m_currentPage==0 && qApp->FirstImageAsOnePageInDualView()) && canDualView()) {
-        if(m_fileVolume->pageCount() < m_fileVolume->size()-1) {
-            const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
-            const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage+1);
-            if(!qApp->WideImageAsOnePageInDualView() || (!ic0.wideImage() && !ic1.wideImage())) {
-                    m_fileVolume->nextPage();
-                    addImage(m_fileVolume->currentImage(), pageNext);
-            }
-        }
-    }
-    readyForPaint();
-}
-
-
-void ImageView::prevPage()
-{
-    if(m_fileVolume == nullptr) return;
-
-    if(m_fileVolume->pageCount() < m_pages.size()) return;
-
-    //QVApplication* app = qApp;
-    m_currentPage--;
-    if(qApp->DualView() && m_currentPage >= 1) {
-        const ImageContent ic0 = m_fileVolume->getIndexedImageContent(m_currentPage);
-        const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage-1);
-        if(!qApp->WideImageAsOnePageInDualView() || (!ic0.wideImage() && !ic1.wideImage()))
-            m_currentPage--;
-    }
-    if(m_currentPage < 0)
-        m_currentPage = 0;
-    setIndexedPage(m_currentPage);
-}
-
-void ImageView::setIndexedPage(int idx)
-{
-    qDebug() << "ImageView::setIndexedPage()" << idx;
-    if(m_fileVolume == nullptr) return;
-    bool result = m_fileVolume->findPageByIndex(idx);
-    if(!result) return;
-    m_currentPage = idx;
-
-    reloadCurrentPage();
-    emit pageChanged();
-}
 
 void ImageView::setRenderer(RendererType type)
 {
@@ -188,18 +120,10 @@ void ImageView::setRenderer(RendererType type)
     }
 }
 
-QString ImageView::currentPageAsString() const
-{
-    if(m_pages.size() == 2) {
-        return QString("%1-%2/%3").arg(m_currentPage+1).arg(m_currentPage+2).arg(m_fileVolume->size());
-    } else {
-        return QString("%1/%3").arg(m_currentPage+1).arg(m_fileVolume->size());
-    }
-}
 void ImageView::readyForPaint() {
-    qDebug() << "readyForPaint";
+    //qDebug() << "readyForPaint";
     if(!m_pages.empty()) {
-        bool dualview = qApp->DualView() && canDualView();
+        bool dualview = qApp->DualView() && m_pageManager->canDualView();
         for(int i = 0; i < m_pages.size(); i++) {
             PageGraphicsItem::Fitting fitting = PageGraphicsItem::FitCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
@@ -232,50 +156,38 @@ void ImageView::resizeEvent(QResizeEvent *event)
 
 void ImageView::on_nextPage_triggered()
 {
-    nextPage();
+    if(m_pageManager)
+        m_pageManager->nextPage();
 }
 
 void ImageView::on_prevPage_triggered()
 {
-    prevPage();
+    if(m_pageManager)
+        m_pageManager->prevPage();
 }
 
 void ImageView::on_firstPage_triggered()
 {
-    setIndexedPage(0);
+    if(m_pageManager)
+        m_pageManager->firstPage();
 }
 
 void ImageView::on_lastPage_triggered()
 {
-    if(m_fileVolume && m_fileVolume->size() > 0)
-        setIndexedPage(m_fileVolume->size()-1);
-
+    if(m_pageManager)
+        m_pageManager->lastPage();
 }
 
 void ImageView::on_nextOnlyOnePage_triggered()
 {
-    if(m_fileVolume == nullptr || m_fileVolume->pageCount() == m_fileVolume->size() -1) return;
-    if(m_pages.size() == 1) {
-        m_fileVolume->nextPage();
-    }
-    m_currentPage++;
-    if(m_currentPage >= m_fileVolume->size() - 1)
-        m_currentPage = m_fileVolume->size() - 1;
-    reloadCurrentPage();
-    emit pageChanged();
+    if(m_pageManager)
+        m_pageManager->nextOnlyOnePage();
 }
 
 void ImageView::on_prevOnlyOnePage_triggered()
 {
-    if(m_fileVolume == nullptr) return;
-
-    if(m_fileVolume->pageCount() < m_pages.size()) return;
-
-    //QVApplication* app = qApp;
-    m_currentPage--;
-    if(m_currentPage < 0)
-        m_currentPage = 0;
-    setIndexedPage(m_currentPage);
+    if(m_pageManager)
+        m_pageManager->prevOnlyOnePage();
 }
 
 #define HOVER_BORDER 20
@@ -327,9 +239,9 @@ void ImageView::on_dualView_triggered(bool viewdual)
 {
     qApp->setDualView(viewdual);
 
-    if(!viewdual && m_fileVolume)
-        m_fileVolume->prevPage();
-    reloadCurrentPage();
+    if(!viewdual && m_pageManager)
+        m_pageManager->prevPage();
+    m_pageManager->reloadCurrentPage();
     readyForPaint();
 }
 
@@ -356,24 +268,24 @@ void ImageView::on_scaleDown_triggered()
 void ImageView::on_wideImageAsOneView_triggered(bool wideImage)
 {
     qApp->setWideImageAsOnePageInDualView(wideImage);
-    reloadCurrentPage();
+    m_pageManager->reloadCurrentPage();
     readyForPaint();
 }
 
 void ImageView::on_firstImageAsOneView_triggered(bool firstImage)
 {
     qApp->setFirstImageAsOnePageInDualView(firstImage);
-    reloadCurrentPage();
+    m_pageManager->reloadCurrentPage();
     readyForPaint();
 }
 
 void ImageView::on_openFiler_triggered()
 {
-    if(!m_fileVolume)
+    if(!m_pageManager)
         return;
-    QString path = m_fileVolume->volumePath();
-    if(!m_fileVolume->isArchive()) {
-        path = m_fileVolume->currentPath();
+    QString path = m_pageManager->volumePath();
+    if(!m_pageManager->isArchive()) {
+        path = m_pageManager->currentPagePath();
     }
 #if defined(Q_OS_WIN)
     const QString explorer = QLatin1String("explorer.exe ");
@@ -411,9 +323,9 @@ void ImageView::on_openFiler_triggered()
 
 void ImageView::on_openExifDialog_triggered()
 {
-    if(!m_fileVolume)
+    if(!m_pageManager || m_pages.size()==0)
         return;
-    const easyexif::EXIFInfo& info = m_fileVolume->currentImage().Info;
+    const easyexif::EXIFInfo& info = m_pageManager->currentPageContent()[0].Info;
     if(info.ImageWidth == 0)
         return;
     exifDialog.setExif(info);
@@ -426,12 +338,5 @@ void ImageView::on_copyPage_triggered()
         return;
     QClipboard* clip = qApp->clipboard();
     clip->setImage(m_pages[0].Image.toImage());
-}
-
-
-bool ImageView::canDualView() const
-{
-    QVApplication* myapp = qApp;
-    return qApp->DualView() && !(m_wideImage && myapp->WideImageAsOnePageInDualView());
 }
 

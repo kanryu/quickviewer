@@ -7,6 +7,7 @@
 #include <QMutex>
 #include "exif.h"
 #include "fileloader.h"
+#include "timeorderdcache.h"
 
 struct ImageContent
 {
@@ -80,6 +81,11 @@ public:
         if(idx < 0 || idx >= m_filelist.size())
             return "";
         return m_filelist[idx];
+    }
+    QString getPathByIndex(int idx) {
+        if(idx < 0 || idx >= m_filelist.size())
+            return "";
+        return QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[idx]);
     }
 
     /**
@@ -173,8 +179,9 @@ protected:
     QList<QString> m_filelist;
     future_image m_currentCache;
 
-    QMap<int, future_image> m_imageCache;
-    QList<int> m_pageCache;
+    TimeOrderdCache<int, future_image> m_imageCache;
+//    QMap<int, future_image> m_imageCache;
+//    QList<int> m_pageCache;
 
     QMutex m_mutex;
 

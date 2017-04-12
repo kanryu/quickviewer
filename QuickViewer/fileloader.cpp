@@ -15,7 +15,7 @@ bool IFileLoader::isImageFile(QString path)
 //        foreach(const QString& e, st_supportedImageFormats) {
 //            qDebug()<<  QString(e);
 //        }
-        qDebug() << st_supportedImageFormats;
+//        qDebug() << st_supportedImageFormats;
     }
 //    QStringList exts = {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".dds", ".ico", ".tga", ".tif", ".tiff", ".webp", ".wbp"};
     QString lower = path.toLower();

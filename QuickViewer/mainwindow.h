@@ -40,6 +40,7 @@ public slots:
     void on_fullscreen_triggered();
     void on_stayOnTop_triggered(bool top);
     void on_pageChanged_triggered();
+    void on_volumeChanged_triggered();
     void on_pageSlider_changed(int value);
     void on_appVersion_triggered();
     void on_autoloaded_triggered(bool autoreload);
@@ -61,8 +62,6 @@ private slots:
 
 protected:
     Ui::MainWindow *ui;
-//    QImage *m_img;
-    IFileVolume* m_fileVolume;
     bool m_viewerWindowStateMaximized;
     bool m_sliderChanging;
 
@@ -70,6 +69,8 @@ protected:
 
     QString m_volumeCaption;
     QString m_pageCaption;
+
+    PageManager m_pageManager;
 };
 
 

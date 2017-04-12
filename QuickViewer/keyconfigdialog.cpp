@@ -175,41 +175,11 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
     connect(ui->recordButton, &ShortcutButton::keySequenceChanged,
             this, &KeyConfigDialog::on_keySequence_changed);
 
-
-//    QStringList tags;
-//    QString linefmt = "<tr><th>%1</th><td>%2</td><td>%3</td></tr>";
-
-//    tags << linefmt.arg(tr("Next Page")).arg(tr("Right")).arg("");
-//    tags << linefmt.arg("").arg(tr("Space")).arg("");
-//    tags << linefmt.arg(tr("Prev Page")).arg(tr("Left")).arg("");
-//    tags << linefmt.arg(tr("First Page")).arg(tr("Home")).arg("");
-//    tags << linefmt.arg(tr("Last Page")).arg(tr("End")).arg("");
-//    tags << linefmt.arg(tr("Next Volume")).arg(tr("Page Down")).arg(tr("open a folder/archive of neigibher"));
-//    tags << linefmt.arg(tr("Prev Volume")).arg(tr("Page Up")).arg(tr("open a folder/archive of neigibher"));
-//    tags << linefmt.arg(tr("Toggle Fullscreen")).arg(tr("F11")).arg("");
-//    tags << linefmt.arg("").arg(tr("Return")).arg("");
-//    tags << linefmt.arg("").arg(tr("Enter")).arg("");
-//    tags << linefmt.arg(tr("Exit Fullscreen")).arg(tr("ESC")).arg(tr("on Fullscreen only"));
-//    tags << linefmt.arg(tr("Exit Application")).arg(tr("ESC")).arg(tr("not on Fullscreen only"));
-//    tags << linefmt.arg(tr("Fitting")).arg(tr("F12")).arg("");
-//    tags << linefmt.arg("").arg(tr("Asterisk(*)")).arg("");
-//    tags << linefmt.arg(tr("Scale Up")).arg(tr("Plus(+)")).arg("");
-//    tags << linefmt.arg(tr("Scale Out")).arg(tr("Minus(-)")).arg("");
-
-
-//    QString text = QString("<style>th {text-align: right;padding-right: 10px;} </style><table>%1</table>").arg(tags.join(""));
-
-//    ui->textEdit->setAcceptRichText(true);
-//    ui->textEdit->setText(text);
     ui->treeWidget->sortByColumn(0, Qt::AscendingOrder);
     QTreeWidgetItem *header = ui->treeWidget->headerItem();
     header->setText(0, tr("Command"));
     header->setText(1, tr("Label"));
     header->setText(2, tr("Target"));
-//    header->setSizeHint(0, QSize(240, 20));
-//    header->setSizeHint(1, QSize(240, 20));
-//    ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Interactive);
-//    ui->treeWidget->header()->setSectionResizeMode(1, QHeaderView::Interactive);
 
     QVApplication* app = qApp;
     QMap<QString, QAction*>& actions = qApp->ActionMapByName();
@@ -251,9 +221,9 @@ void KeyConfigDialog::revertKeyChanges()
     qApp->revertKeyMap(m_prevKeyConfigs);
 }
 
-void KeyConfigDialog::on_currentCommandChanged(QTreeWidgetItem *item, QTreeWidgetItem *previous)
+void KeyConfigDialog::on_currentCommandChanged(QTreeWidgetItem *item, QTreeWidgetItem *)
 {
-    qDebug() << "on_currentCommandChanged: " << (item ? item->text(0):"nullptr") << (previous ? previous->text(0) :"nullptr");
+    //qDebug() << "on_currentCommandChanged: " << (item ? item->text(0):"nullptr") << (previous ? previous->text(0) :"nullptr");
     if(item) {
         m_actionName = item->text(0);
         ui->shortcutGroupBox->setEnabled(true);
@@ -263,7 +233,7 @@ void KeyConfigDialog::on_currentCommandChanged(QTreeWidgetItem *item, QTreeWidge
 
 void KeyConfigDialog::on_keySequence_changed(QKeySequence key)
 {
-    qDebug() << "on_keySequence_changed:" << key;
+    //qDebug() << "on_keySequence_changed:" << key;
     if(!m_prevKeyConfigs.contains(m_actionName))
         m_prevKeyConfigs[m_actionName] = qApp->getKey(m_actionName);
 

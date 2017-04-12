@@ -6,25 +6,46 @@
 
 class IFileVolume;
 
-class PageManager
+class PageManager : public QObject
 {
+    Q_OBJECT
 public:
-    PageManager();
-    bool nextPage();
-    bool prevPage();
-    bool selectPage(int pageNum);
+    PageManager(QObject* parent);
+    void setFileVolume(IFileVolume* fv) { m_fileVolume = fv; }
 
-    bool nextVolume();
-    bool prevVolume();
+    // Pages
+    void nextPage();
+    void prevPage();
+    void selectPage(int pageNum);
+    void firstPage();
+    void lastPage();
+    void nextOnlyOnePage();
+    void prevOnlyOnePage();
+    void reloadCurrentPage(bool pageNext = true);
+    void addNewPage(ImageContent ic, bool pageNext);
+    void clearPages();
 
-    bool loadVolume(QString path);
+    // Volumes
+    bool loadVolume(QString path, bool onlyCover=false);
+    void nextVolume();
+    void prevVolume();
 
-    QList<ImageContent>& currentPage() { return pageContents; }
+    // Get String
+    int currentPageCount() { return m_pages.size(); }
+    int currentPage() { return m_currentPage; }
+    QVector<ImageContent>& currentPageContent() { return m_pages; }
     QString currentPagePath() {
-        if(!m_fileVolume || m_fileVolume->isArchive() || pageContents.empty())
+        if(!m_fileVolume || m_fileVolume->isArchive() || m_pages.empty())
             return "";
-        return m_fileVolume->getPathByFileName(pageContents[0].Path);
+        return QDir::toNativeSeparators(m_fileVolume->getPathByFileName(m_pages[0].Path));
     }
+    QString nextPagePathAfterDeleted() {
+        if(!m_fileVolume || m_fileVolume->isArchive() || m_fileVolume->size() <= 1)
+            return "";
+        int idx = m_fileVolume->size()-1==m_currentPage ? m_currentPage-1 : m_currentPage+1;
+        return QDir::toNativeSeparators(m_fileVolume->getPathByIndex(idx));
+    }
+
     /**
      * @brief currentPageNumAsString: for the label text on PageBar
      * @return (10-11/2182)
@@ -38,25 +59,43 @@ public:
      */
     QString currentPageStatusAsString() const;
     QString volumePath(){ return m_fileVolume ? m_fileVolume->volumePath() : ""; }
-    bool isArchive() { return m_fileVolume ? m_fileVolume->isArchive() : false; }
+    bool isArchive() { return m_fileVolume || m_fileVolume->isArchive(); }
+    bool isFolder() { return m_fileVolume || !m_fileVolume->isArchive(); }
 
     int size() { return m_fileVolume ? m_fileVolume->size() : 0; }
+    bool canDualView() const;
+    void dispose() {
+        if(m_fileVolume && m_volumes.empty()) {
+            delete m_fileVolume;
+            m_pages.resize(0);
+        }
+        m_fileVolume = nullptr;
+        m_volumes.clear();
+    }
 
 signals:
     /**
      * @brief pagesNolongerNeeded pages is no longer needed. page will be cleared
      */
     void pagesNolongerNeeded();
+
+    void readyForPaint();
     /**
      * @brief pageChanged pages have been changed
      */
     void pageChanged();
     /**
+     * @brief volumeChanged the volume has been changed
+     */
+    void volumeChanged();
+    /**
      * @brief addNewPage add a new page. if it is dual view, 2 times called
      * @param pageNum
      */
-    void addNewPage(ImageContent ic);
+    void pageAdded(ImageContent ic, bool pageNext);
+
 private:
+    IFileVolume* addVolumeCache(QString path, bool onlyCover=false);
     /**
      * @brief 現在表示しているページのうち最も若い番号。filevolume側の内部ページと異なる場合があるので注意
      */
@@ -64,7 +103,8 @@ private:
 
     bool m_wideImage;
     IFileVolume* m_fileVolume;
-    QList<ImageContent> pageContents;
+    QVector<ImageContent> m_pages;
+    TimeOrderdCachePtr<QString, IFileVolume> m_volumes;
 };
 
 #endif // PAGEMANAGER_H

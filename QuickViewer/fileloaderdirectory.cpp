@@ -25,7 +25,7 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
     m_valid = true;
 }
 
-QByteArray FileLoaderDirectory::getFile(QString name, QMutex& mutex)
+QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
 {
     QByteArray bytes;
     if(m_imageFileList.contains(name)) {
