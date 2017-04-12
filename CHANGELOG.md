@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v0.5.0 (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+
+more faster volume changing, refactoring
+
+- add pre loading for volume changing(NextVolume/PrevVolume)
+- QuickViewer.pro now can provide distribution package(Windows)
+- refactoring
+- add PageManager, TimeOrderedCache
+- comment outed qDebug()
+
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Tue Apr 11 09:38:00 2017 +0900) [ed3e260](https://github.com/kanryu/quickviewer/commit/ed3e2607158499ee40bc144628cccad7e97fea83)
+    - support deploying, refactoring (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
+    -  (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
+    -  support deploying by pro(nolonger deploy.bat needed, run 'jom install') (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
+    -  refactoring(add PageGraphicsItem) (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
+    - Update index.md (Tue Apr 11 05:44:01 2017 +0900) [fc91c0b](https://github.com/kanryu/quickviewer/commit/fc91c0b1c8d34d0e093a17b4dd056c231791fe6e)
+    - changelog (Mon Apr 10 05:15:19 2017 +0900) [34de18f](https://github.com/kanryu/quickviewer/commit/34de18f33237f6f33c8ca3e2cde9757c2cca13cd)
+
 ## v0.4.3 (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
 
 fixed bug, add shortcut newmenus
