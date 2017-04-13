@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v0.5.1 (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+
+Support Shaders, Save Window States, Add FastFoward/Backward
+
+- Support GPU Shaders(NearestNeighbor/Bicubic/Lanczos)
+- Save/Restore Window States(Position/Size/WindowStates)
+- add FastForward/Backward buttons(fixed by 10 pages)
+- Key Config Rules Changed
+- Please remove old ini files
+
+- other commits
+    - changelog (Wed Apr 12 10:25:42 2017 +0900) [0095c41](https://github.com/kanryu/quickviewer/commit/0095c416faaff71b420e73c608c125563313a73c)
+
 ## v0.5.0 (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
 
 more faster volume changing, refactoring
