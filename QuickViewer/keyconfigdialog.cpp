@@ -26,6 +26,8 @@ static int translateModifiers(Qt::KeyboardModifiers state,
         result |= Qt::META;
     if (state & Qt::AltModifier)
         result |= Qt::ALT;
+    if (state & Qt::KeypadModifier)
+        result |= Qt::KeypadModifier;
     return result;
 }
 

@@ -11,12 +11,13 @@ class PageManager : public QObject
     Q_OBJECT
 public:
     PageManager(QObject* parent);
-    void setFileVolume(IFileVolume* fv) { m_fileVolume = fv; }
 
     // Pages
     void nextPage();
     void prevPage();
-    void selectPage(int pageNum);
+    void fastForwardPage();
+    void fastBackwardPage();
+    void selectPage(int pageNum, IFileVolume::CacheMode cacheMode=IFileVolume::Normal);
     void firstPage();
     void lastPage();
     void nextOnlyOnePage();
@@ -26,7 +27,7 @@ public:
     void clearPages();
 
     // Volumes
-    bool loadVolume(QString path, bool onlyCover=false);
+    bool loadVolume(QString path, bool coverOnly=false);
     void nextVolume();
     void prevVolume();
 

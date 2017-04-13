@@ -24,6 +24,11 @@ public:
     void loadVolume(QString path);
     void makeHistoryMenu();
     void resetVolume(IFileVolume* newer);
+    void uncheckAllShaderMenus() {
+        foreach(QAction* action, m_shaderMenuGroup) {
+            action->setChecked(false);
+        }
+    }
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);
@@ -31,12 +36,11 @@ protected:
 //    void paintEvent( QPaintEvent *event );
     void wheelEvent(QWheelEvent *e);
     void mousePressEvent(QMouseEvent *e);
+    void closeEvent(QCloseEvent *e);
 
 public slots:
     void on_file_changed(QString path);
     void on_clearHistory_triggered();
-    void on_nextVolume_triggered();
-    void on_prevVolume_triggered();
     void on_fullscreen_triggered();
     void on_stayOnTop_triggered(bool top);
     void on_pageChanged_triggered();
@@ -55,6 +59,13 @@ public slots:
     void on_exitApplicationOrFullscreen_triggered();
     void on_exit_triggered();
     void on_deletePage_triggered();
+    void on_maximizeOrNormal_triggered();
+    void on_restoreWindowState_triggered(bool saveState);
+
+    void on_shaderNearestNeighbor_triggered();
+    void on_shaderBilinear_triggered();
+    void on_shaderBicubic_triggered();
+    void on_shaderLanczos_triggered();
 
 private slots:
     void on_hover_anchor(Qt::AnchorPoint anchor);
@@ -71,6 +82,7 @@ protected:
     QString m_pageCaption;
 
     PageManager m_pageManager;
+    QList<QAction*> m_shaderMenuGroup;
 };
 
 

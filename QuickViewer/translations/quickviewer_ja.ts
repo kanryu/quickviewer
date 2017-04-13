@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>Do you really want to clear the main menu?</source>
-        <translation>本当にメインメニューを表示にしますか？</translation>
+        <translation>本当にメインメニューを非表示にしますか？</translation>
     </message>
     <message>
         <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
@@ -642,7 +642,7 @@
     </message>
     <message>
         <source>Copy Image</source>
-        <translation>画像をクリップボードにコピー</translation>
+        <translation type="vanished">画像をクリップボードにコピー</translation>
     </message>
     <message>
         <source>Delete Image</source>
@@ -654,7 +654,51 @@
     </message>
     <message>
         <source>Move the Image to trash box</source>
-        <translation>現在のページの画像をゴミ箱に入れる</translation>
+        <translation type="vanished">現在のページの画像をゴミ箱に入れる</translation>
+    </message>
+    <message>
+        <source>&amp;Shader</source>
+        <translation>シェーダー(&amp;S)</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Image</source>
+        <translation>画像をクリップボードにコピー(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Move the Image to the &amp;Recycle Bin</source>
+        <translation>現在のページの画像をゴミ箱に入れる(&amp;R)</translation>
+    </message>
+    <message>
+        <source>&amp;Bilinear (standard)</source>
+        <translation>バイリニア補間(&amp;B 標準)</translation>
+    </message>
+    <message>
+        <source>Bi&amp;cubic (slow)</source>
+        <translation>バイキュービック補間(&amp;B 遅い)</translation>
+    </message>
+    <message>
+        <source>&amp;Lanczos (very slow)</source>
+        <translation>Lanczos補間(&amp;L 非常に遅い)</translation>
+    </message>
+    <message>
+        <source>&amp;Nearest Neighbor (coarse)</source>
+        <translation>最近傍補間(&amp;N 高速だが粗い)</translation>
+    </message>
+    <message>
+        <source>&amp;Maximize or Normal</source>
+        <translation>最大化または通常表示(&amp;M)</translation>
+    </message>
+    <message>
+        <source>&amp;Restore Window State on next run</source>
+        <translation>ウィンドウの表示を次回起動時に復元する(&amp;R)</translation>
+    </message>
+    <message>
+        <source>FastForward</source>
+        <translation>早送り(&amp;O)</translation>
+    </message>
+    <message>
+        <source>FastBackward</source>
+        <translation>早戻し(&amp;B)</translation>
     </message>
 </context>
 <context>

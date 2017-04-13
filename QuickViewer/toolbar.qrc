@@ -33,5 +33,7 @@
         <file alias="preference_icon2">icons/preference2.png</file>
         <file alias="stayontop_icon">icons/stayontop.png</file>
         <file alias="stayontop_icon2">icons/stayontop2.png</file>
+        <file alias="page_next_fast_icon">icons/page_next_fast.png</file>
+        <file alias="page_previous_fast_icon">icons/page_previous_fast.png</file>
     </qresource>
 </RCC>

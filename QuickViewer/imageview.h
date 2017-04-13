@@ -5,10 +5,12 @@
 #include <QtDebug>
 #include <QGraphicsView>
 #include <QDragEnterEvent>
+#include <QGraphicsPixmapItem>
+
 #include "filevolume.h"
 #include "exifdialog.h"
 #include "pagemanager.h"
-#include <QGraphicsPixmapItem>
+#include "imageshadereffect.h"
 
 /**
  * @brief The SavedPoint class
@@ -41,7 +43,7 @@ private:
 
 struct PageGraphicsItem
 {
-    QPixmap Image;
+    ImageContent Ic;
     /**
      * @brief GrItem
      * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
@@ -58,15 +60,16 @@ struct PageGraphicsItem
         FitRight
     };
     PageGraphicsItem()
-     : Image(), GrItem(nullptr), PageSize(), Offset(){}
-    PageGraphicsItem(QPixmap image, QGraphicsItem* item, QSize size, QPoint offset)
-        : Image(image), GrItem(item), PageSize(size), Offset(offset){}
-
+     : Ic(), GrItem(nullptr), PageSize(), Offset(){}
+    PageGraphicsItem(ImageContent ic, QGraphicsItem* item, QSize size, QPoint offset)
+        : Ic(ic), GrItem(item), PageSize(size), Offset(offset){}
+    PageGraphicsItem(const PageGraphicsItem& rhs)
+        : Ic(rhs.Ic), GrItem(rhs.GrItem), PageSize(rhs.PageSize), Offset(rhs.Offset) {}
     /**
      * @brief setPageLayout set each image on the page
      * @param viewport: the image must be inscribed in the viewport area
      */
-    void setPageLayoutFitting(QRect viewport, Fitting fitting) {
+    QSize setPageLayoutFitting(QRect viewport, Fitting fitting) {
         QSize newsize = PageSize.scaled(viewport.size(), Qt::KeepAspectRatio);
         qreal scale = 1.0*newsize.width()/PageSize.width();
         GrItem->setScale(scale);
@@ -77,8 +80,9 @@ struct PageGraphicsItem
         } else { // fitting on left and right
             GrItem->setPos(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2);
         }
+        return newsize;
     }
-    void setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale) {
+    QSize setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale) {
         GrItem->setScale(scale);
         QSize size = viewport.size();
         QSize newsize = PageSize;
@@ -86,6 +90,7 @@ struct PageGraphicsItem
         QPoint of = QPoint(scale*Offset.x(), scale*Offset.y());
         int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
+        return newsize;
     }
 };
 
@@ -101,7 +106,6 @@ public:
     enum RendererType { Native, OpenGL, Image };
     explicit ImageView(QWidget *parent = Q_NULLPTR);
     void setRenderer(RendererType type = Native);
-    void reloadCurrentPage(bool pageNext=true);
     void setPageManager(PageManager* manager);
     /**
      * @brief currentViewSize returns current manual resizing magnification value
@@ -130,16 +134,23 @@ protected:
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 
 public slots:
-    bool addImage(ImageContent image, bool pageNext);
-    void clearImages();
+    bool on_addImage_triggered(ImageContent image, bool pageNext);
+    void on_clearImages_triggered();
     void readyForPaint();
 
+    // Page
     void on_nextPage_triggered();
     void on_prevPage_triggered();
+    void on_fastForwardPage_triggered();
+    void on_fastBackwardPage_triggered();
     void on_firstPage_triggered();
     void on_lastPage_triggered();
     void on_nextOnlyOnePage_triggered();
     void on_prevOnlyOnePage_triggered();
+
+    // Volume
+    void on_nextVolume_triggered();
+    void on_prevVolume_triggered();
 
     void on_fitting_triggered(bool maximized);
     void on_dualView_triggered(bool viewdual);
@@ -152,6 +163,7 @@ public slots:
     void on_openFiler_triggered();
     void on_openExifDialog_triggered();
     void on_copyPage_triggered();
+
 
 private:
 
@@ -174,6 +186,7 @@ private:
     ExifDialog exifDialog;
 
     PageManager* m_pageManager;
+    ImageEffectManager m_effectManager;
 };
 
 

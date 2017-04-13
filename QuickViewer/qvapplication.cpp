@@ -10,6 +10,7 @@
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_settings(APP_INI, QSettings::IniFormat, this)
+    , m_effect(ImageEffectManager::Bilinear)
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -19,9 +20,9 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
     m_keyConfigDefauls["actionNextPage"] = QKeySequence("Right, Space");
     m_keyConfigDefauls["actionPrevPage"] = QKeySequence("Left, Backspace");
-    m_keyConfigDefauls["actionScaleUp"] = QKeySequence("+");
-    m_keyConfigDefauls["actionScaleDown"] = QKeySequence("-");
-    m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, *");
+    m_keyConfigDefauls["actionScaleUp"] = QKeySequence("Num++");
+    m_keyConfigDefauls["actionScaleDown"] = QKeySequence("Num+-");
+    m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, Num+*");
     m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
     m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
     m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
@@ -31,6 +32,10 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgUp");
     m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
     m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
+    m_keyConfigDefauls["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
+
+    m_keyConfigDefauls["actionFastForward"] = QKeySequence("Num+3");
+    m_keyConfigDefauls["actionFastBackward"] = QKeySequence("Num+1");
 
     m_keyConfigs = m_keyConfigDefauls;
     m_keyConfigs.detach();
@@ -45,39 +50,55 @@ QVApplication::QVApplication(int &argc, char **argv)
 
 void QVApplication::registActions(Ui::MainWindow *ui)
 {
-    registAction("actionExit", ui->actionExit);
+    registAction("actionOpenFolder", ui->actionOpenFolder);
     registAction("actionClearHistory", ui->actionClearHistory);
-    registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
+    registAction("actionAutoLoaded", ui->actionAutoLoaded);
+    registAction("actionExit", ui->actionExit);
+
     registAction("actionNextPage", ui->actionNextPage);
     registAction("actionPrevPage", ui->actionPrevPage);
-    registAction("actionScaleUp", ui->actionScaleUp);
-    registAction("actionScaleDown", ui->actionScaleDown);
-    registAction("actionFitting", ui->actionFitting);
-    registAction("actionDualView", ui->actionDualView);
-    registAction("actionFullscreen", ui->actionFullscreen);
-    registAction("actionStayOnTop", ui->actionStayOnTop);
-    registAction("actionAppVersion", ui->actionAppVersion);
-    registAction("actionAutoLoaded", ui->actionAutoLoaded);
-    registAction("actionRightSideBook", ui->actionRightSideBook);
-    registAction("actionOpenFolder", ui->actionOpenFolder);
-    registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
-    registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
+    registAction("actionFastForward", ui->actionFastForward);
+    registAction("actionFastBackward", ui->actionFastBackward);
     registAction("actionLastPage", ui->actionLastPage);
     registAction("actionFirstPage", ui->actionFirstPage);
-    registAction("actionShowToolBar", ui->actionShowToolBar);
-    registAction("actionShowStatusBar", ui->actionShowStatusBar);
-    registAction("actionShowPageBar", ui->actionShowPageBar);
-    registAction("actionShowMenuBar", ui->actionShowMenuBar);
-    registAction("actionOpenFiler", ui->actionOpenFiler);
-    registAction("actionOpenExif", ui->actionOpenExif);
-    registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
-    registAction("actionCheckVersion", ui->actionCheckVersion);
     registAction("actionNextVolume", ui->actionNextVolume);
     registAction("actionPrevVolume", ui->actionPrevVolume);
     registAction("actionNextOnePage", ui->actionNextOnePage);
     registAction("actionPrevOnePage", ui->actionPrevOnePage);
+
+    registAction("actionDualView", ui->actionDualView);
+    registAction("actionRightSideBook", ui->actionRightSideBook);
+    registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
+    registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
+
+    registAction("actionFitting", ui->actionFitting);
+    registAction("actionScaleUp", ui->actionScaleUp);
+    registAction("actionScaleDown", ui->actionScaleDown);
+    registAction("actionStayOnTop", ui->actionStayOnTop);
+
+    registAction("actionShowToolBar", ui->actionShowToolBar);
+    registAction("actionShowStatusBar", ui->actionShowStatusBar);
+    registAction("actionShowPageBar", ui->actionShowPageBar);
+    registAction("actionShowMenuBar", ui->actionShowMenuBar);
+
+    registAction("actionOpenFiler", ui->actionOpenFiler);
+    registAction("actionOpenExif", ui->actionOpenExif);
     registAction("actionCopyPage", ui->actionCopyPage);
     registAction("actionDeletePage", ui->actionDeletePage);
+
+    registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
+    registAction("actionCheckVersion", ui->actionCheckVersion);
+    registAction("actionAppVersion", ui->actionAppVersion);
+
+    registAction("actionFullscreen", ui->actionFullscreen);
+    registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
+    registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal);
+    registAction("actionRestoreWindowState", ui->actionRestoreWindowState);
+
+    registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor);
+    registAction("actionShaderBilinear", ui->actionShaderBilinear);
+    registAction("actionShaderBicubic", ui->actionShaderBicubic);
+    registAction("actionShaderLanczos", ui->actionShaderLanczos);
 }
 
 void QVApplication::addHistory(QString path)
@@ -108,6 +129,12 @@ void QVApplication::loadSettings()
     m_showMenuBar = m_settings.value("ShowMenuBar", true).toBool();
     m_settings.endGroup();
 
+    m_settings.beginGroup("WindowState");
+    m_restoreWindowState  = m_settings.value("RestoreWindowState", false).toBool();
+    m_windowGeometry  = m_settings.value("WindowGeometry", "").toByteArray();
+    m_windowState  = m_settings.value("WindowState", "").toByteArray();
+    m_settings.endGroup();
+
     m_settings.beginGroup("File");
     m_autoLoaded  = m_settings.value("AutoLoaded", false).toBool();
     m_history = m_settings.value("History", QStringList()).value<QStringList>();
@@ -119,6 +146,13 @@ void QVApplication::loadSettings()
         QString str = m_settings.value(action, "").toString();
         m_keyConfigs[action] = QKeySequence(str);
     }
+    m_settings.endGroup();
+
+    m_settings.beginGroup("Shader");
+    QString effectstring = m_settings.value("Effect", "Bilinear").toString();
+    m_effect = ImageEffectManager::stringToShaderEffect(effectstring);
+    m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
+    m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
     m_settings.endGroup();
 }
 
@@ -139,6 +173,13 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowMenuBar", m_showMenuBar);
     m_settings.endGroup();
 
+    m_settings.beginGroup("WindowState");
+    m_settings.setValue("RestoreWindowState", m_restoreWindowState);
+    m_settings.setValue("WindowGeometry", m_windowGeometry);
+    m_settings.setValue("WindowState", m_windowState);
+
+    m_settings.endGroup();
+
     m_settings.beginGroup("File");
     m_settings.setValue("AutoLoaded", m_autoLoaded);
     m_settings.setValue("MaxHistoryCount", m_maxHistoryCount);
@@ -152,6 +193,11 @@ void QVApplication::saveSettings()
     }
     m_settings.endGroup();
 
+    m_settings.beginGroup("Shader");
+    m_settings.setValue("Effect", ImageEffectManager::shaderEffectToString(m_effect));
+    m_settings.setValue("BicubicShaderPath", m_bicubicShaderPath);
+    m_settings.setValue("LanczosShaderPath", m_lanczosShaderPath);
+    m_settings.endGroup();
 
 
     m_settings.sync();

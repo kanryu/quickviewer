@@ -9,6 +9,7 @@ QT       -= gui
 TARGET = Qt7z
 TEMPLATE = lib
 CONFIG += staticlib
+CONFIG += warn_off
 
 include("qt7z.pri")
 

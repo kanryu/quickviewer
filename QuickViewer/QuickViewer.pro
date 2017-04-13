@@ -4,15 +4,26 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl concurrent gui-private
+QT       += core gui opengl concurrent gui-private opengl-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.5.0
+VERSION = 0.5.1
 
 TARGET = QuickViewer
 TEMPLATE = app
 CONFIG += plugin
+
+QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
+QMAKE_TARGET_PRODUCT = QuickViewer
+QMAKE_TARGET_DESCRIPTION = A image viewer for folders/archives, it can show images very fast
+QMAKE_TARGET_COPYRIGHT = (C) 2017 KATO Kanryu
+
+DEFINES += \
+  APP_VERSION=\\\"$$VERSION\\\" \
+  APP_NAME=\\\"$$QMAKE_TARGET_PRODUCT\\\" \
+
+CODECFORSRC = UTF-8
 
 
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -92,7 +103,8 @@ SOURCES += main.cpp \
     fileloaderrararchive.cpp \
     shortcutbutton.cpp \
     pagemanager.cpp \
-    timeorderdcache.cpp
+    timeorderdcache.cpp \
+    imageshadereffect.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -110,7 +122,8 @@ HEADERS  += mainwindow.h \
     fileloaderrararchive.h \
     shortcutbutton.h \
     pagemanager.h \
-    timeorderdcache.h
+    timeorderdcache.h \
+    imageshadereffect.h
 
 
 win32 {
@@ -128,17 +141,42 @@ RESOURCES += \
 RC_ICONS = icons/appicon.ico
 
 
-QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
-QMAKE_TARGET_PRODUCT = QuickViewer
-QMAKE_TARGET_DESCRIPTION = A image viewer for folders/archives, it can show images very fast
-QMAKE_TARGET_COPYRIGHT = (C) 2017 KATO Kanryu
-
-DEFINES += \
-  APP_VERSION=\\\"$$VERSION\\\" \
-  APP_NAME=\\\"$$QMAKE_TARGET_PRODUCT\\\" \
-
-CODECFORSRC = UTF-8
-
 DISTFILES += \
     translations/quickviewer_ja.qm
+
+# Shaders will be installed into DIST_DIR/shaders
+SHADERS += \
+    shaders/bicubic.frag \
+    shaders/lanczos.frag \
+
+win32 { !CONFIG(debug, debug|release) {
+    shaders_install.path = $${MY_DEFAULT_INSTALL}/shaders
+    shaders_install.files = $$SHADERS
+    INSTALLS += shaders_install
+} }
+
+SHADERDIR += shaders/
+
+shader_dir.name = shaderpath
+shader_dir.target = ${QMAKE_FILE_OUT}
+shader_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
+shader_dir.variable_out = DEPENDPATH
+shader_dir.CONFIG = verify
+shader_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
+shader_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
+shader_dir.input = SHADERDIR
+
+shaders.name  = ${QMAKE_FILE_OUT}
+shaders.target = ${QMAKE_FILE_OUT}
+shaders.output = $$DESTDIR/shaders/${QMAKE_FILE_BASE}.frag
+shaders.variable_out = DEPENDPATH
+shaders.CONFIG = verify target_predeps
+shaders.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+shaderd.depends = shader_dir
+shaders.input = SHADERS
+
+QMAKE_EXTRA_COMPILERS += shader_dir shaders
+
+
+OTHER_FILES += SHADERS
 

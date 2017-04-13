@@ -28,9 +28,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
     ui->pageSlider->hide();
+    QVApplication* myapp = qApp;
 
     // Mapping to Key-Action Table and Key Config Dialog
     qApp->registActions(ui);
+
+    m_shaderMenuGroup
+            << ui->actionShaderNearestNeighbor
+            << ui->actionShaderBilinear
+            << ui->actionShaderBicubic
+            << ui->actionShaderLanczos;
 
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());
@@ -49,6 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
 
+    // ToolBar/PageBar/StatusBar/MenuBar
     ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
     ui->actionShowToolBar->triggered(qApp->ShowToolBar());
     ui->actionShowPageBar->setChecked(qApp->ShowSliderBar());
@@ -60,6 +68,16 @@ MainWindow::MainWindow(QWidget *parent)
         menuBar()->hide();
 
     makeHistoryMenu();
+    ui->statusBar->addPermanentWidget(ui->statusLabel);
+    ui->statusLabel->setText(tr("any folder or archive is not loaded."));
+
+    switch(qApp->Effect()) {
+    case ImageEffectManager::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
+    case ImageEffectManager::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
+    case ImageEffectManager::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
+    case ImageEffectManager::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
+    }
+
 
     ui->graphicsView->installEventFilter(this);
     ui->mainToolBar->installEventFilter(this);
@@ -86,7 +104,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
-    QVApplication* myapp = qApp;
     QStringList args = qApp->arguments();
     qDebug() << args;
     if(qApp->arguments().length() >= 2) {
@@ -96,6 +113,23 @@ MainWindow::MainWindow(QWidget *parent)
     if(qApp->AutoLoaded() && qApp->History().size() > 0) {
         loadVolume(qApp->History().at(0));
     }
+
+    // WindowState Restoreing
+    if(qApp->RestoreWindowState()) {
+        ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
+        restoreGeometry(qApp->WindowGeometry());
+        restoreState(qApp->WindowState());
+        if(isFullScreen()) {
+            menuBar()->hide();
+            ui->mainToolBar->hide();
+            ui->pageFrame->hide();
+            statusBar()->hide();
+            ui->actionFullscreen->setChecked(true);
+            ui->graphicsView->readyForPaint();
+        }
+    }
+
+
 }
 
 
@@ -149,6 +183,12 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
     if(e->button() == Qt::RightButton) {
         contextMenu.exec(QCursor::pos());
     }
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    qApp->setWindowGeometry(saveGeometry());
+    qApp->setWindowState(saveState());
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -255,6 +295,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
     QKeySequence seq(event->key() | event->modifiers());
+    qDebug() << seq;
     QAction* action = qApp->getAction(seq);
     if(action)
         action->trigger();
@@ -279,16 +320,6 @@ void MainWindow::on_clearHistory_triggered()
 {
     qApp->clearHistory();
     makeHistoryMenu();
-}
-
-void MainWindow::on_nextVolume_triggered()
-{
-    m_pageManager.nextVolume();
-}
-
-void MainWindow::on_prevVolume_triggered()
-{
-    m_pageManager.prevVolume();
 }
 
 void MainWindow::on_fullscreen_triggered()
@@ -372,7 +403,7 @@ void MainWindow::on_pageChanged_triggered()
 
     // StatusBar
     m_pageCaption = m_pageManager.currentPageStatusAsString();
-    ui->statusBar->showMessage(m_pageCaption);
+    ui->statusLabel->setText(m_pageCaption);
     if(!qApp->ShowStatusBar())
         setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
 }
@@ -465,7 +496,7 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
     if(showStatusBar) {
         setWindowTitle(m_volumeCaption);
         ui->statusBar->show();
-        ui->statusBar->showMessage(m_pageCaption);
+        ui->statusLabel->setText(m_pageCaption);
     } else {
         ui->statusBar->hide();
         setWindowTitle(m_pageCaption);
@@ -560,4 +591,52 @@ void MainWindow::on_deletePage_triggered()
             volumepath = m_pageManager.nextPagePathAfterDeleted();
         loadVolume(volumepath);
     }
+}
+
+void MainWindow::on_maximizeOrNormal_triggered()
+{
+    if(isFullScreen()) {
+        ui->actionFullscreen->trigger();
+    } else if(isMaximized()) {
+        showNormal();
+    } else {
+        showMaximized();
+    }
+}
+
+void MainWindow::on_restoreWindowState_triggered(bool saveState)
+{
+    qApp->setRestoreWindowState(saveState);
+}
+
+void MainWindow::on_shaderNearestNeighbor_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(ImageEffectManager::NearestNeighbor);
+    ui->actionShaderNearestNeighbor->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::on_shaderBilinear_triggered()
+{
+    uncheckAllShaderMenus();
+    ui->actionShaderBilinear->setChecked(true);
+    qApp->setEffect(ImageEffectManager::Bilinear);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::on_shaderBicubic_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(ImageEffectManager::Bicubic);
+    ui->actionShaderBicubic->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::on_shaderLanczos_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(ImageEffectManager::Lanczos);
+    ui->actionShaderLanczos->setChecked(true);
+    ui->graphicsView->readyForPaint();
 }

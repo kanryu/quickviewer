@@ -1,11 +1,12 @@
-#ifdef WIN32
+#include <QTranslator>
+#include <QDebug>
+#include "qv_init.h"
+#include "qvapplication.h"
+#if defined(Q_OS_WIN)
   #include "mainwindowforwindows.h"
 #else
   #include "mainwindow.h"
 #endif
-#include "qv_init.h"
-#include "qvapplication.h"
-#include <QTranslator>
 
 int main(int argc, char *argv[])
 {
@@ -13,12 +14,12 @@ int main(int argc, char *argv[])
 
     // multi-language-support
     QTranslator translator;
-    QString tr_filename = QString("translations/quickviewer_%1.qm").arg(QLocale::system().name());
-    bool exist = translator.load(tr_filename);
+    bool exist = translator.load(QLocale::system(),
+                                 "translations/", "quickviewer_", qApp->applicationDirPath());
     if(exist) {
         app.installTranslator(&translator);
     }
-#ifdef WIN32
+#ifdef Q_OS_WIN
     MainWindowForWindows w;
 #else
     MainWindow w;

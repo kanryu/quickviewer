@@ -10,7 +10,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
     : QObject(parent)
     , m_cnt(0)
     , m_loader(loader)
-    , m_suppressCache(false)
+    , m_cacheMode(CacheMode::Normal)
 {
     m_filelist = m_loader->contents();
 }
@@ -22,9 +22,11 @@ void IFileVolume::on_ready()
 
 //    qDebug() << "on_ready: m_cnt" << m_cnt;
     QVector<int> offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
-    if(m_suppressCache) {
+    if(m_cacheMode == CacheMode::CoverOnly) {
         offsets = {0, 1};
-        m_suppressCache = false;
+    }
+    if(m_cacheMode == CacheMode::FastFowrard) {
+        offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19};
     }
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
@@ -143,7 +145,7 @@ IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString pat
         delete fv;
         return nullptr;
     }
-    fv->setSuppressCache(true);
+    fv->m_cacheMode = CacheMode::CoverOnly;
     fv->on_ready();
     return fv;
 }

@@ -17,7 +17,7 @@ void PageManager::nextPage()
     if(m_fileVolume == nullptr) return;
     bool result = (m_fileVolume->pageCount() == m_fileVolume->size() -1) ||  m_fileVolume->nextPage();
     if(!result) return;
-    m_fileVolume->setSuppressCache(false);
+    m_fileVolume->setCacheMode(IFileVolume::Normal);
 
     int pageIncr = m_pages.size();
     m_currentPage += pageIncr;
@@ -31,9 +31,8 @@ void PageManager::nextPage()
 void PageManager::prevPage()
 {
     if(m_fileVolume == nullptr) return;
-
     if(m_fileVolume->pageCount() < m_pages.size()) return;
-    m_fileVolume->setSuppressCache(false);
+    m_fileVolume->setCacheMode(IFileVolume::Normal);
 
     //QVApplication* app = qApp;
     m_currentPage--;
@@ -48,29 +47,53 @@ void PageManager::prevPage()
     selectPage(m_currentPage);
 }
 
-void PageManager::selectPage(int idx)
+#define PAGE_INTERVAL 10
+
+void PageManager::fastForwardPage()
+{
+    if(m_fileVolume == nullptr) return;
+    if(m_fileVolume->pageCount() == m_fileVolume->size() -1) return;
+    m_currentPage += PAGE_INTERVAL;
+    if(m_currentPage >= m_fileVolume->size() -1)
+        m_currentPage = m_fileVolume->size() -1;
+
+    selectPage(m_currentPage, IFileVolume::FastFowrard);
+}
+
+void PageManager::fastBackwardPage()
+{
+    if(m_fileVolume == nullptr) return;
+    if(m_fileVolume->pageCount() < m_pages.size()) return;
+
+    m_currentPage -= PAGE_INTERVAL;
+    if(m_currentPage < 0)
+        m_currentPage = 0;
+    selectPage(m_currentPage, IFileVolume::FastFowrard);
+}
+
+void PageManager::selectPage(int idx, IFileVolume::CacheMode cacheMode)
 {
     //qDebug() << "PageManager::selectPage()" << idx;
     if(m_fileVolume == nullptr) return;
+    m_fileVolume->setCacheMode(cacheMode);
     bool result = m_fileVolume->findPageByIndex(idx);
     if(!result) return;
     m_currentPage = idx;
 
-    m_fileVolume->setSuppressCache(false);
     reloadCurrentPage();
     emit pageChanged();
 }
 
 void PageManager::firstPage()
 {
-    m_fileVolume->setSuppressCache(false);
+    m_fileVolume->setCacheMode(IFileVolume::Normal);
     selectPage(0);
 }
 
 void PageManager::lastPage()
 {
     if(m_fileVolume && m_fileVolume->size() > 0) {
-        m_fileVolume->setSuppressCache(false);
+        m_fileVolume->setCacheMode(IFileVolume::Normal);
         selectPage(m_fileVolume->size()-1);
     }
 }
@@ -78,7 +101,7 @@ void PageManager::lastPage()
 void PageManager::nextOnlyOnePage()
 {
     if(m_fileVolume == nullptr || m_fileVolume->pageCount() == m_fileVolume->size() -1) return;
-    m_fileVolume->setSuppressCache(false);
+    m_fileVolume->setCacheMode(IFileVolume::Normal);
     if(m_pages.size() == 1) {
         m_fileVolume->nextPage();
     }
@@ -94,7 +117,7 @@ void PageManager::prevOnlyOnePage()
     if(m_fileVolume == nullptr) return;
 
     if(m_fileVolume->pageCount() < m_pages.size()) return;
-    m_fileVolume->setSuppressCache(false);
+    m_fileVolume->setCacheMode(IFileVolume::Normal);
 
     //QVApplication* app = qApp;
     m_currentPage--;
@@ -140,17 +163,18 @@ void PageManager::clearPages()
     emit pagesNolongerNeeded();
 }
 
-bool PageManager::loadVolume(QString path, bool onlyCover)
+bool PageManager::loadVolume(QString path, bool coverOnly)
 {
-    IFileVolume* newer = addVolumeCache(path, onlyCover);
+    IFileVolume* newer = addVolumeCache(path, coverOnly);
     if(!newer) {
         return false;
     }
     m_fileVolume = newer;
-    m_fileVolume->setSuppressCache(onlyCover);
+    if(coverOnly)
+        m_fileVolume->setCacheMode(IFileVolume::CoverOnly);
     m_currentPage = 0;
     // if volume is folder and the path incluces filename, pageCount() != 0
-    selectPage(onlyCover ? 0 : m_fileVolume->pageCount());
+    selectPage(coverOnly ? 0 : m_fileVolume->pageCount());
     emit volumeChanged();
     return true;
 }

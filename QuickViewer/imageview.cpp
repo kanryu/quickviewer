@@ -20,6 +20,7 @@ ImageView::ImageView(QWidget *parent)
     , m_wideImage(false)
     , exifDialog(this)
     , m_skipResizeEvent(false)
+    , m_effectManager(this)
 {
     viewSizeList << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 4; // 100
@@ -38,7 +39,7 @@ ImageView::ImageView(QWidget *parent)
 
 }
 
-bool ImageView::addImage(ImageContent ic, bool pageNext)
+bool ImageView::on_addImage_triggered(ImageContent ic, bool pageNext)
 {
     if(m_pageManager == nullptr) return false;
     m_ptLeftTop.reset();
@@ -51,8 +52,8 @@ bool ImageView::addImage(ImageContent ic, bool pageNext)
     if(ic.BaseSize.width() > 0) {
 //        m_pageImages.append(ic.Image);
         QGraphicsPixmapItem* gpi = s->addPixmap(ic.Image);
-        // if we show the image with resizing more smooth, must be called
-        gpi->setTransformationMode(Qt::SmoothTransformation);
+//        // if we show the image with resizing more smooth, must be called
+//        gpi->setTransformationMode(Qt::SmoothTransformation);
         gitem = gpi;
         size = ic.Image.size();
         if(ic.Info.ImageWidth > 0 && ic.Info.Orientation != 1) {
@@ -76,16 +77,18 @@ bool ImageView::addImage(ImageContent ic, bool pageNext)
         gitem = gtext;
         size = QSize(100, 100);
     }
-    PageGraphicsItem pgi(ic.Image, gitem, size, offset);
+    PageGraphicsItem pgi(ic, gitem, size, offset);
     if(pageNext)
         m_pages.push_back(pgi);
     else
         m_pages.push_front(pgi);
 
+    m_effectManager.prepareInitialize();
+
     return size.width() > size.height();
 }
 
-void ImageView::clearImages()
+void ImageView::on_clearImages_triggered()
 {
     if(m_pageManager == nullptr) return;
     QGraphicsScene *s = scene();
@@ -100,9 +103,9 @@ void ImageView::clearImages()
 void ImageView::setPageManager(PageManager *manager)
 {
     m_pageManager = manager;
-    connect(manager, SIGNAL(pagesNolongerNeeded()), this, SLOT(clearImages()));
+    connect(manager, SIGNAL(pagesNolongerNeeded()), this, SLOT(on_clearImages_triggered()));
     connect(manager, SIGNAL(readyForPaint()), this, SLOT(readyForPaint()));
-    connect(manager, SIGNAL(pageAdded(ImageContent, bool)), this, SLOT(addImage(ImageContent, bool)));
+    connect(manager, SIGNAL(pageAdded(ImageContent, bool)), this, SLOT(on_addImage_triggered(ImageContent, bool)));
 }
 
 
@@ -121,7 +124,7 @@ void ImageView::setRenderer(RendererType type)
 }
 
 void ImageView::readyForPaint() {
-    //qDebug() << "readyForPaint";
+    qDebug() << "readyForPaint";
     if(!m_pages.empty()) {
         bool dualview = qApp->DualView() && m_pageManager->canDualView();
         for(int i = 0; i < m_pages.size(); i++) {
@@ -132,14 +135,17 @@ void ImageView::readyForPaint() {
                             ? PageGraphicsItem::FitRight : PageGraphicsItem::FitLeft;
                 pageRect = QRect(QPoint(fitting==PageGraphicsItem::FitRight ? 0 : pageRect.width()/2, 0), QSize(pageRect.width()/2,pageRect.height()));
             }
+            QSize drawSize;
             if(qApp->Fitting()) {
-                m_pages[i].setPageLayoutFitting(pageRect, fitting);
+                drawSize = m_pages[i].setPageLayoutFitting(pageRect, fitting);
             } else {
                 qreal scale = 1.0*currentViewSize()/100;
-                m_pages[i].setPageLayoutManual(pageRect, fitting, scale);
+                drawSize = m_pages[i].setPageLayoutManual(pageRect, fitting, scale);
             }
+            m_effectManager.prepare(dynamic_cast<QGraphicsPixmapItem*>(m_pages[i].GrItem), m_pages[i].Ic, drawSize);
         }
     }
+    m_effectManager.prepareFinished();
     repaint();
 }
 
@@ -166,6 +172,18 @@ void ImageView::on_prevPage_triggered()
         m_pageManager->prevPage();
 }
 
+void ImageView::on_fastForwardPage_triggered()
+{
+    if(m_pageManager)
+        m_pageManager->fastForwardPage();
+}
+
+void ImageView::on_fastBackwardPage_triggered()
+{
+    if(m_pageManager)
+        m_pageManager->fastBackwardPage();
+}
+
 void ImageView::on_firstPage_triggered()
 {
     if(m_pageManager)
@@ -188,6 +206,19 @@ void ImageView::on_prevOnlyOnePage_triggered()
 {
     if(m_pageManager)
         m_pageManager->prevOnlyOnePage();
+}
+
+
+void ImageView::on_nextVolume_triggered()
+{
+    if(m_pageManager)
+        m_pageManager->nextVolume();
+}
+
+void ImageView::on_prevVolume_triggered()
+{
+    if(m_pageManager)
+        m_pageManager->prevVolume();
 }
 
 #define HOVER_BORDER 20
@@ -337,6 +368,6 @@ void ImageView::on_copyPage_triggered()
     if(m_pages.empty())
         return;
     QClipboard* clip = qApp->clipboard();
-    clip->setImage(m_pages[0].Image.toImage());
+    clip->setImage(m_pages[0].Ic.Image.toImage());
 }
 

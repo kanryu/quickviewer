@@ -5,7 +5,7 @@
 #include <QSettings>
 #include <QMap>
 #include <QKeySequence>
-
+#include "imageshadereffect.h"
 
 #if defined(qApp)
 #undef qApp
@@ -22,9 +22,11 @@ class MainWindow;
 class QAction;
 //typedef QList<QKeySequence> QKeySequenceList;
 
+
 class QVApplication : public QApplication
 {
     Q_OBJECT
+
     Q_PROPERTY(bool Fitting READ Fitting WRITE setFitting)
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
     Q_PROPERTY(bool RightSideBook READ RightSideBook WRITE setRightSideBook)
@@ -37,6 +39,18 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
     Q_PROPERTY(bool ShowStatusBar READ ShowStatusBar WRITE setShowStatusBar)
     Q_PROPERTY(bool ShowMenuBar READ ShowMenuBar WRITE setShowMenuBar)
+
+    // WindowStates
+    Q_PROPERTY(bool RestoreWindowState READ RestoreWindowState WRITE setRestoreWindowState)
+    Q_PROPERTY(QByteArray WindowGeometry READ WindowGeometry WRITE setWindowGeometry)
+    Q_PROPERTY(QByteArray WindowState READ WindowState WRITE setWindowState)
+
+    // Shaders
+    Q_PROPERTY(ImageEffectManager::ShaderEffect Effect READ Effect WRITE setEffect)
+    Q_PROPERTY(QString BicubicShaderPath READ BicubicShaderPath WRITE setBicubicShaderPath)
+    Q_PROPERTY(QString LanczosShaderPath READ LanczosShaderPath WRITE setLanczosShaderPath)
+
+    // Key Config
     Q_PROPERTY(QMap<QString, QKeySequence> KeyConfigMap READ KeyConfigMap)
 
 public:
@@ -65,6 +79,14 @@ public:
     bool ShowMenuBar() { return m_showMenuBar; }
     void setShowMenuBar (bool showMenuBar) { m_showMenuBar = showMenuBar; }
 
+    // RestoreWindowState
+    bool RestoreWindowState() { return m_restoreWindowState; }
+    void setRestoreWindowState (bool restoreWindowState) { m_restoreWindowState = restoreWindowState; }
+    QByteArray WindowGeometry() { return m_windowGeometry; }
+    void setWindowGeometry (QByteArray windowGeometry) { m_windowGeometry = windowGeometry; }
+    QByteArray WindowState() { return m_windowState; }
+    void setWindowState (QByteArray windowState) { m_windowState = windowState; }
+
     // File
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     bool AutoLoaded() { return m_autoLoaded; }
@@ -73,6 +95,14 @@ public:
     int MaxHistoryCount() { return m_maxHistoryCount; }
     const QStringList& History() const { return m_history; }
     void clearHistory() { m_history.clear(); }
+
+    // ShaderEffect
+    ImageEffectManager::ShaderEffect Effect() { return m_effect; }
+    void setEffect (ImageEffectManager::ShaderEffect shaderEffect) { m_effect = shaderEffect; }
+    QString BicubicShaderPath() { return m_bicubicShaderPath; }
+    void setBicubicShaderPath (QString bicubicShaderPath) { m_bicubicShaderPath = bicubicShaderPath; }
+    QString LanczosShaderPath() { return m_lanczosShaderPath; }
+    void setLanczosShaderPath (QString lanczosShaderPath) { m_lanczosShaderPath = lanczosShaderPath; }
 
     // Key Config
     QMap<QString, QKeySequence>& KeyConfigMap() { return m_keyConfigs; }
@@ -175,11 +205,22 @@ private:
     bool m_showSliderBar;
     bool m_showStatusBar;
     bool m_showMenuBar;
+
+    // WindowStates
+    bool m_restoreWindowState;
+    QByteArray m_windowGeometry;
+    QByteArray m_windowState;
+
     /**
      * @brief if true, a wide image must be one view whether dual view is enabled
      */
     bool m_wideImageAsOnePageInDualView;
     bool m_firstImageAsOnePageInDualView;
+    // Shader Effect
+    ImageEffectManager::ShaderEffect m_effect;
+    QString m_bicubicShaderPath;
+    QString m_lanczosShaderPath;
+
     QSettings m_settings;
     QStringList m_history;
     QMap<QString, QKeySequence> m_keyConfigs;

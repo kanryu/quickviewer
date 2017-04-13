@@ -85,8 +85,26 @@
        </property>
        <item>
         <widget class="QLabel" name="pageLabel">
-         <property name="text">
-          <string>any folder or archive is not loaded.</string>
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
@@ -104,6 +122,13 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="statusLabel">
+      <property name="text">
+       <string notr="true">(StatusBar Message)</string>
+      </property>
      </widget>
     </item>
    </layout>
@@ -156,6 +181,8 @@
     <addaction name="actionShowPageBar"/>
     <addaction name="actionShowStatusBar"/>
     <addaction name="separator"/>
+    <addaction name="actionRestoreWindowState"/>
+    <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
     <addaction name="actionStayOnTop"/>
    </widget>
@@ -174,6 +201,8 @@
     </property>
     <addaction name="actionNextPage"/>
     <addaction name="actionPrevPage"/>
+    <addaction name="actionFastForward"/>
+    <addaction name="actionFastBackward"/>
     <addaction name="actionFirstPage"/>
     <addaction name="actionLastPage"/>
     <addaction name="actionNextOnePage"/>
@@ -182,9 +211,19 @@
     <addaction name="actionNextVolume"/>
     <addaction name="actionPrevVolume"/>
    </widget>
+   <widget class="QMenu" name="menu_Shader">
+    <property name="title">
+     <string>&amp;Shader</string>
+    </property>
+    <addaction name="actionShaderBilinear"/>
+    <addaction name="actionShaderBicubic"/>
+    <addaction name="actionShaderLanczos"/>
+    <addaction name="actionShaderNearestNeighbor"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_Navigation"/>
    <addaction name="menuView"/>
+   <addaction name="menu_Shader"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -196,6 +235,8 @@
    </attribute>
    <addaction name="actionPrevPage"/>
    <addaction name="actionNextPage"/>
+   <addaction name="actionFastBackward"/>
+   <addaction name="actionFastForward"/>
    <addaction name="actionFirstPage"/>
    <addaction name="actionLastPage"/>
    <addaction name="separator"/>
@@ -486,12 +527,75 @@
   </action>
   <action name="actionCopyPage">
    <property name="text">
-    <string>Copy Image</string>
+    <string>&amp;Copy Image</string>
    </property>
   </action>
   <action name="actionDeletePage">
    <property name="text">
-    <string>Move the Image to trash box</string>
+    <string>Move the Image to the &amp;Recycle Bin</string>
+   </property>
+  </action>
+  <action name="actionShaderBilinear">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Bilinear (standard)</string>
+   </property>
+  </action>
+  <action name="actionShaderBicubic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bi&amp;cubic (slow)</string>
+   </property>
+  </action>
+  <action name="actionShaderLanczos">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Lanczos (very slow)</string>
+   </property>
+  </action>
+  <action name="actionShaderNearestNeighbor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Nearest Neighbor (coarse)</string>
+   </property>
+  </action>
+  <action name="actionMaximizeOrNormal">
+   <property name="text">
+    <string>&amp;Maximize or Normal</string>
+   </property>
+  </action>
+  <action name="actionRestoreWindowState">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Restore Window State on next run</string>
+   </property>
+  </action>
+  <action name="actionFastForward">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/page_next_fast_icon</normaloff>:/icons/page_next_fast_icon</iconset>
+   </property>
+   <property name="text">
+    <string>FastForward</string>
+   </property>
+  </action>
+  <action name="actionFastBackward">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/page_previous_fast_icon</normaloff>:/icons/page_previous_fast_icon</iconset>
+   </property>
+   <property name="text">
+    <string>FastBackward</string>
    </property>
   </action>
  </widget>
@@ -519,6 +623,10 @@
     <slot>on_prevOnlyOnePage_triggered()</slot>
     <slot>on_firstImageAsOneView_triggered(bool)</slot>
     <slot>on_copyPage_triggered()</slot>
+    <slot>on_nextVolume_triggered()</slot>
+    <slot>on_prevVolume_triggered()</slot>
+    <slot>on_fastForwardPage_triggered()</slot>
+    <slot>on_fastBackwardPage_triggered()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -854,7 +962,7 @@
   <connection>
    <sender>actionNextVolume</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>on_nextVolume_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -863,14 +971,14 @@
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
-     <y>294</y>
+     <y>287</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>actionPrevVolume</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>on_prevVolume_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -879,7 +987,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
-     <y>294</y>
+     <y>287</y>
     </hint>
    </hints>
   </connection>
@@ -1059,6 +1167,134 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShaderNearestNeighbor</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_shaderNearestNeighbor_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShaderBilinear</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_shaderBilinear_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShaderBicubic</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_shaderBicubic_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShaderLanczos</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_shaderLanczos_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionMaximizeOrNormal</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_maximizeOrNormal_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFastForward</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_fastForwardPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFastBackward</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_fastBackwardPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRestoreWindowState</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_restoreWindowState_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1076,8 +1312,6 @@
   <slot>on_showStatusBar_triggered(bool)</slot>
   <slot>on_openKeyConfig_triggered()</slot>
   <slot>on_checkVersion_triggered()</slot>
-  <slot>on_nextVolume_triggered()</slot>
-  <slot>on_prevVolume_triggered()</slot>
   <slot>on_exitApplicationOrFullscreen_triggered()</slot>
   <slot>on_exit_triggered()</slot>
   <slot>on_showToolBar_triggered(bool)</slot>
@@ -1085,5 +1319,11 @@
   <slot>on_clearHistory_triggered()</slot>
   <slot>on_stayOnTop_triggered(bool)</slot>
   <slot>on_deletePage_triggered()</slot>
+  <slot>on_shaderNearestNeighbor_triggered()</slot>
+  <slot>on_shaderBilinear_triggered()</slot>
+  <slot>on_shaderBicubic_triggered()</slot>
+  <slot>on_shaderLanczos_triggered()</slot>
+  <slot>on_maximizeOrNormal_triggered()</slot>
+  <slot>on_restoreWindowState_triggered(bool)</slot>
  </slots>
 </ui>

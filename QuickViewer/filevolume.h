@@ -14,22 +14,21 @@ struct ImageContent
 public:
     QPixmap Image;
     QSize BaseSize;
+    QSize ImportSize;
     QString Path;
     easyexif::EXIFInfo Info;
 
     ImageContent(){}
     ImageContent(QPixmap image, QString path, QSize size, easyexif::EXIFInfo info)
-        : Image(image), Path(path), BaseSize(size), Info(info) {
-    }
-
+        : Image(image), Path(path), BaseSize(size), ImportSize(image.size()), Info(info) {}
     ImageContent(const ImageContent& rhs)
-        : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize), Info(rhs.Info) {
-    }
+        : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize), ImportSize(rhs.ImportSize), Info(rhs.Info) {}
     inline ImageContent& operator=(const ImageContent &rhs)
     {
         Image = rhs.Image;
         Path = rhs.Path;
         BaseSize = rhs.BaseSize;
+        ImportSize = rhs.ImportSize;
         Info = rhs.Info;
         return *this;
     }
@@ -43,6 +42,13 @@ class IFileVolume : public QObject
     Q_OBJECT
 //    Q_DISABLE_COPY(IFileVolume)
 public:
+    enum CacheMode
+    {
+        Normal,
+        FastFowrard,
+        CoverOnly
+    };
+
     typedef QFuture<ImageContent> future_image;
 
     explicit IFileVolume(QObject *parent, IFileLoader* loader);
@@ -87,6 +93,8 @@ public:
             return "";
         return QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[idx]);
     }
+    void setCacheMode(CacheMode cachemode) { m_cacheMode = cachemode; }
+    CacheMode cacheMode() const { return m_cacheMode; }
 
     /**
      * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
@@ -159,11 +167,6 @@ public:
      * @brief pageCount 現在のページを返す
      */
     int pageCount() { return m_cnt; }
-    /**
-     * @brief setSuppressCache set supressing to create image cache
-     * @param suppress
-     */
-    void setSuppressCache(bool suppress) { m_suppressCache = suppress; }
 
 //    QPixmap getIndexedImage(int idx);
 //    QString getIndexedImageName(int idx) { return m_filelist[idx]; }
@@ -186,7 +189,7 @@ protected:
     QMutex m_mutex;
 
     IFileLoader* m_loader;
-    bool m_suppressCache;
+    CacheMode m_cacheMode;
 };
 
 
