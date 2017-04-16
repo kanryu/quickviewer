@@ -40,6 +40,20 @@ layout: default
 
 ソースコードについては [リポジトリ](https://github.com/kanryu/quickviewer) から最新のソースコードをcloneして入手してください。
 
+## 外部レビュー
+
+- Free SoftNavie様
+    - http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html
+- the PORTABLE FREEWARE collection様(英語)
+    - https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353
+- SOFTPEDIA様(英語)
+    - http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml
+- FindMySoft様(英語)
+    - http://quickviewer.findmysoft.com
+
+レビューしてくれてどうもありがとう！
+
+
 ## 機能紹介
 
 ### 通常表示(1ページ表示)
