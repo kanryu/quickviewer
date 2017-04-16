@@ -56,6 +56,42 @@ Thanks for reviewers! :)
 
 ## Functions
 
+- Folders, Archives(zip/7z/rar) Navigation
+    - Drag Drop a folder/archive icon to the window
+    - **Open Image Folder** by menu
+    - **History** by menu
+    - NextVolume, PrevVolume
+- Spread Viewing(left/right 2 images at once)
+    - Bound on the right side book(toggled)
+    - Always open wide images as one view(toggled)
+    - Always open first image as one view(toggled)
+- Slide Show
+- Page Navigation
+    - NextPage, PrevPage
+    - FastForward, FastBackward(10 pages at once)
+    - FirstPage, LastPage
+    - Next only one page, Prev only one page(for **Spread Viewing**)
+- Image Viwing Size
+    - Fitting(to the window, normal)
+    - ScaleUp, ScaleOut(25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%, one of them)
+- Operation on images
+    - Copy Image to the clipboard
+    - Copy File to the clipboard
+    - Move the Image to the Recycle Bin
+    - Open the file with Exprorer
+    - Show the Exif Information(for JPEG)
+    - Auto rotation with Exif(for JPEG)
+- Window View Setting
+    - Fullscreen
+    - Stay On Top
+    - Restore Window State on next run
+- Shaders(re-scalling quality)
+    - Bilinear interpolation(normal)
+    - Bicubic interpolation
+    - Lanczos interpolation
+    - Nearest Neighbor interpolation
+- Keyboard Config Setting
+
 ### Normal Viewing(One Page View)
 
 ![Normal Viewing](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
