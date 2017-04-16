@@ -42,7 +42,7 @@ layout: default
 
 ## 外部レビュー
 
-- Free SoftNavie様
+- Free SoftNavi様
     - http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html
 - the PORTABLE FREEWARE collection様(英語)
     - https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353
