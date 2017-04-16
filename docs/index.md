@@ -49,7 +49,7 @@ Please clone the latest source code from [this repository.](https://github.com/k
     - http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml
 - FindMySoft
     - http://quickviewer.findmysoft.com
-- Free SoftNavie(in Japanese)
+- Free SoftNavi (in Japanese)
     - http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html
 
 Thanks for reviewers! :)
