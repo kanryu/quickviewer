@@ -1,5 +1,17 @@
 # CHANGELOG
 
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 16 17:58:55 2017 +0900) [11b60dc](https://github.com/kanryu/quickviewer/commit/11b60dc274ec37054ee132ed2440b0ae5f6a7eb9)
+    - add SlideShow/CopyFile/RotateImage, 2 bug fixed (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  add SlideShow/CopyFile/RotateImage (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  refactoring(ImageShaderEffect -> ShaderManager) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  bug fixed(last 2 paging) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  bug fixed(open explorer) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  improve(more collect page bar on dualview) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    - Update README.md (Fri Apr 14 16:35:43 2017 +0900) [fd8da52](https://github.com/kanryu/quickviewer/commit/fd8da52e1505043f5066b3b5bcd5d70abbab72e4)
+    - changelog (Thu Apr 13 21:14:25 2017 +0900) [78d1ecf](https://github.com/kanryu/quickviewer/commit/78d1ecfb4d1b222c7f560fd64f65a556cd5609f3)
+
 ## v0.5.1 (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
 
 Support Shaders, Save Window States, Add FastFoward/Backward
