@@ -55,6 +55,10 @@ https://kanryu.github.io/quickviewer/
 - Pre page loading(via v0.2.0)
 - Exif Information(via v0.3.0)
 - Show Windows Explorer for the current image
+- Shader Program Filters(via v0.5.1)
+    - Nearest Neighber
+    - Bicubic
+    - Lanczos
 
 ## Screen operations
 
