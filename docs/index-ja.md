@@ -42,13 +42,13 @@ layout: default
 
 ## 外部レビュー
 
-- Free SoftNavi様
+- **Free SoftNavi様**
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
-- the PORTABLE FREEWARE collection様(英語)
+- **the PORTABLE FREEWARE collection様** (英語)
     - [https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353](https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353)
-- SOFTPEDIA様(英語)
+- **SOFTPEDIA様** (英語)
     - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
-- FindMySoft様(英語)
+- **FindMySoft様** (英語)
     - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
 
 レビューしてくれてどうもありがとう！
