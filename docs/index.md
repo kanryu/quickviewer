@@ -41,6 +41,19 @@ You can browse images with much smoother response than ever before.
 
 Please clone the latest source code from [this repository.](https://github.com/kanryu/quickviewer)
 
+## External Reviews
+
+- the PORTABLE FREEWARE collection
+    - https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353
+- SOFTPEDIA
+    - http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml
+- FindMySoft
+    - http://quickviewer.findmysoft.com
+- Free SoftNavie(in Japanese)
+    - http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html
+
+Thanks for reviewers! :)
+
 ## Functions
 
 ### Normal Viewing(One Page View)
