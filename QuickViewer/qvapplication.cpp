@@ -22,16 +22,19 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionPrevPage"] = QKeySequence("Left, Backspace");
     m_keyConfigDefauls["actionScaleUp"] = QKeySequence("Num++");
     m_keyConfigDefauls["actionScaleDown"] = QKeySequence("Num+-");
-    m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, Num+*");
-    m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
+    m_keyConfigDefauls["actionSlideShow"] = QKeySequence("F7");
     m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
     m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
+    m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
+    m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, Num+*");
+    m_keyConfigDefauls["actionRotate"] = QKeySequence("R");
     m_keyConfigDefauls["actionLastPage"] = QKeySequence("End");
     m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Home");
     m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgDown");
     m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgUp");
     m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
     m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
+    m_keyConfigDefauls["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
     m_keyConfigDefauls["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
 
     m_keyConfigDefauls["actionFastForward"] = QKeySequence("Num+3");
@@ -65,6 +68,8 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionPrevVolume", ui->actionPrevVolume);
     registAction("actionNextOnePage", ui->actionNextOnePage);
     registAction("actionPrevOnePage", ui->actionPrevOnePage);
+    registAction("actionRotate", ui->actionRotate);
+    registAction("actionSlideShow", ui->actionSlideShow);
 
     registAction("actionDualView", ui->actionDualView);
     registAction("actionRightSideBook", ui->actionRightSideBook);
@@ -84,6 +89,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionOpenFiler", ui->actionOpenFiler);
     registAction("actionOpenExif", ui->actionOpenExif);
     registAction("actionCopyPage", ui->actionCopyPage);
+    registAction("actionCopyFile", ui->actionCopyFile);
     registAction("actionDeletePage", ui->actionDeletePage);
 
     registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
