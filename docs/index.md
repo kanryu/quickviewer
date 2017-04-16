@@ -44,13 +44,13 @@ Please clone the latest source code from [this repository.](https://github.com/k
 ## External Reviews
 
 - the PORTABLE FREEWARE collection
-    - https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353
+    - [https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353](https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353)
 - SOFTPEDIA
-    - http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml
+    - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
 - FindMySoft
-    - http://quickviewer.findmysoft.com
+    - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
 - Free SoftNavi (in Japanese)
-    - http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html
+    - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 
 Thanks for reviewers! :)
 
