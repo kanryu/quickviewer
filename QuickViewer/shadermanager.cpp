@@ -1,6 +1,6 @@
 #include <QGraphicsPixmapItem>
 #include <QtOpenGL/private/qgraphicsshadereffect_p.h>
-#include "imageshadereffect.h"
+#include "shadermanager.h"
 #include "qvapplication.h"
 
 
@@ -85,7 +85,7 @@ void LanczosShaderEffect::createOffsets(int count, float width, Qt::Orientation 
 //////////////////////////////////////////////////////
 /// \brief ImageEffectManager::ImageEffectManager
 /// \param parent
-ImageEffectManager::ImageEffectManager(QObject *parent)
+ShaderManager::ShaderManager(QObject *parent)
     : pageCnt(0)
 //    , m_effect(Bilinear)
     , m_oldEffect(Bilinear)
@@ -94,7 +94,7 @@ ImageEffectManager::ImageEffectManager(QObject *parent)
     loadShader(m_lanczos, qApp->LanczosShaderPath());
 }
 
-void ImageEffectManager::loadShader(QByteArray& target, QString path)
+void ShaderManager::loadShader(QByteArray& target, QString path)
 {
     if(!QDir::isAbsolutePath(path)) {
         path = QString("%1/%2").arg(qApp->applicationDirPath()).arg(path);
@@ -105,7 +105,7 @@ void ImageEffectManager::loadShader(QByteArray& target, QString path)
     }
 }
 
-void ImageEffectManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, QSize size)
+void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, QSize size)
 {
     if(!item)
         return;
@@ -139,7 +139,7 @@ void ImageEffectManager::prepare(QGraphicsPixmapItem *item, const ImageContent &
         if(m_oldEffect == NearestNeighbor)
             item->setTransformationMode(Qt::SmoothTransformation);
         if(m_oldEffect != Lanczos) {
-            if(m_bicubic.length() > 0) {
+            if(m_lanczos.length() > 0) {
                 auto lanczos = new LanczosShaderEffect(this);
                 lanczos->setPixelShaderFragment(m_lanczos);
 
@@ -155,6 +155,7 @@ void ImageEffectManager::prepare(QGraphicsPixmapItem *item, const ImageContent &
 //                }
                 int kernelSize;
                 lanczos->createKernel(1.0/pow, &kernelSize);
+                qDebug() << 1.0/pow << kernelSize;
                 lanczos->createOffsets(kernelSize, sw, Qt::Horizontal);
                 shader = lanczos;
             }
@@ -165,7 +166,7 @@ void ImageEffectManager::prepare(QGraphicsPixmapItem *item, const ImageContent &
     pageCnt++;
 }
 
-void ImageEffectManager::prepareFinished()
+void ShaderManager::prepareFinished()
 {
     pageCnt=0;
     m_oldEffect = qApp->Effect();

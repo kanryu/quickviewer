@@ -8,11 +8,11 @@
 #include "filevolume.h"
 
 /**
- * @brief The ImageShaderEffect class
+ * @brief The ShaderManager class
  * customizing the shader effec oft QGraphicsPixmapItem,
  * which can use a fragment shader
  */
-class ImageEffectManager : public QObject
+class ShaderManager : public QObject
 {
     Q_OBJECT
 public:
@@ -26,17 +26,7 @@ public:
     };
     Q_ENUM(ShaderEffect)
 
-    ImageEffectManager(QObject *parent = 0);
-//    /**
-//     * @brief setEffect change effect method. must be called before prepare()
-//     * @param effect
-//     * @param initialize
-//     */
-//    void setEffect(ShaderEffect effect, bool initialize=false) {
-//        m_oldEffect = initialize ? effect : m_effect;
-//        m_effect = effect;
-//    }
-//    ShaderEffect effect() const { return m_effect; }
+    ShaderManager(QObject *parent = 0);
     /**
      * @brief prepare shader for each page
      * @param ic

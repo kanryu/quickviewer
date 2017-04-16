@@ -72,10 +72,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusLabel->setText(tr("any folder or archive is not loaded."));
 
     switch(qApp->Effect()) {
-    case ImageEffectManager::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
-    case ImageEffectManager::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
-    case ImageEffectManager::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
-    case ImageEffectManager::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
+    case ShaderManager::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
+    case ShaderManager::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
+    case ShaderManager::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
+    case ShaderManager::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
     }
 
 
@@ -89,6 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
     contextMenu.addSeparator();
     contextMenu.addAction(ui->actionCopyPage);
     contextMenu.addAction(ui->actionDeletePage);
+    contextMenu.addAction(ui->actionCopyFile);
     contextMenu.addSeparator();
     contextMenu.addAction(ui->actionOpenFiler);
     contextMenu.addAction(ui->actionOpenExif);
@@ -97,23 +98,13 @@ MainWindow::MainWindow(QWidget *parent)
     contextMenu.addAction(ui->actionFirstImageAsOneView);
 
     connect(ui->graphicsView, SIGNAL(anchorHovered(Qt::AnchorPoint)), this, SLOT(on_hover_anchor(Qt::AnchorPoint)) );
-    connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
+//    connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
     connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
     connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historymenu_triggered(QAction*)) );
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
     connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
-    QStringList args = qApp->arguments();
-    qDebug() << args;
-    if(qApp->arguments().length() >= 2) {
-        loadVolume(qApp->arguments().last());
-        return;
-    }
-    if(qApp->AutoLoaded() && qApp->History().size() > 0) {
-        loadVolume(qApp->History().at(0));
-    }
-
     // WindowState Restoreing
     if(qApp->RestoreWindowState()) {
         ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
@@ -129,7 +120,13 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-
+    if(qApp->arguments().length() >= 2) {
+        loadVolume(qApp->arguments().last());
+        return;
+    }
+    if(qApp->AutoLoaded() && qApp->History().size() > 0) {
+        loadVolume(qApp->History().at(0));
+    }
 }
 
 
@@ -344,6 +341,8 @@ void MainWindow::on_fullscreen_triggered()
             showNormal();
         }
         ui->graphicsView->readyForPaint();
+        if(ui->graphicsView->isSlideShow())
+            ui->graphicsView->toggleSlideShow();
     } else {
         ui->graphicsView->skipRisizeEvent(true);
         m_viewerWindowStateMaximized = isMaximized();
@@ -396,8 +395,14 @@ void MainWindow::on_pageChanged_triggered()
     // PageSlider
     ui->pageLabel->setText(m_pageManager.currentPageNumAsString());
     m_sliderChanging = true;
-    ui->pageSlider->setMaximum(m_pageManager.size());
-    ui->pageSlider->setValue(m_pageManager.currentPage());
+    int maxVolume = m_pageManager.size();
+
+    // at DualView Mode, last 2 page shoud be [volume.size()-2, volume.size()-1]
+    if(qApp->DualView() && ((m_pageManager.size()-m_pageManager.currentPage()) & 0x1)==0)
+        maxVolume--;
+
+    ui->pageSlider->setMaximum(maxVolume);
+    ui->pageSlider->setValue(m_pageManager.currentPage()+1);
     m_sliderChanging = false;
     ui->pageSlider->show();
 
@@ -609,10 +614,19 @@ void MainWindow::on_restoreWindowState_triggered(bool saveState)
     qApp->setRestoreWindowState(saveState);
 }
 
+void MainWindow::on_slideShow_triggered(bool enable)
+{
+    if(m_pageManager.size() == 0)
+        return;
+    if(!isFullScreen())
+        ui->actionFullscreen->trigger();
+    ui->graphicsView->toggleSlideShow();
+}
+
 void MainWindow::on_shaderNearestNeighbor_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(ImageEffectManager::NearestNeighbor);
+    qApp->setEffect(ShaderManager::NearestNeighbor);
     ui->actionShaderNearestNeighbor->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
@@ -621,14 +635,14 @@ void MainWindow::on_shaderBilinear_triggered()
 {
     uncheckAllShaderMenus();
     ui->actionShaderBilinear->setChecked(true);
-    qApp->setEffect(ImageEffectManager::Bilinear);
+    qApp->setEffect(ShaderManager::Bilinear);
     ui->graphicsView->readyForPaint();
 }
 
 void MainWindow::on_shaderBicubic_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(ImageEffectManager::Bicubic);
+    qApp->setEffect(ShaderManager::Bicubic);
     ui->actionShaderBicubic->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
@@ -636,7 +650,7 @@ void MainWindow::on_shaderBicubic_triggered()
 void MainWindow::on_shaderLanczos_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(ImageEffectManager::Lanczos);
+    qApp->setEffect(ShaderManager::Lanczos);
     ui->actionShaderLanczos->setChecked(true);
     ui->graphicsView->readyForPaint();
 }

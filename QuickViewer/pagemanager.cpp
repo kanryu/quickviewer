@@ -14,15 +14,15 @@ PageManager::PageManager(QObject* parent)
 void PageManager::nextPage()
 {
     //qDebug() << "ImageView::nextPage()" << m_currentPage;
-    if(m_fileVolume == nullptr) return;
-    bool result = (m_fileVolume->pageCount() == m_fileVolume->size() -1) ||  m_fileVolume->nextPage();
+    if(m_fileVolume == nullptr || m_fileVolume->pageCount() >= m_fileVolume->size()-1) return;
+    bool result = m_fileVolume->nextPage();
     if(!result) return;
     m_fileVolume->setCacheMode(IFileVolume::Normal);
 
     int pageIncr = m_pages.size();
     m_currentPage += pageIncr;
-    if(m_currentPage >= m_fileVolume->size() - pageIncr)
-        m_currentPage = m_fileVolume->size() - pageIncr;
+    if(m_currentPage >= m_fileVolume->size() - 1)
+        m_currentPage = m_fileVolume->size() - 1;
 
     reloadCurrentPage();
     emit pageChanged();
@@ -173,9 +173,9 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
     if(coverOnly)
         m_fileVolume->setCacheMode(IFileVolume::CoverOnly);
     m_currentPage = 0;
+    emit volumeChanged();
     // if volume is folder and the path incluces filename, pageCount() != 0
     selectPage(coverOnly ? 0 : m_fileVolume->pageCount());
-    emit volumeChanged();
     return true;
 }
 

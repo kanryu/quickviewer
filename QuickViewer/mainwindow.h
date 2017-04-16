@@ -61,6 +61,8 @@ public slots:
     void on_deletePage_triggered();
     void on_maximizeOrNormal_triggered();
     void on_restoreWindowState_triggered(bool saveState);
+    // SlideShow
+    void on_slideShow_triggered(bool enable);
 
     void on_shaderNearestNeighbor_triggered();
     void on_shaderBilinear_triggered();

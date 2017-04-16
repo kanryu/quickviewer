@@ -5,7 +5,7 @@
 #include <QSettings>
 #include <QMap>
 #include <QKeySequence>
-#include "imageshadereffect.h"
+#include "shadermanager.h"
 
 #if defined(qApp)
 #undef qApp
@@ -46,7 +46,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(QByteArray WindowState READ WindowState WRITE setWindowState)
 
     // Shaders
-    Q_PROPERTY(ImageEffectManager::ShaderEffect Effect READ Effect WRITE setEffect)
+    Q_PROPERTY(ShaderManager::ShaderEffect Effect READ Effect WRITE setEffect)
     Q_PROPERTY(QString BicubicShaderPath READ BicubicShaderPath WRITE setBicubicShaderPath)
     Q_PROPERTY(QString LanczosShaderPath READ LanczosShaderPath WRITE setLanczosShaderPath)
 
@@ -97,8 +97,8 @@ public:
     void clearHistory() { m_history.clear(); }
 
     // ShaderEffect
-    ImageEffectManager::ShaderEffect Effect() { return m_effect; }
-    void setEffect (ImageEffectManager::ShaderEffect shaderEffect) { m_effect = shaderEffect; }
+    ShaderManager::ShaderEffect Effect() { return m_effect; }
+    void setEffect (ShaderManager::ShaderEffect shaderEffect) { m_effect = shaderEffect; }
     QString BicubicShaderPath() { return m_bicubicShaderPath; }
     void setBicubicShaderPath (QString bicubicShaderPath) { m_bicubicShaderPath = bicubicShaderPath; }
     QString LanczosShaderPath() { return m_lanczosShaderPath; }
@@ -217,7 +217,7 @@ private:
     bool m_wideImageAsOnePageInDualView;
     bool m_firstImageAsOnePageInDualView;
     // Shader Effect
-    ImageEffectManager::ShaderEffect m_effect;
+    ShaderManager::ShaderEffect m_effect;
     QString m_bicubicShaderPath;
     QString m_lanczosShaderPath;
 

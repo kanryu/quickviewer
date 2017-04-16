@@ -35,5 +35,7 @@
         <file alias="stayontop_icon2">icons/stayontop2.png</file>
         <file alias="page_next_fast_icon">icons/page_next_fast.png</file>
         <file alias="page_previous_fast_icon">icons/page_previous_fast.png</file>
+        <file alias="rotation_icon">icons/rotation.png</file>
+        <file alias="slideshow_icon">icons/slideshow.png</file>
     </qresource>
 </RCC>

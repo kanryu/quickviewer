@@ -10,7 +10,7 @@
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_settings(APP_INI, QSettings::IniFormat, this)
-    , m_effect(ImageEffectManager::Bilinear)
+    , m_effect(ShaderManager::Bilinear)
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -150,7 +150,7 @@ void QVApplication::loadSettings()
 
     m_settings.beginGroup("Shader");
     QString effectstring = m_settings.value("Effect", "Bilinear").toString();
-    m_effect = ImageEffectManager::stringToShaderEffect(effectstring);
+    m_effect = ShaderManager::stringToShaderEffect(effectstring);
     m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
     m_settings.endGroup();
@@ -194,7 +194,7 @@ void QVApplication::saveSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("Shader");
-    m_settings.setValue("Effect", ImageEffectManager::shaderEffectToString(m_effect));
+    m_settings.setValue("Effect", ShaderManager::shaderEffectToString(m_effect));
     m_settings.setValue("BicubicShaderPath", m_bicubicShaderPath);
     m_settings.setValue("LanczosShaderPath", m_lanczosShaderPath);
     m_settings.endGroup();

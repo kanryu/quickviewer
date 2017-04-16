@@ -10,7 +10,7 @@
 #include "filevolume.h"
 #include "exifdialog.h"
 #include "pagemanager.h"
-#include "imageshadereffect.h"
+#include "shadermanager.h"
 
 /**
  * @brief The SavedPoint class
@@ -41,6 +41,10 @@ private:
     QPoint m_ptSaved;
 };
 
+/**
+ * @brief The PageGraphicsItem struct
+ * contains the informations of a Page
+ */
 struct PageGraphicsItem
 {
     ImageContent Ic;
@@ -49,31 +53,51 @@ struct PageGraphicsItem
      * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
      */
     QGraphicsItem* GrItem;
+//    /**
+//     * @brief Offset if GrItem is rolling, Offset is not Point(0,0)
+//     */
+//    QSize PageSize;
     /**
-     * @brief Offset if GrItem is rolling, Offset is not Point(0,0)
+     * @brief Rotate: rotation as digrees
      */
-    QSize PageSize;
-    QPoint Offset;
+    int Rotate;
     enum Fitting {
         FitCenter,
         FitLeft,
         FitRight
     };
     PageGraphicsItem()
-     : Ic(), GrItem(nullptr), PageSize(), Offset(){}
-    PageGraphicsItem(ImageContent ic, QGraphicsItem* item, QSize size, QPoint offset)
-        : Ic(ic), GrItem(item), PageSize(size), Offset(offset){}
+     : Ic(), GrItem(nullptr), Rotate(0){}
+    PageGraphicsItem(ImageContent ic, QGraphicsItem* item, int rotate)
+        : Ic(ic), GrItem(item), Rotate(rotate){}
     PageGraphicsItem(const PageGraphicsItem& rhs)
-        : Ic(rhs.Ic), GrItem(rhs.GrItem), PageSize(rhs.PageSize), Offset(rhs.Offset) {}
+        : Ic(rhs.Ic), GrItem(rhs.GrItem), Rotate(rhs.Rotate) {}
+    QPoint Offset(int rotateOffset=0) {
+        int rot = (Rotate+rotateOffset) % 360;
+        switch(rot) {
+        case 90:  return QPoint(Ic.Image.height(), 0);
+        case 180: return QPoint(Ic.Image.width(), Ic.Image.height());
+        case 270: return QPoint(0, Ic.Image.width());
+        default:  return QPoint();
+        }
+    }
+    QSize CurrentSize(int rotateOffset=0) {
+        int rot = (Rotate+rotateOffset) % 360;
+        return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
+    }
+
     /**
      * @brief setPageLayout set each image on the page
      * @param viewport: the image must be inscribed in the viewport area
      */
-    QSize setPageLayoutFitting(QRect viewport, Fitting fitting) {
-        QSize newsize = PageSize.scaled(viewport.size(), Qt::KeepAspectRatio);
-        qreal scale = 1.0*newsize.width()/PageSize.width();
+    QSize setPageLayoutFitting(QRect viewport, Fitting fitting, int rotateOffset=0) {
+        QSize currentSize = CurrentSize(rotateOffset);
+        QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
+        qreal scale = 1.0*newsize.width()/currentSize.width();
         GrItem->setScale(scale);
-        QPoint of = QPoint(scale*Offset.x(), scale*Offset.y());
+        QPoint of = Offset(rotateOffset);
+        of *= scale;
+        GrItem->setRotation(Rotate+rotateOffset);
         if(newsize.height() == viewport.height()) { // fitting on upper and bottom
             int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
             GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
@@ -82,13 +106,15 @@ struct PageGraphicsItem
         }
         return newsize;
     }
-    QSize setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale) {
+    QSize setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0) {
         GrItem->setScale(scale);
         QSize size = viewport.size();
-        QSize newsize = PageSize;
+        QSize newsize = CurrentSize(rotateOffset);
         newsize *= scale;
-        QPoint of = QPoint(scale*Offset.x(), scale*Offset.y());
+        QPoint of = Offset(rotateOffset);
+        of *= scale;
         int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+        GrItem->setRotation(Rotate+rotateOffset);
         GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
         return newsize;
     }
@@ -114,13 +140,15 @@ public:
     int currentViewSize() { return viewSizeList[viewSizeIdx]; }
     Qt::AnchorPoint hoverState() const { return m_hoverState; }
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
+    bool isSlideShow() const { return m_slideshowTimer != nullptr; }
+    void toggleSlideShow();
 
 signals:
     /**
      * @brief anchorHovered ImageViewのフレーム端にマウスカーソルが移動した場合に発生するシグナル
      */
     void anchorHovered(Qt::AnchorPoint anchor) const;
-    void pageChanged() const;
+//    void pageChanged() const;
 
 protected:
 //    void paintEvent( QPaintEvent *event );
@@ -134,6 +162,7 @@ protected:
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 
 public slots:
+    void on_volumeChanged_triggered();
     bool on_addImage_triggered(ImageContent image, bool pageNext);
     void on_clearImages_triggered();
     void readyForPaint();
@@ -147,6 +176,10 @@ public slots:
     void on_lastPage_triggered();
     void on_nextOnlyOnePage_triggered();
     void on_prevOnlyOnePage_triggered();
+    void on_rotatePage_triggered();
+
+    // SlideShow
+    void on_slideShowChanging_triggered();
 
     // Volume
     void on_nextVolume_triggered();
@@ -163,6 +196,7 @@ public slots:
     void on_openFiler_triggered();
     void on_openExifDialog_triggered();
     void on_copyPage_triggered();
+    void on_copyFile_triggered();
 
 
 private:
@@ -178,6 +212,7 @@ private:
      * @brief マニュアル拡大縮小するときの倍率を保持するリスト
      */
     QList<int> viewSizeList;
+    QVector<int> m_pageRotations;
     int viewSizeIdx;
     QFont m_font;
     bool m_wideImage;
@@ -186,7 +221,8 @@ private:
     ExifDialog exifDialog;
 
     PageManager* m_pageManager;
-    ImageEffectManager m_effectManager;
+    ShaderManager m_effectManager;
+    QTimer* m_slideshowTimer;
 };
 
 

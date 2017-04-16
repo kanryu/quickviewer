@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -210,6 +213,8 @@
     <addaction name="separator"/>
     <addaction name="actionNextVolume"/>
     <addaction name="actionPrevVolume"/>
+    <addaction name="separator"/>
+    <addaction name="actionSlideShow"/>
    </widget>
    <widget class="QMenu" name="menu_Shader">
     <property name="title">
@@ -243,6 +248,9 @@
    <addaction name="actionPrevVolume"/>
    <addaction name="actionNextVolume"/>
    <addaction name="separator"/>
+   <addaction name="actionSlideShow"/>
+   <addaction name="separator"/>
+   <addaction name="actionRotate"/>
    <addaction name="actionScaleUp"/>
    <addaction name="actionScaleDown"/>
    <addaction name="separator"/>
@@ -527,7 +535,7 @@
   </action>
   <action name="actionCopyPage">
    <property name="text">
-    <string>&amp;Copy Image</string>
+    <string>&amp;Copy Image to the clipboard</string>
    </property>
   </action>
   <action name="actionDeletePage">
@@ -598,6 +606,32 @@
     <string>FastBackward</string>
    </property>
   </action>
+  <action name="actionCopyFile">
+   <property name="text">
+    <string>Copy File to the clipboard</string>
+   </property>
+  </action>
+  <action name="actionRotate">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/rotation_icon</normaloff>:/icons/rotation_icon</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Rotate</string>
+   </property>
+  </action>
+  <action name="actionSlideShow">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/slideshow_icon</normaloff>:/icons/slideshow_icon</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;SlideShow</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -627,6 +661,8 @@
     <slot>on_prevVolume_triggered()</slot>
     <slot>on_fastForwardPage_triggered()</slot>
     <slot>on_fastBackwardPage_triggered()</slot>
+    <slot>on_copyFile_triggered()</slot>
+    <slot>on_rotatePage_triggered()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1295,6 +1331,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionCopyFile</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_copyFile_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRotate</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_rotatePage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSlideShow</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_slideShow_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1325,5 +1409,6 @@
   <slot>on_shaderLanczos_triggered()</slot>
   <slot>on_maximizeOrNormal_triggered()</slot>
   <slot>on_restoreWindowState_triggered(bool)</slot>
+  <slot>on_slideShow_triggered(bool)</slot>
  </slots>
 </ui>

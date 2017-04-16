@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private opengl-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.5.1
+VERSION = 0.5.2
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -104,7 +104,7 @@ SOURCES += main.cpp \
     shortcutbutton.cpp \
     pagemanager.cpp \
     timeorderdcache.cpp \
-    imageshadereffect.cpp
+    shadermanager.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -123,7 +123,7 @@ HEADERS  += mainwindow.h \
     shortcutbutton.h \
     pagemanager.h \
     timeorderdcache.h \
-    imageshadereffect.h
+    shadermanager.h
 
 
 win32 {

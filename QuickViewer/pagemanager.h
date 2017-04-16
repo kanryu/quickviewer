@@ -60,8 +60,14 @@ public:
      */
     QString currentPageStatusAsString() const;
     QString volumePath(){ return m_fileVolume ? m_fileVolume->volumePath() : ""; }
-    bool isArchive() { return m_fileVolume || m_fileVolume->isArchive(); }
-    bool isFolder() { return m_fileVolume || !m_fileVolume->isArchive(); }
+    bool isArchive() {
+        if(!m_fileVolume) return false;
+        return m_fileVolume->isArchive();
+    }
+    bool isFolder() {
+        if(!m_fileVolume) return false;
+        return !m_fileVolume->isArchive();
+    }
 
     int size() { return m_fileVolume ? m_fileVolume->size() : 0; }
     bool canDualView() const;
