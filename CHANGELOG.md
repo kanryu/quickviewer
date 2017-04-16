@@ -1,6 +1,11 @@
 # CHANGELOG
 
+## v0.5.2_rev2 (Sun Apr 16 18:23:21 2017 +0900) [9cc3dc5](https://github.com/kanryu/quickviewer/commit/9cc3dc5ef03cbdd1be3720d18d32068f5d0ccc9c)
+
+add Key Config(Rotate/CopyFile/SlideShow)
+
 - other commits
+    - changelog (Sun Apr 16 18:01:44 2017 +0900) [4f0d11d](https://github.com/kanryu/quickviewer/commit/4f0d11d59a79aaab0ec438812ce282fde7094938)
     - changelog (Sun Apr 16 17:59:32 2017 +0900) [cde4f30](https://github.com/kanryu/quickviewer/commit/cde4f300d86673dfd487cb7d1ea660b621a1d903)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 16 17:58:55 2017 +0900) [11b60dc](https://github.com/kanryu/quickviewer/commit/11b60dc274ec37054ee132ed2440b0ae5f6a7eb9)
 
