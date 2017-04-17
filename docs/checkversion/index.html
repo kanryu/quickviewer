@@ -37,8 +37,9 @@
       
       // replace current version from QuickViewer.pro
       var prourl = 'https://raw.githubusercontent.com/kanryu/quickviewer/master/QuickViewer/QuickViewer.pro';
-      $.get(prourl, function(data) {
+      var request = $.get(prourl, function(data) {
         data.split("\n").forEach(function(line) {
+          console.log(request.getAllResponseHeaders());
           if(!line.startsWith('VERSION = ')) return;
           var current = line.substring(10);
           $("#current").text(current);
