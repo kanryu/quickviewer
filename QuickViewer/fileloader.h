@@ -43,6 +43,7 @@ public:
      * @return
      */
     static void sortFiles(QStringList& filenames);
+    static bool caseInsensitiveLessThan(const QString &s1, const QString &s2);
     /**
      * @brief volumePath
      * @return path which is param of constructor

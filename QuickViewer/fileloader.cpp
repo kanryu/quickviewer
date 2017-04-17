@@ -2,6 +2,10 @@
 #include <QImageReader>
 #include <QDebug>
 
+#ifdef Q_OS_WIN
+#include <Shlwapi.h>
+#endif
+
 QList<QByteArray> IFileLoader::st_supportedImageFormats;
 QStringList IFileLoader::st_exifJpegImageFormats;
 QStringList IFileLoader::st_exifRawImageFormats;
@@ -59,6 +63,22 @@ bool IFileLoader::isExifRawImageFile(QString path)
 
 void IFileLoader::sortFiles(QStringList &filenames)
 {
-    qSort(filenames);
+    qSort(filenames.begin(), filenames.end(), caseInsensitiveLessThan);
 }
+
+#ifdef Q_OS_WIN
+// Windows Filename sorting is not usual caseInsensitive, so call Win32Api
+// to see https://msdn.microsoft.com/ja-jp/library/windows/desktop/bb759947(v=vs.85).aspx
+bool IFileLoader::caseInsensitiveLessThan(const QString &s1, const QString &s2)
+{
+    std::wstring ss1(s1.toStdWString());
+    std::wstring ss2(s2.toStdWString());
+    return ::StrCmpLogicalW(ss1.c_str(), ss2.c_str()) < 0;
+}
+#else
+bool IFileLoader::caseInsensitiveLessThan(const QString &s1, const QString &s2)
+{
+    return s1.toLower() < s2.toLower();
+}
+#endif
 

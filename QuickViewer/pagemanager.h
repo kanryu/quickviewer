@@ -112,6 +112,7 @@ private:
     IFileVolume* m_fileVolume;
     QVector<ImageContent> m_pages;
     TimeOrderdCachePtr<QString, IFileVolume> m_volumes;
+    QStringList m_volumenames;
 };
 
 #endif // PAGEMANAGER_H

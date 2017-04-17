@@ -8,7 +8,8 @@ class MainWindowForWindows : public MainWindow
 {
 public:
     explicit MainWindowForWindows(QWidget *parent = 0);
-    bool moveToTrush(QString path);
+    virtual bool moveToTrush(QString path) override;
+    virtual bool setStayOnTop(bool top) override;
 
 public slots:
 //    void showEvent(QShowEvent * event);

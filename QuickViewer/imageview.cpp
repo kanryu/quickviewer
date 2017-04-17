@@ -157,7 +157,7 @@ void ImageView::readyForPaint() {
         for(int i = 0; i < m_pages.size(); i++) {
             PageGraphicsItem::Fitting fitting = PageGraphicsItem::FitCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
-            if(dualview && !(m_pages.size() == 1 && isSlideShow())) {
+            if(m_pages.size() == 2) {
                 fitting = ((i==0 && !qApp->RightSideBook()) || (i==1 && qApp->RightSideBook()))
                             ? PageGraphicsItem::FitRight : PageGraphicsItem::FitLeft;
                 pageRect = QRect(QPoint(fitting==PageGraphicsItem::FitRight ? 0 : pageRect.width()/2, 0), QSize(pageRect.width()/2,pageRect.height()));

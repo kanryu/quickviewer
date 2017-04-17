@@ -171,6 +171,7 @@
     </property>
     <addaction name="actionScaleUp"/>
     <addaction name="actionScaleDown"/>
+    <addaction name="actionRotate"/>
     <addaction name="actionFitting"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>

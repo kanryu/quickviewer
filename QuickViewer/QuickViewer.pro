@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private opengl-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.5.2_rev2
+VERSION = 0.5.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -80,7 +80,7 @@ LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar -lQtRAR
 DEFINES += QTRAR_STATIC RARDLL
 win32 {
     QMAKE_CXXFLAGS += /wd4819
-    LIBS += -luser32 -ladvapi32
+    LIBS += -luser32 -ladvapi32 -lShlwapi
 }
 unix {
     DEFINES += _UNIX

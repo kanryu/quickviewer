@@ -359,16 +359,19 @@ void MainWindow::on_fullscreen_triggered()
 
 void MainWindow::on_stayOnTop_triggered(bool top)
 {
+    qApp->setStayOnTop(top);
+    if(setStayOnTop(top))
+        return;
     Qt::WindowFlags flags = windowFlags();
     if(top) {
         flags |= Qt::WindowStaysOnTopHint;
     } else {
         flags &= ~Qt::WindowStaysOnTopHint;
     }
+//    flags |= Qt::WindowFullscreenButtonHint;
     setWindowFlags(flags);
     show();
-    setParent(nullptr);
-    qApp->setStayOnTop(top);
+//    setParent(nullptr);
 }
 
 void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)

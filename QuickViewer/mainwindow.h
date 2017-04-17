@@ -18,6 +18,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     virtual bool moveToTrush(QString path) {return false;}
+    virtual bool setStayOnTop(bool top) {return false;}
 
     void keyPressEvent(QKeyEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);

@@ -662,7 +662,7 @@
     </message>
     <message>
         <source>&amp;Copy Image</source>
-        <translation>画像をクリップボードにコピー(&amp;C)</translation>
+        <translation type="vanished">画像をクリップボードにコピー(&amp;C)</translation>
     </message>
     <message>
         <source>Move the Image to the &amp;Recycle Bin</source>
@@ -699,6 +699,22 @@
     <message>
         <source>FastBackward</source>
         <translation>早戻し(&amp;B)</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Image to the clipboard</source>
+        <translation>画像をクリップボードにコピー(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Copy File to the clipboard</source>
+        <translation>ファイルをクリップボードにコピー</translation>
+    </message>
+    <message>
+        <source>&amp;Rotate</source>
+        <translation>画像の回転(&amp;R)</translation>
+    </message>
+    <message>
+        <source>&amp;SlideShow</source>
+        <translation>スライドショー(&amp;S)</translation>
     </message>
 </context>
 <context>

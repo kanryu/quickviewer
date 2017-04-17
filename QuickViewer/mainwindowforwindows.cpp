@@ -35,6 +35,18 @@ bool MainWindowForWindows::moveToTrush(QString path)
     return true;
 }
 
+bool MainWindowForWindows::setStayOnTop(bool top)
+{
+    auto hwnd = reinterpret_cast<HWND>(winId());
+    if(!hwnd) return false;
+    // Place window A on top
+    if(top)
+        ::SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
+    else
+        ::SetWindowPos(hwnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
+    return true;
+}
+
 // This method is used because QShowEvent may not be called
 bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
 {

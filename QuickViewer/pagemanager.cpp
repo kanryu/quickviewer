@@ -170,8 +170,11 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
         return false;
     }
     m_fileVolume = newer;
-    if(coverOnly)
+    if(coverOnly) {
         m_fileVolume->setCacheMode(IFileVolume::CoverOnly);
+    } else {
+        m_volumenames = QStringList();
+    }
     m_currentPage = 0;
     emit volumeChanged();
     // if volume is folder and the path incluces filename, pageCount() != 0
@@ -186,14 +189,23 @@ void PageManager::nextVolume()
     if(!m_fileVolume)
         return;
     QDir dir(m_fileVolume->volumePath());
-    QString current = dir.absolutePath();
+    QFileInfo fileinfo(m_fileVolume->volumePath());
+    QString current = fileinfo.fileName();
     if(!dir.cdUp())
         return;
     int matchCount = 0;
-    foreach (const QString& name, dir.entryList(QDir::Dirs | QDir::Files, QDir::Name)) {
-        QString path = dir.filePath(name);
-        if(path <= current)
+    if(m_volumenames.size() == 0) {
+        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
+        IFileLoader::sortFiles(m_volumenames);
+    }
+    bool beforeMatch = true;
+    foreach (const QString& name, m_volumenames) {
+        if(beforeMatch) {
+            if(name == current)
+                beforeMatch = false;
             continue;
+        }
+        QString path = dir.filePath(name);
         if(matchCount++==0) {
             // if load new volume failed, search continue
             if(!loadVolume(path, true))
@@ -211,16 +223,25 @@ void PageManager::prevVolume()
     if(!m_fileVolume)
         return;
     QDir dir(m_fileVolume->volumePath());
-    QString current = dir.absolutePath();
+    QFileInfo fileinfo(m_fileVolume->volumePath());
+    QString current = fileinfo.fileName();
     if(!dir.cdUp())
         return;
     int matchCount = 0;
-    QStringList list = dir.entryList(QDir::Dirs | QDir::Files, QDir::Name);
-    QListIterator<QString> it(list);it.toBack();
+    if(m_volumenames.size() == 0) {
+        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
+        IFileLoader::sortFiles(m_volumenames);
+    }
+    QListIterator<QString> it(m_volumenames);it.toBack();
+    bool beforeMatch = true;
     while(it.hasPrevious()) {
-        QString path = dir.filePath(it.previous());
-        if(path >= current)
+        QString name = it.previous();
+        if(beforeMatch) {
+            if(name == current)
+                beforeMatch = false;
             continue;
+        }
+        QString path = dir.filePath(name);
         if(matchCount++==0) {
             // if load new volume failed, search continue
             if(!loadVolume(path, true))
