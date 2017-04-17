@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## v0.5.3 (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
+
+improve file sorting/fixed bug
+
+- improve file sorting(Windows caseInsensitive using StrCmpLogicalW())
+- fixed bug about StayOnTop(using WinAPI)
+- add some Japanese translations
+
+- other commits
+    - Update index-ja.md (Mon Apr 17 15:42:50 2017 +0900) [87d0fe0](https://github.com/kanryu/quickviewer/commit/87d0fe010485a38525099200a3e7caced5243b84)
+    - Update index.md (Mon Apr 17 15:39:01 2017 +0900) [93743f7](https://github.com/kanryu/quickviewer/commit/93743f7927ced40ccbf5cedffaad68004823f2ae)
+    - Update default.html (Mon Apr 17 15:37:55 2017 +0900) [fe0dee9](https://github.com/kanryu/quickviewer/commit/fe0dee9b798c68f1a695434f986c6a64c9f77080)
+    - Update index.html (Mon Apr 17 15:20:11 2017 +0900) [7ce4ab0](https://github.com/kanryu/quickviewer/commit/7ce4ab075adea89fdec00cbb030c7fab298803f1)
+    - Update index.md (Sun Apr 16 22:43:35 2017 +0900) [b3c7544](https://github.com/kanryu/quickviewer/commit/b3c7544d2b1dcdfb2ed239a413d61814d2ad867b)
+    - Update index-ja.md (Sun Apr 16 21:03:51 2017 +0900) [21fc95b](https://github.com/kanryu/quickviewer/commit/21fc95bf12a97f062458c40d0f990d54b9258959)
+    - Update index-ja.md (Sun Apr 16 20:54:48 2017 +0900) [63cbae7](https://github.com/kanryu/quickviewer/commit/63cbae7e1da4fccb671ba36a27366a857a3ea562)
+    - Update index.md (Sun Apr 16 20:51:37 2017 +0900) [261eab7](https://github.com/kanryu/quickviewer/commit/261eab76f63003e9e820b59c33a741f9224b0a42)
+    - Update index.md (Sun Apr 16 20:23:59 2017 +0900) [10a1d46](https://github.com/kanryu/quickviewer/commit/10a1d4605dafc6fecbdf09528a2f7d7924184a8f)
+    - Update index-ja.md (Sun Apr 16 20:22:19 2017 +0900) [dc9db22](https://github.com/kanryu/quickviewer/commit/dc9db22116825dbd4f834ca614603faa79adc0d5)
+    - Update index.md (Sun Apr 16 20:18:57 2017 +0900) [87e7302](https://github.com/kanryu/quickviewer/commit/87e730221d480af40fdfcb9bc5075a3256ede2dc)
+    - Update index-ja.md (Sun Apr 16 20:18:09 2017 +0900) [2adbc5d](https://github.com/kanryu/quickviewer/commit/2adbc5dc96dcb9cdfa41bd55694275c7fb4e3eeb)
+    - Update index.md (Sun Apr 16 20:10:56 2017 +0900) [3ee3e03](https://github.com/kanryu/quickviewer/commit/3ee3e03f8f141b6f428b7eb55d7a80980fc45a3d)
+    - Update index-ja.md (Sun Apr 16 20:10:37 2017 +0900) [3553363](https://github.com/kanryu/quickviewer/commit/35533630e03f3b39872972589e32f7993c239c85)
+    - Update index-ja.md (Sun Apr 16 20:09:19 2017 +0900) [0cc9791](https://github.com/kanryu/quickviewer/commit/0cc9791b429e46a3363cdfa2a70623f6ad3b89bf)
+    - Update index-ja.md (Sun Apr 16 20:07:28 2017 +0900) [69a4a46](https://github.com/kanryu/quickviewer/commit/69a4a465027d5e3106ea14aec8e776edc39c922f)
+    - Update index-ja.md (Sun Apr 16 19:54:36 2017 +0900) [43ff583](https://github.com/kanryu/quickviewer/commit/43ff5832f8b46568536264382040731a01a96e1b)
+    - Update index-ja.md (Sun Apr 16 19:53:49 2017 +0900) [02854bc](https://github.com/kanryu/quickviewer/commit/02854bcd80ffbdecca3e7d3292774034dc5b86f9)
+    - Update index.md (Sun Apr 16 19:51:51 2017 +0900) [cb9af00](https://github.com/kanryu/quickviewer/commit/cb9af004d4811c057277f537bd10b98831992c91)
+    - changelog (Sun Apr 16 18:24:32 2017 +0900) [2d8db4d](https://github.com/kanryu/quickviewer/commit/2d8db4d77f6cef7684a598277a9b8edab8279f41)
+
 ## v0.5.2_rev2 (Sun Apr 16 18:23:21 2017 +0900) [9cc3dc5](https://github.com/kanryu/quickviewer/commit/9cc3dc5ef03cbdd1be3720d18d32068f5d0ccc9c)
 
 add Key Config(Rotate/CopyFile/SlideShow)
