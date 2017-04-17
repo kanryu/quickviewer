@@ -15,6 +15,19 @@
     <script type="text/javascript">
       $(document).ready(function () {
         $('#main_content').headsmart()
+  	    var st_version = $("strong:contains('release_version')");
+	      if(st_version.length>0) {
+	        // replace current version from QuickViewer.pro
+	        var prourl = 'https://raw.githubusercontent.com/kanryu/quickviewer/master/QuickViewer/QuickViewer.pro';
+	        var request = $.get(prourl, function(data) {
+	          data.split("\n").forEach(function(line) {
+	            console.log(request.getAllResponseHeaders());
+	            if(!line.startsWith('VERSION = ')) return;
+	            var current = line.substring(10);
+	            st_version.text(current);
+	          });
+	        });
+        }
       })
     </script>
     <title>{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>
