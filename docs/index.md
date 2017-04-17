@@ -37,9 +37,11 @@ You can browse images with much smoother response than ever before.
 
 ## Download
 
-[Release Builded Binary](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
+The latest version is **release_version**.
 
-Please clone the latest source code from [this repository.](https://github.com/kanryu/quickviewer)
+You can download from [Release Builded Binary](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
+
+You can also clone the latest source code from [this repository.](https://github.com/kanryu/quickviewer)
 
 ## External Reviews
 
