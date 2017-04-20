@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.5.4 (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+
+add Bookmarks, improve behavior about loading JPEGs
+
+- add Bookmarks(Save/Load/Clear)
+- improve behavior about loading JPEGs
+- turbojpeg returns -1 when to load some JPEGs(e.g. Photoshop CS5!)
+- because it is not real error, so loaded correctly
+
+- other commits
+    - changelog (Mon Apr 17 20:22:21 2017 +0900) [697b723](https://github.com/kanryu/quickviewer/commit/697b723ea6717a097cf3875b7106679ef2a932c5)
+
 ## v0.5.3 (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
 
 improve file sorting/fixed bug
