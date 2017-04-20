@@ -79,6 +79,8 @@ Thanks for reviewers! :)
     - FastForward, FastBackward(10 pages at once)
     - FirstPage, LastPage
     - Next only one page, Prev only one page(for **Spread Viewing**)
+- Bookmarks
+    - Save, Load, Clear
 - Image Viwing Size
     - Fitting(to the window, normal)
     - ScaleUp, ScaleOut(25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%, one of them)
