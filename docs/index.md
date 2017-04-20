@@ -39,9 +39,9 @@ You can browse images with much smoother response than ever before.
 
 The latest version is **release_version**.
 
-You can download from [Release Builded Binary](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
+You can download from **[Release Builded Binary](https://github.com/kanryu/quickviewer/releases)** (Windows x86/x64)
 
-You can also clone the latest source code from [this repository.](https://github.com/kanryu/quickviewer)
+You can also clone the latest source code from **[this repository.](https://github.com/kanryu/quickviewer)**
 
 ## External Reviews
 
@@ -69,6 +69,7 @@ Thanks for reviewers! :)
     - **Open Image Folder** by menu
     - **History** by menu
     - NextVolume, PrevVolume
+        - Folders and archives next to the current open position
 - Spread Viewing(left/right 2 images at once)
     - Bound on the right side book(toggled)
     - Always open wide images as one view(toggled)
