@@ -48,6 +48,8 @@ layout: default
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 - **the PORTABLE FREEWARE collection様** (英語)
     - [https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353](https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353)
+- **MajorGeeks.com様** (英語)
+    - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
 - **SOFTPEDIA様** (英語)
     - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
 - **FindMySoft様** (英語)
@@ -73,6 +75,8 @@ layout: default
     - 早送り、早戻し
     - 最初の画像、最後の画像
     - 見開き表示でも1ページだけ進める
+- ブックマーク
+    - 保存、読み込み、消去
 - 画像の表示倍率の切り替え
     - フィット表示(標準)
     - 縮小、拡大(25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%のいずれか)
