@@ -47,6 +47,8 @@ You can also clone the latest source code from [this repository.](https://github
 
 - **the PORTABLE FREEWARE collection**
     - [https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353](https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353)
+- **MajorGeeks.com**
+    - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
 - **SOFTPEDIA**
     - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
 - **Download82**
