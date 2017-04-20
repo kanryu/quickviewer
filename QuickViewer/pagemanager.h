@@ -36,7 +36,7 @@ public:
     int currentPage() { return m_currentPage; }
     QVector<ImageContent>& currentPageContent() { return m_pages; }
     QString currentPagePath() {
-        if(!m_fileVolume || m_fileVolume->isArchive() || m_pages.empty())
+        if(!m_fileVolume)
             return "";
         return QDir::toNativeSeparators(m_fileVolume->getPathByFileName(m_pages[0].Path));
     }

@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private opengl-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.5.3
+VERSION = 0.5.4
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -46,13 +46,13 @@ win32 { !CONFIG(debug, debug|release) {
     target.path = $${MY_DEFAULT_INSTALL}
     target.files = $${DESTDIR}/QuickViewer.exe
     deploy_files.path = $${MY_DEFAULT_INSTALL}
-    deploy_files.files = $${PWD}/../README.md
+    deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     deploy_files.depends = install_target
     deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
     translations.path = $${MY_DEFAULT_INSTALL}/translations
     translations.files = $${PWD}/translations/quickviewer_ja.qm
     qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
-    qrawspeed.files = ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed.dll
+    qrawspeed.files = ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll
     # dlls instead of vcredist_xxx.exe
     msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
     msvcrt.path = $${MY_DEFAULT_INSTALL}

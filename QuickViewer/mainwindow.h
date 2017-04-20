@@ -30,6 +30,7 @@ public:
             action->setChecked(false);
         }
     }
+    void makeBookmarkMenu();
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);
@@ -40,35 +41,54 @@ protected:
     void closeEvent(QCloseEvent *e);
 
 public slots:
+    // File
     void on_file_changed(QString path);
+    void on_autoloaded_triggered(bool autoreload);
     void on_clearHistory_triggered();
-    void on_fullscreen_triggered();
-    void on_stayOnTop_triggered(bool top);
+    void on_historyMenu_triggered(QAction *action);
+
+    // PageBar
     void on_pageChanged_triggered();
     void on_volumeChanged_triggered();
     void on_pageSlider_changed(int value);
-    void on_appVersion_triggered();
-    void on_autoloaded_triggered(bool autoreload);
-    void on_historymenu_triggered(QAction *action);
-    void on_openfolder_triggered();
+    void on_exit_triggered();
+
+    // View
+    void on_fullscreen_triggered();
+    void on_stayOnTop_triggered(bool top);
+    void on_restoreWindowState_triggered(bool saveState);
+    void on_maximizeOrNormal_triggered();
+
+    // SlideShow
+    void on_slideShow_triggered(bool enable);
+
+    // Toolbars
     void on_showToolBar_triggered(bool showToolBar);
     void on_showSliderBar_triggered(bool showSliderBar);
     void on_showStatusBar_triggered(bool showStatusBar);
     void on_showMenuBar_triggered(bool showMenuBar);
-    void on_openKeyConfig_triggered();
-    void on_checkVersion_triggered();
-    void on_exitApplicationOrFullscreen_triggered();
-    void on_exit_triggered();
-    void on_deletePage_triggered();
-    void on_maximizeOrNormal_triggered();
-    void on_restoreWindowState_triggered(bool saveState);
-    // SlideShow
-    void on_slideShow_triggered(bool enable);
 
+    // Help
+    void on_checkVersion_triggered();
+    void on_appVersion_triggered();
+    void on_openKeyConfig_triggered();
+
+    // ContextMenus
+    void on_openfolder_triggered();
+    void on_deletePage_triggered();
+    void on_exitApplicationOrFullscreen_triggered();
+
+    // Shaders
     void on_shaderNearestNeighbor_triggered();
     void on_shaderBilinear_triggered();
     void on_shaderBicubic_triggered();
     void on_shaderLanczos_triggered();
+
+    // Bookmark
+    void on_saveBookmark_triggered();
+    void on_clearBookmarks_triggered();
+    void on_loadBookmark_triggered();
+    void on_loadBookmarkMenu_triggered(QAction *action);
 
 private slots:
     void on_hover_anchor(Qt::AnchorPoint anchor);

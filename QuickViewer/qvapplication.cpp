@@ -33,8 +33,13 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgDown");
     m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgUp");
     m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
+
     m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
     m_keyConfigDefauls["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
+
+    m_keyConfigDefauls["actionLoadBookmark"] = QKeySequence("L");
+    m_keyConfigDefauls["actionSaveBookmark"] = QKeySequence("S");
+
     m_keyConfigDefauls["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
 
     m_keyConfigDefauls["actionFastForward"] = QKeySequence("Num+3");
@@ -57,6 +62,10 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionClearHistory", ui->actionClearHistory);
     registAction("actionAutoLoaded", ui->actionAutoLoaded);
     registAction("actionExit", ui->actionExit);
+
+    registAction("actionClearBookmarks", ui->actionClearBookmarks);
+    registAction("actionLoadBookmark", ui->actionLoadBookmark);
+    registAction("actionSaveBookmark", ui->actionSaveBookmark);
 
     registAction("actionNextPage", ui->actionNextPage);
     registAction("actionPrevPage", ui->actionPrevPage);
@@ -109,12 +118,24 @@ void QVApplication::registActions(Ui::MainWindow *ui)
 
 void QVApplication::addHistory(QString path)
 {
-    if(m_history.contains(path)) {
-        m_history.removeOne(path);
+    const QString unixpath = QDir::fromNativeSeparators(path);
+    if(m_history.contains(unixpath)) {
+        m_history.removeOne(unixpath);
     }
-    m_history.push_front(path);
+    m_history.push_front(unixpath);
     while(m_history.size() > m_maxHistoryCount)
         m_history.pop_back();
+}
+
+void QVApplication::addBookMark(QString path)
+{
+    const QString unixpath = QDir::fromNativeSeparators(path);
+    if(m_bookmarks.contains(unixpath)) {
+        m_bookmarks.removeOne(unixpath);
+    }
+    m_bookmarks.push_front(unixpath);
+    while(m_bookmarks.size() > m_maxBookmarkCount)
+        m_bookmarks.pop_back();
 }
 
 void QVApplication::loadSettings()
@@ -145,6 +166,8 @@ void QVApplication::loadSettings()
     m_autoLoaded  = m_settings.value("AutoLoaded", false).toBool();
     m_history = m_settings.value("History", QStringList()).value<QStringList>();
     m_maxHistoryCount = m_settings.value("MaxHistoryCount", 36).toInt();
+    m_bookmarks = m_settings.value("Bookmarks", QStringList()).value<QStringList>();
+    m_maxBookmarkCount = m_settings.value("MaxBookmarkCount", 20).toInt();
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
@@ -190,6 +213,8 @@ void QVApplication::saveSettings()
     m_settings.setValue("AutoLoaded", m_autoLoaded);
     m_settings.setValue("MaxHistoryCount", m_maxHistoryCount);
     m_settings.setValue("History", QVariant::fromValue(m_history));
+    m_settings.setValue("MaxBookmarkCount", m_maxBookmarkCount);
+    m_settings.setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");

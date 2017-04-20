@@ -62,10 +62,13 @@ public:
      * @brief 指定されたファイルまたはディレクトリのpathからIFileVolumeのインスタンスを返すファクトリ関数
      * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
      */
-    static IFileVolume* CreateVolume(QObject* parent, QString path, QString subfilename=nullptr);
+    static IFileVolume* CreateVolume(QObject* parent, QString path);
     static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path);
 
     static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
+    static QString FullPathToVolumePath(QString path);
+    static QString FullPathToSubFilePath(QString path);
+
     bool isArchive() const { return m_loader->isArchive(); }
     /**
      * @brief 現在のファイルパスを返す
@@ -73,13 +76,17 @@ public:
      */
     QString currentPath() {
         if(m_loader->isArchive())
-            return m_filelist[m_cnt];
+            return QString("%1//%2")
+                    .arg(QDir::fromNativeSeparators(m_loader->volumePath()))
+                    .arg(m_filelist[m_cnt]);
         else
-            return QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[m_cnt]);
+            return QDir::fromNativeSeparators(QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[m_cnt]));
     }
     QString getPathByFileName(QString name) {
         if(m_loader->isArchive())
-            return "";
+            return QString("%1//%2")
+                    .arg(QDir::fromNativeSeparators(m_loader->volumePath()))
+                    .arg(name);
         else
             return QDir(m_loader->volumePath()).absoluteFilePath(name);
     }

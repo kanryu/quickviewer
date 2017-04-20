@@ -716,6 +716,26 @@
         <source>&amp;SlideShow</source>
         <translation>スライドショー(&amp;S)</translation>
     </message>
+    <message>
+        <source>LoadBookmark</source>
+        <translation>ブックマークを読み込む</translation>
+    </message>
+    <message>
+        <source>SaveBookmark</source>
+        <translation>ブックマークに追加</translation>
+    </message>
+    <message>
+        <source>ManageBookmarks</source>
+        <translation>ブックマークの管理</translation>
+    </message>
+    <message>
+        <source>clearBookmarks</source>
+        <translation>ブックマークを全て消去</translation>
+    </message>
+    <message>
+        <source>Bookmark Saved.</source>
+        <translation>ブックマークが保存されました。</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

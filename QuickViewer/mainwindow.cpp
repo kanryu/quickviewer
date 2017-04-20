@@ -67,7 +67,15 @@ MainWindow::MainWindow(QWidget *parent)
     if(!qApp->ShowMenuBar())
         menuBar()->hide();
 
+    // History
     makeHistoryMenu();
+    connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historyMenu_triggered(QAction*)) );
+
+    // Bookmarks
+    makeBookmarkMenu();
+    ui->actionLoadBookmark->setMenu(ui->menuLoadBookmark);
+    connect(ui->menuLoadBookmark, SIGNAL(triggered(QAction*)), this, SLOT(on_loadBookmarkMenu_triggered(QAction*)) );
+
     ui->statusBar->addPermanentWidget(ui->statusLabel);
     ui->statusLabel->setText(tr("any folder or archive is not loaded."));
 
@@ -100,7 +108,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->graphicsView, SIGNAL(anchorHovered(Qt::AnchorPoint)), this, SLOT(on_hover_anchor(Qt::AnchorPoint)) );
 //    connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
     connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
-    connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historymenu_triggered(QAction*)) );
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
     connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
 
@@ -285,6 +292,27 @@ void MainWindow::makeHistoryMenu()
     }
 }
 
+void MainWindow::makeBookmarkMenu()
+{
+    static const QString shortcuts = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    ui->menuLoadBookmark->clear();
+    QStringList bookmarks = qApp->Bookmarks();
+    if(!bookmarks.size())
+        return;
+    for(int i = 0; i < bookmarks.size(); i++) {
+        QString path = bookmarks[i];
+        QFileInfo info(path);
+        QString text = QString("&%1: %2 - %3")
+                .arg(shortcuts.mid(i, 1))
+                .arg(info.fileName())
+                .arg(info.dir().dirName());
+        QAction* action = ui->menuLoadBookmark->addAction(text);
+        action->setData(path);
+    }
+    ui->menuLoadBookmark->addSeparator();
+    ui->menuLoadBookmark->addAction(ui->actionClearBookmarks);
+}
+
 /**
  * @brief 固定的なホットキーの設定
  */
@@ -460,7 +488,7 @@ void MainWindow::on_autoloaded_triggered(bool autoloaded)
     qApp->setAutoLoaded(autoloaded);
 }
 
-void MainWindow::on_historymenu_triggered(QAction *action)
+void MainWindow::on_historyMenu_triggered(QAction *action)
 {
     //qDebug() << action;
     loadVolume(action->text().mid(4));
@@ -656,4 +684,37 @@ void MainWindow::on_shaderLanczos_triggered()
     qApp->setEffect(ShaderManager::Lanczos);
     ui->actionShaderLanczos->setChecked(true);
     ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::on_saveBookmark_triggered()
+{
+    if(!m_pageManager.currentPageCount())
+        return;
+    QString path = QDir::fromNativeSeparators(m_pageManager.currentPagePath());
+    qApp->addBookMark(path);
+    makeBookmarkMenu();
+    ui->statusBar->showMessage(tr("Bookmark Saved."));
+}
+
+void MainWindow::on_clearBookmarks_triggered()
+{
+    qApp->clearBookmarks();
+    makeBookmarkMenu();
+}
+
+void MainWindow::on_loadBookmark_triggered()
+{
+    QWidget* widget = ui->mainToolBar->widgetForAction(ui->actionLoadBookmark);
+
+    QPoint p = widget->mapToGlobal(QPoint(0, widget->height()));
+    ui->menuLoadBookmark->exec(p);
+}
+
+void MainWindow::on_loadBookmarkMenu_triggered(QAction *action)
+{
+    if(action == ui->actionClearBookmarks) {
+        return;
+    }
+    QString path = action->data().toString();
+    m_pageManager.loadVolume(path);
 }

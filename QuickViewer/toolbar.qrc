@@ -37,5 +37,8 @@
         <file alias="page_previous_fast_icon">icons/page_previous_fast.png</file>
         <file alias="rotation_icon">icons/rotation.png</file>
         <file alias="slideshow_icon">icons/slideshow.png</file>
+        <file alias="bookmark_load_icon">icons/bookmark_load.png</file>
+        <file alias="bookmark_save_icon">icons/bookmark_save.png</file>
+        <file alias="bookmark_manage_icon">icons/bookmark_manage.png</file>
     </qresource>
 </RCC>

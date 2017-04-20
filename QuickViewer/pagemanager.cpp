@@ -258,15 +258,19 @@ void PageManager::prevVolume()
 IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
 {
     IFileVolume* newer = nullptr;
-    if(!m_volumes.contains(path)) {
+    QString pathbase = IFileVolume::FullPathToVolumePath(path);
+    QString subfilename = IFileVolume::FullPathToSubFilePath(path);
+    if(!m_volumes.contains(pathbase)) {
         newer = onlyCover
                 ? IFileVolume::CreateVolumeWithOnlyCover(this, path)
                 : IFileVolume::CreateVolume(this, path);
         if(newer)
-            m_volumes.insert(path, newer);
+            m_volumes.insert(newer->volumePath(), newer);
     } else {
-        m_volumes.retain(path);
-        newer = m_volumes.object(path);
+        m_volumes.retain(pathbase);
+        newer = m_volumes.object(pathbase);
+        if(subfilename.length())
+            newer->findImageByName(subfilename);
     }
     return newer;
 }

@@ -27,14 +27,23 @@ class QVApplication : public QApplication
 {
     Q_OBJECT
 
+    // File
+    Q_PROPERTY(bool AutoLoaded READ AutoLoaded WRITE setAutoLoaded)
+    Q_PROPERTY(int MaxHistoryCount READ MaxHistoryCount WRITE setMaxHistoryCount)
+    // Bookmark
+//    Q_PROPERTY(int MaxBookmarkCount READ MaxBookmarkCount WRITE setMaxBookmarkCount)
+
+    // Fitting
     Q_PROPERTY(bool Fitting READ Fitting WRITE setFitting)
+
+    // DuapView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
     Q_PROPERTY(bool RightSideBook READ RightSideBook WRITE setRightSideBook)
-    Q_PROPERTY(bool StayOnTop READ StayOnTop WRITE setStayOnTop)
-    Q_PROPERTY(int MaxHistoryCount READ MaxHistoryCount WRITE setMaxHistoryCount)
-    Q_PROPERTY(bool AutoLoaded READ AutoLoaded WRITE setAutoLoaded)
     Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
     Q_PROPERTY(bool FirstImageAsOnePageInDualView READ FirstImageAsOnePageInDualView WRITE setFirstImageAsOnePageInDualView)
+
+    Q_PROPERTY(bool StayOnTop READ StayOnTop WRITE setStayOnTop)
+    // ToolBars
     Q_PROPERTY(bool ShowToolBar READ ShowToolBar WRITE setShowToolBar)
     Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
     Q_PROPERTY(bool ShowStatusBar READ ShowStatusBar WRITE setShowStatusBar)
@@ -95,6 +104,16 @@ public:
     int MaxHistoryCount() { return m_maxHistoryCount; }
     const QStringList& History() const { return m_history; }
     void clearHistory() { m_history.clear(); }
+    /**
+     * @brief addHistory add a path int History. if it is already in History, it will be top of this.
+     * @param path
+     */
+    void addHistory(QString path);
+
+    // BookMark
+    const QStringList& Bookmarks() const { return m_bookmarks; }
+    void clearBookmarks() { m_bookmarks.clear(); }
+    void addBookMark(QString path);
 
     // ShaderEffect
     ShaderManager::ShaderEffect Effect() { return m_effect; }
@@ -178,11 +197,6 @@ public:
     }
 
     /**
-     * @brief addHistory add a path int History. if it is already in History, it will be top of this.
-     * @param path
-     */
-    void addHistory(QString path);
-    /**
      * @brief load settings from "quickviewer.ini"
      */
     void loadSettings();
@@ -200,6 +214,7 @@ private:
      */
     bool m_rightSideBook;
     int m_maxHistoryCount;
+    int m_maxBookmarkCount;
     bool m_autoLoaded;
     bool m_showToolBar;
     bool m_showSliderBar;
@@ -223,6 +238,7 @@ private:
 
     QSettings m_settings;
     QStringList m_history;
+    QStringList m_bookmarks;
     QMap<QString, QKeySequence> m_keyConfigs;
     QMap<QString, QKeySequence> m_keyConfigDefauls;
     QMap<QString, QAction*> m_actionsByName;

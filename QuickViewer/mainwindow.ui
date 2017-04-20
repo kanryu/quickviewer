@@ -199,10 +199,19 @@
     <addaction name="actionCheckVersion"/>
     <addaction name="actionAppVersion"/>
    </widget>
-   <widget class="QMenu" name="menu_Navigation">
+   <widget class="QMenu" name="menuNavigation">
     <property name="title">
      <string>&amp;Navigation</string>
     </property>
+    <widget class="QMenu" name="menuLoadBookmark">
+     <property name="title">
+      <string>LoadBookmark</string>
+     </property>
+     <property name="icon">
+      <iconset resource="toolbar.qrc">
+       <normaloff>:/icons/bookmark_load_icon</normaloff>:/icons/bookmark_load_icon</iconset>
+     </property>
+    </widget>
     <addaction name="actionNextPage"/>
     <addaction name="actionPrevPage"/>
     <addaction name="actionFastForward"/>
@@ -212,12 +221,15 @@
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
     <addaction name="separator"/>
+    <addaction name="actionSaveBookmark"/>
+    <addaction name="menuLoadBookmark"/>
+    <addaction name="separator"/>
     <addaction name="actionNextVolume"/>
     <addaction name="actionPrevVolume"/>
     <addaction name="separator"/>
     <addaction name="actionSlideShow"/>
    </widget>
-   <widget class="QMenu" name="menu_Shader">
+   <widget class="QMenu" name="menuShader">
     <property name="title">
      <string>&amp;Shader</string>
     </property>
@@ -227,9 +239,9 @@
     <addaction name="actionShaderNearestNeighbor"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menu_Navigation"/>
+   <addaction name="menuNavigation"/>
    <addaction name="menuView"/>
-   <addaction name="menu_Shader"/>
+   <addaction name="menuShader"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -245,6 +257,9 @@
    <addaction name="actionFastForward"/>
    <addaction name="actionFirstPage"/>
    <addaction name="actionLastPage"/>
+   <addaction name="separator"/>
+   <addaction name="actionSaveBookmark"/>
+   <addaction name="actionLoadBookmark"/>
    <addaction name="separator"/>
    <addaction name="actionPrevVolume"/>
    <addaction name="actionNextVolume"/>
@@ -631,6 +646,38 @@
    </property>
    <property name="text">
     <string>&amp;SlideShow</string>
+   </property>
+  </action>
+  <action name="actionSaveBookmark">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/bookmark_save_icon</normaloff>:/icons/bookmark_save_icon</iconset>
+   </property>
+   <property name="text">
+    <string>SaveBookmark</string>
+   </property>
+  </action>
+  <action name="actionManageBookmarks">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/bookmark_manage_icon</normaloff>:/icons/bookmark_manage_icon</iconset>
+   </property>
+   <property name="text">
+    <string>ManageBookmarks</string>
+   </property>
+  </action>
+  <action name="actionLoadBookmark">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/bookmark_load_icon</normaloff>:/icons/bookmark_load_icon</iconset>
+   </property>
+   <property name="text">
+    <string>LoadBookmark</string>
+   </property>
+  </action>
+  <action name="actionClearBookmarks">
+   <property name="text">
+    <string>clearBookmarks</string>
    </property>
   </action>
  </widget>
@@ -1380,6 +1427,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSaveBookmark</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_saveBookmark_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClearBookmarks</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_clearBookmarks_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLoadBookmark</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_loadBookmark_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1411,5 +1506,10 @@
   <slot>on_maximizeOrNormal_triggered()</slot>
   <slot>on_restoreWindowState_triggered(bool)</slot>
   <slot>on_slideShow_triggered(bool)</slot>
+  <slot>on_historymenu_triggered(QAction*)</slot>
+  <slot>on_saveBookmark_triggered()</slot>
+  <slot>on_clearBookmarks_triggered()</slot>
+  <slot>on_loadBookmarkMenu_triggered(QAction*)</slot>
+  <slot>on_loadBookmark_triggered()</slot>
  </slots>
 </ui>

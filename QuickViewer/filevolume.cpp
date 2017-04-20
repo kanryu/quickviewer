@@ -119,9 +119,16 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
     return nullptr;
 }
 
-IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, QString subfilename)
+IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path)
 {
-    IFileVolume* fv = CreateVolumeImpl(parent, path);
+    QString pathbase = path;
+    QString subfilename;
+    if(path.contains("//")) {
+        QStringList seps = path.split("//");
+        pathbase = seps[0];
+        subfilename = seps[1];
+    }
+    IFileVolume* fv = CreateVolumeImpl(parent, pathbase);
     if(!fv)
         return fv;
     if(fv->size() == 0) {
@@ -134,6 +141,23 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, QString su
     }
     fv->on_ready();
     return fv;
+}
+
+
+QString IFileVolume::FullPathToVolumePath(QString path)
+{
+    if(!path.contains("//")) {
+        return path;
+    }
+    return path.left(path.indexOf("//"));
+}
+
+QString IFileVolume::FullPathToSubFilePath(QString path)
+{
+    if(!path.contains("//")) {
+        return "";
+    }
+    return path.mid(path.indexOf("//")+2);
 }
 
 IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path)
@@ -172,7 +196,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     QByteArray aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
             ? "turbojpeg" : QFileInfo(path.toLower()).suffix().toUtf8();
     QImage src;
-    src.loadFromData(bytes, aformat);
+    bool result = src.loadFromData(bytes, aformat);
 
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;
