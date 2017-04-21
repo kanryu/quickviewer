@@ -24,8 +24,8 @@ ImageView::ImageView(QWidget *parent)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
 {
-    viewSizeList << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
-    viewSizeIdx = 4; // 100
+    viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
+    viewSizeIdx = 6; // 100
 
     QGraphicsScene* scene = new QGraphicsScene(this);
     setScene(scene);
@@ -40,6 +40,22 @@ ImageView::ImageView(QWidget *parent)
 
 
 }
+
+//class MyGLWiget : public QGLWidget
+//{
+//public:
+//    MyGLWiget(QGLFormat fmt) : QGLWidget(fmt) {}
+//    void initializeGL()
+//    {
+//        QGLWidget::initializeGL();
+//        qApp->onGLInitialized();
+//    }
+//    void initializeOverlayGL()
+//    {
+//        QGLWidget::initializeOverlayGL();
+//        qApp->onGLInitialized();
+//    }
+//};
 
 void ImageView::setRenderer(RendererType type)
 {
@@ -340,6 +356,19 @@ void ImageView::on_rightSideBook_triggered(bool rightSideBook)
 
 void ImageView::on_scaleUp_triggered()
 {
+    if(!m_pages.size())
+        return;
+    if(qApp->Fitting()) {
+        qApp->setFitting(false);
+        emit fittingChanged(false);
+        int scale = m_pages[0].GrItem->scale()*100;
+        viewSizeIdx = 0;
+        qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale <<  viewSizeList[viewSizeIdx];
+        while(viewSizeIdx < viewSizeList.size()-1 && viewSizeList[viewSizeIdx] < scale)
+            viewSizeIdx++;
+        readyForPaint();
+        return;
+    }
     if(viewSizeIdx < viewSizeList.size() -1)
         viewSizeIdx++;
     readyForPaint();
@@ -347,6 +376,18 @@ void ImageView::on_scaleUp_triggered()
 
 void ImageView::on_scaleDown_triggered()
 {
+    if(!m_pages.size())
+        return;
+    if(qApp->Fitting()) {
+        qApp->setFitting(false);
+        emit fittingChanged(false);
+        int scale = m_pages[0].GrItem->scale()*100;
+        viewSizeIdx = viewSizeList.size()-1;
+        while(viewSizeIdx > 0 && viewSizeList[viewSizeIdx] > scale)
+            viewSizeIdx--;
+        readyForPaint();
+        return;
+    }
     if(viewSizeIdx > 0)
         viewSizeIdx--;
     readyForPaint();

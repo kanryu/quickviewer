@@ -92,6 +92,7 @@ public slots:
 
 private slots:
     void on_hover_anchor(Qt::AnchorPoint anchor);
+    void on_fittingChanged(bool fitting);
 
 
 protected:

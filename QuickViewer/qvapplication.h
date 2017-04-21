@@ -195,6 +195,8 @@ public:
             }
         }
     }
+    void onGLInitialized();
+    int maxTextureSize() { return m_maxTextureSize; }
 
     /**
      * @brief load settings from "quickviewer.ini"
@@ -206,6 +208,8 @@ public:
     void saveSettings();
 
 private:
+    bool m_glInitialized;
+    int m_maxTextureSize;
     bool m_fitting;
     bool m_dualView;
     bool m_stayOnTop;

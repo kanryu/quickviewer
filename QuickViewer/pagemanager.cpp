@@ -265,7 +265,7 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
                 ? IFileVolume::CreateVolumeWithOnlyCover(this, path)
                 : IFileVolume::CreateVolume(this, path);
         if(newer)
-            m_volumes.insert(newer->volumePath(), newer);
+            m_volumes.insert(pathbase, newer);
     } else {
         m_volumes.retain(pathbase);
         newer = m_volumes.object(pathbase);

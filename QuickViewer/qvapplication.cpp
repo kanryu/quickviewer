@@ -2,6 +2,8 @@
 #include <QLocale>
 #include <QKeySequence>
 #include <QDebug>
+#include <QOpenGLContext>
+#include <QGLContext>
 
 #include "qvapplication.h"
 #include "qv_init.h"
@@ -11,6 +13,8 @@ QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_settings(APP_INI, QSettings::IniFormat, this)
     , m_effect(ShaderManager::Bilinear)
+    , m_glInitialized(false)
+    , m_maxTextureSize(4096)
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -114,6 +118,19 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionShaderBilinear", ui->actionShaderBilinear);
     registAction("actionShaderBicubic", ui->actionShaderBicubic);
     registAction("actionShaderLanczos", ui->actionShaderLanczos);
+}
+
+void QVApplication::onGLInitialized()
+{
+    const QGLContext* c0 = QGLContext::currentContext();
+    if(c0) {
+        QOpenGLContext* c1 = QOpenGLContext::currentContext();
+        QOpenGLContext* c2 = c0->contextHandle();
+        if(c1 && c1->isValid()) {
+            c1->functions()->glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
+            qDebug() << m_maxTextureSize;
+        }
+    }
 }
 
 void QVApplication::addHistory(QString path)

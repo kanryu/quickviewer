@@ -72,10 +72,11 @@ public:
     int size() { return m_fileVolume ? m_fileVolume->size() : 0; }
     bool canDualView() const;
     void dispose() {
-        if(m_fileVolume && m_volumes.empty()) {
-            delete m_fileVolume;
-            m_pages.resize(0);
-        }
+//        if(m_fileVolume && m_volumes.empty()) {
+//            delete m_fileVolume;
+//            m_pages.resize(0);
+//        }
+        m_pages.resize(0);
         m_fileVolume = nullptr;
         m_volumes.clear();
     }

@@ -150,6 +150,8 @@ signals:
     void anchorHovered(Qt::AnchorPoint anchor) const;
 //    void pageChanged() const;
 
+    void fittingChanged(bool fitting) const;
+
 protected:
 //    void paintEvent( QPaintEvent *event );
     void mouseMoveEvent(QMouseEvent *event);

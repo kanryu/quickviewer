@@ -1475,6 +1475,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pageSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_pageSlider_changed(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>403</x>
+     <y>535</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1511,5 +1527,6 @@
   <slot>on_clearBookmarks_triggered()</slot>
   <slot>on_loadBookmarkMenu_triggered(QAction*)</slot>
   <slot>on_loadBookmark_triggered()</slot>
+  <slot>on_pageSlider_changed(int)</slot>
  </slots>
 </ui>

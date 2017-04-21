@@ -76,7 +76,7 @@ public:
      */
     QString currentPath() {
         if(m_loader->isArchive())
-            return QString("%1//%2")
+            return QString("%1::%2")
                     .arg(QDir::fromNativeSeparators(m_loader->volumePath()))
                     .arg(m_filelist[m_cnt]);
         else
@@ -84,7 +84,7 @@ public:
     }
     QString getPathByFileName(QString name) {
         if(m_loader->isArchive())
-            return QString("%1//%2")
+            return QString("%1::%2")
                     .arg(QDir::fromNativeSeparators(m_loader->volumePath()))
                     .arg(name);
         else

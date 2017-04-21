@@ -106,8 +106,9 @@ MainWindow::MainWindow(QWidget *parent)
     contextMenu.addAction(ui->actionFirstImageAsOneView);
 
     connect(ui->graphicsView, SIGNAL(anchorHovered(Qt::AnchorPoint)), this, SLOT(on_hover_anchor(Qt::AnchorPoint)) );
+    connect(ui->graphicsView, SIGNAL(fittingChanged(bool)), this, SLOT(on_fittingChanged(bool)));
 //    connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
-    connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
+//    connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
     connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
 
@@ -388,6 +389,8 @@ void MainWindow::on_fullscreen_triggered()
 void MainWindow::on_stayOnTop_triggered(bool top)
 {
     qApp->setStayOnTop(top);
+    // Qt's StayOnTop mechanism is not working correctly in Windows.
+    // so win32api calling manually
     if(setStayOnTop(top))
         return;
     Qt::WindowFlags flags = windowFlags();
@@ -399,7 +402,6 @@ void MainWindow::on_stayOnTop_triggered(bool top)
 //    flags |= Qt::WindowFullscreenButtonHint;
     setWindowFlags(flags);
     show();
-//    setParent(nullptr);
 }
 
 void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
@@ -420,6 +422,11 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
     }
 }
 
+void MainWindow::on_fittingChanged(bool fitting)
+{
+    ui->actionFitting->setChecked(fitting);
+}
+
 void MainWindow::on_pageChanged_triggered()
 {
     //qDebug() << "on_pageChanged_triggered";
@@ -428,7 +435,9 @@ void MainWindow::on_pageChanged_triggered()
     m_sliderChanging = true;
     int maxVolume = m_pageManager.size();
 
-    // at DualView Mode, last 2 page shoud be [volume.size()-2, volume.size()-1]
+    // at DualView Mode, last 2 page should be [volume.size()-2, volume.size()-1]
+    // so the last page should not changed by the slider
+    // the logical last page is [volume.size()-2]
     if(qApp->DualView() && ((m_pageManager.size()-m_pageManager.currentPage()) & 0x1)==0)
         maxVolume--;
 

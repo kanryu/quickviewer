@@ -32,7 +32,7 @@ bool IFileLoader::isImageFile(QString path)
 
 bool IFileLoader::isArchiveFile(QString path)
 {
-    QStringList exts = {".zip", ".7z", ".rar"};
+    QStringList exts = {".zip", ".7z", ".rar", ".cbr", ".cbz"};
     QString lower = path.toLower();
     foreach(const QString& e, exts) {
         if(lower.endsWith(e))

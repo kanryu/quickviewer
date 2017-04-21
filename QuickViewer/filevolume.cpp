@@ -1,10 +1,11 @@
+#include <QtGui>
 #include "filevolume.h"
-#include <QDir>
 #include "fileloaderdirectory.h"
 #include "fileloaderziparchive.h"
 #include "fileloader7zarchive.h"
 #include "fileloaderrararchive.h"
 #include "ResizeHalf.h"
+#include "qvapplication.h"
 
 IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
     : QObject(parent)
@@ -100,13 +101,13 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
         return new IFileVolume(parent, new FileLoaderDirectory(parent, path));
     }
     QString lower = path.toLower();
-    if(lower.endsWith(".zip")) {
+    if(lower.endsWith(".zip") || lower.endsWith(".cbz")) {
         return new IFileVolume(parent, new FileLoaderZipArchive(parent, path));
     }
     if(lower.endsWith(".7z")) {
         return new IFileVolume(parent, new FileLoader7zArchive(parent, path));
     }
-    if(lower.endsWith(".rar")) {
+    if(lower.endsWith(".rar") || lower.endsWith(".cbr")) {
         return new IFileVolume(parent, new FileLoaderRarArchive(parent, path));
     }
     if(IFileLoader::isImageFile(path)) {
@@ -123,12 +124,12 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path)
 {
     QString pathbase = path;
     QString subfilename;
-    if(path.contains("//")) {
-        QStringList seps = path.split("//");
+    if(path.contains("::")) {
+        QStringList seps = path.split("::");
         pathbase = seps[0];
         subfilename = seps[1];
     }
-    IFileVolume* fv = CreateVolumeImpl(parent, pathbase);
+    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(pathbase));
     if(!fv)
         return fv;
     if(fv->size() == 0) {
@@ -146,23 +147,23 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path)
 
 QString IFileVolume::FullPathToVolumePath(QString path)
 {
-    if(!path.contains("//")) {
+    if(!path.contains("::")) {
         return path;
     }
-    return path.left(path.indexOf("//"));
+    return path.left(path.indexOf("::"));
 }
 
 QString IFileVolume::FullPathToSubFilePath(QString path)
 {
-    if(!path.contains("//")) {
+    if(!path.contains("::")) {
         return "";
     }
-    return path.mid(path.indexOf("//")+2);
+    return path.mid(path.indexOf("::")+2);
 }
 
 IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path)
 {
-    IFileVolume* fv = CreateVolumeImpl(parent, path);
+    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(path));
     if(!fv)
         return fv;
     if(fv->size() == 0) {
@@ -190,13 +191,30 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
     info.ImageHeight = img.text("ImageHeight").toInt();
 }
 
+#define TURBO_JPEG_FMT "turbojpeg"
+
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {
+    int maxTextureSize = qApp->maxTextureSize();
+
     QByteArray bytes = volume->loadByteArrayByName(path);
-    QByteArray aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
-            ? "turbojpeg" : QFileInfo(path.toLower()).suffix().toUtf8();
-    QImage src;
-    bool result = src.loadFromData(bytes, aformat);
+    QBuffer buffer(&bytes);
+    QString aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
+            ? TURBO_JPEG_FMT : QFileInfo(path.toLower()).suffix();
+
+    // turbjpeg can turbo rescaling when loading
+    QImageReader reader(&buffer, aformat.toUtf8());
+    bool readerable = reader.canRead();
+    QSize baseSize = reader.size();
+    QSize loadingSize = baseSize;
+    // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
+    // but usualy thumbnails are too small, so we don't use
+    if(aformat == TURBO_JPEG_FMT) {
+        while(loadingSize.width() > maxTextureSize || loadingSize.height() > maxTextureSize)
+            loadingSize = QSize((loadingSize.width()+1) >> 1,(loadingSize.height()+1) >> 1);
+        reader.setScaledSize(loadingSize);
+    }
+    QImage src = reader.read();
 
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;
@@ -209,8 +227,8 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     }
 
 
-    if(src.size().width() <= 4096 && src.size().height() <= 4096)
-        return ImageContent(QPixmap::fromImage(src), path, src.size(), info);
+    if(src.width() <= maxTextureSize && src.height() <= maxTextureSize)
+        return ImageContent(QPixmap::fromImage(src), path, baseSize, info);
 
     // resample for too big images
 //    qDebug() << path << "[1]Source:" <<  src;
