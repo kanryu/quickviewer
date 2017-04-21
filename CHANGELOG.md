@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## v0.5.5 (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+
+speed up for large JPEG, support cbr/cbz, improve ScaleUp/ScaleOut, 2 bug fix
+
+- twice times speed up for loading JPEGs over 4096px
+- now can load cbr/cbz format(without support for book database)
+- improve behavior ScaleUp/ScaleOut
+- bug fix, An error occurred when closing the application after changing Volume
+- bug fix, File sharing archive can not be opened
+
+- other commits
+    - Update index-ja.md (Fri Apr 21 10:36:51 2017 +0900) [4d143b5](https://github.com/kanryu/quickviewer/commit/4d143b5de771a2e5278595e43dd913d9818c1222)
+    - Update index.md (Fri Apr 21 10:35:26 2017 +0900) [221383e](https://github.com/kanryu/quickviewer/commit/221383e3e1478d4451555325afb9369212c545d2)
+    - Update README.md (Fri Apr 21 10:32:46 2017 +0900) [2240a28](https://github.com/kanryu/quickviewer/commit/2240a2883fde0cd6e4f326410308cedf922ca624)
+    - Update README.md (Fri Apr 21 10:32:27 2017 +0900) [db7e365](https://github.com/kanryu/quickviewer/commit/db7e365b2f5bb90f5050a485ccf1024f6cc8bd1b)
+    - Update index.md (Fri Apr 21 04:40:42 2017 +0900) [4faa2bc](https://github.com/kanryu/quickviewer/commit/4faa2bc2c05974c32cdbff9a2a7dbef96f1eda95)
+    - Update index.md (Fri Apr 21 03:34:26 2017 +0900) [dd2431a](https://github.com/kanryu/quickviewer/commit/dd2431a2bb41963d8ffce6462bbcd9ceda9b3eba)
+    - Update index-ja.md (Fri Apr 21 03:33:38 2017 +0900) [bcbb2a7](https://github.com/kanryu/quickviewer/commit/bcbb2a7b6aeb9e52ccc77f3246248e07905e8c9e)
+    - Update index.md (Fri Apr 21 03:31:53 2017 +0900) [19d6f42](https://github.com/kanryu/quickviewer/commit/19d6f4236776da9562a4920dd12b936fd8b72f12)
+    - changelog (Thu Apr 20 18:03:54 2017 +0900) [53f4108](https://github.com/kanryu/quickviewer/commit/53f41086b81c0f55f4372658f46b62087565a383)
+
 ## v0.5.4 (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
 
 add Bookmarks, improve behavior about loading JPEGs
