@@ -52,10 +52,12 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
 - **SOFTPEDIA**
     - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
-- **Download82**
-    - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
 - **FindMySoft**
     - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
+- **Download82**
+    - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
+- **Downloadcrew**
+    - [https://www.downloadcrew.com/article/35141-quickview](https://www.downloadcrew.com/article/35141-quickview)
 - **Free SoftNavi** (in Japanese)
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 - **indiriliyo** (in Turkish)
