@@ -11,11 +11,11 @@ https://kanryu.github.io/quickviewer/
 ## Summary
 
  - To show images very fast (using OpenGL)
- - Portable(without installers, registries, external libraries)
- - Spread viewing(two images once) supported(for digital books)
- - To read archives directly(zip/7z/rar)
- - To show images(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
- - Auto rotation(using JPEG EXIF)
+ - Portable (without installers, registries, external libraries)
+ - Spread viewing (two images once, for digital books/comics)
+ - To read archives directly (zip/7z/rar/cbr/cbz)
+ - To show images (bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
+ - Auto rotation (using JPEG EXIF)
  - To show Raw digital camera images
    - Canon(crw, cr2)
    - Nicon(nef)
