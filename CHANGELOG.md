@@ -1,5 +1,21 @@
 # CHANGELOG
 
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 23 17:44:30 2017 +0900) [c1abe1f](https://github.com/kanryu/quickviewer/commit/c1abe1f412cff4a8173a9f7ede08cc6eb481932a)
+
+## v0.5.6_pre (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
+
+removed QtRAR, add latest unrar
+
+- removed QtRAR, because it needs some changes and bundled unrar is old
+- add latest unrar and a simple wrapper(RarExtractor)
+
+- other commits
+    - Update index.md (Sun Apr 23 10:24:53 2017 +0900) [20ef220](https://github.com/kanryu/quickviewer/commit/20ef220232222b3702687704c09edd94b81ddf3a)
+    - Update index.md (Sun Apr 23 00:29:19 2017 +0900) [8aea2cf](https://github.com/kanryu/quickviewer/commit/8aea2cf625bef02c62e4c222bbfbf96ff0f840ce)
+    - Update README.md (Sat Apr 22 11:23:46 2017 +0900) [de8faef](https://github.com/kanryu/quickviewer/commit/de8faef38237dfa8abf0f18e8c51fa3d5dcf2b03)
+    - changelog (Sat Apr 22 00:27:37 2017 +0900) [2f13827](https://github.com/kanryu/quickviewer/commit/2f1382746a71b83b7fbd489e8266319a27a6a1df)
+
 ## v0.5.5 (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
 
 speed up for large JPEG, support cbr/cbz, improve ScaleUp/ScaleOut, 2 bug fix
