@@ -4,6 +4,3 @@
 [submodule "easyexif/easyexif"]
 	path = easyexif/easyexif
 	url = https://github.com/mayanklahiri/easyexif
-[submodule "QtRAR"]
-	path = QtRAR
-	url = https://github.com/ArchangelSDY/QtRAR

@@ -5,7 +5,8 @@
 #include <QObject>
 #include <QMap>
 #include "fileloader.h"
-#include "qtrar.h"
+
+class RarExtractor;
 
 class FileLoaderRarArchive : public IFileLoader
 {
@@ -52,11 +53,11 @@ public:
 
 protected:
     QString m_volumepath;
-    QtRAR m_archive;
 //    QMap<QString, Qt7zFileInfo> m_fileinfomap;
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;
+    RarExtractor *d;
 };
 
 class FileLoaderRarPlugin : public QObject, public FileLoaderPluginInterface

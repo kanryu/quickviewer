@@ -72,12 +72,16 @@ win32 { !CONFIG(debug, debug|release) {
 INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
-INCLUDEPATH += ../QtRAR/src
+#INCLUDEPATH += ../QtRAR/src
+INCLUDEPATH += ../unrar
 
-LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar -lQtRAR
+#LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar -lQtRAR
+LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar
 
-# qtrar
-DEFINES += QTRAR_STATIC RARDLL
+## qtrar
+#DEFINES += QTRAR_STATIC RARDLL
+
+DEFINES += UNRAR RARDLL
 win32 {
     QMAKE_CXXFLAGS += /wd4819
     LIBS += -luser32 -ladvapi32 -lShlwapi

@@ -1,16 +1,18 @@
 #include "fileloaderrararchive.h"
-#include "qtrarfile.h"
+#include "rarextractor.h"
 
 FileLoaderRarArchive::FileLoaderRarArchive(QObject* parent, QString rarpath)
     : IFileLoader(parent)
-    , m_archive(rarpath)
+//    , m_archive(rarpath)
     , m_volumepath(rarpath)
     , m_valid(false)
+    , d(new RarExtractor(rarpath))
 {
-    if(!(m_valid = m_archive.open(QtRAR::OpenModeExtract)))
+
+    if(!(m_valid = d->open(RarExtractor::OpenModeExtract, "")))
         return;
 
-    foreach(const QString& name, m_archive.fileNameList()) {
+    foreach(const QString& name, d->fileNameList()) {
         if(IFileLoader::isImageFile(name)) {
             m_imageFileList.append(name);
         } else if(IFileLoader::isArchiveFile(name)) {
@@ -26,12 +28,14 @@ QByteArray FileLoaderRarArchive::getFile(QString name, QMutex& mutex)
 {
     QByteArray bytes;
     if(m_imageFileList.contains(name)) {
-        mutex.lock();
-        QtRARFile file(&m_archive);
-        file.setFileName(name);
-        file.open(QIODevice::ReadOnly);
-        bytes = file.readAll();
-        mutex.unlock();
+//        mutex.lock();
+//        QtRARFile file(&m_archive);
+//        file.setFileName(name);
+//        file.open(QIODevice::ReadOnly);
+//        bytes = file.readAll();
+//        mutex.unlock();
+        RARFileInfo& info = d->getFileInfo(name);
+        bytes = info.data;
     }
     return bytes;
 }
