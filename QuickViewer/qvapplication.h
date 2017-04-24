@@ -111,9 +111,9 @@ public:
     void addHistory(QString path);
 
     // BookMark
-    const QStringList& Bookmarks() const { return m_bookmarks; }
+    QStringList& Bookmarks() { return m_bookmarks; }
     void clearBookmarks() { m_bookmarks.clear(); }
-    void addBookMark(QString path);
+    void addBookMark(QString path, bool canDumplication=false);
 
     // ShaderEffect
     ShaderManager::ShaderEffect Effect() { return m_effect; }

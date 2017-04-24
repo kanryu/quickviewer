@@ -69,9 +69,10 @@ public slots:
     void on_showMenuBar_triggered(bool showMenuBar);
 
     // Help
+    void on_openKeyConfig_triggered();
+    void on_projectPage_triggered();
     void on_checkVersion_triggered();
     void on_appVersion_triggered();
-    void on_openKeyConfig_triggered();
 
     // ContextMenus
     void on_openfolder_triggered();
@@ -100,7 +101,7 @@ protected:
     bool m_viewerWindowStateMaximized;
     bool m_sliderChanging;
 
-    QMenu contextMenu;
+    QMenu* contextMenu;
 
     QString m_volumeCaption;
     QString m_pageCaption;

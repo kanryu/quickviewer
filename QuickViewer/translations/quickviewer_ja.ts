@@ -670,19 +670,19 @@
     </message>
     <message>
         <source>&amp;Bilinear (standard)</source>
-        <translation>バイリニア補間(&amp;B 標準)</translation>
+        <translation type="vanished">バイリニア補間(&amp;B 標準)</translation>
     </message>
     <message>
         <source>Bi&amp;cubic (slow)</source>
-        <translation>バイキュービック補間(&amp;B 遅い)</translation>
+        <translation type="vanished">バイキュービック補間(&amp;B 遅い)</translation>
     </message>
     <message>
         <source>&amp;Lanczos (very slow)</source>
-        <translation>Lanczos補間(&amp;L 非常に遅い)</translation>
+        <translation type="vanished">Lanczos補間(&amp;L 非常に遅い)</translation>
     </message>
     <message>
         <source>&amp;Nearest Neighbor (coarse)</source>
-        <translation>最近傍補間(&amp;N 高速だが粗い)</translation>
+        <translation type="vanished">最近傍補間(&amp;N 高速だが粗い)</translation>
     </message>
     <message>
         <source>&amp;Maximize or Normal</source>
@@ -735,6 +735,30 @@
     <message>
         <source>Bookmark Saved.</source>
         <translation>ブックマークが保存されました。</translation>
+    </message>
+    <message>
+        <source>ContextMenu</source>
+        <translation>コンテキストメニュー</translation>
+    </message>
+    <message>
+        <source>&amp;Bilinear interpolation (standard)</source>
+        <translation>バイリニア補間(&amp;B 標準)</translation>
+    </message>
+    <message>
+        <source>Bi&amp;cubic interpolation (slow)</source>
+        <translation>バイキュービック補間(&amp;B 遅い)</translation>
+    </message>
+    <message>
+        <source>&amp;Lanczos interpolation (very slow)</source>
+        <translation>Lanczos補間(&amp;L 非常に遅い)</translation>
+    </message>
+    <message>
+        <source>&amp;Nearest Neighbor interpolation (coarse)</source>
+        <translation>最近傍補間(&amp;N 高速だが粗い)</translation>
+    </message>
+    <message>
+        <source>&amp;Project WebPage by your browser</source>
+        <translation>ホームページをブラウザで表示(&amp;P)</translation>
     </message>
 </context>
 <context>

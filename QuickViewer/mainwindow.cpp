@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , m_sliderChanging(false)
     , m_viewerWindowStateMaximized(false)
-    , contextMenu(this)
+//    , contextMenu(this)
     , m_pageManager(this)
 {
     ui->setupUi(this);
@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
             << ui->actionShaderBicubic
             << ui->actionShaderLanczos;
 
+    // setup checkable menus
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());
 
@@ -91,24 +92,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->mainToolBar->installEventFilter(this);
     ui->pageFrame->installEventFilter(this);
 
-    // Context menus
-    contextMenu.addAction(ui->actionNextOnePage);
-    contextMenu.addAction(ui->actionPrevOnePage);
-    contextMenu.addSeparator();
-    contextMenu.addAction(ui->actionCopyPage);
-    contextMenu.addAction(ui->actionDeletePage);
-    contextMenu.addAction(ui->actionCopyFile);
-    contextMenu.addSeparator();
-    contextMenu.addAction(ui->actionOpenFiler);
-    contextMenu.addAction(ui->actionOpenExif);
-    contextMenu.addSeparator();
-    contextMenu.addAction(ui->actionWideImageAsOneView);
-    contextMenu.addAction(ui->actionFirstImageAsOneView);
+    // Context menus(independent from menuBar)
+    ui->menuBar->removeAction(ui->menuContextMenu->menuAction());
+    contextMenu = ui->menuContextMenu;
 
-    connect(ui->graphicsView, SIGNAL(anchorHovered(Qt::AnchorPoint)), this, SLOT(on_hover_anchor(Qt::AnchorPoint)) );
-    connect(ui->graphicsView, SIGNAL(fittingChanged(bool)), this, SLOT(on_fittingChanged(bool)));
-//    connect(ui->graphicsView, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()) );
-//    connect(ui->pageSlider, SIGNAL(valueChanged(int)), this, SLOT(on_pageSlider_changed(int)) );
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
     connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
 
@@ -124,22 +111,31 @@ MainWindow::MainWindow(QWidget *parent)
             ui->pageFrame->hide();
             statusBar()->hide();
             ui->actionFullscreen->setChecked(true);
+            ui->graphicsView->setWillFullscreen(true);
             ui->graphicsView->readyForPaint();
         }
     }
 
+    // when drop a folder/archive icon to this app
     if(qApp->arguments().length() >= 2) {
         loadVolume(qApp->arguments().last());
         return;
     }
-    if(qApp->AutoLoaded() && qApp->History().size() > 0) {
-        loadVolume(qApp->History().at(0));
+    // auto restore
+    if(qApp->AutoLoaded() && qApp->Bookmarks().size() > 0) {
+        QString bookmark = qApp->Bookmarks().takeFirst();
+        loadVolume(bookmark);
+        makeBookmarkMenu();
     }
 }
 
 
 MainWindow::~MainWindow()
 {
+    if(qApp->AutoLoaded() && m_pageManager.size() > 0) {
+        QString path = QDir::fromNativeSeparators(m_pageManager.currentPagePath());
+        qApp->addBookMark(path, true);
+    }
     delete ui;
     m_pageManager.dispose();
     qApp->saveSettings();
@@ -186,12 +182,15 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
         on_fullscreen_triggered();
     }
     if(e->button() == Qt::RightButton) {
-        contextMenu.exec(QCursor::pos());
+        if(contextMenu)
+            contextMenu->exec(QCursor::pos());
     }
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {
+    delete contextMenu;
+    contextMenu = nullptr;
     qApp->setWindowGeometry(saveGeometry());
     qApp->setWindowState(saveState());
 }
@@ -352,6 +351,7 @@ void MainWindow::on_fullscreen_triggered()
 {
 
     if(isFullScreen()) {
+        ui->graphicsView->setWillFullscreen(false);
         ui->graphicsView->skipRisizeEvent(true);
         if(qApp->ShowMenuBar())
             menuBar()->show();
@@ -369,10 +369,10 @@ void MainWindow::on_fullscreen_triggered()
         } else {
             showNormal();
         }
-        ui->graphicsView->readyForPaint();
         if(ui->graphicsView->isSlideShow())
             ui->graphicsView->toggleSlideShow();
     } else {
+        ui->graphicsView->setWillFullscreen(true);
         ui->graphicsView->skipRisizeEvent(true);
         m_viewerWindowStateMaximized = isMaximized();
 
@@ -382,8 +382,8 @@ void MainWindow::on_fullscreen_triggered()
         statusBar()->hide();
         ui->actionFullscreen->setChecked(true);
         showFullScreen();
-        ui->graphicsView->readyForPaint();
     }
+    ui->graphicsView->readyForPaint();
 }
 
 void MainWindow::on_stayOnTop_triggered(bool top)
@@ -420,6 +420,7 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
         ui->mainToolBar->hide();
         ui->pageFrame->hide();
     }
+    ui->graphicsView->readyForPaint();
 }
 
 void MainWindow::on_fittingChanged(bool fitting)
@@ -584,6 +585,12 @@ void MainWindow::on_openKeyConfig_triggered()
     if(result == QDialog::Rejected) {
         dialog.revertKeyChanges();
     }
+}
+
+void MainWindow::on_projectPage_triggered()
+{
+    QUrl url = QString("https://kanryu.github.io/quickviewer/");
+    QDesktopServices::openUrl(url);
 }
 
 void MainWindow::on_checkVersion_triggered()

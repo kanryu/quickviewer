@@ -169,9 +169,9 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <addaction name="actionRotate"/>
     <addaction name="actionScaleUp"/>
     <addaction name="actionScaleDown"/>
-    <addaction name="actionRotate"/>
     <addaction name="actionFitting"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
@@ -196,7 +196,9 @@
     </property>
     <addaction name="actionOpenKeyConfig"/>
     <addaction name="separator"/>
+    <addaction name="actionProjectWeb"/>
     <addaction name="actionCheckVersion"/>
+    <addaction name="separator"/>
     <addaction name="actionAppVersion"/>
    </widget>
    <widget class="QMenu" name="menuNavigation">
@@ -238,11 +240,29 @@
     <addaction name="actionShaderLanczos"/>
     <addaction name="actionShaderNearestNeighbor"/>
    </widget>
+   <widget class="QMenu" name="menuContextMenu">
+    <property name="title">
+     <string>ContextMenu</string>
+    </property>
+    <addaction name="actionNextOnePage"/>
+    <addaction name="actionPrevOnePage"/>
+    <addaction name="separator"/>
+    <addaction name="actionCopyPage"/>
+    <addaction name="actionDeletePage"/>
+    <addaction name="actionCopyFile"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpenFiler"/>
+    <addaction name="actionOpenExif"/>
+    <addaction name="separator"/>
+    <addaction name="actionWideImageAsOneView"/>
+    <addaction name="actionFirstImageAsOneView"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuNavigation"/>
    <addaction name="menuView"/>
    <addaction name="menuShader"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuContextMenu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -564,7 +584,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Bilinear (standard)</string>
+    <string>&amp;Bilinear interpolation (standard)</string>
    </property>
   </action>
   <action name="actionShaderBicubic">
@@ -572,7 +592,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Bi&amp;cubic (slow)</string>
+    <string>Bi&amp;cubic interpolation (slow)</string>
    </property>
   </action>
   <action name="actionShaderLanczos">
@@ -580,7 +600,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Lanczos (very slow)</string>
+    <string>&amp;Lanczos interpolation (very slow)</string>
    </property>
   </action>
   <action name="actionShaderNearestNeighbor">
@@ -588,7 +608,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Nearest Neighbor (coarse)</string>
+    <string>&amp;Nearest Neighbor interpolation (coarse)</string>
    </property>
   </action>
   <action name="actionMaximizeOrNormal">
@@ -680,6 +700,11 @@
     <string>clearBookmarks</string>
    </property>
   </action>
+  <action name="actionProjectWeb">
+   <property name="text">
+    <string>&amp;Project WebPage by your browser</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -688,6 +713,8 @@
    <extends>QGraphicsView</extends>
    <header>imageview.h</header>
    <slots>
+    <signal>fittingChanged(bool)</signal>
+    <signal>anchorHovered(Qt::AnchorPoint)</signal>
     <slot>on_image_changing(QImage)</slot>
     <slot>on_fitting_triggered(bool)</slot>
     <slot>on_dualView_triggered(bool)</slot>
@@ -1491,6 +1518,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>graphicsView</sender>
+   <signal>fittingChanged(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_fittingChanged(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>350</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>graphicsView</sender>
+   <signal>anchorHovered(Qt::AnchorPoint)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_hover_anchor(Qt::AnchorPoint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>350</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionProjectWeb</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_projectPage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1528,5 +1603,8 @@
   <slot>on_loadBookmarkMenu_triggered(QAction*)</slot>
   <slot>on_loadBookmark_triggered()</slot>
   <slot>on_pageSlider_changed(int)</slot>
+  <slot>on_hover_anchor(Qt::AnchorPoint)</slot>
+  <slot>on_fittingChanged(bool)</slot>
+  <slot>on_projectPage_triggered()</slot>
  </slots>
 </ui>

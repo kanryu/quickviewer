@@ -90,7 +90,7 @@ struct PageGraphicsItem
      * @brief setPageLayout set each image on the page
      * @param viewport: the image must be inscribed in the viewport area
      */
-    QSize setPageLayoutFitting(QRect viewport, Fitting fitting, int rotateOffset=0) {
+    QRect setPageLayoutFitting(QRect viewport, Fitting fitting, int rotateOffset=0) {
         QSize currentSize = CurrentSize(rotateOffset);
         QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
         qreal scale = 1.0*newsize.width()/currentSize.width();
@@ -98,15 +98,18 @@ struct PageGraphicsItem
         QPoint of = Offset(rotateOffset);
         of *= scale;
         GrItem->setRotation(Rotate+rotateOffset);
+        QRect drawRect;
         if(newsize.height() == viewport.height()) { // fitting on upper and bottom
             int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
-            GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
+            drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
+            GrItem->setPos(drawRect.topLeft());
         } else { // fitting on left and right
-            GrItem->setPos(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2);
+            drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
+            GrItem->setPos(drawRect.topLeft());
         }
-        return newsize;
+        return drawRect;
     }
-    QSize setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0) {
+    QRect setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0) {
         GrItem->setScale(scale);
         QSize size = viewport.size();
         QSize newsize = CurrentSize(rotateOffset);
@@ -115,8 +118,9 @@ struct PageGraphicsItem
         of *= scale;
         int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         GrItem->setRotation(Rotate+rotateOffset);
-        GrItem->setPos(of.x() + viewport.x() + ofsinviewport, of.y());
-        return newsize;
+        QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
+        GrItem->setPos(drawRect.topLeft());
+        return drawRect;
     }
 };
 
@@ -142,6 +146,7 @@ public:
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
     bool isSlideShow() const { return m_slideshowTimer != nullptr; }
     void toggleSlideShow();
+    void setWillFullscreen(bool fullscreen) { m_isFullScreen = fullscreen; }
 
 signals:
     /**
@@ -225,6 +230,8 @@ private:
     PageManager* m_pageManager;
     ShaderManager m_effectManager;
     QTimer* m_slideshowTimer;
+
+    bool m_isFullScreen;
 };
 
 

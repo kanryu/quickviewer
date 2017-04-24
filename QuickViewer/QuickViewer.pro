@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent gui-private opengl-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.5.5
+VERSION = 0.5.6
 
 TARGET = QuickViewer
 TEMPLATE = app

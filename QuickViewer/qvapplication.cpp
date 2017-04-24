@@ -62,15 +62,18 @@ QVApplication::QVApplication(int &argc, char **argv)
 
 void QVApplication::registActions(Ui::MainWindow *ui)
 {
+    // File
     registAction("actionOpenFolder", ui->actionOpenFolder);
     registAction("actionClearHistory", ui->actionClearHistory);
     registAction("actionAutoLoaded", ui->actionAutoLoaded);
     registAction("actionExit", ui->actionExit);
 
+    // Bookmark
     registAction("actionClearBookmarks", ui->actionClearBookmarks);
     registAction("actionLoadBookmark", ui->actionLoadBookmark);
     registAction("actionSaveBookmark", ui->actionSaveBookmark);
 
+    // Navigation
     registAction("actionNextPage", ui->actionNextPage);
     registAction("actionPrevPage", ui->actionPrevPage);
     registAction("actionFastForward", ui->actionFastForward);
@@ -81,24 +84,32 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionPrevVolume", ui->actionPrevVolume);
     registAction("actionNextOnePage", ui->actionNextOnePage);
     registAction("actionPrevOnePage", ui->actionPrevOnePage);
-    registAction("actionRotate", ui->actionRotate);
     registAction("actionSlideShow", ui->actionSlideShow);
+
+    // View
+    registAction("actionRotate", ui->actionRotate);
+    registAction("actionFitting", ui->actionFitting);
+    registAction("actionScaleUp", ui->actionScaleUp);
+    registAction("actionScaleDown", ui->actionScaleDown);
+    registAction("actionStayOnTop", ui->actionStayOnTop);
 
     registAction("actionDualView", ui->actionDualView);
     registAction("actionRightSideBook", ui->actionRightSideBook);
     registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
     registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
 
-    registAction("actionFitting", ui->actionFitting);
-    registAction("actionScaleUp", ui->actionScaleUp);
-    registAction("actionScaleDown", ui->actionScaleDown);
-    registAction("actionStayOnTop", ui->actionStayOnTop);
+    registAction("actionFullscreen", ui->actionFullscreen);
+    registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
+    registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal);
+    registAction("actionRestoreWindowState", ui->actionRestoreWindowState);
 
+    // Toolbar
     registAction("actionShowToolBar", ui->actionShowToolBar);
     registAction("actionShowStatusBar", ui->actionShowStatusBar);
     registAction("actionShowPageBar", ui->actionShowPageBar);
     registAction("actionShowMenuBar", ui->actionShowMenuBar);
 
+    // ContextMenu
     registAction("actionOpenFiler", ui->actionOpenFiler);
     registAction("actionOpenExif", ui->actionOpenExif);
     registAction("actionCopyPage", ui->actionCopyPage);
@@ -109,11 +120,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionCheckVersion", ui->actionCheckVersion);
     registAction("actionAppVersion", ui->actionAppVersion);
 
-    registAction("actionFullscreen", ui->actionFullscreen);
-    registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
-    registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal);
-    registAction("actionRestoreWindowState", ui->actionRestoreWindowState);
-
+    // Shader
     registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor);
     registAction("actionShaderBilinear", ui->actionShaderBilinear);
     registAction("actionShaderBicubic", ui->actionShaderBicubic);
@@ -144,9 +151,13 @@ void QVApplication::addHistory(QString path)
         m_history.pop_back();
 }
 
-void QVApplication::addBookMark(QString path)
+void QVApplication::addBookMark(QString path, bool canDumplication)
 {
     const QString unixpath = QDir::fromNativeSeparators(path);
+    if(canDumplication) {
+        m_bookmarks.push_front(unixpath);
+        return;
+    }
     if(m_bookmarks.contains(unixpath)) {
         m_bookmarks.removeOne(unixpath);
     }
@@ -164,7 +175,7 @@ void QVApplication::loadSettings()
     m_stayOnTop = m_settings.value("StayOnTop", false).toBool();
 
     m_rightSideBook = m_settings.value("RightSideBook", bRightSideBookDefault).toBool();
-    m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", false).toBool();
+    m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", true).toBool();
     m_firstImageAsOnePageInDualView = m_settings.value("FirstImageAsOnePageInDualView", false).toBool();
 
     m_showToolBar = m_settings.value("ShowToolBar", true).toBool();
@@ -180,7 +191,7 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("File");
-    m_autoLoaded  = m_settings.value("AutoLoaded", false).toBool();
+    m_autoLoaded  = m_settings.value("AutoLoaded", true).toBool();
     m_history = m_settings.value("History", QStringList()).value<QStringList>();
     m_maxHistoryCount = m_settings.value("MaxHistoryCount", 36).toInt();
     m_bookmarks = m_settings.value("Bookmarks", QStringList()).value<QStringList>();

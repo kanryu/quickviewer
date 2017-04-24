@@ -23,6 +23,7 @@ ImageView::ImageView(QWidget *parent)
     , m_skipResizeEvent(false)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
+    , m_isFullScreen(false)
 {
     viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 6; // 100
@@ -170,6 +171,7 @@ void ImageView::readyForPaint() {
     if(!m_pages.empty()) {
         bool dualview = qApp->DualView() && m_pageManager->canDualView();
         int pageCount = m_pageManager->currentPage();
+        QRect sceneRect;
         for(int i = 0; i < m_pages.size(); i++) {
             PageGraphicsItem::Fitting fitting = PageGraphicsItem::FitCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
@@ -178,15 +180,17 @@ void ImageView::readyForPaint() {
                             ? PageGraphicsItem::FitRight : PageGraphicsItem::FitLeft;
                 pageRect = QRect(QPoint(fitting==PageGraphicsItem::FitRight ? 0 : pageRect.width()/2, 0), QSize(pageRect.width()/2,pageRect.height()));
             }
-            QSize drawSize;
+            QRect drawRect;
             if(qApp->Fitting()) {
-                drawSize = m_pages[i].setPageLayoutFitting(pageRect, fitting, m_pageRotations[pageCount+i]);
+                drawRect = m_pages[i].setPageLayoutFitting(pageRect, fitting, m_pageRotations[pageCount+i]);
             } else {
                 qreal scale = 1.0*currentViewSize()/100;
-                drawSize = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations[pageCount+i]);
+                drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations[pageCount+i]);
             }
-            m_effectManager.prepare(dynamic_cast<QGraphicsPixmapItem*>(m_pages[i].GrItem), m_pages[i].Ic, drawSize);
+            m_effectManager.prepare(dynamic_cast<QGraphicsPixmapItem*>(m_pages[i].GrItem), m_pages[i].Ic, drawRect.size());
+            sceneRect = sceneRect.united(drawRect);
         }
+        scene()->setSceneRect(qApp->Fitting() || m_isFullScreen ? QRect(QPoint(), size()) : sceneRect);
     }
     m_effectManager.prepareFinished();
     repaint();
