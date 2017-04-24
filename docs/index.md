@@ -99,7 +99,7 @@ Thanks for reviewers! :)
     - Fullscreen
     - Stay On Top
     - Restore Window State on next run
-- Shaders(re-scalling quality)
+- Shaders(quality of resize)
     - Bilinear interpolation(normal)
     - Bicubic interpolation
     - Lanczos interpolation
