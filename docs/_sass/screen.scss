@@ -114,7 +114,7 @@ header, footer, section {
 
 div.shell {
   display: block;
-  width: 670px;
+  width: 85%;
   margin: 0 auto;
 }
 
@@ -265,6 +265,7 @@ span.banner-fix {
   position: absolute;
   width: 670px;
   top: 19px;
+  visibility: hidden;
 }
 
 section#main_content {
