@@ -85,7 +85,7 @@ Thanks for reviewers! :)
     - Next only one page, Prev only one page(for **Spread Viewing**)
 - Bookmarks
     - Save, Load, Clear
-- Image Viwing Size
+- Image Resize
     - Fitting(to the window, normal)
     - ScaleUp, ScaleOut(25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%, one of them)
 - Operation on images
