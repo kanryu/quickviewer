@@ -1,6 +1,22 @@
 # CHANGELOG
 
+## v0.5.6 (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+
+improve AutoLoaded, ScaleUp behavior, add a menu
+
+- AutoLoad from Bookmarks
+- after this version auto saved to latest bookmarks when to exit the app
+- Show ScrollBars when manual ScaleUp on normal/maximize windowFlags
+- add menu(OpenProjectWeb)
+
 - other commits
+    - Update index.md (Mon Apr 24 18:39:58 2017 +0900) [52b4384](https://github.com/kanryu/quickviewer/commit/52b43840cbd2e5dc7d015db915fa18a5b7223901)
+    - Update index.md (Mon Apr 24 18:36:48 2017 +0900) [1311785](https://github.com/kanryu/quickviewer/commit/1311785d6d67f43d9994870c2701c483c0f399a7)
+    - Update index.md (Mon Apr 24 16:33:57 2017 +0900) [4a3ce17](https://github.com/kanryu/quickviewer/commit/4a3ce17d4fb4fa9e67fb31bca92d177eddb24065)
+    - Update index-ja.md (Mon Apr 24 16:33:19 2017 +0900) [e900072](https://github.com/kanryu/quickviewer/commit/e90007270b93dcdfa22e7b01391d5be2802b5553)
+    - Update screen.scss (Mon Apr 24 16:31:35 2017 +0900) [424bc37](https://github.com/kanryu/quickviewer/commit/424bc37a7ae0c08886ec3b171eb96dbdb083bdfa)
+    - Update index.md (Mon Apr 24 00:31:33 2017 +0900) [89471b2](https://github.com/kanryu/quickviewer/commit/89471b2872fc667d844e47f990c738cd60dd7266)
+    - changelog (Sun Apr 23 17:45:39 2017 +0900) [ba3bf93](https://github.com/kanryu/quickviewer/commit/ba3bf93dd1713838cebc27e94d2f6f0cb4b012fd)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 23 17:44:30 2017 +0900) [c1abe1f](https://github.com/kanryu/quickviewer/commit/c1abe1f412cff4a8173a9f7ede08cc6eb481932a)
 
 ## v0.5.6_pre (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
