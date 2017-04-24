@@ -67,7 +67,7 @@ Thanks for reviewers! :)
 
 ## Functions
 
-- Folders, Archives(zip/7z/rar) Navigation
+- Folders, Archives(e.g. zip) Navigation
     - Drag Drop a folder/archive icon to the window
     - **Open Image Folder** by menu
     - **History** by menu
