@@ -10,7 +10,7 @@ This software performs reading of image data in advance.
 And drawing the imported image data on the screen with OpenGL.
 You can browse images with much smoother response than ever before.
 
-**QuickViewer** is a free software lisenced under GPLv3.
+**QuickViewer** is a free software lisenced under GPLv3. 
 
 [in English](https://kanryu.github.io/quickviewer/) / [in Japanese](https://kanryu.github.io/quickviewer/index-ja)
 
