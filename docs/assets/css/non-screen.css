@@ -3,12 +3,12 @@ a#forkme_banner {
 }
 
 div.shell {
-  width: 640px;
+  width: 80%;
 }
 
 
 header {
-  max-width:640px;
+  max-width:100%;
   margin: 0;
   top: 51px;
 }
@@ -40,7 +40,7 @@ header h1 {
 
 section#downloads {
   height: 171px;
-  width: 602px;
+  width: 100%;
   margin: 51px auto -250px;
   background: transparent url(../images/shield.png) center 0 no-repeat;
 }
@@ -52,7 +52,7 @@ section#downloads a {
 span.banner-fix {
   background: transparent url(../images/shield-fallback.png) center top no-repeat;
   height: 31px;
-  width: 640px;
+  width: 100%;
   top: 20px;
 }
 
@@ -61,7 +61,7 @@ section#main_content {
 }
 
 footer {
-  max-width:640px;
+  max-width:100%;
   background: none;
 }
 
