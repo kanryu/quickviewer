@@ -1,23 +1,34 @@
 #include "fileloader7zarchive.h"
+#include "qt7zpackage.h"
+#include "qt7zfileinfo.h"
 
+class FileLoader7zArchivePrivate
+{
+public:
+    Qt7zPackage m_reader;
+    QMap<QString, Qt7zFileInfo> m_fileinfomap;
+
+    FileLoader7zArchivePrivate(QString sevenzippath)
+     : m_reader(sevenzippath) {}
+};
 
 FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath)
     : IFileLoader(parent)
-    , m_reader(sevenzippath)
     , m_volumepath(sevenzippath)
     , m_valid(false)
+    , d(new FileLoader7zArchivePrivate(sevenzippath))
 {
-    if(!(m_valid = m_reader.open()))
+    if(!(m_valid = d->m_reader.open()))
         return;
 
-    foreach(const Qt7zFileInfo& info, m_reader.fileInfoList()) {
+    foreach(const Qt7zFileInfo& info, d->m_reader.fileInfoList()) {
         if(!info.isDir) {
             if(IFileLoader::isImageFile(info.fileName)) {
                 m_imageFileList.append(info.fileName);
-                m_fileinfomap[info.fileName] = info;
+                d->m_fileinfomap[info.fileName] = info;
             } else if(IFileLoader::isArchiveFile(info.fileName)) {
                 m_subArchiveList.append(info.fileName);
-                m_fileinfomap[info.fileName] = info;
+                d->m_fileinfomap[info.fileName] = info;
             }
         }
     }
@@ -31,13 +42,14 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
     QByteArray bytes;
     if(m_imageFileList.contains(name)) {
         mutex.lock();
-        Qt7zFileInfo info = m_fileinfomap[name];
+        Qt7zFileInfo info = d->m_fileinfomap[name];
 
         QBuffer iobuffer(&bytes, this);
         iobuffer.open(QIODevice::WriteOnly);
-        bool result = m_reader.extractFile(name, &iobuffer);
+        bool result = d->m_reader.extractFile(name, &iobuffer);
         mutex.unlock();
     }
     return bytes;
 }
 
+FileLoader7zArchive::~FileLoader7zArchive() {if(d){delete d;d=nullptr;}}

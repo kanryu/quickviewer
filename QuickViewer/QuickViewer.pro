@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl concurrent gui-private opengl-private
+QT       += core gui opengl concurrent opengl-private
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -69,19 +69,12 @@ win32 { !CONFIG(debug, debug|release) {
 } }
 
 
-INCLUDEPATH += ../Qt7z/Qt7z
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
-#INCLUDEPATH += ../QtRAR/src
-INCLUDEPATH += ../unrar
+INCLUDEPATH += ../fileloader
 
-#LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar -lQtRAR
-LIBS += -L../lib  -leasyexif -lresizehalf -lQt7z -lunrar
+LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar
 
-## qtrar
-#DEFINES += QTRAR_STATIC RARDLL
-
-DEFINES += UNRAR RARDLL
 win32 {
     QMAKE_CXXFLAGS += /wd4819
     LIBS += -luser32 -ladvapi32 -lShlwapi
@@ -100,11 +93,6 @@ SOURCES += main.cpp \
     pageslider.cpp \
     exifdialog.cpp \
     keyconfigdialog.cpp \
-    fileloader.cpp \
-    fileloader7zarchive.cpp \
-    fileloaderdirectory.cpp \
-    fileloaderziparchive.cpp \
-    fileloaderrararchive.cpp \
     shortcutbutton.cpp \
     pagemanager.cpp \
     timeorderdcache.cpp \
@@ -119,11 +107,6 @@ HEADERS  += mainwindow.h \
     pageslider.h \
     exifdialog.h \
     keyconfigdialog.h \
-    fileloader.h \
-    fileloader7zarchive.h \
-    fileloaderdirectory.h \
-    fileloaderziparchive.h \
-    fileloaderrararchive.h \
     shortcutbutton.h \
     pagemanager.h \
     timeorderdcache.h \

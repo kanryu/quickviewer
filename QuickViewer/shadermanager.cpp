@@ -10,7 +10,8 @@ public:
     LanczosShaderEffect(QObject *parent = 0) : QGraphicsShaderEffect(parent) { }
     void createKernel(float delta, int *size);
     void createOffsets(int count, float width, Qt::Orientation direction);
-    void setTextureSize(QVector2D sz) { m_textureSize = sz; }
+    void setViewWidth(int viewWidth) { m_viewWidth = viewWidth; }
+    int viewWidth() { return m_viewWidth; }
 
 protected:
     void setUniforms(QGLShaderProgram *program)
@@ -22,7 +23,7 @@ private:
     enum {BLOCK = 16} e;
     QVector2D m_offsets[16];
     QVector4D m_kernel[16];
-    QVector2D m_textureSize;
+    int m_viewWidth;
 };
 
 inline static float sinc(float x)
@@ -155,11 +156,36 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
 //                }
                 int kernelSize;
                 lanczos->createKernel(1.0/pow, &kernelSize);
-                qDebug() << 1.0/pow << kernelSize;
+//                qDebug() << 1.0/pow << kernelSize;
                 lanczos->createOffsets(kernelSize, sw, Qt::Horizontal);
+
+//                int sw2 = qMax(sw, sh);
+//                int swb = 1;
+//                while(sw2 > swb)
+//                  swb <<= 1;
+//                lanczos->createOffsets(kernelSize, swb, Qt::Horizontal);
+
                 shader = lanczos;
             }
             item->setGraphicsEffect(shader);
+        } else {
+            auto lanczos = dynamic_cast<LanczosShaderEffect*>(item->graphicsEffect());
+            if(!lanczos)
+                break;
+            if(lanczos->viewWidth() == size.width())
+                break;
+            int sw = ic.ImportSize.width();
+            int sh = ic.ImportSize.height();
+            qreal pow = 1.0*size.width()/sw;
+            int kernelSize;
+            lanczos->createKernel(1.0/pow, &kernelSize);
+            lanczos->createOffsets(kernelSize, sw, Qt::Horizontal);
+
+//            int sw2 = qMax(sw, sh);
+//            int swb = 1;
+//            while(sw2 > swb)
+//              swb <<= 1;
+//            lanczos->createOffsets(kernelSize, swb, Qt::Horizontal);
         }
         break;
     }

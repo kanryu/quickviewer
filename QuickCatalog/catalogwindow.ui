@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CatalogWindow</class>
+ <widget class="QMainWindow" name="CatalogWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>713</width>
+    <height>683</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CatalogWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QToolButton" name="prevButton">
+       <property name="maximumSize">
+        <size>
+         <width>27</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../QuickViewer/toolbar.qrc">
+         <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="nextButton">
+       <property name="maximumSize">
+        <size>
+         <width>27</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../QuickViewer/toolbar.qrc">
+         <normaloff>:/icons/arrow_right_icon</normaloff>:/icons/arrow_right_icon</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="pathCombo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>16</height>
+        </size>
+       </property>
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="reloadButton">
+       <property name="minimumSize">
+        <size>
+         <width>27</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>27</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../QuickViewer/toolbar.qrc">
+         <normaloff>:/icons/rotation_icon</normaloff>:/icons/rotation_icon</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QSplitter" name="splitter">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QComboBox" name="searchCombo">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSplitter" name="splitter_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="FileExplorer" name="folderTree">
+       <property name="baseSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+       <attribute name="headerVisible">
+        <bool>true</bool>
+       </attribute>
+      </widget>
+      <widget class="QSplitter" name="splitter_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QListWidget" name="volumeList"/>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>713</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionPrev">
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
+   </property>
+   <property name="text">
+    <string>Prev</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/arrow_right_icon</normaloff>:/icons/arrow_right_icon</iconset>
+   </property>
+   <property name="text">
+    <string>Next</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>FileExplorer</class>
+   <extends>QTreeView</extends>
+   <header>fileexplorer.h</header>
+   <slots>
+    <signal>itemChanged(QString)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../QuickViewer/toolbar.qrc"/>
+  <include location="../QuickViewer/toolbar.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>folderTree</sender>
+   <signal>itemChanged(QString)</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_treeItemChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>181</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_treeItemChanged(QString)</slot>
+ </slots>
+</ui>

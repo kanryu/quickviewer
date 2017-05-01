@@ -40,5 +40,8 @@
         <file alias="bookmark_load_icon">icons/bookmark_load.png</file>
         <file alias="bookmark_save_icon">icons/bookmark_save.png</file>
         <file alias="bookmark_manage_icon">icons/bookmark_manage.png</file>
+        <file alias="folder_32_icon">icons/folder_32.png</file>
+        <file alias="folder_48_icon">icons/folder_48.png</file>
+        <file alias="folder_64_icon">icons/folder_64.png</file>
     </qresource>
 </RCC>

@@ -1,11 +1,9 @@
 #ifndef FILEVOLUME7ZARCHIVE_H
 #define FILEVOLUME7ZARCHIVE_H
 
-#include <QObject>
-#include <QMap>
+#include <QtCore>
 #include "fileloader.h"
-#include "qt7zpackage.h"
-#include "qt7zfileinfo.h"
+class FileLoader7zArchivePrivate;
 
 class FileLoader7zArchive : public IFileLoader
 {
@@ -16,7 +14,7 @@ public:
      */
     FileLoader7zArchive(QObject* parent, QString sevenzippath);
 
-    ~FileLoader7zArchive() {}
+    ~FileLoader7zArchive();
     /**
      * @brief isArchive
      * @return return true, if the instance treates an archive file
@@ -51,9 +49,8 @@ public:
     QByteArray getFile(QString filename, QMutex& mutex);
 
 protected:
+    FileLoader7zArchivePrivate* d;
     QString m_volumepath;
-    Qt7zPackage m_reader;
-    QMap<QString, Qt7zFileInfo> m_fileinfomap;
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;
