@@ -1,5 +1,26 @@
 # CHANGELOG
 
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon May 1 13:40:57 2017 +0900) [994cfb9](https://github.com/kanryu/quickviewer/commit/994cfb9423911c6003be59c72db85a8ea889b13c)
+
+## v0.6.0_pre (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+
+parted to new project 'fileloader.pro', new project QuickCatalog
+
+- parted to new project 'fileloader.pro'
+- which contains commonly modules to load archives
+- new project QuickCatalog
+- it provides functions to create/manage Thumbnail Catalogs, and
+Catalog Filer
+
+- other commits
+    - Update index.md (Tue Apr 25 21:40:12 2017 +0900) [d8829f3](https://github.com/kanryu/quickviewer/commit/d8829f329f146f6996cb2399b50802f08c8170bc)
+    - Update index.md (Tue Apr 25 19:48:47 2017 +0900) [082efbd](https://github.com/kanryu/quickviewer/commit/082efbdb9aaae44afdf7005f9fde2d93c8aeba69)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Tue Apr 25 19:43:46 2017 +0900) [2c4daef](https://github.com/kanryu/quickviewer/commit/2c4daef85cfb6a1b6e90d49a33df4568942def1c)
+    - max width 1080px (Tue Apr 25 19:43:20 2017 +0900) [53a41cd](https://github.com/kanryu/quickviewer/commit/53a41cdcc82b8fce61206bf8dce86dcbf2f49980)
+    - Update index.md (Tue Apr 25 08:13:05 2017 +0900) [43349c9](https://github.com/kanryu/quickviewer/commit/43349c98300d26f1c71ba6e3743ecd5a95c5acd3)
+    - changelog (Mon Apr 24 23:40:38 2017 +0900) [3fe835b](https://github.com/kanryu/quickviewer/commit/3fe835b3a77fbb4bc26b362fe6ffeb0616224a65)
+
 ## v0.5.6 (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
 
 improve AutoLoaded, ScaleUp behavior, add a menu
