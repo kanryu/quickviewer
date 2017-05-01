@@ -46,7 +46,7 @@ DBS += \
     database/schema.sql \
 
 DBBIN += \
-    database/thumbail.sqlite3.db \
+    database/thumbnail.sqlite3.db \
 
 DBDIR += database/
 

@@ -11,8 +11,9 @@ CREATE TABLE [t_thumbnails] ( --サムネイル
 
 CREATE TABLE [t_catalogs] ( --カタログ
     [id] INTEGER PRIMARY KEY AUTOINCREMENT,
-    [basevolume_id] INTEGER NOT NULL, -- カタログの基底となる [t_volumes].[id]
+    [basevolume_id] INTEGER, -- カタログの基底となる [t_volumes].[id]
     [name] TEXT, --カタログの名称
+    [path] TEXT, --カタログの基底フォルダパス
     [description] TEXT, --カタログの説明
     [created_at] DATETIME,
     [updated_at] DATETIME
@@ -43,7 +44,7 @@ CREATE TABLE [t_files] ( --画像ファイル
 );
 
 CREATE TABLE [t_volumeorders] ( --ボリューム並べ替え順
-    [id] INTEGER,
+    [id] INTEGER, -- [t_volumes].[id]
     [parent_id] INTEGER,
     [volumename_asc] INTEGER, -- ボリューム名をOS準拠で並べ替えた際の昇順の序数
     PRIMARY KEY(id)

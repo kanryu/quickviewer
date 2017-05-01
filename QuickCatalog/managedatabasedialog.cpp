@@ -1,3 +1,5 @@
+#include <QMessageBox>
+
 #include "managedatabasedialog.h"
 #include "databasesettingdialog.h"
 #include "ui_cataloglist.h"
@@ -34,6 +36,19 @@ ManageDatabaseDialog::~ManageDatabaseDialog()
     delete ui;
 }
 
+void ManageDatabaseDialog::progressButtonStates()
+{
+    ui->addButton->setEnabled(false);
+    ui->editButton->setEnabled(false);
+    ui->deleteButton->setEnabled(false);
+    ui->updateButton->setEnabled(false);
+    ui->deleteAllButton->setEnabled(false);
+    ui->updateAllButton->setEnabled(false);
+    ui->buttonBox->setEnabled(false);
+
+    ui->progressBar->setVisible(true);
+    ui->cancelButton->setVisible(true);
+}
 void ManageDatabaseDialog::resetCatalogList()
 {
     ui->treeWidget->clear();
@@ -46,6 +61,7 @@ void ManageDatabaseDialog::resetCatalogList()
         item->setData(0, Qt::UserRole, QVariant(catalog.id));
         ui->treeWidget->addTopLevelItem(item);
     }
+    ui->addButton->setEnabled(true);
     if(m_catalogs.isEmpty()) {
         ui->editButton->setEnabled(false);
         ui->deleteButton->setEnabled(false);
@@ -59,6 +75,10 @@ void ManageDatabaseDialog::resetCatalogList()
         ui->deleteAllButton->setEnabled(true);
         ui->updateAllButton->setEnabled(true);
     }
+    ui->buttonBox->setEnabled(true);
+
+    ui->cancelButton->setVisible(false);
+    ui->progressBar->setVisible(false);
 }
 
 void ManageDatabaseDialog::on_addNew_triggered()
@@ -70,11 +90,56 @@ void ManageDatabaseDialog::on_addNew_triggered()
     if(result == QDialog::Rejected) {
         return;
     }
-    CatalogRecord catalog = m_thumbManager->createCatalog(dialog.name(), dialog.path());
+//    CatalogRecord catalog = m_thumbManager->createCatalog(dialog.name(), dialog.path());
+    m_catalogWatcher = m_thumbManager->createCatalogAsync(dialog.name(), dialog.path());
+    connect(m_catalogWatcher, SIGNAL(finished()), this, SLOT(on_catalogCreated()));
+    connect(m_catalogWatcher, SIGNAL(progressRangeChanged(int,int)), ui->progressBar, SLOT(setRange(int,int)));
+    connect(m_catalogWatcher, SIGNAL(progressValueChanged(int)), ui->progressBar, SLOT(setValue(int)));
+
+    progressButtonStates();
+}
+void ManageDatabaseDialog::on_catalogCreated()
+{
+    if(!m_catalogWatcher)
+        return;
+    disconnect(m_catalogWatcher, SIGNAL(finished()), this, SLOT(on_catalogCreated()));
+    disconnect(m_catalogWatcher, SIGNAL(progressRangeChanged(int,int)), ui->progressBar, SLOT(setRange(int,int)));
+    disconnect(m_catalogWatcher, SIGNAL(progressValueChanged(int)), ui->progressBar, SLOT(setValue(int)));
+  //  disconnect(m_catalogWatcher, SIGNAL(progressTextChanged(QString)), ui->progressBar, SLOT(setWindowTitle(QString)));
+
+    CatalogRecord catalog = m_catalogWatcher->future().result();
     m_catalogs[catalog.id] = catalog;
+
+    m_catalogWatcher = nullptr;
+
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle(tr("Catalog Create Finished"));
+    QString message = QString("Successed!");
+    msgBox.setText(message);
+    msgBox.exec();
 
     resetCatalogList();
 }
+
+void ManageDatabaseDialog::on_cancelWork_triggered()
+{
+    if(!m_thumbManager || !m_catalogWatcher)
+        return;
+    disconnect(m_catalogWatcher, SIGNAL(finished()), this, SLOT(on_catalogCreated()));
+    disconnect(m_catalogWatcher, SIGNAL(progressRangeChanged(int,int)), ui->progressBar, SLOT(setRange(int,int)));
+    disconnect(m_catalogWatcher, SIGNAL(progressValueChanged(int)), ui->progressBar, SLOT(setValue(int)));
+    m_thumbManager->cancelCreateCatalogAsync();
+    m_catalogWatcher = nullptr;
+
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle(tr("Catalog Create Cancelled"));
+    QString message = QString("Cancelled!");
+    msgBox.setText(message);
+    msgBox.exec();
+
+    resetCatalogList();
+}
+
 
 void ManageDatabaseDialog::on_edit_triggered()
 {
@@ -134,3 +199,4 @@ void ManageDatabaseDialog::on_updateAll_triggered()
 {
 
 }
+

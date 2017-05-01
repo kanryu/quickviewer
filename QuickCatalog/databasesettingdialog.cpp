@@ -53,10 +53,10 @@ void DatabaseSettingDialog::dropEvent(QDropEvent *e)
             QFileInfo info(url.toLocalFile());
             if(info.isDir()) {
 //                setPath(info.path());
-                ui->pathEdit->setText(QDir::toNativeSeparators(info.path()));
+                ui->pathEdit->setText(QDir::toNativeSeparators(info.absoluteFilePath()));
             } else if(info.isFile()) {
 //                setPath(info.dir().path());
-                ui->pathEdit->setText(QDir::toNativeSeparators(info.dir().path()));
+                ui->pathEdit->setText(QDir::toNativeSeparators(info.path()));
             }
         }
     }

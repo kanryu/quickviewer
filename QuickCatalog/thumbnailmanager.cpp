@@ -97,6 +97,7 @@ ThumbnailManager::ThumbnailManager(QObject* parent, QString dbpath)
     : QObject(parent)
     , m_db(QSqlDatabase::addDatabase("QSQLITE"))
     , m_transaction(false)
+    , m_catalogWatcher(this)
 {
 
     m_db.setDatabaseName(dbpath);
@@ -110,27 +111,31 @@ ThumbnailManager::ThumbnailManager(QObject* parent, QString dbpath)
     }
 }
 
-int ThumbnailManager::createVolumes(QString dirpath, int parent_id)
+#define DEFAULT_FILES_COUNT 30
+
+int ThumbnailManager::createSubVolumes(QString dirpath, int catalog_id, int parent_id)
 {
     QDir dir(dirpath);
     if(!dir.exists())
         return -1;
-    int volume_id = createVolumeInternal(dirpath, parent_id);
+    int volume_id = createVolumeInternal(dirpath, catalog_id, parent_id);
     if(volume_id < 0) return -1;
 
-    QStringList files = dir.entryList(QDir::Files, QDir::Unsorted);
-    if(files.size() > 0) {
-        createVolume(dirpath, volume_id);
-    }
     QSqlQuery t_volumeorders(m_db);
     t_volumeorders.prepare("INSERT INTO t_volumeorders (id,parent_id,volumename_asc)"
                       " VALUES (:id,:parent_id,:volumename_asc)");
     QStringList subdirs = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Unsorted);
     sortFiles(subdirs);
+    if(m_catalogWatcher.isStarted() && subdirs.size()>0) {
+        m_catalogWorkMax += subdirs.size()*DEFAULT_FILES_COUNT;
+        emit m_catalogWatcher.progressRangeChanged(0, m_catalogWorkMax);
+    }
     int volumeame_asc = 0;
     foreach(QString sub, subdirs) {
         QString subpath = dir.filePath(sub);
-        int sub_id = createVolumes(subpath, volume_id);
+        if(m_catalogWatcher.isCanceled())
+            break;
+        int sub_id = createSubVolumes(subpath, catalog_id, volume_id);
         if(sub_id < 0)
             continue;
         t_volumeorders.bindValue(":id", sub_id);
@@ -139,17 +144,26 @@ int ThumbnailManager::createVolumes(QString dirpath, int parent_id)
         if(!execInsertQuery(t_volumeorders, "t_volumeorders")) return -1;
 
     }
+    QStringList files = dir.entryList(QDir::Files, QDir::Unsorted);
+    int filecount = 0;
+    if(files.size() > 0) {
+        filecount = createVolumeContent(dirpath, volume_id);
+    }
+    m_catalogWorkMax = m_catalogWorkMax + filecount - DEFAULT_FILES_COUNT;
+    emit m_catalogWatcher.progressRangeChanged(0, m_catalogWorkMax);
+
     return volume_id;
 }
 
-int ThumbnailManager::createVolumeInternal(QString dirpath, int parent_id)
+int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int parent_id)
 {
     QFileInfo info(dirpath);
     qDebug() << "volume: " << info.fileName();
     QSqlQuery t_volumes(m_db);
-    t_volumes.prepare("INSERT INTO t_volumes (realname, path, parent_id) VALUES (:realname,:path,:parent_id)");
+    t_volumes.prepare("INSERT INTO t_volumes (realname, path, catalog_id, parent_id) VALUES (:realname,:path,:catalog_id,:parent_id)");
     t_volumes.bindValue(":realname", info.fileName());
     t_volumes.bindValue(":path", QDir::toNativeSeparators(dirpath));
+    t_volumes.bindValue(":catalog_id", catalog_id);
     t_volumes.bindValue(":parent_id", parent_id);
     if(!execInsertQuery(t_volumes, "t_volumes")) return -1;
 
@@ -157,80 +171,8 @@ int ThumbnailManager::createVolumeInternal(QString dirpath, int parent_id)
     return volume_id;
 }
 
-CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
-{
-    static int id =1; // FIXME
-    auto catalog = CatalogRecord();
-    catalog.id = id++;
-    catalog.name = name;
-    catalog.path = path;
-    catalog.created_at = QDateTime::currentDateTime();
-    return catalog;
-}
 
-void ThumbnailManager::deleteCatalog(int id)
-{
-
-}
-
-void ThumbnailManager::updateCatalogName(int id, QString name)
-{
-
-}
-
-void ThumbnailManager::deleteAllCatalogs()
-{
-
-}
-
-void ThumbnailManager::transaction()
-{
-    if(m_transaction)
-        return;
-    if(!m_db.transaction()) {
-        qDebug() << "m_db transaction failed: " << m_db.lastError();
-        return;
-    }
-    m_transaction = true;
-}
-
-void ThumbnailManager::forceTransaction()
-{
-    if(m_transaction)
-        return;
-    qDebug() << "force transaction!";
-    transaction();
-}
-
-void ThumbnailManager::commit()
-{
-    if(!m_transaction)
-        return;
-    if(!m_db.commit()) {
-        qDebug() << "m_db commit failed: " << m_db.lastError();
-        return;
-    }
-    m_transaction = false;
-}
-
-void ThumbnailManager::rollback()
-{
-    if(!m_transaction)
-        return;
-    if(!m_db.rollback()) {
-        qDebug() << "m_db rollback failed: " << m_db.lastError();
-        return;
-    }
-    m_transaction = false;
-}
-
-void ThumbnailManager::dispose()
-{
-    m_db.close();
-}
-
-
-int ThumbnailManager::createVolume(QString dirpath, int volume_id)
+int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
 {
     QDir dir(dirpath);
     if(!dir.exists())
@@ -250,7 +192,15 @@ int ThumbnailManager::createVolume(QString dirpath, int volume_id)
     sortFiles(files);
     bool bFrontPage = true;
     int filename_asc = 0;
-    foreach(QString filename, files) {
+    for(int i = 0; i < files.size(); i++) {
+//    foreach(QString filename, files) {
+        if(m_catalogWatcher.isStarted()) {
+//            int progressValue = m_catalogWatcher.progressValue();
+            emit m_catalogWatcher.progressValueChanged(m_catalogWorkProgress++);
+        }
+        if(m_catalogWatcher.isCanceled())
+            break;
+        QString filename = files[i];
         qDebug() << "  file: " << filename;
         if(!isImageFile(filename))
             continue;
@@ -319,8 +269,162 @@ int ThumbnailManager::createVolume(QString dirpath, int volume_id)
 //        qDebug() << "m_db commit failed: " << m_db.lastError();
 //        return -1;
 //    }
-    return volume_id;
+    return filename_asc;
 }
+CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
+{
+    static int id =1; // FIXME
+    auto catalog = CatalogRecord();
+    catalog.name = name;
+    catalog.path = path;
+    catalog.created_at = QDateTime::currentDateTime();
+
+    transaction();
+
+    QSqlQuery t_catalogs(m_db);
+    t_catalogs.prepare("INSERT INTO t_catalogs (name,path,created_at,updated_at)"
+                       " VALUES (:name,:path,:created_at,:updated_at)");
+    t_catalogs.bindValue(":name", name);
+    t_catalogs.bindValue(":path", QDir::toNativeSeparators(path));
+    t_catalogs.bindValue(":created_at", catalog.created_at);
+    t_catalogs.bindValue(":updated_at", catalog.created_at);
+    if(!execInsertQuery(t_catalogs, "t_catalogs")) return catalog;
+
+    m_catalogWorkProgress = 0;
+    m_catalogWorkMax = 0;
+    int catalog_id = catalog.id = t_catalogs.lastInsertId().toInt();
+    int basevolume_id = createSubVolumes(path, catalog_id);
+    t_catalogs.prepare("UPDATE t_catalogs SET basevolume_id=:basevolume_id WHERE id=:id");
+    t_catalogs.bindValue(":basevolume_id", basevolume_id);
+    t_catalogs.bindValue(":id", catalog_id);
+    if(!execInsertQuery(t_catalogs, "t_catalogs")) return catalog;
+
+    if(m_catalogWatcher.isCanceled())
+        rollback();
+    else
+        commit();
+
+    return catalog;
+}
+
+static CatalogRecord callCreateCatalog(ThumbnailManager* manager, QString name, QString path)
+{
+    return manager->createCatalog(name, path);
+}
+
+
+QFutureWatcher<CatalogRecord>* ThumbnailManager::createCatalogAsync(QString name, QString path)
+{
+//    QFutureWatcher<CatalogRecord> watcher;
+//    connect(&watcher, SIGNAL(finished()), this, SLOT(on_catalogCreated()));
+    // Start the computation.
+    QFuture<CatalogRecord> future = QtConcurrent::run(callCreateCatalog, this, name, path);
+    m_catalogWatcher.setFuture(future);
+    return &m_catalogWatcher;
+}
+
+void ThumbnailManager::cancelCreateCatalogAsync()
+{
+    if(!m_catalogWatcher.isRunning())
+        return;
+    m_catalogWatcher.cancel();
+}
+
+
+void ThumbnailManager::deleteCatalog(int id)
+{
+    QSqlQuery t_thumbs(m_db);
+    t_thumbs.prepare("DELETE FROM t_thumbnails WHERE id IN (SELECT thumb_id FROM t_files WHERE volume_id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id))");
+    t_thumbs.bindValue(":catalog_id", id);
+    if(!execInsertQuery(t_thumbs, "t_thumbnails")) return;
+
+    QSqlQuery t_files(m_db);
+    t_files.prepare("DELETE FROM t_files WHERE volume_id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id)");
+    t_files.bindValue(":catalog_id", id);
+    if(!execInsertQuery(t_files, "t_files")) return;
+
+    QSqlQuery t_fileorders(m_db);
+    t_fileorders.prepare("DELETE FROM t_fileorders WHERE volume_id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id)");
+    t_fileorders.bindValue(":catalog_id", id);
+    if(!execInsertQuery(t_fileorders, "t_fileorders")) return;
+
+    QSqlQuery t_volumeorders(m_db);
+    t_volumeorders.prepare("DELETE FROM t_volumeorders WHERE id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id)");
+    t_volumeorders.bindValue(":catalog_id", id);
+    if(!execInsertQuery(t_volumeorders, "t_volumeorders")) return;
+
+    QSqlQuery t_volumes(m_db);
+    t_volumes.prepare("DELETE FROM t_volumes WHERE catalog_id=:catalog_id");
+    t_volumes.bindValue(":catalog_id", id);
+    if(!execInsertQuery(t_volumes, "t_volumes")) return;
+
+    QSqlQuery t_catalogs(m_db);
+    t_catalogs.prepare("DELETE FROM t_catalogs WHERE id=:id");
+    t_catalogs.bindValue(":id", id);
+    if(!execInsertQuery(t_catalogs, "t_catalogs")) return;
+}
+
+void ThumbnailManager::updateCatalogName(int id, QString name)
+{
+    QSqlQuery t_catalogs(m_db);
+    t_catalogs.prepare("UPDATE t_catalogs SET name=:name WHERE id=:id");
+    t_catalogs.bindValue(":id", id);
+    t_catalogs.bindValue(":name", name);
+    if(!execInsertQuery(t_catalogs, "t_catalogs")) return;
+}
+
+void ThumbnailManager::deleteAllCatalogs()
+{
+
+}
+
+void ThumbnailManager::transaction()
+{
+    if(m_transaction)
+        return;
+    if(!m_db.transaction()) {
+        qDebug() << "m_db transaction failed: " << m_db.lastError();
+        return;
+    }
+    m_transaction = true;
+}
+
+void ThumbnailManager::forceTransaction()
+{
+    if(m_transaction)
+        return;
+    qDebug() << "force transaction!";
+    transaction();
+}
+
+void ThumbnailManager::commit()
+{
+    if(!m_transaction)
+        return;
+    if(!m_db.commit()) {
+        qDebug() << "m_db commit failed: " << m_db.lastError();
+        return;
+    }
+    m_transaction = false;
+}
+
+void ThumbnailManager::rollback()
+{
+    if(!m_transaction)
+        return;
+    if(!m_db.rollback()) {
+        qDebug() << "m_db rollback failed: " << m_db.lastError();
+        return;
+    }
+    m_transaction = false;
+}
+
+void ThumbnailManager::dispose()
+{
+    m_db.close();
+}
+
+
 
 bool ThumbnailManager::execInsertQuery(QSqlQuery &query, const QString& tablename)
 {

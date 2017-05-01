@@ -166,7 +166,7 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
+      <item row="1" column="1">
        <widget class="QProgressBar" name="progressBar">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -179,13 +179,20 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="2" column="1">
        <widget class="QDialogButtonBox" name="buttonBox">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="standardButtons">
          <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="cancelButton">
+        <property name="text">
+         <string>Cancel the work</string>
         </property>
        </widget>
       </item>
@@ -324,6 +331,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ManageDatabaseDialog</receiver>
+   <slot>on_cancelWork_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>311</x>
+     <y>257</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_addNew_triggered()</slot>
@@ -332,5 +355,6 @@
   <slot>on_update_triggered()</slot>
   <slot>on_deleteAll_triggered()</slot>
   <slot>on_updateAll_triggered()</slot>
+  <slot>on_cancelWork_triggered()</slot>
  </slots>
 </ui>

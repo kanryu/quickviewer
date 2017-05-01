@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlDatabase>
 #include <QDateTime>
+#include <QtConcurrent>
 
 // t_thumbnails
 class ThumbnailRecord
@@ -66,12 +67,17 @@ class ThumbnailManager : public QObject
 public:
     ThumbnailManager(QObject* parent, QString dbpath);
 
-    int createVolumes(QString dirpath, int parent_id=-1);
-    int createVolume(QString dirpath, int parent_id=-1);
-    int createVolumeInternal(QString dirpath, int parent_id=-1);
+    /* Volumes/Files */
+    int createSubVolumes(QString dirpath, int catalog_id, int parent_id=-1);
+    int createVolumeContent(QString dirpath, int parent_id=-1);
+    int createVolumeInternal(QString dirpath, int catalog_id, int parent_id=-1);
 
     /* Catalogs */
     CatalogRecord createCatalog(QString name, QString path);
+    QFutureWatcher<CatalogRecord>* createCatalogAsync(QString name, QString path);
+    void cancelCreateCatalogAsync();
+
+
     void deleteCatalog(int id);
     void updateCatalogName(int id, QString name);
     void deleteAllCatalogs();
@@ -113,9 +119,18 @@ public:
     static QString DateTimeToIsoString(QDateTime datetime);
     static QString currentDateTimeAsString();
 
+signals:
+    void catalogCreated(CatalogRecord catalog);
+
+//private slots:
+//    void on_catalogCreated();
+
 private:
     QSqlDatabase m_db;
     bool m_transaction;
+    QFutureWatcher<CatalogRecord> m_catalogWatcher;
+    int m_catalogWorkProgress;
+    int m_catalogWorkMax;
 
     static QList<QByteArray> st_supportedImageFormats;
     static QStringList st_jpegpegImageFormats;
