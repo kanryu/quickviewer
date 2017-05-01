@@ -171,6 +171,45 @@ int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int 
     return volume_id;
 }
 
+static FileWorker createFileRecord(QString filename, QString filepath, int filename_asc)
+{
+    FileWorker result;
+    result.filename = filename;
+    result.filepath = filepath;
+    result.info.setFile(filepath);
+    result.asc = filename_asc;
+    QImage img(filepath);
+    if(!img.width()) {
+        result.asc = -1;
+        return result;
+    }
+
+    QImage thumb = img.scaledToWidth(2*THUMB_WIDTH, Qt::FastTransformation);
+    thumb = thumb.scaledToWidth(THUMB_WIDTH, Qt::SmoothTransformation);
+    QBuffer thumbdat;
+    thumbdat.open(QBuffer::ReadWrite);
+    if(!thumb.save(&thumbdat, "JPEG", 90)) {
+        result.asc = -1;
+        return result;
+    }
+    result.thumb = thumb;
+    result.thumbbytes = thumbdat.data();
+    result.created_at = ThumbnailManager::currentDateTimeAsString();
+
+    QBuffer alternated;
+    if(ThumbnailManager::isHeavyImageFile(filename) || img.width() > MAX_WIDTH || img.height() > MAX_HEIGHT) {
+        QDesktopWidget* desktop = QApplication::desktop();
+        QRect rect = desktop->screenGeometry();
+//            qDebug() << rect;
+        QImage alter = img.scaled(rect.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        alternated.open(QBuffer::ReadWrite);
+        if(!alter.save(&alternated, "JPEG", 90)) {
+            return result;
+        }
+        result.alternated = alternated.data();
+    }
+    return result;
+}
 
 int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
 {
@@ -192,6 +231,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
     sortFiles(files);
     bool bFrontPage = true;
     int filename_asc = 0;
+    QList<QFuture<FileWorker>> workers;
     for(int i = 0; i < files.size(); i++) {
 //    foreach(QString filename, files) {
         if(m_catalogWatcher.isStarted()) {
@@ -205,51 +245,36 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
         if(!isImageFile(filename))
             continue;
         QString filepath = dir.filePath(filename);
-        QImage img(filepath);
-        if(!img.width())
+        workers.append(QtConcurrent::run(createFileRecord, filename, filepath, filename_asc++));
+    }
+    foreach(auto worker, workers) {
+        FileWorker& w = worker.result();
+        if(w.asc<0) {
+            filename_asc--;
             continue;
-
-        QImage thumb = img.scaledToWidth(2*THUMB_WIDTH, Qt::FastTransformation);
-        thumb = thumb.scaledToWidth(THUMB_WIDTH, Qt::SmoothTransformation);
-        QBuffer thumbdat;
-        thumbdat.open(QBuffer::ReadWrite);
-        if(!thumb.save(&thumbdat, "JPEG", 90)) {
-            qDebug() << "thumbnail.save() failed: " << filename;
-            return -1;
         }
-        t_thumbs.bindValue(":width", thumb.width());
-        t_thumbs.bindValue(":height", thumb.height());
-        t_thumbs.bindValue(":thumbnail", thumbdat.buffer());
+        if(m_catalogWatcher.isCanceled())
+            break;
+        t_thumbs.bindValue(":width", w.thumb.width());
+        t_thumbs.bindValue(":height", w.thumb.height());
+        t_thumbs.bindValue(":thumbnail", w.thumbbytes);
         t_thumbs.bindValue(":created_at", currentDateTimeAsString());
         if(!execInsertQuery(t_thumbs, "t_thumbs")) return -1;
 
-        QBuffer alternated;
-        if(isHeavyImageFile(filename) || img.width() > MAX_WIDTH || img.height() > MAX_HEIGHT) {
-            QDesktopWidget* desktop = QApplication::desktop();
-            QRect rect = desktop->screenGeometry();
-//            qDebug() << rect;
-            QImage alter = img.scaled(rect.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-            alternated.open(QBuffer::ReadWrite);
-            if(!alter.save(&alternated, "JPEG", 90)) {
-                qDebug() << "alternative.save() failed: " << filename;
-                return -1;
-            }
-        }
-        QFileInfo info(filepath);
         t_files.bindValue(":volume_id", volume_id);
-        t_files.bindValue(":name", filename);
-        t_files.bindValue(":size", info.size());
-        t_files.bindValue(":width", img.width());
-        t_files.bindValue(":height", img.height());
+        t_files.bindValue(":name", w.filename);
+        t_files.bindValue(":size", w.info.size());
+        t_files.bindValue(":width", w.imagesize.width());
+        t_files.bindValue(":height", w.imagesize.height());
         t_files.bindValue(":thumb_id", t_thumbs.lastInsertId());
-        t_files.bindValue(":created_at", info.created());
-        t_files.bindValue(":updated_at", info.lastModified());
-        t_files.bindValue(":alternated", alternated.size()==0 ? nullptr : alternated.buffer());
+        t_files.bindValue(":created_at", DateTimeToIsoString(w.info.created()));
+        t_files.bindValue(":updated_at", DateTimeToIsoString(w.info.lastModified()));
+        t_files.bindValue(":alternated", w.alternated.size()==0 ? nullptr : w.alternated);
         if(!execInsertQuery(t_files, "t_files")) return -1;
 
         t_fileorders.bindValue(":volume_id", volume_id);
         t_fileorders.bindValue(":id", t_files.lastInsertId());
-        t_fileorders.bindValue(":filename_asc", filename_asc++);
+        t_fileorders.bindValue(":filename_asc", w.asc);
         if(!execInsertQuery(t_fileorders, "t_fileorders")) return -1;
 
         if(bFrontPage) {
@@ -265,12 +290,11 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
             bFrontPage = false;
         }
     }
-//    if(!m_db.commit()) {
-//        qDebug() << "m_db commit failed: " << m_db.lastError();
-//        return -1;
-//    }
+
     return filename_asc;
 }
+
+
 CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
 {
     static int id =1; // FIXME
@@ -315,9 +339,6 @@ static CatalogRecord callCreateCatalog(ThumbnailManager* manager, QString name, 
 
 QFutureWatcher<CatalogRecord>* ThumbnailManager::createCatalogAsync(QString name, QString path)
 {
-//    QFutureWatcher<CatalogRecord> watcher;
-//    connect(&watcher, SIGNAL(finished()), this, SLOT(on_catalogCreated()));
-    // Start the computation.
     QFuture<CatalogRecord> future = QtConcurrent::run(callCreateCatalog, this, name, path);
     m_catalogWatcher.setFuture(future);
     return &m_catalogWatcher;
@@ -328,6 +349,24 @@ void ThumbnailManager::cancelCreateCatalogAsync()
     if(!m_catalogWatcher.isRunning())
         return;
     m_catalogWatcher.cancel();
+}
+
+QMap<int, CatalogRecord> ThumbnailManager::catalogs()
+{
+    QMap<int, CatalogRecord> result;
+    QSqlQuery t_catalogs(m_db);
+    t_catalogs.prepare("SELECT * FROM t_catalogs");
+    if(!execInsertQuery(t_catalogs, "t_catalogs")) result;
+    while(t_catalogs.next()) {
+        CatalogRecord cr;
+        cr.id = t_catalogs.value("id").toInt();
+        cr.basevolume_id = t_catalogs.value("basevolume_id").toInt();
+        cr.name = t_catalogs.value("name").toString();
+        cr.path = t_catalogs.value("path").toString();
+        cr.created_at = t_catalogs.value("created_at").toDateTime();
+        result[cr.id] = cr;
+    }
+    return result;
 }
 
 

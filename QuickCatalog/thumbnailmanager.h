@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QDateTime>
 #include <QtConcurrent>
+#include <QImage>
 
 // t_thumbnails
 class ThumbnailRecord
@@ -61,6 +62,20 @@ public:
     QByteArray thumbnail;
 };
 
+class FileWorker
+{
+public:
+    QString filename;
+    QString filepath;
+    QFileInfo info;
+    QSize imagesize;
+    QImage thumb;
+    QByteArray thumbbytes;
+    QString created_at;
+    int asc;
+    QByteArray alternated;
+};
+
 class ThumbnailManager : public QObject
 {
     Q_OBJECT
@@ -76,6 +91,7 @@ public:
     CatalogRecord createCatalog(QString name, QString path);
     QFutureWatcher<CatalogRecord>* createCatalogAsync(QString name, QString path);
     void cancelCreateCatalogAsync();
+    QMap<int, CatalogRecord> catalogs();
 
 
     void deleteCatalog(int id);

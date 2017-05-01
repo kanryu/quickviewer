@@ -17,7 +17,7 @@ public:
     ~ManageDatabaseDialog();
     void resetButtonStates();
     void progressButtonStates();
-    void setThumbnailManager(ThumbnailManager* manager) {m_thumbManager = manager;}
+    void setThumbnailManager(ThumbnailManager* manager);
     void resetCatalogList();
 
 public slots:

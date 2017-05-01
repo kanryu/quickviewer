@@ -27,6 +27,8 @@ ManageDatabaseDialog::ManageDatabaseDialog(QWidget* parent)
     catalog.path = "b";
     m_catalogs[catalog.id] = catalog;
 
+
+
     resetCatalogList();
 
 }
@@ -34,6 +36,12 @@ ManageDatabaseDialog::ManageDatabaseDialog(QWidget* parent)
 ManageDatabaseDialog::~ManageDatabaseDialog()
 {
     delete ui;
+}
+void ManageDatabaseDialog::setThumbnailManager(ThumbnailManager* manager)
+{
+     m_thumbManager = manager;
+     m_catalogs = m_thumbManager->catalogs();
+     resetCatalogList();
 }
 
 void ManageDatabaseDialog::progressButtonStates()
