@@ -91,6 +91,8 @@ public slots:
     void on_loadBookmark_triggered();
     void on_loadBookmarkMenu_triggered(QAction *action);
 
+    void on_messageReceived(QString data);
+
 private slots:
     void on_hover_anchor(Qt::AnchorPoint anchor);
     void on_fittingChanged(bool fitting);

@@ -29,6 +29,7 @@ public:
     QString path;
     QDateTime created_at;
     QDateTime updated_at;
+    bool created;
     bool operator ==(const CatalogRecord& rhs) {return id == rhs.id;}
 };
 
@@ -46,6 +47,28 @@ public:
     int catalog_id;
 };
 
+class VolumeOrder
+{
+public:
+    int id;
+    int parent_id;
+    std::wstring realname;
+};
+
+class VolumeThumbRecord
+{
+public:
+    int id;
+    QString name;
+    QString realname;
+    QString path;
+    int frontpage_id;
+    int thumb_id;
+    int parent_id;
+    int catalog_id;
+    QByteArray thumbnail;
+};
+
 // t_files
 class FileRecord
 {
@@ -61,6 +84,7 @@ public:
     QDateTime updated_at;
     QByteArray thumbnail;
 };
+
 
 class FileWorker
 {
@@ -86,12 +110,14 @@ public:
     int createSubVolumes(QString dirpath, int catalog_id, int parent_id=-1);
     int createVolumeContent(QString dirpath, int parent_id=-1);
     int createVolumeInternal(QString dirpath, int catalog_id, int parent_id=-1);
+    void updateVolumeOrders();
 
     /* Catalogs */
     CatalogRecord createCatalog(QString name, QString path);
     QFutureWatcher<CatalogRecord>* createCatalogAsync(QString name, QString path);
     void cancelCreateCatalogAsync();
     QMap<int, CatalogRecord> catalogs();
+    QList<VolumeThumbRecord> volumes();
 
 
     void deleteCatalog(int id);
@@ -101,6 +127,7 @@ public:
     void forceTransaction();
     void commit();
     void rollback();
+    void vacuum();
 
     void dispose();
 
@@ -131,6 +158,7 @@ public:
      */
     static void sortFiles(QStringList& filenames);
     static bool caseInsensitiveLessThan(const QString &s1, const QString &s2);
+    static bool caseInsensitiveLessThanWString(const std::wstring &s1, const std::wstring &s2);
 
     static QString DateTimeToIsoString(QDateTime datetime);
     static QString currentDateTimeAsString();

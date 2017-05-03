@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "qv_init.h"
 #include "qvapplication.h"
+
 #if defined(Q_OS_WIN)
   #include "mainwindowforwindows.h"
 #else

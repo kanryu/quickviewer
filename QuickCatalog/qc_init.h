@@ -9,4 +9,6 @@
 #define MAX_WIDTH 4096
 #define MAX_HEIGHT MAX_WIDTH
 
+#define QUICKVIEWER "QuickViewer"
+
 #endif // QC_INIT_H

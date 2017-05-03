@@ -43,5 +43,11 @@
         <file alias="folder_32_icon">icons/folder_32.png</file>
         <file alias="folder_48_icon">icons/folder_48.png</file>
         <file alias="folder_64_icon">icons/folder_64.png</file>
+        <file alias="folder_view_icon_blue">icons/folder_view_icon_blue.png</file>
+        <file alias="folder_view_icon_green">icons/folder_view_icon_green.png</file>
+        <file alias="folder_view_icon_red">icons/folder_view_icon_red.png</file>
+        <file alias="folder_view_list_blue">icons/folder_view_list_blue.png</file>
+        <file alias="folder_view_list_green">icons/folder_view_list_green.png</file>
+        <file alias="folder_view_list_red">icons/folder_view_list_red.png</file>
     </qresource>
 </RCC>

@@ -86,10 +86,19 @@ bool ThumbnailManager::caseInsensitiveLessThan(const QString &s1, const QString 
     std::wstring ss2(s2.toStdWString());
     return ::StrCmpLogicalW(ss1.c_str(), ss2.c_str()) < 0;
 }
+
+bool ThumbnailManager::caseInsensitiveLessThanWString(const std::wstring &s1, const std::wstring &s2)
+{
+    return ::StrCmpLogicalW(s1.c_str(), s2.c_str()) < 0;
+}
 #else
 bool ThumbnailManager::caseInsensitiveLessThan(const QString &s1, const QString &s2)
 {
     return s1.toLower() < s2.toLower();
+}
+bool ThumbnailManager::caseInsensitiveLessThanWString(const std::wstring &s1, const std::wstring &s2)
+{
+    return s1 < s2;
 }
 #endif
 
@@ -159,6 +168,7 @@ int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int 
 {
     QFileInfo info(dirpath);
     qDebug() << "volume: " << info.fileName();
+    emit m_catalogWatcher.progressTextChanged(info.fileName());
     QSqlQuery t_volumes(m_db);
     t_volumes.prepare("INSERT INTO t_volumes (realname, path, catalog_id, parent_id) VALUES (:realname,:path,:catalog_id,:parent_id)");
     t_volumes.bindValue(":realname", info.fileName());
@@ -169,6 +179,52 @@ int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int 
 
     int volume_id = t_volumes.lastInsertId().toInt();
     return volume_id;
+}
+
+static bool caseInsensitiveLessThanVolumeOrder(const VolumeOrder* s1, const VolumeOrder* s2)
+{
+    return ThumbnailManager::caseInsensitiveLessThanWString(s1->realname, s2->realname);
+}
+
+
+void ThumbnailManager::updateVolumeOrders()
+{
+    QSqlQuery t_volumeorders(m_db);
+    t_volumeorders.prepare("DELETE FROM t_volumeorders");
+    if(!execInsertQuery(t_volumeorders, "t_volumeorders")) return;
+
+    QSqlQuery t_volumes(m_db);
+    t_volumes.prepare("SELECT id, parent_id, realname FROM t_volumes");
+    if(!execInsertQuery(t_volumes, "t_volumes")) return;
+
+    QVector<VolumeOrder> volumes;
+    {
+        QList<VolumeOrder> vollist;
+        while(t_volumes.next()) {
+            VolumeOrder vr = {0};
+            vr.id = t_volumes.value("id").toInt();
+            vr.parent_id = t_volumes.value("parent_id").toInt();
+            vr.realname = t_volumes.value("realname").toString().toLower().toStdWString();
+            vollist.append(vr);
+        }
+        volumes = vollist.toVector();
+    }
+    QVector<VolumeOrder*> volumes_pt;
+    //int sz = t_volumes.numRowsAffected();
+    volumes_pt.resize(volumes.size());
+    for(int i=0; i < volumes.size();i++) {
+        volumes_pt[i] = &volumes[i];
+    }
+
+    qSort(volumes_pt.begin(), volumes_pt.end(), caseInsensitiveLessThanVolumeOrder);
+    t_volumeorders.prepare("INSERT INTO t_volumeorders (id,parent_id,volumename_asc)"
+                      " VALUES (:id,:parent_id,:volumename_asc)");
+    for(int i = 0; i < volumes_pt.size(); i++) {
+        t_volumeorders.bindValue(":id", volumes_pt[i]->id);
+        t_volumeorders.bindValue(":parent_id", volumes_pt[i]->parent_id);
+        t_volumeorders.bindValue(":volumename_asc", i);
+        if(!execInsertQuery(t_volumeorders, "t_volumeorders")) return;
+    }
 }
 
 static FileWorker createFileRecord(QString filename, QString filepath, int filename_asc)
@@ -241,7 +297,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
         if(m_catalogWatcher.isCanceled())
             break;
         QString filename = files[i];
-        qDebug() << "  file: " << filename;
+//        qDebug() << "  file: " << filename;
         if(!isImageFile(filename))
             continue;
         QString filepath = dir.filePath(filename);
@@ -298,7 +354,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
 CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
 {
     static int id =1; // FIXME
-    auto catalog = CatalogRecord();
+    CatalogRecord catalog = {0};
     catalog.name = name;
     catalog.path = path;
     catalog.created_at = QDateTime::currentDateTime();
@@ -323,10 +379,17 @@ CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
     t_catalogs.bindValue(":id", catalog_id);
     if(!execInsertQuery(t_catalogs, "t_catalogs")) return catalog;
 
-    if(m_catalogWatcher.isCanceled())
+
+    if(m_catalogWatcher.isCanceled()) {
         rollback();
-    else
-        commit();
+        return catalog;
+    }
+    commit();
+    transaction();
+    updateVolumeOrders();
+//    t_catalogs.exec("VACUUM");;
+    commit();
+    catalog.created = true;
 
     return catalog;
 }
@@ -364,7 +427,28 @@ QMap<int, CatalogRecord> ThumbnailManager::catalogs()
         cr.name = t_catalogs.value("name").toString();
         cr.path = t_catalogs.value("path").toString();
         cr.created_at = t_catalogs.value("created_at").toDateTime();
+        cr.created = true;
         result[cr.id] = cr;
+    }
+    return result;
+}
+
+QList<VolumeThumbRecord> ThumbnailManager::volumes()
+{
+    QList<VolumeThumbRecord> result;
+    QSqlQuery v_volumethm(m_db);
+    v_volumethm.prepare("SELECT * FROM v_volumethm");
+    if(!execInsertQuery(v_volumethm, "v_volumethm")) result;
+    while(v_volumethm.next()) {
+        VolumeThumbRecord vtr;
+        vtr.id = v_volumethm.value("id").toInt();
+        vtr.name = v_volumethm.value("name").toString();
+        vtr.realname = v_volumethm.value("realname").toString();
+        vtr.path = v_volumethm.value("path").toString();
+        vtr.frontpage_id = v_volumethm.value("frontpage_id").toInt();
+        vtr.parent_id = v_volumethm.value("parent_id").toInt();
+        vtr.thumbnail = v_volumethm.value("thumbnail").toByteArray();
+        result.append(vtr);
     }
     return result;
 }
@@ -414,7 +498,21 @@ void ThumbnailManager::updateCatalogName(int id, QString name)
 
 void ThumbnailManager::deleteAllCatalogs()
 {
-
+    transaction();
+    QSqlQuery t_thumbs(m_db);
+    do {
+        if(!t_thumbs.exec("DELETE FROM t_thumbnails")) break;
+        if(!t_thumbs.exec("DELETE FROM t_fileorders")) break;
+        if(!t_thumbs.exec("DELETE FROM t_volumeorders")) break;
+        if(!t_thumbs.exec("DELETE FROM t_files")) break;
+        if(!t_thumbs.exec("DELETE FROM t_volumes")) break;
+        if(!t_thumbs.exec("DELETE FROM t_catalogs")) break;
+        if(!t_thumbs.exec("VACUUM")) break;
+        commit();
+        return;
+    } while(0);
+    qDebug() << " query failed: " << t_thumbs.lastError();
+    rollback();
 }
 
 void ThumbnailManager::transaction()
@@ -456,6 +554,17 @@ void ThumbnailManager::rollback()
         return;
     }
     m_transaction = false;
+}
+
+void ThumbnailManager::vacuum()
+{
+    QSqlQuery t_thumbs(m_db);
+    do {
+        if(!t_thumbs.exec("VACUUM")) break;
+        return;
+    } while(0);
+    qDebug() << " query failed: " << t_thumbs.lastError();
+
 }
 
 void ThumbnailManager::dispose()

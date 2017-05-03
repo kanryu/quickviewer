@@ -22,9 +22,9 @@ int DatabaseSettingDialog::exec()
 {
     if(!m_name.isEmpty())
         ui->nameEdit->setText(m_name);
-
-    if(!m_path.isEmpty()) {
+    if(!m_path.isEmpty())
         ui->pathEdit->setText(m_path);
+    if(m_editing) {
         ui->pathEdit->setEnabled(false);
         ui->selectFolderButton->setEnabled(false);
         setAcceptDrops(false);
@@ -46,18 +46,22 @@ void DatabaseSettingDialog::dragEnterEvent(QDragEnterEvent *e)
 }
 void DatabaseSettingDialog::dropEvent(QDropEvent *e)
 {
-    if(e->mimeData()->hasUrls()) {
-        QList<QUrl> urlList = e->mimeData()->urls();
-        for (int i = 0; i < 1; i++) {
-            QUrl url = urlList[i];
-            QFileInfo info(url.toLocalFile());
-            if(info.isDir()) {
+    if(e->mimeData()->hasUrls())
+        return;
+    QList<QUrl> urlList = e->mimeData()->urls();
+    for (int i = 0; i < 1; i++) {
+        QUrl url = urlList[i];
+        QFileInfo info(url.toLocalFile());
+        if(info.isDir()) {
 //                setPath(info.path());
-                ui->pathEdit->setText(QDir::toNativeSeparators(info.absoluteFilePath()));
-            } else if(info.isFile()) {
+            ui->pathEdit->setText(QDir::toNativeSeparators(info.absoluteFilePath()));
+            if(ui->nameEdit->text().isEmpty())
+                ui->nameEdit->setText(info.fileName());
+        } else if(info.isFile()) {
 //                setPath(info.dir().path());
-                ui->pathEdit->setText(QDir::toNativeSeparators(info.path()));
-            }
+            ui->pathEdit->setText(QDir::toNativeSeparators(info.path()));
+            if(ui->nameEdit->text().isEmpty())
+                ui->nameEdit->setText(info.baseName());
         }
     }
 }

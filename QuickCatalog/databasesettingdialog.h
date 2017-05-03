@@ -20,6 +20,7 @@ public:
     QString path() const { return m_path;}
     void setName(QString name) { m_name = name; }
     void setPath(QString path) { m_path = path; }
+    void setForEditing(bool editing) { m_editing = editing; }
 
     int exec();
     void dragEnterEvent(QDragEnterEvent *e);
@@ -35,6 +36,7 @@ private:
     Ui::DatabaseSettingDialog *ui;
     QString m_name;
     QString m_path;
+    bool m_editing;
 };
 
 #endif // DATABASESETTING_H

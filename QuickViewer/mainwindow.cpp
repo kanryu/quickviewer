@@ -734,3 +734,8 @@ void MainWindow::on_loadBookmarkMenu_triggered(QAction *action)
     QString path = action->data().toString();
     m_pageManager.loadVolume(path);
 }
+
+void MainWindow::on_messageReceived(QString data)
+{
+    qDebug() << "on_messageReceived: " << data;
+}

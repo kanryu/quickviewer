@@ -19,6 +19,13 @@ public:
     void progressButtonStates();
     void setThumbnailManager(ThumbnailManager* manager);
     void resetCatalogList();
+    void dragEnterEvent(QDragEnterEvent *e);
+    void dropEvent(QDropEvent *e);
+    bool databaseSettingDialog(CatalogRecord& catalog, bool editing);
+    void createCatalog(QString name, QString path);
+
+protected:
+    void closeEvent(QCloseEvent *e);
 
 public slots:
     void on_addNew_triggered();

@@ -10,6 +10,9 @@
     <height>683</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>CatalogWindow</string>
   </property>
@@ -54,6 +57,27 @@
        <property name="icon">
         <iconset resource="../QuickViewer/toolbar.qrc">
          <normaloff>:/icons/arrow_right_icon</normaloff>:/icons/arrow_right_icon</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="folderViewButton">
+       <property name="maximumSize">
+        <size>
+         <width>27</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../QuickViewer/toolbar.qrc">
+         <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -161,7 +185,7 @@
         </size>
        </property>
        <attribute name="headerVisible">
-        <bool>true</bool>
+        <bool>false</bool>
        </attribute>
       </widget>
       <widget class="QSplitter" name="splitter_4">
@@ -174,7 +198,11 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <widget class="QListWidget" name="volumeList"/>
+       <widget class="QListWidget" name="volumeList">
+        <property name="styleSheet">
+         <string notr="true">background-color: #C0C0C0</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -207,6 +235,51 @@
    </property>
    <property name="text">
     <string>Next</string>
+   </property>
+  </action>
+  <action name="actionFolderViewList">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
+   </property>
+   <property name="text">
+    <string>FolderViewList</string>
+   </property>
+  </action>
+  <action name="actionFolderViewIcon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
+   </property>
+   <property name="text">
+    <string>FolderViewIcon</string>
+   </property>
+  </action>
+  <action name="actionFolderViewIconNoText">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
+   </property>
+   <property name="text">
+    <string>FolderViewIconNoText</string>
+   </property>
+  </action>
+  <action name="actionFolderViewSelect">
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
+   </property>
+   <property name="text">
+    <string>FolderViewSelect</string>
    </property>
   </action>
  </widget>
@@ -242,8 +315,127 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>folderViewButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_folderViewSelect_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchCombo</sender>
+   <signal>editTextChanged(QString)</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_searchTextChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>589</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFolderViewIcon</sender>
+   <signal>triggered()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_folderViewIcon_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFolderViewIconNoText</sender>
+   <signal>triggered()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_folderViewNotext_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFolderViewList</sender>
+   <signal>triggered()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_folderViewList_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reloadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_manageDatabase_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>volumeList</sender>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>531</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_treeItemChanged(QString)</slot>
+  <slot>on_folderViewSelect_triggered()</slot>
+  <slot>on_searchTextChanged(QString)</slot>
+  <slot>on_folderViewList_triggered()</slot>
+  <slot>on_folderViewIcon_triggered()</slot>
+  <slot>on_folderViewNotext_triggered()</slot>
+  <slot>on_manageDatabase_triggered()</slot>
+  <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
  </slots>
 </ui>
