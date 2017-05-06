@@ -61,6 +61,7 @@ public:
     int id;
     QString name;
     QString realname;
+    QString realnameNoCase;
     QString path;
     int frontpage_id;
     int thumb_id;
@@ -85,7 +86,6 @@ public:
     QByteArray thumbnail;
 };
 
-
 class FileWorker
 {
 public:
@@ -95,22 +95,39 @@ public:
     QSize imagesize;
     QImage thumb;
     QByteArray thumbbytes;
-    QString created_at;
+    QDateTime created_at;
     int asc;
     QByteArray alternated;
 };
+
+class VolumeWorker
+{
+public:
+    QString dirpath;
+    int volume_id;
+    int parent_id;
+    int catalog_id;
+    FileWorker frontPage;
+    QStringList subpaths;
+};
+
 
 class ThumbnailManager : public QObject
 {
     Q_OBJECT
 public:
     ThumbnailManager(QObject* parent, QString dbpath);
+    void SetFrontPageOnly(bool only) { m_frontPageOnly=only; }
 
     /* Volumes/Files */
     int createSubVolumes(QString dirpath, int catalog_id, int parent_id=-1);
     int createVolumeContent(QString dirpath, int parent_id=-1);
     int createVolumeInternal(QString dirpath, int catalog_id, int parent_id=-1);
     void updateVolumeOrders();
+
+    int createVolumesFrontPageOnly(QString dirpath, int catalog_id);
+    VolumeWorker createSubVolumesConcurrent(QString dirpath, int volume_id, int parent_id);
+
 
     /* Catalogs */
     CatalogRecord createCatalog(QString name, QString path);
@@ -175,10 +192,13 @@ private:
     QFutureWatcher<CatalogRecord> m_catalogWatcher;
     int m_catalogWorkProgress;
     int m_catalogWorkMax;
+    bool m_frontPageOnly;
 
     static QList<QByteArray> st_supportedImageFormats;
     static QStringList st_jpegpegImageFormats;
     static QStringList st_heavyImageFormats;
+
+    FileWorker createFileRecord(QString filename, QString filepath, int filename_asc);
 };
 
 #endif // THUMBNAILMANAGER_H

@@ -1,6 +1,18 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 
+CREATE TABLE [t_version] ( --サムネイル
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT,
+    [version] INTEGER NOT NULL, --サムネイルの幅
+    [description] TEXT, --サムネイルの高さ
+    [created_at] DATETIME
+);
+
+INSERT INTO t_version (version,description,created_at)
+    VALUES (600, 'Database for thumbnails of Digital Books', datetime('2017-05-26 14:26:15'));
+
+
+
 CREATE TABLE [t_thumbnails] ( --サムネイル
     [id] INTEGER PRIMARY KEY AUTOINCREMENT,
     [width] INTEGER NOT NULL, --サムネイルの幅

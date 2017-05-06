@@ -164,6 +164,133 @@ int ThumbnailManager::createSubVolumes(QString dirpath, int catalog_id, int pare
     return volume_id;
 }
 
+VolumeWorker ThumbnailManager::createSubVolumesConcurrent(QString dirpath, int volume_id, int parent_id)
+{
+    VolumeWorker vw = {0};
+    vw.frontPage.asc = -1;
+    vw.dirpath = dirpath;
+    vw.volume_id = volume_id;
+    vw.parent_id = parent_id;
+    QDir dir(dirpath);
+    QStringList subdirs = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Unsorted);
+    sortFiles(subdirs);
+    if(m_catalogWatcher.isStarted() && subdirs.size()>0) {
+        m_catalogWorkMax += subdirs.size();
+        emit m_catalogWatcher.progressRangeChanged(0, m_catalogWorkMax);
+    }
+    vw.subpaths = subdirs;
+
+    QStringList files = dir.entryList(QDir::Files, QDir::Unsorted);
+    sortFiles(files);
+    for(int i = 0; i < files.size(); i++) {
+        if(m_catalogWatcher.isCanceled())
+            break;
+        QString filename = files[i];
+        if(!isImageFile(filename))
+            continue;
+        QString filepath = dir.filePath(filename);
+        vw.frontPage = createFileRecord(filename, filepath, 0);
+        break; // ONLY FRONT PAGE
+    }
+    if(m_catalogWatcher.isStarted()) {
+        emit m_catalogWatcher.progressValueChanged(m_catalogWorkProgress++);
+    }
+    return vw;
+}
+
+int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id)
+{
+    int volume_id = createVolumeInternal(dirpath, catalog_id, -1);
+    if(volume_id < 0) return -1;
+
+    QSqlQuery t_files(m_db);
+    t_files.prepare("INSERT INTO t_files (volume_id,name,size,width,height,thumb_id,created_at,updated_at,alternated)"
+                      " VALUES (:volume_id,:name,:size,:width,:height,:thumb_id,:created_at,:updated_at,:alternated)");
+    QSqlQuery t_fileorders(m_db);
+    t_fileorders.prepare("INSERT INTO t_fileorders (id,volume_id,filename_asc)"
+                      " VALUES (:id,:volume_id,:filename_asc)");
+    QSqlQuery t_thumbs(m_db);
+    t_thumbs.prepare("INSERT INTO t_thumbnails (width,height,thumbnail,created_at)"
+                       " VALUES (:width,:height,:thumbnail,:created_at)");
+    QSqlQuery t_volumes(m_db);
+    t_volumes.prepare("UPDATE t_volumes SET frontpage_id=:frontpage_id, thumb_id=:thumb_id WHERE id=:id");
+
+    QList<VolumeWorker> parentworkers;
+    {
+        QDir dir(dirpath);
+        VolumeWorker root = {0};
+        root.dirpath = dirpath;
+        root.volume_id = volume_id;
+        root.catalog_id = catalog_id;
+        root.parent_id = -1;
+        root.subpaths = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Unsorted);
+        sortFiles(root.subpaths);
+        parentworkers << root;
+    }
+    QList<QFuture<VolumeWorker>> workers;
+    do {
+        foreach(const VolumeWorker& p, parentworkers) {
+            QDir dir(p.dirpath);
+            QStringList subdirs = p.subpaths;
+            if(m_catalogWatcher.isStarted() && subdirs.size()>0) {
+                m_catalogWorkMax += subdirs.size();
+                emit m_catalogWatcher.progressRangeChanged(0, m_catalogWorkMax);
+            }
+            foreach(QString sub, subdirs) {
+                QString subpath = dir.filePath(sub);
+                if(m_catalogWatcher.isCanceled())
+                    break;
+                int sub_id = createVolumeInternal(subpath, catalog_id, p.parent_id);
+                if(sub_id < 0) return -1;
+                workers.append(QtConcurrent::run(this, &ThumbnailManager::createSubVolumesConcurrent, subpath, sub_id, p.volume_id));
+
+            }
+        }
+        parentworkers.clear();
+
+        foreach(const QFuture<VolumeWorker>& w, workers) {
+            VolumeWorker& v = w.result();
+            if(v.volume_id < 0)
+                continue;
+            if(v.frontPage.asc >= 0) {
+                t_thumbs.bindValue(":width", v.frontPage.thumb.width());
+                t_thumbs.bindValue(":height", v.frontPage.thumb.height());
+                t_thumbs.bindValue(":thumbnail", v.frontPage.thumbbytes);
+                t_thumbs.bindValue(":created_at", QDateTime::currentDateTime());
+                if(!execInsertQuery(t_thumbs, "t_thumbs")) return -1;
+
+                t_files.bindValue(":volume_id", volume_id);
+                t_files.bindValue(":name", v.frontPage.filename);
+                t_files.bindValue(":size", v.frontPage.info.size());
+                t_files.bindValue(":width", v.frontPage.imagesize.width());
+                t_files.bindValue(":height", v.frontPage.imagesize.height());
+                t_files.bindValue(":thumb_id", t_thumbs.lastInsertId());
+                t_files.bindValue(":created_at", v.frontPage.info.created());
+                t_files.bindValue(":updated_at", v.frontPage.info.lastModified());
+                if(!execInsertQuery(t_files, "t_files")) return -1;
+
+                t_fileorders.bindValue(":volume_id", volume_id);
+                t_fileorders.bindValue(":id", t_files.lastInsertId());
+                t_fileorders.bindValue(":filename_asc", v.frontPage.asc);
+                if(!execInsertQuery(t_fileorders, "t_fileorders")) return -1;
+
+                t_volumes.bindValue(":frontpage_id", t_files.lastInsertId());
+                t_volumes.bindValue(":thumb_id", t_thumbs.lastInsertId());
+                t_volumes.bindValue(":id", v.volume_id);
+                if(!execInsertQuery(t_volumes, "t_volumes")) return -1;
+            }
+
+            if(v.subpaths.size() > 0)
+                parentworkers << v;
+        }
+        workers.clear();
+    } while(parentworkers.size() > 0);
+
+
+    return volume_id;
+
+}
+
 int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int parent_id)
 {
     QFileInfo info(dirpath);
@@ -227,7 +354,7 @@ void ThumbnailManager::updateVolumeOrders()
     }
 }
 
-static FileWorker createFileRecord(QString filename, QString filepath, int filename_asc)
+FileWorker ThumbnailManager::createFileRecord(QString filename, QString filepath, int filename_asc)
 {
     FileWorker result;
     result.filename = filename;
@@ -239,6 +366,7 @@ static FileWorker createFileRecord(QString filename, QString filepath, int filen
         result.asc = -1;
         return result;
     }
+    result.imagesize = img.size();
 
     QImage thumb = img.scaledToWidth(2*THUMB_WIDTH, Qt::FastTransformation);
     thumb = thumb.scaledToWidth(THUMB_WIDTH, Qt::SmoothTransformation);
@@ -250,20 +378,20 @@ static FileWorker createFileRecord(QString filename, QString filepath, int filen
     }
     result.thumb = thumb;
     result.thumbbytes = thumbdat.data();
-    result.created_at = ThumbnailManager::currentDateTimeAsString();
+    result.created_at = QDateTime::currentDateTime();
 
-    QBuffer alternated;
-    if(ThumbnailManager::isHeavyImageFile(filename) || img.width() > MAX_WIDTH || img.height() > MAX_HEIGHT) {
-        QDesktopWidget* desktop = QApplication::desktop();
-        QRect rect = desktop->screenGeometry();
-//            qDebug() << rect;
-        QImage alter = img.scaled(rect.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        alternated.open(QBuffer::ReadWrite);
-        if(!alter.save(&alternated, "JPEG", 90)) {
-            return result;
-        }
-        result.alternated = alternated.data();
-    }
+//    QBuffer alternated;
+//    if(ThumbnailManager::isHeavyImageFile(filename) || img.width() > MAX_WIDTH || img.height() > MAX_HEIGHT) {
+//        QDesktopWidget* desktop = QApplication::desktop();
+//        QRect rect = desktop->screenGeometry();
+////            qDebug() << rect;
+//        QImage alter = img.scaled(rect.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+//        alternated.open(QBuffer::ReadWrite);
+//        if(!alter.save(&alternated, "JPEG", 90)) {
+//            return result;
+//        }
+//        result.alternated = alternated.data();
+//    }
     return result;
 }
 
@@ -301,7 +429,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
         if(!isImageFile(filename))
             continue;
         QString filepath = dir.filePath(filename);
-        workers.append(QtConcurrent::run(createFileRecord, filename, filepath, filename_asc++));
+        workers.append(QtConcurrent::run(this, &ThumbnailManager::createFileRecord, filename, filepath, filename_asc++));
     }
     foreach(auto worker, workers) {
         FileWorker& w = worker.result();
@@ -373,7 +501,8 @@ CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
     m_catalogWorkProgress = 0;
     m_catalogWorkMax = 0;
     int catalog_id = catalog.id = t_catalogs.lastInsertId().toInt();
-    int basevolume_id = createSubVolumes(path, catalog_id);
+//    int basevolume_id = createSubVolumes(path, catalog_id);
+    int basevolume_id = createVolumesFrontPageOnly(path, catalog_id);
     t_catalogs.prepare("UPDATE t_catalogs SET basevolume_id=:basevolume_id WHERE id=:id");
     t_catalogs.bindValue(":basevolume_id", basevolume_id);
     t_catalogs.bindValue(":id", catalog_id);
@@ -444,6 +573,7 @@ QList<VolumeThumbRecord> ThumbnailManager::volumes()
         vtr.id = v_volumethm.value("id").toInt();
         vtr.name = v_volumethm.value("name").toString();
         vtr.realname = v_volumethm.value("realname").toString();
+        vtr.realnameNoCase = vtr.realname.toLower();
         vtr.path = v_volumethm.value("path").toString();
         vtr.frontpage_id = v_volumethm.value("frontpage_id").toInt();
         vtr.parent_id = v_volumethm.value("parent_id").toInt();

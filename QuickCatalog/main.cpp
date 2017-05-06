@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 
     CatalogWindow w;
     ThumbnailManager manager(&w, "database/thumbnail.sqlite3.db");
+    manager.SetFrontPageOnly(true);
     w.setThumbnailManager(&manager);
     w.show();
 //    ManageDatabaseDialog d;

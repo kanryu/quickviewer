@@ -23,48 +23,6 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QToolButton" name="prevButton">
-       <property name="maximumSize">
-        <size>
-         <width>27</width>
-         <height>26</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../QuickViewer/toolbar.qrc">
-         <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-      <widget class="QToolButton" name="nextButton">
-       <property name="maximumSize">
-        <size>
-         <width>27</width>
-         <height>26</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../QuickViewer/toolbar.qrc">
-         <normaloff>:/icons/arrow_right_icon</normaloff>:/icons/arrow_right_icon</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
       <widget class="QToolButton" name="folderViewButton">
        <property name="maximumSize">
         <size>
@@ -84,23 +42,6 @@
          <width>20</width>
          <height>20</height>
         </size>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="pathCombo">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>100</width>
-         <height>16</height>
-        </size>
-       </property>
-       <property name="editable">
-        <bool>true</bool>
        </property>
       </widget>
       <widget class="QToolButton" name="reloadButton">
@@ -204,6 +145,13 @@
         </property>
        </widget>
       </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="statusLabel">
+      <property name="text">
+       <string notr="true">(StatusLabel)</string>
+      </property>
      </widget>
     </item>
    </layout>
@@ -427,6 +375,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>searchCombo</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_searchTextIndexChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>388</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_treeItemChanged(QString)</slot>
@@ -437,5 +401,7 @@
   <slot>on_folderViewNotext_triggered()</slot>
   <slot>on_manageDatabase_triggered()</slot>
   <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
+  <slot>on_searchTextFinished()</slot>
+  <slot>on_searchTextIndexChanged(QString)</slot>
  </slots>
 </ui>
