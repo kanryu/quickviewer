@@ -1,6 +1,46 @@
 # CHANGELOG
 
+## v0.6.0 (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+
+Support Book Catalogs, easy to view thumbnails of frontpage of books and search fast
+
+- to create/view/search 'Catalogs'
+- whihc contains the thumbnails of frontpage of Books as icon
+- search by title(folder name of volumes)
+- change words 'Database' -> 'Catalog'
+- change QuickCatalog app to static lib
+- hide updateButton/updateAllButton
+- MainWindow can open CatalogWindow
+
+## v0.6.0_pre5 (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+
+- add icons/catalog.ico
+- add mainmenu(CatalogWindow)
+- reserved create catalogs on ManageDatabaseDialog
+- can drop CatalogWIndow
+- can multi drop ManageDatabaseDialog
+- bugfixed deleteAllCatalogs
+
+## v0.6.0_pre4 (Sat May 6 18:13:32 2017 +0900) [944097e](https://github.com/kanryu/quickviewer/commit/944097e3a1c94538e0e18e3a45a071f79074b605)
+
+- implement searchCombo
+- fast to create Frontpage Thumbnails of Books
+
+## v0.6.0_pre3 (Wed May 3 22:33:06 2017 +0900) [59666fa](https://github.com/kanryu/quickviewer/commit/59666fa8fe2ff967f8a5e035e85f5a7017a4c6fa)
+
+making catalogwindow, managedatabasedialog, databasesettingdialog
+- making catalogwindow(volumeList)
+
 - other commits
+    -  to create t_files uses workers (Mon May 1 19:46:51 2017 +0900) [67f883a](https://github.com/kanryu/quickviewer/commit/67f883acc8e704b03853165985e4598716917a1a)
+    -  initialize of ManageDatabaseDialog (Mon May 1 19:46:51 2017 +0900) [67f883a](https://github.com/kanryu/quickviewer/commit/67f883acc8e704b03853165985e4598716917a1a)
+
+## v0.6.0_pre2 (Mon May 1 18:25:50 2017 +0900) [2d4c75d](https://github.com/kanryu/quickviewer/commit/2d4c75dfa9cd9e7fc84dbdce2ca916e14b3ee51d)
+
+Create/Delete Catalog which can cancel
+
+- other commits
+    - changelog (Mon May 1 13:42:34 2017 +0900) [896b2c0](https://github.com/kanryu/quickviewer/commit/896b2c0155ab22e8832892321c42f3345cd8de79)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon May 1 13:40:57 2017 +0900) [994cfb9](https://github.com/kanryu/quickviewer/commit/994cfb9423911c6003be59c72db85a8ea889b13c)
 
 ## v0.6.0_pre (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
