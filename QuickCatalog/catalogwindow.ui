@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>CatalogWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../QuickViewer/toolbar.qrc">
+    <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -29,6 +33,15 @@
          <width>27</width>
          <height>26</height>
         </size>
+       </property>
+       <property name="toolTip">
+        <string>FolderViewSelect</string>
+       </property>
+       <property name="statusTip">
+        <string/>
+       </property>
+       <property name="accessibleName">
+        <string>FolderViewSelect</string>
        </property>
        <property name="text">
         <string>...</string>
@@ -57,12 +70,21 @@
          <height>26</height>
         </size>
        </property>
+       <property name="toolTip">
+        <string>ManageCatalogs</string>
+       </property>
+       <property name="statusTip">
+        <string/>
+       </property>
+       <property name="accessibleDescription">
+        <string/>
+       </property>
        <property name="text">
         <string>...</string>
        </property>
        <property name="icon">
         <iconset resource="../QuickViewer/toolbar.qrc">
-         <normaloff>:/icons/rotation_icon</normaloff>:/icons/rotation_icon</iconset>
+         <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -165,6 +187,24 @@
      <height>24</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionFolderViewList"/>
+    <addaction name="actionFolderViewIcon"/>
+    <addaction name="actionFolderViewIconNoText"/>
+   </widget>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionManageCatalogs"/>
+    <addaction name="separator"/>
+    <addaction name="actionCloseWindow"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_View"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPrev">
@@ -228,6 +268,20 @@
    </property>
    <property name="text">
     <string>FolderViewSelect</string>
+   </property>
+  </action>
+  <action name="actionManageCatalogs">
+   <property name="icon">
+    <iconset resource="../QuickViewer/toolbar.qrc">
+     <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
+   </property>
+   <property name="text">
+    <string>ManageCatalogs</string>
+   </property>
+  </action>
+  <action name="actionCloseWindow">
+   <property name="text">
+    <string>&amp;CloseWindow</string>
    </property>
   </action>
  </widget>
@@ -384,6 +438,38 @@
     <hint type="sourcelabel">
      <x>388</x>
      <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCloseWindow</sender>
+   <signal>triggered()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionManageCatalogs</sender>
+   <signal>triggered()</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_manageDatabase_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>356</x>

@@ -2,6 +2,92 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>CatalogWindow</name>
+    <message>
+        <source>CatalogWindow</source>
+        <translation>カタログ表示</translation>
+    </message>
+    <message>
+        <source>FolderViewSelect</source>
+        <translation>表示方法の切り替え</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ManageCatalogs</source>
+        <translation>カタログの管理</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>表示(&amp;V)</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>ファイル(&amp;F)</translation>
+    </message>
+    <message>
+        <source>Prev</source>
+        <translation>前へ</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>次へ</translation>
+    </message>
+    <message>
+        <source>FolderViewList</source>
+        <translation>一覧</translation>
+    </message>
+    <message>
+        <source>FolderViewIcon</source>
+        <translation>並べて表示</translation>
+    </message>
+    <message>
+        <source>FolderViewIconNoText</source>
+        <translation>アイコンのみ</translation>
+    </message>
+    <message>
+        <source>&amp;CloseWindow</source>
+        <translation>ウィンドウを閉じる(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Input Search words and Press Enter-key</source>
+        <translation>タイトルで検索するには、この欄に検索語を入力してEnterキーを押してください</translation>
+    </message>
+    <message>
+        <source>Drop image folders here and create Catalogs.</source>
+        <translation>画像フォルダをドロップしてカタログを作成しましょう。</translation>
+    </message>
+    <message>
+        <source>(%1/%2) volumes listed.</source>
+        <translation>(%1/%2)件 表示中。</translation>
+    </message>
+</context>
+<context>
+    <name>DatabaseSettingDialog</name>
+    <message>
+        <source>Create new Catalog</source>
+        <translation>新しいカタログ</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>名称:</translation>
+    </message>
+    <message>
+        <source>&amp;SelectFolder</source>
+        <translation>フォルダを選択(&amp;S)</translation>
+    </message>
+    <message>
+        <source>Select a folder which contains Images or Archives</source>
+        <translation>画像やアーカイブを含んだフォルダを選択してください</translation>
+    </message>
+    <message>
+        <source>Each catalog can contain subfolders or archives</source>
+        <translation>各カタログはサブフォルダやアーカイブを含んだ形で作成できます</translation>
+    </message>
+</context>
+<context>
     <name>ExifDialog</name>
     <message>
         <source>Exif Information</source>
@@ -760,12 +846,91 @@
         <source>&amp;Project WebPage by your browser</source>
         <translation>ホームページをブラウザで表示(&amp;P)</translation>
     </message>
+    <message>
+        <source>Manage&amp;Catalogs</source>
+        <translation>カタログの管理(&amp;C)</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
     <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
         <translation>メインメニューの表示／非表示切り替え</translation>
+    </message>
+</context>
+<context>
+    <name>ManageDatabaseDialog</name>
+    <message>
+        <source>ManageCatalogs</source>
+        <translation>カタログの管理</translation>
+    </message>
+    <message>
+        <source>Manage a Catalog</source>
+        <translation>選択したカタログ</translation>
+    </message>
+    <message>
+        <source>&amp;AddNew</source>
+        <translation>新規(&amp;A)</translation>
+    </message>
+    <message>
+        <source>UpdateDatabase</source>
+        <translation>更新</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>削除(&amp;D)</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>編集(&amp;E)</translation>
+    </message>
+    <message>
+        <source>Manage all Catalogs</source>
+        <translation>全てのカタログ</translation>
+    </message>
+    <message>
+        <source>DeleteAll</source>
+        <translation>全て削除</translation>
+    </message>
+    <message>
+        <source>UpdateAll</source>
+        <translation>全て更新</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>カタログ名</translation>
+    </message>
+    <message>
+        <source>Created</source>
+        <translation>作成日時</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>フォルダ</translation>
+    </message>
+    <message>
+        <source>Start Work</source>
+        <translation>処理開始</translation>
+    </message>
+    <message>
+        <source>Cancel Work</source>
+        <translation>処理キャンセル</translation>
+    </message>
+    <message>
+        <source>soon</source>
+        <translation>これから</translation>
+    </message>
+    <message>
+        <source>Edit a Catalog</source>
+        <translation>カタログを編集する</translation>
+    </message>
+    <message>
+        <source>Catalog Create Finished</source>
+        <translation>カタログの作成が完了しました</translation>
+    </message>
+    <message>
+        <source>Catalog Create Cancelled</source>
+        <translation>カタログの作成がキャンセルされました</translation>
     </message>
 </context>
 <context>

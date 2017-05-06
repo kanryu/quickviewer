@@ -15,6 +15,7 @@
 #include "qv_init.h"
 #include "qvapplication.h"
 #include "keyconfigdialog.h"
+#include "catalogwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_viewerWindowStateMaximized(false)
 //    , contextMenu(this)
     , m_pageManager(this)
+    , m_catalogWindow(nullptr)
 {
     ui->setupUi(this);
     ui->graphicsView->setPageManager(&m_pageManager);
@@ -189,6 +191,7 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {
+    on_manageCatalogsClosed_triggered();
     delete contextMenu;
     contextMenu = nullptr;
     qApp->setWindowGeometry(saveGeometry());
@@ -311,6 +314,11 @@ void MainWindow::makeBookmarkMenu()
     }
     ui->menuLoadBookmark->addSeparator();
     ui->menuLoadBookmark->addAction(ui->actionClearBookmarks);
+}
+
+void MainWindow::setThumbnailManager(ThumbnailManager *manager)
+{
+    m_thumbManager = manager;
 }
 
 /**
@@ -502,6 +510,26 @@ void MainWindow::on_historyMenu_triggered(QAction *action)
 {
     //qDebug() << action;
     loadVolume(action->text().mid(4));
+}
+
+void MainWindow::on_manageCatalogs_triggered()
+{
+    if(m_catalogWindow) {
+        return;
+    }
+    m_catalogWindow = new CatalogWindow();
+    m_catalogWindow->setThumbnailManager(m_thumbManager);
+    connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
+    connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(loadVolume(QString)));
+    m_catalogWindow->show();
+}
+
+void MainWindow::on_manageCatalogsClosed_triggered()
+{
+    if(m_catalogWindow) {
+        delete m_catalogWindow;
+        m_catalogWindow = nullptr;
+    }
 }
 
 void MainWindow::on_openfolder_triggered()

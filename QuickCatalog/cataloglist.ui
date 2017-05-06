@@ -14,7 +14,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>ManageDatabases</string>
+   <string>ManageCatalogs</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QGroupBox {
@@ -36,7 +36,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Manage a Database</string>
+      <string>Manage a Catalog</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
@@ -82,7 +82,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Manage all Databases</string>
+      <string>Manage all Catalogs</string>
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
@@ -212,7 +212,7 @@
       <item row="2" column="1">
        <widget class="QLabel" name="volumeNameLabel">
         <property name="text">
-         <string>TextLabel</string>
+         <string notr="true">TextLabel</string>
         </property>
        </widget>
       </item>

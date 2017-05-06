@@ -49,6 +49,10 @@ public slots:
 
 signals:
     void openVolume(QString path);
+    void closed();
+
+protected:
+    void closeEvent(QCloseEvent *e);
 
 private:
     Ui::CatalogWindow *ui;

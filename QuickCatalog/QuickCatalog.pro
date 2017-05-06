@@ -8,11 +8,13 @@ QT       += core gui concurrent sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = QuickCatalog
-TEMPLATE = app
+TARGET = catalog
+TEMPLATE = lib
+CONFIG += staticlib
 
 
-SOURCES += main.cpp\
+SOURCES += \
+#    main.cpp\
     catalogwindow.cpp \
     thumbnailmanager.cpp \
     fileexplorermodel.cpp \
@@ -40,7 +42,7 @@ win32 {
     LIBS += -lShlwapi
 }
 
-DESTDIR = ../bin
+DESTDIR = ../lib
 
 DBS += \
     database/schema.sql \

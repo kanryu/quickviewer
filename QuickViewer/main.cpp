@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "qv_init.h"
 #include "qvapplication.h"
+#include "thumbnailmanager.h"
 
 #if defined(Q_OS_WIN)
   #include "mainwindowforwindows.h"
@@ -25,6 +26,8 @@ int main(int argc, char *argv[])
 #else
     MainWindow w;
 #endif
+    ThumbnailManager manager(&w, "database/thumbnail.sqlite3.db");
+    w.setThumbnailManager(&manager);
     w.show();
 
     return app.exec();

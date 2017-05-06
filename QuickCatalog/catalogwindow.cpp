@@ -19,7 +19,7 @@ CatalogWindow::CatalogWindow(QWidget *parent)
 
     // Status Bar
     ui->statusBar->addPermanentWidget(ui->statusLabel);
-    ui->statusLabel->setText(tr("any database is not loaded."));
+    ui->statusLabel->setText(tr("Drop image folders here and create Catalogs."));
 
     ui->folderTree->setRootPath("C:/Program Files");
 
@@ -58,9 +58,12 @@ void CatalogWindow::resetVolumes()
             item->setText(vtr->realname);
         ui->volumeList->addItem(item);
     }
-    QString volumestxt = QString(tr("(%1/%2) volumes listed."))
-            .arg(m_volumeSearch.size()).arg(m_volumes.size());
-    ui->statusLabel->setText(volumestxt);
+    if(m_volumes.size() > 0) {
+        QString volumestxt = QString(tr("(%1/%2) volumes listed."))
+                .arg(m_volumeSearch.size()).arg(m_volumes.size());
+        ui->statusLabel->setText(volumestxt);
+    }
+
     ui->volumeList->setIconSize(QSize(96,96));
     ui->volumeList->setResizeMode(QListView::Adjust);
     if(ui->actionFolderViewList->isChecked()) {
@@ -227,6 +230,12 @@ void CatalogWindow::on_itemDoubleClicked(QListWidgetItem *item)
 //    QProcess::startDetached(QUICKVIEWER, options);
 
     emit openVolume(path);
+}
+
+void CatalogWindow::closeEvent(QCloseEvent *e)
+{
+    QMainWindow::closeEvent(e);
+    emit closed();
 }
 
 SearchWords::SearchWords(const QString &searchNoCase)

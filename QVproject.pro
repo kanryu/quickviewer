@@ -9,7 +9,7 @@ SUBDIRS = \
     QuickCatalog
 
 fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
-QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader
+QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader QuickCatalog
 
 
 

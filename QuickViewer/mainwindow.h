@@ -9,6 +9,8 @@
 namespace Ui {
 class MainWindow;
 }
+class CatalogWindow;
+class ThumbnailManager;
 
 class MainWindow : public QMainWindow
 {
@@ -22,7 +24,6 @@ public:
 
     void keyPressEvent(QKeyEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
-    void loadVolume(QString path);
     void makeHistoryMenu();
     void resetVolume(IFileVolume* newer);
     void uncheckAllShaderMenus() {
@@ -31,6 +32,7 @@ public:
         }
     }
     void makeBookmarkMenu();
+    void setThumbnailManager(ThumbnailManager* manager);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);
@@ -42,10 +44,14 @@ protected:
 
 public slots:
     // File
+    void loadVolume(QString path);
     void on_file_changed(QString path);
     void on_autoloaded_triggered(bool autoreload);
     void on_clearHistory_triggered();
     void on_historyMenu_triggered(QAction *action);
+    // Catalog
+    void on_manageCatalogs_triggered();
+    void on_manageCatalogsClosed_triggered();
 
     // PageBar
     void on_pageChanged_triggered();
@@ -110,6 +116,8 @@ protected:
 
     PageManager m_pageManager;
     QList<QAction*> m_shaderMenuGroup;
+    ThumbnailManager* m_thumbManager;
+    CatalogWindow* m_catalogWindow;
 };
 
 

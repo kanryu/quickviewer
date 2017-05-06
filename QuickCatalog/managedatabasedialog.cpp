@@ -14,6 +14,7 @@ ManageDatabaseDialog::ManageDatabaseDialog(QWidget* parent)
     ui->progressBar->setVisible(false);
     qRegisterMetaType<CatalogRecord>("CatalogRecord");
 
+    // CatalogTree
     ui->treeWidget->sortByColumn(1, Qt::DescendingOrder);
     QTreeWidgetItem *header = ui->treeWidget->headerItem();
     header->setText(0, tr("Name"));
@@ -21,15 +22,9 @@ ManageDatabaseDialog::ManageDatabaseDialog(QWidget* parent)
     header->setText(2, tr("Path"));
     header->setHidden(false);
 
-    // REMOVE ME
-    auto catalog = CatalogRecord();
-    catalog.id = 333;
-    catalog.name = "a";
-    catalog.created_at = QDateTime::currentDateTime();
-    catalog.path = "b";
-    m_catalogs[catalog.id] = catalog;
-
-
+    // Buttons
+    ui->updateAllButton->setVisible(false);
+    ui->updateButton->setVisible(false);
 
     resetCatalogList();
 
@@ -180,7 +175,7 @@ bool ManageDatabaseDialog::databaseSettingDialog(CatalogRecord& catalog, bool ed
     dialog.setPath(catalog.path);
     dialog.setForEditing(editing);
     if(editing)
-        dialog.setWindowTitle(tr("Edit a Database"));
+        dialog.setWindowTitle(tr("Edit a Catalog"));
 
     int result = dialog.exec();
     if(result == QDialog::Rejected) {
@@ -285,8 +280,16 @@ void ManageDatabaseDialog::on_edit_triggered()
         return;
 
     int id = current->data(0, Qt::UserRole).toInt();
-    CatalogRecord catalog = m_catalogs[id];
-    if(!databaseSettingDialog(catalog, true))
+    CatalogRecord catalog;
+    bool editing = false;
+    if(id >= 0) {
+        catalog = m_catalogs[id];
+        editing = true;
+    } else {
+        id = -100 - id;
+        catalog = m_makeCatalogs[id];
+    }
+    if(!databaseSettingDialog(catalog, editing))
         return;
     m_thumbManager->updateCatalogName(id, catalog.name);
     m_catalogs[id] = catalog;

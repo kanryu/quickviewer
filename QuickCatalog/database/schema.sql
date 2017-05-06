@@ -50,6 +50,7 @@ CREATE TABLE [t_files] ( --画像ファイル
     [width] INTEGER,
     [height] TEXT,
     [thumb_id] INTEGER, -- このレコードの画像のサムネイルID
+    [paper] TEXT, -- (オプション)白紙などを挿入する際などに使用
     [created_at] DATETIME,
     [updated_at] DATETIME,
     [alternated] BLOB -- (オプション)この画像の読み込みに時間がかかる場合の代替画像。

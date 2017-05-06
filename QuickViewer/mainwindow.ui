@@ -163,6 +163,8 @@
     <addaction name="actionClearHistory"/>
     <addaction name="actionAutoLoaded"/>
     <addaction name="separator"/>
+    <addaction name="actionManageCatalog"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -277,6 +279,8 @@
    <addaction name="actionFastForward"/>
    <addaction name="actionFirstPage"/>
    <addaction name="actionLastPage"/>
+   <addaction name="separator"/>
+   <addaction name="actionManageCatalog"/>
    <addaction name="separator"/>
    <addaction name="actionSaveBookmark"/>
    <addaction name="actionLoadBookmark"/>
@@ -705,6 +709,15 @@
     <string>&amp;Project WebPage by your browser</string>
    </property>
   </action>
+  <action name="actionManageCatalog">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
+   </property>
+   <property name="text">
+    <string>Manage&amp;Catalogs</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -747,6 +760,7 @@
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="toolbar.qrc"/>
   <include location="toolbar.qrc"/>
  </resources>
  <connections>
@@ -1566,6 +1580,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionManageCatalog</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_manageCatalogs_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1606,5 +1636,6 @@
   <slot>on_hover_anchor(Qt::AnchorPoint)</slot>
   <slot>on_fittingChanged(bool)</slot>
   <slot>on_projectPage_triggered()</slot>
+  <slot>on_manageCatalogs_triggered()</slot>
  </slots>
 </ui>

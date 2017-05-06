@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl concurrent opengl-private
+QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.5.7
+VERSION = 0.6.0
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -72,8 +72,9 @@ win32 { !CONFIG(debug, debug|release) {
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
+INCLUDEPATH += ../QuickCatalog
 
-LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar
+LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lcatalog
 
 win32 {
     QMAKE_CXXFLAGS += /wd4819
