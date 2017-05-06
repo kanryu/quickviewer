@@ -239,7 +239,7 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
             foreach(QString sub, subdirs) {
                 QString subpath = dir.filePath(sub);
                 if(m_catalogWatcher.isCanceled())
-                    break;
+                    return -1;
                 int sub_id = createVolumeInternal(subpath, catalog_id, p.parent_id);
                 if(sub_id < 0) return -1;
                 workers.append(QtConcurrent::run(this, &ThumbnailManager::createSubVolumesConcurrent, subpath, sub_id, p.volume_id));
@@ -250,6 +250,8 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
 
         foreach(const QFuture<VolumeWorker>& w, workers) {
             VolumeWorker& v = w.result();
+            if(m_catalogWatcher.isCanceled())
+                return -1;
             if(v.volume_id < 0)
                 continue;
             if(v.frontPage.asc >= 0) {
@@ -481,7 +483,6 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
 
 CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
 {
-    static int id =1; // FIXME
     CatalogRecord catalog = {0};
     catalog.name = name;
     catalog.path = path;
@@ -503,10 +504,12 @@ CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
     int catalog_id = catalog.id = t_catalogs.lastInsertId().toInt();
 //    int basevolume_id = createSubVolumes(path, catalog_id);
     int basevolume_id = createVolumesFrontPageOnly(path, catalog_id);
-    t_catalogs.prepare("UPDATE t_catalogs SET basevolume_id=:basevolume_id WHERE id=:id");
-    t_catalogs.bindValue(":basevolume_id", basevolume_id);
-    t_catalogs.bindValue(":id", catalog_id);
-    if(!execInsertQuery(t_catalogs, "t_catalogs")) return catalog;
+    if(basevolume_id > 0) {
+        t_catalogs.prepare("UPDATE t_catalogs SET basevolume_id=:basevolume_id WHERE id=:id");
+        t_catalogs.bindValue(":basevolume_id", basevolume_id);
+        t_catalogs.bindValue(":id", catalog_id);
+        if(!execInsertQuery(t_catalogs, "t_catalogs")) return catalog;
+    }
 
 
     if(m_catalogWatcher.isCanceled()) {
@@ -514,24 +517,33 @@ CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
         return catalog;
     }
     commit();
-    transaction();
-    updateVolumeOrders();
-//    t_catalogs.exec("VACUUM");;
-    commit();
     catalog.created = true;
+    emit catalogCreated(catalog);
 
     return catalog;
 }
 
-static CatalogRecord callCreateCatalog(ThumbnailManager* manager, QString name, QString path)
+QList<CatalogRecord> ThumbnailManager::callCreateCatalog(const QList<CatalogRecord>& newers)
 {
-    return manager->createCatalog(name, path);
+    QList<CatalogRecord> result;
+    foreach(const CatalogRecord& r, newers) {
+        result << createCatalog(r.name, r.path);
+        if(m_catalogWatcher.isCanceled())
+            break;
+    }
+    if(result.size() > 1 || result[0].created) {
+        transaction();
+        updateVolumeOrders();
+        commit();
+    }
+
+    return result;
 }
 
 
-QFutureWatcher<CatalogRecord>* ThumbnailManager::createCatalogAsync(QString name, QString path)
+QFutureWatcher<QList<CatalogRecord> > *ThumbnailManager::createCatalogAsync(QList<CatalogRecord> newers)
 {
-    QFuture<CatalogRecord> future = QtConcurrent::run(callCreateCatalog, this, name, path);
+    QFuture<QList<CatalogRecord>> future = QtConcurrent::run(this, &ThumbnailManager::callCreateCatalog, newers);
     m_catalogWatcher.setFuture(future);
     return &m_catalogWatcher;
 }
@@ -637,8 +649,8 @@ void ThumbnailManager::deleteAllCatalogs()
         if(!t_thumbs.exec("DELETE FROM t_files")) break;
         if(!t_thumbs.exec("DELETE FROM t_volumes")) break;
         if(!t_thumbs.exec("DELETE FROM t_catalogs")) break;
-        if(!t_thumbs.exec("VACUUM")) break;
         commit();
+        vacuum();
         return;
     } while(0);
     qDebug() << " query failed: " << t_thumbs.lastError();

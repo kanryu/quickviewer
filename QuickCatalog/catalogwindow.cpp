@@ -9,7 +9,7 @@ CatalogWindow::CatalogWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::CatalogWindow)
     , m_folderViewMenu(this)
-    , m_maxVolumeViewing(1000)
+    , m_maxVolumeViewing(500)
 {
     ui->setupUi(this);
 
@@ -125,6 +125,31 @@ void CatalogWindow::searchByWord(bool doForce)
     resetVolumes();
 }
 
+void CatalogWindow::dragEnterEvent(QDragEnterEvent *e)
+{
+    if(e->mimeData()->hasFormat("text/uri-list"))
+    {
+        //視覚的にドロップを受付られることを
+        //表示し、ドラッグ＆ドロップを受け付ける
+        //これがないと受付られない。
+        e->acceptProposedAction();
+//        e->accept();
+    }
+}
+
+void CatalogWindow::dropEvent(QDropEvent *e)
+{
+    ManageDatabaseDialog dialog(this);
+    dialog.setThumbnailManager(m_thumbManager);
+    dialog.dropEvent(e);
+    dialog.exec();
+
+    m_volumes = m_thumbManager->volumes();
+    searchByWord(true);
+
+    resetVolumes();
+}
+
 void CatalogWindow::on_treeItemChanged(QString path)
 {
     //ui->pathCombo->setCurrentText(QDir::toNativeSeparators(path));
@@ -197,9 +222,11 @@ void CatalogWindow::on_searchTextFinished()
 void CatalogWindow::on_itemDoubleClicked(QListWidgetItem *item)
 {
     QString path = item->data(Qt::UserRole).toString();
-    QStringList options;
-    options << path;
-    QProcess::startDetached(QUICKVIEWER, options);
+//    QStringList options;
+//    options << path;
+//    QProcess::startDetached(QUICKVIEWER, options);
+
+    emit openVolume(path);
 }
 
 SearchWords::SearchWords(const QString &searchNoCase)

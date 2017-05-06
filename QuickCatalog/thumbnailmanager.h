@@ -32,6 +32,7 @@ public:
     bool created;
     bool operator ==(const CatalogRecord& rhs) {return id == rhs.id;}
 };
+Q_DECLARE_METATYPE(CatalogRecord)
 
 // t_volumes
 class VolumeRecord
@@ -131,7 +132,8 @@ public:
 
     /* Catalogs */
     CatalogRecord createCatalog(QString name, QString path);
-    QFutureWatcher<CatalogRecord>* createCatalogAsync(QString name, QString path);
+    QList<CatalogRecord> callCreateCatalog(const QList<CatalogRecord>& newers);
+    QFutureWatcher<QList<CatalogRecord>>* createCatalogAsync(QList<CatalogRecord> newers);
     void cancelCreateCatalogAsync();
     QMap<int, CatalogRecord> catalogs();
     QList<VolumeThumbRecord> volumes();
@@ -189,7 +191,7 @@ signals:
 private:
     QSqlDatabase m_db;
     bool m_transaction;
-    QFutureWatcher<CatalogRecord> m_catalogWatcher;
+    QFutureWatcher<QList<CatalogRecord>> m_catalogWatcher;
     int m_catalogWorkProgress;
     int m_catalogWorkMax;
     bool m_frontPageOnly;

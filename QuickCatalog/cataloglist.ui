@@ -194,8 +194,18 @@
       </item>
       <item row="1" column="0">
        <widget class="QPushButton" name="cancelButton">
+        <property name="font">
+         <font>
+          <pointsize>11</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-width 2px;</string>
+        </property>
         <property name="text">
-         <string>Cancel the work</string>
+         <string notr="true">Cancel work</string>
         </property>
        </widget>
       </item>

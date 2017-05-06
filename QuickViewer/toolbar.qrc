@@ -49,5 +49,6 @@
         <file alias="folder_view_list_blue">icons/folder_view_list_blue.png</file>
         <file alias="folder_view_list_green">icons/folder_view_list_green.png</file>
         <file alias="folder_view_list_red">icons/folder_view_list_red.png</file>
+        <file alias="catalog_icon">icons/catalog.png</file>
     </qresource>
 </RCC>

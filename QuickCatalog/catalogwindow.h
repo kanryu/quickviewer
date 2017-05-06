@@ -32,6 +32,8 @@ public:
     void setThumbnailManager(ThumbnailManager* manager);
     void resetVolumes();
     void searchByWord(bool doForce=false);
+    void dragEnterEvent(QDragEnterEvent *e);
+    void dropEvent(QDropEvent *e);
 
 public slots:
     void on_treeItemChanged(QString path);
@@ -44,6 +46,9 @@ public slots:
     void on_searchTextIndexChanged(QString search);
     void on_searchTextFinished();
     void on_itemDoubleClicked(QListWidgetItem * item);
+
+signals:
+    void openVolume(QString path);
 
 private:
     Ui::CatalogWindow *ui;
