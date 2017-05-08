@@ -88,7 +88,10 @@ Thanks for reviewers! :)
     - FirstPage, LastPage
     - Next only one page, Prev only one page(for **Spread Viewing**)
 - Bookmarks
-    - Save, Load, Clear
+    - Save, Load, Clear
+- Catalogs
+    - Add, Edit, Delete, Show the thumbnails, Search titles by key-word
+    - With the database created in advance from folders and archives, it can show the cover at high speed and search.
 - Image Resize
     - Fitting(to the window, normal)
     - ScaleUp, ScaleOut(25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%, one of them)
