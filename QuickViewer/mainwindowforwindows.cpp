@@ -47,6 +47,13 @@ bool MainWindowForWindows::setStayOnTop(bool top)
     return true;
 }
 
+void MainWindowForWindows::setWindowTop()
+{
+    auto hwnd = reinterpret_cast<HWND>(winId());
+    if(!hwnd) return;
+    ::SetWindowPos(hwnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
+}
+
 // This method is used because QShowEvent may not be called
 bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
 {

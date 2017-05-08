@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>CatalogWindow</class>
- <widget class="QMainWindow" name="CatalogWindow">
+ <widget class="QWidget" name="CatalogWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -20,193 +20,175 @@
    <iconset resource="../toolbar.qrc">
     <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QSplitter" name="splitter_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QMenuBar" name="menuBar">
+     <widget class="QMenu" name="menu_View">
+      <property name="title">
+       <string>&amp;View</string>
       </property>
-      <widget class="QToolButton" name="folderViewButton">
-       <property name="maximumSize">
-        <size>
-         <width>27</width>
-         <height>26</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>FolderViewSelect</string>
-       </property>
-       <property name="statusTip">
-        <string/>
-       </property>
-       <property name="accessibleName">
-        <string>FolderViewSelect</string>
-       </property>
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../toolbar.qrc">
-         <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-      <widget class="QToolButton" name="reloadButton">
-       <property name="minimumSize">
-        <size>
-         <width>27</width>
-         <height>26</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>27</width>
-         <height>26</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string>ManageCatalogs</string>
-       </property>
-       <property name="statusTip">
-        <string/>
-       </property>
-       <property name="accessibleDescription">
-        <string/>
-       </property>
-       <property name="text">
-        <string>...</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../toolbar.qrc">
-         <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-      <widget class="QSplitter" name="splitter">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <widget class="QComboBox" name="searchCombo">
-        <property name="minimumSize">
-         <size>
-          <width>50</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>100</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="editable">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </widget>
+      <addaction name="actionFolderViewList"/>
+      <addaction name="actionFolderViewIcon"/>
+      <addaction name="actionFolderViewIconNoText"/>
      </widget>
-    </item>
-    <item>
-     <widget class="QSplitter" name="splitter_3">
+     <widget class="QMenu" name="menu_File">
+      <property name="title">
+       <string>&amp;File</string>
+      </property>
+      <addaction name="actionManageCatalogs"/>
+      <addaction name="separator"/>
+      <addaction name="actionCloseWindow"/>
+     </widget>
+     <addaction name="menu_File"/>
+     <addaction name="menu_View"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSplitter" name="splitter_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QToolButton" name="folderViewButton">
+      <property name="maximumSize">
+       <size>
+        <width>27</width>
+        <height>26</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>FolderViewSelect</string>
+      </property>
+      <property name="statusTip">
+       <string/>
+      </property>
+      <property name="accessibleName">
+       <string>FolderViewSelect</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../toolbar.qrc">
+        <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="reloadButton">
+      <property name="minimumSize">
+       <size>
+        <width>27</width>
+        <height>26</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>27</width>
+        <height>26</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>ManageCatalogs</string>
+      </property>
+      <property name="statusTip">
+       <string/>
+      </property>
+      <property name="accessibleDescription">
+       <string/>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../toolbar.qrc">
+        <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QSplitter" name="splitter">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="FileExplorer" name="folderTree">
-       <property name="baseSize">
+      <widget class="QComboBox" name="searchCombo">
+       <property name="minimumSize">
         <size>
-         <width>200</width>
+         <width>50</width>
          <height>0</height>
         </size>
        </property>
-       <attribute name="headerVisible">
-        <bool>false</bool>
-       </attribute>
-      </widget>
-      <widget class="QSplitter" name="splitter_4">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="baseSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
        </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+       <property name="editable">
+        <bool>true</bool>
        </property>
-       <widget class="QListWidget" name="volumeList">
-        <property name="styleSheet">
-         <string notr="true">background-color: #C0C0C0</string>
-        </property>
-       </widget>
       </widget>
      </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="statusLabel">
-      <property name="text">
-       <string notr="true">(StatusLabel)</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>713</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_View">
-    <property name="title">
-     <string>&amp;View</string>
-    </property>
-    <addaction name="actionFolderViewList"/>
-    <addaction name="actionFolderViewIcon"/>
-    <addaction name="actionFolderViewIconNoText"/>
-   </widget>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <addaction name="actionManageCatalogs"/>
-    <addaction name="separator"/>
-    <addaction name="actionCloseWindow"/>
-   </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menu_View"/>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QListWidget" name="volumeList">
+     <property name="styleSheet">
+      <string notr="true">background-color: #C0C0C0</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="statusLabel">
+     <property name="text">
+      <string notr="true">(StatusLabel)</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QStatusBar" name="statusBar"/>
+   </item>
+  </layout>
   <action name="actionPrev">
    <property name="icon">
     <iconset resource="../toolbar.qrc">
@@ -286,36 +268,10 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>FileExplorer</class>
-   <extends>QTreeView</extends>
-   <header>fileexplorer.h</header>
-   <slots>
-    <signal>itemChanged(QString)</signal>
-   </slots>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="../toolbar.qrc"/>
  </resources>
  <connections>
-  <connection>
-   <sender>folderTree</sender>
-   <signal>itemChanged(QString)</signal>
-   <receiver>CatalogWindow</receiver>
-   <slot>on_treeItemChanged(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>181</x>
-     <y>357</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>356</x>
-     <y>341</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>folderViewButton</sender>
    <signal>clicked()</signal>
@@ -413,22 +369,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>volumeList</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>CatalogWindow</receiver>
-   <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>531</x>
-     <y>357</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>356</x>
-     <y>341</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>searchCombo</sender>
    <signal>currentIndexChanged(QString)</signal>
    <receiver>CatalogWindow</receiver>
@@ -469,6 +409,22 @@
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>356</x>
+     <y>341</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>volumeList</sender>
+   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <receiver>CatalogWindow</receiver>
+   <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>356</x>
+     <y>348</y>
     </hint>
     <hint type="destinationlabel">
      <x>356</x>

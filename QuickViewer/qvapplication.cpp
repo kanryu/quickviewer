@@ -22,18 +22,20 @@ QVApplication::QVApplication(int &argc, char **argv)
 
     // Default key configs
     m_keyConfigDefauls["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
-    m_keyConfigDefauls["actionNextPage"] = QKeySequence("Right, Space");
-    m_keyConfigDefauls["actionPrevPage"] = QKeySequence("Left, Backspace");
-    m_keyConfigDefauls["actionScaleUp"] = QKeySequence("Num++");
-    m_keyConfigDefauls["actionScaleDown"] = QKeySequence("Num+-");
+    m_keyConfigDefauls["actionNextPage"] = QKeySequence("L, Right, Space");
+    m_keyConfigDefauls["actionPrevPage"] = QKeySequence("H, Left, Backspace");
+    m_keyConfigDefauls["actionScaleUp"] = QKeySequence("K, Num++");
+    m_keyConfigDefauls["actionScaleDown"] = QKeySequence("J, Num+-");
+    m_keyConfigDefauls["actionManageCatalog"] = QKeySequence("F6");
     m_keyConfigDefauls["actionSlideShow"] = QKeySequence("F7");
     m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
     m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
+    m_keyConfigDefauls["actionDualView"] = QKeySequence("Y, F10");
     m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
-    m_keyConfigDefauls["actionFitting"] = QKeySequence("F12, Num+*");
+    m_keyConfigDefauls["actionFitting"] = QKeySequence("M, F12, Num+*");
     m_keyConfigDefauls["actionRotate"] = QKeySequence("R");
-    m_keyConfigDefauls["actionLastPage"] = QKeySequence("End");
-    m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Home");
+    m_keyConfigDefauls["actionLastPage"] = QKeySequence("Ctrl+L, End");
+    m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Ctrl+H, Home");
     m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgDown");
     m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgUp");
     m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
@@ -41,13 +43,13 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
     m_keyConfigDefauls["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
 
-    m_keyConfigDefauls["actionLoadBookmark"] = QKeySequence("L");
-    m_keyConfigDefauls["actionSaveBookmark"] = QKeySequence("S");
+    m_keyConfigDefauls["actionLoadBookmark"] = QKeySequence("Q");
+    m_keyConfigDefauls["actionSaveBookmark"] = QKeySequence("W");
 
     m_keyConfigDefauls["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
 
-    m_keyConfigDefauls["actionFastForward"] = QKeySequence("Num+3");
-    m_keyConfigDefauls["actionFastBackward"] = QKeySequence("Num+1");
+    m_keyConfigDefauls["actionFastForward"] = QKeySequence("Shift+L, Num+3");
+    m_keyConfigDefauls["actionFastBackward"] = QKeySequence("Shift+H, Num+1");
 
     m_keyConfigs = m_keyConfigDefauls;
     m_keyConfigs.detach();
@@ -72,6 +74,8 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionClearHistory", ui->actionClearHistory);
     registAction("actionAutoLoaded", ui->actionAutoLoaded);
     registAction("actionExit", ui->actionExit);
+    registAction("actionManageCatalog", ui->actionManageCatalog);
+
 
     // Bookmark
     registAction("actionClearBookmarks", ui->actionClearBookmarks);

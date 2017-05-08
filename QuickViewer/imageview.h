@@ -110,14 +110,15 @@ struct PageGraphicsItem
         return drawRect;
     }
     QRect setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0) {
-        GrItem->setScale(scale);
         QSize size = viewport.size();
-        QSize newsize = CurrentSize(rotateOffset);
-        newsize *= scale;
+        QSize currentSize = CurrentSize(rotateOffset);
+        QSize newsize = currentSize * scale;
+//        newsize *= scale;
+        GrItem->setScale(scale);
         QPoint of = Offset(rotateOffset);
         of *= scale;
-        int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         GrItem->setRotation(Rotate+rotateOffset);
+        int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
         GrItem->setPos(drawRect.topLeft());
         return drawRect;

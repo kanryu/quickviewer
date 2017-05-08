@@ -22,7 +22,7 @@ public:
 };
 
 
-class CatalogWindow : public QMainWindow
+class CatalogWindow : public QWidget
 {
     Q_OBJECT
 
@@ -30,6 +30,8 @@ public:
     explicit CatalogWindow(QWidget *parent = 0);
     ~CatalogWindow();
     void setThumbnailManager(ThumbnailManager* manager);
+    void setAsToplevelWindow();
+    void setAsInnerWidget();
     void resetVolumes();
     void searchByWord(bool doForce=false);
     void dragEnterEvent(QDragEnterEvent *e);

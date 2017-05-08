@@ -46,7 +46,7 @@ void ManageDatabaseDialog::setThumbnailManager(ThumbnailManager* manager)
 void ManageDatabaseDialog::normalButtonStates()
 {
     ui->addButton->setEnabled(true);
-    if(m_catalogs.isEmpty()) {
+    if(m_catalogs.isEmpty() && m_makeCatalogs.isEmpty()) {
         ui->editButton->setEnabled(false);
         ui->deleteButton->setEnabled(false);
         ui->updateButton->setEnabled(false);
@@ -227,8 +227,9 @@ void ManageDatabaseDialog::on_catalogCreateFinished()
     normalButtonStates();
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle(tr("Catalog Create Finished"));
-    QString message = QString("Successed!");
+    msgBox.setWindowTitle(tr("Successed!"));
+    QString message = QString(tr("Catalog Create Finished"));
+
     msgBox.setText(message);
     msgBox.exec();
 }
@@ -258,8 +259,8 @@ void ManageDatabaseDialog::on_cancelWork_triggered()
         normalButtonStates();
 
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("Catalog Create Cancelled"));
-        QString message = QString("Cancelled!");
+        msgBox.setWindowTitle(tr("Cancelled!"));
+        QString message = QString(tr("Catalog Create Cancelled"));
         msgBox.setText(message);
         msgBox.exec();
     }
@@ -315,6 +316,7 @@ void ManageDatabaseDialog::on_delete_triggered()
     }
 
     resetCatalogList();
+    normalButtonStates();
 }
 
 void ManageDatabaseDialog::on_update_triggered()
@@ -331,6 +333,7 @@ void ManageDatabaseDialog::on_deleteAll_triggered()
     m_makeCatalogs.clear();
 
     resetCatalogList();
+    normalButtonStates();
 }
 
 void ManageDatabaseDialog::on_updateAll_triggered()

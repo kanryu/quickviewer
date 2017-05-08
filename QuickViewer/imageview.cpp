@@ -113,25 +113,16 @@ bool ImageView::on_addImage_triggered(ImageContent ic, bool pageNext)
     QGraphicsItem* gitem = nullptr;
     int rotate = 0;
     if(ic.BaseSize.width() > 0) {
-//        m_pageImages.append(ic.Image);
         QGraphicsPixmapItem* gpi = s->addPixmap(ic.Image);
-//        // if we show the image with resizing more smooth, must be called
-//        gpi->setTransformationMode(Qt::SmoothTransformation);
         gitem = gpi;
         size = ic.Image.size();
         if(ic.Info.ImageWidth > 0 && ic.Info.Orientation != 1) {
             switch(ic.Info.Orientation) {
             case 6: // left 90 digree turned
                 rotate = 90;
-//                gpi->setRotation(90);
-//                size = QSize(ic.Image.height(), ic.Image.width());
-//                offset = QPoint(size.width(), 0);
                 break;
             case 8: // right 90 digree turned
                 rotate = 270;
-//                gpi->setRotation(270);
-//                size = QSize(ic.Image.height(), ic.Image.width());
-//                offset = QPoint(0, size.height());
                 break;
             }
         }
@@ -190,7 +181,10 @@ void ImageView::readyForPaint() {
             m_effectManager.prepare(dynamic_cast<QGraphicsPixmapItem*>(m_pages[i].GrItem), m_pages[i].Ic, drawRect.size());
             sceneRect = sceneRect.united(drawRect);
         }
-        scene()->setSceneRect(qApp->Fitting() || m_isFullScreen ? QRect(QPoint(), size()) : sceneRect);
+        // if Size of Image overs Size of View, use Image's size
+        scene()->setSceneRect(qApp->Fitting() || m_isFullScreen
+                              ? QRect(QPoint(), size())
+                              : QRect(QPoint(), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
     }
     m_effectManager.prepareFinished();
     repaint();
@@ -302,23 +296,27 @@ void ImageView::on_prevVolume_triggered()
 
 void ImageView::mouseMoveEvent(QMouseEvent *e)
 {
-//    qDebug() << e;
+    qDebug() << e;
     int NOT_HOVER_AREA = width() / 3;
     if(e->pos().x() < HOVER_BORDER && e->pos().y() < height()-HOVER_BORDER) {
         if(m_hoverState != Qt::AnchorLeft)
             emit anchorHovered(Qt::AnchorLeft);
         m_hoverState = Qt::AnchorLeft;
-        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+//        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+        setCursor(QCursor(Qt::PointingHandCursor));
         return;
     }
     if(e->pos().x() > width()-HOVER_BORDER) {
         if(m_hoverState != Qt::AnchorRight)
             emit anchorHovered(Qt::AnchorRight);
         m_hoverState = Qt::AnchorRight;
-        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+//        QApplication::setOverrideCursor(Qt::PointingHandCursor);
+        setCursor(QCursor(Qt::PointingHandCursor));
+
         return;
     }
-    QApplication::setOverrideCursor(Qt::ArrowCursor);
+    setCursor(QCursor(Qt::ArrowCursor));
+//    QApplication::setOverrideCursor(Qt::ArrowCursor);
     if(e->pos().y() < HOVER_BORDER) {
         if(m_hoverState != Qt::AnchorTop)
            emit anchorHovered(Qt::AnchorTop);

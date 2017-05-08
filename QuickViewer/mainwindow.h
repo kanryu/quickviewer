@@ -21,6 +21,7 @@ public:
     ~MainWindow();
     virtual bool moveToTrush(QString path) {return false;}
     virtual bool setStayOnTop(bool top) {return false;}
+    virtual void setWindowTop() {}
 
     void keyPressEvent(QKeyEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
@@ -33,6 +34,7 @@ public:
     }
     void makeBookmarkMenu();
     void setThumbnailManager(ThumbnailManager* manager);
+    void loadVolume(QString path);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);
@@ -44,7 +46,6 @@ protected:
 
 public slots:
     // File
-    void loadVolume(QString path);
     void on_file_changed(QString path);
     void on_autoloaded_triggered(bool autoreload);
     void on_clearHistory_triggered();
@@ -52,6 +53,7 @@ public slots:
     // Catalog
     void on_manageCatalogs_triggered();
     void on_manageCatalogsClosed_triggered();
+    void on_openVolumeByCatalog_triggered(QString path);
 
     // PageBar
     void on_pageChanged_triggered();

@@ -1,4 +1,5 @@
 #include <QProcess>
+#include <QtWidgets>
 
 #include "qc_init.h"
 #include "catalogwindow.h"
@@ -6,7 +7,7 @@
 #include "managedatabasedialog.h"
 
 CatalogWindow::CatalogWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QWidget(parent)
     , ui(new Ui::CatalogWindow)
     , m_folderViewMenu(this)
     , m_maxVolumeViewing(500)
@@ -21,7 +22,6 @@ CatalogWindow::CatalogWindow(QWidget *parent)
     ui->statusBar->addPermanentWidget(ui->statusLabel);
     ui->statusLabel->setText(tr("Drop image folders here and create Catalogs."));
 
-    ui->folderTree->setRootPath("C:/Program Files");
 
     m_folderViewMenu.addAction(ui->actionFolderViewList);
     m_folderViewMenu.addAction(ui->actionFolderViewIcon);
@@ -36,11 +36,20 @@ CatalogWindow::~CatalogWindow()
 void CatalogWindow::setThumbnailManager(ThumbnailManager *manager)
 {
     m_thumbManager = manager;
-    ui->folderTree->setVisible(false);
     m_volumes = m_thumbManager->volumes();
     searchByWord(true);
 
     on_folderViewIcon_triggered();
+}
+
+void CatalogWindow::setAsToplevelWindow()
+{
+    ui->menuBar->setVisible(true);
+}
+
+void CatalogWindow::setAsInnerWidget()
+{
+    ui->menuBar->setVisible(false);
 }
 
 void CatalogWindow::resetVolumes()
@@ -234,7 +243,7 @@ void CatalogWindow::on_itemDoubleClicked(QListWidgetItem *item)
 
 void CatalogWindow::closeEvent(QCloseEvent *e)
 {
-    QMainWindow::closeEvent(e);
+    QWidget::closeEvent(e);
     emit closed();
 }
 

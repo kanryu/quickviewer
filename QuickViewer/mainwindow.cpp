@@ -189,7 +189,7 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void MainWindow::closeEvent(QCloseEvent *e)
+void MainWindow::closeEvent(QCloseEvent *)
 {
     on_manageCatalogsClosed_triggered();
     delete contextMenu;
@@ -515,13 +515,30 @@ void MainWindow::on_historyMenu_triggered(QAction *action)
 void MainWindow::on_manageCatalogs_triggered()
 {
     if(m_catalogWindow) {
+        if(!m_catalogWindow->parent())
+            on_manageCatalogsClosed_triggered();
+        else {
+            m_catalogWindow->setParent(nullptr);
+            m_catalogWindow->setAsToplevelWindow();
+            QRect self = geometry();
+            m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+            m_catalogWindow->show();
+        }
         return;
     }
-    m_catalogWindow = new CatalogWindow();
+    m_catalogWindow = new CatalogWindow;
     m_catalogWindow->setThumbnailManager(m_thumbManager);
     connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
-    connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(loadVolume(QString)));
-    m_catalogWindow->show();
+    connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+    m_catalogWindow->setAsInnerWidget();
+    ui->catalogSplitter->insertWidget(0, m_catalogWindow);
+    auto sizes = ui->catalogSplitter->sizes();
+    int sum = sizes[0]+sizes[1];
+    sizes[0] = 200;
+    sizes[1] = sum-sizes[0];
+    ui->catalogSplitter->setSizes(sizes);
+//    m_catalogWindow->resize(180, m_catalogWindow->height());
+//    m_catalogWindow->show();
 }
 
 void MainWindow::on_manageCatalogsClosed_triggered()
@@ -530,6 +547,12 @@ void MainWindow::on_manageCatalogsClosed_triggered()
         delete m_catalogWindow;
         m_catalogWindow = nullptr;
     }
+}
+
+void MainWindow::on_openVolumeByCatalog_triggered(QString path)
+{
+    loadVolume(path);
+    setWindowTop();
 }
 
 void MainWindow::on_openfolder_triggered()

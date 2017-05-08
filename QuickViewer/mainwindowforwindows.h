@@ -10,6 +10,7 @@ public:
     explicit MainWindowForWindows(QWidget *parent = 0);
     virtual bool moveToTrush(QString path) override;
     virtual bool setStayOnTop(bool top) override;
+    virtual void setWindowTop() override;
 
 public slots:
 //    void showEvent(QShowEvent * event);
