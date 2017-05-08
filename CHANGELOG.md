@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## v0.6.1 (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
+
+add inner CatalogWindow, 3 bugfixed
+- bug fixed: when to run from other directries, wrong ini files created.
+- bug fixed: onle newer catalogs, don't activeted about edit/delete buttons.
+- bug fixed: when manual resizing and image is smaller than the window, image was wrong position
+- when a catalog executed, make MainWindow activate
+
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon May 8 17:03:11 2017 +0900) [66e4257](https://github.com/kanryu/quickviewer/commit/66e4257ec77f327a0d75c27c2b16f57197fba28e)
+
+## v0.6.1_pre (Mon May 8 17:01:58 2017 +0900) [0f1d753](https://github.com/kanryu/quickviewer/commit/0f1d75314e78eb1154387cae6b40f8f9243f6fad)
+
+merge QuickCatalog.pro into QuickViewer.pro
+
+- other commits
+    - Update index.md (Mon May 8 16:27:07 2017 +0900) [8338cf8](https://github.com/kanryu/quickviewer/commit/8338cf8ac48562d5b24a77db58b0339a2f2ef4f9)
+    - Update index.md (Mon May 8 16:24:13 2017 +0900) [e05340f](https://github.com/kanryu/quickviewer/commit/e05340f24cdb9873586fd3c937d74a64334ac64d)
+    - changelog (Sun May 7 01:58:16 2017 +0900) [388ed47](https://github.com/kanryu/quickviewer/commit/388ed4707b43110ddb32d9c0857c35c727c0bdb9)
+
 ## v0.6.0 (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
 
 Support Book Catalogs, easy to view thumbnails of frontpage of books and search fast
