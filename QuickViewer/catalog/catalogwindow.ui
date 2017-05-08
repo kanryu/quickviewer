@@ -17,7 +17,7 @@
    <string>CatalogWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../QuickViewer/toolbar.qrc">
+   <iconset resource="../toolbar.qrc">
     <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -47,7 +47,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../QuickViewer/toolbar.qrc">
+        <iconset resource="../toolbar.qrc">
          <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
        </property>
        <property name="iconSize">
@@ -83,7 +83,7 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset resource="../QuickViewer/toolbar.qrc">
+        <iconset resource="../toolbar.qrc">
          <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
        </property>
        <property name="iconSize">
@@ -209,7 +209,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionPrev">
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
    </property>
    <property name="text">
@@ -218,7 +218,7 @@
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/arrow_right_icon</normaloff>:/icons/arrow_right_icon</iconset>
    </property>
    <property name="text">
@@ -230,7 +230,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
    </property>
    <property name="text">
@@ -242,7 +242,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
    </property>
    <property name="text">
@@ -254,7 +254,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
    </property>
    <property name="text">
@@ -263,7 +263,7 @@
   </action>
   <action name="actionFolderViewSelect">
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
    </property>
    <property name="text">
@@ -272,7 +272,7 @@
   </action>
   <action name="actionManageCatalogs">
    <property name="icon">
-    <iconset resource="../QuickViewer/toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
    </property>
    <property name="text">
@@ -297,8 +297,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../QuickViewer/toolbar.qrc"/>
-  <include location="../QuickViewer/toolbar.qrc"/>
+  <include location="../toolbar.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -452,8 +451,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>356</x>
-     <y>341</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>356</x>

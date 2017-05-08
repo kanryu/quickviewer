@@ -72,9 +72,9 @@ win32 { !CONFIG(debug, debug|release) {
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
-INCLUDEPATH += ../QuickCatalog
+INCLUDEPATH += ./catalog
 
-LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lcatalog
+LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar
 
 win32 {
     QMAKE_CXXFLAGS += /wd4819
@@ -97,8 +97,14 @@ SOURCES += main.cpp \
     shortcutbutton.cpp \
     pagemanager.cpp \
     timeorderdcache.cpp \
-    shadermanager.cpp
-
+    shadermanager.cpp \
+    catalog/catalogwindow.cpp \
+    catalog/databasesettingdialog.cpp \
+    catalog/fileexplorer.cpp \
+    catalog/fileexplorermodel.cpp \
+    catalog/main.cpp \
+    catalog/managedatabasedialog.cpp \
+    catalog/thumbnailmanager.cpp \
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -111,8 +117,14 @@ HEADERS  += mainwindow.h \
     shortcutbutton.h \
     pagemanager.h \
     timeorderdcache.h \
-    shadermanager.h
-
+    shadermanager.h \
+    catalog/catalogwindow.h \
+    catalog/databasesettingdialog.h \
+    catalog/fileexplorer.h \
+    catalog/fileexplorermodel.h \
+    catalog/managedatabasedialog.h \
+    catalog/qc_init.h \
+    catalog/thumbnailmanager.h \
 
 win32 {
     SOURCES += mainwindowforwindows.cpp
@@ -121,7 +133,10 @@ win32 {
 
 FORMS    += mainwindow.ui \
     exifdialog.ui \
-    keyconfigdialog.ui
+    keyconfigdialog.ui \
+    catalog/cataloglist.ui \
+    catalog/catalogwindow.ui \
+    catalog/createdb.ui
 
 RESOURCES += \
     toolbar.qrc
@@ -137,10 +152,20 @@ SHADERS += \
     shaders/bicubic.frag \
     shaders/lanczos.frag \
 
+DBS += \
+    database/schema.sql \
+
+DBBIN += \
+    database/thumbnail.sqlite3.db \
+
+DBDIR += database/
+
 win32 { !CONFIG(debug, debug|release) {
     shaders_install.path = $${MY_DEFAULT_INSTALL}/shaders
     shaders_install.files = $$SHADERS
-    INSTALLS += shaders_install
+    db_install.path = $${MY_DEFAULT_INSTALL}/database
+    db_install.files = $$DBS $$DBBIN
+    INSTALLS += shaders_install db_install
 } }
 
 SHADERDIR += shaders/
@@ -160,10 +185,29 @@ shaders.output = $$DESTDIR/shaders/${QMAKE_FILE_BASE}.frag
 shaders.variable_out = DEPENDPATH
 shaders.CONFIG = verify target_predeps
 shaders.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
-shaderd.depends = shader_dir
+#shaderd.depends = shader_dir
 shaders.input = SHADERS
 
-QMAKE_EXTRA_COMPILERS += shader_dir shaders
+
+db_dir.name = dbpath
+db_dir.target = ${QMAKE_FILE_OUT}
+db_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
+db_dir.variable_out = DEPENDPATH
+db_dir.CONFIG = verify
+db_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
+db_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
+db_dir.input = DBDIR
+
+db.name  = ${QMAKE_FILE_OUT}
+db.target = ${QMAKE_FILE_OUT}
+db.output = $$DESTDIR/database/${QMAKE_FILE_BASE}.db
+db.variable_out = DEPENDPATH
+db.CONFIG = verify target_predeps
+db.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+#db.depends = db_dir
+db.input = DBBIN
+
+QMAKE_EXTRA_COMPILERS += shader_dir shaders db_dir db
 
 
 OTHER_FILES += SHADERS

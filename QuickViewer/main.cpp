@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 #else
     MainWindow w;
 #endif
-    ThumbnailManager manager(&w, "database/thumbnail.sqlite3.db");
+    ThumbnailManager manager(&w, app.getApplicationFilePath("database/thumbnail.sqlite3.db"));
     w.setThumbnailManager(&manager);
     w.show();
 

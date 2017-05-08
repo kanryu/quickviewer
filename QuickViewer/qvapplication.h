@@ -64,6 +64,8 @@ class QVApplication : public QApplication
 
 public:
     explicit QVApplication(int &argc, char **argv);
+    QString getApplicationFilePath(QString subFilePath);
+
     // View
     bool Fitting() { return m_fitting; }
     void setFitting (bool fitting) { m_fitting = fitting; }
@@ -118,9 +120,9 @@ public:
     // ShaderEffect
     ShaderManager::ShaderEffect Effect() { return m_effect; }
     void setEffect (ShaderManager::ShaderEffect shaderEffect) { m_effect = shaderEffect; }
-    QString BicubicShaderPath() { return m_bicubicShaderPath; }
+    QString BicubicShaderPath() { return getApplicationFilePath(m_bicubicShaderPath); }
     void setBicubicShaderPath (QString bicubicShaderPath) { m_bicubicShaderPath = bicubicShaderPath; }
-    QString LanczosShaderPath() { return m_lanczosShaderPath; }
+    QString LanczosShaderPath() { return getApplicationFilePath(m_lanczosShaderPath); }
     void setLanczosShaderPath (QString lanczosShaderPath) { m_lanczosShaderPath = lanczosShaderPath; }
 
     // Key Config

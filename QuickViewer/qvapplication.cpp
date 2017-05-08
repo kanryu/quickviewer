@@ -11,7 +11,7 @@
 
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
-    , m_settings(APP_INI, QSettings::IniFormat, this)
+    , m_settings(getApplicationFilePath(APP_INI), QSettings::IniFormat, this)
     , m_effect(ShaderManager::Bilinear)
     , m_glInitialized(false)
     , m_maxTextureSize(4096)
@@ -58,6 +58,11 @@ QVApplication::QVApplication(int &argc, char **argv)
 
     loadSettings();
     //qDebug() << m_keyConfigs;
+}
+
+QString QVApplication::getApplicationFilePath(QString subFilePath)
+{
+    return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
 }
 
 void QVApplication::registActions(Ui::MainWindow *ui)
