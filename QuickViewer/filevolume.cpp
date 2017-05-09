@@ -1,4 +1,5 @@
 #include <QtGui>
+
 #include "filevolume.h"
 #include "fileloaderdirectory.h"
 #include "fileloaderziparchive.h"
@@ -114,7 +115,7 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
         dir.cdUp();
         QString dirpath = dir.canonicalPath();
         IFileVolume* fvd = new IFileVolume(parent, new FileLoaderDirectory(parent, dirpath));
-        bool result = fvd->findImageByName(path.mid(dirpath.length()+1));
+        fvd->findImageByName(path.mid(dirpath.length()+1));
         return fvd;
     }
     return nullptr;
@@ -204,7 +205,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
 
     // turbjpeg can turbo rescaling when loading
     QImageReader reader(&buffer, aformat.toUtf8());
-    bool readerable = reader.canRead();
+    reader.canRead();
     QSize baseSize = reader.size();
     QSize loadingSize = baseSize;
     // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
@@ -219,7 +220,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;
     if(src.width() > 0 && IFileLoader::isExifJpegImageFile(path)) {
-        int result = info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
+        info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
     }
 
     if(src.width() > 0 && IFileLoader::isExifRawImageFile(path)) {

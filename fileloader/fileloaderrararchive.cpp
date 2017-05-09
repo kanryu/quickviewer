@@ -24,7 +24,7 @@ FileLoaderRarArchive::FileLoaderRarArchive(QObject* parent, QString rarpath)
     m_valid = true;
 }
 
-QByteArray FileLoaderRarArchive::getFile(QString name, QMutex& mutex)
+QByteArray FileLoaderRarArchive::getFile(QString name, QMutex& )
 {
     QByteArray bytes;
     if(m_imageFileList.contains(name)) {

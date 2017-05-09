@@ -1,9 +1,5 @@
-#include <QTextCodec>
-#include <QLocale>
-#include <QKeySequence>
-#include <QDebug>
-#include <QOpenGLContext>
-#include <QGLContext>
+#include <QtGui>
+#include <QtOpenGL>
 
 #include "qvapplication.h"
 #include "qv_init.h"
@@ -141,7 +137,7 @@ void QVApplication::onGLInitialized()
     const QGLContext* c0 = QGLContext::currentContext();
     if(c0) {
         QOpenGLContext* c1 = QOpenGLContext::currentContext();
-        QOpenGLContext* c2 = c0->contextHandle();
+        //QOpenGLContext* c2 = c0->contextHandle();
         if(c1 && c1->isValid()) {
             c1->functions()->glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
             qDebug() << m_maxTextureSize;

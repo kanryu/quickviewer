@@ -1,5 +1,5 @@
-#include <QTranslator>
-#include <QDebug>
+#include <QtCore>
+
 #include "qv_init.h"
 #include "qvapplication.h"
 #include "thumbnailmanager.h"

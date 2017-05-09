@@ -1,6 +1,6 @@
 #include <Windows.h>
 #include <Shellapi.h>
-#include <QDebug>
+#include <QtCore>
 
 #include "qvapplication.h"
 #include "mainwindowforwindows.h"

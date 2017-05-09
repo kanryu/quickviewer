@@ -1,12 +1,5 @@
-#include <QDragEnterEvent>
-#include <QDropEvent>
-#include <QWheelEvent>
-#include <QMimeData>
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QDesktopServices>
-#include <QDesktopWidget>
-#include <QWindow>
+#include <QtWidgets>
+
 
 #include "mainwindow.h"
 #include "imageview.h"
@@ -30,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
     ui->pageSlider->hide();
-    QVApplication* myapp = qApp;
+    //QVApplication* myapp = qApp;
 
     // Mapping to Key-Action Table and Key Config Dialog
     qApp->registActions(ui);
@@ -326,7 +319,7 @@ void MainWindow::setThumbnailManager(ThumbnailManager *manager)
  */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    int key = event->key();
+    //int key = event->key();
     QKeySequence seq(event->key() | event->modifiers());
     qDebug() << seq;
     QAction* action = qApp->getAction(seq);
@@ -712,7 +705,7 @@ void MainWindow::on_restoreWindowState_triggered(bool saveState)
     qApp->setRestoreWindowState(saveState);
 }
 
-void MainWindow::on_slideShow_triggered(bool enable)
+void MainWindow::on_slideShow_triggered(bool )
 {
     if(m_pageManager.size() == 0)
         return;

@@ -1,11 +1,8 @@
 #ifndef IMAGEVIEW_H
 #define IMAGEVIEW_H
 
-#include <QWidget>
-#include <QtDebug>
-#include <QGraphicsView>
-#include <QDragEnterEvent>
-#include <QGraphicsPixmapItem>
+#include <QtCore>
+#include <QtWidgets>
 
 #include "filevolume.h"
 #include "exifdialog.h"

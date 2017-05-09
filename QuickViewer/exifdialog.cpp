@@ -1,6 +1,7 @@
+#include <QLocale>
+
 #include "exifdialog.h"
 #include "ui_exifdialog.h"
-#include <QLocale>
 
 ExifDialog::ExifDialog(QWidget *parent) :
     QDialog(parent),

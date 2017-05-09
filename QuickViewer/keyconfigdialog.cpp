@@ -1,9 +1,4 @@
-#include <QMap>
-#include <QAction>
-#include <QKeySequence>
-#include <QTreeWidgetItem>
-#include <QDebug>
-#include <QKeyEvent>
+#include <QtWidgets>
 
 #include "keyconfigdialog.h"
 #include "shortcutbutton.h"
@@ -183,7 +178,7 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
     header->setText(1, tr("Label"));
     header->setText(2, tr("Target"));
 
-    QVApplication* app = qApp;
+    //QVApplication* app = qApp;
     QMap<QString, QAction*>& actions = qApp->ActionMapByName();
     QMap<QString, QKeySequence>& keyconfigs = qApp->KeyConfigMap();
     foreach(const QString& key, actions.keys()) {

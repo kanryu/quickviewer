@@ -125,11 +125,17 @@ HEADERS  += mainwindow.h \
     catalog/managedatabasedialog.h \
     catalog/qc_init.h \
     catalog/thumbnailmanager.h \
-    sidesplitter.h
+    sidesplitter.h \
+    stdafx.h
 
 win32 {
     SOURCES += mainwindowforwindows.cpp
     HEADERS += mainwindowforwindows.h
+    PRECOMPILED_HEADER += stdafx.h
+}
+
+precompile_header:!isEmpty(PRECOMPILED_HEADER) {
+    DEFINES += USING_PCH
 }
 
 FORMS    += mainwindow.ui \

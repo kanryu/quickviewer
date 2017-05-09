@@ -2,8 +2,7 @@
 #define SHORTCUTBUTTON_H
 
 #include <array>
-#include <QPushButton>
-#include <QTreeWidget>
+#include <QtWidgets>
 
 struct ShortcutItem
 {

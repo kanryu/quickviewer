@@ -23,7 +23,7 @@
    <iconset resource="toolbar.qrc">
     <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
   </property>
-  <widget class="QWidget" name="verticalWidget">
+  <widget class="QWidget" name="verticalWidget1">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
      <horstretch>0</horstretch>
@@ -69,7 +69,7 @@
       <property name="childrenCollapsible">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="verticalWidget" native="true">
+      <widget class="QWidget" name="verticalWidget2" native="true">
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>

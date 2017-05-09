@@ -87,8 +87,8 @@ void LanczosShaderEffect::createOffsets(int count, float width, Qt::Orientation 
 /// \brief ImageEffectManager::ImageEffectManager
 /// \param parent
 ShaderManager::ShaderManager(QObject *parent)
-    : pageCnt(0)
-//    , m_effect(Bilinear)
+    : QObject(parent)
+    , pageCnt(0)
     , m_oldEffect(Bilinear)
 {
     loadShader(m_bicubic, qApp->BicubicShaderPath());
@@ -145,7 +145,7 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
                 lanczos->setPixelShaderFragment(m_lanczos);
 
                 int sw = ic.ImportSize.width();
-                int sh = ic.ImportSize.height();
+                //int sh = ic.ImportSize.height();
                 qreal pow = 1.0*size.width()/sw;
 //                if(pow*8 < 1) {
 //                    pow *= 2;
@@ -175,7 +175,7 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
             if(lanczos->viewWidth() == size.width())
                 break;
             int sw = ic.ImportSize.width();
-            int sh = ic.ImportSize.height();
+            //int sh = ic.ImportSize.height();
             qreal pow = 1.0*size.width()/sw;
             int kernelSize;
             lanczos->createKernel(1.0/pow, &kernelSize);

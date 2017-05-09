@@ -1,11 +1,8 @@
 #ifndef KEYCONFIGDIALOG_H
 #define KEYCONFIGDIALOG_H
 
-#include <QDialog>
-#include <QTreeWidget>
-#include <QPushButton>
-#include <QMap>
-#include <QKeySequence>
+#include <QtCore>
+#include <QtWidgets>
 
 #include "qvapplication.h"
 

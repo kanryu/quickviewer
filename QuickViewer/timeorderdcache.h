@@ -1,9 +1,7 @@
 #ifndef TIMEORDERDCACHE_H
 #define TIMEORDERDCACHE_H
 
-#include <QMap>
-#include <QList>
-#include <QDebug>
+#include <QtCore>
 
 template <typename Key, typename T>
 class TimeOrderdCache

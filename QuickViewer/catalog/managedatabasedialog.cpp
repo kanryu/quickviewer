@@ -267,7 +267,7 @@ void ManageDatabaseDialog::on_cancelWork_triggered()
 }
 
 
-void ManageDatabaseDialog::closeEvent(QCloseEvent *e)
+void ManageDatabaseDialog::closeEvent(QCloseEvent *)
 {
     m_thumbManager->vacuum();
 }

@@ -1,10 +1,10 @@
 #ifndef FILELIST_H
 #define FILELIST_H
 
-#include <QPixmap>
-#include <QImage>
+#include <QtCore>
+#include <QtGui>
 #include <QtConcurrent>
-#include <QMutex>
+
 #include "exif.h"
 #include "fileloader.h"
 #include "timeorderdcache.h"

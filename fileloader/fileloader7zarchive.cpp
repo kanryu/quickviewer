@@ -46,7 +46,7 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
 
         QBuffer iobuffer(&bytes, this);
         iobuffer.open(QIODevice::WriteOnly);
-        bool result = d->m_reader.extractFile(name, &iobuffer);
+        d->m_reader.extractFile(name, &iobuffer);
         mutex.unlock();
     }
     return bytes;

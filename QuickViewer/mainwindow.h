@@ -1,8 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QMenu>
+#include <QtWidgets>
 #include "filevolume.h"
 #include "imageview.h"
 
@@ -20,7 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     virtual bool moveToTrush(QString path) {return false;}
-    virtual bool setStayOnTop(bool top) {return false;}
+    virtual bool setStayOnTop(bool ) {return false;}
     virtual void setWindowTop() {}
 
     void keyPressEvent(QKeyEvent *event);

@@ -1,12 +1,4 @@
-#include <QMouseEvent>
-#include <QtDebug>
-#include <QPainter>
-#include <QGLWidget>
-#include <QDesktopServices>
-#include <QProcessEnvironment>
-#include <QMessageBox>
-#include <QClipboard>
-#include <QMimeData>
+#include <QtWidgets>
 
 #include "imageview.h"
 #include "qvapplication.h"
@@ -160,7 +152,6 @@ void ImageView::on_clearImages_triggered()
 void ImageView::readyForPaint() {
     qDebug() << "readyForPaint";
     if(!m_pages.empty()) {
-        bool dualview = qApp->DualView() && m_pageManager->canDualView();
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
         for(int i = 0; i < m_pages.size(); i++) {
