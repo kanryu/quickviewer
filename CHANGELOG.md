@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## v0.6.2 (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+
+Add notation of shortcut, speedup for catalog, more simple title
+
+- Add notation of shortcut key to each item of main menu
+- Add a function to remove (Options) under certain conditions from the
+title of the book registered in the catalog
+- Speed up thumbnail loading process saved in database
+- Accelerated Incremental Search and Display Switching in Catalog Window
+- Fix some display phrases
+
+## v0.6.2_pre (Wed May 10 03:32:57 2017 +0900) [9830d72](https://github.com/kanryu/quickviewer/commit/9830d720a6da2aba1bbe72cad43550c9f668834f)
+
+refactoring
+
+- add precompiled header(stdafx.h)
+- remove wornings(Remove unnecessary local variables)
+
+- other commits
+    - changelog (Tue May 9 02:48:11 2017 +0900) [e618790](https://github.com/kanryu/quickviewer/commit/e6187908bb5a96ad4814719c6453bd6f6df03ba5)
+
 ## v0.6.1 (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
 
 add inner CatalogWindow, 3 bugfixed
