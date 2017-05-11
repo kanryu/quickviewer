@@ -192,7 +192,6 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
     info.ImageHeight = img.text("ImageHeight").toInt();
 }
 
-#define TURBO_JPEG_FMT "turbojpeg"
 
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
 {

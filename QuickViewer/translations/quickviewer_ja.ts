@@ -12,10 +12,6 @@
         <translation>表示方法の切り替え</translation>
     </message>
     <message>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>ManageCatalogs</source>
         <translation>カタログの管理</translation>
     </message>
@@ -62,6 +58,14 @@
     <message>
         <source>(%1/%2) volumes listed.</source>
         <translation>(%1/%2)件 表示中。</translation>
+    </message>
+    <message>
+        <source>Remove (Options) from Book Title</source>
+        <translation>本のタイトルから(かっこ)に書かれたオプションを取り除く</translation>
+    </message>
+    <message>
+        <source>Remove (Options) from book title when searching</source>
+        <translation>本のタイトルを検索する際に(かっこ)で書かれたオプションを取り除く</translation>
     </message>
 </context>
 <context>
@@ -536,15 +540,15 @@
     </message>
     <message>
         <source>Scale&amp;Up</source>
-        <translation>ズームイン(&amp;I)</translation>
+        <translation type="vanished">ズームイン(&amp;I)</translation>
     </message>
     <message>
         <source>Scale&amp;Out</source>
-        <translation>ズームアウト(&amp;O)</translation>
+        <translation type="vanished">ズームアウト(&amp;O)</translation>
     </message>
     <message>
         <source>ScaleOut</source>
-        <translation>ズームアウト</translation>
+        <translation type="vanished">ズームアウト</translation>
     </message>
     <message>
         <source>&amp;Fitting</source>
@@ -848,7 +852,55 @@
     </message>
     <message>
         <source>Manage&amp;Catalogs</source>
-        <translation>カタログの管理(&amp;C)</translation>
+        <translation type="vanished">カタログの管理(&amp;C)</translation>
+    </message>
+    <message>
+        <source>&amp;Catalog</source>
+        <translation>カタログ(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Zoom&amp;In</source>
+        <translation>拡大表示(&amp;I)</translation>
+    </message>
+    <message>
+        <source>ZoomIn</source>
+        <translation>拡大表示</translation>
+    </message>
+    <message>
+        <source>Zoom&amp;Out</source>
+        <translation>縮小表示(&amp;O)</translation>
+    </message>
+    <message>
+        <source>ZoomOut</source>
+        <translation>縮小表示</translation>
+    </message>
+    <message>
+        <source>Show&amp;Catalog</source>
+        <translation>カタログを表示する(&amp;C)</translation>
+    </message>
+    <message>
+        <source>ShowCatalog</source>
+        <translation>カタログを表示する</translation>
+    </message>
+    <message>
+        <source>Remove (Options) from Book Title</source>
+        <translation>本のタイトルから(かっこ)に書かれたオプションを取り除く</translation>
+    </message>
+    <message>
+        <source>Remove (Options) from book title when searching</source>
+        <translation>本のタイトルを検索する際に(かっこ)で書かれたオプションを取り除く</translation>
+    </message>
+    <message>
+        <source>CatalogViewIcon</source>
+        <translation>並べて表示</translation>
+    </message>
+    <message>
+        <source>CatalogViewIconNoText</source>
+        <translation>アイコンのみ</translation>
+    </message>
+    <message>
+        <source>CatalogViewList</source>
+        <translation>一覧</translation>
     </message>
 </context>
 <context>
@@ -926,11 +978,23 @@
     </message>
     <message>
         <source>Catalog Create Finished</source>
-        <translation>カタログの作成が完了しました</translation>
+        <translation type="vanished">カタログの作成が完了しました</translation>
     </message>
     <message>
         <source>Catalog Create Cancelled</source>
         <translation>カタログの作成がキャンセルされました</translation>
+    </message>
+    <message>
+        <source>Successed!</source>
+        <translation>完了!</translation>
+    </message>
+    <message>
+        <source>Creating Catalog Finished</source>
+        <translation>カタログの作成が完了しました</translation>
+    </message>
+    <message>
+        <source>Cancelled!</source>
+        <translation>キャンセルされました!</translation>
     </message>
 </context>
 <context>

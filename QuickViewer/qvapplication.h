@@ -5,7 +5,7 @@
 #include <QSettings>
 #include <QMap>
 #include <QKeySequence>
-#include "shadermanager.h"
+#include "qv_init.h"
 
 #if defined(qApp)
 #undef qApp
@@ -54,13 +54,21 @@ class QVApplication : public QApplication
     Q_PROPERTY(QByteArray WindowGeometry READ WindowGeometry WRITE setWindowGeometry)
     Q_PROPERTY(QByteArray WindowState READ WindowState WRITE setWindowState)
 
-    // Shaders
-    Q_PROPERTY(ShaderManager::ShaderEffect Effect READ Effect WRITE setEffect)
-    Q_PROPERTY(QString BicubicShaderPath READ BicubicShaderPath WRITE setBicubicShaderPath)
-    Q_PROPERTY(QString LanczosShaderPath READ LanczosShaderPath WRITE setLanczosShaderPath)
+    // Catalog
+    Q_PROPERTY(qvEnums::CatalogViewMode CatalogViewModeSetting READ CatalogViewModeSetting WRITE setCatalogViewModeSetting)
+    Q_PROPERTY(QString CatalogDatabasePath READ CatalogDatabasePath WRITE setCatalogDatabasePath)
+    Q_PROPERTY(int MaxSearchByCharChanged READ MaxSearchByCharChanged WRITE setMaxSearchByCharChanged)
+    Q_PROPERTY(int MaxShowFrontpage READ MaxShowFrontpage WRITE setMaxShowFrontpage)
+    Q_PROPERTY(bool TitleWithoutOptions READ TitleWithoutOptions WRITE setTitleWithoutOptions)
+    Q_PROPERTY(bool SearchTitleWithOptions READ SearchTitleWithOptions WRITE setSearchTitleWithOptions)
 
     // Key Config
     Q_PROPERTY(QMap<QString, QKeySequence> KeyConfigMap READ KeyConfigMap)
+
+    // Shaders
+    Q_PROPERTY(qvEnums::ShaderEffect Effect READ Effect WRITE setEffect)
+    Q_PROPERTY(QString BicubicShaderPath READ BicubicShaderPath WRITE setBicubicShaderPath)
+    Q_PROPERTY(QString LanczosShaderPath READ LanczosShaderPath WRITE setLanczosShaderPath)
 
 public:
     explicit QVApplication(int &argc, char **argv);
@@ -102,6 +110,7 @@ public:
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     bool AutoLoaded() { return m_autoLoaded; }
     void setAutoLoaded (bool autoLoaded) { m_autoLoaded = autoLoaded; }
+
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
     const QStringList& History() const { return m_history; }
@@ -117,9 +126,24 @@ public:
     void clearBookmarks() { m_bookmarks.clear(); }
     void addBookMark(QString path, bool canDumplication=false);
 
+    // Catalog
+    qvEnums::CatalogViewMode CatalogViewModeSetting() { return m_catalogViewModeSetting; }
+    void setCatalogViewModeSetting (qvEnums::CatalogViewMode catalogViewModeSetting) { m_catalogViewModeSetting = catalogViewModeSetting; }
+    QString CatalogDatabasePath() { return getApplicationFilePath(m_catalogDatabasePath); }
+    void setCatalogDatabasePath (QString catalogDatabasePath) { m_catalogDatabasePath = catalogDatabasePath; }
+    int MaxSearchByCharChanged() { return m_maxSearchByCharChanged; }
+    void setMaxSearchByCharChanged (int maxSearchByCharChanged) { m_maxSearchByCharChanged = maxSearchByCharChanged; }
+    int MaxShowFrontpage() { return m_maxShowFrontpage; }
+    void setMaxShowFrontpage (int maxShowFrontpage) { m_maxShowFrontpage = maxShowFrontpage; }
+    bool TitleWithoutOptions() { return m_titleWithoutOptions; }
+    void setTitleWithoutOptions (bool titleWithoutOptions) { m_titleWithoutOptions = titleWithoutOptions; }
+    bool SearchTitleWithOptions() { return m_searchTitleWithOptions; }
+    void setSearchTitleWithOptions (bool searchTitleWithOptions) { m_searchTitleWithOptions = searchTitleWithOptions; }
+
+
     // ShaderEffect
-    ShaderManager::ShaderEffect Effect() { return m_effect; }
-    void setEffect (ShaderManager::ShaderEffect shaderEffect) { m_effect = shaderEffect; }
+    qvEnums::ShaderEffect Effect() { return m_effect; }
+    void setEffect (qvEnums::ShaderEffect shaderEffect) { m_effect = shaderEffect; }
     QString BicubicShaderPath() { return getApplicationFilePath(m_bicubicShaderPath); }
     void setBicubicShaderPath (QString bicubicShaderPath) { m_bicubicShaderPath = bicubicShaderPath; }
     QString LanczosShaderPath() { return getApplicationFilePath(m_lanczosShaderPath); }
@@ -127,13 +151,6 @@ public:
 
     // Key Config
     QMap<QString, QKeySequence>& KeyConfigMap() { return m_keyConfigs; }
-//    QString KeySequenceListToString(QKeySequenceList& list) const {
-//        QStringList strs;
-//        foreach(const QKeySequence& seq, list) {
-//            strs << seq.toString();
-//        }
-//        return strs.join(", ");
-//    }
     QString getKeySequenceSerialized(const QString& actionName) {
         if(!m_keyConfigs.contains(actionName))
             return "";
@@ -152,6 +169,7 @@ public:
             m_keyConfigsReverse[seq[i]] = actionName;
         }
     }
+    void registDefaultKeyMap();
     void registActions(Ui::MainWindow* ui);
     void setKeySequence(const QString& actionName, const QKeySequence seq) {
         if(!m_actionsByName.contains(actionName))
@@ -212,6 +230,8 @@ public:
 private:
     bool m_glInitialized;
     int m_maxTextureSize;
+
+    // View
     bool m_fitting;
     bool m_dualView;
     bool m_stayOnTop;
@@ -219,9 +239,12 @@ private:
      * @brief if true, it will be supported for 'bound on the left side books'(e.g. books in Japan)
      */
     bool m_rightSideBook;
-    int m_maxHistoryCount;
-    int m_maxBookmarkCount;
-    bool m_autoLoaded;
+    /**
+     * @brief if true, a wide image must be one view whether dual view is enabled
+     */
+    bool m_wideImageAsOnePageInDualView;
+    bool m_firstImageAsOnePageInDualView;
+
     bool m_showToolBar;
     bool m_showSliderBar;
     bool m_showStatusBar;
@@ -232,23 +255,34 @@ private:
     QByteArray m_windowGeometry;
     QByteArray m_windowState;
 
-    /**
-     * @brief if true, a wide image must be one view whether dual view is enabled
-     */
-    bool m_wideImageAsOnePageInDualView;
-    bool m_firstImageAsOnePageInDualView;
-    // Shader Effect
-    ShaderManager::ShaderEffect m_effect;
-    QString m_bicubicShaderPath;
-    QString m_lanczosShaderPath;
-
-    QSettings m_settings;
+    // File
+    bool m_autoLoaded;
     QStringList m_history;
+    int m_maxHistoryCount;
     QStringList m_bookmarks;
+    int m_maxBookmarkCount;
+
+    // Catalog
+    qvEnums::CatalogViewMode m_catalogViewModeSetting;
+    QString m_catalogDatabasePath;
+    int m_maxSearchByCharChanged;
+    int m_maxShowFrontpage;
+    bool m_titleWithoutOptions;
+    bool m_searchTitleWithOptions;
+    bool m_switchVolumesWhenCatalogShowing;
+
+    // KeyConfig
     QMap<QString, QKeySequence> m_keyConfigs;
     QMap<QString, QKeySequence> m_keyConfigDefauls;
     QMap<QString, QAction*> m_actionsByName;
     QMap<QKeySequence, QString> m_keyConfigsReverse;
+
+    // Shader Effect
+    qvEnums::ShaderEffect m_effect;
+    QString m_bicubicShaderPath;
+    QString m_lanczosShaderPath;
+
+    QSettings m_settings;
 };
 
 #endif // QVAPPLICATION_H

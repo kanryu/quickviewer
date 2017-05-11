@@ -20,6 +20,13 @@
    <iconset resource="../toolbar.qrc">
     <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QToolButton {
+    border-style: none;
+    padding 0px;
+}
+</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -45,6 +52,7 @@
       <addaction name="actionFolderViewList"/>
       <addaction name="actionFolderViewIcon"/>
       <addaction name="actionFolderViewIconNoText"/>
+      <addaction name="separator"/>
      </widget>
      <widget class="QMenu" name="menu_File">
       <property name="title">
@@ -80,7 +88,7 @@
        <string>FolderViewSelect</string>
       </property>
       <property name="text">
-       <string>...</string>
+       <string/>
       </property>
       <property name="icon">
        <iconset resource="../toolbar.qrc">
@@ -115,8 +123,11 @@
       <property name="accessibleDescription">
        <string/>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="text">
-       <string>...</string>
+       <string/>
       </property>
       <property name="icon">
        <iconset resource="../toolbar.qrc">
@@ -264,6 +275,22 @@
   <action name="actionCloseWindow">
    <property name="text">
     <string>&amp;CloseWindow</string>
+   </property>
+  </action>
+  <action name="actionTitleWithoutOptions">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Remove (Options) from Book Title</string>
+   </property>
+  </action>
+  <action name="actionSearchTitleWithOptions">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Remove (Options) from book title when searching</string>
    </property>
   </action>
  </widget>
@@ -444,5 +471,7 @@
   <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
   <slot>on_searchTextFinished()</slot>
   <slot>on_searchTextIndexChanged(QString)</slot>
+  <slot>on_searchTitleWithOptions_triggered(bool)</slot>
+  <slot>on_catalogTitleWithoutOptions_triggered(bool)</slot>
  </slots>
 </ui>

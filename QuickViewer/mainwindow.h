@@ -22,6 +22,7 @@ public:
     virtual bool setStayOnTop(bool ) {return false;}
     virtual void setWindowTop() {}
 
+    void resetShortcutKeys();
     void keyPressEvent(QKeyEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
     void makeHistoryMenu();
@@ -34,6 +35,7 @@ public:
     void makeBookmarkMenu();
     void setThumbnailManager(ThumbnailManager* manager);
     void loadVolume(QString path);
+    bool isCatalogSearching();
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);
@@ -53,6 +55,14 @@ public slots:
     void on_manageCatalogs_triggered();
     void on_manageCatalogsClosed_triggered();
     void on_openVolumeByCatalog_triggered(QString path);
+    void on_searchTitleWithOptions_triggered(bool enable);
+    void on_catalogTitleWithoutOptions_triggered(bool enable);
+    void on_catalogViewList_triggered();
+    void on_catalogViewIcon_triggered();
+    void on_catalogViewNotext_triggered();
+
+
+
 
     // PageBar
     void on_pageChanged_triggered();

@@ -89,7 +89,7 @@ void LanczosShaderEffect::createOffsets(int count, float width, Qt::Orientation 
 ShaderManager::ShaderManager(QObject *parent)
     : QObject(parent)
     , pageCnt(0)
-    , m_oldEffect(Bilinear)
+    , m_oldEffect(qvEnums::Bilinear)
 {
     loadShader(m_bicubic, qApp->BicubicShaderPath());
     loadShader(m_lanczos, qApp->LanczosShaderPath());
@@ -110,25 +110,25 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
 {
     if(!item)
         return;
-    ShaderEffect effect = qApp->Effect();
+    qvEnums::ShaderEffect effect = qApp->Effect();
     QGraphicsShaderEffect * shader = nullptr;
     switch(effect) {
-    case NearestNeighbor:
-        if(m_oldEffect != NearestNeighbor)
+    case qvEnums::NearestNeighbor:
+        if(m_oldEffect != qvEnums::NearestNeighbor)
             item->setTransformationMode(Qt::FastTransformation);
-        if(m_oldEffect > UsingSomeShader)
+        if(m_oldEffect > qvEnums::UsingSomeShader)
             item->setGraphicsEffect(shader);
         break;
-    case Bilinear:
-        if(m_oldEffect != Bilinear)
+    case qvEnums::Bilinear:
+        if(m_oldEffect != qvEnums::Bilinear)
             item->setTransformationMode(Qt::SmoothTransformation);
-        if(m_oldEffect > UsingSomeShader)
+        if(m_oldEffect > qvEnums::UsingSomeShader)
             item->setGraphicsEffect(shader);
         break;
-    case Bicubic:
-        if(m_oldEffect == NearestNeighbor)
+    case qvEnums::Bicubic:
+        if(m_oldEffect == qvEnums::NearestNeighbor)
             item->setTransformationMode(Qt::SmoothTransformation);
-        if(m_oldEffect != Bicubic) {
+        if(m_oldEffect != qvEnums::Bicubic) {
             if(m_bicubic.length() > 0) {
                 shader = new QGraphicsShaderEffect(this);
                 shader->setPixelShaderFragment(m_bicubic);
@@ -136,10 +136,10 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
             item->setGraphicsEffect(shader);
         }
         break;
-    case Lanczos:
-        if(m_oldEffect == NearestNeighbor)
+    case qvEnums::Lanczos:
+        if(m_oldEffect == qvEnums::NearestNeighbor)
             item->setTransformationMode(Qt::SmoothTransformation);
-        if(m_oldEffect != Lanczos) {
+        if(m_oldEffect != qvEnums::Lanczos) {
             if(m_lanczos.length() > 0) {
                 auto lanczos = new LanczosShaderEffect(this);
                 lanczos->setPixelShaderFragment(m_lanczos);

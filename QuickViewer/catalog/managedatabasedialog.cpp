@@ -228,7 +228,7 @@ void ManageDatabaseDialog::on_catalogCreateFinished()
 
     QMessageBox msgBox(this);
     msgBox.setWindowTitle(tr("Successed!"));
-    QString message = QString(tr("Catalog Create Finished"));
+    QString message = QString(tr("Creating Catalog Finished"));
 
     msgBox.setText(message);
     msgBox.exec();

@@ -8,7 +8,7 @@
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_settings(getApplicationFilePath(APP_INI), QSettings::IniFormat, this)
-    , m_effect(ShaderManager::Bilinear)
+    , m_effect(qvEnums::Bilinear)
     , m_glInitialized(false)
     , m_maxTextureSize(4096)
 {
@@ -16,24 +16,42 @@ QVApplication::QVApplication(int &argc, char **argv)
     setApplicationName(APP_NAME);
     setOrganizationName(APP_ORGANIZATION);
 
+    m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
+
+    registDefaultKeyMap();
+    loadSettings();
+}
+
+QString QVApplication::getApplicationFilePath(QString subFilePath)
+{
+    return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
+}
+
+void QVApplication::registDefaultKeyMap()
+{
     // Default key configs
     m_keyConfigDefauls["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
     m_keyConfigDefauls["actionNextPage"] = QKeySequence("L, Right, Space");
     m_keyConfigDefauls["actionPrevPage"] = QKeySequence("H, Left, Backspace");
-    m_keyConfigDefauls["actionScaleUp"] = QKeySequence("K, Num++");
-    m_keyConfigDefauls["actionScaleDown"] = QKeySequence("J, Num+-");
-    m_keyConfigDefauls["actionManageCatalog"] = QKeySequence("F6");
+    m_keyConfigDefauls["actionFastForward"] = QKeySequence("Shift+L, Num+3");
+    m_keyConfigDefauls["actionFastBackward"] = QKeySequence("Shift+H, Num+1");
+    m_keyConfigDefauls["actionLastPage"] = QKeySequence("Ctrl+L, End");
+    m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Ctrl+H, Home");
+    m_keyConfigDefauls["actionNextVolume"] = QKeySequence("Ctrl+J, PgDown");
+    m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("Ctrl+K, PgUp");
+
+    m_keyConfigDefauls["actionZoomIn"] = QKeySequence("K, Num++");
+    m_keyConfigDefauls["actionZoomOut"] = QKeySequence("J, Num+-");
+
+    m_keyConfigDefauls["actionShowCatalog"] = QKeySequence("Ctrl+/, F6");
     m_keyConfigDefauls["actionSlideShow"] = QKeySequence("F7");
     m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
     m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
     m_keyConfigDefauls["actionDualView"] = QKeySequence("Y, F10");
     m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
     m_keyConfigDefauls["actionFitting"] = QKeySequence("M, F12, Num+*");
+
     m_keyConfigDefauls["actionRotate"] = QKeySequence("R");
-    m_keyConfigDefauls["actionLastPage"] = QKeySequence("Ctrl+L, End");
-    m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Ctrl+H, Home");
-    m_keyConfigDefauls["actionNextVolume"] = QKeySequence("PgDown");
-    m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("PgUp");
     m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
 
     m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
@@ -44,23 +62,8 @@ QVApplication::QVApplication(int &argc, char **argv)
 
     m_keyConfigDefauls["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
 
-    m_keyConfigDefauls["actionFastForward"] = QKeySequence("Shift+L, Num+3");
-    m_keyConfigDefauls["actionFastBackward"] = QKeySequence("Shift+H, Num+1");
-
     m_keyConfigs = m_keyConfigDefauls;
     m_keyConfigs.detach();
-
-    //qDebug() << m_keyConfigs;
-
-    m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
-
-    loadSettings();
-    //qDebug() << m_keyConfigs;
-}
-
-QString QVApplication::getApplicationFilePath(QString subFilePath)
-{
-    return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
 }
 
 void QVApplication::registActions(Ui::MainWindow *ui)
@@ -70,8 +73,6 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionClearHistory", ui->actionClearHistory);
     registAction("actionAutoLoaded", ui->actionAutoLoaded);
     registAction("actionExit", ui->actionExit);
-    registAction("actionManageCatalog", ui->actionManageCatalog);
-
 
     // Bookmark
     registAction("actionClearBookmarks", ui->actionClearBookmarks);
@@ -91,22 +92,28 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionPrevOnePage", ui->actionPrevOnePage);
     registAction("actionSlideShow", ui->actionSlideShow);
 
+    // Catalog
+    registAction("actionShowCatalog", ui->actionShowCatalog);
+    registAction("actionSearchTitleWithOptions", ui->actionSearchTitleWithOptions);
+    registAction("actionCatalogTitleWithoutOptions", ui->actionCatalogTitleWithoutOptions);
+
     // View
     registAction("actionRotate", ui->actionRotate);
     registAction("actionFitting", ui->actionFitting);
-    registAction("actionScaleUp", ui->actionScaleUp);
-    registAction("actionScaleDown", ui->actionScaleDown);
-    registAction("actionStayOnTop", ui->actionStayOnTop);
+    registAction("actionZoomIn", ui->actionZoomIn);
+    registAction("actionZoomOut", ui->actionZoomOut);
 
     registAction("actionDualView", ui->actionDualView);
     registAction("actionRightSideBook", ui->actionRightSideBook);
     registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
     registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
 
+    registAction("actionRestoreWindowState", ui->actionRestoreWindowState);
     registAction("actionFullscreen", ui->actionFullscreen);
+    registAction("actionStayOnTop", ui->actionStayOnTop);
+
     registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
     registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal);
-    registAction("actionRestoreWindowState", ui->actionRestoreWindowState);
 
     // Toolbar
     registAction("actionShowToolBar", ui->actionShowToolBar);
@@ -121,15 +128,17 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionCopyFile", ui->actionCopyFile);
     registAction("actionDeletePage", ui->actionDeletePage);
 
-    registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
-    registAction("actionCheckVersion", ui->actionCheckVersion);
-    registAction("actionAppVersion", ui->actionAppVersion);
-
     // Shader
     registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor);
     registAction("actionShaderBilinear", ui->actionShaderBilinear);
     registAction("actionShaderBicubic", ui->actionShaderBicubic);
     registAction("actionShaderLanczos", ui->actionShaderLanczos);
+
+    // Help
+    registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
+    registAction("actionCheckVersion", ui->actionCheckVersion);
+    registAction("actionProjectWeb", ui->actionProjectWeb);
+    registAction("actionAppVersion", ui->actionAppVersion);
 }
 
 void QVApplication::onGLInitialized()
@@ -203,6 +212,17 @@ void QVApplication::loadSettings()
     m_maxBookmarkCount = m_settings.value("MaxBookmarkCount", 20).toInt();
     m_settings.endGroup();
 
+    m_settings.beginGroup("Catalog");
+    QString viewModestring = m_settings.value("CatalogViewModeSetting", "Icon").toString();
+    int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
+    m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
+    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
+    m_maxSearchByCharChanged = m_settings.value("MaxSearchByCharChanged", 10000).toInt();
+    m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();
+    m_titleWithoutOptions = m_settings.value("TitleWithoutOptions", false).toBool();
+    m_searchTitleWithOptions = m_settings.value("SearchTitleWithOptions", false).toBool();
+    m_settings.endGroup();
+
     m_settings.beginGroup("KeyConfig");
     foreach(const QString& action, m_settings.childKeys()) {
         QString str = m_settings.value(action, "").toString();
@@ -248,6 +268,16 @@ void QVApplication::saveSettings()
     m_settings.setValue("History", QVariant::fromValue(m_history));
     m_settings.setValue("MaxBookmarkCount", m_maxBookmarkCount);
     m_settings.setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
+    m_settings.endGroup();
+
+    m_settings.beginGroup("Catalog");
+    int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
+    QString viewModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_catalogViewModeSetting));
+    m_settings.setValue("CatalogViewModeSetting", viewModestring);
+    m_settings.setValue("MaxSearchByCharChanged", m_maxSearchByCharChanged);
+    m_settings.setValue("MaxShowFrontpage", m_maxShowFrontpage);
+    m_settings.setValue("TitleWithoutOptions", m_titleWithoutOptions);
+    m_settings.setValue("SearchTitleWithOptions", m_searchTitleWithOptions);
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");

@@ -21,7 +21,8 @@
   border: 1px solid gray;
   border-radius: 3px;
   padding: 5px;
-}</string>
+}
+</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -202,7 +203,9 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-width 2px;</string>
+         <string notr="true">border-width: 2px;
+padding: 8px;
+</string>
         </property>
         <property name="text">
          <string notr="true">Cancel work</string>

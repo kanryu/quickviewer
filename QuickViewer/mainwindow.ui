@@ -213,8 +213,6 @@
     <addaction name="actionClearHistory"/>
     <addaction name="actionAutoLoaded"/>
     <addaction name="separator"/>
-    <addaction name="actionManageCatalog"/>
-    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuView">
@@ -222,8 +220,8 @@
      <string>&amp;View</string>
     </property>
     <addaction name="actionRotate"/>
-    <addaction name="actionScaleUp"/>
-    <addaction name="actionScaleDown"/>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
     <addaction name="actionFitting"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
@@ -309,8 +307,22 @@
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
    </widget>
+   <widget class="QMenu" name="menu_Catalog">
+    <property name="title">
+     <string>&amp;Catalog</string>
+    </property>
+    <addaction name="actionShowCatalog"/>
+    <addaction name="separator"/>
+    <addaction name="actionCatalogViewList"/>
+    <addaction name="actionCatalogViewIcon"/>
+    <addaction name="actionCatalogViewIconNoText"/>
+    <addaction name="separator"/>
+    <addaction name="actionCatalogTitleWithoutOptions"/>
+    <addaction name="actionSearchTitleWithOptions"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuNavigation"/>
+   <addaction name="menu_Catalog"/>
    <addaction name="menuView"/>
    <addaction name="menuShader"/>
    <addaction name="menuHelp"/>
@@ -330,8 +342,6 @@
    <addaction name="actionFirstPage"/>
    <addaction name="actionLastPage"/>
    <addaction name="separator"/>
-   <addaction name="actionManageCatalog"/>
-   <addaction name="separator"/>
    <addaction name="actionSaveBookmark"/>
    <addaction name="actionLoadBookmark"/>
    <addaction name="separator"/>
@@ -340,9 +350,11 @@
    <addaction name="separator"/>
    <addaction name="actionSlideShow"/>
    <addaction name="separator"/>
+   <addaction name="actionShowCatalog"/>
+   <addaction name="separator"/>
    <addaction name="actionRotate"/>
-   <addaction name="actionScaleUp"/>
-   <addaction name="actionScaleDown"/>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
    <addaction name="separator"/>
    <addaction name="actionFitting"/>
    <addaction name="actionDualView"/>
@@ -368,6 +380,9 @@
    <property name="toolTip">
     <string>NextPage</string>
    </property>
+   <property name="shortcut">
+    <string/>
+   </property>
    <property name="shortcutContext">
     <enum>Qt::WindowShortcut</enum>
    </property>
@@ -384,25 +399,28 @@
     <string>PrevPage</string>
    </property>
   </action>
-  <action name="actionScaleUp">
+  <action name="actionZoomIn">
    <property name="icon">
     <iconset resource="toolbar.qrc">
      <normaloff>:/icons/power_plus_icon</normaloff>:/icons/power_plus_icon</iconset>
    </property>
    <property name="text">
-    <string>Scale&amp;Up</string>
+    <string>Zoom&amp;In</string>
+   </property>
+   <property name="toolTip">
+    <string>ZoomIn</string>
    </property>
   </action>
-  <action name="actionScaleDown">
+  <action name="actionZoomOut">
    <property name="icon">
     <iconset resource="toolbar.qrc">
      <normaloff>:/icons/power_minus_icon</normaloff>:/icons/power_minus_icon</iconset>
    </property>
    <property name="text">
-    <string>Scale&amp;Out</string>
+    <string>Zoom&amp;Out</string>
    </property>
    <property name="toolTip">
-    <string>ScaleOut</string>
+    <string>ZoomOut</string>
    </property>
   </action>
   <action name="actionFitting">
@@ -759,13 +777,74 @@
     <string>&amp;Project WebPage by your browser</string>
    </property>
   </action>
-  <action name="actionManageCatalog">
+  <action name="actionShowCatalog">
    <property name="icon">
     <iconset resource="toolbar.qrc">
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
    </property>
    <property name="text">
-    <string>Manage&amp;Catalogs</string>
+    <string>Show&amp;Catalog</string>
+   </property>
+   <property name="toolTip">
+    <string>ShowCatalog</string>
+   </property>
+  </action>
+  <action name="actionCatalogTitleWithoutOptions">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Remove (Options) from Book Title</string>
+   </property>
+  </action>
+  <action name="actionSearchTitleWithOptions">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Remove (Options) from book title when searching</string>
+   </property>
+  </action>
+  <action name="actionCatalogViewIcon">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
+   </property>
+   <property name="text">
+    <string>CatalogViewIcon</string>
+   </property>
+   <property name="toolTip">
+    <string>CatalogViewIcon</string>
+   </property>
+  </action>
+  <action name="actionCatalogViewIconNoText">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
+   </property>
+   <property name="text">
+    <string>CatalogViewIconNoText</string>
+   </property>
+   <property name="toolTip">
+    <string>CatalogViewIconNoText</string>
+   </property>
+  </action>
+  <action name="actionCatalogViewList">
+   <property name="icon">
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
+   </property>
+   <property name="text">
+    <string>CatalogViewList</string>
+   </property>
+   <property name="toolTip">
+    <string>CatalogViewList</string>
    </property>
   </action>
  </widget>
@@ -852,7 +931,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionScaleUp</sender>
+   <sender>actionZoomIn</sender>
    <signal>triggered()</signal>
    <receiver>graphicsView</receiver>
    <slot>on_scaleUp_triggered()</slot>
@@ -868,7 +947,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionScaleDown</sender>
+   <sender>actionZoomOut</sender>
    <signal>triggered()</signal>
    <receiver>graphicsView</receiver>
    <slot>on_scaleDown_triggered()</slot>
@@ -1636,10 +1715,90 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionManageCatalog</sender>
+   <sender>actionShowCatalog</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>on_manageCatalogs_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCatalogTitleWithoutOptions</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_catalogTitleWithoutOptions_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSearchTitleWithOptions</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_searchTitleWithOptions_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCatalogViewList</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_catalogViewList_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCatalogViewIcon</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_catalogViewIcon_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCatalogViewIconNoText</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_catalogViewNotext_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1692,5 +1851,10 @@
   <slot>on_fittingChanged(bool)</slot>
   <slot>on_projectPage_triggered()</slot>
   <slot>on_manageCatalogs_triggered()</slot>
+  <slot>on_searchTitleWithOptions_triggered(bool)</slot>
+  <slot>on_catalogTitleWithoutOptions_triggered(bool)</slot>
+  <slot>on_catalogViewList_triggered()</slot>
+  <slot>on_catalogViewIcon_triggered()</slot>
+  <slot>on_catalogViewNotext_triggered()</slot>
  </slots>
 </ui>

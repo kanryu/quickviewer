@@ -9,6 +9,7 @@
 
 namespace Ui {
 class CatalogWindow;
+class MainWindow;
 }
 
 class SearchWords
@@ -27,7 +28,7 @@ class CatalogWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit CatalogWindow(QWidget *parent = 0);
+    explicit CatalogWindow(QWidget *parent, Ui::MainWindow* uiMain);
     ~CatalogWindow();
     void setThumbnailManager(ThumbnailManager* manager);
     void setAsToplevelWindow();
@@ -36,6 +37,7 @@ public:
     void searchByWord(bool doForce=false);
     void dragEnterEvent(QDragEnterEvent *e);
     void dropEvent(QDropEvent *e);
+    bool isCatalogSearching();
 
 public slots:
     void on_treeItemChanged(QString path);
@@ -48,6 +50,8 @@ public slots:
     void on_searchTextIndexChanged(QString search);
     void on_searchTextFinished();
     void on_itemDoubleClicked(QListWidgetItem * item);
+    void on_searchTitleWithOptions_triggered(bool enable);
+    void on_catalogTitleWithoutOptions_triggered(bool enable);
 
 signals:
     void openVolume(QString path);
@@ -65,7 +69,6 @@ private:
     QList<VolumeThumbRecord*> m_volumeSearch;
     QMenu m_folderViewMenu;
     QString m_lastSearchWord;
-    int m_maxVolumeViewing;
 };
 
 #endif // CATALOGWINDOW_H

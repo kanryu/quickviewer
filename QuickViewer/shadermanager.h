@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QMetaEnum>
 #include "filevolume.h"
+#include "qv_init.h"
 
 /**
  * @brief The ShaderManager class
@@ -16,16 +17,6 @@ class ShaderManager : public QObject
 {
     Q_OBJECT
 public:
-    enum ShaderEffect {
-        UnPrepared,
-        NearestNeighbor,
-        Bilinear,
-        UsingSomeShader,
-        Bicubic,
-        Lanczos
-    };
-    Q_ENUM(ShaderEffect)
-
     ShaderManager(QObject *parent = 0);
     /**
      * @brief prepare shader for each page
@@ -36,24 +27,24 @@ public:
      * @brief prepareFinished must be called once after all prepare()
      */
     void prepareFinished();
-    void prepareInitialize() { m_oldEffect = UnPrepared; pageCnt=0;}
+    void prepareInitialize() { m_oldEffect = qvEnums::UnPrepared; pageCnt=0;}
 
-    static QString shaderEffectToString(ShaderEffect effect)
+    static QString shaderEffectToString(qvEnums::ShaderEffect effect)
     {
-        QMetaEnum metaEnum = QMetaEnum::fromType<ShaderEffect>();
+        QMetaEnum metaEnum = QMetaEnum::fromType<qvEnums::ShaderEffect>();
         return metaEnum.valueToKey(effect);
     }
-    static ShaderEffect stringToShaderEffect(QString effect)
+    static qvEnums::ShaderEffect stringToShaderEffect(QString effect)
     {
-        QMetaEnum metaEnum = QMetaEnum::fromType<ShaderEffect>();
-        return (ShaderEffect)metaEnum.keysToValue(effect.toLatin1());
+        QMetaEnum metaEnum = QMetaEnum::fromType<qvEnums::ShaderEffect>();
+        return (qvEnums::ShaderEffect)metaEnum.keysToValue(effect.toLatin1());
     }
 
 private:
     void loadShader(QByteArray& target, QString path);
 
 //    ShaderEffect m_effect;
-    ShaderEffect m_oldEffect;
+    qvEnums::ShaderEffect m_oldEffect;
     int pageCnt;
     QByteArray m_bicubic;
     QByteArray m_lanczos;

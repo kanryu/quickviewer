@@ -107,6 +107,7 @@ ThumbnailManager::ThumbnailManager(QObject* parent, QString dbpath)
     , m_db(QSqlDatabase::addDatabase("QSQLITE"))
     , m_transaction(false)
     , m_catalogWatcher(this)
+    , m_volumesDurty(true)
 {
 
     m_db.setDatabaseName(dbpath);
@@ -255,6 +256,9 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
             if(v.volume_id < 0)
                 continue;
             if(v.frontPage.asc >= 0) {
+                QFileInfo info(v.dirpath);
+                emit m_catalogWatcher.progressTextChanged(info.fileName());
+
                 t_thumbs.bindValue(":width", v.frontPage.thumb.width());
                 t_thumbs.bindValue(":height", v.frontPage.thumb.height());
                 t_thumbs.bindValue(":thumbnail", v.frontPage.thumbbytes);
@@ -293,14 +297,114 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
 
 }
 
+static QString realname2BookTitle(QString realname)
+{
+    // Extract book title from folder name
+    // from: <<<(TAG1) [Publisher(Author)] book title (TAG2) (TAG3) ...>>>
+    //   to: <<<[Publisher(Author)] book title>>>
+    //
+    // e.g. 'Star Wars - Han Solo (2017) (Digital) (newcomic.info)'
+    //
+    // from: <<<# [TAG1] [TAG2] [Publisher(Author)] book title (TAG2) [TAG4] ...>>>
+    //   to: <<<[Publisher(Author)] book title>>>
+    //
+    // TAGs will save other fields
+
+    QList<QChar> parenthesis;
+    parenthesis << '?';
+    QStringList clist;
+    QStringList tag;
+    int cnt=0;
+    bool NumberSign = false;
+    bool authorExported = false;
+    foreach(QChar c, realname) {
+        switch(c.unicode()) {
+        case '#':
+            if(cnt==0) {
+                NumberSign = true;
+                parenthesis << c;
+            }
+            else if(parenthesis.last() == '#')
+                tag << c;
+            else
+                clist << c;
+            break;
+        case '[':
+            parenthesis << c;
+            if(tag.size())
+                tag.clear();
+            tag << c;
+            break;
+        case ']':
+            if(parenthesis.size() == 1)
+                break;
+            parenthesis.removeLast();
+            tag << c;
+            if(!NumberSign && !authorExported) {
+                clist << tag.join("");
+                tag.clear();
+                authorExported = true;
+            }
+            break;
+        case '(':
+            if(parenthesis.last() == '[')
+                tag << c;
+            else {
+                tag.clear();
+                if(parenthesis.last() == '#') {
+                    parenthesis.removeLast();
+                    NumberSign = false;
+                }
+                parenthesis << c;
+            }
+            break;
+        case ')':
+            if(parenthesis.size() == 1)
+                break;
+            if(parenthesis.last() == '[')
+                tag << c;
+            else
+                parenthesis.removeLast();
+            break;
+        default:
+            if(parenthesis.last() == '[')
+                tag << c;
+            else {
+                if(parenthesis.last() == '#') {
+                    if(c != ' ')
+                        tag << c;
+                    else
+                        parenthesis.removeLast();
+                }
+                else if (NumberSign && c != ' ' && tag.size()) {
+                    // last tag will be Publisher/Author
+                    clist << tag.join("") << " " << c;
+                    tag.clear();
+                    NumberSign = false;
+                }
+                else if(parenthesis.last() == '(')
+                    tag << c;
+                else
+                    clist << c;
+            }
+        }
+        cnt++;
+    }
+    QString result = clist.join("");
+    return result.trimmed();
+}
+
 int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int parent_id)
 {
     QFileInfo info(dirpath);
-    qDebug() << "volume: " << info.fileName();
-    emit m_catalogWatcher.progressTextChanged(info.fileName());
+    QString realname = info.fileName();
+    qDebug() << "volume: " << realname;
+    emit m_catalogWatcher.progressTextChanged(realname);
+
     QSqlQuery t_volumes(m_db);
-    t_volumes.prepare("INSERT INTO t_volumes (realname, path, catalog_id, parent_id) VALUES (:realname,:path,:catalog_id,:parent_id)");
-    t_volumes.bindValue(":realname", info.fileName());
+    t_volumes.prepare("INSERT INTO t_volumes (name, realname, path, catalog_id, parent_id) VALUES (:name, :realname,:path,:catalog_id,:parent_id)");
+    t_volumes.bindValue(":name", realname2BookTitle(realname));
+    t_volumes.bindValue(":realname", realname);
     t_volumes.bindValue(":path", QDir::toNativeSeparators(dirpath));
     t_volumes.bindValue(":catalog_id", catalog_id);
     t_volumes.bindValue(":parent_id", parent_id);
@@ -518,6 +622,7 @@ CatalogRecord ThumbnailManager::createCatalog(QString name, QString path)
     }
     commit();
     catalog.created = true;
+    m_volumesDurty = true;
     emit catalogCreated(catalog);
 
     return catalog;
@@ -576,6 +681,9 @@ QMap<int, CatalogRecord> ThumbnailManager::catalogs()
 
 QList<VolumeThumbRecord> ThumbnailManager::volumes()
 {
+    if(!m_volumesDurty) {
+        return m_volumesCacne;
+    }
     QList<VolumeThumbRecord> result;
     QSqlQuery v_volumethm(m_db);
     v_volumethm.prepare("SELECT * FROM v_volumethm");
@@ -584,6 +692,7 @@ QList<VolumeThumbRecord> ThumbnailManager::volumes()
         VolumeThumbRecord vtr;
         vtr.id = v_volumethm.value("id").toInt();
         vtr.name = v_volumethm.value("name").toString();
+        vtr.nameNoCase = vtr.name.toLower();
         vtr.realname = v_volumethm.value("realname").toString();
         vtr.realnameNoCase = vtr.realname.toLower();
         vtr.path = v_volumethm.value("path").toString();
@@ -592,7 +701,48 @@ QList<VolumeThumbRecord> ThumbnailManager::volumes()
         vtr.thumbnail = v_volumethm.value("thumbnail").toByteArray();
         result.append(vtr);
     }
-    return result;
+    m_volumesDurty = false;
+    return m_volumesCacne = result;
+}
+
+static VolumeThumbRecord thumbnail2Icon(VolumeThumbRecord vtr)
+{
+    QString aformat = IFileLoader::isImageFile("turbojpeg") ? TURBO_JPEG_FMT : "jpg";
+    QPixmap pixmap = QPixmap::fromImage(QImage::fromData(vtr.thumbnail, aformat.toUtf8()));
+//    QPixmap pixmap = QPixmap::fromImage(QImage::fromData(vtr.thumbnail));
+    vtr.icon = QIcon(pixmap);
+//    vtr.thumbnail.clear();
+    return vtr;
+}
+
+QList<VolumeThumbRecord> ThumbnailManager::volumes2()
+{
+    if(!m_volumesDurty) {
+        return m_volumesCacne;
+    }
+    QList<VolumeThumbRecord> result;
+    QList<QFuture<VolumeThumbRecord> > resultasync;
+    QSqlQuery v_volumethm(m_db);
+    v_volumethm.prepare("SELECT * FROM v_volumethm");
+    if(!execInsertQuery(v_volumethm, "v_volumethm")) result;
+    while(v_volumethm.next()) {
+        VolumeThumbRecord vtr;
+        vtr.id = v_volumethm.value("id").toInt();
+        vtr.name = v_volumethm.value("name").toString();
+        vtr.nameNoCase = vtr.name.toLower();
+        vtr.realname = v_volumethm.value("realname").toString();
+        vtr.realnameNoCase = vtr.realname.toLower();
+        vtr.path = v_volumethm.value("path").toString();
+        vtr.frontpage_id = v_volumethm.value("frontpage_id").toInt();
+        vtr.parent_id = v_volumethm.value("parent_id").toInt();
+        vtr.thumbnail = v_volumethm.value("thumbnail").toByteArray();
+        resultasync.append(QtConcurrent::run(thumbnail2Icon, vtr));
+    }
+    foreach(auto a, resultasync) {
+        result.append(a.result());
+    }
+    m_volumesDurty = false;
+    return m_volumesCacne = result;
 }
 
 
@@ -602,6 +752,8 @@ void ThumbnailManager::deleteCatalog(int id)
     t_thumbs.prepare("DELETE FROM t_thumbnails WHERE id IN (SELECT thumb_id FROM t_files WHERE volume_id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id))");
     t_thumbs.bindValue(":catalog_id", id);
     if(!execInsertQuery(t_thumbs, "t_thumbnails")) return;
+
+    m_volumesDurty = true;
 
     QSqlQuery t_files(m_db);
     t_files.prepare("DELETE FROM t_files WHERE volume_id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id)");
@@ -651,6 +803,7 @@ void ThumbnailManager::deleteAllCatalogs()
         if(!t_thumbs.exec("DELETE FROM t_catalogs")) break;
         commit();
         vacuum();
+        m_volumesDurty = true;
         return;
     } while(0);
     qDebug() << " query failed: " << t_thumbs.lastError();

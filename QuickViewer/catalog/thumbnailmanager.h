@@ -61,6 +61,7 @@ class VolumeThumbRecord
 public:
     int id;
     QString name;
+    QString nameNoCase;
     QString realname;
     QString realnameNoCase;
     QString path;
@@ -69,6 +70,7 @@ public:
     int parent_id;
     int catalog_id;
     QByteArray thumbnail;
+    QIcon icon;
 };
 
 // t_files
@@ -119,38 +121,26 @@ class ThumbnailManager : public QObject
 public:
     ThumbnailManager(QObject* parent, QString dbpath);
     void SetFrontPageOnly(bool only) { m_frontPageOnly=only; }
-
-    /* Volumes/Files */
-    int createSubVolumes(QString dirpath, int catalog_id, int parent_id=-1);
-    int createVolumeContent(QString dirpath, int parent_id=-1);
-    int createVolumeInternal(QString dirpath, int catalog_id, int parent_id=-1);
-    void updateVolumeOrders();
-
-    int createVolumesFrontPageOnly(QString dirpath, int catalog_id);
-    VolumeWorker createSubVolumesConcurrent(QString dirpath, int volume_id, int parent_id);
+    void vacuum();
+    void dispose();
 
 
     /* Catalogs */
+    QMap<int, CatalogRecord> catalogs();
+
     CatalogRecord createCatalog(QString name, QString path);
-    QList<CatalogRecord> callCreateCatalog(const QList<CatalogRecord>& newers);
     QFutureWatcher<QList<CatalogRecord>>* createCatalogAsync(QList<CatalogRecord> newers);
     void cancelCreateCatalogAsync();
-    QMap<int, CatalogRecord> catalogs();
-    QList<VolumeThumbRecord> volumes();
-
 
     void deleteCatalog(int id);
     void updateCatalogName(int id, QString name);
     void deleteAllCatalogs();
-    void transaction();
-    void forceTransaction();
-    void commit();
-    void rollback();
-    void vacuum();
 
-    void dispose();
+    /* Volumes */
+    QList<VolumeThumbRecord> volumes();
+    QList<QFuture<VolumeThumbRecord>> volumesAsync();
+    QList<VolumeThumbRecord> volumes2();
 
-    bool execInsertQuery(QSqlQuery& query, const QString& tablename);
     /**
      * @brief isImageFile check the file will be a image file
      * @param path
@@ -185,9 +175,6 @@ public:
 signals:
     void catalogCreated(CatalogRecord catalog);
 
-//private slots:
-//    void on_catalogCreated();
-
 private:
     QSqlDatabase m_db;
     bool m_transaction;
@@ -195,12 +182,32 @@ private:
     int m_catalogWorkProgress;
     int m_catalogWorkMax;
     bool m_frontPageOnly;
+    QList<VolumeThumbRecord> m_volumesCacne;
+    bool m_volumesDurty;
 
     static QList<QByteArray> st_supportedImageFormats;
     static QStringList st_jpegpegImageFormats;
     static QStringList st_heavyImageFormats;
 
+    /* Basical */
+    bool execInsertQuery(QSqlQuery& query, const QString& tablename);
+    void transaction();
+    void forceTransaction();
+    void commit();
+    void rollback();
+
+    /* Volumes/Files */
+    int createSubVolumes(QString dirpath, int catalog_id, int parent_id=-1);
+    int createVolumeContent(QString dirpath, int parent_id=-1);
+    int createVolumeInternal(QString dirpath, int catalog_id, int parent_id=-1);
+    void updateVolumeOrders();
+
+    int createVolumesFrontPageOnly(QString dirpath, int catalog_id);
+    VolumeWorker createSubVolumesConcurrent(QString dirpath, int volume_id, int parent_id);
     FileWorker createFileRecord(QString filename, QString filepath, int filename_asc);
+
+    /* Catalogs */
+    QList<CatalogRecord> callCreateCatalog(const QList<CatalogRecord>& newers);
 };
 
 #endif // THUMBNAILMANAGER_H

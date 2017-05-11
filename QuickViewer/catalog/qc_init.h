@@ -10,5 +10,6 @@
 #define MAX_HEIGHT MAX_WIDTH
 
 #define QUICKVIEWER "QuickViewer"
+#define TURBO_JPEG_FMT "turbojpeg"
 
 #endif // QC_INIT_H

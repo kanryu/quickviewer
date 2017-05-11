@@ -287,7 +287,7 @@ void ImageView::on_prevVolume_triggered()
 
 void ImageView::mouseMoveEvent(QMouseEvent *e)
 {
-    qDebug() << e;
+//    qDebug() << e;
     int NOT_HOVER_AREA = width() / 3;
     if(e->pos().x() < HOVER_BORDER && e->pos().y() < height()-HOVER_BORDER) {
         if(m_hoverState != Qt::AnchorLeft)

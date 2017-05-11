@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Mapping to Key-Action Table and Key Config Dialog
     qApp->registActions(ui);
+    resetShortcutKeys();
 
     m_shaderMenuGroup
             << ui->actionShaderNearestNeighbor
@@ -72,14 +73,25 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionLoadBookmark->setMenu(ui->menuLoadBookmark);
     connect(ui->menuLoadBookmark, SIGNAL(triggered(QAction*)), this, SLOT(on_loadBookmarkMenu_triggered(QAction*)) );
 
+    // Catalogs
+    ui->actionSearchTitleWithOptions->setChecked(qApp->SearchTitleWithOptions());
+    ui->actionCatalogTitleWithoutOptions->setChecked(qApp->TitleWithoutOptions());
+
+    switch(qApp->CatalogViewModeSetting()) {
+    case qvEnums::List: ui->actionCatalogViewList->setChecked(true); break;
+    case qvEnums::Icon: ui->actionCatalogViewIcon->setChecked(true); break;
+    case qvEnums::IconNoText: ui->actionCatalogViewIconNoText->setChecked(true); break;
+    }
+
     ui->statusBar->addPermanentWidget(ui->statusLabel);
     ui->statusLabel->setText(tr("any folder or archive is not loaded."));
 
+    // Shader
     switch(qApp->Effect()) {
-    case ShaderManager::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
-    case ShaderManager::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
-    case ShaderManager::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
-    case ShaderManager::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
+    case qvEnums::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
+    case qvEnums::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
+    case qvEnums::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
+    case qvEnums::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
     }
 
 
@@ -134,6 +146,16 @@ MainWindow::~MainWindow()
     delete ui;
     m_pageManager.dispose();
     qApp->saveSettings();
+}
+
+void MainWindow::resetShortcutKeys()
+{
+    QMap<QString, QAction*>& actions = qApp->ActionMapByName();
+    foreach(const QString& name, actions.keys()) {
+        auto a = actions[name];
+        auto seq = qApp->getKey(name);
+        a->setShortcut(seq);
+    }
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
@@ -314,6 +336,8 @@ void MainWindow::setThumbnailManager(ThumbnailManager *manager)
     m_thumbManager = manager;
 }
 
+const static QKeySequence seqReturn("Return");
+const static QKeySequence seqEnter("Num+Enter");
 /**
  * @brief 固定的なホットキーの設定
  */
@@ -322,6 +346,9 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     //int key = event->key();
     QKeySequence seq(event->key() | event->modifiers());
     qDebug() << seq;
+    if(isCatalogSearching() && (seq == seqReturn || seq == seqEnter)) {
+        return;
+    }
     QAction* action = qApp->getAction(seq);
     if(action)
         action->trigger();
@@ -519,17 +546,17 @@ void MainWindow::on_manageCatalogs_triggered()
         }
         return;
     }
-    m_catalogWindow = new CatalogWindow;
+    m_catalogWindow = new CatalogWindow(nullptr, ui);
     m_catalogWindow->setThumbnailManager(m_thumbManager);
     connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
     connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
-    m_catalogWindow->setAsInnerWidget();
     ui->catalogSplitter->insertWidget(0, m_catalogWindow);
     auto sizes = ui->catalogSplitter->sizes();
     int sum = sizes[0]+sizes[1];
     sizes[0] = 200;
     sizes[1] = sum-sizes[0];
     ui->catalogSplitter->setSizes(sizes);
+    m_catalogWindow->setAsInnerWidget();
 //    m_catalogWindow->resize(180, m_catalogWindow->height());
 //    m_catalogWindow->show();
 }
@@ -542,10 +569,61 @@ void MainWindow::on_manageCatalogsClosed_triggered()
     }
 }
 
+bool MainWindow::isCatalogSearching()
+{
+    if(!m_catalogWindow || !m_catalogWindow->parent())
+        return false;
+    return m_catalogWindow->isCatalogSearching();
+}
+
 void MainWindow::on_openVolumeByCatalog_triggered(QString path)
 {
     loadVolume(path);
     setWindowTop();
+}
+
+void MainWindow::on_searchTitleWithOptions_triggered(bool enable)
+{
+    qApp->setSearchTitleWithOptions(enable);
+    if(m_catalogWindow)
+        m_catalogWindow->resetVolumes();
+}
+
+void MainWindow::on_catalogTitleWithoutOptions_triggered(bool enable)
+{
+    qApp->setTitleWithoutOptions(enable);
+    if(m_catalogWindow)
+        m_catalogWindow->searchByWord(true);
+}
+
+void MainWindow::on_catalogViewList_triggered()
+{
+    qApp->setCatalogViewModeSetting(qvEnums::List);
+    ui->actionCatalogViewList->setChecked(true);
+    ui->actionCatalogViewIcon->setChecked(false);
+    ui->actionCatalogViewIconNoText->setChecked(false);
+    if(m_catalogWindow)
+        m_catalogWindow->resetVolumes();
+}
+
+void MainWindow::on_catalogViewIcon_triggered()
+{
+    qApp->setCatalogViewModeSetting(qvEnums::Icon);
+    ui->actionCatalogViewList->setChecked(false);
+    ui->actionCatalogViewIcon->setChecked(true);
+    ui->actionCatalogViewIconNoText->setChecked(false);
+    if(m_catalogWindow)
+        m_catalogWindow->resetVolumes();
+}
+
+void MainWindow::on_catalogViewNotext_triggered()
+{
+    qApp->setCatalogViewModeSetting(qvEnums::IconNoText);
+    ui->actionCatalogViewList->setChecked(false);
+    ui->actionCatalogViewIcon->setChecked(false);
+    ui->actionCatalogViewIconNoText->setChecked(true);
+    if(m_catalogWindow)
+        m_catalogWindow->resetVolumes();
 }
 
 void MainWindow::on_openfolder_triggered()
@@ -628,6 +706,8 @@ void MainWindow::on_openKeyConfig_triggered()
     int result = dialog.exec();
     if(result == QDialog::Rejected) {
         dialog.revertKeyChanges();
+    } else {
+        resetShortcutKeys();
     }
 }
 
@@ -717,7 +797,7 @@ void MainWindow::on_slideShow_triggered(bool )
 void MainWindow::on_shaderNearestNeighbor_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(ShaderManager::NearestNeighbor);
+    qApp->setEffect(qvEnums::NearestNeighbor);
     ui->actionShaderNearestNeighbor->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
@@ -726,14 +806,14 @@ void MainWindow::on_shaderBilinear_triggered()
 {
     uncheckAllShaderMenus();
     ui->actionShaderBilinear->setChecked(true);
-    qApp->setEffect(ShaderManager::Bilinear);
+    qApp->setEffect(qvEnums::Bilinear);
     ui->graphicsView->readyForPaint();
 }
 
 void MainWindow::on_shaderBicubic_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(ShaderManager::Bicubic);
+    qApp->setEffect(qvEnums::Bicubic);
     ui->actionShaderBicubic->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
@@ -741,7 +821,7 @@ void MainWindow::on_shaderBicubic_triggered()
 void MainWindow::on_shaderLanczos_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(ShaderManager::Lanczos);
+    qApp->setEffect(qvEnums::Lanczos);
     ui->actionShaderLanczos->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
