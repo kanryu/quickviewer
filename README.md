@@ -22,6 +22,8 @@ https://kanryu.github.io/quickviewer/
    - Sony(arw)
    - Ricoh(dng)
    - etc..
+ - Can make/view/search catalog from thousands of your digital books
+
 
 ## Download
 
@@ -60,6 +62,8 @@ https://kanryu.github.io/quickviewer/
     - Nearest Neighber
     - Bicubic
     - Lanczos
+- Catalog(via v0.6.0)
+    - Database for your digital books, can manage thansands of volumes, quick view and search
 
 ## Screen operations
 
