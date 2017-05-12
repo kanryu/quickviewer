@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v0.6.3, origin/master, origin/HEAD (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+
+much faster CatalogWindow
+- remove limitation volume counts
+- background volumes initialization
+- scroll vertical for ListMode on CatalogWindow
+- bugfixed: CatalogWindow as modeless, can't accept drop files
+- known problem: mouse wheel scroll is slow on CatalogWindow when ListMode -> Icon/IconNoText changed
+
+- other commits
+    - Update README.md (Fri May 12 01:46:20 2017 +0900) [02b037b](https://github.com/kanryu/quickviewer/commit/02b037bbc018ca748d9a8822f48adee9ba22c809)
+    - changelog (Thu May 11 22:48:28 2017 +0900) [b338740](https://github.com/kanryu/quickviewer/commit/b3387406eafee3bdce9c1eaffe1d2b14297ca833)
+
 ## v0.6.2 (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
 
 Add notation of shortcut, speedup for catalog, more simple title
