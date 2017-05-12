@@ -177,9 +177,36 @@
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="volumeList">
+    <widget class="QListView" name="volumeList">
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: #C0C0C0</string>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>96</width>
+       <height>96</height>
+      </size>
+     </property>
+     <property name="flow">
+      <enum>QListView::LeftToRight</enum>
+     </property>
+     <property name="isWrapping" stdset="0">
+      <bool>true</bool>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>false</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -445,9 +472,9 @@
   </connection>
   <connection>
    <sender>volumeList</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <signal>doubleClicked(QModelIndex)</signal>
    <receiver>CatalogWindow</receiver>
-   <slot>on_itemDoubleClicked(QListWidgetItem*)</slot>
+   <slot>on_itemDoubleClicked(QModelIndex)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>356</x>
@@ -473,5 +500,6 @@
   <slot>on_searchTextIndexChanged(QString)</slot>
   <slot>on_searchTitleWithOptions_triggered(bool)</slot>
   <slot>on_catalogTitleWithoutOptions_triggered(bool)</slot>
+  <slot>on_itemDoubleClicked(QModelIndex)</slot>
  </slots>
 </ui>

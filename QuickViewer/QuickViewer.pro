@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.6.2
+VERSION = 0.6.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -104,7 +104,8 @@ SOURCES += main.cpp \
     catalog/fileexplorermodel.cpp \
     catalog/managedatabasedialog.cpp \
     catalog/thumbnailmanager.cpp \
-    sidesplitter.cpp
+    sidesplitter.cpp \
+    catalog/volumeitemmodel.cpp
 
 HEADERS  += mainwindow.h \
     imageview.h \
@@ -126,7 +127,8 @@ HEADERS  += mainwindow.h \
     catalog/qc_init.h \
     catalog/thumbnailmanager.h \
     sidesplitter.h \
-    stdafx.h
+    stdafx.h \
+    catalog/volumeitemmodel.h
 
 win32 {
     SOURCES += mainwindowforwindows.cpp

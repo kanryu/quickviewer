@@ -118,6 +118,7 @@ ThumbnailManager::ThumbnailManager(QObject* parent, QString dbpath)
     else
     {
        qDebug() << "Database: connection ok";
+       QtConcurrent::run(this, &ThumbnailManager::volumes);
     }
 }
 

@@ -1,4 +1,7 @@
 #include <QtWidgets>
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#endif
 
 #include "ui_catalogwindow.h"
 #include "ui_mainwindow.h"
@@ -12,8 +15,13 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
     : QWidget(parent)
     , ui(new Ui::CatalogWindow)
     , m_folderViewMenu(this)
+    , m_itemModel(this)
 {
     ui->setupUi(this);
+
+    // VolumeView
+    m_itemModel.setViewMode(qApp->CatalogViewModeSetting());
+    ui->volumeList->setModel(&m_itemModel);
 
     // SearchCombo
     connect(ui->searchCombo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(on_searchTextFinished()));
@@ -39,16 +47,22 @@ CatalogWindow::~CatalogWindow()
 void CatalogWindow::setThumbnailManager(ThumbnailManager *manager)
 {
     m_thumbManager = manager;
-    m_volumes = m_thumbManager->volumes2();
-    searchByWord(true);
+    m_volumes = m_thumbManager->volumes();
 
-    on_folderViewIcon_triggered();
+    switch(qApp->CatalogViewModeSetting()) {
+    case qvEnums::List: on_folderViewList_triggered(); break;
+    case qvEnums::Icon: on_folderViewIcon_triggered(); break;
+    case qvEnums::IconNoText: on_folderViewNotext_triggered(); break;
+    }
+    searchByWord(true);
 }
 
 void CatalogWindow::setAsToplevelWindow()
 {
     ui->menuBar->setVisible(true);
     ui->statusLabel->setWordWrap(false);
+    setAttribute(Qt::WA_DropSiteRegistered, false);
+    setAcceptDrops(true);
 }
 
 void CatalogWindow::setAsInnerWidget()
@@ -65,71 +79,79 @@ bool CatalogWindow::isCatalogSearching()
 
 void CatalogWindow::resetVolumes()
 {
-    bool withText = !ui->actionFolderViewIconNoText->isChecked();
-    ui->volumeList->clear();
-    foreach(VolumeThumbRecord* vtr, m_volumeSearch) {
-        if(vtr->thumbnail.isEmpty())
-            continue;
-        auto item = new QListWidgetItem;
-//        if(vtr->icon.isNull()) {
-//            vtr->icon = QIcon(QPixmap::fromImage(QImage::fromData(vtr->thumbnail)));
-//        }
-        item->setIcon(vtr->icon);
-//        item->setIcon(QIcon(QPixmap::fromImage(QImage::fromData(vtr->thumbnail))));
-        item->setData(Qt::UserRole, vtr->path);
-        if(withText) {
-            if(qApp->TitleWithoutOptions())
-                item->setText(vtr->name);
-            else
-                item->setText(vtr->realname);
-        }
-        ui->volumeList->addItem(item);
-    }
+    m_itemModel.setVolumes(&m_volumeSearch);
     if(m_volumes.size() > 0) {
         QString volumestxt = QString(tr("(%1/%2) volumes listed."))
                 .arg(m_volumeSearch.size()).arg(m_volumes.size());
         ui->statusLabel->setText(volumestxt);
     }
+    return;
 
-    ui->volumeList->setIconSize(QSize(96,96));
-    ui->volumeList->setResizeMode(QListView::Adjust);
-    switch(qApp->CatalogViewModeSetting()) {
-    case qvEnums::List:
-        ui->volumeList->setWrapping(true);
-        ui->volumeList->setWordWrap(true);
-        ui->volumeList->setGridSize(QSize(150, 170));
-        ui->volumeList->setDragEnabled(false);
-        ui->volumeList->setTextElideMode(Qt::ElideRight);
+//    bool withText = !ui->actionFolderViewIconNoText->isChecked();
+//    ui->volumeList->clear();
+//    foreach(VolumeThumbRecord* vtr, m_volumeSearch) {
+//        if(vtr->thumbnail.isEmpty())
+//            continue;
+//        auto item = new QListWidgetItem;
+////        if(vtr->icon.isNull()) {
+////            vtr->icon = QIcon(QPixmap::fromImage(QImage::fromData(vtr->thumbnail)));
+////        }
+//        item->setIcon(vtr->icon);
+////        item->setIcon(QIcon(QPixmap::fromImage(QImage::fromData(vtr->thumbnail))));
+//        item->setData(Qt::UserRole, vtr->path);
+//        if(withText) {
+//            if(qApp->TitleWithoutOptions())
+//                item->setText(vtr->name);
+//            else
+//                item->setText(vtr->realname);
+//        }
+//        ui->volumeList->addItem(item);
+//    }
+//    if(m_volumes.size() > 0) {
+//        QString volumestxt = QString(tr("(%1/%2) volumes listed."))
+//                .arg(m_volumeSearch.size()).arg(m_volumes.size());
+//        ui->statusLabel->setText(volumestxt);
+//    }
 
-        ui->volumeList->setViewMode(QListView::ListMode);
-        ui->volumeList->setGridSize(QSize(300, 100));
-        ui->volumeList->setFlow(QListView::TopToBottom);
-        ui->volumeList->setUniformItemSizes(false);
-        break;
-    case qvEnums::Icon:
-        ui->volumeList->setWrapping(true);
-        ui->volumeList->setWordWrap(true);
-        ui->volumeList->setGridSize(QSize(150, 170));
-        ui->volumeList->setDragEnabled(false);
-        ui->volumeList->setTextElideMode(Qt::ElideRight);
+//    ui->volumeList->setIconSize(QSize(96,96));
+//    ui->volumeList->setResizeMode(QListView::Adjust);
+//    switch(qApp->CatalogViewModeSetting()) {
+//    case qvEnums::List:
+//        ui->volumeList->setWrapping(true);
+//        ui->volumeList->setWordWrap(true);
+//        ui->volumeList->setGridSize(QSize(150, 170));
+//        ui->volumeList->setDragEnabled(false);
+//        ui->volumeList->setTextElideMode(Qt::ElideRight);
 
-        ui->volumeList->setViewMode(QListView::IconMode);
-        ui->volumeList->setWordWrap(true);
-        ui->volumeList->setGridSize(QSize(150, 170));
-        ui->volumeList->setFlow(QListView::LeftToRight);
-        ui->volumeList->setUniformItemSizes(false);
-        break;
-    case qvEnums::IconNoText:
-        ui->volumeList->setWrapping(true);
-        ui->volumeList->setWordWrap(true);
-        ui->volumeList->setDragEnabled(false);
-        ui->volumeList->setTextElideMode(Qt::ElideRight);
+//        ui->volumeList->setViewMode(QListView::ListMode);
+//        ui->volumeList->setGridSize(QSize(300, 100));
+//        ui->volumeList->setFlow(QListView::TopToBottom);
+//        ui->volumeList->setUniformItemSizes(false);
+//        break;
+//    case qvEnums::Icon:
+//        ui->volumeList->setWrapping(true);
+//        ui->volumeList->setWordWrap(true);
+//        ui->volumeList->setGridSize(QSize(150, 170));
+//        ui->volumeList->setDragEnabled(false);
+//        ui->volumeList->setTextElideMode(Qt::ElideRight);
 
-        ui->volumeList->setViewMode(QListView::IconMode);
-        ui->volumeList->setGridSize(QSize(100, 100));
-        ui->volumeList->setFlow(QListView::LeftToRight);
-        ui->volumeList->setUniformItemSizes(false);
-    }
+//        ui->volumeList->setViewMode(QListView::IconMode);
+//        ui->volumeList->setWordWrap(true);
+//        ui->volumeList->setGridSize(QSize(150, 170));
+//        ui->volumeList->setFlow(QListView::LeftToRight);
+//        ui->volumeList->setUniformItemSizes(false);
+//        break;
+//    case qvEnums::IconNoText:
+//        ui->volumeList->setWrapping(true);
+//        ui->volumeList->setWordWrap(true);
+//        ui->volumeList->setDragEnabled(false);
+//        ui->volumeList->setTextElideMode(Qt::ElideRight);
+
+//        ui->volumeList->setViewMode(QListView::IconMode);
+//        ui->volumeList->setGridSize(QSize(100, 100));
+//        ui->volumeList->setFlow(QListView::LeftToRight);
+//        ui->volumeList->setUniformItemSizes(false);
+//    }
 }
 
 void CatalogWindow::searchByWord(bool doForce)
@@ -149,8 +171,8 @@ void CatalogWindow::searchByWord(bool doForce)
         QString title = qApp->SearchTitleWithOptions() ? vtr.nameNoCase : vtr.realnameNoCase;
         if(!searchwords.match(title))
             continue;
-        if(qApp->MaxShowFrontpage() < ++cnt)
-            break;
+//        if(qApp->MaxShowFrontpage() < ++cnt)
+//            break;
         m_volumeSearch.append(const_cast<VolumeThumbRecord*>(&vtr));
     }
     resetVolumes();
@@ -175,7 +197,7 @@ void CatalogWindow::dropEvent(QDropEvent *e)
     dialog.dropEvent(e);
     dialog.exec();
 
-    m_volumes = m_thumbManager->volumes2();
+    m_volumes = m_thumbManager->volumes();
     searchByWord(true);
 
     resetVolumes();
@@ -200,6 +222,12 @@ void CatalogWindow::on_folderViewList_triggered()
     ui->actionFolderViewList->setChecked(true);
     ui->actionFolderViewIcon->setChecked(false);
     ui->actionFolderViewIconNoText->setChecked(false);
+    m_itemModel.setViewMode(qvEnums::List);
+    ui->volumeList->setResizeMode(QListView::Adjust);
+    ui->volumeList->setGridSize(QSize(300, 100));
+    ui->volumeList->setViewMode(QListView::ListMode);
+    ui->volumeList->setUniformItemSizes(true);
+
     resetVolumes();
 }
 
@@ -209,6 +237,12 @@ void CatalogWindow::on_folderViewIcon_triggered()
     ui->actionFolderViewList->setChecked(false);
     ui->actionFolderViewIcon->setChecked(true);
     ui->actionFolderViewIconNoText->setChecked(false);
+    m_itemModel.setViewMode(qvEnums::Icon);
+    ui->volumeList->setResizeMode(QListView::Adjust);
+    ui->volumeList->setGridSize(QSize(150, 170));
+    ui->volumeList->setViewMode(QListView::IconMode);
+    ui->volumeList->setUniformItemSizes(true);
+
     resetVolumes();
 }
 
@@ -218,6 +252,12 @@ void CatalogWindow::on_folderViewNotext_triggered()
     ui->actionFolderViewList->setChecked(false);
     ui->actionFolderViewIcon->setChecked(false);
     ui->actionFolderViewIconNoText->setChecked(true);
+    m_itemModel.setViewMode(qvEnums::IconNoText);
+    ui->volumeList->setResizeMode(QListView::Adjust);
+    ui->volumeList->setViewMode(QListView::IconMode);
+    ui->volumeList->setGridSize(QSize(100, 100));
+    ui->volumeList->setUniformItemSizes(true);
+
     resetVolumes();
 }
 
@@ -227,16 +267,14 @@ void CatalogWindow::on_manageDatabase_triggered()
     dialog.setThumbnailManager(m_thumbManager);
     dialog.exec();
 
-    m_volumes = m_thumbManager->volumes2();
+    m_volumes = m_thumbManager->volumes();
     searchByWord(true);
-
-    resetVolumes();
 }
 
 void CatalogWindow::on_searchTextChanged(QString search)
 {
     qDebug() << search;
-    if(m_volumes.size() < qApp->MaxSearchByCharChanged())
+//    if(m_volumes.size() < qApp->MaxSearchByCharChanged())
         searchByWord();
     return;
 }
@@ -259,11 +297,18 @@ void CatalogWindow::on_itemDoubleClicked(QListWidgetItem *item)
     emit openVolume(path);
 }
 
+void CatalogWindow::on_itemDoubleClicked(const QModelIndex &index)
+{
+    int row = index.row();
+    if(row >= m_volumeSearch.size())
+        return;
+    emit openVolume(m_volumeSearch[row]->path);
+}
+
 void CatalogWindow::on_searchTitleWithOptions_triggered(bool enable)
 {
     qApp->setSearchTitleWithOptions(enable);
-    resetVolumes();
-
+    searchByWord(true);
 }
 
 void CatalogWindow::on_catalogTitleWithoutOptions_triggered(bool enable)
@@ -286,6 +331,8 @@ SearchWords::SearchWords(const QString &searchNoCase)
     }
     isEmpty = false;
     foreach(const QString& s, searchNoCase.trimmed().split(" ")) {
+        if(s.isEmpty())
+            continue;
         if(s[0] == '-')
             nomatches << s.mid(1);
         else

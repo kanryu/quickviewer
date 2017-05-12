@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QListWidget>
 #include "thumbnailmanager.h"
+#include "volumeitemmodel.h"
 
 namespace Ui {
 class CatalogWindow;
@@ -50,6 +51,7 @@ public slots:
     void on_searchTextIndexChanged(QString search);
     void on_searchTextFinished();
     void on_itemDoubleClicked(QListWidgetItem * item);
+    void on_itemDoubleClicked(const QModelIndex & index);
     void on_searchTitleWithOptions_triggered(bool enable);
     void on_catalogTitleWithoutOptions_triggered(bool enable);
 
@@ -69,6 +71,7 @@ private:
     QList<VolumeThumbRecord*> m_volumeSearch;
     QMenu m_folderViewMenu;
     QString m_lastSearchWord;
+    VolumeItemModel m_itemModel;
 };
 
 #endif // CATALOGWINDOW_H

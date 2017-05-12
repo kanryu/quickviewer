@@ -538,7 +538,18 @@ void MainWindow::on_manageCatalogs_triggered()
         if(!m_catalogWindow->parent())
             on_manageCatalogsClosed_triggered();
         else {
-            m_catalogWindow->setParent(nullptr);
+//            m_catalogWindow->setAcceptDrops(false);
+//            m_catalogWindow->setParent(nullptr);
+//            m_catalogWindow->setAcceptDrops(true);
+//            m_catalogWindow->setAsToplevelWindow();
+//            QRect self = geometry();
+//            m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+//            m_catalogWindow->show();
+            on_manageCatalogsClosed_triggered();
+            m_catalogWindow = new CatalogWindow(nullptr, ui);
+            m_catalogWindow->setThumbnailManager(m_thumbManager);
+            connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
+            connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
             m_catalogWindow->setAsToplevelWindow();
             QRect self = geometry();
             m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
@@ -725,6 +736,10 @@ void MainWindow::on_checkVersion_triggered()
 
 void MainWindow::on_exitApplicationOrFullscreen_triggered()
 {
+    if(m_catalogWindow) {
+        on_manageCatalogsClosed_triggered();
+        return;
+    }
     if(isFullScreen())
         ui->actionFullscreen->trigger();
     else
