@@ -61,6 +61,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(int MaxShowFrontpage READ MaxShowFrontpage WRITE setMaxShowFrontpage)
     Q_PROPERTY(bool TitleWithoutOptions READ TitleWithoutOptions WRITE setTitleWithoutOptions)
     Q_PROPERTY(bool SearchTitleWithOptions READ SearchTitleWithOptions WRITE setSearchTitleWithOptions)
+    Q_PROPERTY(bool ShowTagBar READ ShowTagBar WRITE setShowTagBar)
 
     // Key Config
     Q_PROPERTY(QMap<QString, QKeySequence> KeyConfigMap READ KeyConfigMap)
@@ -139,6 +140,8 @@ public:
     void setTitleWithoutOptions (bool titleWithoutOptions) { m_titleWithoutOptions = titleWithoutOptions; }
     bool SearchTitleWithOptions() { return m_searchTitleWithOptions; }
     void setSearchTitleWithOptions (bool searchTitleWithOptions) { m_searchTitleWithOptions = searchTitleWithOptions; }
+    bool ShowTagBar() { return m_showTagBar; }
+    void setShowTagBar (bool showTagBar) { m_showTagBar = showTagBar; }
 
 
     // ShaderEffect
@@ -270,6 +273,7 @@ private:
     bool m_titleWithoutOptions;
     bool m_searchTitleWithOptions;
     bool m_switchVolumesWhenCatalogShowing;
+    bool m_showTagBar;
 
     // KeyConfig
     QMap<QString, QKeySequence> m_keyConfigs;

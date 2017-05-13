@@ -51,6 +51,7 @@ public slots:
     void on_autoloaded_triggered(bool autoreload);
     void on_clearHistory_triggered();
     void on_historyMenu_triggered(QAction *action);
+
     // Catalog
     void on_manageCatalogs_triggered();
     void on_manageCatalogsClosed_triggered();
@@ -60,6 +61,7 @@ public slots:
     void on_catalogViewList_triggered();
     void on_catalogViewIcon_triggered();
     void on_catalogViewNotext_triggered();
+    void on_catalogShowTagBar_triggered(bool enable);
 
 
 

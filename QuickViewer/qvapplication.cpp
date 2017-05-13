@@ -221,6 +221,7 @@ void QVApplication::loadSettings()
     m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();
     m_titleWithoutOptions = m_settings.value("TitleWithoutOptions", false).toBool();
     m_searchTitleWithOptions = m_settings.value("SearchTitleWithOptions", false).toBool();
+    m_showTagBar = m_settings.value("ShowTagBar", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
@@ -278,6 +279,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("MaxShowFrontpage", m_maxShowFrontpage);
     m_settings.setValue("TitleWithoutOptions", m_titleWithoutOptions);
     m_settings.setValue("SearchTitleWithOptions", m_searchTitleWithOptions);
+    m_settings.setValue("ShowTagBar", m_showTagBar);
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");

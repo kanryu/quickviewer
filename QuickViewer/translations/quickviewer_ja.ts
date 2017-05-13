@@ -902,6 +902,10 @@
         <source>CatalogViewList</source>
         <translation>一覧</translation>
     </message>
+    <message>
+        <source>ShowTagBar</source>
+        <translation>タグ検索バーを表示する</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

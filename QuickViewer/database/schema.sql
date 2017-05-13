@@ -9,7 +9,7 @@ CREATE TABLE [t_version] ( --サムネイル
 );
 
 INSERT INTO t_version (version,description,created_at)
-    VALUES (600, 'Database for thumbnails of Digital Books', datetime('2017-05-26 14:26:15'));
+    VALUES (604, 'Database for thumbnails of Digital Books', datetime('2017-05-13 17:31:15'));
 
 
 
@@ -33,7 +33,7 @@ CREATE TABLE [t_catalogs] ( --カタログ
 
 CREATE TABLE [t_volumes] ( --ボリューム(フォルダまたはアーカイブ)
     [id] INTEGER PRIMARY KEY AUTOINCREMENT,
-    [name] TEXT, --表示用のタイトル
+    [name] TEXT, --表示用のタイトル((タグ)要素は取り除かれるものとする)
     [realname] TEXT NOT NULL, --フォルダ名またはアーカイブのファイル名
     [path] TEXT NOT NULL, --ボリュームの存在箇所をフルPATHで
     [frontpage_id] INTEGER, -- 表紙となる [t_files].[id]
@@ -56,6 +56,18 @@ CREATE TABLE [t_files] ( --画像ファイル
     [alternated] BLOB -- (オプション)この画像の読み込みに時間がかかる場合の代替画像。
 );
 
+CREATE TABLE [t_tags] ( --タグ定義
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT,
+    [name] TEXT NOT NULL, -- ファイル名
+    [type_id] INTEGER -- (0:Normal, 1:Publisher(Author), 2:Publisher, 3:Author, 4:Rate)
+);
+
+CREATE TABLE [t_volumetags] (--ボリュームごとのタグ
+    [volume_id] INTEGER NOT NULL, -- タグが含まれているvolumeの[t_volumes].[id]
+    [tag_id] INTEGER NOT NULL,
+    [catalog_id] INTEGER NOT NULL -- タグが含まれているvolumeが登録されたcatalogの[t_catalogs].[id]
+);
+
 CREATE TABLE [t_volumeorders] ( --ボリューム並べ替え順
     [id] INTEGER, -- [t_volumes].[id]
     [parent_id] INTEGER,
@@ -75,11 +87,13 @@ DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('t_thumbnails',0);
 INSERT INTO sqlite_sequence VALUES('t_catalogs',0);
 INSERT INTO sqlite_sequence VALUES('t_volumes',0);
+INSERT INTO sqlite_sequence VALUES('t_tags',0);
 INSERT INTO sqlite_sequence VALUES('t_files',0);
 
 CREATE INDEX [i_volumes_by_path] On [t_volumes]([path] ASC);
 CREATE INDEX [i_volumes_by_parent_id] On [t_volumes]([parent_id]);
 CREATE INDEX [i_volumes_by_catalog_id] On [t_volumes]([catalog_id]);
+CREATE INDEX [i_volumetags] On [t_volumetags]([volume_id],[tag_id],[catalog_id]);
 CREATE INDEX [i_files_by_volume_id] On [t_files]([volume_id]);
 CREATE INDEX [i_volumeorders_by_parentid_volumenameasc] ON [t_volumeorders] ([parent_id] ,[volumename_asc] ASC);
 CREATE INDEX [i_fileorders_by_volumeid_filenameasc] ON [t_fileorders] ([volume_id] ,[filename_asc] ASC);

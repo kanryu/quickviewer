@@ -298,7 +298,7 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
 
 }
 
-static QString realname2BookTitle(QString realname)
+static TaggedName realname2BookTitle(QString realname)
 {
     // Extract book title from folder name
     // from: <<<(TAG1) [Publisher(Author)] book title (TAG2) (TAG3) ...>>>
@@ -311,6 +311,8 @@ static QString realname2BookTitle(QString realname)
     //
     // TAGs will save other fields
 
+    TaggedName result;
+    result.realname = realname;
     QList<QChar> parenthesis;
     parenthesis << '?';
     QStringList clist;
@@ -318,6 +320,7 @@ static QString realname2BookTitle(QString realname)
     int cnt=0;
     bool NumberSign = false;
     bool authorExported = false;
+    int type_id=0;
     foreach(QChar c, realname) {
         switch(c.unicode()) {
         case '#':
@@ -332,8 +335,16 @@ static QString realname2BookTitle(QString realname)
             break;
         case '[':
             parenthesis << c;
-            if(tag.size())
+            if(tag.size()) {
+                if(tag[0] == "[") {
+                    QString publisher = tag.join("");
+                    result.tags << TagRecord(publisher.mid(1, publisher.length()-2), type_id); // Normal
+                } else {
+                    result.tags << TagRecord(tag.join(""), type_id);
+                }
                 tag.clear();
+            }
+            type_id = NumberSign ? 0 : 2;
             tag << c;
             break;
         case ']':
@@ -341,15 +352,22 @@ static QString realname2BookTitle(QString realname)
                 break;
             parenthesis.removeLast();
             tag << c;
-            if(!NumberSign && !authorExported) {
+            if(!NumberSign && !authorExported && tag.size()) {
                 clist << tag.join("");
+                QString pubauthor = tag.join("");
+                result.tags << TagRecord(pubauthor.mid(1, pubauthor.length()-2), type_id); // Publisher(Author)
+                type_id = 0;
                 tag.clear();
                 authorExported = true;
             }
             break;
         case '(':
-            if(parenthesis.last() == '[')
+            if(parenthesis.last() == '[' && tag.size() >= 2) {
+                QString publisher = tag.join("");
+                result.tags << TagRecord(publisher.mid(1), 2); // Publisher
+                type_id = 1;
                 tag << c;
+            }
             else {
                 tag.clear();
                 if(parenthesis.last() == '#') {
@@ -362,10 +380,17 @@ static QString realname2BookTitle(QString realname)
         case ')':
             if(parenthesis.size() == 1)
                 break;
-            if(parenthesis.last() == '[')
+            if(parenthesis.last() == '[') {
+                QString author = tag.join("");
+                result.tags << TagRecord(author.mid(author.indexOf('(')+1), 3); // Author
                 tag << c;
-            else
+            } else {
+                if(tag.size()) {
+                    result.tags << TagRecord(tag.join(""), 0); // Normal
+                    tag.clear();
+                }
                 parenthesis.removeLast();
+            }
             break;
         default:
             if(parenthesis.last() == '[')
@@ -379,6 +404,8 @@ static QString realname2BookTitle(QString realname)
                 }
                 else if (NumberSign && c != ' ' && tag.size()) {
                     // last tag will be Publisher/Author
+                    QString pubauthor = tag.join("");
+                    result.tags << TagRecord(pubauthor.mid(1, pubauthor.length()-2), pubauthor.indexOf("(") > 0 ? 1 : 2); // Publisher(Author)
                     clist << tag.join("") << " " << c;
                     tag.clear();
                     NumberSign = false;
@@ -391,9 +418,10 @@ static QString realname2BookTitle(QString realname)
         }
         cnt++;
     }
-    QString result = clist.join("");
-    return result.trimmed();
+    result.name = clist.join("").trimmed();
+    return result;
 }
+
 
 int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int parent_id)
 {
@@ -402,16 +430,41 @@ int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int 
     qDebug() << "volume: " << realname;
     emit m_catalogWatcher.progressTextChanged(realname);
 
+    TaggedName tagged = realname2BookTitle(realname);
+
     QSqlQuery t_volumes(m_db);
     t_volumes.prepare("INSERT INTO t_volumes (name, realname, path, catalog_id, parent_id) VALUES (:name, :realname,:path,:catalog_id,:parent_id)");
-    t_volumes.bindValue(":name", realname2BookTitle(realname));
+    t_volumes.bindValue(":name", tagged.name);
     t_volumes.bindValue(":realname", realname);
     t_volumes.bindValue(":path", QDir::toNativeSeparators(dirpath));
     t_volumes.bindValue(":catalog_id", catalog_id);
     t_volumes.bindValue(":parent_id", parent_id);
     if(!execInsertQuery(t_volumes, "t_volumes")) return -1;
-
     int volume_id = t_volumes.lastInsertId().toInt();
+
+    QSqlQuery t_tags(m_db);
+    t_tags.prepare("INSERT INTO t_tags (name, type_id) VALUES (:name, :type_id)");
+    QSqlQuery t_tagentries(m_db);
+    t_tagentries.prepare("INSERT INTO t_volumetags (volume_id, tag_id, catalog_id) VALUES (:volume_id, :tag_id, :catalog_id)");
+    foreach(const TagRecord& t, tagged.tags) {
+        QString tagkey = QString("%1:%2").arg(t.type_id).arg(t.name.toLower());
+        if(!m_tags.contains(tagkey)) {
+            t_tags.bindValue(":name", t.name);
+            t_tags.bindValue(":type_id", t.type_id);
+            if(!execInsertQuery(t_tags, "t_tags")) return -1;
+            TagRecord newtag(t.name, t.type_id);
+            newtag.id = t_tags.lastInsertId().toInt();
+            newtag.nameNoCase = t.name.toLower();
+            m_tags[tagkey] = newtag;
+            m_tags2 << &m_tags[tagkey];
+        }
+        TagRecord& tag = m_tags[tagkey];
+        t_tagentries.bindValue(":volume_id", volume_id);
+        t_tagentries.bindValue(":tag_id", tag.id);
+        t_tagentries.bindValue(":catalog_id", catalog_id);
+        if(!execInsertQuery(t_tagentries, "t_volumetags")) return -1;
+    }
+
     return volume_id;
 }
 
@@ -703,6 +756,7 @@ QList<VolumeThumbRecord> ThumbnailManager::volumes()
         result.append(vtr);
     }
     m_volumesDurty = false;
+    loadTags();
     return m_volumesCacne = result;
 }
 
@@ -744,6 +798,76 @@ QList<VolumeThumbRecord> ThumbnailManager::volumes2()
     }
     m_volumesDurty = false;
     return m_volumesCacne = result;
+}
+
+void ThumbnailManager::loadTags()
+{
+    QSqlQuery t_tags(m_db);
+    t_tags.exec("SELECT * FROM t_tags ORDER BY id");
+    m_tags.clear();
+    m_tags2.resize(1);
+    while(t_tags.next()) {
+        TagRecord tag;
+        tag.id = t_tags.value("id").toInt();
+        tag.name = t_tags.value("name").toString();
+        tag.type_id = t_tags.value("type_id").toInt();
+        tag.count = t_tags.value("cnt").toInt();
+        QString tagkey = QString("%1:%2").arg(tag.type_id).arg(tag.name.toLower());
+        m_tags[tagkey] = tag;
+        m_tags2 << &m_tags[tagkey];
+    }
+    QSqlQuery t_volumetags(m_db);
+    t_volumetags.exec("SELECT * FROM t_volumetags");
+    m_volumetags.clear();
+    while(t_volumetags.next()) {
+        VolumeTag vt;
+        vt.volume_id = t_volumetags.value("volume_id").toInt();
+        vt.tag_id = t_volumetags.value("tag_id").toInt();
+        vt.catalog_id = t_volumetags.value("catalog_id").toInt();
+        TagRecord* tag = m_tags2[vt.tag_id];
+        QString tagkey = QString("%1:%2").arg(tag->type_id).arg(tag->name.toLower());
+        m_volumetags.insert(vt.volume_id, vt.tag_id);
+    }
+}
+
+QVector<TagRecord *> ThumbnailManager::tagsByCount()
+{
+    QSqlQuery t_tags(m_db);
+    t_tags.exec("SELECT t.id, t.name, t.type_id, v2.cnt FROM t_tags t INNER JOIN "
+                "(SELECT COUNT(*) as cnt, v.tag_id FROM t_volumetags v GROUP BY v.tag_id) v2 "
+                "ON v2.tag_id = t.id "
+                "ORDER BY v2.cnt DESC");
+    QVector<TagRecord*> result;
+    result.resize(m_tags2.size());
+    int cnt = 1;
+    while(t_tags.next()) {
+        TagRecord tag;
+        tag.id = t_tags.value("id").toInt();
+        tag.name = t_tags.value("name").toString();
+        tag.type_id = t_tags.value("type_id").toInt();
+        tag.count = t_tags.value("cnt").toInt();
+        result[cnt++] = m_tags2[tag.id];
+    }
+    return result;
+}
+
+QList<TagRecord> ThumbnailManager::getTagsFromVolumeId(int volume_id)
+{
+    QList<TagRecord> result;
+    QSqlQuery t_tags(m_db);
+    t_tags.prepare("SELECT t.id, t.name, t.type_id FROM t_tags t "
+                "WHERE t.id IN (SELECT tag_id FROM t_volumetags WHERE volume_id=:volume_id)");
+    t_tags.bindValue(":volume_id", volume_id);
+    if(!execInsertQuery(t_tags, "t_tags")) return result;
+
+    while(t_tags.next()) {
+        TagRecord tag;
+        tag.id = t_tags.value("id").toInt();
+        tag.name = t_tags.value("name").toString();
+        tag.type_id = t_tags.value("type_id").toInt();
+        result << tag;
+    }
+    return result;
 }
 
 
@@ -801,6 +925,8 @@ void ThumbnailManager::deleteAllCatalogs()
         if(!t_thumbs.exec("DELETE FROM t_volumeorders")) break;
         if(!t_thumbs.exec("DELETE FROM t_files")) break;
         if(!t_thumbs.exec("DELETE FROM t_volumes")) break;
+        if(!t_thumbs.exec("DELETE FROM t_tags")) break;
+        if(!t_thumbs.exec("DELETE FROM t_volumetags")) break;
         if(!t_thumbs.exec("DELETE FROM t_catalogs")) break;
         commit();
         vacuum();

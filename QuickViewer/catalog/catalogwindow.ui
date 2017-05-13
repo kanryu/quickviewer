@@ -177,6 +177,66 @@
     </widget>
    </item>
    <item>
+    <widget class="QFrame" name="tagFrame">
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: lightskyblue;
+    border-style: inset;
+    border-width: 1px;
+    border-radius: 6px;
+/*    border-color: beige; */
+    font: 11px;
+/*    min-width: 10em; */
+    padding: 3px;
+}
+QPushButton:checked {
+    background-color: lightpink;
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 6px;
+/*    border-color: beige;*/
+    font: 11px;
+/*    min-width: 10em; */
+    padding: 3px;
+}
+QFrame.layout {
+  layoutLeftMargin: 1px;
+  layoutRightMargin: 1px;
+  layoutTopMargin: 1px;
+  layoutBottomMargin: 1px;
+  layoutSpacing: 1px;
+}</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>2</number>
+      </property>
+      <property name="topMargin">
+       <number>2</number>
+      </property>
+      <property name="rightMargin">
+       <number>2</number>
+      </property>
+      <property name="bottomMargin">
+       <number>2</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string notr="true">PushButton</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QListView" name="volumeList">
      <property name="acceptDrops">
       <bool>true</bool>

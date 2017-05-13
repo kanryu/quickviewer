@@ -76,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Catalogs
     ui->actionSearchTitleWithOptions->setChecked(qApp->SearchTitleWithOptions());
     ui->actionCatalogTitleWithoutOptions->setChecked(qApp->TitleWithoutOptions());
+    ui->actionShowTagBar->setChecked(qApp->ShowTagBar());
 
     switch(qApp->CatalogViewModeSetting()) {
     case qvEnums::List: ui->actionCatalogViewList->setChecked(true); break;
@@ -635,6 +636,13 @@ void MainWindow::on_catalogViewNotext_triggered()
     ui->actionCatalogViewIconNoText->setChecked(true);
     if(m_catalogWindow)
         m_catalogWindow->resetVolumes();
+}
+
+void MainWindow::on_catalogShowTagBar_triggered(bool enable)
+{
+    qApp->setShowTagBar(enable);
+    if(m_catalogWindow)
+        m_catalogWindow->on_showTagBar_triggered(enable);
 }
 
 void MainWindow::on_openfolder_triggered()

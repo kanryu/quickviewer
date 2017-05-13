@@ -39,6 +39,10 @@ public:
     void dragEnterEvent(QDragEnterEvent *e);
     void dropEvent(QDropEvent *e);
     bool isCatalogSearching();
+    void clearTagFrame();
+    void initTagButtons();
+    void resetTagButtons(QStringList buttons, QStringList checks);
+    QStringList getTagWords();
 
 public slots:
     void on_treeItemChanged(QString path);
@@ -50,10 +54,11 @@ public slots:
     void on_searchTextChanged(QString search);
     void on_searchTextIndexChanged(QString search);
     void on_searchTextFinished();
-    void on_itemDoubleClicked(QListWidgetItem * item);
     void on_itemDoubleClicked(const QModelIndex & index);
     void on_searchTitleWithOptions_triggered(bool enable);
     void on_catalogTitleWithoutOptions_triggered(bool enable);
+    void on_tagButtonClicked(bool checked);
+    void on_showTagBar_triggered(bool enable);
 
 signals:
     void openVolume(QString path);

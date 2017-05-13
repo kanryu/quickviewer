@@ -317,6 +317,7 @@
     <addaction name="actionCatalogViewIcon"/>
     <addaction name="actionCatalogViewIconNoText"/>
     <addaction name="separator"/>
+    <addaction name="actionShowTagBar"/>
     <addaction name="actionCatalogTitleWithoutOptions"/>
     <addaction name="actionSearchTitleWithOptions"/>
    </widget>
@@ -845,6 +846,14 @@
    </property>
    <property name="toolTip">
     <string>CatalogViewList</string>
+   </property>
+  </action>
+  <action name="actionShowTagBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ShowTagBar</string>
    </property>
   </action>
  </widget>
@@ -1810,6 +1819,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowTagBar</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_catalogShowTagBar_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1856,5 +1881,6 @@
   <slot>on_catalogViewList_triggered()</slot>
   <slot>on_catalogViewIcon_triggered()</slot>
   <slot>on_catalogViewNotext_triggered()</slot>
+  <slot>on_catalogShowTagBar_triggered(bool)</slot>
  </slots>
 </ui>
