@@ -1,6 +1,17 @@
 # CHANGELOG
 
-## v0.6.3, origin/master, origin/HEAD (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+## v0.6.4 (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
+
+add new feature, TagBar
+
+- 'Tag' is a auto generated words from Book Titles, include Publishers, Authors, and other properties
+- each 'Tag' as a small buttons on CatalogWindow
+- if you click Tag buttons, Catalog only shows the books have the tag
+
+- other commits
+    - changelog (Sat May 13 06:59:07 2017 +0900) [332f255](https://github.com/kanryu/quickviewer/commit/332f2559a612b2ca607dad66d29865d8a68d367a)
+
+## v0.6.3 (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
 
 much faster CatalogWindow
 - remove limitation volume counts
