@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.6.5 (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
+
+2 bugfixed
+
+- application ends abnormally after catalog deletion
+- if filename of image is too long, the width of the main window was forcibly changed
+
+- other commits
+    - Update index-ja.md (Sun May 14 16:06:44 2017 +0900) [6bd491d](https://github.com/kanryu/quickviewer/commit/6bd491d5e30d89bba44b18dbf7acfda61e3c32de)
+    - Update index-ja.md (Sun May 14 16:04:19 2017 +0900) [09459c2](https://github.com/kanryu/quickviewer/commit/09459c2aaa814ffab583630aa2ae9522f5a182c8)
+    - Update index.md (Sun May 14 15:56:40 2017 +0900) [a0ad58c](https://github.com/kanryu/quickviewer/commit/a0ad58c28afb65d4c6e9b8e1e541831acd789a17)
+    - Update index.md (Sun May 14 02:07:09 2017 +0900) [593429b](https://github.com/kanryu/quickviewer/commit/593429b2477f3eb09ce135dcbda42539f56a2347)
+    - changelog (Sun May 14 01:56:44 2017 +0900) [7fb809a](https://github.com/kanryu/quickviewer/commit/7fb809a21528385199d23d81347271fdda088e95)
+
 ## v0.6.4 (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
 
 add new feature, TagBar
