@@ -27,6 +27,9 @@ layout: default
     - Sony(arw)
     - Ricoh(dng)
     - などなど
+ - あなたの何千冊ものデジタルブック、マンガを『カタログ』として登録でき、軽快に一覧表示、検索できます
+ - カタログの本は自動生成されたタグでも検索できます
+
 
 ## 使い方
 
@@ -117,6 +120,25 @@ layout: default
 
 現在表示中の画像がどこにあるのかをExplorerで確認できます。
 画面を右クリックしてコンテキストメニューを表示し、『エクスプローラーで開く』を選択してください。
+
+### Catalogs
+
+v0.6.0以降、QuickViewerはあなたのデジタルブックやマンガからカタログを作ることができます。
+『カタログ表示』をクリックし、画像の入ったフォルダをdropしましょう。
+
+![Manage Catalog](https://github.com/kanryu/quickviewer/wiki/images/manage_catalog.png)
+
+すると、あなたの本はカタログに登録されます。
+(これらのサンプル本はこちらから入手しています https://comicstore.marvel.com/free-comics)
+
+
+![Show Catalog](https://github.com/kanryu/quickviewer/wiki/images/show_catalog.png)
+
+カタログに何千冊もの本を登録しても、瞬時に表示されます。キーワード入力やタグをクリックすることで検索できます。
+
+カタログ画面はメインウィンドウに組み込まれる形でも表示できます。
+
+![Embedded Catalog](https://github.com/kanryu/quickviewer/wiki/images/embedded_catalog.jpg)
 
 
 ## 画面の操作
