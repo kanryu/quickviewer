@@ -62,6 +62,7 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
     ui->statusBar->addPermanentWidget(ui->statusLabel);
     ui->statusLabel->setText(tr("Drop image folders here and create Catalogs."));
 
+    ui->menu_View->addAction(uiMain->actionShowTagBar);
     ui->menu_View->addAction(uiMain->actionCatalogTitleWithoutOptions);
     ui->menu_View->addAction(uiMain->actionSearchTitleWithOptions);
 
@@ -131,13 +132,15 @@ void CatalogWindow::initTagButtons()
 {
     QStringList buttons;
     if(qApp->ShowTagBar()) {
-        QVector<TagRecord*> tags = m_thumbManager->tagsByCount();
+        QMap<int, TagRecord*> tags = m_thumbManager->tagsByCount();
         if(tags.size() <= 1)
             return;
 
-        int max = qMin(7, tags.size());
-        for(int i = 1; i < max; i++) {
+        int cnt = 0;
+        foreach(int i, tags.keys()) {
             buttons << tags[i]->name;
+            if(cnt++ >= 7)
+                break;
         }
     }
     resetTagButtons(buttons, QStringList());

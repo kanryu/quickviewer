@@ -456,7 +456,7 @@ int ThumbnailManager::createVolumeInternal(QString dirpath, int catalog_id, int 
             newtag.id = t_tags.lastInsertId().toInt();
             newtag.nameNoCase = t.name.toLower();
             m_tags[tagkey] = newtag;
-            m_tags2 << &m_tags[tagkey];
+            m_tags2[newtag.id] = &m_tags[tagkey];
         }
         TagRecord& tag = m_tags[tagkey];
         t_tagentries.bindValue(":volume_id", volume_id);
@@ -805,7 +805,7 @@ void ThumbnailManager::loadTags()
     QSqlQuery t_tags(m_db);
     t_tags.exec("SELECT * FROM t_tags ORDER BY id");
     m_tags.clear();
-    m_tags2.resize(1);
+    m_tags2.clear();
     while(t_tags.next()) {
         TagRecord tag;
         tag.id = t_tags.value("id").toInt();
@@ -814,7 +814,7 @@ void ThumbnailManager::loadTags()
         tag.count = t_tags.value("cnt").toInt();
         QString tagkey = QString("%1:%2").arg(tag.type_id).arg(tag.name.toLower());
         m_tags[tagkey] = tag;
-        m_tags2 << &m_tags[tagkey];
+        m_tags2[tag.id] = &m_tags[tagkey];
     }
     QSqlQuery t_volumetags(m_db);
     t_volumetags.exec("SELECT * FROM t_volumetags");
@@ -830,16 +830,15 @@ void ThumbnailManager::loadTags()
     }
 }
 
-QVector<TagRecord *> ThumbnailManager::tagsByCount()
+QMap<int, TagRecord*> ThumbnailManager::tagsByCount()
 {
     QSqlQuery t_tags(m_db);
     t_tags.exec("SELECT t.id, t.name, t.type_id, v2.cnt FROM t_tags t INNER JOIN "
                 "(SELECT COUNT(*) as cnt, v.tag_id FROM t_volumetags v GROUP BY v.tag_id) v2 "
                 "ON v2.tag_id = t.id "
                 "ORDER BY v2.cnt DESC");
-    QVector<TagRecord*> result;
-    result.resize(m_tags2.size());
-    int cnt = 1;
+    QMap<int, TagRecord*> result;
+    int cnt = 0;
     while(t_tags.next()) {
         TagRecord tag;
         tag.id = t_tags.value("id").toInt();
@@ -894,6 +893,12 @@ void ThumbnailManager::deleteCatalog(int id)
     t_volumeorders.prepare("DELETE FROM t_volumeorders WHERE id IN (SELECT id FROM t_volumes WHERE catalog_id=:catalog_id)");
     t_volumeorders.bindValue(":catalog_id", id);
     if(!execInsertQuery(t_volumeorders, "t_volumeorders")) return;
+
+
+    QSqlQuery t_volumetags(m_db);
+    t_volumetags.prepare("DELETE FROM t_volumetags WHERE catalog_id=:catalog_id");
+    t_volumetags.bindValue(":catalog_id", id);
+    if(!execInsertQuery(t_volumetags, "t_volumetags")) return;
 
     QSqlQuery t_volumes(m_db);
     t_volumes.prepare("DELETE FROM t_volumes WHERE catalog_id=:catalog_id");

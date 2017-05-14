@@ -478,7 +478,12 @@ void MainWindow::on_pageChanged_triggered()
 
     // StatusBar
     m_pageCaption = m_pageManager.currentPageStatusAsString();
-    ui->statusLabel->setText(m_pageCaption);
+
+    // Elide text(Otherwise the width of the main window will be forcibly changed)
+    QFontMetrics fontMetrics(ui->statusLabel->font());
+    QString statusLabelTxt = fontMetrics.elidedText(m_pageCaption, Qt::ElideMiddle, width()-100);
+    ui->statusLabel->setText(statusLabelTxt);
+
     if(!qApp->ShowStatusBar())
         setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
 }

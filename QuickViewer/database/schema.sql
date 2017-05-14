@@ -147,4 +147,9 @@ FROM [v_volumethm], [t_volumes]
 WHERE [v_volumethm].[parent_id] = [t_volumes].[id]
 ORDER BY [v_volumethm].[realname_asc] ASC
 ;
+CREATE VIEW [v_tags_by_count] AS 
+SELECT t.id, t.name, t.type_id, v2.cnt
+FROM t_tags t INNER JOIN (SELECT COUNT(*) as cnt, v.tag_id FROM t_volumetags v GROUP BY v.tag_id) v2 
+    ON v2.tag_id = t.id ORDER BY v2.cnt DESC
+
 COMMIT;

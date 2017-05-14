@@ -179,8 +179,8 @@ public:
 
     /* Tags */
     void loadTags();
-    QVector<TagRecord*> tags() const{return m_tags2;}
-    QVector<TagRecord*> tagsByCount();
+    QMap<int, TagRecord*> tags() const{return m_tags2;}
+    QMap<int, TagRecord*> tagsByCount();
     QList<TagRecord> getTagsFromVolumeId(int volume_id);
 
     /**
@@ -227,7 +227,7 @@ private:
     QList<VolumeThumbRecord> m_volumesCacne;
     bool m_volumesDurty;
     QMap<QString, TagRecord> m_tags; // key is 'type_id:lower(name)' e.g. "0:tagname"
-    QVector<TagRecord*> m_tags2;
+    QMap<int, TagRecord*> m_tags2;
     QMultiMap<int, int> m_volumetags;
 
     static QList<QByteArray> st_supportedImageFormats;
