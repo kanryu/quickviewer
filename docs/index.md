@@ -144,6 +144,27 @@ Click right button on the image view, to be shown a context menu, select 'Exif I
 You can checkout with Windows Explorer for the current image file.
 Click right button on the image view, to be shown a context menu, select 'Open Explorer' menu.
 
+### Catalogs
+
+via v0.6.0, QuickViewer can make catalogs for your digital books and comics.
+click **ShowCatalog** and drop a folder which contains images
+
+![Manage Catalog](https://github.com/kanryu/quickviewer/wiki/images/manage_catalog.png)
+
+Then you can find your books in the Catalog.
+(the sample books from https://comicstore.marvel.com/free-comics)
+
+
+![Show Catalog](https://github.com/kanryu/quickviewer/wiki/images/show_catalog.png)
+
+The Catalog can contain thousands of your books, but in spite of being instantly listed, you can search by text entry or by clicking on a tag.
+
+
+The Catalog can also be displayed with the main window.
+
+![Embedded Catalog](https://github.com/kanryu/quickviewer/wiki/images/embedded_catalog.jpg)
+
+
 
 ## Screen operations
 
