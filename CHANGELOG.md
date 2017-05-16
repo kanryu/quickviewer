@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v0.6.6 (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+
+Support archives of Catalog, smaller Catalog grid, improve folder loading, refactoring
+
+- now support archives of Catalog, including zip,rar,cbr,cbz
+- smaller Catalog grid for not long titles(folder or archive name)
+- if folder not have files and have subfolders, QuickViewer attempt open a subfolder
+- refactoring(remove Japanese comments, remove Unnecessary source codes)
+- change some menu texts
+
+- other commits
+    - changelog (Sun May 14 17:18:41 2017 +0900) [69fda94](https://github.com/kanryu/quickviewer/commit/69fda94ca6769e223037959636392e8e878fee6d)
+
 ## v0.6.5 (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
 
 2 bugfixed
