@@ -7,6 +7,8 @@
 #include <QtConcurrent>
 #include <QImage>
 
+#include "filevolume.h"
+
 // t_thumbnails
 class ThumbnailRecord
 {
@@ -190,12 +192,6 @@ public:
      */
     static bool isImageFile(QString path);
     /**
-     * @brief isArchiveFile check the file will be an archive file
-     * @param path
-     * @return return true, if path of file maybe an archive file
-     */
-    static bool isArchiveFile(QString path);
-    /**
      * @brief isExifImageFile check the file will have exif
      * @param path
      * @return return true, if path of file maybe have exif
@@ -250,6 +246,7 @@ private:
     int createVolumesFrontPageOnly(QString dirpath, int catalog_id);
     VolumeWorker createSubVolumesConcurrent(QString dirpath, int volume_id, int parent_id);
     FileWorker createFileRecord(QString filename, QString filepath, int filename_asc);
+    FileWorker createFileRecordFromArchive(QString archivePath, ImageContent& ic, int filename_asc);
 
     /* Catalogs */
     QList<CatalogRecord> callCreateCatalog(const QList<CatalogRecord>& newers);

@@ -9,11 +9,6 @@
 #include "pagemanager.h"
 #include "shadermanager.h"
 
-/**
- * @brief The SavedPoint class
- * マウスやキーボードによる画像の移動計算の補助を行う。マウスドラッグ開始時の座標を保存し、
- * ドラッグ時にマウスカーソルが相対的に移動した分だけ画像を移動させるための座標を算出する
- */
 class SavedPoint : public QPoint
 {
 public:
@@ -47,13 +42,9 @@ struct PageGraphicsItem
     ImageContent Ic;
     /**
      * @brief GrItem
-     * 表示画像をQGraphicsItem化したもの。これをsceneに登録することで画像を表示する
+     * Page image is used as a QGraphicsItem. it will be registed to the scene
      */
     QGraphicsItem* GrItem;
-//    /**
-//     * @brief Offset if GrItem is rolling, Offset is not Point(0,0)
-//     */
-//    QSize PageSize;
     /**
      * @brief Rotate: rotation as digrees
      */
@@ -124,8 +115,8 @@ struct PageGraphicsItem
 
 /**
  * @brief The ImageView class
- * セットした画像を１枚表示できる。
- * 画像はマウスでドラッグできる。
+ * It provides to show 1 or 2 images once, using OpenGL.
+ * It is made on QGraphicView, each images is used as QGraphicsItem
  */
 class ImageView : public QGraphicsView
 {
@@ -148,7 +139,7 @@ public:
 
 signals:
     /**
-     * @brief anchorHovered ImageViewのフレーム端にマウスカーソルが移動した場合に発生するシグナル
+     * @brief anchorHovered a signal when the mouse moved to one of 4 edges on this widget
      */
     void anchorHovered(Qt::AnchorPoint anchor) const;
 //    void pageChanged() const;
@@ -214,7 +205,7 @@ private:
     bool m_isMouseDown;
     Qt::AnchorPoint m_hoverState;
     /**
-     * @brief マニュアル拡大縮小するときの倍率を保持するリスト
+     * @brief for manual ZoomIn or ZoomOut
      */
     QList<int> viewSizeList;
     QVector<int> m_pageRotations;

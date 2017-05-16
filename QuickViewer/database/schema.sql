@@ -1,10 +1,10 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 
-CREATE TABLE [t_version] ( --サムネイル
+CREATE TABLE [t_version] ( --version
     [id] INTEGER PRIMARY KEY AUTOINCREMENT,
-    [version] INTEGER NOT NULL, --サムネイルの幅
-    [description] TEXT, --サムネイルの高さ
+    [version] INTEGER NOT NULL, --version as integer MjMnPt
+    [description] TEXT,
     [created_at] DATETIME
 );
 
@@ -151,5 +151,6 @@ CREATE VIEW [v_tags_by_count] AS
 SELECT t.id, t.name, t.type_id, v2.cnt
 FROM t_tags t INNER JOIN (SELECT COUNT(*) as cnt, v.tag_id FROM t_volumetags v GROUP BY v.tag_id) v2 
     ON v2.tag_id = t.id ORDER BY v2.cnt DESC
+;
 
 COMMIT;

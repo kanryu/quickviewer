@@ -21,6 +21,7 @@ public:
     virtual bool moveToTrush(QString path) {return false;}
     virtual bool setStayOnTop(bool ) {return false;}
     virtual void setWindowTop() {}
+    virtual void setMailAttachment(QString path) {}
 
     void resetShortcutKeys();
     void keyPressEvent(QKeyEvent *event);
@@ -62,6 +63,7 @@ public slots:
     void on_catalogViewIcon_triggered();
     void on_catalogViewNotext_triggered();
     void on_catalogShowTagBar_triggered(bool enable);
+    void on_catalogIconLongText_triggered(bool enable);
 
 
 
@@ -97,6 +99,7 @@ public slots:
     void on_openfolder_triggered();
     void on_deletePage_triggered();
     void on_exitApplicationOrFullscreen_triggered();
+    void on_mailAttachment_triggered();
 
     // Shaders
     void on_shaderNearestNeighbor_triggered();

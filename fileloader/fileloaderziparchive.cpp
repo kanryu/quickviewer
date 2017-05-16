@@ -31,7 +31,6 @@ QByteArray FileLoaderZipArchive::getFile(QString name, QMutex& mutex)
         mutex.lock();
         bytes = m_reader.fileData(name);
         mutex.unlock();
-
     }
     return bytes;
 }

@@ -55,7 +55,7 @@ public:
 
     bool open(OpenMode mode, const QString &password);
     void reset();
-    bool reopen() {return true;}
+    bool reopen();
     void scanFileInfo();
     bool isOpen() const { return m_mode != OpenModeNotOpen; }
     QStringList fileNameList() const;
@@ -65,6 +65,7 @@ public:
     }
     bool contains(QString filename) { return m_fileNameToIndexInsensitive.contains(filename.toLower()); }
 
+    QByteArray fileData(QString filename);
 
     Qt::HANDLE m_hArc;
     int m_error;

@@ -9,7 +9,7 @@ FileLoaderRarArchive::FileLoaderRarArchive(QObject* parent, QString rarpath)
     , d(new RarExtractor(rarpath))
 {
 
-    if(!(m_valid = d->open(RarExtractor::OpenModeExtract, "")))
+    if(!(m_valid = d->open(RarExtractor::OpenModeList, "")))
         return;
 
     foreach(const QString& name, d->fileNameList()) {
@@ -24,18 +24,13 @@ FileLoaderRarArchive::FileLoaderRarArchive(QObject* parent, QString rarpath)
     m_valid = true;
 }
 
-QByteArray FileLoaderRarArchive::getFile(QString name, QMutex& )
+QByteArray FileLoaderRarArchive::getFile(QString name, QMutex& mutex)
 {
     QByteArray bytes;
     if(m_imageFileList.contains(name)) {
-//        mutex.lock();
-//        QtRARFile file(&m_archive);
-//        file.setFileName(name);
-//        file.open(QIODevice::ReadOnly);
-//        bytes = file.readAll();
-//        mutex.unlock();
-        RARFileInfo& info = d->getFileInfo(name);
-        bytes = info.data;
+        mutex.lock();
+        bytes = d->fileData(name);
+        mutex.unlock();
     }
     return bytes;
 }

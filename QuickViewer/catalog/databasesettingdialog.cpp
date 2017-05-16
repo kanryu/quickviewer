@@ -37,11 +37,7 @@ void DatabaseSettingDialog::dragEnterEvent(QDragEnterEvent *e)
 {
     if(e->mimeData()->hasFormat("text/uri-list"))
     {
-        //視覚的にドロップを受付られることを
-        //表示し、ドラッグ＆ドロップを受け付ける
-        //これがないと受付られない。
         e->acceptProposedAction();
-//        e->accept();
     }
 }
 void DatabaseSettingDialog::dropEvent(QDropEvent *e)
@@ -53,12 +49,10 @@ void DatabaseSettingDialog::dropEvent(QDropEvent *e)
         QUrl url = urlList[i];
         QFileInfo info(url.toLocalFile());
         if(info.isDir()) {
-//                setPath(info.path());
             ui->pathEdit->setText(QDir::toNativeSeparators(info.absoluteFilePath()));
             if(ui->nameEdit->text().isEmpty())
                 ui->nameEdit->setText(info.fileName());
         } else if(info.isFile()) {
-//                setPath(info.dir().path());
             ui->pathEdit->setText(QDir::toNativeSeparators(info.path()));
             if(ui->nameEdit->text().isEmpty())
                 ui->nameEdit->setText(info.baseName());

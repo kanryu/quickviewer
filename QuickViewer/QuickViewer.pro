@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.6.5
+VERSION = 0.6.6
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -100,11 +100,8 @@ SOURCES += main.cpp \
     shadermanager.cpp \
     catalog/catalogwindow.cpp \
     catalog/databasesettingdialog.cpp \
-    catalog/fileexplorer.cpp \
-    catalog/fileexplorermodel.cpp \
     catalog/managedatabasedialog.cpp \
     catalog/thumbnailmanager.cpp \
-    sidesplitter.cpp \
     catalog/volumeitemmodel.cpp \
     catalog/flowlayout.cpp
 
@@ -122,12 +119,9 @@ HEADERS  += mainwindow.h \
     shadermanager.h \
     catalog/catalogwindow.h \
     catalog/databasesettingdialog.h \
-    catalog/fileexplorer.h \
-    catalog/fileexplorermodel.h \
     catalog/managedatabasedialog.h \
     catalog/qc_init.h \
     catalog/thumbnailmanager.h \
-    sidesplitter.h \
     stdafx.h \
     catalog/volumeitemmodel.h \
     catalog/flowlayout.h
@@ -165,6 +159,8 @@ SHADERS += \
 
 DBS += \
     database/schema.sql \
+
+OTHER_FILES += $$DBS
 
 DBBIN += \
     database/thumbnail.sqlite3.db \

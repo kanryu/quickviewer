@@ -728,7 +728,7 @@
     </message>
     <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
-        <translation type="vanished">メインメニューの表示／非表示切り替え</translation>
+        <translation>メインメニューの表示／非表示切り替え</translation>
     </message>
     <message>
         <source>Copy Image</source>
@@ -756,7 +756,7 @@
     </message>
     <message>
         <source>Move the Image to the &amp;Recycle Bin</source>
-        <translation>現在のページの画像をゴミ箱に入れる(&amp;R)</translation>
+        <translation type="vanished">現在のページの画像をゴミ箱に入れる(&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Bilinear (standard)</source>
@@ -792,11 +792,11 @@
     </message>
     <message>
         <source>&amp;Copy Image to the clipboard</source>
-        <translation>画像をクリップボードにコピー(&amp;C)</translation>
+        <translation type="vanished">画像をクリップボードにコピー(&amp;C)</translation>
     </message>
     <message>
         <source>Copy File to the clipboard</source>
-        <translation>ファイルをクリップボードにコピー</translation>
+        <translation type="vanished">ファイルをクリップボードにコピー</translation>
     </message>
     <message>
         <source>&amp;Rotate</source>
@@ -906,12 +906,44 @@
         <source>ShowTagBar</source>
         <translation>タグ検索バーを表示する</translation>
     </message>
+    <message>
+        <source>&amp;Copy Image to clipboard</source>
+        <translation>画像をクリップボードにコピー(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Move Image to &amp;Recycle Bin</source>
+        <translation>現在のページの画像をゴミ箱に入れる(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Copy File to clipboard</source>
+        <translation>ファイルをクリップボードにコピー</translation>
+    </message>
+    <message>
+        <source>Run your &amp;mailer with an attachment</source>
+        <translation>添付ファイルにしてメールソフトを起動する(&amp;M)</translation>
+    </message>
+    <message>
+        <source>Run your mailer with an attachment</source>
+        <translation>添付ファイルにしてメールソフトを起動する</translation>
+    </message>
+    <message>
+        <source>Show large &amp;grid for long titles</source>
+        <translation>長いタイトルを表示するために枠を大きめにする</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
     <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
-        <translation>メインメニューの表示／非表示切り替え</translation>
+        <translation type="vanished">メインメニューの表示／非表示切り替え(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Sh&amp;ow or Hide MainMenuBar</source>
+        <translation>メインメニューの表示／非表示切り替え(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Sh&amp;ow /or Hide MainMenuBar</source>
+        <translation type="obsolete">メインメニューの表示／非表示切り替え(&amp;O)</translation>
     </message>
 </context>
 <context>

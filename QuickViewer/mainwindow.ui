@@ -47,7 +47,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="SideSplitter" name="catalogSplitter">
+     <widget class="QSplitter" name="catalogSplitter">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -316,12 +316,14 @@
     <addaction name="actionPrevOnePage"/>
     <addaction name="separator"/>
     <addaction name="actionCopyPage"/>
-    <addaction name="actionDeletePage"/>
     <addaction name="actionCopyFile"/>
+    <addaction name="actionDeletePage"/>
+    <addaction name="actionMailAttachment"/>
     <addaction name="separator"/>
     <addaction name="actionOpenFiler"/>
     <addaction name="actionOpenExif"/>
     <addaction name="separator"/>
+    <addaction name="actionDualView"/>
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
    </widget>
@@ -336,6 +338,7 @@
     <addaction name="actionCatalogViewIconNoText"/>
     <addaction name="separator"/>
     <addaction name="actionShowTagBar"/>
+    <addaction name="actionCatalogIconLongText"/>
     <addaction name="actionCatalogTitleWithoutOptions"/>
     <addaction name="actionSearchTitleWithOptions"/>
    </widget>
@@ -662,12 +665,12 @@
   </action>
   <action name="actionCopyPage">
    <property name="text">
-    <string>&amp;Copy Image to the clipboard</string>
+    <string>&amp;Copy Image to clipboard</string>
    </property>
   </action>
   <action name="actionDeletePage">
    <property name="text">
-    <string>Move the Image to the &amp;Recycle Bin</string>
+    <string>Move Image to &amp;Recycle Bin</string>
    </property>
   </action>
   <action name="actionShaderBilinear">
@@ -735,7 +738,7 @@
   </action>
   <action name="actionCopyFile">
    <property name="text">
-    <string>Copy File to the clipboard</string>
+    <string>Copy File to clipboard</string>
    </property>
   </action>
   <action name="actionRotate">
@@ -874,6 +877,27 @@
     <string>ShowTagBar</string>
    </property>
   </action>
+  <action name="actionShowMainMenuBar">
+   <property name="text">
+    <string>Sh&amp;ow/Hide MainMenuBar</string>
+   </property>
+  </action>
+  <action name="actionMailAttachment">
+   <property name="text">
+    <string>Run your &amp;mailer with an attachment</string>
+   </property>
+   <property name="iconText">
+    <string>Run your mailer with an attachment</string>
+   </property>
+  </action>
+  <action name="actionCatalogIconLongText">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show large &amp;grid for long titles</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -913,12 +937,6 @@
    <class>PageSlider</class>
    <extends>QSlider</extends>
    <header>pageslider.h</header>
-  </customwidget>
-  <customwidget>
-   <class>SideSplitter</class>
-   <extends>QSplitter</extends>
-   <header>sidesplitter.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
@@ -1853,6 +1871,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionMailAttachment</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_mailAttachment_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCatalogIconLongText</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_catalogIconLongText_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1900,5 +1950,7 @@
   <slot>on_catalogViewIcon_triggered()</slot>
   <slot>on_catalogViewNotext_triggered()</slot>
   <slot>on_catalogShowTagBar_triggered(bool)</slot>
+  <slot>on_mailAttachment_triggered()</slot>
+  <slot>on_catalogIconLongText_triggered(bool)</slot>
  </slots>
 </ui>

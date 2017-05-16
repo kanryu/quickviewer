@@ -161,15 +161,10 @@ void MainWindow::resetShortcutKeys()
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
 {
-//    if(e->mimeData()->hasFormat("text/uri-list"))
-//    {
-//        //視覚的にドロップを受付られることを
-//        //表示し、ドラッグ＆ドロップを受け付ける
-//        //これがないと受付られない。
-////        e->acceptProposedAction();
-//        e->accept();
-//    }
-     e->accept();
+    if(e->mimeData()->hasFormat("text/uri-list"))
+    {
+        e->acceptProposedAction();
+    }
 }
 
 void MainWindow::dropEvent(QDropEvent *e)
@@ -340,13 +335,15 @@ void MainWindow::setThumbnailManager(ThumbnailManager *manager)
 const static QKeySequence seqReturn("Return");
 const static QKeySequence seqEnter("Num+Enter");
 /**
- * @brief 固定的なホットキーの設定
+ * @brief Support for Customized Shortcut Keys
  */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     //int key = event->key();
     QKeySequence seq(event->key() | event->modifiers());
     qDebug() << seq;
+
+    // if the focus is on searchbar on CatalogWindow
     if(isCatalogSearching() && (seq == seqReturn || seq == seqEnter)) {
         return;
     }
@@ -650,6 +647,13 @@ void MainWindow::on_catalogShowTagBar_triggered(bool enable)
         m_catalogWindow->on_showTagBar_triggered(enable);
 }
 
+void MainWindow::on_catalogIconLongText_triggered(bool enable)
+{
+    qApp->setIconLongText(enable);
+    if(m_catalogWindow)
+        m_catalogWindow->resetViewMode();
+}
+
 void MainWindow::on_openfolder_triggered()
 {
     QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)");
@@ -757,6 +761,16 @@ void MainWindow::on_exitApplicationOrFullscreen_triggered()
         ui->actionFullscreen->trigger();
     else
         ui->actionExit->trigger();
+}
+
+void MainWindow::on_mailAttachment_triggered()
+{
+    if(m_pageManager.isArchive())
+        return;
+    QString path = m_pageManager.currentPagePath();
+    if(!path.length())
+        return;
+    setMailAttachment(path);
 }
 
 void MainWindow::on_deletePage_triggered()

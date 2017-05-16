@@ -30,6 +30,7 @@ public:
      * @return the path of the instance
      */
     QString volumePath() { return m_volumepath; }
+    QString realVolumePath() { return volumePath(); }
     /**
      * @brief contents
      * @return all image files without parent path(filename only)

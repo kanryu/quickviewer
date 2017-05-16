@@ -96,6 +96,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionShowCatalog", ui->actionShowCatalog);
     registAction("actionSearchTitleWithOptions", ui->actionSearchTitleWithOptions);
     registAction("actionCatalogTitleWithoutOptions", ui->actionCatalogTitleWithoutOptions);
+    registAction("actionCatalogIconLongText", ui->actionCatalogIconLongText);
 
     // View
     registAction("actionRotate", ui->actionRotate);
@@ -127,6 +128,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionCopyPage", ui->actionCopyPage);
     registAction("actionCopyFile", ui->actionCopyFile);
     registAction("actionDeletePage", ui->actionDeletePage);
+    registAction("actionMailAttachment", ui->actionMailAttachment);
 
     // Shader
     registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor);
@@ -222,6 +224,7 @@ void QVApplication::loadSettings()
     m_titleWithoutOptions = m_settings.value("TitleWithoutOptions", false).toBool();
     m_searchTitleWithOptions = m_settings.value("SearchTitleWithOptions", false).toBool();
     m_showTagBar = m_settings.value("ShowTagBar", true).toBool();
+    m_iconLongText = m_settings.value("IconLongText", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
@@ -280,6 +283,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("TitleWithoutOptions", m_titleWithoutOptions);
     m_settings.setValue("SearchTitleWithOptions", m_searchTitleWithOptions);
     m_settings.setValue("ShowTagBar", m_showTagBar);
+    m_settings.setValue("IconLongText", m_iconLongText);
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");

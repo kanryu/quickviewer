@@ -111,6 +111,17 @@ void RarExtractor::reset()
     m_hasScaned = false;
 }
 
+bool RarExtractor::reopen()
+{
+    OpenMode lastOpenMode = m_mode;
+    RARCloseArchive(m_hArc);
+    m_curIndex = 0;
+    m_error = ERAR_SUCCESS;
+    m_hArc = 0;
+    m_mode = OpenModeNotOpen;
+    return open(lastOpenMode, m_password);
+}
+
 void RarExtractor::scanFileInfo()
 {
     if (!isOpen() || m_hasScaned) {
@@ -137,20 +148,26 @@ void RarExtractor::scanFileInfo()
         info.fileAttr = hData.FileAttr;
         info.comment = m_comment;
 
-        RARFileWriter writer(&info);
-        RARSetCallback(m_hArc,
-                       RARFileWriter::procCallback,
-                       reinterpret_cast<LPARAM>(&writer));
+        if(m_mode==OpenModeExtract) {
+            RARFileWriter writer(&info);
+            RARSetCallback(m_hArc,
+                           RARFileWriter::procCallback,
+                           reinterpret_cast<LPARAM>(&writer));
 
 
-        if (info.flags & 0x04) {
-            m_isFilesEncrypted = true;
+            if (info.flags & 0x04) {
+                m_isFilesEncrypted = true;
+            }
+
+            if (RARProcessFile(m_hArc, RAR_TEST, NULL, NULL) != ERAR_SUCCESS) {
+                break;
+            }
+            writer.commit();
+        } else {
+            if (RARProcessFile(m_hArc, RAR_SKIP, NULL, NULL) != ERAR_SUCCESS) {
+                break;
+            }
         }
-
-        if (RARProcessFile(m_hArc, RAR_TEST, NULL, NULL) != ERAR_SUCCESS) {
-            break;
-        }
-        writer.commit();
         m_fileInfoList << info;
         m_fileNameToIndexSensitive.insert(info.fileName, i);
         m_fileNameToIndexInsensitive.insert(info.fileName.toLower(), i);
@@ -170,4 +187,87 @@ QStringList RarExtractor::fileNameList() const
         list << info.fileName;
     }
     return list;
+}
+
+QByteArray RarExtractor::fileData(QString fileName)
+{
+    int cs = Qt::CaseSensitive;
+
+    if(m_mode==OpenModeExtract) {
+        return getFileInfo(fileName).data;
+    }
+    // Move unrar cursor to this index
+    if (!reopen()) {
+        qWarning() << "QtRAR::setCurrentFile: fail to reopen to reset cursor";
+        return QByteArray();
+    }
+
+    QHash<QString, int>::const_iterator it;
+    if (cs == Qt::CaseSensitive) {
+        it = m_fileNameToIndexSensitive.find(fileName);
+        if (it == m_fileNameToIndexSensitive.end()) {
+            return QByteArray();
+        }
+    } else {
+        it = m_fileNameToIndexInsensitive.find(fileName.toLower());
+        if (it == m_fileNameToIndexInsensitive.end()) {
+            return QByteArray();
+        }
+    }
+
+    m_curIndex = it.value();
+
+    for (int i = 0; i < m_curIndex; ++i) {
+        RARHeaderDataEx hData;
+        if (RARReadHeaderEx(m_hArc, &hData) == ERAR_SUCCESS) {
+            if (RARProcessFile(m_hArc, RAR_SKIP, 0, 0) == ERAR_SUCCESS) {
+                continue;
+            } else {
+                qWarning() << "QtRAR::setCurrentFile: fail to skip file at index"
+                           << i;
+            }
+        } else {
+            qWarning() << "QtRAR:setCurrentFile: fail to read head at index"
+                       << i;
+            return QByteArray();
+        }
+    }
+
+    RARHeaderDataEx hData;
+    int i = 0;
+    if (RARReadHeaderEx(m_hArc, &hData) != ERAR_SUCCESS) {
+        qWarning() << "QtRARFile::open: cannot read file meta info";
+        return QByteArray();
+    }
+    RARFileInfo info;
+
+    info.fileName = QString::fromWCharArray(hData.FileNameW);
+    info.arcName = m_arcName;
+    info.flags = hData.Flags;
+    info.packSize = hData.PackSize;
+    info.unpSize = hData.UnpSize;
+    info.hostOS = hData.HostOS;
+    info.fileCRC = hData.FileCRC;
+    info.fileTime = hData.FileTime;
+    info.unpVer = hData.UnpVer;
+    info.method = hData.Method;
+    info.fileAttr = hData.FileAttr;
+    info.comment = m_comment;
+
+    RARFileWriter writer(&info);
+    RARSetCallback(m_hArc,
+                   RARFileWriter::procCallback,
+                   reinterpret_cast<LPARAM>(&writer));
+
+
+    if (info.flags & 0x04) {
+        m_isFilesEncrypted = true;
+    }
+
+    if (RARProcessFile(m_hArc, RAR_TEST, NULL, NULL) != ERAR_SUCCESS) {
+        return QByteArray();
+    }
+    writer.commit();
+
+    return info.data;
 }

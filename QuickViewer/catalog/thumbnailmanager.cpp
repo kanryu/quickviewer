@@ -10,6 +10,7 @@
 
 #include "thumbnailmanager.h"
 #include "qc_init.h"
+#include "filevolume.h"
 
 QList<QByteArray> ThumbnailManager::st_supportedImageFormats;
 QStringList ThumbnailManager::st_jpegpegImageFormats;
@@ -24,17 +25,6 @@ bool ThumbnailManager::isImageFile(QString path)
     }
     QString lower = path.toLower();
     foreach(const QString& e, st_supportedImageFormats) {
-        if(lower.endsWith(e))
-            return true;
-    }
-    return false;
-}
-
-bool ThumbnailManager::isArchiveFile(QString path)
-{
-    QStringList exts = {".zip", ".7z", ".rar"};
-    QString lower = path.toLower();
-    foreach(const QString& e, exts) {
         if(lower.endsWith(e))
             return true;
     }
@@ -173,6 +163,20 @@ VolumeWorker ThumbnailManager::createSubVolumesConcurrent(QString dirpath, int v
     vw.dirpath = dirpath;
     vw.volume_id = volume_id;
     vw.parent_id = parent_id;
+
+    if(IFileLoader::isArchiveFile(dirpath)) {
+        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(nullptr, dirpath, IFileVolume::NoAsync);
+        if(fv) {
+            ImageContent ic = fv->currentImage();
+            vw.frontPage = createFileRecordFromArchive(dirpath, ic, 0);
+            delete fv;
+        }
+        if(m_catalogWatcher.isStarted()) {
+            emit m_catalogWatcher.progressValueChanged(m_catalogWorkProgress++);
+        }
+        return vw;
+    }
+
     QDir dir(dirpath);
     QStringList subdirs = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Unsorted);
     sortFiles(subdirs);
@@ -227,6 +231,11 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
         root.parent_id = -1;
         root.subpaths = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Unsorted);
         sortFiles(root.subpaths);
+        QStringList files = dir.entryList(QDir::Files, QDir::Unsorted);
+        foreach(const QString& f, files) {
+            if(IFileLoader::isArchiveFile(f))
+                root.subpaths << f;
+        }
         parentworkers << root;
     }
     QList<QFuture<VolumeWorker>> workers;
@@ -555,6 +564,34 @@ FileWorker ThumbnailManager::createFileRecord(QString filename, QString filepath
     return result;
 }
 
+FileWorker ThumbnailManager::createFileRecordFromArchive(QString archivePath, ImageContent &ic, int filename_asc)
+{
+    FileWorker result;
+    result.filename = ic.Path;
+    result.filepath = ic.Path;
+    result.info.setFile(archivePath);
+    result.asc = filename_asc;
+    QImage img = ic.Image.toImage();
+    if(!img.width()) {
+        result.asc = -1;
+        return result;
+    }
+    result.imagesize = img.size();
+
+    QImage thumb = img.scaledToWidth(2*THUMB_WIDTH, Qt::FastTransformation);
+    thumb = thumb.scaledToWidth(THUMB_WIDTH, Qt::SmoothTransformation);
+    QBuffer thumbdat;
+    thumbdat.open(QBuffer::ReadWrite);
+    if(!thumb.save(&thumbdat, "JPEG", 85)) {
+        result.asc = -1;
+        return result;
+    }
+    result.thumb = thumb;
+    result.thumbbytes = thumbdat.data();
+    result.created_at = QDateTime::currentDateTime();
+    return result;
+}
+
 int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
 {
     QDir dir(dirpath);
@@ -811,7 +848,6 @@ void ThumbnailManager::loadTags()
         tag.id = t_tags.value("id").toInt();
         tag.name = t_tags.value("name").toString();
         tag.type_id = t_tags.value("type_id").toInt();
-        tag.count = t_tags.value("cnt").toInt();
         QString tagkey = QString("%1:%2").arg(tag.type_id).arg(tag.name.toLower());
         m_tags[tagkey] = tag;
         m_tags2[tag.id] = &m_tags[tagkey];

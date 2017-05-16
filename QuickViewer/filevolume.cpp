@@ -23,34 +23,23 @@ void IFileVolume::on_ready()
         return;
 
 //    qDebug() << "on_ready: m_cnt" << m_cnt;
-    QVector<int> offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
-    if(m_cacheMode == CacheMode::CoverOnly) {
-        offsets = {0, 1};
-    }
-    if(m_cacheMode == CacheMode::FastFowrard) {
-        offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19};
+    QVector<int> offsets;
+    switch(m_cacheMode) {
+    case CacheMode::Normal: offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6}; break;
+    case CacheMode::FastFowrard: offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19}; break;
+    case CacheMode::CoverOnly: offsets = {0, 1}; break;
+    case CacheMode::NoAsync:
+        m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[m_cnt]);
+        return;
     }
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())
             continue;
-//        if(m_pageCache.contains(cnt))
-//            m_pageCache.removeOne(cnt);
-//        else {
-////            qDebug() << "add cached:" << cnt;
-//            m_imageCache[cnt] = QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]);
-//        }
-//        m_pageCache.push_front(cnt);
         if(m_imageCache.checkShouldBeInserted(cnt))
             m_imageCache.insertNoChecked(cnt, QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]));
     }
-//    m_currentCache = m_imageCache[m_cnt];
     m_currentCache = m_imageCache.object(m_cnt);
-//    while(m_pageCache.size() > 16) {
-//        int cnt = m_pageCache.takeLast();
-//        m_imageCache.remove(cnt);
-////        qDebug() << "remove cached:" << cnt;
-//    }
 }
 
 const ImageContent IFileVolume::getIndexedImageContent(int idx)
@@ -98,7 +87,8 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
 {
     QDir dir(path);
 
-    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
+//    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
+    if(dir.exists()) {
         return new IFileVolume(parent, new FileLoaderDirectory(parent, path));
     }
     QString lower = path.toLower();
@@ -162,7 +152,7 @@ QString IFileVolume::FullPathToSubFilePath(QString path)
     return path.mid(path.indexOf("::")+2);
 }
 
-IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path)
+IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path, CacheMode mode)
 {
     IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(path));
     if(!fv)
@@ -171,7 +161,7 @@ IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString pat
         delete fv;
         return nullptr;
     }
-    fv->m_cacheMode = CacheMode::CoverOnly;
+    fv->m_cacheMode = mode;
     fv->on_ready();
     return fv;
 }

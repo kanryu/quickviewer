@@ -32,6 +32,7 @@ public:
     explicit CatalogWindow(QWidget *parent, Ui::MainWindow* uiMain);
     ~CatalogWindow();
     void setThumbnailManager(ThumbnailManager* manager);
+    void resetViewMode();
     void setAsToplevelWindow();
     void setAsInnerWidget();
     void resetVolumes();

@@ -105,7 +105,7 @@ signals:
 private:
     IFileVolume* addVolumeCache(QString path, bool onlyCover=false);
     /**
-     * @brief 現在表示しているページのうち最も若い番号。filevolume側の内部ページと異なる場合があるので注意
+     * @brief younger page number
      */
     int m_currentPage;
 

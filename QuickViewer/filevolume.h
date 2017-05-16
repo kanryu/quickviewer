@@ -46,7 +46,8 @@ public:
     {
         Normal,
         FastFowrard,
-        CoverOnly
+        CoverOnly,
+        NoAsync,
     };
 
     typedef QFuture<ImageContent> future_image;
@@ -59,21 +60,18 @@ public:
         }
     }
     /**
-     * @brief 指定されたファイルまたはディレクトリのpathからIFileVolumeのインスタンスを返すファクトリ関数
-     * @return IFileVolumeインターフェイスを継承したオブジェクト。生成に失敗した場合はnull
+     * @brief A factory function that returns an instance of IFileVolume from the path of the specified file or directory
+     * @return An object that inherits the IFileVolume interface. It is null if generation failed
      */
     static IFileVolume* CreateVolume(QObject* parent, QString path);
-    static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path);
+    static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path, CacheMode mode = CacheMode::CoverOnly);
 
     static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
     static QString FullPathToVolumePath(QString path);
     static QString FullPathToSubFilePath(QString path);
 
     bool isArchive() const { return m_loader->isArchive(); }
-    /**
-     * @brief 現在のファイルパスを返す
-     * @return
-     */
+
     QString currentPath() {
         if(m_loader->isArchive())
             return QString("%1::%2")
@@ -88,7 +86,7 @@ public:
                     .arg(QDir::fromNativeSeparators(m_loader->volumePath()))
                     .arg(name);
         else
-            return QDir(m_loader->volumePath()).absoluteFilePath(name);
+            return QDir(m_loader->realVolumePath()).absoluteFilePath(name);
     }
     QString getIndexedFileName(int idx) {
         if(idx < 0 || idx >= m_filelist.size())
@@ -103,39 +101,16 @@ public:
     void setCacheMode(CacheMode cachemode) { m_cacheMode = cachemode; }
     CacheMode cacheMode() const { return m_cacheMode; }
 
-    /**
-     * @brief currentImage 現在の画像(ページ)を返す。１度呼び出すとキャッシュされ、ページまたはボリュームが変更されるまで同じインスタンスを返す
-     * @return
-     */
-    const ImageContent currentImage() { return m_currentCache.result(); }
-    /**
-     * @brief volumePath ボリュームのpathを返す。通常コンストラクタのpathがそのまま返ってくる
-     */
+
+    const ImageContent currentImage() { return m_cacheMode == NoAsync ? m_currentCacheSync : m_currentCache.result(); }
     QString volumePath() { return m_loader->volumePath(); }
-    /**
-     * @brief 一つ次のページに移動する（一度に複数の画像を表示する場合、その最初の画像に制御が移る）
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
+
     bool nextPage();
-    /**
-     * @brief 一つ前のページに移動する（一度に複数の画像を表示する場合、前ページの最後の画像に制御が移ることに注意）
-     * @return 成功/失敗(ファイルリスト終端等)
-     */
     bool prevPage();
     bool findPageByIndex(int idx);
-//    /**
-//     * @brief 現在のファイルリストの中で次のファイルに移動する
-//     * @return 成功/失敗(ファイルリスト終端等)
-//     */
-//    virtual bool nextFile()=0;
-//    /**
-//     * @brief 現在のファイルリストの中で前のファイルに移動する
-//     * @return 成功/失敗(ファイルリスト終端等)
-//     */
-//    virtual bool prevFile()=0;
+
     /**
-     * @brief 現在のファイルリストの中で指定されたidx値に対応するファイルに移動する(最大値はディレクトリまたはアーカイブの画像数-1)
-     * @return 成功/失敗(ファイルリスト終端等)
+     * @brief Move to the file corresponding to the idx value specified in the file list(Max is size()-1)
      */
     bool findImageByIndex(int idx) {
         if(idx < 0 || idx >= m_filelist.size())
@@ -145,8 +120,7 @@ public:
     }
 
     /**
-     * @brief 現在のファイルリストの中で指定されたファイル名に対応するファイルに移動する
-     * @return 成功/失敗(ファイルが見つからない等)
+     * @brief Move to the file corresponding to the file name specified in the current file list
      */
     bool findImageByName(QString name) {
         int idx = m_filelist.indexOf(name);
@@ -157,22 +131,17 @@ public:
     }
 
     /**
-     * @brief loadImageByName 内部カウンタを進めずにファイルリストの中で指定されたファイル名に対応する画像を読み込んで返す
-     * @return ロードに失敗すれば空インスタンス
+     * @brief loadImageByName Reads and returns the image corresponding to the file name specified in the file list without advancing the internal counter
      */
     QByteArray loadByteArrayByName(const QString& name) { return m_loader->getFile(name, m_mutex); }
     /**
-     * @brief ボリュームが持つページ数を返す
-     * @return ボリュームが持つページ数
+     * @brief Returns the number of pages the volume has
      */
     int size() { return m_filelist.size(); }
     /**
-     * @brief on_ready アプリの準備が終わった段階で呼び出される。最初に、あるいは次に表示すべき画像およびそのファイルパスがemitされる
+     * @brief on_ready Called when the application is ready. First, or the image to be displayed next and its file path are emitted
      */
     void on_ready();
-    /**
-     * @brief pageCount 現在のページを返す
-     */
     int pageCount() { return m_cnt; }
 
 //    QPixmap getIndexedImage(int idx);
@@ -183,11 +152,12 @@ public:
 
 protected:
     /**
-     * @brief m_cnt ボリューム内のファイルカウンタ
+     * @brief m_cnt File counter in the volume
      */
     int m_cnt;
     QList<QString> m_filelist;
     future_image m_currentCache;
+    ImageContent m_currentCacheSync;
 
     TimeOrderdCache<int, future_image> m_imageCache;
 //    QMap<int, future_image> m_imageCache;

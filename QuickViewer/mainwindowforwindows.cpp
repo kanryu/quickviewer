@@ -1,4 +1,5 @@
 #include <Windows.h>
+#include <mapi.h>
 #include <Shellapi.h>
 #include <QtCore>
 
@@ -14,6 +15,9 @@ WNDPROC MainWindowForWindows::DefStaticProc;
 MainWindowForWindows::MainWindowForWindows(QWidget *parent)
     : MainWindow(parent), bFirstView(true)
 {
+    QString menutxt = tr("Sh&ow or Hide MainMenuBar");
+    menutxt = ui->actionShowMainMenuBar->text();
+
     MainWindowForWindows_self = this;
 }
 
@@ -54,6 +58,90 @@ void MainWindowForWindows::setWindowTop()
     ::SetWindowPos(hwnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
 }
 
+static LPSTR qStringToLPSTR(const QString& qString)
+{
+    // return qString.toLocal8Bit().data();
+    return qString.toLatin1().data();
+}
+
+static QString mapi32path()
+{
+    // // try to determine default Simple MAPI handler
+    // // first, look for current user's default client
+    // registry::tstring default_client =  registry::const_key(HKEY_CURRENT_USER, "Software\\Clients\\Mail")[""].reg_sz("");
+    //
+    // if (default_client.empty()) {
+    // 	// then look for machine-wide settings
+    // 	default_client =  registry::const_key(HKEY_LOCAL_MACHINE, "Software\\Clients\\Mail")[""].reg_sz("");
+    // }
+    //
+    // if (!default_client.empty()) {
+    // 	registry::const_key regClient(HKEY_LOCAL_MACHINE, registry::tstring("Software\\Clients\\Mail\\" + default_client).c_str());
+    // 	registry::tstring s = regClient["DLLPath"].reg_sz("");
+    //
+    // 	if (s.empty())
+    // 		s = regClient["DLLPathEx"].reg_sz("");
+    //
+    // 	if (!s.empty())
+    // 		dllpath = s;
+    // }
+
+    return "mapi32";
+}
+
+void MainWindowForWindows::setMailAttachment(QString path)
+{
+    QLibrary lib("mapi32");
+    if( LPMAPISENDMAILW mapi = LPMAPISENDMAILW(lib.resolve("MAPISendMailW")) )
+    {
+        QString filePath = QDir::toNativeSeparators( path );
+        QString fileName = QFileInfo( path ).fileName();
+//        QString subject = q.queryItemValue( "subject", QUrl::FullyDecoded );
+        MapiFileDescW doc = { 0, 0, 0, 0, 0, 0 };
+        doc.nPosition = -1;
+        doc.lpszPathName = PWSTR(filePath.utf16());
+        doc.lpszFileName = PWSTR(fileName.utf16());
+        MapiMessageW message = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+//        message.lpszSubject = PWSTR(subject.utf16());
+//        message.lpszNoteText = L"";
+        message.nFileCount = 1;
+        message.lpFiles = lpMapiFileDescW(&doc);
+        switch( mapi( NULL, 0, &message, MAPI_LOGON_UI|MAPI_DIALOG, 0 ) )
+        {
+        case SUCCESS_SUCCESS:
+        case MAPI_E_USER_ABORT:
+        case MAPI_E_LOGIN_FAILURE:
+            return;
+        default: break;
+        }
+    }
+    else if( LPMAPISENDMAIL mapi = LPMAPISENDMAIL(lib.resolve("MAPISendMail")) )
+    {
+        QByteArray filePath = QDir::toNativeSeparators( path ).toLocal8Bit();
+        QByteArray fileName = QFileInfo( path ).fileName().toLocal8Bit();
+//        QByteArray subject = q.queryItemValue( "subject", QUrl::FullyDecoded ).toLocal8Bit();
+        MapiFileDesc doc = { 0, 0, 0, 0, 0, 0 };
+        doc.nPosition = -1;
+        std::string flpath = filePath.toStdString();
+        std::string flname = fileName.toStdString();
+        doc.lpszPathName = LPSTR(flpath.c_str());
+        doc.lpszFileName = LPSTR(flname.c_str());
+        MapiMessage message = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+//        message.lpszSubject = LPSTR(subject.constData());
+//        message.lpszNoteText = "";
+        message.nFileCount = 1;
+        message.lpFiles = lpMapiFileDesc(&doc);
+        switch( mapi( NULL, 0, &message, MAPI_LOGON_UI|MAPI_DIALOG, 0 ) )
+        {
+        case SUCCESS_SUCCESS:
+        case MAPI_E_USER_ABORT:
+        case MAPI_E_LOGIN_FAILURE:
+            return;
+        default: break;
+        }
+    }
+}
+
 // This method is used because QShowEvent may not be called
 bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
 {
@@ -64,7 +152,7 @@ bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
     auto hwnd = reinterpret_cast<HWND>(winId());
     m_showMainMenu = ::GetSystemMenu(hwnd, false);
 
-    QString menutxt = tr("Sh&ow/Hide MainMenuBar");
+    QString menutxt = ui->actionShowMainMenuBar->text();
 
     ::AppendMenu(m_showMainMenu, MF_SEPARATOR, IDM_SHOWMAINMENU-1, 0);
     ::AppendMenu(m_showMainMenu, MF_STRING, IDM_SHOWMAINMENU,

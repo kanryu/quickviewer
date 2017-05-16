@@ -53,7 +53,6 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
         delete ui->tagFrame->layout();
     }
     QLayout *layout = new FlowLayout;
-//    QLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(2, 2, 2, 2);
     layout->setSpacing(2);
     ui->tagFrame->setLayout(layout);
@@ -63,6 +62,7 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
     ui->statusLabel->setText(tr("Drop image folders here and create Catalogs."));
 
     ui->menu_View->addAction(uiMain->actionShowTagBar);
+    ui->menu_View->addAction(uiMain->actionCatalogIconLongText);
     ui->menu_View->addAction(uiMain->actionCatalogTitleWithoutOptions);
     ui->menu_View->addAction(uiMain->actionSearchTitleWithOptions);
 
@@ -82,13 +82,18 @@ void CatalogWindow::setThumbnailManager(ThumbnailManager *manager)
     m_volumes = m_thumbManager->volumes();
     initTagButtons();
 
+    resetViewMode();
+    searchByWord(true);
+}
+
+void CatalogWindow::resetViewMode()
+{
     switch(qApp->CatalogViewModeSetting()) {
     case qvEnums::List: on_folderViewList_triggered(); break;
     case qvEnums::Icon: on_folderViewIcon_triggered(); break;
     case qvEnums::IconNoText: on_folderViewNotext_triggered(); break;
     }
 
-    searchByWord(true);
 }
 
 void CatalogWindow::setAsToplevelWindow()
@@ -187,7 +192,7 @@ void CatalogWindow::searchByWord(bool doForce)
         return;
     m_lastSearchWord = search;
 
-    int cnt = 0;
+//    int cnt = 0;
     m_volumeSearch.clear();
     SearchWords searchwords(search.toLower());
     foreach(const VolumeThumbRecord& vtr , m_volumes) {
@@ -207,11 +212,7 @@ void CatalogWindow::dragEnterEvent(QDragEnterEvent *e)
 {
     if(e->mimeData()->hasFormat("text/uri-list"))
     {
-        //視覚的にドロップを受付られることを
-        //表示し、ドラッグ＆ドロップを受け付ける
-        //これがないと受付られない。
         e->acceptProposedAction();
-//        e->accept();
     }
 }
 
@@ -250,7 +251,13 @@ void CatalogWindow::on_folderViewList_triggered()
     ui->actionFolderViewIconNoText->setChecked(false);
     m_itemModel.setViewMode(qvEnums::List);
     ui->volumeList->setResizeMode(QListView::Adjust);
-    ui->volumeList->setGridSize(QSize(300, 100));
+    if(qApp->IconLongText()) {
+        ui->volumeList->setGridSize(QSize(300, 100));
+        ui->volumeList->setTextElideMode(Qt::ElideRight);
+    } else {
+        ui->volumeList->setGridSize(QSize(200, 100));
+        ui->volumeList->setTextElideMode(Qt::ElideNone);
+    }
     ui->volumeList->setViewMode(QListView::ListMode);
     ui->volumeList->setUniformItemSizes(true);
 
@@ -265,7 +272,13 @@ void CatalogWindow::on_folderViewIcon_triggered()
     ui->actionFolderViewIconNoText->setChecked(false);
     m_itemModel.setViewMode(qvEnums::Icon);
     ui->volumeList->setResizeMode(QListView::Adjust);
-    ui->volumeList->setGridSize(QSize(150, 170));
+    if(qApp->IconLongText()) {
+        ui->volumeList->setGridSize(QSize(150, 170));
+        ui->volumeList->setTextElideMode(Qt::ElideRight);
+    } else {
+        ui->volumeList->setGridSize(QSize(150, 120));
+        ui->volumeList->setTextElideMode(Qt::ElideNone);
+    }
     ui->volumeList->setViewMode(QListView::IconMode);
     ui->volumeList->setUniformItemSizes(true);
 

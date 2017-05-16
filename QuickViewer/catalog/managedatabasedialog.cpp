@@ -124,11 +124,7 @@ void ManageDatabaseDialog::dragEnterEvent(QDragEnterEvent *e)
 {
     if(e->mimeData()->hasFormat("text/uri-list"))
     {
-        //視覚的にドロップを受付られることを
-        //表示し、ドラッグ＆ドロップを受け付ける
-        //これがないと受付られない。
         e->acceptProposedAction();
-//        e->accept();
     }
 }
 

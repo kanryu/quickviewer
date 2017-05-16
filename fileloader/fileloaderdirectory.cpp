@@ -10,8 +10,14 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
     if(!(m_valid = m_directory.exists()))
         return;
 
-    QStringList files = m_directory.entryList(QDir::Files, QDir::Name);
-    m_subArchiveList = m_directory.entryList(QDir::Dirs, QDir::Name);
+    QStringList files;
+    do {
+        files = m_directory.entryList(QDir::Files, QDir::Name);
+        m_subArchiveList = m_directory.entryList(QDir::AllDirs |QDir::NoDotAndDotDot);
+        if(files.size()>0 || m_subArchiveList.size() == 0)
+            break;
+        m_directory.setPath(m_directory.absoluteFilePath(m_subArchiveList[0]));
+    } while(1);
 
     foreach(const QString name, files) {
         if(IFileLoader::isImageFile(name)) {

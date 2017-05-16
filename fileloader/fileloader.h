@@ -15,6 +15,12 @@
 class IFileLoader : public QObject
 {
     Q_OBJECT
+    enum ScanMode {
+        Normal,
+        ToFastImage, // header scan, and return an image, and end(without worker)
+        ToAllFilesExtract, // header scan, and read all archived file under worker thread
+    };
+
 public:
     IFileLoader(QObject* parent) : QObject(parent) {}
     virtual ~IFileLoader() {}
@@ -49,6 +55,7 @@ public:
      * @return path which is param of constructor
      */
     virtual QString volumePath()=0;
+    virtual QString realVolumePath()=0;
     /**
      * @brief isArchive
      * @return return true, if the instance treates an archive file
@@ -76,6 +83,10 @@ public:
      * @return file binary data
      */
     virtual QByteArray getFile(QString filename, QMutex& mutex)=0;
+
+signals:
+    void imageLoaded(QString name, QByteArray data);
+    void loadFinished();
 
 private:
     static QList<QByteArray> st_supportedImageFormats;
