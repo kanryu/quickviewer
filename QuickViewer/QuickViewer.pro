@@ -90,14 +90,11 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/imageview.cpp \
-    src/widgets/pageslider.cpp \
     src/exifdialog.cpp \
     src/keyconfigdialog.cpp \
-    src/widgets/shortcutbutton.cpp \
     src/catalog/catalogwindow.cpp \
     src/catalog/databasesettingdialog.cpp \
     src/catalog/managedatabasedialog.cpp \
-    src/catalog/flowlayout.cpp \
     src/catalog/volumeitemmodel.cpp \
     src/models/qvapplication.cpp \
     src/models/thumbnailmanager.cpp \
@@ -105,6 +102,11 @@ SOURCES += \
     src/models/pagemanager.cpp \
     src/models/timeorderdcache.cpp \
     src/models/shadermanager.cpp \
+    src/widgets/flowlayout.cpp \
+    src/widgets/pageslider.cpp \
+    src/widgets/shortcutbutton.cpp \
+    src/folderview/folderitemmodel.cpp \
+    src/folderview/folderwindow.cpp
 
 HEADERS  += \
     src/qv_init.h \
@@ -118,15 +120,17 @@ HEADERS  += \
     src/catalog/managedatabasedialog.h \
     src/catalog/qc_init.h \
     src/catalog/volumeitemmodel.h \
-    src/catalog/flowlayout.h \
     src/models/filevolume.h \
     src/models/qvapplication.h \
     src/models/pagemanager.h \
     src/models/timeorderdcache.h \
     src/models/shadermanager.h \
     src/models/thumbnailmanager.h \
+    src/widgets/flowlayout.h \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
+    src/folderview/folderitemmodel.h \
+    src/folderview/folderwindow.h
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp

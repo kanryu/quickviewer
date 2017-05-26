@@ -2,12 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QtWidgets>
-#include "filevolume.h"
+#include "models/filevolume.h"
 #include "imageview.h"
 
 namespace Ui {
 class MainWindow;
 }
+class FolderWindow;
 class CatalogWindow;
 class ThumbnailManager;
 
@@ -53,6 +54,10 @@ public slots:
     void on_clearHistory_triggered();
     void on_historyMenu_triggered(QAction *action);
 
+    // Folder
+    void on_folderWindow_triggered();
+    void on_folderWindowClosed_triggered();
+
     // Catalog
     void on_manageCatalogs_triggered();
     void on_manageCatalogsClosed_triggered();
@@ -70,7 +75,7 @@ public slots:
 
     // PageBar
     void on_pageChanged_triggered();
-    void on_volumeChanged_triggered();
+    void on_volumeChanged_triggered(QString path);
     void on_pageSlider_changed(int value);
     void on_exit_triggered();
 
@@ -133,6 +138,7 @@ protected:
     PageManager m_pageManager;
     QList<QAction*> m_shaderMenuGroup;
     ThumbnailManager* m_thumbManager;
+    FolderWindow* m_folderWindow;
     CatalogWindow* m_catalogWindow;
 };
 

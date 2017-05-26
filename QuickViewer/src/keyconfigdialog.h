@@ -4,7 +4,7 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "qvapplication.h"
+#include "models/qvapplication.h"
 
 namespace Ui {
 class KeyConfigDialog;

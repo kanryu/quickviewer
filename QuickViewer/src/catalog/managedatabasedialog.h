@@ -3,7 +3,7 @@
 
 #include <QtGui>
 #include <QDialog>
-#include "thumbnailmanager.h"
+#include "models/thumbnailmanager.h"
 
 namespace Ui {
 class ManageDatabaseDialog;

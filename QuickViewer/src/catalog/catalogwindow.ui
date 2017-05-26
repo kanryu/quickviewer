@@ -17,7 +17,7 @@
    <string>CatalogWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../toolbar.qrc">
+   <iconset resource="../../toolbar.qrc">
     <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
   </property>
   <property name="styleSheet">
@@ -91,7 +91,7 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="../toolbar.qrc">
+       <iconset resource="../../toolbar.qrc">
         <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
       </property>
       <property name="iconSize">
@@ -130,7 +130,7 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="../toolbar.qrc">
+       <iconset resource="../../toolbar.qrc">
         <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
       </property>
       <property name="iconSize">
@@ -289,7 +289,7 @@ QFrame.layout {
   </layout>
   <action name="actionPrev">
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/arrow_left_icon</normaloff>:/icons/arrow_left_icon</iconset>
    </property>
    <property name="text">
@@ -298,7 +298,7 @@ QFrame.layout {
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/arrow_right_icon</normaloff>:/icons/arrow_right_icon</iconset>
    </property>
    <property name="text">
@@ -310,7 +310,7 @@ QFrame.layout {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
    </property>
    <property name="text">
@@ -322,7 +322,7 @@ QFrame.layout {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
    </property>
    <property name="text">
@@ -334,7 +334,7 @@ QFrame.layout {
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
    </property>
    <property name="text">
@@ -343,7 +343,7 @@ QFrame.layout {
   </action>
   <action name="actionFolderViewSelect">
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
    </property>
    <property name="text">
@@ -352,7 +352,7 @@ QFrame.layout {
   </action>
   <action name="actionManageCatalogs">
    <property name="icon">
-    <iconset resource="../toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
    </property>
    <property name="text">
@@ -383,7 +383,7 @@ QFrame.layout {
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../toolbar.qrc"/>
+  <include location="../../toolbar.qrc"/>
  </resources>
  <connections>
   <connection>

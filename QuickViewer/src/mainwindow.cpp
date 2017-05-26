@@ -9,6 +9,7 @@
 #include "qvapplication.h"
 #include "keyconfigdialog.h"
 #include "catalogwindow.h"
+#include "folderwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_viewerWindowStateMaximized(false)
 //    , contextMenu(this)
     , m_pageManager(this)
+    , m_folderWindow(nullptr)
     , m_catalogWindow(nullptr)
 {
     ui->setupUi(this);
@@ -141,7 +143,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    if(qApp->AutoLoaded() && m_pageManager.size() > 0) {
+    if(qApp->AutoLoaded() && m_pageManager.currentPageCount() > 0) {
         QString path = QDir::fromNativeSeparators(m_pageManager.currentPagePath());
         qApp->addBookMark(path, true);
     }
@@ -286,15 +288,17 @@ void MainWindow::loadVolume(QString path)
             ui->pageFrame->show();
         return;
     }
-    QMessageBox msgBox(this);
-    msgBox.setWindowTitle(tr("open error"));
-    msgBox.setIcon(QMessageBox::Warning);
-    msgBox.setText(QApplication::applicationVersion());
-    QString message = QString("<h2>%1</h2><p>%2</p>")
-            .arg(tr("Can't be opened. Is there no images?"))
-            .arg(path);
-    msgBox.setText(message);
-    msgBox.exec();
+//    QMessageBox msgBox(this);
+//    msgBox.setWindowTitle(tr("open error"));
+//    msgBox.setIcon(QMessageBox::Warning);
+//    msgBox.setText(QApplication::applicationVersion());
+//    QString message = QString("<h2>%1</h2><p>%2</p>")
+//            .arg(tr("Can't be opened. Is there no images?"))
+//            .arg(path);
+//    msgBox.setText(message);
+//    msgBox.exec();
+
+    ui->statusLabel->setText(tr("Can't be opened. Is there no images?"));
 }
 
 
@@ -488,12 +492,12 @@ void MainWindow::on_pageChanged_triggered()
         setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
 }
 
-void MainWindow::on_volumeChanged_triggered()
+void MainWindow::on_volumeChanged_triggered(QString path)
 {
-    qApp->addHistory(m_pageManager.volumePath());
+    qApp->addHistory(path);
 
     m_volumeCaption = QString("%1 - %2")
-            .arg(m_pageManager.volumePath()).arg(qApp->applicationName());
+            .arg(path).arg(qApp->applicationName());
     setWindowTitle(m_volumeCaption);
     makeHistoryMenu();
 
@@ -538,20 +542,54 @@ void MainWindow::on_historyMenu_triggered(QAction *action)
     loadVolume(action->text().mid(4));
 }
 
+void MainWindow::on_folderWindow_triggered()
+{
+    if(m_folderWindow) {
+        bool isChild = m_folderWindow->parent();
+        on_folderWindowClosed_triggered();
+        if(isChild) {
+            m_folderWindow = new FolderWindow(nullptr, ui);
+            QRect self = geometry();
+            m_folderWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+            m_folderWindow->setAsToplevelWindow();
+            m_folderWindow->setFolderPath(m_pageManager.volumePath());
+            connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
+            connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+            connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
+            m_folderWindow->show();
+        }
+        return;
+    }
+    if(m_catalogWindow && m_catalogWindow->parent())
+        on_manageCatalogsClosed_triggered();
+    m_folderWindow = new FolderWindow(nullptr, ui);
+    m_folderWindow->setFolderPath(m_pageManager.volumePath());
+    connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
+    connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
+    ui->catalogSplitter->insertWidget(0, m_folderWindow);
+    auto sizes = ui->catalogSplitter->sizes();
+    int sum = sizes[0]+sizes[1];
+    sizes[0] = 200;
+    sizes[1] = sum-sizes[0];
+    ui->catalogSplitter->setSizes(sizes);
+    m_folderWindow->setAsInnerWidget();
+}
+
+void MainWindow::on_folderWindowClosed_triggered()
+{
+    if(m_folderWindow) {
+        delete m_folderWindow;
+        m_folderWindow = nullptr;
+    }
+}
+
 void MainWindow::on_manageCatalogs_triggered()
 {
     if(m_catalogWindow) {
-        if(!m_catalogWindow->parent())
-            on_manageCatalogsClosed_triggered();
-        else {
-//            m_catalogWindow->setAcceptDrops(false);
-//            m_catalogWindow->setParent(nullptr);
-//            m_catalogWindow->setAcceptDrops(true);
-//            m_catalogWindow->setAsToplevelWindow();
-//            QRect self = geometry();
-//            m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
-//            m_catalogWindow->show();
-            on_manageCatalogsClosed_triggered();
+        bool isChild = m_catalogWindow->parent();
+        on_manageCatalogsClosed_triggered();
+        if(isChild) {
             m_catalogWindow = new CatalogWindow(nullptr, ui);
             m_catalogWindow->setThumbnailManager(m_thumbManager);
             connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
@@ -563,6 +601,8 @@ void MainWindow::on_manageCatalogs_triggered()
         }
         return;
     }
+    if(m_folderWindow && m_catalogWindow->parent())
+        on_folderWindowClosed_triggered();
     m_catalogWindow = new CatalogWindow(nullptr, ui);
     m_catalogWindow->setThumbnailManager(m_thumbManager);
     connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));

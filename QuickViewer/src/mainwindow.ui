@@ -20,7 +20,7 @@
    <string>QuickViewer</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="toolbar.qrc">
+   <iconset resource="../toolbar.qrc">
     <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
   </property>
   <widget class="QWidget" name="verticalWidget1">
@@ -278,7 +278,7 @@
       <string>LoadBookmark</string>
      </property>
      <property name="icon">
-      <iconset resource="toolbar.qrc">
+      <iconset resource="../toolbar.qrc">
        <normaloff>:/icons/bookmark_load_icon</normaloff>:/icons/bookmark_load_icon</iconset>
      </property>
     </widget>
@@ -297,6 +297,7 @@
     <addaction name="actionNextVolume"/>
     <addaction name="actionPrevVolume"/>
     <addaction name="separator"/>
+    <addaction name="actionShowFolder"/>
     <addaction name="actionSlideShow"/>
    </widget>
    <widget class="QMenu" name="menuShader">
@@ -372,6 +373,7 @@
    <addaction name="separator"/>
    <addaction name="actionSlideShow"/>
    <addaction name="separator"/>
+   <addaction name="actionShowFolder"/>
    <addaction name="actionShowCatalog"/>
    <addaction name="separator"/>
    <addaction name="actionRotate"/>
@@ -393,7 +395,7 @@
   </action>
   <action name="actionNextPage">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/page_next_icon2</normaloff>:/icons/page_next_icon2</iconset>
    </property>
    <property name="text">
@@ -411,7 +413,7 @@
   </action>
   <action name="actionPrevPage">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/page_previous_icon2</normaloff>:/icons/page_previous_icon2</iconset>
    </property>
    <property name="text">
@@ -423,7 +425,7 @@
   </action>
   <action name="actionZoomIn">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/power_plus_icon</normaloff>:/icons/power_plus_icon</iconset>
    </property>
    <property name="text">
@@ -435,7 +437,7 @@
   </action>
   <action name="actionZoomOut">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/power_minus_icon</normaloff>:/icons/power_minus_icon</iconset>
    </property>
    <property name="text">
@@ -450,7 +452,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/maximize_icon</normaloff>:/icons/maximize_icon</iconset>
    </property>
    <property name="text">
@@ -465,7 +467,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/dualview</normaloff>:/icons/dualview</iconset>
    </property>
    <property name="text">
@@ -483,7 +485,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/fullscreen2</normaloff>:/icons/fullscreen2</iconset>
    </property>
    <property name="text">
@@ -492,7 +494,7 @@
   </action>
   <action name="actionAppVersion">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
    </property>
    <property name="text">
@@ -530,7 +532,7 @@
   </action>
   <action name="actionLastPage">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/page_last_icon</normaloff>:/icons/page_last_icon</iconset>
    </property>
    <property name="text">
@@ -539,7 +541,7 @@
   </action>
   <action name="actionFirstPage">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/page_first_icon</normaloff>:/icons/page_first_icon</iconset>
    </property>
    <property name="text">
@@ -577,7 +579,7 @@
   </action>
   <action name="actionOpenKeyConfig">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/preference_icon</normaloff>:/icons/preference_icon</iconset>
    </property>
    <property name="text">
@@ -591,7 +593,7 @@
   </action>
   <action name="actionNextVolume">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/volume_next_icon</normaloff>:/icons/volume_next_icon</iconset>
    </property>
    <property name="text">
@@ -600,7 +602,7 @@
   </action>
   <action name="actionPrevVolume">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/volume_prev_icon</normaloff>:/icons/volume_prev_icon</iconset>
    </property>
    <property name="text">
@@ -656,7 +658,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/stayontop_icon</normaloff>:/icons/stayontop_icon</iconset>
    </property>
    <property name="text">
@@ -720,7 +722,7 @@
   </action>
   <action name="actionFastForward">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/page_next_fast_icon</normaloff>:/icons/page_next_fast_icon</iconset>
    </property>
    <property name="text">
@@ -729,7 +731,7 @@
   </action>
   <action name="actionFastBackward">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/page_previous_fast_icon</normaloff>:/icons/page_previous_fast_icon</iconset>
    </property>
    <property name="text">
@@ -743,7 +745,7 @@
   </action>
   <action name="actionRotate">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/rotation_icon</normaloff>:/icons/rotation_icon</iconset>
    </property>
    <property name="text">
@@ -755,7 +757,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/slideshow_icon</normaloff>:/icons/slideshow_icon</iconset>
    </property>
    <property name="text">
@@ -764,7 +766,7 @@
   </action>
   <action name="actionSaveBookmark">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/bookmark_save_icon</normaloff>:/icons/bookmark_save_icon</iconset>
    </property>
    <property name="text">
@@ -773,7 +775,7 @@
   </action>
   <action name="actionManageBookmarks">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/bookmark_manage_icon</normaloff>:/icons/bookmark_manage_icon</iconset>
    </property>
    <property name="text">
@@ -782,7 +784,7 @@
   </action>
   <action name="actionLoadBookmark">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/bookmark_load_icon</normaloff>:/icons/bookmark_load_icon</iconset>
    </property>
    <property name="text">
@@ -801,7 +803,7 @@
   </action>
   <action name="actionShowCatalog">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
    </property>
    <property name="text">
@@ -832,7 +834,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
    </property>
    <property name="text">
@@ -847,7 +849,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
    </property>
    <property name="text">
@@ -859,7 +861,7 @@
   </action>
   <action name="actionCatalogViewList">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
    </property>
    <property name="text">
@@ -896,6 +898,15 @@
    </property>
    <property name="text">
     <string>Show large &amp;grid for long titles</string>
+   </property>
+  </action>
+  <action name="actionShowFolder">
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/folder_32_icon</normaloff>:/icons/folder_32_icon</iconset>
+   </property>
+   <property name="text">
+    <string>Show&amp;Folder</string>
    </property>
   </action>
  </widget>
@@ -940,7 +951,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="toolbar.qrc"/>
+  <include location="../toolbar.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -1903,6 +1914,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowFolder</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_folderWindow_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -1952,5 +1979,7 @@
   <slot>on_catalogShowTagBar_triggered(bool)</slot>
   <slot>on_mailAttachment_triggered()</slot>
   <slot>on_catalogIconLongText_triggered(bool)</slot>
+  <slot>on_folderWindow_triggered()</slot>
+  <slot>on_folderWindowClosed_triggered()</slot>
  </slots>
 </ui>

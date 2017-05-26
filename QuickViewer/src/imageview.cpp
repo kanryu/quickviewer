@@ -70,7 +70,7 @@ void ImageView::setPageManager(PageManager *manager)
     m_pageManager = manager;
     connect(manager, SIGNAL(pagesNolongerNeeded()), this, SLOT(on_clearImages_triggered()));
     connect(manager, SIGNAL(readyForPaint()), this, SLOT(readyForPaint()));
-    connect(manager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
+    connect(manager, SIGNAL(volumeChanged(QString)), this, SLOT(on_volumeChanged_triggered(QString)));
     connect(manager, SIGNAL(pageAdded(ImageContent, bool)), this, SLOT(on_addImage_triggered(ImageContent, bool)));
 }
 
@@ -88,7 +88,7 @@ void ImageView::toggleSlideShow()
     m_slideshowTimer->start(5000);
 }
 
-void ImageView::on_volumeChanged_triggered()
+void ImageView::on_volumeChanged_triggered(QString path)
 {
     m_pageRotations = QVector<int>(m_pageManager->size());
 }

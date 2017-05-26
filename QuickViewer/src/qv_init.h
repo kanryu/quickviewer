@@ -31,6 +31,12 @@ public:
     };
     Q_ENUM(CatalogViewMode)
 
+    enum FolderViewSort {
+        OrderByName,
+        OrderByUpdatedAt,
+    };
+    Q_ENUM(FolderViewSort)
+
 };
 
 

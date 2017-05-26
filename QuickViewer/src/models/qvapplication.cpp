@@ -1,6 +1,10 @@
 #include <QtGui>
 #include <QtOpenGL>
 
+#ifdef Q_OS_WIN
+#include <shlobj.h>
+#endif
+
 #include "qvapplication.h"
 #include "qv_init.h"
 #include "ui_mainwindow.h"
@@ -182,6 +186,34 @@ void QVApplication::addBookMark(QString path, bool canDumplication)
         m_bookmarks.pop_back();
 }
 
+
+QString QVApplication::getDefaultPictureFolderPath()
+{
+    QString path = "./";
+#ifdef Q_OS_WIN
+    int nFolder = CSIDL_MYPICTURES;
+    HRESULT result;
+    LPITEMIDLIST pidl;
+    std::string str;
+    IMalloc *pMalloc;
+    WCHAR szPath[MAX_PATH+1];
+
+    SHGetMalloc(&pMalloc);
+    result = ::SHGetSpecialFolderLocation(NULL, nFolder, &pidl);
+
+    if (SUCCEEDED(result))
+    {
+        ::SHGetPathFromIDList(pidl, szPath);
+        path = QString::fromWCharArray(szPath);
+        pMalloc->Free(pidl);
+    }
+    pMalloc->Release();
+#else
+    path = "~/"
+#endif
+    return path;
+}
+
 void QVApplication::loadSettings()
 {
     bool bRightSideBookDefault = QLocale::system().language() == QLocale::Japanese;
@@ -214,10 +246,22 @@ void QVApplication::loadSettings()
     m_maxBookmarkCount = m_settings.value("MaxBookmarkCount", 20).toInt();
     m_settings.endGroup();
 
+    m_settings.beginGroup("Folder");
+    QString defaultPath = getDefaultPictureFolderPath();
+    m_homeFolderPath = m_settings.value("HomeFolderPath", defaultPath).toString();
+    {
+        QString folderSortModestring = m_settings.value("FolderSortMode", "OrderByName").toString();
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FolderViewSort");
+        m_folderSortMode = (qvEnums::FolderViewSort)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(folderSortModestring.toLatin1().data());
+    }
+    m_settings.endGroup();
+
     m_settings.beginGroup("Catalog");
-    QString viewModestring = m_settings.value("CatalogViewModeSetting", "Icon").toString();
-    int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
-    m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
+    {
+        QString viewModestring = m_settings.value("CatalogViewModeSetting", "Icon").toString();
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
+        m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
+    }
     m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
     m_maxSearchByCharChanged = m_settings.value("MaxSearchByCharChanged", 10000).toInt();
     m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();
@@ -274,10 +318,21 @@ void QVApplication::saveSettings()
     m_settings.setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
     m_settings.endGroup();
 
+    m_settings.beginGroup("Folder");
+    m_settings.setValue("HomeFolderPath", m_homeFolderPath);
+    {
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FolderViewSort");
+        QString folderSortModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_folderSortMode));
+        m_settings.setValue("FolderSortMode", folderSortModestring);
+    }
+    m_settings.endGroup();
+
     m_settings.beginGroup("Catalog");
-    int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
-    QString viewModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_catalogViewModeSetting));
-    m_settings.setValue("CatalogViewModeSetting", viewModestring);
+    {
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
+        QString viewModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_catalogViewModeSetting));
+        m_settings.setValue("CatalogViewModeSetting", viewModestring);
+    }
     m_settings.setValue("MaxSearchByCharChanged", m_maxSearchByCharChanged);
     m_settings.setValue("MaxShowFrontpage", m_maxShowFrontpage);
     m_settings.setValue("TitleWithoutOptions", m_titleWithoutOptions);

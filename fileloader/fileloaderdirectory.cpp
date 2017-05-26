@@ -16,6 +16,8 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
         m_subArchiveList = m_directory.entryList(QDir::AllDirs |QDir::NoDotAndDotDot);
         if(files.size()>0 || m_subArchiveList.size() == 0)
             break;
+        if(m_subArchiveList.size() > 1)
+            return;
         m_directory.setPath(m_directory.absoluteFilePath(m_subArchiveList[0]));
     } while(1);
 

@@ -165,6 +165,8 @@ void PageManager::clearPages()
 
 bool PageManager::loadVolume(QString path, bool coverOnly)
 {
+    clearPages();
+    m_fileVolume = nullptr;
     IFileVolume* newer = addVolumeCache(path, coverOnly);
     if(!newer) {
         return false;
@@ -176,7 +178,7 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
         m_volumenames = QStringList();
     }
     m_currentPage = 0;
-    emit volumeChanged();
+    emit volumeChanged(m_fileVolume->volumePath());
     // if volume is folder and the path incluces filename, pageCount() != 0
     selectPage(coverOnly ? 0 : m_fileVolume->pageCount());
     return true;

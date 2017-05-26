@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>FolderWindow</class>
+ <widget class="QWidget" name="FolderWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>855</width>
+    <width>719</width>
     <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -22,32 +22,81 @@
     <height>16777215</height>
    </size>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="mouseTracking">
+   <bool>true</bool>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="enabled">
-       <bool>false</bool>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>FolderWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../toolbar.qrc">
+    <normaloff>:/icons/folder_32_icon</normaloff>:/icons/folder_32_icon</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QMenuBar" name="menuBar">
+     <widget class="QMenu" name="menuSort">
+      <property name="title">
+       <string>&amp;Sort</string>
       </property>
-      <property name="text">
-       <string>Current Folder</string>
-      </property>
+      <addaction name="actionOrderByName"/>
+      <addaction name="actionOrderByUpdatedAt"/>
      </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>My Pictures</string>
+     <widget class="QMenu" name="menuItemContext">
+      <property name="title">
+       <string>ItemContext</string>
       </property>
+      <addaction name="actionSetAsHomeFolder"/>
      </widget>
-    </item>
-    <item>
-     <widget class="QFrame" name="frame">
-      <property name="styleSheet">
-       <string notr="true">
+     <addaction name="menuSort"/>
+     <addaction name="menuItemContext"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Current Folder</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="pathLabel">
+     <property name="text">
+      <string>My Pictures</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::PlainText</enum>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">
 QToolButton {
     height: 24px;
     border: none;
@@ -65,212 +114,191 @@ QPushButton:hover {
     background-color: yellow;
 }
 </string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QToolButton" name="homeButton">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="toolbar.qrc">
-           <normaloff>:/icons/24/home_icon_24</normaloff>:/icons/24/home_icon_24</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="prevButton">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="toolbar.qrc">
-           <normaloff>:/icons/24/arrow_left_icon_24</normaloff>:/icons/24/arrow_left_icon_24</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="nextButton">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="toolbar.qrc">
-           <normaloff>:/icons/24/arrow_right_icon_24</normaloff>:/icons/24/arrow_right_icon_24</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="toParentButton">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="toolbar.qrc">
-           <normaloff>:/icons/24/arrrow_up_icon_24</normaloff>:/icons/24/arrrow_up_icon_24</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="reloadButton">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="toolbar.qrc">
-           <normaloff>:/icons/24/sync_icon_24</normaloff>:/icons/24/sync_icon_24</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-           <underline>true</underline>
-          </font>
-         </property>
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>595</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QToolButton" name="otherButton">
-         <property name="maximumSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="toolbar.qrc">
-           <normaloff>:/icons/24/3dot_icon_24</normaloff>:/icons/24/3dot_icon_24</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>24</width>
-           <height>24</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QTreeView" name="folderView"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>855</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QToolButton" name="homeButton">
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../toolbar.qrc">
+          <normaloff>:/icons/24/home_icon_24</normaloff>:/icons/24/home_icon_24</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="prevButton">
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../toolbar.qrc">
+          <normaloff>:/icons/24/arrow_left_icon_24</normaloff>:/icons/24/arrow_left_icon_24</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="nextButton">
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../toolbar.qrc">
+          <normaloff>:/icons/24/arrow_right_icon_24</normaloff>:/icons/24/arrow_right_icon_24</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toParentButton">
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../toolbar.qrc">
+          <normaloff>:/icons/24/arrrow_up_icon_24</normaloff>:/icons/24/arrrow_up_icon_24</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="reloadButton">
+        <property name="maximumSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../../toolbar.qrc">
+          <normaloff>:/icons/24/sync_icon_24</normaloff>:/icons/24/sync_icon_24</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="sortModeButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+          <underline>true</underline>
+         </font>
+        </property>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>507</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTreeView" name="folderView">
+     <property name="focusPolicy">
+      <enum>Qt::WheelFocus</enum>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::ActionsContextMenu</enum>
+     </property>
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
   <action name="actionPrev">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/24/arrow_left_icon_24</normaloff>:/icons/24/arrow_left_icon_24</iconset>
    </property>
    <property name="text">
@@ -279,7 +307,7 @@ QPushButton:hover {
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/24/arrow_right_icon_24</normaloff>:/icons/24/arrow_right_icon_24</iconset>
    </property>
    <property name="text">
@@ -288,7 +316,7 @@ QPushButton:hover {
   </action>
   <action name="actionHome">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/24/home_icon_24</normaloff>:/icons/24/home_icon_24</iconset>
    </property>
    <property name="text">
@@ -297,7 +325,7 @@ QPushButton:hover {
   </action>
   <action name="actionToParent">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/24/arrrow_up_icon_24</normaloff>:/icons/24/arrrow_up_icon_24</iconset>
    </property>
    <property name="text">
@@ -306,7 +334,7 @@ QPushButton:hover {
   </action>
   <action name="actionReload">
    <property name="icon">
-    <iconset resource="toolbar.qrc">
+    <iconset resource="../../toolbar.qrc">
      <normaloff>:/icons/24/sync_icon_24</normaloff>:/icons/24/sync_icon_24</iconset>
    </property>
    <property name="text">
@@ -330,6 +358,27 @@ QPushButton:hover {
     <string>Others</string>
    </property>
   </action>
+  <action name="actionOrderByName">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Name</string>
+   </property>
+  </action>
+  <action name="actionOrderByUpdatedAt">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ModifiedTime</string>
+   </property>
+  </action>
+  <action name="actionSetAsHomeFolder">
+   <property name="text">
+    <string>set the folder as Home</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>homeButton</tabstop>
@@ -337,12 +386,201 @@ QPushButton:hover {
   <tabstop>nextButton</tabstop>
   <tabstop>toParentButton</tabstop>
   <tabstop>reloadButton</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>otherButton</tabstop>
-  <tabstop>folderView</tabstop>
+  <tabstop>sortModeButton</tabstop>
  </tabstops>
  <resources>
-  <include location="toolbar.qrc"/>
+  <include location="../../toolbar.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>folderView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_itemSingleClicked(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>359</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>folderView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_itemDoubleClicked(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>359</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nextButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_next_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>81</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>prevButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_prev_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>51</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toParentButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_parent_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reloadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_reload_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>141</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>homeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_home_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>21</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sortModeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_sortMode_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>176</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOrderByName</sender>
+   <signal>triggered()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_orderByName_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOrderByUpdatedAt</sender>
+   <signal>triggered()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_orderByUpdatedAt_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSetAsHomeFolder</sender>
+   <signal>triggered()</signal>
+   <receiver>FolderWindow</receiver>
+   <slot>on_setHome_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_itemSingleClicked(QModelIndex)</slot>
+  <slot>on_itemDoubleClicked(QModelIndex)</slot>
+  <slot>on_prev_triggered()</slot>
+  <slot>on_next_triggered()</slot>
+  <slot>on_parent_triggered()</slot>
+  <slot>on_reload_triggered()</slot>
+  <slot>on_pathChanged_triggered(QString)</slot>
+  <slot>on_home_triggered()</slot>
+  <slot>on_sortMode_triggered()</slot>
+  <slot>on_orderByName_triggered()</slot>
+  <slot>on_orderByUpdatedAt_triggered()</slot>
+  <slot>on_setHome_triggered()</slot>
+ </slots>
 </ui>

@@ -4,8 +4,7 @@
 #include <QtGui>
 #include <QMenu>
 #include <QMainWindow>
-#include <QListWidget>
-#include "thumbnailmanager.h"
+#include "models/thumbnailmanager.h"
 #include "volumeitemmodel.h"
 
 namespace Ui {

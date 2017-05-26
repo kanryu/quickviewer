@@ -54,6 +54,10 @@ class QVApplication : public QApplication
     Q_PROPERTY(QByteArray WindowGeometry READ WindowGeometry WRITE setWindowGeometry)
     Q_PROPERTY(QByteArray WindowState READ WindowState WRITE setWindowState)
 
+    // Folder
+    Q_PROPERTY(QString HomeFolderPath READ HomeFolderPath WRITE setHomeFolderPath)
+    Q_PROPERTY(qvEnums::FolderViewSort FolderSortMode READ FolderSortMode WRITE setFolderSortMode)
+
     // Catalog
     Q_PROPERTY(qvEnums::CatalogViewMode CatalogViewModeSetting READ CatalogViewModeSetting WRITE setCatalogViewModeSetting)
     Q_PROPERTY(QString CatalogDatabasePath READ CatalogDatabasePath WRITE setCatalogDatabasePath)
@@ -127,6 +131,13 @@ public:
     QStringList& Bookmarks() { return m_bookmarks; }
     void clearBookmarks() { m_bookmarks.clear(); }
     void addBookMark(QString path, bool canDumplication=false);
+
+    // Folder
+    QString getDefaultPictureFolderPath();
+    QString HomeFolderPath() { return m_homeFolderPath; }
+    void setHomeFolderPath(QString path) { m_homeFolderPath = path; }
+    qvEnums::FolderViewSort FolderSortMode() { return m_folderSortMode; }
+    void setFolderSortMode(qvEnums::FolderViewSort mode) { m_folderSortMode = mode; }
 
     // Catalog
     qvEnums::CatalogViewMode CatalogViewModeSetting() { return m_catalogViewModeSetting; }
@@ -267,6 +278,10 @@ private:
     int m_maxHistoryCount;
     QStringList m_bookmarks;
     int m_maxBookmarkCount;
+
+    // Folder
+    QString m_homeFolderPath;
+    qvEnums::FolderViewSort m_folderSortMode;
 
     // Catalog
     qvEnums::CatalogViewMode m_catalogViewModeSetting;

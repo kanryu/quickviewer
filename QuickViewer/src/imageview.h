@@ -6,8 +6,8 @@
 
 #include "filevolume.h"
 #include "exifdialog.h"
-#include "pagemanager.h"
-#include "shadermanager.h"
+#include "models/pagemanager.h"
+#include "models/shadermanager.h"
 
 class SavedPoint : public QPoint
 {
@@ -158,7 +158,7 @@ protected:
 //    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 
 public slots:
-    void on_volumeChanged_triggered();
+    void on_volumeChanged_triggered(QString path);
     bool on_addImage_triggered(ImageContent image, bool pageNext);
     void on_clearImages_triggered();
     void readyForPaint();

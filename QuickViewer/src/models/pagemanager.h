@@ -95,7 +95,7 @@ signals:
     /**
      * @brief volumeChanged the volume has been changed
      */
-    void volumeChanged();
+    void volumeChanged(QString path);
     /**
      * @brief addNewPage add a new page. if it is dual view, 2 times called
      * @param pageNum

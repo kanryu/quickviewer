@@ -100,8 +100,6 @@ void CatalogWindow::setAsToplevelWindow()
 {
     ui->menuBar->setVisible(true);
     ui->statusLabel->setWordWrap(false);
-    setAttribute(Qt::WA_DropSiteRegistered, false);
-    setAcceptDrops(true);
 }
 
 void CatalogWindow::setAsInnerWidget()
