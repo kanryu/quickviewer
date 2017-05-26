@@ -51,4 +51,14 @@
         <file alias="folder_view_list_red">icons/folder_view_list_red.png</file>
         <file alias="catalog_icon">icons/catalog.png</file>
     </qresource>
+    <qresource prefix="/icons/24">
+        <file alias="arrow_left_icon_24">icons/24/arrow-pointing-to-left.png</file>
+        <file alias="arrow_right_icon_24">icons/24/arrow-pointing-to-right.png</file>
+        <file alias="arrrow_up_icon_24">icons/24/arrow-up.png</file>
+        <file alias="checkbox_off_icon_24">icons/24/check-box-empty.png</file>
+        <file alias="checkbox_on_icon_24">icons/24/check.png</file>
+        <file alias="home_icon_24">icons/24/home.png</file>
+        <file alias="sync_icon_24">icons/24/sync.png</file>
+        <file alias="3dot_icon_24">icons/24/three-dot.png</file>
+    </qresource>
 </RCC>

@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionShowMenuBar->setChecked(qApp->ShowMenuBar());
     if(!qApp->ShowMenuBar())
         menuBar()->hide();
+    ui->pageFrame->hide();
 
     // History
     makeHistoryMenu();
@@ -281,6 +282,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 void MainWindow::loadVolume(QString path)
 {
     if(m_pageManager.loadVolume(path)) {
+        if(!isFullScreen() && qApp->ShowSliderBar())
+            ui->pageFrame->show();
         return;
     }
     QMessageBox msgBox(this);

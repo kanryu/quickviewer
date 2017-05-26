@@ -72,7 +72,7 @@ win32 { !CONFIG(debug, debug|release) {
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
-INCLUDEPATH += ./catalog
+INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
 
 LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar
 
@@ -86,62 +86,66 @@ unix {
 }
 
 
-SOURCES += main.cpp \
-    mainwindow.cpp \
-    imageview.cpp \
-    filevolume.cpp \
-    qvapplication.cpp \
-    pageslider.cpp \
-    exifdialog.cpp \
-    keyconfigdialog.cpp \
-    shortcutbutton.cpp \
-    pagemanager.cpp \
-    timeorderdcache.cpp \
-    shadermanager.cpp \
-    catalog/catalogwindow.cpp \
-    catalog/databasesettingdialog.cpp \
-    catalog/managedatabasedialog.cpp \
-    catalog/thumbnailmanager.cpp \
-    catalog/volumeitemmodel.cpp \
-    catalog/flowlayout.cpp
+SOURCES += \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/imageview.cpp \
+    src/widgets/pageslider.cpp \
+    src/exifdialog.cpp \
+    src/keyconfigdialog.cpp \
+    src/widgets/shortcutbutton.cpp \
+    src/catalog/catalogwindow.cpp \
+    src/catalog/databasesettingdialog.cpp \
+    src/catalog/managedatabasedialog.cpp \
+    src/catalog/flowlayout.cpp \
+    src/catalog/volumeitemmodel.cpp \
+    src/models/qvapplication.cpp \
+    src/models/thumbnailmanager.cpp \
+    src/models/filevolume.cpp \
+    src/models/pagemanager.cpp \
+    src/models/timeorderdcache.cpp \
+    src/models/shadermanager.cpp \
 
-HEADERS  += mainwindow.h \
-    imageview.h \
-    filevolume.h \
-    qv_init.h \
-    qvapplication.h \
-    pageslider.h \
-    exifdialog.h \
-    keyconfigdialog.h \
-    shortcutbutton.h \
-    pagemanager.h \
-    timeorderdcache.h \
-    shadermanager.h \
-    catalog/catalogwindow.h \
-    catalog/databasesettingdialog.h \
-    catalog/managedatabasedialog.h \
-    catalog/qc_init.h \
-    catalog/thumbnailmanager.h \
-    stdafx.h \
-    catalog/volumeitemmodel.h \
-    catalog/flowlayout.h
+HEADERS  += \
+    src/qv_init.h \
+    src/exifdialog.h \
+    src/mainwindow.h \
+    src/stdafx.h \
+    src/keyconfigdialog.h \
+    src/imageview.h \
+    src/catalog/catalogwindow.h \
+    src/catalog/databasesettingdialog.h \
+    src/catalog/managedatabasedialog.h \
+    src/catalog/qc_init.h \
+    src/catalog/volumeitemmodel.h \
+    src/catalog/flowlayout.h \
+    src/models/filevolume.h \
+    src/models/qvapplication.h \
+    src/models/pagemanager.h \
+    src/models/timeorderdcache.h \
+    src/models/shadermanager.h \
+    src/models/thumbnailmanager.h \
+    src/widgets/pageslider.h \
+    src/widgets/shortcutbutton.h \
 
 win32 {
-    SOURCES += mainwindowforwindows.cpp
-    HEADERS += mainwindowforwindows.h
-    PRECOMPILED_HEADER += stdafx.h
+    SOURCES += src/mainwindowforwindows.cpp
+    HEADERS += src/mainwindowforwindows.h
+    PRECOMPILED_HEADER += src/stdafx.h
 }
 
 precompile_header:!isEmpty(PRECOMPILED_HEADER) {
     DEFINES += USING_PCH
 }
 
-FORMS    += mainwindow.ui \
-    exifdialog.ui \
-    keyconfigdialog.ui \
-    catalog/cataloglist.ui \
-    catalog/catalogwindow.ui \
-    catalog/createdb.ui
+FORMS    += \
+    src/mainwindow.ui \
+    src/exifdialog.ui \
+    src/keyconfigdialog.ui \
+    src/catalog/cataloglist.ui \
+    src/catalog/catalogwindow.ui \
+    src/catalog/createdb.ui \
+    src/folderview/folderwindow.ui
 
 RESOURCES += \
     toolbar.qrc
