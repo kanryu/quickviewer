@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## v0.7.0 (Sat May 27 18:10:11 2017 +0900) [26f0b31](https://github.com/kanryu/quickviewer/commit/26f0b31a94542a2121b4a307bb921a4cacc759d5)
+
+Add FolderWindow, CPU Interpolation
+- FolderWindow provides a simple view for folders/archives on current folder
+- support CPU Interpolation, very high quality but shortly slow
+
+- other commits
+    - Add FolderWindow (Sat May 27 08:39:49 2017 +0900) [41328f3](https://github.com/kanryu/quickviewer/commit/41328f3cd1b18af937dd6cf1b374768a7b5c9fa4)
+    -  (Sat May 27 08:39:49 2017 +0900) [41328f3](https://github.com/kanryu/quickviewer/commit/41328f3cd1b18af937dd6cf1b374768a7b5c9fa4)
+    -  when to load volume from folder, search into only one subfolder (Sat May 27 08:39:49 2017 +0900) [41328f3](https://github.com/kanryu/quickviewer/commit/41328f3cd1b18af937dd6cf1b374768a7b5c9fa4)
+
+## v0.7.0_pre (Fri May 26 09:45:28 2017 +0900) [f07e541](https://github.com/kanryu/quickviewer/commit/f07e541317f4ba4424e3f72eeb6b459c34492dfc)
+
+- bug fixed: can't load inner path of zip which contains multibyte words
+- refactoring: relocated the source tree
+- begin to implement folderwindow
+
+- other commits
+    - changelog (Tue May 16 21:57:40 2017 +0900) [0f64a5d](https://github.com/kanryu/quickviewer/commit/0f64a5d5bfd286d73ad48b0192a2438669269c96)
+
 ## v0.6.6 (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
 
 Support archives of Catalog, smaller Catalog grid, improve folder loading, refactoring
