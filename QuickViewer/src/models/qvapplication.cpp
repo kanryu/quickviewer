@@ -47,6 +47,7 @@ void QVApplication::registDefaultKeyMap()
     m_keyConfigDefauls["actionZoomIn"] = QKeySequence("K, Num++");
     m_keyConfigDefauls["actionZoomOut"] = QKeySequence("J, Num+-");
 
+    m_keyConfigDefauls["actionShowFolder"] = QKeySequence("F4");
     m_keyConfigDefauls["actionShowCatalog"] = QKeySequence("Ctrl+/, F6");
     m_keyConfigDefauls["actionSlideShow"] = QKeySequence("F7");
     m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
@@ -96,6 +97,9 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionPrevOnePage", ui->actionPrevOnePage);
     registAction("actionSlideShow", ui->actionSlideShow);
 
+    // Folder
+    registAction("actionShowFolder", ui->actionShowFolder);
+
     // Catalog
     registAction("actionShowCatalog", ui->actionShowCatalog);
     registAction("actionSearchTitleWithOptions", ui->actionSearchTitleWithOptions);
@@ -139,6 +143,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionShaderBilinear", ui->actionShaderBilinear);
     registAction("actionShaderBicubic", ui->actionShaderBicubic);
     registAction("actionShaderLanczos", ui->actionShaderLanczos);
+    registAction("actionShaderBilinearBeforeCpuBicubic", ui->actionShaderBilinearBeforeCpuBicubic);
 
     // Help
     registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
@@ -279,7 +284,7 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("Shader");
-    QString effectstring = m_settings.value("Effect", "Bilinear").toString();
+    QString effectstring = m_settings.value("Effect", "BilinearAndCpuBicubic").toString();
     m_effect = ShaderManager::stringToShaderEffect(effectstring);
     m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();

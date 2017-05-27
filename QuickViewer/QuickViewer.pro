@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.6.6
+VERSION = 0.7.0
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -16,7 +16,7 @@ CONFIG += plugin
 
 QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
 QMAKE_TARGET_PRODUCT = QuickViewer
-QMAKE_TARGET_DESCRIPTION = A image viewer for folders/archives, it can show images very fast
+QMAKE_TARGET_DESCRIPTION = QuickViewer for folders/archives
 QMAKE_TARGET_COPYRIGHT = (C) 2017 KATO Kanryu
 
 DEFINES += \
@@ -72,9 +72,10 @@ win32 { !CONFIG(debug, debug|release) {
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
+INCLUDEPATH += ../zimg
 INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
 
-LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar
+LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg
 
 win32 {
     QMAKE_CXXFLAGS += /wd4819
@@ -106,7 +107,8 @@ SOURCES += \
     src/widgets/pageslider.cpp \
     src/widgets/shortcutbutton.cpp \
     src/folderview/folderitemmodel.cpp \
-    src/folderview/folderwindow.cpp
+    src/folderview/folderwindow.cpp \
+    src/models/pagecontent.cpp
 
 HEADERS  += \
     src/qv_init.h \
@@ -130,7 +132,8 @@ HEADERS  += \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
     src/folderview/folderitemmodel.h \
-    src/folderview/folderwindow.h
+    src/folderview/folderwindow.h \
+    src/models/pagecontent.h
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp

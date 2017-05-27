@@ -7,7 +7,7 @@
 #include "models/filevolume.h"
 #include "models/qvapplication.h"
 
-FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *uiMain)
+FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *)
     : QWidget(parent)
     , ui(new Ui::FolderWindow)
     , m_itemModel(this)
@@ -19,8 +19,6 @@ FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *uiMain)
     ui->folderView->installEventFilter(this);
 
     // folderView
-//    m_itemModel.setHeaderData(0, Qt::Horizontal, tr("Name"));
-//    m_itemModel.setHeaderData(1, Qt::Horizontal, tr("ModifiedTime"));
     ui->folderView->setModel(&m_itemModel);
 
     resetSortMode();
@@ -62,8 +60,8 @@ static QModelIndex selectedIdx;
 
 bool FolderWindow::eventFilter(QObject *obj, QEvent *event)
 {
-    qDebug() << obj << event << event->type();
-    QMouseEvent *mouseEvent = NULL;
+//    qDebug() << obj << event << event->type();
+//    QMouseEvent *mouseEvent = NULL;
     QContextMenuEvent *contextEvent = nullptr;
     switch (event->type()) {
     case QEvent::ContextMenu:
@@ -114,9 +112,8 @@ void FolderWindow::dropEvent(QDropEvent *e)
 void FolderWindow::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    QFontMetrics fontMetrics(ui->pathLabel->font());
-    QString pathLabelTxt = fontMetrics.elidedText(m_currentPath, Qt::ElideMiddle, event->size().width()-10);
-    ui->pathLabel->setText(pathLabelTxt);
+    resetPathLabel(event->size().width());
+
 }
 
 static bool filenameLessThan(const FolderItem& lhs, const FolderItem& rhs)
@@ -137,6 +134,8 @@ static bool updatedAtLessThan(const FolderItem& lhs, const FolderItem& rhs)
 
 void FolderWindow::setFolderPath(QString path, bool showParent)
 {
+    if(path.isEmpty())
+        path = qApp->HomeFolderPath();
     QFileInfo fileinfo(path);
     if(!fileinfo.exists())
         return;
@@ -148,13 +147,8 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
         dir.setPath(QDir::toNativeSeparators(fileinfo.dir().path()));
     }
 
-//    m_currentPath = fileinfo.isDir() ? path : fileinfo.canonicalPath();
     m_currentPath = dir.path();
-
-    // Elide text(Otherwise the width of the main window will be forcibly changed)
-    QFontMetrics fontMetrics(ui->pathLabel->font());
-    QString pathLabelTxt = fontMetrics.elidedText(m_currentPath, Qt::ElideMiddle, width()-10);
-    ui->pathLabel->setText(pathLabelTxt);
+    resetPathLabel(width());
 
     m_volumes.clear();
     {
@@ -202,12 +196,22 @@ void FolderWindow::resetSortMode()
                                 : ui->actionOrderByUpdatedAt->text());
 }
 
+void FolderWindow::resetPathLabel(int maxWidth)
+{
+    QFontMetrics fontMetrics(ui->pathLabel->font());
+    QString pathLabelTxt = fontMetrics.elidedText(
+                QDir::toNativeSeparators(m_currentPath), Qt::ElideMiddle, maxWidth-10);
+    ui->pathLabel->setText(pathLabelTxt);
+}
+
+
 void FolderWindow::on_home_triggered()
 {
-    if(m_historyNext.contains(m_currentPath))
-        m_historyNext.removeOne(m_currentPath);
-    m_historyNext << m_currentPath;
-    setFolderPath(qApp->HomeFolderPath(), false);
+    if(m_historyPrev.contains(m_currentPath))
+        m_historyPrev.removeOne(m_currentPath);
+    m_historyPrev << m_currentPath;
+    setFolderPath(qApp->HomeFolderPath());
+    emit openVolume(qApp->HomeFolderPath());
 }
 
 void FolderWindow::on_prev_triggered()
@@ -217,7 +221,10 @@ void FolderWindow::on_prev_triggered()
     if(m_historyNext.contains(m_currentPath))
         m_historyNext.removeOne(m_currentPath);
     m_historyNext << m_currentPath;
-    setFolderPath(m_historyPrev.takeLast(), false);
+    QString path = m_historyPrev.takeLast();
+
+    setFolderPath(path, false);
+    emit openVolume(path);
 }
 
 void FolderWindow::on_next_triggered()
@@ -227,7 +234,9 @@ void FolderWindow::on_next_triggered()
     if(m_historyPrev.contains(m_currentPath))
         m_historyPrev.removeOne(m_currentPath);
     m_historyPrev << m_currentPath;
-    setFolderPath(m_historyNext.takeLast(), false);
+    QString path = m_historyNext.takeLast();
+    setFolderPath(path, false);
+    emit openVolume(path);
 }
 
 void FolderWindow::on_parent_triggered()
@@ -236,6 +245,7 @@ void FolderWindow::on_parent_triggered()
         return;
     QFileInfo info(m_currentPath);
     setFolderPath(info.canonicalPath(), false);
+    emit openVolume(info.canonicalPath());
 }
 
 void FolderWindow::on_reload_triggered()
@@ -287,6 +297,10 @@ void FolderWindow::on_itemDoubleClicked(const QModelIndex &index)
     QDir dir(m_currentPath);
     QString subpath = dir.absoluteFilePath(item.name);
     emit openVolume(subpath);
+
+    if(m_historyPrev.contains(m_currentPath))
+        m_historyPrev.removeOne(m_currentPath);
+    m_historyPrev << m_currentPath;
     setFolderPath(subpath, false);
 }
 

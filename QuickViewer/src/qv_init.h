@@ -18,6 +18,13 @@ public:
         UnPrepared,
         NearestNeighbor,
         Bilinear,
+
+        UsingCpuResizer,
+        BilinearAndCpuBicubic,
+        BilinearAndCpuSpline16,
+        BilinearAndCpuSpline36,
+        BilinearAndCpuLanczos,
+
         UsingSomeShader,
         Bicubic,
         Lanczos

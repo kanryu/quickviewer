@@ -4,3 +4,6 @@
 [submodule "easyexif/easyexif"]
 	path = easyexif/easyexif
 	url = https://github.com/mayanklahiri/easyexif
+[submodule "zimg/zimg"]
+	path = zimg/zimg
+	url = https://github.com/sekrit-twc/zimg

@@ -7,6 +7,7 @@
 #include "fileloaderrararchive.h"
 #include "ResizeHalf.h"
 #include "qvapplication.h"
+#include "qzimg.h"
 
 IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
     : QObject(parent)
@@ -204,7 +205,14 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
             loadingSize = QSize((loadingSize.width()+1) >> 1,(loadingSize.height()+1) >> 1);
         reader.setScaledSize(loadingSize);
     }
-    QImage src = reader.read();
+    QImage src;
+    if(reader.imageFormat() != QImage::Format_Indexed8) {
+        src = QZimg::createPackedImage(loadingSize, reader.imageFormat());
+        reader.read(&src);
+    } else {
+        QImage tmp = reader.read();
+        src = QZimg::toPackedImage(tmp);
+    }
 
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;

@@ -311,10 +311,92 @@
     </message>
 </context>
 <context>
+    <name>FolderItemModel</name>
+    <message>
+        <source>Name</source>
+        <translation>名前</translation>
+    </message>
+    <message>
+        <source>ModifiedTime</source>
+        <translation>更新日時</translation>
+    </message>
+</context>
+<context>
+    <name>FolderWindow</name>
+    <message>
+        <source>FolderWindow</source>
+        <translation>フォルダ一覧</translation>
+    </message>
+    <message>
+        <source>&amp;Sort</source>
+        <translation type="vanished">並べ替え(&amp;S)</translation>
+    </message>
+    <message>
+        <source>Current Folder</source>
+        <translation>現在のフォルダ</translation>
+    </message>
+    <message>
+        <source>My Pictures</source>
+        <translation>マイピクチャ</translation>
+    </message>
+    <message>
+        <source>Move to Home</source>
+        <translation>ホームフォルダに移動</translation>
+    </message>
+    <message>
+        <source>Prev</source>
+        <translation>前へ</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>次へ</translation>
+    </message>
+    <message>
+        <source>To parent folder</source>
+        <translation>上のフォルダ</translation>
+    </message>
+    <message>
+        <source>Reload</source>
+        <translation>更新</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名前順</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation>ホームフォルダ</translation>
+    </message>
+    <message>
+        <source>ToParent</source>
+        <translation>上のフォルダ</translation>
+    </message>
+    <message>
+        <source>Others</source>
+        <translation>その他</translation>
+    </message>
+    <message>
+        <source>ModifiedTime</source>
+        <translation>更新日時順</translation>
+    </message>
+    <message>
+        <source>set the folder as Home</source>
+        <translation>このフォルダをホームフォルダにする</translation>
+    </message>
+    <message>
+        <source>No folders or archives</source>
+        <translation>フォルダやアーカイブが見つかりません</translation>
+    </message>
+    <message>
+        <source>ChangeSorting</source>
+        <translation>並べ替える方法を変更します</translation>
+    </message>
+</context>
+<context>
     <name>ImageView</name>
     <message>
         <source>NOT IMAGE</source>
-        <translation>画像以外のファイルです</translation>
+        <translation type="vanished">画像以外のファイルです</translation>
     </message>
     <message>
         <source>Launching Windows Explorer failed</source>
@@ -596,7 +678,7 @@
     </message>
     <message>
         <source>open error</source>
-        <translation>開くときに問題がありました</translation>
+        <translation type="vanished">開くときに問題がありました</translation>
     </message>
     <message>
         <source>Can&apos;t be opened. Is there no images?</source>
@@ -832,7 +914,7 @@
     </message>
     <message>
         <source>&amp;Bilinear interpolation (standard)</source>
-        <translation>バイリニア補間(&amp;B 標準)</translation>
+        <translation type="vanished">バイリニア補間(&amp;B 標準)</translation>
     </message>
     <message>
         <source>Bi&amp;cubic interpolation (slow)</source>
@@ -928,7 +1010,19 @@
     </message>
     <message>
         <source>Show large &amp;grid for long titles</source>
-        <translation>長いタイトルを表示するために枠を大きめにする</translation>
+        <translation>長いタイトルを表示するために枠を大きめにする(&amp;G)</translation>
+    </message>
+    <message>
+        <source>&amp;Bilinear interpolation (fast)</source>
+        <translation>バイリニア補間(&amp;B 高速)</translation>
+    </message>
+    <message>
+        <source>Show&amp;Folder</source>
+        <translation>フォルダを表示(&amp;F)</translation>
+    </message>
+    <message>
+        <source>CPU Bicubic after GPU Bilinear(standard)</source>
+        <translation>GPUによるバイキュービックの後、CPUによるバイキュービック(標準)</translation>
     </message>
 </context>
 <context>

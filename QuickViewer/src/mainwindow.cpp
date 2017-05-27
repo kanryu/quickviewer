@@ -35,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
             << ui->actionShaderNearestNeighbor
             << ui->actionShaderBilinear
             << ui->actionShaderBicubic
-            << ui->actionShaderLanczos;
+            << ui->actionShaderLanczos
+            << ui->actionShaderBilinearBeforeCpuBicubic;
 
     // setup checkable menus
     ui->actionFitting->setChecked(qApp->Fitting());
@@ -96,6 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
     case qvEnums::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
     case qvEnums::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
     case qvEnums::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
+    case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
     }
 
 
@@ -546,13 +548,14 @@ void MainWindow::on_folderWindow_triggered()
 {
     if(m_folderWindow) {
         bool isChild = m_folderWindow->parent();
+        QString oldpath = m_folderWindow->currentPath();
         on_folderWindowClosed_triggered();
         if(isChild) {
             m_folderWindow = new FolderWindow(nullptr, ui);
             QRect self = geometry();
             m_folderWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
             m_folderWindow->setAsToplevelWindow();
-            m_folderWindow->setFolderPath(m_pageManager.volumePath());
+            m_folderWindow->setFolderPath(oldpath);
             connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
             connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
             connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
@@ -908,6 +911,14 @@ void MainWindow::on_shaderLanczos_triggered()
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::Lanczos);
     ui->actionShaderLanczos->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::on_shaderBilinearBeforeCpuBicubic_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(qvEnums::BilinearAndCpuBicubic);
+    ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
 

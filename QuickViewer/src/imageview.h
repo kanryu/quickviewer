@@ -8,6 +8,7 @@
 #include "exifdialog.h"
 #include "models/pagemanager.h"
 #include "models/shadermanager.h"
+#include "models/pagecontent.h"
 
 class SavedPoint : public QPoint
 {
@@ -31,86 +32,6 @@ public:
 private:
     QPoint m_ptStart;
     QPoint m_ptSaved;
-};
-
-/**
- * @brief The PageGraphicsItem struct
- * contains the informations of a Page
- */
-struct PageGraphicsItem
-{
-    ImageContent Ic;
-    /**
-     * @brief GrItem
-     * Page image is used as a QGraphicsItem. it will be registed to the scene
-     */
-    QGraphicsItem* GrItem;
-    /**
-     * @brief Rotate: rotation as digrees
-     */
-    int Rotate;
-    enum Fitting {
-        FitCenter,
-        FitLeft,
-        FitRight
-    };
-    PageGraphicsItem()
-     : Ic(), GrItem(nullptr), Rotate(0){}
-    PageGraphicsItem(ImageContent ic, QGraphicsItem* item, int rotate)
-        : Ic(ic), GrItem(item), Rotate(rotate){}
-    PageGraphicsItem(const PageGraphicsItem& rhs)
-        : Ic(rhs.Ic), GrItem(rhs.GrItem), Rotate(rhs.Rotate) {}
-    QPoint Offset(int rotateOffset=0) {
-        int rot = (Rotate+rotateOffset) % 360;
-        switch(rot) {
-        case 90:  return QPoint(Ic.Image.height(), 0);
-        case 180: return QPoint(Ic.Image.width(), Ic.Image.height());
-        case 270: return QPoint(0, Ic.Image.width());
-        default:  return QPoint();
-        }
-    }
-    QSize CurrentSize(int rotateOffset=0) {
-        int rot = (Rotate+rotateOffset) % 360;
-        return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
-    }
-
-    /**
-     * @brief setPageLayout set each image on the page
-     * @param viewport: the image must be inscribed in the viewport area
-     */
-    QRect setPageLayoutFitting(QRect viewport, Fitting fitting, int rotateOffset=0) {
-        QSize currentSize = CurrentSize(rotateOffset);
-        QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
-        qreal scale = 1.0*newsize.width()/currentSize.width();
-        GrItem->setScale(scale);
-        QPoint of = Offset(rotateOffset);
-        of *= scale;
-        GrItem->setRotation(Rotate+rotateOffset);
-        QRect drawRect;
-        if(newsize.height() == viewport.height()) { // fitting on upper and bottom
-            int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
-            drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
-            GrItem->setPos(drawRect.topLeft());
-        } else { // fitting on left and right
-            drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
-            GrItem->setPos(drawRect.topLeft());
-        }
-        return drawRect;
-    }
-    QRect setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0) {
-        QSize size = viewport.size();
-        QSize currentSize = CurrentSize(rotateOffset);
-        QSize newsize = currentSize * scale;
-//        newsize *= scale;
-        GrItem->setScale(scale);
-        QPoint of = Offset(rotateOffset);
-        of *= scale;
-        GrItem->setRotation(Rotate+rotateOffset);
-        int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
-        QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
-        GrItem->setPos(drawRect.topLeft());
-        return drawRect;
-    }
 };
 
 /**
@@ -198,7 +119,7 @@ public slots:
 private:
 
     RendererType m_renderer;
-    QVector<PageGraphicsItem> m_pages;
+    QVector<PageContent> m_pages;
 
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;

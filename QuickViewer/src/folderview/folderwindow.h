@@ -26,6 +26,8 @@ public:
     void setFolderPath(QString path, bool showParent=true);
     void reset();
     void resetSortMode();
+    void resetPathLabel(int maxWidth);
+    QString currentPath() { return m_currentPath; }
 
 public slots:
     void on_home_triggered();

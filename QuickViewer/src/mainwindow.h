@@ -111,6 +111,7 @@ public slots:
     void on_shaderBilinear_triggered();
     void on_shaderBicubic_triggered();
     void on_shaderLanczos_triggered();
+    void on_shaderBilinearBeforeCpuBicubic_triggered();
 
     // Bookmark
     void on_saveBookmark_triggered();

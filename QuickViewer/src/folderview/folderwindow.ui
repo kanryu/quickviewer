@@ -55,14 +55,14 @@
     <widget class="QMenuBar" name="menuBar">
      <widget class="QMenu" name="menuSort">
       <property name="title">
-       <string>&amp;Sort</string>
+       <string notr="true">&amp;Sort</string>
       </property>
       <addaction name="actionOrderByName"/>
       <addaction name="actionOrderByUpdatedAt"/>
      </widget>
      <widget class="QMenu" name="menuItemContext">
       <property name="title">
-       <string>ItemContext</string>
+       <string notr="true">ItemContext</string>
       </property>
       <addaction name="actionSetAsHomeFolder"/>
      </widget>
@@ -130,8 +130,11 @@ QPushButton:hover {
           <height>24</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Move to Home</string>
+        </property>
         <property name="text">
-         <string/>
+         <string>Move to Home</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -153,8 +156,11 @@ QPushButton:hover {
           <height>24</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Prev</string>
+        </property>
         <property name="text">
-         <string/>
+         <string>Prev</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -176,8 +182,11 @@ QPushButton:hover {
           <height>24</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Next</string>
+        </property>
         <property name="text">
-         <string/>
+         <string>Next</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -199,8 +208,11 @@ QPushButton:hover {
           <height>24</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>To parent folder</string>
+        </property>
         <property name="text">
-         <string/>
+         <string>To parent folder</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -222,8 +234,11 @@ QPushButton:hover {
           <height>24</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Reload</string>
+        </property>
         <property name="text">
-         <string/>
+         <string>Reload</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -257,6 +272,9 @@ QPushButton:hover {
           <bold>true</bold>
           <underline>true</underline>
          </font>
+        </property>
+        <property name="toolTip">
+         <string>ChangeSorting</string>
         </property>
         <property name="text">
          <string>Name</string>

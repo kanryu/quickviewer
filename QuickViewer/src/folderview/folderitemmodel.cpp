@@ -9,7 +9,7 @@ FolderItemModel::FolderItemModel(QObject *parent)
 
 }
 
-QVariant FolderItemModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant FolderItemModel::headerData(int section, Qt::Orientation , int role) const
 {
     switch(role) {
     case Qt::DisplayRole:
@@ -71,7 +71,7 @@ int FolderItemModel::columnCount(const QModelIndex &) const
     return m_columns;
 }
 
-QModelIndex FolderItemModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex FolderItemModel::index(int row, int column, const QModelIndex &) const
 {
 //    if(column > 1 || !m_searchedVolumes)
 //        return QModelIndex();

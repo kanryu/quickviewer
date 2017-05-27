@@ -98,39 +98,16 @@ bool ImageView::on_addImage_triggered(ImageContent ic, bool pageNext)
     if(m_pageManager == nullptr) return false;
     m_ptLeftTop.reset();
     QGraphicsScene *s = scene();
+    QSize size = ic.Image.size();
+    PageContent pgi(this, s, ic);
 
-
-    QSize size;
-    QPoint offset;
-    QGraphicsItem* gitem = nullptr;
-    int rotate = 0;
-    if(ic.BaseSize.width() > 0) {
-        QGraphicsPixmapItem* gpi = s->addPixmap(ic.Image);
-        gitem = gpi;
-        size = ic.Image.size();
-        if(ic.Info.ImageWidth > 0 && ic.Info.Orientation != 1) {
-            switch(ic.Info.Orientation) {
-            case 6: // left 90 digree turned
-                rotate = 90;
-                break;
-            case 8: // right 90 digree turned
-                rotate = 270;
-                break;
-            }
-        }
-        gpi->setRotation(rotate);
-    } else {
-        QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE"));
-        gtext->setDefaultTextColor(Qt::white);
-        //qDebug() << gtext;
-        gitem = gtext;
-        size = QSize(100, 100);
-    }
-    PageGraphicsItem pgi(ic, gitem, rotate);
-    if(pageNext)
+    if(pageNext) {
         m_pages.push_back(pgi);
-    else
+        connect(&(m_pages.last()), SIGNAL(resizeFinished()), this, SLOT(readyForPaint()));
+    } else {
         m_pages.push_front(pgi);
+        connect(&(m_pages.first()), SIGNAL(resizeFinished()), this, SLOT(readyForPaint()));
+    }
 
     m_effectManager.prepareInitialize();
 
@@ -155,12 +132,12 @@ void ImageView::readyForPaint() {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
         for(int i = 0; i < m_pages.size(); i++) {
-            PageGraphicsItem::Fitting fitting = PageGraphicsItem::FitCenter;
+            PageContent::Fitting fitting = PageContent::FitCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
             if(m_pages.size() == 2) {
                 fitting = ((i==0 && !qApp->RightSideBook()) || (i==1 && qApp->RightSideBook()))
-                            ? PageGraphicsItem::FitRight : PageGraphicsItem::FitLeft;
-                pageRect = QRect(QPoint(fitting==PageGraphicsItem::FitRight ? 0 : pageRect.width()/2, 0), QSize(pageRect.width()/2,pageRect.height()));
+                            ? PageContent::FitRight : PageContent::FitLeft;
+                pageRect = QRect(QPoint(fitting==PageContent::FitRight ? 0 : pageRect.width()/2, 0), QSize(pageRect.width()/2,pageRect.height()));
             }
             QRect drawRect;
             if(qApp->Fitting()) {
