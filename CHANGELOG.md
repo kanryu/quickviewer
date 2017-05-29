@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.7.1_pre (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
+
+build/run checked on ubuntu-16.04.2 x64
+- zimg don't run correctly(so can't run with shader/CPU Bicubic)
+- Catalog don't run correctly
+
+- other commits
+    - changelog (Sat May 27 18:10:44 2017 +0900) [8101cef](https://github.com/kanryu/quickviewer/commit/8101cefdf01abe8e56de36751d2beb995e1394d2)
+
 ## v0.7.0 (Sat May 27 18:10:11 2017 +0900) [26f0b31](https://github.com/kanryu/quickviewer/commit/26f0b31a94542a2121b4a307bb921a4cacc759d5)
 
 Add FolderWindow, CPU Interpolation
