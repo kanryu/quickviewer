@@ -64,7 +64,7 @@ class TimeOrderdCachePtr : public TimeOrderdCache<Key, T*>
 {
 public:
      TimeOrderdCachePtr(int maxsize=30)
-         : TimeOrderdCache(maxsize){}
+         : TimeOrderdCache<Key, T*>(maxsize){}
     void trash(T* oldest) {
         delete oldest;
     }

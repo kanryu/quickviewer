@@ -206,6 +206,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         reader.setScaledSize(loadingSize);
     }
     QImage src;
+#ifdef Q_OS_WIN
     if(reader.imageFormat() != QImage::Format_Indexed8) {
         src = QZimg::createPackedImage(loadingSize, reader.imageFormat());
         reader.read(&src);
@@ -213,6 +214,9 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         QImage tmp = reader.read();
         src = QZimg::toPackedImage(tmp);
     }
+#else
+    src = reader.read();
+#endif
 
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;

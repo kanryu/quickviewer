@@ -21,6 +21,11 @@ equals(QMAKE_CC,"cl") {
         QMAKE_CXXFLAGS += /GL /W3 /Gy /Gm- /Gd /Oi
     }
 }
+equals(QMAKE_CXX,"g++") {
+    QMAKE_CXXFLAGS += -O2  -MD -MP -msse -msse2 -mavx -mavx2 -mf16c -mfma
+    !CONFIG(debug, debug|release) {
+    }
+}
 
 
 SOURCES += \

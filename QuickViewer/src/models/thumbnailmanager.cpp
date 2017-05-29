@@ -260,7 +260,7 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
         parentworkers.clear();
 
         foreach(const QFuture<VolumeWorker>& w, workers) {
-            VolumeWorker& v = w.result();
+            const VolumeWorker& v = w.result();
             if(m_catalogWatcher.isCanceled())
                 return -1;
             if(v.volume_id < 0)
@@ -629,7 +629,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
         workers.append(QtConcurrent::run(this, &ThumbnailManager::createFileRecord, filename, filepath, filename_asc++));
     }
     foreach(auto worker, workers) {
-        FileWorker& w = worker.result();
+        const FileWorker& w = worker.result();
         if(w.asc<0) {
             filename_asc--;
             continue;

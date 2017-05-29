@@ -214,7 +214,7 @@ QString QVApplication::getDefaultPictureFolderPath()
     }
     pMalloc->Release();
 #else
-    path = "~/"
+    path = "~/";
 #endif
     return path;
 }
@@ -284,7 +284,11 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("Shader");
+#ifdef Q_OS_WIN
     QString effectstring = m_settings.value("Effect", "BilinearAndCpuBicubic").toString();
+#else
+    QString effectstring = m_settings.value("Effect", "Bilinear").toString();
+#endif
     m_effect = ShaderManager::stringToShaderEffect(effectstring);
     m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();

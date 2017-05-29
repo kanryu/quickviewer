@@ -99,6 +99,9 @@ MainWindow::MainWindow(QWidget *parent)
     case qvEnums::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
     case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
     }
+//#ifndef Q_OS_WIN
+//    ui->actionShaderBilinearBeforeCpuBicubic->setVisible(false);
+//#endif
 
 
     ui->graphicsView->installEventFilter(this);
