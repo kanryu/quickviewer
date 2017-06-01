@@ -68,7 +68,7 @@ You can also clone the latest source code from **[this repository.](https://gith
 - **快乐无极** (in Simplified Chinese)
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
 - **Download HTML.it** (in Italian)
-    - [http://download.html.it/software/quickviewer/]
+    - [http://download.html.it/software/quickviewer/](http://download.html.it/software/quickviewer/)
 
 
 Thanks for reviewers! :)
