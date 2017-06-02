@@ -134,47 +134,63 @@ static bool updatedAtLessThan(const FolderItem& lhs, const FolderItem& rhs)
 
 void FolderWindow::setFolderPath(QString path, bool showParent)
 {
-    if(path.isEmpty())
-        path = qApp->HomeFolderPath();
-    QFileInfo fileinfo(path);
-    if(!fileinfo.exists())
-        return;
-
-    QDir dir;
-    if(fileinfo.isDir()) {
-        dir.setPath(QDir::toNativeSeparators(showParent ? fileinfo.canonicalPath() : path));
-    } else {
-        dir.setPath(QDir::toNativeSeparators(fileinfo.dir().path()));
+#ifdef Q_OS_WIN
+    if(path.isEmpty()) {
+        m_volumes.clear();
+        {
+            m_currentPath = "";
+            QList<QFileInfo> drives = QDir::drives();
+            foreach(QFileInfo drive , drives){
+                m_volumes << FolderItem(drive.absoluteFilePath(), FolderItem::Dir, drive.lastModified());
+            }
+        }
+    } else
+#else
+    if(path.isEmpty()) {
+        path = "/";
     }
-
-    m_currentPath = dir.path();
-    resetPathLabel(width());
-
-    m_volumes.clear();
+#endif
     {
-        QStringList subfolders = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Unsorted);
-        foreach(const QString& sf, subfolders) {
-            QFileInfo fi(dir.absoluteFilePath(sf));
-            m_volumes << FolderItem(sf, FolderItem::Dir, fi.lastModified());
-        }
-    }
+        QFileInfo fileinfo(path);
+        if(!fileinfo.exists())
+            return;
 
-    {
-        QStringList archives;
-        foreach(const QString name, dir.entryList(QDir::NoDotAndDotDot | QDir::Files, QDir::Unsorted)) {
-            if(IFileLoader::isArchiveFile(name))
-                archives << name;
+        QDir dir;
+        if(fileinfo.isDir()) {
+            dir.setPath(QDir::toNativeSeparators(showParent ? fileinfo.canonicalPath() : path));
+        } else {
+            dir.setPath(QDir::toNativeSeparators(fileinfo.dir().path()));
         }
-        foreach(const QString& ar, archives) {
-            QFileInfo fi(dir.absoluteFilePath(ar));
-            m_volumes << FolderItem(ar, FolderItem::Archive, fi.lastModified());
+
+        m_currentPath = dir.path();
+        resetPathLabel(width());
+
+        m_volumes.clear();
+        {
+            QStringList subfolders = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Unsorted);
+            foreach(const QString& sf, subfolders) {
+                QFileInfo fi(dir.absoluteFilePath(sf));
+                m_volumes << FolderItem(sf, FolderItem::Dir, fi.lastModified());
+            }
         }
-    }
-    qvEnums::FolderViewSort sortmode = qApp->FolderSortMode();
-    if(sortmode == qvEnums::OrderByName) {
-        qSort(m_volumes.begin(), m_volumes.end(), filenameLessThan);
-    } else {
-        qSort(m_volumes.rbegin(), m_volumes.rend(), updatedAtLessThan);
+
+        {
+            QStringList archives;
+            foreach(const QString name, dir.entryList(QDir::NoDotAndDotDot | QDir::Files, QDir::Unsorted)) {
+                if(IFileLoader::isArchiveFile(name))
+                    archives << name;
+            }
+            foreach(const QString& ar, archives) {
+                QFileInfo fi(dir.absoluteFilePath(ar));
+                m_volumes << FolderItem(ar, FolderItem::Archive, fi.lastModified());
+            }
+        }
+        qvEnums::FolderViewSort sortmode = qApp->FolderSortMode();
+        if(sortmode == qvEnums::OrderByName) {
+            qSort(m_volumes.begin(), m_volumes.end(), filenameLessThan);
+        } else {
+            qSort(m_volumes.rbegin(), m_volumes.rend(), updatedAtLessThan);
+        }
     }
 
     if(m_volumes.empty()) {
@@ -244,7 +260,7 @@ void FolderWindow::on_parent_triggered()
     if(m_currentPath.isEmpty())
         return;
     QFileInfo info(m_currentPath);
-    setFolderPath(info.canonicalPath(), false);
+    setFolderPath(m_currentPath == info.canonicalPath() ? "" : info.canonicalPath(), false);
     emit openVolume(info.canonicalPath());
 }
 

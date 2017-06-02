@@ -5,37 +5,11 @@
 #include <QtGui>
 #include <QtConcurrent>
 
-#include "exif.h"
 #include "fileloader.h"
 #include "timeorderdcache.h"
+#include "pagecontent.h"
 
-struct ImageContent
-{
-public:
-    QPixmap Image;
-    QSize BaseSize;
-    QSize ImportSize;
-    QString Path;
-    easyexif::EXIFInfo Info;
-
-    ImageContent(){}
-    ImageContent(QPixmap image, QString path, QSize size, easyexif::EXIFInfo info)
-        : Image(image), Path(path), BaseSize(size), ImportSize(image.size()), Info(info) {}
-    ImageContent(const ImageContent& rhs)
-        : Image(rhs.Image), Path(rhs.Path), BaseSize(rhs.BaseSize), ImportSize(rhs.ImportSize), Info(rhs.Info) {}
-    inline ImageContent& operator=(const ImageContent &rhs)
-    {
-        Image = rhs.Image;
-        Path = rhs.Path;
-        BaseSize = rhs.BaseSize;
-        ImportSize = rhs.ImportSize;
-        Info = rhs.Info;
-        return *this;
-    }
-    bool wideImage() const {return BaseSize.width() > BaseSize.height(); }
-};
-
-
+class PageManager;
 
 class IFileVolume : public QObject
 {
@@ -52,7 +26,7 @@ public:
 
     typedef QFuture<ImageContent> future_image;
 
-    explicit IFileVolume(QObject *parent, IFileLoader* loader);
+    explicit IFileVolume(QObject *parent, IFileLoader* loader, PageManager* pageManager);
     ~IFileVolume() {
         if(m_loader) {
             delete m_loader;
@@ -63,10 +37,11 @@ public:
      * @brief A factory function that returns an instance of IFileVolume from the path of the specified file or directory
      * @return An object that inherits the IFileVolume interface. It is null if generation failed
      */
-    static IFileVolume* CreateVolume(QObject* parent, QString path);
-    static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path, CacheMode mode = CacheMode::CoverOnly);
+    static IFileVolume* CreateVolume(QObject* parent, QString path, PageManager* pageManager);
+    static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path, PageManager* pageManager, CacheMode mode = CacheMode::CoverOnly);
 
-    static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path);
+    static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path, QSize pageSize);
+    static ImageContent futureReizeImage(ImageContent ic, QSize pageSize);
     static QString FullPathToVolumePath(QString path);
     static QString FullPathToSubFilePath(QString path);
 
@@ -167,6 +142,7 @@ protected:
 
     IFileLoader* m_loader;
     CacheMode m_cacheMode;
+    PageManager* m_pageManager;
 };
 
 

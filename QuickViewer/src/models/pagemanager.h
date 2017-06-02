@@ -5,6 +5,7 @@
 #include "filevolume.h"
 
 class IFileVolume;
+class ImageView;
 
 class PageManager : public QObject
 {
@@ -25,6 +26,8 @@ public:
     void reloadCurrentPage(bool pageNext = true);
     void addNewPage(ImageContent ic, bool pageNext);
     void clearPages();
+    QSize viewportSize();
+    void setImageView(ImageView* view){m_imaveView = view;}
 
     // Volumes
     bool loadVolume(QString path, bool coverOnly=false);
@@ -110,10 +113,12 @@ private:
     int m_currentPage;
 
     bool m_wideImage;
-    IFileVolume* m_fileVolume;
     QVector<ImageContent> m_pages;
     TimeOrderdCachePtr<QString, IFileVolume> m_volumes;
     QStringList m_volumenames;
+
+    IFileVolume* m_fileVolume;
+    ImageView * m_imaveView;
 };
 
 #endif // PAGEMANAGER_H

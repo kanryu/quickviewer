@@ -8,12 +8,14 @@
 #include "ResizeHalf.h"
 #include "qvapplication.h"
 #include "qzimg.h"
+#include "pagemanager.h"
 
-IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader)
+IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* pageManager)
     : QObject(parent)
     , m_cnt(0)
     , m_loader(loader)
     , m_cacheMode(CacheMode::Normal)
+    , m_pageManager(pageManager)
 {
     m_filelist = m_loader->contents();
 }
@@ -30,15 +32,33 @@ void IFileVolume::on_ready()
     case CacheMode::FastFowrard: offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19}; break;
     case CacheMode::CoverOnly: offsets = {0, 1}; break;
     case CacheMode::NoAsync:
-        m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[m_cnt]);
+        m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[m_cnt], QSize());
         return;
     }
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())
             continue;
+        if(m_imageCache.contains(cnt) && qApp->Effect() < qvEnums::UsingFixedShader) {
+            ImageContent ic = m_imageCache.object(cnt).result();
+            if(ic.ImportSize.isValid()) {
+                QSize resized = m_pageManager->viewportSize();
+                resized.setWidth(ic.ImportSize.width()*resized.height()/ic.ImportSize.height());
+                if(ic.ResizedImage.size() != resized) {
+                    qDebug() << ic.ResizedImage.size() << resized;
+                    m_imageCache.insert(cnt, QtConcurrent::run(futureReizeImage, ic, m_pageManager->viewportSize()));
+                }
+            }
+        }
         if(m_imageCache.checkShouldBeInserted(cnt))
-            m_imageCache.insertNoChecked(cnt, QtConcurrent::run(futureLoadImageFromFileVolume, this, m_filelist[cnt]));
+            m_imageCache.insertNoChecked(cnt, QtConcurrent::run(
+                 futureLoadImageFromFileVolume,
+                 this,
+                 m_filelist[cnt],
+                 (m_pageManager && qApp->Effect() < qvEnums::UsingFixedShader)
+                     ? m_pageManager->viewportSize()
+                     : QSize())
+            );
     }
     m_currentCache = m_imageCache.object(m_cnt);
 }
@@ -84,35 +104,35 @@ bool IFileVolume::findPageByIndex(int idx)
     return true;
 }
 
-static IFileVolume* CreateVolumeImpl(QObject* parent, QString path)
+static IFileVolume* CreateVolumeImpl(QObject* parent, QString path, PageManager* pageManager)
 {
     QDir dir(path);
 
 //    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
     if(dir.exists()) {
-        return new IFileVolume(parent, new FileLoaderDirectory(parent, path));
+        return new IFileVolume(parent, new FileLoaderDirectory(parent, path), pageManager);
     }
     QString lower = path.toLower();
     if(lower.endsWith(".zip") || lower.endsWith(".cbz")) {
-        return new IFileVolume(parent, new FileLoaderZipArchive(parent, path));
+        return new IFileVolume(parent, new FileLoaderZipArchive(parent, path), pageManager);
     }
     if(lower.endsWith(".7z")) {
-        return new IFileVolume(parent, new FileLoader7zArchive(parent, path));
+        return new IFileVolume(parent, new FileLoader7zArchive(parent, path), pageManager);
     }
     if(lower.endsWith(".rar") || lower.endsWith(".cbr")) {
-        return new IFileVolume(parent, new FileLoaderRarArchive(parent, path));
+        return new IFileVolume(parent, new FileLoaderRarArchive(parent, path), pageManager);
     }
     if(IFileLoader::isImageFile(path)) {
         dir.cdUp();
         QString dirpath = dir.canonicalPath();
-        IFileVolume* fvd = new IFileVolume(parent, new FileLoaderDirectory(parent, dirpath));
+        IFileVolume* fvd = new IFileVolume(parent, new FileLoaderDirectory(parent, dirpath), pageManager);
         fvd->findImageByName(path.mid(dirpath.length()+1));
         return fvd;
     }
     return nullptr;
 }
 
-IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path)
+IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, PageManager* pageManager)
 {
     QString pathbase = path;
     QString subfilename;
@@ -121,7 +141,7 @@ IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path)
         pathbase = seps[0];
         subfilename = seps[1];
     }
-    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(pathbase));
+    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(pathbase), pageManager);
     if(!fv)
         return fv;
     if(fv->size() == 0) {
@@ -153,9 +173,9 @@ QString IFileVolume::FullPathToSubFilePath(QString path)
     return path.mid(path.indexOf("::")+2);
 }
 
-IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path, CacheMode mode)
+IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path, PageManager* pageManager, CacheMode mode)
 {
-    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(path));
+    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(path), pageManager);
     if(!fv)
         return fv;
     if(fv->size() == 0) {
@@ -184,7 +204,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 }
 
 
-ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path)
+ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path, QSize pageSize)
 {
     int maxTextureSize = qApp->maxTextureSize();
 
@@ -207,10 +227,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     }
     QImage src;
 #ifdef Q_OS_WIN
-    if(reader.imageFormat() != QImage::Format_Indexed8) {
-        src = QZimg::createPackedImage(loadingSize, reader.imageFormat());
-        reader.read(&src);
-    } else {
+    {
         QImage tmp = reader.read();
         src = QZimg::toPackedImage(tmp);
     }
@@ -229,44 +246,56 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     }
 
 
-    if(src.width() <= maxTextureSize && src.height() <= maxTextureSize)
-        return ImageContent(QPixmap::fromImage(src), path, baseSize, info);
+    ImageContent ic(QPixmap::fromImage(src), path, baseSize, info);
+    if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
+    } else {
+        // resample for too big images
+        QSize srcSizeReal = src.size();
+        QImage src2;
+        switch(src.depth()) {
+        case 32:
+            if((src.width() | 0x3) > 0) {
+                src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
+                //qDebug() << path << "[4]Source:" <<  src2;
+                src = src2;
+            }
+            break;
+        default:
+            if(src.format() != QImage::Format::Format_Grayscale8 && src.format() != QImage::Format::Format_RGB888) {
+                src = src.convertToFormat(QImage::Format::Format_RGB888);
+            }
+            if((src.width() | 0xF) > 0) {
+                src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
+                //qDebug() << path << "[4]Source:" <<  src2;
+                src = src2;
+            }
+            break;
+        }
 
-    // resample for too big images
-//    qDebug() << path << "[1]Source:" <<  src;
-    QSize srcSizeReal = src.size();
-    QImage src2;
-    switch(src.depth()) {
-    case 32:
-        if((src.width() | 0x3) > 0) {
-            src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
-            //qDebug() << path << "[4]Source:" <<  src2;
-            src = src2;
-        }
-        break;
-    default:
-        if(src.format() != QImage::Format::Format_Grayscale8 && src.format() != QImage::Format::Format_RGB888) {
-            src = src.convertToFormat(QImage::Format::Format_RGB888);
-        }
-        if((src.width() | 0xF) > 0) {
-            src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
-            //qDebug() << path << "[4]Source:" <<  src2;
-            src = src2;
-        }
-        break;
+        QSize srcSize = src.size();
+        QSize halfSize = QSize((srcSize.width())/2, (srcSize.height())/2);
+
+        //qDebug() << path << "[3]width:" << srcSize;
+        QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
+        //qDebug() << path << "[2]Dest:" <<  half;
+
+        ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
+        ResizeHalf resizer(fmt);
+        resizer.resizeHV(half.bits(), src.bits(), src.width(), srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
+
+//        ImageContent ic(QPixmap::fromImage(half), path, srcSizeReal, info);
+        ic.Image = QPixmap::fromImage(half);
+        ic.ImportSize = srcSizeReal;
+    }
+    if(!pageSize.isEmpty()) {
+        ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), pageSize, Qt::KeepAspectRatio));
     }
 
-    QSize srcSize = src.size();
-    QSize halfSize = QSize((srcSize.width())/2, (srcSize.height())/2);
-
-    //qDebug() << path << "[3]width:" << srcSize;
-    QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
-    //qDebug() << path << "[2]Dest:" <<  half;
-
-    ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
-    ResizeHalf resizer(fmt);
-    resizer.resizeHV(half.bits(), src.bits(), src.width(), srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
-
-    return ImageContent(QPixmap::fromImage(half), path, srcSizeReal, info);
+    return ic;
 }
 
+ImageContent IFileVolume::futureReizeImage(ImageContent ic, QSize pageSize)
+{
+    ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), pageSize, Qt::KeepAspectRatio));
+    return ic;
+}

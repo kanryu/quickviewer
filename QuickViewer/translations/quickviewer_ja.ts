@@ -1024,6 +1024,10 @@
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
         <translation>GPUによるバイキュービックの後、CPUによるバイキュービック(標準)</translation>
     </message>
+    <message>
+        <source>CPU Bicubic interpolation</source>
+        <translation>CPUによるバイキュービック補間</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1125,6 +1129,13 @@
     <message>
         <source>Cancelled!</source>
         <translation>キャンセルされました!</translation>
+    </message>
+</context>
+<context>
+    <name>PageContent</name>
+    <message>
+        <source>NOT IMAGE</source>
+        <translation>画像以外のファイルです</translation>
     </message>
 </context>
 <context>

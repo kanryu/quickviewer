@@ -68,6 +68,7 @@ void ImageView::setRenderer(RendererType type)
 void ImageView::setPageManager(PageManager *manager)
 {
     m_pageManager = manager;
+    m_pageManager->setImageView(this);
     connect(manager, SIGNAL(pagesNolongerNeeded()), this, SLOT(on_clearImages_triggered()));
     connect(manager, SIGNAL(readyForPaint()), this, SLOT(readyForPaint()));
     connect(manager, SIGNAL(volumeChanged(QString)), this, SLOT(on_volumeChanged_triggered(QString)));
@@ -125,9 +126,9 @@ void ImageView::on_clearImages_triggered()
 
     m_pages.resize(0);
 }
-
+static int paintCnt=0;
 void ImageView::readyForPaint() {
-    qDebug() << "readyForPaint";
+    qDebug() << "readyForPaint " << paintCnt++;
     if(!m_pages.empty()) {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
@@ -158,6 +159,11 @@ void ImageView::readyForPaint() {
     repaint();
 }
 
+void ImageView::paintEvent(QPaintEvent *event)
+{
+//    readyForPaint();
+    QGraphicsView::paintEvent(event);
+}
 
 void ImageView::resizeEvent(QResizeEvent *event)
 {

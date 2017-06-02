@@ -1,5 +1,6 @@
 #include "pagemanager.h"
 #include "qvapplication.h"
+#include "imageview.h"
 
 PageManager::PageManager(QObject* parent)
     : QObject(parent)
@@ -163,6 +164,11 @@ void PageManager::clearPages()
     emit pagesNolongerNeeded();
 }
 
+QSize PageManager::viewportSize()
+{
+    return m_imaveView->viewport()->size();
+}
+
 bool PageManager::loadVolume(QString path, bool coverOnly)
 {
     clearPages();
@@ -264,8 +270,8 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
     QString subfilename = IFileVolume::FullPathToSubFilePath(path);
     if(!m_volumes.contains(pathbase)) {
         newer = onlyCover
-                ? IFileVolume::CreateVolumeWithOnlyCover(this, path)
-                : IFileVolume::CreateVolume(this, path);
+                ? IFileVolume::CreateVolumeWithOnlyCover(this, path, this)
+                : IFileVolume::CreateVolume(this, path, this);
         if(newer)
             m_volumes.insert(pathbase, newer);
     } else {

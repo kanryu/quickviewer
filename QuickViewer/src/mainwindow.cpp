@@ -31,13 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
     qApp->registActions(ui);
     resetShortcutKeys();
 
-    m_shaderMenuGroup
-            << ui->actionShaderNearestNeighbor
-            << ui->actionShaderBilinear
-            << ui->actionShaderBicubic
-            << ui->actionShaderLanczos
-            << ui->actionShaderBilinearBeforeCpuBicubic;
-
     // setup checkable menus
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());
@@ -92,12 +85,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusLabel->setText(tr("any folder or archive is not loaded."));
 
     // Shader
+    m_shaderMenuGroup
+            << ui->actionShaderNearestNeighbor
+            << ui->actionShaderBilinear
+            << ui->actionShaderBicubic
+            << ui->actionShaderLanczos
+            << ui->actionShaderBilinearBeforeCpuBicubic
+            << ui->actionShaderCpuBicubic;
     switch(qApp->Effect()) {
     case qvEnums::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
     case qvEnums::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
     case qvEnums::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
     case qvEnums::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
     case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
+    case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
     }
 //#ifndef Q_OS_WIN
 //    ui->actionShaderBilinearBeforeCpuBicubic->setVisible(false);
@@ -569,7 +570,10 @@ void MainWindow::on_folderWindow_triggered()
     if(m_catalogWindow && m_catalogWindow->parent())
         on_manageCatalogsClosed_triggered();
     m_folderWindow = new FolderWindow(nullptr, ui);
-    m_folderWindow->setFolderPath(m_pageManager.volumePath());
+    QString path = m_pageManager.volumePath();
+    if(path.isEmpty())
+        path = qApp->HomeFolderPath();
+    m_folderWindow->setFolderPath(path);
     connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
     connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
@@ -922,6 +926,14 @@ void MainWindow::on_shaderBilinearBeforeCpuBicubic_triggered()
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::BilinearAndCpuBicubic);
     ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::on_shaderCpuBicubic_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(qvEnums::CpuBicubic);
+    ui->actionShaderCpuBicubic->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
 

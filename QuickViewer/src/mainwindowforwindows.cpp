@@ -92,6 +92,7 @@ static QString mapi32path()
 void MainWindowForWindows::setMailAttachment(QString path)
 {
     QLibrary lib("mapi32");
+#ifdef _MSC_VER
     if( LPMAPISENDMAILW mapi = LPMAPISENDMAILW(lib.resolve("MAPISendMailW")) )
     {
         QString filePath = QDir::toNativeSeparators( path );
@@ -115,7 +116,9 @@ void MainWindowForWindows::setMailAttachment(QString path)
         default: break;
         }
     }
-    else if( LPMAPISENDMAIL mapi = LPMAPISENDMAIL(lib.resolve("MAPISendMail")) )
+    else
+#endif
+        if( LPMAPISENDMAIL mapi = LPMAPISENDMAIL(lib.resolve("MAPISendMail")) )
     {
         QByteArray filePath = QDir::toNativeSeparators( path ).toLocal8Bit();
         QByteArray fileName = QFileInfo( path ).fileName().toLocal8Bit();

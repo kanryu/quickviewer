@@ -165,7 +165,7 @@ VolumeWorker ThumbnailManager::createSubVolumesConcurrent(QString dirpath, int v
     vw.parent_id = parent_id;
 
     if(IFileLoader::isArchiveFile(dirpath)) {
-        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(nullptr, dirpath, IFileVolume::NoAsync);
+        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(nullptr, dirpath, nullptr, IFileVolume::NoAsync);
         if(fv) {
             ImageContent ic = fv->currentImage();
             vw.frontPage = createFileRecordFromArchive(dirpath, ic, 0);

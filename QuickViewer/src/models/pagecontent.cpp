@@ -22,6 +22,13 @@ PageContent::PageContent(QObject* parent, QGraphicsScene *s, ImageContent ic)
     , Rotate(0)
     , m_resizeGeneratingState(0)
 {
+    if(!Ic.ImportSize.width()) {
+        QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE"));
+        gtext->setDefaultTextColor(Qt::white);
+        //qDebug() << gtext;
+        GrItem = gtext;
+        return;
+    }
     if(ic.Info.ImageWidth > 0 && ic.Info.Orientation != 1) {
         switch(ic.Info.Orientation) {
         case 6: // left 90 digree turned
@@ -39,7 +46,7 @@ PageContent::PageContent(const PageContent &rhs)
     : QObject(rhs.parent())
     , Scene(rhs.Scene)
     , Ic(rhs.Ic)
-    , ResizedPage(rhs.ResizedPage)
+//    , ResizedPage(rhs.ResizedPage)
     , GrItem(rhs.GrItem)
     , Rotate(rhs.Rotate)
     , m_resizeGeneratingState(0)
@@ -50,7 +57,7 @@ PageContent::PageContent(const PageContent &rhs)
 PageContent &PageContent::operator=(const PageContent &rhs) {
     Scene = rhs.Scene;
     Ic = rhs.Ic;
-    ResizedPage = rhs.ResizedPage;
+//    ResizedPage = rhs.ResizedPage;
     GrItem = rhs.GrItem;
     Rotate = rhs.Rotate;
     m_resizeGeneratingState = 0;
@@ -73,6 +80,10 @@ QSize PageContent::CurrentSize(int rotateOffset) {
 }
 
 QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fitting, int rotateOffset) {
+    if(!Ic.ImportSize.width()) {
+        applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
+        return QRect(viewport.topLeft(), QSize(100, 100));
+    }
     QSize currentSize = CurrentSize(rotateOffset);
     QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
     qreal scale = 1.0*newsize.width()/currentSize.width();
@@ -95,6 +106,10 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
 }
 
 QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitting, qreal scale, int rotateOffset) {
+    if(!Ic.ImportSize.width()) {
+        applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
+        return QRect(viewport.topLeft(), QSize(100, 100));
+    }
     QSize currentSize = CurrentSize(rotateOffset);
     QSize newsize = currentSize * scale;
 
@@ -110,44 +125,69 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
 
 void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize)
 {
-    // need CPU resizing
-    if(qApp->Effect() > qvEnums::UsingCpuResizer && qApp->Effect() < qvEnums::UsingSomeShader) {
-        if(!ResizedPage.isNull() && ResizedPage.size() != newsize) {
-            initializePage();
+    // only CPU resizing
+    if(qApp->Effect() < qvEnums::UsingFixedShader) {
+        if(Ic.ResizedImage.isNull()
+        || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize)) {
+            QImage resized = QZimg::scaled(Ic.Image.toImage(), newsize, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+            Ic.ResizedImage = QPixmap::fromImage(resized);
+            Scene->removeItem(GrItem);
+            delete GrItem;
+            GrItem = Scene->addPixmap(Ic.ResizedImage);
+            GrItem->setRotation(Rotate);
         }
-        if(ResizedPage.isNull() && m_resizeGeneratingState==0) {
+        GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
+    }
+    // CPU resizing after GPU preview
+    if(qApp->Effect() > qvEnums::UsingCpuResizer && qApp->Effect() < qvEnums::UsingSomeShader) {
+        if(!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize) {
+            initializePage(true);
+        }
+        if(Ic.ResizedImage.isNull() && m_resizeGeneratingState==0) {
             m_resizeGeneratingState = 1;
             QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image.toImage(), newsize, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
             connect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));
             generateWatcher.setFuture(future);
         }
-        if(!ResizedPage.isNull() && m_resizeGeneratingState==2) {
+        if(!Ic.ResizedImage.isNull() && m_resizeGeneratingState==2) {
             Scene->removeItem(GrItem);
             delete GrItem;
-            GrItem = Scene->addPixmap(ResizedPage);
+            GrItem = Scene->addPixmap(Ic.ResizedImage);
             GrItem->setRotation(Rotate);
         }
+        GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
     }
-    GrItem->setScale(ResizedPage.isNull() ? scale : 1.0);
+    // only GPU resizing
+    if((qApp->Effect() > qvEnums::UsingFixedShader && qApp->Effect() < qvEnums::UsingCpuResizer) || qApp->Effect() > qvEnums::UsingSomeShader) {
+        if(!Ic.ResizedImage.isNull())
+            initializePage(true);
+        GrItem->setScale(scale);
+    }
     GrItem->setRotation(Rotate+rotateOffset);
     GrItem->setPos(pos);
 }
 
-void PageContent::initializePage()
+void PageContent::initializePage(bool resetResized)
 {
     if(GrItem) {
         Scene->removeItem(GrItem);
         delete GrItem;
     }
-    GrItem = Scene->addPixmap(Ic.Image);
+    GrItem = Scene->addPixmap(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? Ic.Image : Ic.ResizedImage);
     GrItem->setRotation(Rotate);
-    ResizedPage = QPixmap();
+    if(resetResized)
+        Ic.ResizedImage = QPixmap();
     m_resizeGeneratingState = 0;
+}
+
+void PageContent::resetScene(QGraphicsScene *scene)
+{
+
 }
 
 void PageContent::on_resizeFinished_trigger()
 {
-    ResizedPage = QPixmap::fromImage(generateWatcher.result());
+    Ic.ResizedImage = QPixmap::fromImage(generateWatcher.result());
 
     m_resizeGeneratingState = 2;
     disconnect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));

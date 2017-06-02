@@ -113,15 +113,20 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
     qvEnums::ShaderEffect effect = qApp->Effect();
     QGraphicsShaderEffect * shader = nullptr;
     switch(effect) {
-    case qvEnums::NearestNeighbor:
-        if(m_oldEffect != qvEnums::NearestNeighbor)
-            item->setTransformationMode(Qt::FastTransformation);
+    case qvEnums::CpuBicubic:
+    case qvEnums::Bilinear:
+    case qvEnums::BilinearAndCpuBicubic:
+    case qvEnums::BilinearAndCpuSpline16:
+    case qvEnums::BilinearAndCpuSpline36:
+    case qvEnums::BilinearAndCpuLanczos:
+        if(m_oldEffect != qvEnums::Bilinear)
+            item->setTransformationMode(Qt::SmoothTransformation);
         if(m_oldEffect > qvEnums::UsingSomeShader)
             item->setGraphicsEffect(shader);
         break;
-    case qvEnums::Bilinear:
-        if(m_oldEffect != qvEnums::Bilinear)
-            item->setTransformationMode(Qt::SmoothTransformation);
+    case qvEnums::NearestNeighbor:
+        if(m_oldEffect != qvEnums::NearestNeighbor)
+            item->setTransformationMode(Qt::FastTransformation);
         if(m_oldEffect > qvEnums::UsingSomeShader)
             item->setGraphicsEffect(shader);
         break;
