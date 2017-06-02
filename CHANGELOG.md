@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v0.7.1 (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
+
+add CPU Bicubic interpolation
+- build tested on ubuntu linux
+- build support about zimg by g++
+- list drives on FolderWindow
+
+- other commits
+    - changelog (Tue May 30 06:25:07 2017 +0900) [723ed9c](https://github.com/kanryu/quickviewer/commit/723ed9c939a1c3a40676dba33039f72eee496348)
+
 ## v0.7.1_pre (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
 
 build/run checked on ubuntu-16.04.2 x64
