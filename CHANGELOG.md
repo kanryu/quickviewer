@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.7.2 (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+
+improve zip loader, 1 bug fixed
+
+- improve zip loader, couldn't load multibyte inner filenames of files
+- bugfixed: wrong view size for auto rounded by JPEG EXIF with CPU interplations
+- don't use OpenGL until use Shaders
+
+- other commits
+    - changelog (Fri Jun 2 14:23:28 2017 +0900) [0f5be54](https://github.com/kanryu/quickviewer/commit/0f5be54cc8e627817e4e55446ee5b3b68a33288c)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Jun 2 14:23:16 2017 +0900) [ab2b044](https://github.com/kanryu/quickviewer/commit/ab2b044b091853a0d5cbbefcddcda85bafee8931)
+
 ## v0.7.1 (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
 
 add CPU Bicubic interpolation
@@ -8,6 +20,8 @@ add CPU Bicubic interpolation
 - list drives on FolderWindow
 
 - other commits
+    - Update index.md (Thu Jun 1 18:56:18 2017 +0900) [e7b9524](https://github.com/kanryu/quickviewer/commit/e7b952470f0148581a18df4a83474cea72d7e982)
+    - Update index.md (Tue May 30 09:42:33 2017 +0900) [91f5ac2](https://github.com/kanryu/quickviewer/commit/91f5ac2de3a7f6608a2b835667439abd5e3e284a)
     - changelog (Tue May 30 06:25:07 2017 +0900) [723ed9c](https://github.com/kanryu/quickviewer/commit/723ed9c939a1c3a40676dba33039f72eee496348)
 
 ## v0.7.1_pre (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
