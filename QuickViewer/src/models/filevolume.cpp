@@ -45,7 +45,7 @@ void IFileVolume::on_ready()
                 QSize resized = m_pageManager->viewportSize();
                 resized.setWidth(ic.ImportSize.width()*resized.height()/ic.ImportSize.height());
                 if(ic.ResizedImage.size() != resized) {
-                    qDebug() << ic.ResizedImage.size() << resized;
+//                    qDebug() << ic.ResizedImage.size() << resized;
                     m_imageCache.insert(cnt, QtConcurrent::run(futureReizeImage, ic, m_pageManager->viewportSize()));
                 }
             }
@@ -234,6 +234,9 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
 #else
     src = reader.read();
 #endif
+    if(src.isNull()) {
+        src = QImage::fromData(bytes, QFileInfo(path.toLower()).suffix().toUtf8());
+    }
 
     // parsing JPEG EXIF
     easyexif::EXIFInfo info;
@@ -287,8 +290,9 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         ic.Image = QPixmap::fromImage(half);
         ic.ImportSize = srcSizeReal;
     }
-    if(!pageSize.isEmpty()) {
-        ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), pageSize, Qt::KeepAspectRatio));
+    if(!pageSize.isEmpty() && !ic.Image.isNull()) {
+        QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
+        ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), newsize, Qt::KeepAspectRatio));
     }
 
     return ic;
@@ -296,6 +300,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
 
 ImageContent IFileVolume::futureReizeImage(ImageContent ic, QSize pageSize)
 {
-    ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), pageSize, Qt::KeepAspectRatio));
+    QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
+    ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), newsize, Qt::KeepAspectRatio));
     return ic;
 }

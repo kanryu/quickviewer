@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.7.1
+VERSION = 0.7.2
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -75,7 +75,7 @@ INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
 INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
 
-LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg
+LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
 
 win32 {
     equals(QMAKE_CC,"cl") {

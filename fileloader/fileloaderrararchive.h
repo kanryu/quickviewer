@@ -11,10 +11,6 @@ class RarExtractor;
 class FileLoaderRarArchive : public IFileLoader
 {
 public:
-    /**
-     * @brief 新しいディレクトリを設定する
-     * @param dir
-     */
     FileLoaderRarArchive(QObject* parent, QString rarpath);
 
     ~FileLoaderRarArchive() {}

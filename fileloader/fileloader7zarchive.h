@@ -8,10 +8,6 @@ class FileLoader7zArchivePrivate;
 class FileLoader7zArchive : public IFileLoader
 {
 public:
-    /**
-     * @brief 新しいディレクトリを設定する
-     * @param dir
-     */
     FileLoader7zArchive(QObject* parent, QString sevenzippath);
 
     ~FileLoader7zArchive();

@@ -27,7 +27,8 @@ ImageView::ImageView(QWidget *parent)
 //    setViewportUpdateMode(FullViewportUpdate);
     setAcceptDrops(false);
 //    setDragMode(DragDropMode::InternalMove);
-    setRenderer(OpenGL);
+    if(qApp->Effect() > qvEnums::UsingFixedShader)
+        setRenderer(OpenGL);
 
     setMouseTracking(true);
 
@@ -49,14 +50,18 @@ ImageView::ImageView(QWidget *parent)
 //        qApp->onGLInitialized();
 //    }
 //};
+QGLWidget* widgetEngine = nullptr;
 
 void ImageView::setRenderer(RendererType type)
 {
     m_renderer = type;
+    if(widgetEngine)
+        return;
 
     if (m_renderer == OpenGL) {
 #ifndef QT_NO_OPENGL
         QGLWidget* w = new QGLWidget(QGLFormat(QGL::SampleBuffers));
+        widgetEngine = w;
         setViewport(w);
 #endif
     } else {
@@ -129,6 +134,8 @@ void ImageView::on_clearImages_triggered()
 static int paintCnt=0;
 void ImageView::readyForPaint() {
     qDebug() << "readyForPaint " << paintCnt++;
+    if(qApp->Effect() > qvEnums::UsingFixedShader)
+        setRenderer(OpenGL);
     if(!m_pages.empty()) {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;

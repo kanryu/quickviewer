@@ -125,11 +125,12 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
 
 void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize)
 {
+    QSize newsize2 = Ic.Info.Orientation==6 || Ic.Info.Orientation==8 ? QSize(newsize.height(), newsize.width()) : newsize;
     // only CPU resizing
     if(qApp->Effect() < qvEnums::UsingFixedShader) {
         if(Ic.ResizedImage.isNull()
         || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize)) {
-            QImage resized = QZimg::scaled(Ic.Image.toImage(), newsize, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+            QImage resized = QZimg::scaled(Ic.Image.toImage(), newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
             Ic.ResizedImage = QPixmap::fromImage(resized);
             Scene->removeItem(GrItem);
             delete GrItem;
@@ -145,7 +146,7 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
         }
         if(Ic.ResizedImage.isNull() && m_resizeGeneratingState==0) {
             m_resizeGeneratingState = 1;
-            QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image.toImage(), newsize, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+            QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image.toImage(), newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
             connect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));
             generateWatcher.setFuture(future);
         }
@@ -180,7 +181,7 @@ void PageContent::initializePage(bool resetResized)
     m_resizeGeneratingState = 0;
 }
 
-void PageContent::resetScene(QGraphicsScene *scene)
+void PageContent::resetScene(QGraphicsScene *)
 {
 
 }

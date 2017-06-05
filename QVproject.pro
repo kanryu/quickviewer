@@ -7,9 +7,13 @@ SUBDIRS = \
     fileloader \
     zimg \
     QuickViewer \
+    zlib \
+    quazip 
 #    QuickCatalog
 
-fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
+
+quazip.depends = zlib
+fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar quazip zlib
 QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 
 

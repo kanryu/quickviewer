@@ -2,8 +2,10 @@
 #define FILEVOLUMEZIPARCHIVE_H
 
 #include <QObject>
-#include <QtGui/private/qzipreader_p.h>
+//#include <QtGui/private/qzipreader_p.h>
 #include "fileloader.h"
+
+class QuaZip;
 
 class FileLoaderZipArchive : public IFileLoader
 {
@@ -48,7 +50,7 @@ public:
 
 protected:
     QString m_volumepath;
-    QZipReader m_reader;
+    QuaZip* d;
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;

@@ -17,11 +17,15 @@ HEADERS += \
     $$PWD/*.h
 
 INCLUDEPATH += ../Qt7z/Qt7z
-INCLUDEPATH += ../unrar
 
 
 DESTDIR = ../lib
 
 DEFINES += UNRAR RARDLL
+INCLUDEPATH += ../unrar
+
+DEFINES += QUAZIP_STATIC
+INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
+
 
 
