@@ -47,7 +47,8 @@ layout: default
 ソースコードについては [リポジトリ](https://github.com/kanryu/quickviewer) から最新のソースコードをcloneして入手してください。
 
 ## 外部レビュー
-
+- **さのっち様(OSDN)**
+    - [https://ja.osdn.net/projects/quickviewer/reviews/](https://ja.osdn.net/projects/quickviewer/reviews/)
 - **Free SoftNavi様**
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 - **the PORTABLE FREEWARE collection様** (英語)
