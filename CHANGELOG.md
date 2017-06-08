@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.7.3 (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
+
+add support to list-up image in subfolders, 2 bugfixed
+- add support to list-up image in subfolders, ignored archives
+- bugfixed: Garbled characters occurred in the display of file names containing multi-byte characters in the zip archive
+- bugfixed: When resizing with CPU, some images with α were not displayed
+
+- other commits
+    - Update index-ja.md (Tue Jun 6 23:21:33 2017 +0900) [c224fbf](https://github.com/kanryu/quickviewer/commit/c224fbf38645e8c71969aa1523f1da525e37c357)
+    - changelog (Mon Jun 5 18:35:03 2017 +0900) [e9cf927](https://github.com/kanryu/quickviewer/commit/e9cf9276b9cda67c8141baf9f7feab917a3cc6d1)
+
 ## v0.7.2 (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
 
 improve zip loader, 1 bug fixed
