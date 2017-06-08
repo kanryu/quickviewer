@@ -251,6 +251,13 @@ void ImageView::on_rotatePage_triggered()
     readyForPaint();
 }
 
+void ImageView::on_showSubfolders_triggered(bool enable)
+{
+    qApp->setShowSubfolders(enable);
+    if(m_pageManager->isFolder())
+        m_pageManager->loadVolume(m_pageManager->volumePath());
+}
+
 void ImageView::on_slideShowChanging_triggered()
 {
     int page = m_pageManager->currentPage();

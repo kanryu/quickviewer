@@ -1022,11 +1022,19 @@
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
-        <translation>GPUによるバイキュービックの後、CPUによるバイキュービック(標準)</translation>
+        <translation>GPUによるバイリニアの後、CPUによるバイキュービック(標準)</translation>
     </message>
     <message>
         <source>CPU Bicubic interpolation</source>
         <translation>CPUによるバイキュービック補間</translation>
+    </message>
+    <message>
+        <source>ShowSubfolders</source>
+        <translation>サブフォルダの画像も開く</translation>
+    </message>
+    <message>
+        <source>ShowImages in sub folders</source>
+        <translation>サブフォルダの画像も開く</translation>
     </message>
 </context>
 <context>
@@ -1136,6 +1144,43 @@
     <message>
         <source>NOT IMAGE</source>
         <translation>画像以外のファイルです</translation>
+    </message>
+</context>
+<context>
+    <name>QuaGzipFile</name>
+    <message>
+        <source>QIODevice::Append is not supported for GZIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening gzip for both reading and writing is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can open a gzip either for reading or for writing. Which is it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not gzopen() file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZIODevice</name>
+    <message>
+        <source>QIODevice::Append is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QuaZipFile</name>
+    <message>
+        <source>ZIP/UNZIP API error %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

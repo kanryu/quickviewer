@@ -38,11 +38,12 @@ class QVApplication : public QApplication
 
     // DuapView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
+    Q_PROPERTY(bool StayOnTop READ StayOnTop WRITE setStayOnTop)
     Q_PROPERTY(bool RightSideBook READ RightSideBook WRITE setRightSideBook)
     Q_PROPERTY(bool WideImageAsOnePageInDualView READ WideImageAsOnePageInDualView WRITE setWideImageAsOnePageInDualView)
     Q_PROPERTY(bool FirstImageAsOnePageInDualView READ FirstImageAsOnePageInDualView WRITE setFirstImageAsOnePageInDualView)
+    Q_PROPERTY(bool ShowSubfolders READ ShowSubfolders WRITE setShowSubfolders)
 
-    Q_PROPERTY(bool StayOnTop READ StayOnTop WRITE setStayOnTop)
     // ToolBars
     Q_PROPERTY(bool ShowToolBar READ ShowToolBar WRITE setShowToolBar)
     Q_PROPERTY(bool ShowSliderBar READ ShowSliderBar WRITE setShowSliderBar)
@@ -93,6 +94,8 @@ public:
     void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
     bool FirstImageAsOnePageInDualView() { return m_firstImageAsOnePageInDualView; }
     void setFirstImageAsOnePageInDualView (bool firstImageAsOnePageInDualView) { m_firstImageAsOnePageInDualView = firstImageAsOnePageInDualView; }
+    bool ShowSubfolders() { return m_showSubfolders; }
+    void setShowSubfolders (bool showSubfolders) { m_showSubfolders = showSubfolders; }
 
     // Show Bars
     bool ShowToolBar() { return m_showToolBar; }
@@ -261,6 +264,7 @@ private:
      */
     bool m_wideImageAsOnePageInDualView;
     bool m_firstImageAsOnePageInDualView;
+    bool m_showSubfolders;
 
     bool m_showToolBar;
     bool m_showSliderBar;

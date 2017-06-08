@@ -11,7 +11,7 @@ class FileLoaderDirectory : public IFileLoader
 public:
     FileLoaderDirectory(QObject* parent, QString path);
 
-    ~FileLoaderDirectory() {}
+    virtual ~FileLoaderDirectory() {}
     /**
      * @brief isArchive
      * @return return true, if the instance treates an archive file
@@ -47,29 +47,32 @@ public:
     QByteArray getFile(QString filename, QMutex& mutex);
 
 protected:
+    FileLoaderDirectory(QObject* parent, QString path, int forsubclass);
     QString m_volumepath;
     QDir m_directory;
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;
+
+    virtual void initialize();
 };
 
-class FileLoaderDirectoryPlugin : public QObject, public FileLoaderPluginInterface
-{
-    Q_OBJECT
-//    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoaderDirectoryPlugin" FILE "fileloaderdirectoryplugin.json")
-//    Q_INTERFACES(FileLoaderPluginInterface)
-public:
-    ~FileLoaderDirectoryPlugin() {}
-    IFileLoader* getFileLoader(QString path) { return new FileLoaderDirectory(this, path); }
-    /**
-     * @brief isSupported
-     * @return true, if the file is supported as the archive
-     */
-    bool isSupported(QString path) {
-        QDir dir(path);
-        return dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0;
-    }
-};
+//class FileLoaderDirectoryPlugin : public QObject, public FileLoaderPluginInterface
+//{
+//    Q_OBJECT
+////    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoaderDirectoryPlugin" FILE "fileloaderdirectoryplugin.json")
+////    Q_INTERFACES(FileLoaderPluginInterface)
+//public:
+//    ~FileLoaderDirectoryPlugin() {}
+//    IFileLoader* getFileLoader(QString path) { return new FileLoaderDirectory(this, path); }
+//    /**
+//     * @brief isSupported
+//     * @return true, if the file is supported as the archive
+//     */
+//    bool isSupported(QString path) {
+//        QDir dir(path);
+//        return dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0;
+//    }
+//};
 
 #endif // FILEVOLUMEDIRECTORY_H

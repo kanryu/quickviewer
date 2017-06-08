@@ -57,18 +57,18 @@ protected:
     RarExtractor *d;
 };
 
-class FileLoaderRarPlugin : public QObject, public FileLoaderPluginInterface
-{
-    Q_OBJECT
-//    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoader7zPlugin" FILE "fileloader7zplugin.json")
-//    Q_INTERFACES(FileLoaderPluginInterface)
-public:
-    ~FileLoaderRarPlugin() {}
-    IFileLoader* getFileLoader(QString path) { return new FileLoaderRarArchive(this, path); }
-    /**
-     * @brief isSupported
-     * @return true, if the file is supported as the archive
-     */
-    bool isSupported(QString path) { return path.toLower().endsWith(".rar"); }
-};
+//class FileLoaderRarPlugin : public QObject, public FileLoaderPluginInterface
+//{
+//    Q_OBJECT
+////    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoader7zPlugin" FILE "fileloader7zplugin.json")
+////    Q_INTERFACES(FileLoaderPluginInterface)
+//public:
+//    ~FileLoaderRarPlugin() {}
+//    IFileLoader* getFileLoader(QString path) { return new FileLoaderRarArchive(this, path); }
+//    /**
+//     * @brief isSupported
+//     * @return true, if the file is supported as the archive
+//     */
+//    bool isSupported(QString path) { return path.toLower().endsWith(".rar"); }
+//};
 #endif // FILELOADERRARARCHIVE_H

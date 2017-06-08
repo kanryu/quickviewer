@@ -53,20 +53,20 @@ protected:
     bool m_valid;
 };
 
-class FileLoader7zPlugin : public QObject, public FileLoaderPluginInterface
-{
-    Q_OBJECT
-//    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoader7zPlugin" FILE "fileloader7zplugin.json")
-//    Q_INTERFACES(FileLoaderPluginInterface)
-public:
-    ~FileLoader7zPlugin() {}
-    IFileLoader* getFileLoader(QString path) { return new FileLoader7zArchive(this, path); }
-    /**
-     * @brief isSupported
-     * @return true, if the file is supported as the archive
-     */
-    bool isSupported(QString path) { return path.toLower().endsWith(".7z"); }
-};
+//class FileLoader7zPlugin : public QObject, public FileLoaderPluginInterface
+//{
+//    Q_OBJECT
+////    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoader7zPlugin" FILE "fileloader7zplugin.json")
+////    Q_INTERFACES(FileLoaderPluginInterface)
+//public:
+//    ~FileLoader7zPlugin() {}
+//    IFileLoader* getFileLoader(QString path) { return new FileLoader7zArchive(this, path); }
+//    /**
+//     * @brief isSupported
+//     * @return true, if the file is supported as the archive
+//     */
+//    bool isSupported(QString path) { return path.toLower().endsWith(".7z"); }
+//};
 
 
 

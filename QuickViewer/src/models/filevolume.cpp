@@ -2,6 +2,7 @@
 
 #include "filevolume.h"
 #include "fileloaderdirectory.h"
+#include "fileloadersubdirectory.h"
 #include "fileloaderziparchive.h"
 #include "fileloader7zarchive.h"
 #include "fileloaderrararchive.h"
@@ -110,7 +111,7 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path, PageManager*
 
 //    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
     if(dir.exists()) {
-        return new IFileVolume(parent, new FileLoaderDirectory(parent, path), pageManager);
+        return new IFileVolume(parent, qApp->ShowSubfolders() ? new FileLoaderSubDirectory(parent, path) : new FileLoaderDirectory(parent, path), pageManager);
     }
     QString lower = path.toLower();
     if(lower.endsWith(".zip") || lower.endsWith(".cbz")) {
@@ -125,7 +126,7 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path, PageManager*
     if(IFileLoader::isImageFile(path)) {
         dir.cdUp();
         QString dirpath = dir.canonicalPath();
-        IFileVolume* fvd = new IFileVolume(parent, new FileLoaderDirectory(parent, dirpath), pageManager);
+        IFileVolume* fvd = new IFileVolume(parent, qApp->ShowSubfolders() ? new FileLoaderSubDirectory(parent, path) : new FileLoaderDirectory(parent, dirpath), pageManager);
         fvd->findImageByName(path.mid(dirpath.length()+1));
         return fvd;
     }

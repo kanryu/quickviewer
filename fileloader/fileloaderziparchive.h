@@ -56,20 +56,20 @@ protected:
     bool m_valid;
 };
 
-class FileLoaderZipPlugin : public QObject, public FileLoaderPluginInterface
-{
-    Q_OBJECT
-//    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoaderZipPlugin" FILE "fileloaderzipplugin.json")
-//    Q_INTERFACES(FileLoaderPluginInterface)
-public:
-    ~FileLoaderZipPlugin() {}
-    IFileLoader* getFileLoader(QString path) { return new FileLoaderZipArchive(this, path); }
-    /**
-     * @brief isSupported
-     * @return true, if the file is supported as the archive
-     */
-    bool isSupported(QString path) { return path.toLower().endsWith(".zip"); }
-};
+//class FileLoaderZipPlugin : public QObject, public FileLoaderPluginInterface
+//{
+//    Q_OBJECT
+////    Q_PLUGIN_METADATA(IID "com.quickviewer.FileLoaderZipPlugin" FILE "fileloaderzipplugin.json")
+////    Q_INTERFACES(FileLoaderPluginInterface)
+//public:
+//    ~FileLoaderZipPlugin() {}
+//    IFileLoader* getFileLoader(QString path) { return new FileLoaderZipArchive(this, path); }
+//    /**
+//     * @brief isSupported
+//     * @return true, if the file is supported as the archive
+//     */
+//    bool isSupported(QString path) { return path.toLower().endsWith(".zip"); }
+//};
 
 
 #endif // FILEVOLUMEZIPARCHIVE_H

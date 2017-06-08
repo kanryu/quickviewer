@@ -85,7 +85,7 @@ public slots:
     void on_clearImages_triggered();
     void readyForPaint();
 
-    // Page
+    // Navigation
     void on_nextPage_triggered();
     void on_prevPage_triggered();
     void on_fastForwardPage_triggered();
@@ -95,6 +95,7 @@ public slots:
     void on_nextOnlyOnePage_triggered();
     void on_prevOnlyOnePage_triggered();
     void on_rotatePage_triggered();
+    void on_showSubfolders_triggered(bool enable);
 
     // SlideShow
     void on_slideShowChanging_triggered();
@@ -103,6 +104,7 @@ public slots:
     void on_nextVolume_triggered();
     void on_prevVolume_triggered();
 
+    // View
     void on_fitting_triggered(bool maximized);
     void on_dualView_triggered(bool viewdual);
     void on_rightSideBook_triggered(bool rightSideBook);

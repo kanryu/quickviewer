@@ -165,14 +165,27 @@ QImage QZimg::createPackedImage(QSize size, QImage::Format fmt, int stridePack)
 
 QImage QZimg::toPackedImage(const QImage &src, int stridePack)
 {
-    if(((src.format() == QImage::Format_ARGB32 || src.format() == QImage::Format_RGB32) && (src.bytesPerLine() % (4*stridePack)) == 0)
-     || ((src.format() == QImage::Format_Grayscale8 || src.format() == QImage::Format_RGB888) && (src.bytesPerLine() % stridePack) == 0))
-        return src;
-
-    QImage img;
-    if(src.format() == QImage::Format_Indexed8) {
-        uchar* ibuff;
-        return src.convertToFormat(QImage::Format_Grayscale8);
+    switch(src.format()) {
+    case QImage::Format_Indexed8:
+        return src.convertToFormat(QImage::Format_ARGB32);
+    case QImage::Format_ARGB32_Premultiplied:
+    case QImage::Format_ARGB8565_Premultiplied:
+    case QImage::Format_ARGB6666_Premultiplied:
+    case QImage::Format_ARGB8555_Premultiplied:
+    case QImage::Format_ARGB4444_Premultiplied:
+    case QImage::Format_RGBA8888:
+    case QImage::Format_RGBA8888_Premultiplied:
+    case QImage::Format_A2BGR30_Premultiplied:
+    case QImage::Format_A2RGB30_Premultiplied:
+        return src.convertToFormat(QImage::Format_ARGB32);
+    case QImage::Format_RGB555:
+    case QImage::Format_RGB666:
+    case QImage::Format_RGB30:
+    case QImage::Format_BGR30:
+    case QImage::Format_RGBX8888:
+    case QImage::Format_RGB888:
+    case QImage::Format_RGB444:
+        return src.convertToFormat(QImage::Format_RGB32);
     }
     return src;
 }

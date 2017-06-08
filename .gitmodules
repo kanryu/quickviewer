@@ -12,4 +12,4 @@
 	url = https://github.com/madler/zlib
 [submodule "quazip/quazip"]
 	path = quazip/quazip
-	url = https://github.com/mnafees/quazip
+	url = https://github.com/kanryu/quazip

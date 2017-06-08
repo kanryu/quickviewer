@@ -22,6 +22,12 @@ public:
             trash(m_cache.take(last));
         }
     }
+    void remove(const Key& key) {
+        if(m_newerOrders.contains(key)) {
+            m_newerOrders.removeOne(key);
+            trash(m_cache.take(key));
+        }
+    }
 
     bool checkShouldBeInserted(const Key& key) {
         bool contains = m_newerOrders.contains(key);

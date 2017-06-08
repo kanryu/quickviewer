@@ -10,6 +10,33 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
     if(!(m_valid = m_directory.exists()))
         return;
 
+    initialize();
+}
+
+FileLoaderDirectory::FileLoaderDirectory(QObject *parent, QString path, int forsubclass)
+    : IFileLoader(parent)
+    , m_volumepath(path)
+    , m_valid(false)
+{
+
+}
+
+
+QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
+{
+    QByteArray bytes;
+    if(m_imageFileList.contains(name)) {
+        const QString abso = m_directory.absoluteFilePath(name);
+        QFile file(abso);
+        file.open(QIODevice::ReadOnly);
+        bytes = file.readAll();
+        return bytes;
+    }
+    return bytes;
+}
+
+void FileLoaderDirectory::initialize()
+{
     QStringList files;
     do {
         files = m_directory.entryList(QDir::Files, QDir::Name);
@@ -31,18 +58,5 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
     IFileLoader::sortFiles(m_imageFileList);
     IFileLoader::sortFiles(m_subArchiveList);
     m_valid = true;
-}
-
-QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
-{
-    QByteArray bytes;
-    if(m_imageFileList.contains(name)) {
-        const QString abso = m_directory.absoluteFilePath(name);
-        QFile file(abso);
-        file.open(QIODevice::ReadOnly);
-        bytes = file.readAll();
-        return bytes;
-    }
-    return bytes;
 }
 

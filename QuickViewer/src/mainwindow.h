@@ -53,10 +53,12 @@ public slots:
     void on_autoloaded_triggered(bool autoreload);
     void on_clearHistory_triggered();
     void on_historyMenu_triggered(QAction *action);
+    void on_exit_triggered();
 
     // Folder
     void on_folderWindow_triggered();
     void on_folderWindowClosed_triggered();
+    void on_openVolumeByFolder_triggered(QString path);
 
     // Catalog
     void on_manageCatalogs_triggered();
@@ -77,7 +79,7 @@ public slots:
     void on_pageChanged_triggered();
     void on_volumeChanged_triggered(QString path);
     void on_pageSlider_changed(int value);
-    void on_exit_triggered();
+    void on_pageNolongerNeeded_triggered();
 
     // View
     void on_fullscreen_triggered();

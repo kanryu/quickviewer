@@ -47,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionWideImageAsOneView->setChecked(qApp->WideImageAsOnePageInDualView());
     ui->actionFirstImageAsOneView->setChecked(qApp->FirstImageAsOnePageInDualView());
 
+    ui->actionShowSubfolders->setChecked(qApp->ShowSubfolders());
+
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
 
     // ToolBar/PageBar/StatusBar/MenuBar
@@ -114,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
     contextMenu = ui->menuContextMenu;
 
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
-    connect(&m_pageManager, SIGNAL(volumeChanged()), this, SLOT(on_volumeChanged_triggered()));
+    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(on_volumeChanged_triggered(QString)));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
@@ -182,7 +184,7 @@ void MainWindow::dropEvent(QDropEvent *e)
         QList<QUrl> urlList = e->mimeData()->urls();
         for (int i = 0; i < 1; i++) {
             QUrl url = urlList[i];
-            loadVolume(url.toLocalFile());
+            loadVolume(QDir::toNativeSeparators(url.toLocalFile()));
         }
     }
 }
@@ -500,6 +502,10 @@ void MainWindow::on_pageChanged_triggered()
 
 void MainWindow::on_volumeChanged_triggered(QString path)
 {
+    if(path.isEmpty()) {
+        on_pageNolongerNeeded_triggered();
+        return;
+    }
     qApp->addHistory(path);
 
     m_volumeCaption = QString("%1 - %2")
@@ -518,6 +524,13 @@ void MainWindow::on_pageSlider_changed(int value)
     m_sliderChanging = true;
     m_pageManager.selectPage(value-1);
     m_sliderChanging = false;
+}
+
+void MainWindow::on_pageNolongerNeeded_triggered()
+{
+    setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
+    ui->pageFrame->hide();
+    ui->statusLabel->setText(tr("Can't be opened. Is there no images?"));
 }
 
 void MainWindow::on_appVersion_triggered()
@@ -561,7 +574,7 @@ void MainWindow::on_folderWindow_triggered()
             m_folderWindow->setAsToplevelWindow();
             m_folderWindow->setFolderPath(oldpath);
             connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
-            connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+            connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByFolder_triggered(QString)));
             connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
             m_folderWindow->show();
         }
@@ -575,7 +588,7 @@ void MainWindow::on_folderWindow_triggered()
         path = qApp->HomeFolderPath();
     m_folderWindow->setFolderPath(path);
     connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
-    connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+    connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByFolder_triggered(QString)));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
     ui->catalogSplitter->insertWidget(0, m_folderWindow);
     auto sizes = ui->catalogSplitter->sizes();
@@ -592,6 +605,11 @@ void MainWindow::on_folderWindowClosed_triggered()
         delete m_folderWindow;
         m_folderWindow = nullptr;
     }
+}
+
+void MainWindow::on_openVolumeByFolder_triggered(QString path)
+{
+    loadVolume(path);
 }
 
 void MainWindow::on_manageCatalogs_triggered()
@@ -611,7 +629,7 @@ void MainWindow::on_manageCatalogs_triggered()
         }
         return;
     }
-    if(m_folderWindow && m_catalogWindow->parent())
+    if(m_folderWindow && m_folderWindow->parent())
         on_folderWindowClosed_triggered();
     m_catalogWindow = new CatalogWindow(nullptr, ui);
     m_catalogWindow->setThumbnailManager(m_thumbManager);
@@ -967,7 +985,7 @@ void MainWindow::on_loadBookmarkMenu_triggered(QAction *action)
         return;
     }
     QString path = action->data().toString();
-    m_pageManager.loadVolume(path);
+    m_pageManager.loadVolume(QDir::toNativeSeparators(path));
 }
 
 void MainWindow::on_messageReceived(QString data)

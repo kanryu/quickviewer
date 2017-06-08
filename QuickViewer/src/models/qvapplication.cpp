@@ -235,6 +235,7 @@ void QVApplication::loadSettings()
     m_showSliderBar = m_settings.value("ShowSliderBar", true).toBool();
     m_showStatusBar = m_settings.value("ShowStatusBar", true).toBool();
     m_showMenuBar = m_settings.value("ShowMenuBar", true).toBool();
+    m_showSubfolders = m_settings.value("ShowSubfolders", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -310,6 +311,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowSliderBar", m_showSliderBar);
     m_settings.setValue("ShowStatusBar", m_showStatusBar);
     m_settings.setValue("ShowMenuBar", m_showMenuBar);
+    m_settings.setValue("ShowSubfolders", m_showSubfolders);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

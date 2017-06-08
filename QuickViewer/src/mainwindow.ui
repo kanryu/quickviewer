@@ -297,6 +297,7 @@
     <addaction name="actionNextVolume"/>
     <addaction name="actionPrevVolume"/>
     <addaction name="separator"/>
+    <addaction name="actionShowSubfolders"/>
     <addaction name="actionShowFolder"/>
     <addaction name="actionSlideShow"/>
    </widget>
@@ -367,6 +368,7 @@
    <addaction name="actionFastForward"/>
    <addaction name="actionFirstPage"/>
    <addaction name="actionLastPage"/>
+   <addaction name="actionShowSubfolders"/>
    <addaction name="separator"/>
    <addaction name="actionSaveBookmark"/>
    <addaction name="actionLoadBookmark"/>
@@ -928,6 +930,24 @@
     <string>CPU Bicubic interpolation</string>
    </property>
   </action>
+  <action name="actionShowSubfolders">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/subfolders_icon</normaloff>:/icons/subfolders_icon</iconset>
+   </property>
+   <property name="text">
+    <string>ShowSubfolders</string>
+   </property>
+   <property name="iconText">
+    <string>ShowImages in sub folders</string>
+   </property>
+   <property name="toolTip">
+    <string>ShowImages in sub folders</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -961,6 +981,7 @@
     <slot>on_fastBackwardPage_triggered()</slot>
     <slot>on_copyFile_triggered()</slot>
     <slot>on_rotatePage_triggered()</slot>
+    <slot>on_showSubfolders_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1978,6 +1999,22 @@
     <hint type="destinationlabel">
      <x>350</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowSubfolders</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_showSubfolders_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>

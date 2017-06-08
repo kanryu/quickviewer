@@ -4,17 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui gui-private
+QT       += core gui
 
 TARGET = fileloader
 TEMPLATE = lib
 CONFIG += staticlib
 
 SOURCES += \
-    $$PWD/*.cpp
+    $$PWD/*.cpp \
 
 HEADERS += \
-    $$PWD/*.h
+    $$PWD/*.h \
 
 INCLUDEPATH += ../Qt7z/Qt7z
 

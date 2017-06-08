@@ -1,6 +1,7 @@
 #include "pagemanager.h"
 #include "qvapplication.h"
 #include "imageview.h"
+#include "fileloadersubdirectory.h"
 
 PageManager::PageManager(QObject* parent)
     : QObject(parent)
@@ -175,6 +176,7 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
     m_fileVolume = nullptr;
     IFileVolume* newer = addVolumeCache(path, coverOnly);
     if(!newer) {
+        emit volumeChanged("");
         return false;
     }
     m_fileVolume = newer;
@@ -268,6 +270,14 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
     IFileVolume* newer = nullptr;
     QString pathbase = IFileVolume::FullPathToVolumePath(path);
     QString subfilename = IFileVolume::FullPathToSubFilePath(path);
+    if(m_volumes.contains(pathbase)) {
+        IFileVolume* cached = m_volumes.object(pathbase);
+        if(!cached->isArchive() &&
+                ((qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)!=nullptr)
+                 || (!qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)==nullptr))) {
+            m_volumes.remove(pathbase);
+        }
+    }
     if(!m_volumes.contains(pathbase)) {
         newer = onlyCover
                 ? IFileVolume::CreateVolumeWithOnlyCover(this, path, this)
