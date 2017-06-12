@@ -8,7 +8,22 @@ QT       += core gui
 
 TARGET = fileloader
 TEMPLATE = lib
-CONFIG += staticlib
+
+win32-msvc* {
+    CONFIG += staticlib
+    QMAKE_CXXFLAGS += /wd4819
+}
+
+*g++* {
+    QMAKE_LFLAGS += -Wl,-rpath,../lib
+}
+
+win32 {
+    LIBS += -luser32 -ladvapi32 -lShlwapi
+}
+unix {
+    DEFINES += _UNIX
+}
 
 SOURCES += \
     $$PWD/*.cpp \
@@ -28,4 +43,5 @@ DEFINES += QUAZIP_STATIC
 INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
 
 
+LIBS += -L../lib -lquazip -lzlib -lunrar -lQt7z
 
