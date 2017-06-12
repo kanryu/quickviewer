@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.7.4_pre (Mon Jun 12 17:19:51 2017 +0900) [4dd9f68](https://github.com/kanryu/quickviewer/commit/4dd9f682df21da2060cbc3ea844402f086c34cb4)
+
+Problems arise when building fileloader with g ++, so make it a shared library and avoid it
+
+- other commits
+    - changelog (Fri Jun 9 01:29:10 2017 +0900) [b000f92](https://github.com/kanryu/quickviewer/commit/b000f9293a0b71beaf2a485b511e6cd3c64ebdad)
+
 ## v0.7.3 (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
 
 add support to list-up image in subfolders, 2 bugfixed
