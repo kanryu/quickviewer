@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.7.4 (Thu Jun 15 05:03:53 2017 +0900) [9043573](https://github.com/kanryu/quickviewer/commit/90435737146b3a12d77660fcb9e73a648a5efbd3)
+
+Record/Show/Load read progress of volumes
+- to show read progress in FolderWindow
+- to load with read progress for volumes
+
+- other commits
+    - changelog (Mon Jun 12 17:20:43 2017 +0900) [2a2960b](https://github.com/kanryu/quickviewer/commit/2a2960b391f11f2f82d3269cd69f74dd28f5efb7)
+
 ## v0.7.4_pre (Mon Jun 12 17:19:51 2017 +0900) [4dd9f68](https://github.com/kanryu/quickviewer/commit/4dd9f682df21da2060cbc3ea844402f086c34cb4)
 
 Problems arise when building fileloader with g ++, so make it a shared library and avoid it
