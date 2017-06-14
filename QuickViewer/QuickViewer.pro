@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.7.3
+VERSION = 0.7.4
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -110,7 +110,9 @@ SOURCES += \
     src/widgets/shortcutbutton.cpp \
     src/folderview/folderitemmodel.cpp \
     src/folderview/folderwindow.cpp \
-    src/models/pagecontent.cpp
+    src/models/pagecontent.cpp \
+    src/folderview/folderitemdelegate.cpp \
+    src/models/bookprogressmanager.cpp
 
 HEADERS  += \
     src/qv_init.h \
@@ -135,7 +137,9 @@ HEADERS  += \
     src/widgets/shortcutbutton.h \
     src/folderview/folderitemmodel.h \
     src/folderview/folderwindow.h \
-    src/models/pagecontent.h
+    src/models/pagecontent.h \
+    src/folderview/folderitemdelegate.h \
+    src/models/bookprogressmanager.h
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp

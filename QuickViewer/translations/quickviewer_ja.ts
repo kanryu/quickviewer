@@ -1036,6 +1036,18 @@
         <source>ShowImages in sub folders</source>
         <translation>サブフォルダの画像も開く</translation>
     </message>
+    <message>
+        <source>F&amp;older</source>
+        <translation>フォルダ(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Open volume with progress</source>
+        <translation>前に開いたページを開く</translation>
+    </message>
+    <message>
+        <source>ShowReadProgress</source>
+        <translation>どこまで読んだかを表示する</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

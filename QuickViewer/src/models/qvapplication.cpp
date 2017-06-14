@@ -15,6 +15,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_effect(qvEnums::Bilinear)
     , m_glInitialized(false)
     , m_maxTextureSize(4096)
+    , m_bookshelfManager(nullptr)
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -260,6 +261,8 @@ void QVApplication::loadSettings()
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FolderViewSort");
         m_folderSortMode = (qvEnums::FolderViewSort)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(folderSortModestring.toLatin1().data());
     }
+    m_openVolumeWithProgress = m_settings.value("OpenVolumeWithProgress", true).toBool();
+    m_showReadProgress = m_settings.value("ShowReadProgress", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("Catalog");
@@ -294,6 +297,8 @@ void QVApplication::loadSettings()
     m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
     m_settings.endGroup();
+
+    m_bookshelfManager = new BookProgressManager(this);
 }
 
 void QVApplication::saveSettings()
@@ -336,6 +341,8 @@ void QVApplication::saveSettings()
         QString folderSortModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_folderSortMode));
         m_settings.setValue("FolderSortMode", folderSortModestring);
     }
+    m_settings.setValue("OpenVolumeWithProgress", m_openVolumeWithProgress);
+    m_settings.setValue("ShowReadProgress", m_showReadProgress);
     m_settings.endGroup();
 
     m_settings.beginGroup("Catalog");
@@ -367,4 +374,6 @@ void QVApplication::saveSettings()
 
 
     m_settings.sync();
+
+    m_bookshelfManager->save();
 }

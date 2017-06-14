@@ -11,6 +11,7 @@ FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *)
     : QWidget(parent)
     , ui(new Ui::FolderWindow)
     , m_itemModel(this)
+    , m_itemDelegate(parent, this)
     , m_sortModeMenu(nullptr)
     , m_itemContextMenu(nullptr)
 {
@@ -20,6 +21,7 @@ FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *)
 
     // folderView
     ui->folderView->setModel(&m_itemModel);
+    ui->folderView->setItemDelegate(&m_itemDelegate);
 
     resetSortMode();
 
@@ -202,6 +204,11 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
         on_volumeChanged_triggered(path);
 }
 
+void FolderWindow::reset()
+{
+    m_itemModel.setVolumes(&m_volumes);
+}
+
 void FolderWindow::resetSortMode()
 {
     qvEnums::FolderViewSort sortMode = qApp->FolderSortMode();
@@ -220,6 +227,12 @@ void FolderWindow::resetPathLabel(int maxWidth)
     ui->pathLabel->setText(pathLabelTxt);
 }
 
+QString FolderWindow::itemPath(const QModelIndex &index)
+{
+    QDir dir(m_currentPath);
+    QString filename = m_volumes[index.row()].name;
+    return dir.absoluteFilePath(filename);
+}
 
 void FolderWindow::on_home_triggered()
 {

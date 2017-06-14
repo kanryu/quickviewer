@@ -13,6 +13,138 @@ PageManager::PageManager(QObject* parent)
 
 }
 
+bool PageManager::loadVolume(QString path, bool coverOnly)
+{
+    clearPages();
+    m_fileVolume = nullptr;
+    IFileVolume* newer = addVolumeCache(path, coverOnly);
+    if(!newer) {
+        emit volumeChanged("");
+        return false;
+    }
+    m_fileVolume = newer;
+    if(coverOnly) {
+        m_fileVolume->setCacheMode(IFileVolume::CoverOnly);
+    } else {
+        m_volumenames = QStringList();
+    }
+    m_currentPage = 0;
+    emit volumeChanged(m_fileVolume->volumePath());
+    // if volume is folder and the path incluces filename, pageCount() != 0
+    selectPage(coverOnly ? 0 : m_fileVolume->pageCount());
+    return true;
+}
+
+#define PRE_LOAD_VOLUMES 4
+
+void PageManager::nextVolume()
+{
+    if(!m_fileVolume)
+        return;
+    QDir dir(m_fileVolume->volumePath());
+    QFileInfo fileinfo(m_fileVolume->volumePath());
+    QString current = fileinfo.fileName();
+    if(!dir.cdUp())
+        return;
+    int matchCount = 0;
+    if(m_volumenames.size() == 0) {
+        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
+        IFileLoader::sortFiles(m_volumenames);
+    }
+    bool beforeMatch = true;
+    foreach (const QString& name, m_volumenames) {
+        if(beforeMatch) {
+            if(name == current)
+                beforeMatch = false;
+            continue;
+        }
+        QString path = dir.filePath(name);
+        if(matchCount++==0) {
+            // if load new volume failed, search continue
+            if(!loadVolume(path, true))
+                matchCount = 0;
+        } else {
+            addVolumeCache(path, true);
+        }
+        if(matchCount >= PRE_LOAD_VOLUMES)
+            break;
+    }
+}
+
+void PageManager::prevVolume()
+{
+    if(!m_fileVolume)
+        return;
+    QDir dir(m_fileVolume->volumePath());
+    QFileInfo fileinfo(m_fileVolume->volumePath());
+    QString current = fileinfo.fileName();
+    if(!dir.cdUp())
+        return;
+    int matchCount = 0;
+    if(m_volumenames.size() == 0) {
+        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
+        IFileLoader::sortFiles(m_volumenames);
+    }
+    QListIterator<QString> it(m_volumenames);it.toBack();
+    bool beforeMatch = true;
+    while(it.hasPrevious()) {
+        QString name = it.previous();
+        if(beforeMatch) {
+            if(name == current)
+                beforeMatch = false;
+            continue;
+        }
+        QString path = dir.filePath(name);
+        if(matchCount++==0) {
+            // if load new volume failed, search continue
+            if(!loadVolume(path, true))
+                matchCount = 0;
+        } else {
+            addVolumeCache(path, true);
+        }
+        if(matchCount >= PRE_LOAD_VOLUMES)
+            break;
+    }
+}
+
+
+IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
+{
+    IFileVolume* newer = nullptr;
+    QString pathbase = IFileVolume::FullPathToVolumePath(path);
+    QString subfilename = IFileVolume::FullPathToSubFilePath(path);
+    if(m_volumes.contains(pathbase)) {
+        IFileVolume* cached = m_volumes.object(pathbase);
+        if(!cached->isArchive() &&
+                ((qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)!=nullptr)
+                 || (!qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)==nullptr))) {
+            m_volumes.remove(pathbase);
+        }
+    }
+    if(!m_volumes.contains(pathbase)) {
+        newer = onlyCover
+                ? IFileVolume::CreateVolumeWithOnlyCover(this, path, this)
+                : IFileVolume::CreateVolume(this, path, this);
+        if(newer) {
+            m_volumes.insert(pathbase, newer);
+
+            // change page by progress.ini
+            QString volumepath = QDir::fromNativeSeparators(newer->volumePath());
+            if(qApp->OpenVolumeWithProgress()
+               && qApp->bookshelfManager()->contains(volumepath)) {
+                BookProgress book = qApp->bookshelfManager()->at(volumepath);
+                newer->findImageByName(book.CurrenPage);
+            }
+        }
+    } else {
+        m_volumes.retain(pathbase);
+        newer = m_volumes.object(pathbase);
+        if(subfilename.length())
+            newer->findImageByName(subfilename);
+    }
+    return newer;
+}
+
 void PageManager::nextPage()
 {
     //qDebug() << "ImageView::nextPage()" << m_currentPage;
@@ -25,6 +157,8 @@ void PageManager::nextPage()
     m_currentPage += pageIncr;
     if(m_currentPage >= m_fileVolume->size() - 1)
         m_currentPage = m_fileVolume->size() - 1;
+
+    bookProgress();
 
     reloadCurrentPage();
     emit pageChanged();
@@ -170,128 +304,19 @@ QSize PageManager::viewportSize()
     return m_imaveView->viewport()->size();
 }
 
-bool PageManager::loadVolume(QString path, bool coverOnly)
+void PageManager::bookProgress()
 {
-    clearPages();
-    m_fileVolume = nullptr;
-    IFileVolume* newer = addVolumeCache(path, coverOnly);
-    if(!newer) {
-        emit volumeChanged("");
-        return false;
-    }
-    m_fileVolume = newer;
-    if(coverOnly) {
-        m_fileVolume->setCacheMode(IFileVolume::CoverOnly);
-    } else {
-        m_volumenames = QStringList();
-    }
-    m_currentPage = 0;
-    emit volumeChanged(m_fileVolume->volumePath());
-    // if volume is folder and the path incluces filename, pageCount() != 0
-    selectPage(coverOnly ? 0 : m_fileVolume->pageCount());
-    return true;
+    QString path = QDir::fromNativeSeparators(m_fileVolume->volumePath());
+    BookProgress book = {
+        QFileInfo(m_fileVolume->volumePath()).fileName(),
+        path,
+        m_fileVolume->getIndexedFileName(m_currentPage),
+        m_fileVolume->size(),
+        m_currentPage
+    };
+    qApp->bookshelfManager()->insert(path, book);
 }
 
-#define PRE_LOAD_VOLUMES 4
-
-void PageManager::nextVolume()
-{
-    if(!m_fileVolume)
-        return;
-    QDir dir(m_fileVolume->volumePath());
-    QFileInfo fileinfo(m_fileVolume->volumePath());
-    QString current = fileinfo.fileName();
-    if(!dir.cdUp())
-        return;
-    int matchCount = 0;
-    if(m_volumenames.size() == 0) {
-        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
-        IFileLoader::sortFiles(m_volumenames);
-    }
-    bool beforeMatch = true;
-    foreach (const QString& name, m_volumenames) {
-        if(beforeMatch) {
-            if(name == current)
-                beforeMatch = false;
-            continue;
-        }
-        QString path = dir.filePath(name);
-        if(matchCount++==0) {
-            // if load new volume failed, search continue
-            if(!loadVolume(path, true))
-                matchCount = 0;
-        } else {
-            addVolumeCache(path, true);
-        }
-        if(matchCount >= PRE_LOAD_VOLUMES)
-            break;
-    }
-}
-
-void PageManager::prevVolume()
-{
-    if(!m_fileVolume)
-        return;
-    QDir dir(m_fileVolume->volumePath());
-    QFileInfo fileinfo(m_fileVolume->volumePath());
-    QString current = fileinfo.fileName();
-    if(!dir.cdUp())
-        return;
-    int matchCount = 0;
-    if(m_volumenames.size() == 0) {
-        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
-        IFileLoader::sortFiles(m_volumenames);
-    }
-    QListIterator<QString> it(m_volumenames);it.toBack();
-    bool beforeMatch = true;
-    while(it.hasPrevious()) {
-        QString name = it.previous();
-        if(beforeMatch) {
-            if(name == current)
-                beforeMatch = false;
-            continue;
-        }
-        QString path = dir.filePath(name);
-        if(matchCount++==0) {
-            // if load new volume failed, search continue
-            if(!loadVolume(path, true))
-                matchCount = 0;
-        } else {
-            addVolumeCache(path, true);
-        }
-        if(matchCount >= PRE_LOAD_VOLUMES)
-            break;
-    }
-}
-
-
-IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
-{
-    IFileVolume* newer = nullptr;
-    QString pathbase = IFileVolume::FullPathToVolumePath(path);
-    QString subfilename = IFileVolume::FullPathToSubFilePath(path);
-    if(m_volumes.contains(pathbase)) {
-        IFileVolume* cached = m_volumes.object(pathbase);
-        if(!cached->isArchive() &&
-                ((qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)!=nullptr)
-                 || (!qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)==nullptr))) {
-            m_volumes.remove(pathbase);
-        }
-    }
-    if(!m_volumes.contains(pathbase)) {
-        newer = onlyCover
-                ? IFileVolume::CreateVolumeWithOnlyCover(this, path, this)
-                : IFileVolume::CreateVolume(this, path, this);
-        if(newer)
-            m_volumes.insert(pathbase, newer);
-    } else {
-        m_volumes.retain(pathbase);
-        newer = m_volumes.object(pathbase);
-        if(subfilename.length())
-            newer->findImageByName(subfilename);
-    }
-    return newer;
-}
 
 
 QString PageManager::currentPageNumAsString() const

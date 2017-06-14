@@ -72,6 +72,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionLoadBookmark->setMenu(ui->menuLoadBookmark);
     connect(ui->menuLoadBookmark, SIGNAL(triggered(QAction*)), this, SLOT(on_loadBookmarkMenu_triggered(QAction*)) );
 
+    // Folders
+    ui->actionOpenVolumeWithProgress->setChecked(qApp->OpenVolumeWithProgress());
+    ui->actionShowReadProgress->setChecked(qApp->ShowReadProgress());
+
     // Catalogs
     ui->actionSearchTitleWithOptions->setChecked(qApp->SearchTitleWithOptions());
     ui->actionCatalogTitleWithoutOptions->setChecked(qApp->TitleWithoutOptions());
@@ -568,11 +572,12 @@ void MainWindow::on_folderWindow_triggered()
         QString oldpath = m_folderWindow->currentPath();
         on_folderWindowClosed_triggered();
         if(isChild) {
+            // close child widget, and recreate as independent window
             m_folderWindow = new FolderWindow(nullptr, ui);
             QRect self = geometry();
             m_folderWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
             m_folderWindow->setAsToplevelWindow();
-            m_folderWindow->setFolderPath(oldpath);
+            m_folderWindow->setFolderPath(oldpath, false);
             connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
             connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByFolder_triggered(QString)));
             connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
@@ -610,6 +615,20 @@ void MainWindow::on_folderWindowClosed_triggered()
 void MainWindow::on_openVolumeByFolder_triggered(QString path)
 {
     loadVolume(path);
+}
+
+
+void MainWindow::on_openVolumeWithProgress_triggered(bool enabled)
+{
+    qApp->setOpenVolumeWithProgress(enabled);
+}
+
+void MainWindow::on_showReadProgress_triggered(bool enabled)
+{
+    qApp->setShowReadProgress(enabled);
+    if(m_folderWindow) {
+        m_folderWindow->reset();
+    }
 }
 
 void MainWindow::on_manageCatalogs_triggered()

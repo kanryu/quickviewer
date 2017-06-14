@@ -13,6 +13,11 @@ class PageManager : public QObject
 public:
     PageManager(QObject* parent);
 
+    // Volumes
+    bool loadVolume(QString path, bool coverOnly=false);
+    void nextVolume();
+    void prevVolume();
+
     // Pages
     void nextPage();
     void prevPage();
@@ -28,11 +33,7 @@ public:
     void clearPages();
     QSize viewportSize();
     void setImageView(ImageView* view){m_imaveView = view;}
-
-    // Volumes
-    bool loadVolume(QString path, bool coverOnly=false);
-    void nextVolume();
-    void prevVolume();
+    void bookProgress();
 
     // Get String
     int currentPageCount() { return m_pages.size(); }

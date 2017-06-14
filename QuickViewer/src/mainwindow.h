@@ -59,6 +59,8 @@ public slots:
     void on_folderWindow_triggered();
     void on_folderWindowClosed_triggered();
     void on_openVolumeByFolder_triggered(QString path);
+    void on_openVolumeWithProgress_triggered(bool enabled);
+    void on_showReadProgress_triggered(bool enabled);
 
     // Catalog
     void on_manageCatalogs_triggered();
@@ -115,6 +117,7 @@ public slots:
     void on_shaderLanczos_triggered();
     void on_shaderBilinearBeforeCpuBicubic_triggered();
     void on_shaderCpuBicubic_triggered();
+
     // Bookmark
     void on_saveBookmark_triggered();
     void on_clearBookmarks_triggered();

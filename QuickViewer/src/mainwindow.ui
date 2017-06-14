@@ -297,8 +297,6 @@
     <addaction name="actionNextVolume"/>
     <addaction name="actionPrevVolume"/>
     <addaction name="separator"/>
-    <addaction name="actionShowSubfolders"/>
-    <addaction name="actionShowFolder"/>
     <addaction name="actionSlideShow"/>
    </widget>
    <widget class="QMenu" name="menuShader">
@@ -347,8 +345,20 @@
     <addaction name="actionCatalogTitleWithoutOptions"/>
     <addaction name="actionSearchTitleWithOptions"/>
    </widget>
+   <widget class="QMenu" name="menu_Folder">
+    <property name="title">
+     <string>F&amp;older</string>
+    </property>
+    <addaction name="actionShowFolder"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpenVolumeWithProgress"/>
+    <addaction name="actionShowReadProgress"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowSubfolders"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuNavigation"/>
+   <addaction name="menu_Folder"/>
    <addaction name="menu_Catalog"/>
    <addaction name="menuView"/>
    <addaction name="menuShader"/>
@@ -946,6 +956,22 @@
    </property>
    <property name="toolTip">
     <string>ShowImages in sub folders</string>
+   </property>
+  </action>
+  <action name="actionOpenVolumeWithProgress">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Open volume with progress</string>
+   </property>
+  </action>
+  <action name="actionShowReadProgress">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ShowReadProgress</string>
    </property>
   </action>
  </widget>
@@ -2018,6 +2044,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionOpenVolumeWithProgress</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_openVolumeWithProgress_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowReadProgress</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_showReadProgress_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -2071,5 +2129,7 @@
   <slot>on_folderWindowClosed_triggered()</slot>
   <slot>on_shaderBilinearBeforeCpuBicubic_triggered()</slot>
   <slot>on_shaderCpuBicubic_triggered()</slot>
+  <slot>on_openVolumeWithProgress_triggered(bool)</slot>
+  <slot>on_showReadProgress_triggered(bool)</slot>
  </slots>
 </ui>

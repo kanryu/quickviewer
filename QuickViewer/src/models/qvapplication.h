@@ -1,11 +1,11 @@
 #ifndef QVAPPLICATION_H
 #define QVAPPLICATION_H
 
-#include <QApplication>
-#include <QSettings>
-#include <QMap>
-#include <QKeySequence>
+#include <QtGui>
+#include <QtCore>
+
 #include "qv_init.h"
+#include "bookprogressmanager.h"
 
 #if defined(qApp)
 #undef qApp
@@ -13,7 +13,6 @@
 #define qApp (static_cast<QVApplication *>(QCoreApplication::instance()))
 
 
-#define APP_INI "quickviewer.ini"
 
 namespace Ui {
 class MainWindow;
@@ -58,6 +57,8 @@ class QVApplication : public QApplication
     // Folder
     Q_PROPERTY(QString HomeFolderPath READ HomeFolderPath WRITE setHomeFolderPath)
     Q_PROPERTY(qvEnums::FolderViewSort FolderSortMode READ FolderSortMode WRITE setFolderSortMode)
+    Q_PROPERTY(bool OpenVolumeWithProgress READ OpenVolumeWithProgress WRITE setOpenVolumeWithProgress)
+    Q_PROPERTY(bool ShowReadProgress READ ShowReadProgress WRITE setShowReadProgress)
 
     // Catalog
     Q_PROPERTY(qvEnums::CatalogViewMode CatalogViewModeSetting READ CatalogViewModeSetting WRITE setCatalogViewModeSetting)
@@ -141,6 +142,11 @@ public:
     void setHomeFolderPath(QString path) { m_homeFolderPath = path; }
     qvEnums::FolderViewSort FolderSortMode() { return m_folderSortMode; }
     void setFolderSortMode(qvEnums::FolderViewSort mode) { m_folderSortMode = mode; }
+    BookProgressManager* bookshelfManager() { return m_bookshelfManager; }
+    bool OpenVolumeWithProgress() { return m_openVolumeWithProgress; }
+    void setOpenVolumeWithProgress (bool openVolumeWithProgress) { m_openVolumeWithProgress = openVolumeWithProgress; }
+    bool ShowReadProgress() { return m_showReadProgress; }
+    void setShowReadProgress (bool showReadProgress) { m_showReadProgress = showReadProgress; }
 
     // Catalog
     qvEnums::CatalogViewMode CatalogViewModeSetting() { return m_catalogViewModeSetting; }
@@ -286,6 +292,8 @@ private:
     // Folder
     QString m_homeFolderPath;
     qvEnums::FolderViewSort m_folderSortMode;
+    bool m_openVolumeWithProgress;
+    bool m_showReadProgress;
 
     // Catalog
     qvEnums::CatalogViewMode m_catalogViewModeSetting;
@@ -310,6 +318,7 @@ private:
     QString m_lanczosShaderPath;
 
     QSettings m_settings;
+    BookProgressManager* m_bookshelfManager;
 };
 
 #endif // QVAPPLICATION_H
