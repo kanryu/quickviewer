@@ -87,23 +87,12 @@ public:
     /**
      * @brief Move to the file corresponding to the idx value specified in the file list(Max is size()-1)
      */
-    bool findImageByIndex(int idx) {
-        if(idx < 0 || idx >= m_filelist.size())
-            return false;
-        m_cnt = idx;
-        return true;
-    }
+    bool findImageByIndex(int idx);
 
     /**
      * @brief Move to the file corresponding to the file name specified in the current file list
      */
-    bool findImageByName(QString name) {
-        int idx = m_filelist.indexOf(name);
-        if(idx < 0)
-            return false;
-        m_cnt = idx;
-        return true;
-    }
+    bool findImageByName(QString name);
 
     /**
      * @brief loadImageByName Reads and returns the image corresponding to the file name specified in the file list without advancing the internal counter

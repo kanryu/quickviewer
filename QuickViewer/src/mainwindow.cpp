@@ -362,10 +362,18 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     QKeySequence seq(event->key() | event->modifiers());
     qDebug() << seq;
 
-    // if the focus is on searchbar on CatalogWindow
-    if(isCatalogSearching() && (seq == seqReturn || seq == seqEnter)) {
+    if(this->focusWidget() != ui->graphicsView)
         return;
-    }
+//    // if the focus is on searchbar on CatalogWindow
+//    if(seq == seqReturn || seq == seqEnter) {
+//        if(isCatalogSearching()) {
+//            return;
+//        }
+//        if(isFolderSearching()) {
+//            m_folderWindow->on_currentItem_triggered();
+//            return;
+//        }
+//    }
     QAction* action = qApp->getAction(seq);
     if(action)
         action->trigger();
@@ -678,6 +686,13 @@ bool MainWindow::isCatalogSearching()
     if(!m_catalogWindow || !m_catalogWindow->parent())
         return false;
     return m_catalogWindow->isCatalogSearching();
+}
+
+bool MainWindow::isFolderSearching()
+{
+    if(!m_folderWindow || !m_folderWindow->parent())
+        return false;
+    return true;
 }
 
 void MainWindow::on_openVolumeByCatalog_triggered(QString path)

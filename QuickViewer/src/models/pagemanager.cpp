@@ -15,6 +15,9 @@ PageManager::PageManager(QObject* parent)
 
 bool PageManager::loadVolume(QString path, bool coverOnly)
 {
+    if(m_fileVolume && m_pages.size() == 2) {
+        m_fileVolume->prevPage();
+    }
     clearPages();
     m_fileVolume = nullptr;
     IFileVolume* newer = addVolumeCache(path, coverOnly);
@@ -133,7 +136,7 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
             if(qApp->OpenVolumeWithProgress()
                && qApp->bookshelfManager()->contains(volumepath)) {
                 BookProgress book = qApp->bookshelfManager()->at(volumepath);
-                newer->findImageByName(book.CurrenPage);
+                newer->findPageByIndex(book.Current);
             }
         }
     } else {
@@ -180,6 +183,9 @@ void PageManager::prevPage()
     }
     if(m_currentPage < 0)
         m_currentPage = 0;
+
+    bookProgress();
+
     selectPage(m_currentPage);
 }
 

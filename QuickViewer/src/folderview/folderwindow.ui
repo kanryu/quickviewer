@@ -298,7 +298,7 @@ QPushButton:hover {
     </widget>
    </item>
    <item>
-    <widget class="QTreeView" name="folderView">
+    <widget class="FolderTreeView" name="folderView">
      <property name="focusPolicy">
       <enum>Qt::WheelFocus</enum>
      </property>
@@ -398,6 +398,16 @@ QPushButton:hover {
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FolderTreeView</class>
+   <extends>QTreeView</extends>
+   <header location="global">foldertreeview.h</header>
+   <slots>
+    <signal>selected(QModelIndex)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>homeButton</tabstop>
   <tabstop>prevButton</tabstop>
@@ -412,7 +422,7 @@ QPushButton:hover {
  <connections>
   <connection>
    <sender>folderView</sender>
-   <signal>clicked(QModelIndex)</signal>
+   <signal>selected(QModelIndex)</signal>
    <receiver>FolderWindow</receiver>
    <slot>on_itemSingleClicked(QModelIndex)</slot>
    <hints>
@@ -600,5 +610,6 @@ QPushButton:hover {
   <slot>on_orderByName_triggered()</slot>
   <slot>on_orderByUpdatedAt_triggered()</slot>
   <slot>on_setHome_triggered()</slot>
+  <slot>on_currentItem_triggered()</slot>
  </slots>
 </ui>

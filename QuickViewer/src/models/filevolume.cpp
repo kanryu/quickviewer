@@ -105,11 +105,28 @@ bool IFileVolume::findPageByIndex(int idx)
     return true;
 }
 
+bool IFileVolume::findImageByIndex(int idx) {
+    if(idx < 0 || idx >= m_filelist.size())
+        return false;
+    m_cnt = idx;
+    on_ready();
+    return true;
+}
+
+bool IFileVolume::findImageByName(QString name) {
+    int idx = m_filelist.indexOf(name);
+    if(idx < 0)
+        return false;
+    m_cnt = idx;
+    on_ready();
+    return true;
+}
+
 static IFileVolume* CreateVolumeImpl(QObject* parent, QString path, PageManager* pageManager)
 {
     QDir dir(path);
 
-//    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
+    //    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
     if(dir.exists()) {
         return new IFileVolume(parent, qApp->ShowSubfolders() ? new FileLoaderSubDirectory(parent, path) : new FileLoaderDirectory(parent, path), pageManager);
     }

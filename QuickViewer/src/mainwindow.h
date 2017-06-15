@@ -38,6 +38,7 @@ public:
     void setThumbnailManager(ThumbnailManager* manager);
     void loadVolume(QString path);
     bool isCatalogSearching();
+    bool isFolderSearching();
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e);

@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include <QtCore>
+#include <QtWidgets>
 
 #include "qv_init.h"
 #include "bookprogressmanager.h"

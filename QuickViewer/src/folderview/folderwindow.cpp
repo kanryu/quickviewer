@@ -234,6 +234,41 @@ QString FolderWindow::itemPath(const QModelIndex &index)
     return dir.absoluteFilePath(filename);
 }
 
+const static QKeySequence seqReturn("Return");
+const static QKeySequence seqEnter("Num+Enter");
+const static QKeySequence seqBackspace("Backspace");
+
+void FolderWindow::keyPressEvent(QKeyEvent *event)
+{
+    QKeySequence seq(event->key() | event->modifiers());
+    qDebug() << seq;
+    if(seq == seqReturn || seq == seqEnter) {
+        on_currentItem_triggered();
+        return;
+    }
+    if(seq == seqBackspace) {
+        if(m_historyPrev.empty())
+            on_parent_triggered();
+        else
+            on_prev_triggered();
+        return;
+    }
+}
+
+void FolderWindow::mousePressEvent(QMouseEvent *event)
+{
+    // 5 buttons mouse forward for browsers
+    if(event->button() == Qt::ForwardButton) {
+        on_next_triggered();
+        return;
+    }
+    // 5 buttons mouse back for browsers
+    if(event->button() == Qt::BackButton) {
+        on_prev_triggered();
+        return;
+    }
+}
+
 void FolderWindow::on_home_triggered()
 {
     if(m_historyPrev.contains(m_currentPath))
@@ -331,6 +366,11 @@ void FolderWindow::on_itemDoubleClicked(const QModelIndex &index)
         m_historyPrev.removeOne(m_currentPath);
     m_historyPrev << m_currentPath;
     setFolderPath(subpath, false);
+}
+
+void FolderWindow::on_currentItem_triggered()
+{
+    on_itemDoubleClicked(ui->folderView->currentIndex());
 }
 
 void FolderWindow::on_sortMode_triggered()

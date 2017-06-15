@@ -30,6 +30,8 @@ public:
     void resetPathLabel(int maxWidth);
     QString currentPath() { return m_currentPath; }
     QString itemPath(const QModelIndex& index);
+    void keyPressEvent(QKeyEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 public slots:
     void on_home_triggered();
@@ -40,6 +42,7 @@ public slots:
     void on_volumeChanged_triggered(QString);
     void on_itemSingleClicked(const QModelIndex & index);
     void on_itemDoubleClicked(const QModelIndex & index);
+    void on_currentItem_triggered();
     void on_setHome_triggered();
     void on_sortMode_triggered();
     void on_orderByName_triggered();
