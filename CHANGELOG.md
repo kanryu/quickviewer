@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v0.7.5 (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+
+4 bugfixed
+
+- bugfixed: Opening the volume again after reading over 10 pages resulted in an unauthorized termination
+- bugfixed: Keyboard input did not work if FolderWindow is displayed in the main window
+- bugfixed: The image was not loaded even if switching the volume with the keyboard in FolderWindow
+- bugfixed: After switching to another Volume with SpreadViewing, and go back to original Volume, it goes one page
+- changed: for including some Qt common headers
+
+- other commits
+    - changelog (Thu Jun 15 05:04:28 2017 +0900) [8e1b3ea](https://github.com/kanryu/quickviewer/commit/8e1b3eaa6ba115896355ee730a21708c435107bf)
+
 ## v0.7.4 (Thu Jun 15 05:03:53 2017 +0900) [9043573](https://github.com/kanryu/quickviewer/commit/90435737146b3a12d77660fcb9e73a648a5efbd3)
 
 Record/Show/Load read progress of volumes
