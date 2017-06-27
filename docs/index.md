@@ -58,7 +58,7 @@ You can also clone the latest source code from **[this repository.](https://gith
 - **Download82**
     - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
 - **Downloadcrew**
-    - [https://www.downloadcrew.com/article/35141-quickview](https://www.downloadcrew.com/article/35141-quickview)
+    - [https://downloadcrew.com/article/35266-quickviewer](https://downloadcrew.com/article/35266-quickviewer)
 - **Free SoftNavi** (in Japanese)
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 - **indiriliyo** (in Turkish)
