@@ -20,7 +20,9 @@ QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 
 CODECFORSRC = UTF-8
 
-TRANSLATIONS = QuickViewer/translations/quickviewer_ja.ts
+TRANSLATIONS = \
+    QuickViewer/translations/quickviewer_ja.ts \
+    QuickViewer/translations/quickviewer_es.ts \
 
 DISTFILES += \
-    QuickViewer/translations/quickviewer_ja.qm
+    QuickViewer/translations/quickviewer_ja.qm \

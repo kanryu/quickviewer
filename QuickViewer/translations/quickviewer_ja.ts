@@ -114,72 +114,12 @@
         <translation>カメラの向き</translation>
     </message>
     <message>
-        <source>BitsPerSample</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Software</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DateTime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DateTimeOriginal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DateTimeDigitized</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SubSecTimeOriginal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copyright</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ExposureTime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>FNumber</source>
         <translation>F値</translation>
     </message>
     <message>
-        <source>ISOSpeedRatings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ShutterSpeedValue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ExposureBiasValue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SubjectDistance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FocalLength</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FocalLengthIn35mm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Flash</source>
         <translation>フラッシュ</translation>
-    </message>
-    <message>
-        <source>MeteringMode</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ImageWidth</source>
@@ -196,6 +136,42 @@
     <message>
         <source>Flash fired</source>
         <translation>フラッシュあり</translation>
+    </message>
+    <message>
+        <source>No flash function</source>
+        <translation>フラッシュ機能なし</translation>
+    </message>
+    <message>
+        <source>Horizontal (normal)</source>
+        <translation>水平(標準)</translation>
+    </message>
+    <message>
+        <source>Mirror horizontal</source>
+        <translation>上下反転</translation>
+    </message>
+    <message>
+        <source>Rotate 180</source>
+        <translation>180°回転</translation>
+    </message>
+    <message>
+        <source>Mirror vertical</source>
+        <translation>左右反転</translation>
+    </message>
+    <message>
+        <source>Mirror horizontal and rotate 270 CW</source>
+        <translation>上下反転、時計回りに270°回転</translation>
+    </message>
+    <message>
+        <source>Rotate 90 CW</source>
+        <translation>時計回りに90°回転</translation>
+    </message>
+    <message>
+        <source>Mirror horizontal and rotate 90 CW</source>
+        <translation>上下反転、時計回りに90°回転</translation>
+    </message>
+    <message>
+        <source>Rotate 270 CW</source>
+        <translation>時計回りに270°回転</translation>
     </message>
     <message>
         <source>Strobe return light not detected</source>
@@ -238,10 +214,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No flash function</source>
-        <translation>フラッシュ機能なし</translation>
-    </message>
-    <message>
         <source>Flash fired, red-eye reduction mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -278,36 +250,64 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Horizontal (normal)</source>
-        <translation>水平(標準)</translation>
+        <source>BitsPerSample</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mirror horizontal</source>
-        <translation>上下反転</translation>
+        <source>Software</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rotate 180</source>
-        <translation>180°回転</translation>
+        <source>DateTime</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mirror vertical</source>
-        <translation>左右反転</translation>
+        <source>DateTimeOriginal</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mirror horizontal and rotate 270 CW</source>
-        <translation>上下反転、時計回りに270°回転</translation>
+        <source>DateTimeDigitized</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rotate 90 CW</source>
-        <translation>時計回りに90°回転</translation>
+        <source>SubSecTimeOriginal</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mirror horizontal and rotate 90 CW</source>
-        <translation>上下反転、時計回りに90°回転</translation>
+        <source>Copyright</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rotate 270 CW</source>
-        <translation>時計回りに270°回転</translation>
+        <source>ExposureTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ISOSpeedRatings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ShutterSpeedValue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ExposureBiasValue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SubjectDistance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FocalLength</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FocalLengthIn35mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MeteringMode</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -19,10 +19,10 @@ SOURCES += \
     $$PWD/ResizeHalf/ResizeHalf.cpp
 
 HEADERS += \
-    $$PWD/ResizeHalf/ResizeHalf.h
-    $$PWD/ResizeHalf/rh_common.h
-    $$PWD/ResizeHalf/reduceby2_functions.h
-    $$PWD/ResizeHalf/bilinear_functions.h
+    $$PWD/ResizeHalf/ResizeHalf.h \
+    $$PWD/ResizeHalf/rh_common.h \
+    $$PWD/ResizeHalf/reduceby2_functions.h \
+    $$PWD/ResizeHalf/bilinear_functions.h \
 
 INCLUDEPATH += \
     $$PWD/ResizeHalf

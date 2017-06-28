@@ -169,7 +169,8 @@ RC_ICONS = icons/appicon.ico
 
 
 DISTFILES += \
-    translations/quickviewer_ja.qm
+    translations/quickviewer_ja.qm \
+    translations/quickviewer_es.qm \
 
 # Shaders will be installed into DIST_DIR/shaders
 SHADERS += \

@@ -6,8 +6,9 @@
 
 class MainWindowForWindows : public MainWindow
 {
+    Q_OBJECT
 public:
-    explicit MainWindowForWindows(QWidget *parent = 0);
+    MainWindowForWindows(QWidget *parent = 0);
     virtual bool moveToTrush(QString path) override;
     virtual bool setStayOnTop(bool top) override;
     virtual void setWindowTop() override;

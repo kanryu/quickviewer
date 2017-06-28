@@ -28,6 +28,7 @@ public:
 
 class FolderItemModel : public QAbstractItemModel
 {
+    Q_OBJECT
 public:
     FolderItemModel(QObject* parent);
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
