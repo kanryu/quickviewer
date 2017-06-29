@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## v0.7.6 (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
+
+Support for resizing Alpha Images by CPU, add Option Dialog, save memory
+
+- Support for resizing Alpha Images by CPU(zimg)
+- add Option Dialog(2 options)
+- save memory hack(x86)
+
+- other commits
+    - add language resource for Spanish (Wed Jun 28 11:21:59 2017 +0900) [84cce6c](https://github.com/kanryu/quickviewer/commit/84cce6c22267be8c438c596dbad8d050d79b210f)
+    - Update index.md (Wed Jun 28 04:11:33 2017 +0900) [8d82be9](https://github.com/kanryu/quickviewer/commit/8d82be9237c26555329d1e4b8b5891cbaf785d93)
+    - Update index.md (Wed Jun 28 03:52:28 2017 +0900) [f065230](https://github.com/kanryu/quickviewer/commit/f065230b4035d58098c01caa7bbcd5806572726e)
+    - Update index.md (Wed Jun 28 03:38:19 2017 +0900) [18c7d40](https://github.com/kanryu/quickviewer/commit/18c7d407c9dd5f207fa3bb1dd845be08a3794490)
+    - changelog (Fri Jun 16 04:42:31 2017 +0900) [d6e7cc2](https://github.com/kanryu/quickviewer/commit/d6e7cc2b5e78ab6df2bad5563a643302ab9d863d)
+
 ## v0.7.5 (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
 
 4 bugfixed
