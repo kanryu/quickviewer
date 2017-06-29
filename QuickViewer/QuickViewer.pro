@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.7.5
+VERSION = 0.7.6
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -113,7 +113,33 @@ SOURCES += \
     src/models/pagecontent.cpp \
     src/folderview/folderitemdelegate.cpp \
     src/models/bookprogressmanager.cpp \
-    src/folderview/foldertreeview.cpp
+    src/folderview/foldertreeview.cpp \
+    src/catalog/catalogwindow.cpp \
+    src/catalog/databasesettingdialog.cpp \
+    src/catalog/managedatabasedialog.cpp \
+    src/catalog/volumeitemmodel.cpp \
+    src/folderview/folderitemdelegate.cpp \
+    src/folderview/folderitemmodel.cpp \
+    src/folderview/foldertreeview.cpp \
+    src/folderview/folderwindow.cpp \
+    src/models/bookprogressmanager.cpp \
+    src/models/filevolume.cpp \
+    src/models/pagecontent.cpp \
+    src/models/pagemanager.cpp \
+    src/models/qvapplication.cpp \
+    src/models/shadermanager.cpp \
+    src/models/thumbnailmanager.cpp \
+    src/models/timeorderdcache.cpp \
+    src/widgets/flowlayout.cpp \
+    src/widgets/pageslider.cpp \
+    src/widgets/shortcutbutton.cpp \
+    src/exifdialog.cpp \
+    src/imageview.cpp \
+    src/keyconfigdialog.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/mainwindowforwindows.cpp \
+    src/optionsdialog.cpp
 
 HEADERS  += \
     src/qv_init.h \
@@ -141,7 +167,35 @@ HEADERS  += \
     src/models/pagecontent.h \
     src/folderview/folderitemdelegate.h \
     src/models/bookprogressmanager.h \
-    src/folderview/foldertreeview.h
+    src/folderview/foldertreeview.h \
+    src/catalog/catalogwindow.h \
+    src/catalog/databasesettingdialog.h \
+    src/catalog/managedatabasedialog.h \
+    src/catalog/qc_init.h \
+    src/catalog/volumeitemmodel.h \
+    src/folderview/folderitemdelegate.h \
+    src/folderview/folderitemmodel.h \
+    src/folderview/foldertreeview.h \
+    src/folderview/folderwindow.h \
+    src/models/bookprogressmanager.h \
+    src/models/filevolume.h \
+    src/models/pagecontent.h \
+    src/models/pagemanager.h \
+    src/models/qvapplication.h \
+    src/models/shadermanager.h \
+    src/models/thumbnailmanager.h \
+    src/models/timeorderdcache.h \
+    src/widgets/flowlayout.h \
+    src/widgets/pageslider.h \
+    src/widgets/shortcutbutton.h \
+    src/exifdialog.h \
+    src/imageview.h \
+    src/keyconfigdialog.h \
+    src/mainwindow.h \
+    src/mainwindowforwindows.h \
+    src/qv_init.h \
+    src/stdafx.h \
+    src/optionsdialog.h
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp
@@ -160,7 +214,8 @@ FORMS    += \
     src/catalog/cataloglist.ui \
     src/catalog/catalogwindow.ui \
     src/catalog/createdb.ui \
-    src/folderview/folderwindow.ui
+    src/folderview/folderwindow.ui \
+    src/optionsdialog.ui
 
 RESOURCES += \
     toolbar.qrc

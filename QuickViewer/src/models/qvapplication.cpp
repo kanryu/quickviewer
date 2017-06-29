@@ -237,6 +237,12 @@ void QVApplication::loadSettings()
     m_showStatusBar = m_settings.value("ShowStatusBar", true).toBool();
     m_showMenuBar = m_settings.value("ShowMenuBar", true).toBool();
     m_showSubfolders = m_settings.value("ShowSubfolders", false).toBool();
+    m_slideShowWait = m_settings.value("SlideShowWait", 5000).toInt();
+#ifdef Q_OS_WIN64
+    m_maxVolumesCache = m_settings.value("MaxVolumesCache", 3).toInt();
+#else
+    m_maxVolumesCache = m_settings.value("MaxVolumesCache", 1).toInt();
+#endif
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -317,13 +323,14 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowStatusBar", m_showStatusBar);
     m_settings.setValue("ShowMenuBar", m_showMenuBar);
     m_settings.setValue("ShowSubfolders", m_showSubfolders);
+    m_settings.setValue("SlideShowWait", m_slideShowWait);
+    m_settings.setValue("MaxVolumesCache", m_maxVolumesCache);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
     m_settings.setValue("RestoreWindowState", m_restoreWindowState);
     m_settings.setValue("WindowGeometry", m_windowGeometry);
     m_settings.setValue("WindowState", m_windowState);
-
     m_settings.endGroup();
 
     m_settings.beginGroup("File");

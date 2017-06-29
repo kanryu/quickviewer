@@ -8,7 +8,7 @@ PageManager::PageManager(QObject* parent)
     , m_currentPage(0)
     , m_wideImage(false)
     , m_fileVolume(nullptr)
-    , m_volumes(8)
+    , m_volumes(qApp->MaxVolumesCache())
 {
 
 }

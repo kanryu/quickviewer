@@ -8,6 +8,7 @@
 #include "qv_init.h"
 #include "qvapplication.h"
 #include "keyconfigdialog.h"
+#include "optionsdialog.h"
 #include "catalogwindow.h"
 #include "folderwindow.h"
 
@@ -841,6 +842,15 @@ void MainWindow::on_openKeyConfig_triggered()
         dialog.revertKeyChanges();
     } else {
         resetShortcutKeys();
+    }
+}
+
+void MainWindow::on_openOptionsDialog_triggered()
+{
+    OptionsDialog dialog(this);
+    int result = dialog.exec();
+    if(result == QDialog::Accepted) {
+        dialog.reflectResults();
     }
 }
 

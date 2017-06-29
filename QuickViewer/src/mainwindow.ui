@@ -263,6 +263,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionOpenKeyConfig"/>
+    <addaction name="actionOpenOptionsDialog"/>
     <addaction name="separator"/>
     <addaction name="actionProjectWeb"/>
     <addaction name="actionCheckVersion"/>
@@ -972,6 +973,11 @@
    </property>
    <property name="text">
     <string>ShowReadProgress</string>
+   </property>
+  </action>
+  <action name="actionOpenOptionsDialog">
+   <property name="text">
+    <string>&amp;Options Config</string>
    </property>
   </action>
  </widget>
@@ -2076,6 +2082,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionOpenOptionsDialog</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_openOptionsDialog_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -2131,5 +2153,6 @@
   <slot>on_shaderCpuBicubic_triggered()</slot>
   <slot>on_openVolumeWithProgress_triggered(bool)</slot>
   <slot>on_showReadProgress_triggered(bool)</slot>
+  <slot>on_openOptionsDialog_triggered()</slot>
  </slots>
 </ui>

@@ -17,6 +17,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
     , m_loader(loader)
     , m_cacheMode(CacheMode::Normal)
     , m_pageManager(pageManager)
+    , m_imageCache(20)
 {
     m_filelist = m_loader->contents();
 }

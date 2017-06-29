@@ -1048,6 +1048,10 @@
         <source>ShowReadProgress</source>
         <translation>どこまで読んだかを表示する</translation>
     </message>
+    <message>
+        <source>&amp;Options Config</source>
+        <translation>オプション設定(&amp;O)</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1149,6 +1153,29 @@
     <message>
         <source>Cancelled!</source>
         <translation>キャンセルされました!</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <source>Options</source>
+        <translation>オプション設定</translation>
+    </message>
+    <message>
+        <source>Number of volumes managed simultaneously</source>
+        <translation>同時に管理するボリュームの最大数</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;Wait until the next image is switched in the slide show(millisecond)&lt;br /&gt;(Enabled after re-run)&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;スライドショーで次の画像に切り替えるまでのウェイト(ミリ秒)&lt;br /&gt;(次回実行時に有効)&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Increasing it makes NextVolume / PrevVolume more comfortable but increases memory consumption. 1 is appropriate for 32 bit version.</source>
+        <translation>数を大きくすると「次のボリューム」／「前のボリューム」の挙動が改善しますが、多くのメモリを消費します。32ビット版の場合1が適当です。</translation>
+    </message>
+    <message>
+        <source>Increasing the value increases the display time of one image</source>
+        <translation>数を大きくすると画像1枚あたりの表示時間が長くなります</translation>
     </message>
 </context>
 <context>

@@ -91,7 +91,7 @@ void ImageView::toggleSlideShow()
     }
     m_slideshowTimer = new QTimer();
     connect(m_slideshowTimer, SIGNAL(timeout()), this, SLOT(on_slideShowChanging_triggered()));
-    m_slideshowTimer->start(5000);
+    m_slideshowTimer->start(qApp->SlideShowWait());
 }
 
 void ImageView::on_volumeChanged_triggered(QString path)

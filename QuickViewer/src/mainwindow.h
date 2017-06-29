@@ -89,6 +89,7 @@ public slots:
     void on_stayOnTop_triggered(bool top);
     void on_restoreWindowState_triggered(bool saveState);
     void on_maximizeOrNormal_triggered();
+    void on_openOptionsDialog_triggered();
 
     // SlideShow
     void on_slideShow_triggered(bool enable);

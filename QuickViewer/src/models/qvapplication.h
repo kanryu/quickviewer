@@ -33,7 +33,9 @@ class QVApplication : public QApplication
     // Bookmark
 //    Q_PROPERTY(int MaxBookmarkCount READ MaxBookmarkCount WRITE setMaxBookmarkCount)
 
-    // Fitting
+    // View
+    Q_PROPERTY(int SlideShowWait READ SlideShowWait WRITE setSlideShowWait)
+    Q_PROPERTY(int MaxVolumesCache READ MaxVolumesCache WRITE setMaxVolumesCache)
     Q_PROPERTY(bool Fitting READ Fitting WRITE setFitting)
 
     // DuapView
@@ -98,6 +100,11 @@ public:
     void setFirstImageAsOnePageInDualView (bool firstImageAsOnePageInDualView) { m_firstImageAsOnePageInDualView = firstImageAsOnePageInDualView; }
     bool ShowSubfolders() { return m_showSubfolders; }
     void setShowSubfolders (bool showSubfolders) { m_showSubfolders = showSubfolders; }
+    int SlideShowWait() { return m_slideShowWait; }
+    void setSlideShowWait (int slideShowWait) { m_slideShowWait = slideShowWait; }
+    int MaxVolumesCache() { return m_maxVolumesCache; }
+    void setMaxVolumesCache (int maxVolumesCache) { m_maxVolumesCache = maxVolumesCache; }
+
 
     // Show Bars
     bool ShowToolBar() { return m_showToolBar; }
@@ -166,7 +173,6 @@ public:
     void setShowTagBar (bool showTagBar) { m_showTagBar = showTagBar; }
     bool IconLongText() { return m_iconLongText; }
     void setIconLongText (bool iconLongText) { m_iconLongText = iconLongText; }
-
 
     // ShaderEffect
     qvEnums::ShaderEffect Effect() { return m_effect; }
@@ -272,7 +278,10 @@ private:
     bool m_wideImageAsOnePageInDualView;
     bool m_firstImageAsOnePageInDualView;
     bool m_showSubfolders;
+    int m_slideShowWait;
+    int m_maxVolumesCache;
 
+    // ToolBars
     bool m_showToolBar;
     bool m_showSliderBar;
     bool m_showStatusBar;
