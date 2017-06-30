@@ -77,6 +77,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://download.html.it/software/quickviewer/](http://download.html.it/software/quickviewer/)
 - **مدونة حاسب سهل** (in Arabic)
     - [http://www.pcfacile1.com/archives/13505](http://www.pcfacile1.com/archives/13505)
+- **Quergedacht 3.0**(in German)
+    - [http://quergedacht20.square7.ch/?p=19951](http://quergedacht20.square7.ch/?p=19951)
 
 Thanks for reviewers! :)
 
