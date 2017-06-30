@@ -73,7 +73,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.indiriliyo.com/quickviewer-indir-11274/](http://www.indiriliyo.com/quickviewer-indir-11274/)
 - **Download HTML.it** (in Italian)
     - [http://download.html.it/software/quickviewer/](http://download.html.it/software/quickviewer/)
-
+- **مدونة حاسب سهل** (in Arabic)
+    - [http://www.pcfacile1.com/archives/13505](http://www.pcfacile1.com/archives/13505)
 
 Thanks for reviewers! :)
 
