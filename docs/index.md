@@ -63,6 +63,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://downloadcrew.com/article/35266-quickviewer](https://downloadcrew.com/article/35266-quickviewer)
 - **Free SoftNavi** (in Japanese)
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
+- **PC actual** (in Spanish)
+    - [http://www.pcactual.com/noticias/actualidad/quickviewer_13551](http://www.pcactual.com/noticias/actualidad/quickviewer_13551)
 - **SOFTZone** (in Spanish)
     - [https://www.softzone.es/2017/06/27/quickviewer-visor-imagenes/](https://www.softzone.es/2017/06/27/quickviewer-visor-imagenes/)
 - **01net.com telecharger.com**(in French)
