@@ -53,14 +53,14 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
 - **ghacks.net**
     - [https://www.ghacks.net/2017/06/27/quickviewer-ultra-fast-windows-image-viewer/](https://www.ghacks.net/2017/06/27/quickviewer-ultra-fast-windows-image-viewer/)
+- **Downloadcrew**
+    - [https://downloadcrew.com/article/35266-quickviewer](https://downloadcrew.com/article/35266-quickviewer)
 - **SOFTPEDIA**
     - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
 - **FindMySoft**
     - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
 - **Download82**
     - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
-- **Downloadcrew**
-    - [https://downloadcrew.com/article/35266-quickviewer](https://downloadcrew.com/article/35266-quickviewer)
 - **Free SoftNavi** (in Japanese)
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 - **PC actual** (in Spanish)
@@ -79,6 +79,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.pcfacile1.com/archives/13505](http://www.pcfacile1.com/archives/13505)
 - **Quergedacht 3.0**(in German)
     - [http://quergedacht20.square7.ch/?p=19951](http://quergedacht20.square7.ch/?p=19951)
+- **CHIP.DE** (in German)
+    - [http://www.chip.de/downloads/QuickViewer_117674551.html](http://www.chip.de/downloads/QuickViewer_117674551.html)
 
 Thanks for reviewers! :)
 
