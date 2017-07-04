@@ -83,6 +83,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://quergedacht20.square7.ch/?p=19951](http://quergedacht20.square7.ch/?p=19951)
 - **CHIP.DE** (in German)
     - [http://www.chip.de/downloads/QuickViewer_117674551.html](http://www.chip.de/downloads/QuickViewer_117674551.html)
+- **THAIWARE.com** (in Thai)
+    - [https://software.thaiware.com/13230-QuickViewer-Download.html](https://software.thaiware.com/13230-QuickViewer-Download.html)
 
 Thanks for reviewers! :)
 
