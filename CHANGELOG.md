@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## v0.7.7 (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+
+add support to Rename, change background color, bugfixed
+
+- support to Rename current image file, only for folders
+- support to change background color, can be checkered pattern
+- bugfixed: if set max volume cache < 4, changing the volume resulted in an unauthorized termination
+- buffixed: If the volume is already read, even if you specify the file of the folder and open the volume, the read file was opened
+
+- other commits
+    - Update index.md (Sat Jul 1 08:48:06 2017 +0900) [391deec](https://github.com/kanryu/quickviewer/commit/391deec64cf9627bbbdc4e092f42c8ded72390fc)
+    - Update index.md (Sat Jul 1 08:28:57 2017 +0900) [c9e7929](https://github.com/kanryu/quickviewer/commit/c9e7929c87cfd46722672233a3aeb68bdee1c7ab)
+    - Update index.md (Sat Jul 1 08:26:45 2017 +0900) [380b5f5](https://github.com/kanryu/quickviewer/commit/380b5f5a133d57164e334f25e9c2c8e0570ec2fc)
+    - changelog (Thu Jun 29 17:10:20 2017 +0900) [9694db2](https://github.com/kanryu/quickviewer/commit/9694db2c9a4c60bc7fed624dce8802f8eacbf697)
+
 ## v0.7.6 (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
 
 Support for resizing Alpha Images by CPU, add Option Dialog, save memory
