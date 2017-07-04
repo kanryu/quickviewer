@@ -57,6 +57,7 @@ public:
     bool isSlideShow() const { return m_slideshowTimer != nullptr; }
     void toggleSlideShow();
     void setWillFullscreen(bool fullscreen) { m_isFullScreen = fullscreen; }
+    void resetBackgroundColor();
 
 signals:
     /**
@@ -72,7 +73,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
 //    void mousePressEvent(QMouseEvent *event);
 //    void mouseReleaseEvent(QMouseEvent *event);
-    void paintEvent(QPaintEvent *event) override;
+//    void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 //    void dragEnterEvent(QDragEnterEvent *event) { event->accept(); qDebug() << "ImageView::dragEnterEvent"; }
 //    void dropEvent( QDropEvent *e ) {qDebug() << "ImageView::dropEvent";}

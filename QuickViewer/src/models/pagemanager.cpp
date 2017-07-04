@@ -69,7 +69,7 @@ void PageManager::nextVolume()
         } else {
             addVolumeCache(path, true);
         }
-        if(matchCount >= PRE_LOAD_VOLUMES)
+        if(matchCount >= qApp->MaxVolumesCache()*3/2-1)
             break;
     }
 }
@@ -105,7 +105,7 @@ void PageManager::prevVolume()
         } else {
             addVolumeCache(path, true);
         }
-        if(matchCount >= PRE_LOAD_VOLUMES)
+        if(matchCount >= qApp->MaxVolumesCache()*3/2-1)
             break;
     }
 }
@@ -134,6 +134,7 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
             // change page by progress.ini
             QString volumepath = QDir::fromNativeSeparators(newer->volumePath());
             if(qApp->OpenVolumeWithProgress()
+               && !newer->openedWithSpecifiedImageFile()
                && qApp->bookshelfManager()->contains(volumepath)) {
                 BookProgress book = qApp->bookshelfManager()->at(volumepath);
                 newer->findPageByIndex(book.Current);

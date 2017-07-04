@@ -111,6 +111,7 @@ public slots:
     void on_deletePage_triggered();
     void on_exitApplicationOrFullscreen_triggered();
     void on_mailAttachment_triggered();
+    void on_renameImageFile_triggered();
 
     // Shaders
     void on_shaderNearestNeighbor_triggered();

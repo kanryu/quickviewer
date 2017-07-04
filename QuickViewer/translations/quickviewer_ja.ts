@@ -1052,6 +1052,10 @@
         <source>&amp;Options Config</source>
         <translation>オプション設定(&amp;O)</translation>
     </message>
+    <message>
+        <source>Rename the image</source>
+        <translation>ファイル名を変更する</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1163,11 +1167,11 @@
     </message>
     <message>
         <source>Number of volumes managed simultaneously</source>
-        <translation>同時に管理するボリュームの最大数</translation>
+        <translation type="vanished">同時に管理するボリュームの最大数</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;Wait until the next image is switched in the slide show(millisecond)&lt;br /&gt;(Enabled after re-run)&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;スライドショーで次の画像に切り替えるまでのウェイト(ミリ秒)&lt;br /&gt;(次回実行時に有効)&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;スライドショーで次の画像に切り替えるまでのウェイト(ミリ秒)&lt;br /&gt;(次回実行時に有効)&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Increasing it makes NextVolume / PrevVolume more comfortable but increases memory consumption. 1 is appropriate for 32 bit version.</source>
@@ -1176,6 +1180,30 @@
     <message>
         <source>Increasing the value increases the display time of one image</source>
         <translation>数を大きくすると画像1枚あたりの表示時間が長くなります</translation>
+    </message>
+    <message>
+        <source>Number of volumes managed simultaneously (Restart is required)</source>
+        <translation>同時に管理するボリュームの最大数 (再起動後有効)</translation>
+    </message>
+    <message>
+        <source>SlideShow Delay (millisecond)</source>
+        <translation>スライドショーのウェイト (ミリ秒)</translation>
+    </message>
+    <message>
+        <source>BackgroundColor</source>
+        <translation>背景パターンの変更</translation>
+    </message>
+    <message>
+        <source>Color1</source>
+        <translation>背景色1</translation>
+    </message>
+    <message>
+        <source>Use checkered pattern</source>
+        <translation>市松模様にする</translation>
+    </message>
+    <message>
+        <source>Color2</source>
+        <translation>背景色2</translation>
     </message>
 </context>
 <context>
@@ -1220,6 +1248,25 @@
     <message>
         <source>ZIP/UNZIP API error %1</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RenameDialog</name>
+    <message>
+        <source>RenameDialog</source>
+        <translation>ファイル名変更ダイアログ</translation>
+    </message>
+    <message>
+        <source>EditFilename</source>
+        <translation>ファイル名の編集</translation>
+    </message>
+    <message>
+        <source>Filename can&apos;t be empty.</source>
+        <translation>ファイル名は必ず必要です。</translation>
+    </message>
+    <message>
+        <source>Rename failed. Does the same file name exist?</source>
+        <translation>ファイル名を変更できません。同じ名前のファイルがありませんか？</translation>
     </message>
 </context>
 <context>

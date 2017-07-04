@@ -11,6 +11,7 @@
 #include "optionsdialog.h"
 #include "catalogwindow.h"
 #include "folderwindow.h"
+#include "renamedialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -848,9 +849,16 @@ void MainWindow::on_openKeyConfig_triggered()
 void MainWindow::on_openOptionsDialog_triggered()
 {
     OptionsDialog dialog(this);
-    int result = dialog.exec();
-    if(result == QDialog::Accepted) {
+    QColor back = qApp->BackgroundColor();
+    QColor back2 = qApp->BackgroundColor2();
+    bool checkered = qApp->UseCheckeredPattern();
+    if(dialog.exec() == QDialog::Accepted) {
         dialog.reflectResults();
+        if(back != qApp->BackgroundColor()
+           || back2 != qApp->BackgroundColor2()
+           || checkered != qApp->UseCheckeredPattern()) {
+            ui->graphicsView->resetBackgroundColor();
+        }
     }
 }
 
@@ -886,6 +894,16 @@ void MainWindow::on_mailAttachment_triggered()
     if(!path.length())
         return;
     setMailAttachment(path);
+}
+
+void MainWindow::on_renameImageFile_triggered()
+{
+    if(!m_pageManager.isFolder() || m_pageManager.currentPageCount() == 0)
+        return;
+    RenameDialog dialog(this, m_pageManager.realVolumePath(), m_pageManager.currentPageName());
+    if(dialog.exec() == QDialog::Accepted) {
+        m_pageManager.loadVolume(QDir(m_pageManager.realVolumePath()).absoluteFilePath(dialog.newName()));
+    }
 }
 
 void MainWindow::on_deletePage_triggered()

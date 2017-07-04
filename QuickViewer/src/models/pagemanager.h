@@ -50,6 +50,7 @@ public:
         int idx = m_fileVolume->size()-1==m_currentPage ? m_currentPage-1 : m_currentPage+1;
         return QDir::toNativeSeparators(m_fileVolume->getPathByIndex(idx));
     }
+    QString currentPageName() { return m_pages[0].Path; }
 
     /**
      * @brief currentPageNumAsString: for the label text on PageBar
@@ -64,6 +65,7 @@ public:
      */
     QString currentPageStatusAsString() const;
     QString volumePath(){ return m_fileVolume ? m_fileVolume->volumePath() : ""; }
+    QString realVolumePath() { return m_fileVolume ? m_fileVolume->realVolumePath() : ""; }
     bool isArchive() {
         if(!m_fileVolume) return false;
         return m_fileVolume->isArchive();

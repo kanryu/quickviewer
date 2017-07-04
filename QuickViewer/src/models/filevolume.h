@@ -79,6 +79,7 @@ public:
 
     const ImageContent currentImage() { return m_cacheMode == NoAsync ? m_currentCacheSync : m_currentCache.result(); }
     QString volumePath() { return m_loader->volumePath(); }
+    QString realVolumePath() { return m_loader->realVolumePath(); }
 
     bool nextPage();
     bool prevPage();
@@ -112,7 +113,8 @@ public:
 //    QString getIndexedImageName(int idx) { return m_filelist[idx]; }
 //    QString currentImageName() const { return m_filelist[m_cnt]; }
     const ImageContent getIndexedImageContent(int idx);
-
+    bool openedWithSpecifiedImageFile() { return m_openedWithSpecifiedImageFile; }
+    void setOpenedWithSpecifiedImageFile(bool openedWithSpecifiedImageFile) { m_openedWithSpecifiedImageFile = openedWithSpecifiedImageFile; }
 
 protected:
     /**
@@ -132,6 +134,7 @@ protected:
     IFileLoader* m_loader;
     CacheMode m_cacheMode;
     PageManager* m_pageManager;
+    bool m_openedWithSpecifiedImageFile;
 };
 
 

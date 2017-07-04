@@ -48,6 +48,7 @@ void QVApplication::registDefaultKeyMap()
     m_keyConfigDefauls["actionZoomIn"] = QKeySequence("K, Num++");
     m_keyConfigDefauls["actionZoomOut"] = QKeySequence("J, Num+-");
 
+    m_keyConfigDefauls["actionRenameImageFile"] = QKeySequence("F2");
     m_keyConfigDefauls["actionShowFolder"] = QKeySequence("F4");
     m_keyConfigDefauls["actionShowCatalog"] = QKeySequence("Ctrl+/, F6");
     m_keyConfigDefauls["actionSlideShow"] = QKeySequence("F7");
@@ -138,6 +139,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionCopyFile", ui->actionCopyFile);
     registAction("actionDeletePage", ui->actionDeletePage);
     registAction("actionMailAttachment", ui->actionMailAttachment);
+    registAction("actionRenameImageFile", ui->actionRenameImageFile);
 
     // Shader
     registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor);
@@ -148,6 +150,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
 
     // Help
     registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
+    registAction("actionOpenOptionsDialog", ui->actionOpenOptionsDialog);
     registAction("actionCheckVersion", ui->actionCheckVersion);
     registAction("actionProjectWeb", ui->actionProjectWeb);
     registAction("actionAppVersion", ui->actionAppVersion);
@@ -243,6 +246,9 @@ void QVApplication::loadSettings()
 #else
     m_maxVolumesCache = m_settings.value("MaxVolumesCache", 1).toInt();
 #endif
+    m_backgroundColor = QColor(m_settings.value("BackgroundColor", "0x797979").toString().toUInt(nullptr, 16));
+    m_backgroundColor2 = QColor(m_settings.value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
+    m_useCheckeredPattern  = m_settings.value("UseCheckeredPattern", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -294,11 +300,7 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("Shader");
-#ifdef Q_OS_WIN
-    QString effectstring = m_settings.value("Effect", "BilinearAndCpuBicubic").toString();
-#else
     QString effectstring = m_settings.value("Effect", "Bilinear").toString();
-#endif
     m_effect = ShaderManager::stringToShaderEffect(effectstring);
     m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
@@ -325,6 +327,12 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowSubfolders", m_showSubfolders);
     m_settings.setValue("SlideShowWait", m_slideShowWait);
     m_settings.setValue("MaxVolumesCache", m_maxVolumesCache);
+    QString rgbstring;
+    rgbstring.setNum(m_backgroundColor.rgb(), 16);
+    m_settings.setValue("BackgroundColor", rgbstring);
+    rgbstring.setNum(m_backgroundColor2.rgb(), 16);
+    m_settings.setValue("BackgroundColor2", rgbstring);
+    m_settings.setValue("UseCheckeredPattern", m_useCheckeredPattern);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

@@ -37,6 +37,9 @@ class QVApplication : public QApplication
     Q_PROPERTY(int SlideShowWait READ SlideShowWait WRITE setSlideShowWait)
     Q_PROPERTY(int MaxVolumesCache READ MaxVolumesCache WRITE setMaxVolumesCache)
     Q_PROPERTY(bool Fitting READ Fitting WRITE setFitting)
+    Q_PROPERTY(QColor BackgroundColor READ BackgroundColor WRITE setBackgroundColor)
+    Q_PROPERTY(QColor BackgroundColor2 READ BackgroundColor2 WRITE setBackgroundColor2)
+    Q_PROPERTY(bool UseCheckeredPattern READ UseCheckeredPattern WRITE setUseCheckeredPattern)
 
     // DuapView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
@@ -104,6 +107,12 @@ public:
     void setSlideShowWait (int slideShowWait) { m_slideShowWait = slideShowWait; }
     int MaxVolumesCache() { return m_maxVolumesCache; }
     void setMaxVolumesCache (int maxVolumesCache) { m_maxVolumesCache = maxVolumesCache; }
+    QColor BackgroundColor() { return m_backgroundColor; }
+    void setBackgroundColor (QColor backgroundColor) { m_backgroundColor = backgroundColor; }
+    QColor BackgroundColor2() { return m_backgroundColor2; }
+    void setBackgroundColor2 (QColor backgroundColor) { m_backgroundColor2 = backgroundColor; }
+    bool UseCheckeredPattern() { return m_useCheckeredPattern; }
+    void setUseCheckeredPattern (bool useCheckeredPattern) { m_useCheckeredPattern = useCheckeredPattern; }
 
 
     // Show Bars
@@ -280,6 +289,9 @@ private:
     bool m_showSubfolders;
     int m_slideShowWait;
     int m_maxVolumesCache;
+    QColor m_backgroundColor;
+    QColor m_backgroundColor2;
+    bool m_useCheckeredPattern;
 
     // ToolBars
     bool m_showToolBar;

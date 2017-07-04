@@ -18,6 +18,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
     , m_cacheMode(CacheMode::Normal)
     , m_pageManager(pageManager)
     , m_imageCache(20)
+    , m_openedWithSpecifiedImageFile(false)
 {
     m_filelist = m_loader->contents();
 }
@@ -146,6 +147,7 @@ static IFileVolume* CreateVolumeImpl(QObject* parent, QString path, PageManager*
         QString dirpath = dir.canonicalPath();
         IFileVolume* fvd = new IFileVolume(parent, qApp->ShowSubfolders() ? new FileLoaderSubDirectory(parent, path) : new FileLoaderDirectory(parent, dirpath), pageManager);
         fvd->findImageByName(path.mid(dirpath.length()+1));
+        fvd->setOpenedWithSpecifiedImageFile(true);
         return fvd;
     }
     return nullptr;

@@ -31,7 +31,7 @@ ImageView::ImageView(QWidget *parent)
         setRenderer(OpenGL);
 
     setMouseTracking(true);
-
+    resetBackgroundColor();
 
 }
 
@@ -92,6 +92,24 @@ void ImageView::toggleSlideShow()
     m_slideshowTimer = new QTimer();
     connect(m_slideshowTimer, SIGNAL(timeout()), this, SLOT(on_slideShowChanging_triggered()));
     m_slideshowTimer->start(qApp->SlideShowWait());
+}
+
+void ImageView::resetBackgroundColor()
+{
+//    QColor bg = qApp->BackgroundColor();
+//    setStyleSheet(QString("background-color:") + bg.name(QColor::HexArgb));
+    if(!qApp->UseCheckeredPattern()) {
+        setBackgroundBrush(QBrush(qApp->BackgroundColor(), Qt::SolidPattern));
+        return;
+    }
+    QPixmap pix(16, 16);
+    pix.fill(qApp->BackgroundColor());
+    QPainter paint(&pix);
+    QBrush brush2(qApp->BackgroundColor2(), Qt::SolidPattern);
+    paint.fillRect(QRect(0, 0, 8, 8), brush2);
+    paint.fillRect(QRect(8, 8, 8, 8), brush2);
+    QBrush brush(pix);
+    setBackgroundBrush(brush);
 }
 
 void ImageView::on_volumeChanged_triggered(QString path)
@@ -166,11 +184,11 @@ void ImageView::readyForPaint() {
     repaint();
 }
 
-void ImageView::paintEvent(QPaintEvent *event)
-{
-//    readyForPaint();
-    QGraphicsView::paintEvent(event);
-}
+//void ImageView::paintEvent(QPaintEvent *event)
+//{
+////    readyForPaint();
+//    QGraphicsView::paintEvent(event);
+//}
 
 void ImageView::resizeEvent(QResizeEvent *event)
 {
