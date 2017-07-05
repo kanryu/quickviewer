@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v0.7.8 (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
+
+support for drag scrolling, show original size, fixed wheel paging
+
+- support for drag scrolling when images bigger than window
+- show original size when images smaller than window on fitting
+- fixed: wheel paging when images bigger than window
+
+- other commits
+    - Update index-ja.md (Wed Jul 5 11:57:45 2017 +0900) [6c5af91](https://github.com/kanryu/quickviewer/commit/6c5af919f70ee12e8ffcb222c31d827ea799b26d)
+    - Update index.md (Tue Jul 4 19:15:47 2017 +0900) [32e4396](https://github.com/kanryu/quickviewer/commit/32e4396f1ed0096017255045b6c0f058db036f7c)
+    - Update index.md (Tue Jul 4 18:36:07 2017 +0900) [25d60c4](https://github.com/kanryu/quickviewer/commit/25d60c4e835df8e327d5b8bca2c3c03970256348)
+    - Update index.md (Tue Jul 4 18:26:28 2017 +0900) [2ba6907](https://github.com/kanryu/quickviewer/commit/2ba6907dc01a49018767a4e2c8a910ed2f0ace4c)
+    - Update index.md (Tue Jul 4 18:18:51 2017 +0900) [a6ac7da](https://github.com/kanryu/quickviewer/commit/a6ac7da1b950a84985d261ac1b7a1cf600e41347)
+    - changelog (Tue Jul 4 13:22:29 2017 +0900) [e9682d0](https://github.com/kanryu/quickviewer/commit/e9682d0a3bfa39a92b03dbef5a78e3e7f11bb141)
+
 ## v0.7.7 (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
 
 add support to Rename, change background color, bugfixed
