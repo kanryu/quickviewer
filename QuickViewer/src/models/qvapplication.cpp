@@ -113,6 +113,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionFitting", ui->actionFitting);
     registAction("actionZoomIn", ui->actionZoomIn);
     registAction("actionZoomOut", ui->actionZoomOut);
+    registAction("actionDontEnlargeSmallImagesOnFitting", ui->actionDontEnlargeSmallImagesOnFitting);
 
     registAction("actionDualView", ui->actionDualView);
     registAction("actionRightSideBook", ui->actionRightSideBook);
@@ -249,6 +250,7 @@ void QVApplication::loadSettings()
     m_backgroundColor = QColor(m_settings.value("BackgroundColor", "0x797979").toString().toUInt(nullptr, 16));
     m_backgroundColor2 = QColor(m_settings.value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
     m_useCheckeredPattern  = m_settings.value("UseCheckeredPattern", true).toBool();
+    m_dontEnlargeSmallImagesOnFitting  = m_settings.value("DontEnlargeSmallImagesOnFitting", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -333,6 +335,7 @@ void QVApplication::saveSettings()
     rgbstring.setNum(m_backgroundColor2.rgb(), 16);
     m_settings.setValue("BackgroundColor2", rgbstring);
     m_settings.setValue("UseCheckeredPattern", m_useCheckeredPattern);
+    m_settings.setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

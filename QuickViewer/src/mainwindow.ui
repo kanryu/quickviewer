@@ -232,6 +232,7 @@
     <addaction name="actionZoomIn"/>
     <addaction name="actionZoomOut"/>
     <addaction name="actionFitting"/>
+    <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
     <addaction name="actionRightSideBook"/>
@@ -977,6 +978,14 @@
     <string>Rename the image</string>
    </property>
   </action>
+  <action name="actionDontEnlargeSmallImagesOnFitting">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Don't enlarge small images on Fitting</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1011,6 +1020,7 @@
     <slot>on_copyFile_triggered()</slot>
     <slot>on_rotatePage_triggered()</slot>
     <slot>on_showSubfolders_triggered(bool)</slot>
+    <slot>on_dontEnlargeSmallImagesOnFitting(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2108,6 +2118,22 @@
     <hint type="destinationlabel">
      <x>350</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDontEnlargeSmallImagesOnFitting</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_dontEnlargeSmallImagesOnFitting(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>

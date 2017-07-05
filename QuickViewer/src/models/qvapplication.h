@@ -40,6 +40,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(QColor BackgroundColor READ BackgroundColor WRITE setBackgroundColor)
     Q_PROPERTY(QColor BackgroundColor2 READ BackgroundColor2 WRITE setBackgroundColor2)
     Q_PROPERTY(bool UseCheckeredPattern READ UseCheckeredPattern WRITE setUseCheckeredPattern)
+    Q_PROPERTY(bool DontEnlargeSmallImagesOnFitting READ DontEnlargeSmallImagesOnFitting WRITE setDontEnlargeSmallImagesOnFitting)
 
     // DuapView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
@@ -113,6 +114,8 @@ public:
     void setBackgroundColor2 (QColor backgroundColor) { m_backgroundColor2 = backgroundColor; }
     bool UseCheckeredPattern() { return m_useCheckeredPattern; }
     void setUseCheckeredPattern (bool useCheckeredPattern) { m_useCheckeredPattern = useCheckeredPattern; }
+    bool DontEnlargeSmallImagesOnFitting() { return m_dontEnlargeSmallImagesOnFitting; }
+    void setDontEnlargeSmallImagesOnFitting (bool dontEnlargeSmallImagesOnFitting) { m_dontEnlargeSmallImagesOnFitting = dontEnlargeSmallImagesOnFitting; }
 
 
     // Show Bars
@@ -292,6 +295,7 @@ private:
     QColor m_backgroundColor;
     QColor m_backgroundColor2;
     bool m_useCheckeredPattern;
+    bool m_dontEnlargeSmallImagesOnFitting;
 
     // ToolBars
     bool m_showToolBar;

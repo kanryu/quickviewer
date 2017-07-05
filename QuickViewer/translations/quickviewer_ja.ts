@@ -1056,6 +1056,10 @@
         <source>Rename the image</source>
         <translation>ファイル名を変更する</translation>
     </message>
+    <message>
+        <source>Don&apos;t enlarge small images on Fitting</source>
+        <translation>フィット表示時、画面より小さな画像は拡大しない</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

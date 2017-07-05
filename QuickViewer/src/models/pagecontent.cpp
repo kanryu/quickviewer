@@ -87,6 +87,8 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     QSize currentSize = CurrentSize(rotateOffset);
     QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
     qreal scale = 1.0*newsize.width()/currentSize.width();
+    if(scale > 1.0 && qApp->DontEnlargeSmallImagesOnFitting())
+        return setPageLayoutManual(viewport, fitting, 1.0, rotateOffset);
 
     QPoint of = Offset(rotateOffset);
     of *= scale;
@@ -98,9 +100,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     } else { // fitting on left and right
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
     }
-//    GrItem->setScale(scale);
-//    GrItem->setRotation(Rotate+rotateOffset);
-//    GrItem->setPos(drawRect.topLeft());
+
     applyResize(scale, rotateOffset, drawRect.topLeft(), newsize);
     return drawRect;
 }
@@ -117,7 +117,8 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
     of *= scale;
 
     int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
-    QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
+    int offsetY = qMax(0, (viewport.height()-newsize.height())/2);
+    QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y() + offsetY), newsize);
 
     applyResize(scale, rotateOffset, drawRect.topLeft(), newsize);
     return drawRect;

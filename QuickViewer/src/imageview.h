@@ -58,6 +58,8 @@ public:
     void toggleSlideShow();
     void setWillFullscreen(bool fullscreen) { m_isFullScreen = fullscreen; }
     void resetBackgroundColor();
+    void setSceneRectMode(bool scrolled, const QRect& sceneRect);
+    bool isScrollMode() { return m_scrollMode; }
 
 signals:
     /**
@@ -111,6 +113,7 @@ public slots:
     void on_rightSideBook_triggered(bool rightSideBook);
     void on_wideImageAsOneView_triggered(bool wideImage);
     void on_firstImageAsOneView_triggered(bool firstImage);
+    void on_dontEnlargeSmallImagesOnFitting(bool enable);
 
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
@@ -146,6 +149,7 @@ private:
     QTimer* m_slideshowTimer;
 
     bool m_isFullScreen;
+    bool m_scrollMode;
 };
 
 

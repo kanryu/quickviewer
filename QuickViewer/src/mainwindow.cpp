@@ -53,6 +53,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
 
+    ui->actionDontEnlargeSmallImagesOnFitting->setChecked(qApp->DontEnlargeSmallImagesOnFitting());
+
     // ToolBar/PageBar/StatusBar/MenuBar
     ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
     ui->actionShowToolBar->triggered(qApp->ShowToolBar());
@@ -197,6 +199,8 @@ void MainWindow::dropEvent(QDropEvent *e)
 
 void MainWindow::wheelEvent(QWheelEvent *e)
 {
+    if(ui->graphicsView->isScrollMode())
+        return;
     if(e->delta() < 0) {
         ui->actionNextPage->trigger();
     }

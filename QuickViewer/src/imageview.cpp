@@ -16,6 +16,7 @@ ImageView::ImageView(QWidget *parent)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
     , m_isFullScreen(false)
+    , m_scrollMode(false)
 {
     viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 6; // 100
@@ -112,6 +113,7 @@ void ImageView::resetBackgroundColor()
     setBackgroundBrush(brush);
 }
 
+
 void ImageView::on_volumeChanged_triggered(QString path)
 {
     m_pageRotations = QVector<int>(m_pageManager->size());
@@ -176,12 +178,24 @@ void ImageView::readyForPaint() {
             sceneRect = sceneRect.united(drawRect);
         }
         // if Size of Image overs Size of View, use Image's size
-        scene()->setSceneRect(qApp->Fitting() || m_isFullScreen
-                              ? QRect(QPoint(), size())
-                              : QRect(QPoint(), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
+//        setSceneRectMode(!qApp->Fitting() && !m_isFullScreen, sceneRect);
+        setSceneRectMode(!qApp->Fitting(), sceneRect);
     }
     m_effectManager.prepareFinished();
     repaint();
+}
+
+void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
+{
+    // if Size of Image overs Size of View, use Image's size
+    m_scrollMode = scrolled && (size().width() < sceneRect.width() || size().height() < sceneRect.height());
+    if(m_scrollMode) {
+        scene()->setSceneRect(QRect(QPoint(), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
+        setDragMode(QGraphicsView::ScrollHandDrag);
+    } else {
+        scene()->setSceneRect(QRect(QPoint(), size()));
+        setDragMode(QGraphicsView::NoDrag);
+    }
 }
 
 //void ImageView::paintEvent(QPaintEvent *event)
@@ -192,7 +206,7 @@ void ImageView::readyForPaint() {
 
 void ImageView::resizeEvent(QResizeEvent *event)
 {
-    if(scene()) {
+    if(scene() && !m_isFullScreen) {
         scene()->setSceneRect(QRect(QPoint(), event->size()));
     }
     QGraphicsView::resizeEvent(event);
@@ -302,6 +316,7 @@ void ImageView::on_prevVolume_triggered()
 
 void ImageView::mouseMoveEvent(QMouseEvent *e)
 {
+    QGraphicsView::mouseMoveEvent(e);
 //    qDebug() << e;
     int NOT_HOVER_AREA = width() / 3;
     if(e->pos().x() < HOVER_BORDER && e->pos().y() < height()-HOVER_BORDER) {
@@ -412,6 +427,12 @@ void ImageView::on_firstImageAsOneView_triggered(bool firstImage)
 {
     qApp->setFirstImageAsOnePageInDualView(firstImage);
     m_pageManager->reloadCurrentPage();
+    readyForPaint();
+}
+
+void ImageView::on_dontEnlargeSmallImagesOnFitting(bool enable)
+{
+    qApp->setDontEnlargeSmallImagesOnFitting(enable);
     readyForPaint();
 }
 
