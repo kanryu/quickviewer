@@ -67,6 +67,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.pcactual.com/noticias/actualidad/quickviewer_13551](http://www.pcactual.com/noticias/actualidad/quickviewer_13551)
 - **SOFTZone** (in Spanish)
     - [https://www.softzone.es/2017/06/27/quickviewer-visor-imagenes/](https://www.softzone.es/2017/06/27/quickviewer-visor-imagenes/)
+- **REDES@ZONE** (in Spanish)
+    - [https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/](https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/)
 - **SOFT DOWNLOAD** (in Portuguese)
     - [http://www.softdownload.com.br/visualize-fotos-rapidamente-windows-quickviewer.html](http://www.softdownload.com.br/visualize-fotos-rapidamente-windows-quickviewer.html)
 - **01net.com telecharger.com**(in French)
