@@ -57,6 +57,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://downloadcrew.com/article/35266-quickviewer](https://downloadcrew.com/article/35266-quickviewer)
 - **SOFTPEDIA**
     - [http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml](http://www.softpedia.com/get/Multimedia/Graphic/Graphic-Viewers/QuickViewer.shtml)
+- **thumbapps**
+    - [http://www.thumbapps.org/2017/07/QuickViewer-portable-image-viewer.html](http://www.thumbapps.org/2017/07/QuickViewer-portable-image-viewer.html)
 - **FindMySoft**
     - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
 - **Download82**
