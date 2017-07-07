@@ -72,7 +72,8 @@ signals:
 
 protected:
 //    void paintEvent( QPaintEvent *event );
-    void mouseMoveEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
 //    void mousePressEvent(QMouseEvent *event);
 //    void mouseReleaseEvent(QMouseEvent *event);
 //    void paintEvent(QPaintEvent *event) override;

@@ -355,6 +355,13 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
     m_hoverState = Qt::AnchorHorizontalCenter;
 }
 
+void ImageView::wheelEvent(QWheelEvent *event)
+{
+    if(event->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier)
+        return;
+    QGraphicsView::wheelEvent(event);
+}
+
 void ImageView::on_fitting_triggered(bool maximized)
 {
     qApp->setFitting(maximized);

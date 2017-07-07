@@ -293,6 +293,7 @@ void PageManager::reloadCurrentPage(bool )
 
 void PageManager::addNewPage(ImageContent ic, bool pageNext)
 {
+    ic.initialize();
     if(pageNext)
         m_pages.push_back(ic);
     else

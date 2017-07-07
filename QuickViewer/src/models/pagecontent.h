@@ -5,6 +5,7 @@
 #include <QtWidgets>
 
 #include "exif.h"
+#include "movie.h"
 
 /**
  * @brief The ImageContent struct
@@ -21,6 +22,10 @@ public:
      * @brief ResizedImage is resized to actual view size from Image
      */
     QPixmap ResizedImage;
+    /**
+     * @brief Movie will be initialized when imageReader.supportsAnimation() == true
+     */
+    Movie Movie;
     /**
      * @brief BaseSize is original size of the image
      */
@@ -42,11 +47,18 @@ public:
     ImageContent(QPixmap image, QString path, QSize size, easyexif::EXIFInfo info)
         : Image(image), Path(path), BaseSize(size), ImportSize(image.size()), Info(info) {}
     ImageContent(const ImageContent& rhs)
-        : Image(rhs.Image), ResizedImage(rhs.ResizedImage), Path(rhs.Path), BaseSize(rhs.BaseSize), ImportSize(rhs.ImportSize), Info(rhs.Info) {}
+        : Image(rhs.Image)
+        , ResizedImage(rhs.ResizedImage)
+        , Movie(rhs.Movie)
+        , Path(rhs.Path)
+        , BaseSize(rhs.BaseSize)
+        , ImportSize(rhs.ImportSize)
+        , Info(rhs.Info) {}
     inline ImageContent& operator=(const ImageContent &rhs)
     {
         Image = rhs.Image;
         ResizedImage = rhs.ResizedImage;
+        Movie = rhs.Movie;
         Path = rhs.Path;
         BaseSize = rhs.BaseSize;
         ImportSize = rhs.ImportSize;
@@ -54,6 +66,7 @@ public:
         return *this;
     }
     bool wideImage() const {return BaseSize.width() > BaseSize.height(); }
+    void initialize();
 };
 
 /**
@@ -114,13 +127,17 @@ public:
     void applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize);
     void initializePage(bool resetResized=false);
     void resetScene(QGraphicsScene* scene);
+    void checkInitialize();
 signals:
     void resizeFinished();
 public slots:
     void on_resizeFinished_trigger();
+    void on_animateFrameChanged_trigger(int frameNumber);
+    void on_animateFinished_trigger();
 
 private:
     int m_resizeGeneratingState;
+    bool initialized;
 };
 
 #endif // PAGECONTENT_H

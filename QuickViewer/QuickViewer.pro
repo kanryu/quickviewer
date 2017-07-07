@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.7.8
+VERSION = 0.8.0
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -140,7 +140,8 @@ SOURCES += \
     src/mainwindow.cpp \
     src/mainwindowforwindows.cpp \
     src/optionsdialog.cpp \
-    src/renamedialog.cpp
+    src/renamedialog.cpp \
+    src/models/movie.cpp
 
 HEADERS  += \
     src/qv_init.h \
@@ -197,7 +198,8 @@ HEADERS  += \
     src/qv_init.h \
     src/stdafx.h \
     src/optionsdialog.h \
-    src/renamedialog.h
+    src/renamedialog.h \
+    src/models/movie.h
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp

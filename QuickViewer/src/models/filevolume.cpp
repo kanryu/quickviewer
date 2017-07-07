@@ -228,11 +228,26 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path, QSize pageSize)
 {
     int maxTextureSize = qApp->maxTextureSize();
+    easyexif::EXIFInfo info;
 
     QByteArray bytes = volume->loadByteArrayByName(path);
     QBuffer buffer(&bytes);
     QString aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
             ? TURBO_JPEG_FMT : QFileInfo(path.toLower()).suffix();
+
+    // the image maybe a animated image
+    if(IFileLoader::isAnimatedImageFile(path)) {
+        Movie movie = Movie(bytes, aformat.toUtf8());
+//        QMovie* qm = movie.data();
+//        qDebug() << qm->isValid() << qm->jumpToFrame(0);
+//        QPixmap firstFrame = qm->currentPixmap();
+//        ImageContent ic(firstFrame, path, firstFrame.size(), info);
+        ImageContent ic;
+        ic.Path = path;
+        ic.Movie = movie;
+//        ic.Movie.moveToThread(qApp->mainThread());
+        return ic;
+    }
 
     // turbjpeg can turbo rescaling when loading
     QImageReader reader(&buffer, aformat.toUtf8());
@@ -260,7 +275,6 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     }
 
     // parsing JPEG EXIF
-    easyexif::EXIFInfo info;
     if(src.width() > 0 && IFileLoader::isExifJpegImageFile(path)) {
         info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
     }

@@ -41,12 +41,13 @@ public:
     bool isFolderSearching();
 
 protected:
-    void dragEnterEvent(QDragEnterEvent *e);
-    void dropEvent(QDropEvent *e);
-//    void paintEvent( QPaintEvent *event );
-    void wheelEvent(QWheelEvent *e);
-    void mousePressEvent(QMouseEvent *e);
-    void closeEvent(QCloseEvent *e);
+    void dragEnterEvent(QDragEnterEvent *e) override;
+    void dropEvent(QDropEvent *e) override;
+//    void paintEvent( QPaintEvent *event ) override;
+    void wheelEvent(QWheelEvent *e) override;
+    void contextMenuEvent(QContextMenuEvent *e) override;
+    void mousePressEvent(QMouseEvent *e) override;
+    void closeEvent(QCloseEvent *e) override;
 
 public slots:
     // File

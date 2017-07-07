@@ -16,6 +16,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_glInitialized(false)
     , m_maxTextureSize(4096)
     , m_bookshelfManager(nullptr)
+    , m_mainThread(QThread::currentThread())
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);

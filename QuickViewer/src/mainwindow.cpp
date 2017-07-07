@@ -196,9 +196,21 @@ void MainWindow::dropEvent(QDropEvent *e)
         }
     }
 }
+static bool needContextMenu = false;
 
 void MainWindow::wheelEvent(QWheelEvent *e)
 {
+    if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
+        if(e->delta() < 0) {
+            ui->actionZoomOut->trigger();
+        }
+        if(e->delta() > 0) {
+            ui->actionZoomIn->trigger();
+        }
+        e->accept();
+        needContextMenu = false;
+        return;
+    }
     if(ui->graphicsView->isScrollMode())
         return;
     if(e->delta() < 0) {
@@ -210,15 +222,33 @@ void MainWindow::wheelEvent(QWheelEvent *e)
     e->accept();
 }
 
+void MainWindow::contextMenuEvent(QContextMenuEvent *e)
+{
+    if(!needContextMenu)
+        return;
+    QWidget *child = childAt(e->pos());
+//    qDebug() << child << child->parent();
+    if(child->parent() == ui->graphicsView && contextMenu)
+        contextMenu->exec(QCursor::pos());
+}
+
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
-    if(e->button() == Qt::MiddleButton) {
-        on_fullscreen_triggered();
+    needContextMenu = true;
+    if(e->buttons() & Qt::MiddleButton) {
+        if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
+            ui->actionFitting->trigger();
+            needContextMenu = false;
+        } else {
+            on_fullscreen_triggered();
+        }
+        e->accept();
     }
-    if(e->button() == Qt::RightButton) {
-        if(contextMenu)
-            contextMenu->exec(QCursor::pos());
-    }
+    QMainWindow::mousePressEvent(e);
+//    if(e->button() == Qt::RightButton) {
+//        if(contextMenu)
+//            contextMenu->exec(QCursor::pos());
+//    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *)

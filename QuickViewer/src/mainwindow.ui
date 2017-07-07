@@ -13,9 +13,6 @@
     <height>589</height>
    </rect>
   </property>
-  <property name="contextMenuPolicy">
-   <enum>Qt::ActionsContextMenu</enum>
-  </property>
   <property name="windowTitle">
    <string>QuickViewer</string>
   </property>

@@ -9,12 +9,14 @@
 QList<QByteArray> IFileLoader::st_supportedImageFormats;
 QStringList IFileLoader::st_exifJpegImageFormats;
 QStringList IFileLoader::st_exifRawImageFormats;
+QStringList IFileLoader::st_animatedImageFormats;
 
 bool IFileLoader::isImageFile(QString path)
 {
     if(st_supportedImageFormats.size() == 0) {
         st_exifJpegImageFormats << "jpg" << "jpeg"; // standard
         st_exifRawImageFormats << "crw" << "cr2" << "arw" << "nef" << "raf" << "dng" << "tif" << "tiff"; // raw images
+        st_animatedImageFormats << "gif";
         st_supportedImageFormats = QImageReader::supportedImageFormats();
 //        foreach(const QString& e, st_supportedImageFormats) {
 //            qDebug()<<  QString(e);
@@ -55,6 +57,16 @@ bool IFileLoader::isExifRawImageFile(QString path)
 {
     QString lower = path.toLower();
     foreach(const QString& e, st_exifRawImageFormats) {
+        if(lower.endsWith(e))
+            return true;
+    }
+    return false;
+}
+
+bool IFileLoader::isAnimatedImageFile(QString path)
+{
+    QString lower = path.toLower();
+    foreach(const QString& e, st_animatedImageFormats) {
         if(lower.endsWith(e))
             return true;
     }

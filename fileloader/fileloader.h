@@ -43,6 +43,7 @@ public:
      */
     static bool isExifJpegImageFile(QString path);
     static bool isExifRawImageFile(QString path);
+    static bool isAnimatedImageFile(QString path);
     /**
      * @brief fileSort sort the filenames as current sorting policy
      * @param filenames
@@ -92,6 +93,7 @@ private:
     static QList<QByteArray> st_supportedImageFormats;
     static QStringList st_exifJpegImageFormats;
     static QStringList st_exifRawImageFormats;
+    static QStringList st_animatedImageFormats;
 };
 
 class FileLoaderPluginInterface

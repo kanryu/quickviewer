@@ -271,8 +271,10 @@ public:
      * @brief save settings int "quickviewer.ini"
      */
     void saveSettings();
+    QThread* mainThread() { return m_mainThread; }
 
 private:
+    QThread* m_mainThread;
     bool m_glInitialized;
     int m_maxTextureSize;
 
