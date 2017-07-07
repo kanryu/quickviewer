@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.8.0 (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+
+support animation GIFs, mouse wheel resizing, bugfixed
+
+- support animation GIFs(Not enough when CPU resizing)
+- mouse wheel resizing
+- Ctrl+Wheel Clicked/Right Button+Wheel Clicked: toggle Fitting
+- Ctrl+Wheel Scrolled/Right Button+Wheel Scrolled: manual resizing
+- bugfixed: left trimmed when images bigger than the window
+
+- other commits
+    - Update index.md (Wed Jul 5 23:42:19 2017 +0900) [85e6a54](https://github.com/kanryu/quickviewer/commit/85e6a543700b5585c370e6a3c9c24cac15a464e5)
+    - changelog (Wed Jul 5 19:02:03 2017 +0900) [e565436](https://github.com/kanryu/quickviewer/commit/e5654367e0c8c52325eacad674332a9c34e576dc)
+
 ## v0.7.8 (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
 
 support for drag scrolling, show original size, fixed wheel paging
