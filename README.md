@@ -94,7 +94,9 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |             | Mouse  | Right Button + Wheel Clicked | |
 |             | Mouse  | Ctrl + Wheel Clicked | |
 | Zoom in     | Mouse Wheel | Right Button + Upward scrolling | |
-| Zoom out    | Mouse Wheel | Ctrl + Upward scrolling | |
+|             | Mouse Wheel | Ctrl + Upward scrolling | |
+| Zoom out    | Mouse Wheel | Right Button + Downward scrolling | |
+|             | Mouse Wheel | Ctrl + Downward scrolling | |
 
 ## System Requirement
 
