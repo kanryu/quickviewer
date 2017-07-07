@@ -73,11 +73,11 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |:------------|:---------|:--------|:--------|
 | Next Page   | Keyboard | Right Key(→) | |
 |             | Keyboard | Space Key | |
-|             | Mouse Wheel | Downword rotation | |
+|             | Mouse Wheel | Downward scrolling | |
 |             | Mouse    | Forward Button   | |
 | Prev Page   | Keyboard | Left Key(←) | |
 |             | Keyboard | BackSpace Key | |
-|             | Mouse Wheel | Upword rotation | |
+|             | Mouse Wheel | Upward scrolling | |
 |             | Mouse    | Back Button | |
 | First Page  | Keyboard | Home Key | |
 | Last Page   | Keyboard | End Key | |
@@ -91,6 +91,10 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Scale Down  | Keyboard | Ten keys(-) | do nothing with Fitting |
 | Fitting     | Keyboard | F12 Key |  |
 |             | Keyboard | Ten keys(-) | |
+|             | Mouse  | Right Button + Wheel Clicked | |
+|             | Mouse  | Ctrl + Wheel Clicked | |
+| Zoom in     | Mouse Wheel | Right Button + Upward scrolling | |
+| Zoom out    | Mouse Wheel | Ctrl + Upward scrolling | |
 
 ## System Requirement
 
