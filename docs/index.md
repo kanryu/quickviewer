@@ -63,6 +63,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
 - **Download82**
     - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
+- **connnect.com**
+    - [https://connectwww.com/quickviewer-fast-image-viewer/](https://connectwww.com/quickviewer-fast-image-viewer/)
 - **OSDN** (in Japanese)
     - [https://ja.osdn.net/projects/quickviewer/reviews/](https://ja.osdn.net/projects/quickviewer/reviews/)
 - **Free SoftNavi** (in Japanese)
