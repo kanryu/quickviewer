@@ -83,6 +83,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.jetelecharge.com/Multimedia/9150.php](http://www.jetelecharge.com/Multimedia/9150.php)
 - **快乐无极** (in Simplified Chinese)
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
+- **sekizbir.com** (in Turkish)
+    - [https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/](https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/)
 - **indiriliyo** (in Turkish)
     - [http://www.indiriliyo.com/quickviewer-indir-11274/](http://www.indiriliyo.com/quickviewer-indir-11274/)
 - **Download HTML.it** (in Italian)
