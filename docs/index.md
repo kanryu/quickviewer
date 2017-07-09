@@ -99,6 +99,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.chip.de/downloads/QuickViewer_117674551.html](http://www.chip.de/downloads/QuickViewer_117674551.html)
 - **THAIWARE.com** (in Thai)
     - [https://software.thaiware.com/13230-QuickViewer-Download.html](https://software.thaiware.com/13230-QuickViewer-Download.html)
+- **Dataporten** (in Norwegian)
+    - [http://www.dataporten.net/quickviewer/](http://www.dataporten.net/quickviewer/)
 
 Thanks for reviewers! :)
 
