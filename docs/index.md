@@ -24,6 +24,7 @@ You can browse images with much smoother response than ever before.
  - Spread viewing (two images once, for digital books/comics)
  - To read archives directly (zip/7z/rar/cbr/cbz)
  - To show images (bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
+   - Supported for Animated GIF/PNG(APNG)
  - Auto rotation (using JPEG EXIF)
  - To show Raw digital camera images
    - Canon (crw, cr2)
