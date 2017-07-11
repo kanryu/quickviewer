@@ -1,6 +1,7 @@
 ---
 layout: default
 comments: true
+categories: jekyll disqus
 # other options
 ---
 
