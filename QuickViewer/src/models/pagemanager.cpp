@@ -162,9 +162,9 @@ void PageManager::nextPage()
     if(m_currentPage >= m_fileVolume->size() - 1)
         m_currentPage = m_fileVolume->size() - 1;
 
-    bookProgress();
 
     reloadCurrentPage();
+    bookProgress();
     emit pageChanged();
 }
 
@@ -320,8 +320,13 @@ void PageManager::bookProgress()
         path,
         m_fileVolume->getIndexedFileName(m_currentPage),
         m_fileVolume->size(),
-        m_currentPage
+        m_currentPage,
+        false
     };
+    if(m_currentPage + m_pages.size() >= size()) {
+        book.Completed = true;
+        book.Current = 0;
+    }
     qApp->bookshelfManager()->insert(path, book);
 }
 

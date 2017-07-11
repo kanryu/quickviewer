@@ -149,6 +149,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionShaderBicubic", ui->actionShaderBicubic);
     registAction("actionShaderLanczos", ui->actionShaderLanczos);
     registAction("actionShaderBilinearBeforeCpuBicubic", ui->actionShaderBilinearBeforeCpuBicubic);
+    registAction("actionShaderCpuBicubic", ui->actionShaderCpuBicubic);
 
     // Help
     registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);

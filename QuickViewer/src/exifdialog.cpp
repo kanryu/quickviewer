@@ -4,7 +4,7 @@
 #include "ui_exifdialog.h"
 
 ExifDialog::ExifDialog(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::ExifDialog)
 {
     ui->setupUi(this);
@@ -65,13 +65,15 @@ QString ExifDialog::generateOrientation(unsigned short orient)
 
 void ExifDialog::setExif(const easyexif::EXIFInfo& info)
 {
+    if(!info.ImageWidth) {
+        ui->textEdit->setText(tr("Exif is empty."));
+        return;
+    }
     QStringList tags;
-//    tags << QString("<dt>%1</dt><dd>%2</dd>").arg("Make").arg(QString::fromStdString(info.Make));
-//    tags << QString("<dt>%1</dt><dd>%2</dd>").arg("Model").arg(QString::fromStdString(info.Model));
-//    QString text = QString("<dl>%1</dl>").arg(tags.join(""));
     QString linefmt = "<tr><th>%1</th><td>%2</td></tr>";
 
-    tags << linefmt.arg(tr("ImageDescription")).arg(QString::fromStdString(info.ImageDescription));
+    tags << linefmt.arg(tr("ImageWidth")).arg(info.ImageWidth);
+    tags << linefmt.arg(tr("ImageHeight")).arg(info.ImageHeight);
     tags << linefmt.arg(tr("Make")).arg(QString::fromStdString(info.Make));
     tags << linefmt.arg(tr("Model")).arg(QString::fromStdString(info.Model));
     tags << linefmt.arg(tr("Orientation")).arg(generateOrientation(info.Orientation));
@@ -82,7 +84,6 @@ void ExifDialog::setExif(const easyexif::EXIFInfo& info)
     tags << linefmt.arg(tr("DateTimeOriginal")).arg(QString::fromStdString(info.DateTimeOriginal));
     tags << linefmt.arg(tr("DateTimeDigitized")).arg(QString::fromStdString(info.DateTimeDigitized));
     tags << linefmt.arg(tr("SubSecTimeOriginal")).arg(QString::fromStdString(info.SubSecTimeOriginal));
-    tags << linefmt.arg(tr("Copyright")).arg(QString::fromStdString(info.Copyright));
     tags << linefmt.arg(tr("ExposureTime")).arg(info.ExposureTime);
     tags << linefmt.arg(tr("FNumber")).arg(info.FNumber);
     tags << linefmt.arg(tr("ISOSpeedRatings")).arg(info.ISOSpeedRatings);
@@ -93,15 +94,18 @@ void ExifDialog::setExif(const easyexif::EXIFInfo& info)
     tags << linefmt.arg(tr("FocalLengthIn35mm")).arg(info.FocalLengthIn35mm);
     tags << linefmt.arg(tr("Flash")).arg(generateFlash(info.Flash));
     tags << linefmt.arg(tr("MeteringMode")).arg(info.MeteringMode);
-
-    tags << linefmt.arg(tr("ImageWidth")).arg(info.ImageWidth);
-    tags << linefmt.arg(tr("ImageHeight")).arg(info.ImageHeight);
-
-
-
+    tags << linefmt.arg(tr("ImageDescription")).arg(QString::fromStdString(info.ImageDescription));
+    tags << linefmt.arg(tr("Copyright")).arg(QString::fromStdString(info.Copyright));
 
     QString text = QString("<style>th {text-align: right;padding-right: 10px;} </style><table>%1</table>").arg(tags.join(""));
 
     ui->textEdit->setAcceptRichText(true);
     ui->textEdit->setText(text);
 }
+
+void ExifDialog::closeEvent(QCloseEvent *e)
+{
+    QWidget::closeEvent(e);
+    emit closed();
+}
+

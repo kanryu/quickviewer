@@ -119,7 +119,6 @@ public slots:
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
     void on_openFiler_triggered();
-    void on_openExifDialog_triggered();
     void on_copyPage_triggered();
     void on_copyFile_triggered();
 
@@ -142,8 +141,6 @@ private:
     QFont m_font;
     bool m_wideImage;
     bool m_skipResizeEvent;
-
-    ExifDialog exifDialog;
 
     PageManager* m_pageManager;
     ShaderManager m_effectManager;

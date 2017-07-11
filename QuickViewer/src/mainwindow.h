@@ -48,6 +48,7 @@ protected:
     void contextMenuEvent(QContextMenuEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
     void closeEvent(QCloseEvent *e) override;
+    void resizeEvent(QResizeEvent *e) override;
 
 public slots:
     // File
@@ -76,8 +77,9 @@ public slots:
     void on_catalogShowTagBar_triggered(bool enable);
     void on_catalogIconLongText_triggered(bool enable);
 
-
-
+    // Exif
+    void on_openExifDialog_triggered();
+    void on_openExifDialogClosed_triggered();
 
     // PageBar
     void on_pageChanged_triggered();
@@ -150,6 +152,7 @@ protected:
     ThumbnailManager* m_thumbManager;
     FolderWindow* m_folderWindow;
     CatalogWindow* m_catalogWindow;
+    ExifDialog* m_exifDialog;
 };
 
 

@@ -32,7 +32,7 @@ void FolderItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         QPoint begin(rect.left()+30, rect.top()+PROGRESS_HEIGHT);
         //        painter->drawLine(begin, QPoint(begin.x()+100, begin.y()));
 
-        int progress = book.Current * PROGRESS_WIDTH / book.Pages;
+        int progress = book.Completed ? PROGRESS_WIDTH : book.Current * PROGRESS_WIDTH / book.Pages;
         QBrush brRead(QColor::fromRgb(0x0, 0xff, 0x0, 0x40)), brUnread(QColor::fromRgb(0xff, 0x0, 0x0, 0x40));
         painter->setPen(Qt::PenStyle::NoPen);
         painter->setBrush(brRead);

@@ -2,7 +2,6 @@
 
 #include "imageview.h"
 #include "qvapplication.h"
-#include "exifdialog.h"
 
 ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
@@ -11,7 +10,6 @@ ImageView::ImageView(QWidget *parent)
     , m_hoverState(Qt::AnchorHorizontalCenter)
 //    , m_currentPage(0)
     , m_wideImage(false)
-    , exifDialog(this)
     , m_skipResizeEvent(false)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
@@ -483,17 +481,6 @@ void ImageView::on_openFiler_triggered()
     QUrl url = QString("file:///%1").arg(path);
     QDesktopServices::openUrl(url);
 #endif
-}
-
-void ImageView::on_openExifDialog_triggered()
-{
-    if(!m_pageManager || m_pages.size()==0)
-        return;
-    const easyexif::EXIFInfo& info = m_pageManager->currentPageContent()[0].Info;
-    if(info.ImageWidth == 0)
-        return;
-    exifDialog.setExif(info);
-    exifDialog.open();
 }
 
 void ImageView::on_copyPage_triggered()

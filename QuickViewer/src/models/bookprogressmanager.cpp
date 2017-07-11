@@ -24,6 +24,7 @@ void BookProgressManager::save()
         settings.setValue("CurrenPage", book.CurrenPage);
         settings.setValue("Pages", book.Pages);
         settings.setValue("Current", book.Current);
+        settings.setValue("Completed", book.Completed);
         settings.endGroup();
         titles << group;
     }
@@ -46,8 +47,9 @@ BookProgressManager::BookProgressMap BookProgressManager::initializeAsync()
         QString currentPage = settings.value("CurrenPage", "").toString();
         int pages = settings.value("Pages", 0).toInt();
         int current = settings.value("Current", 0).toInt();
+        bool completed = settings.value("Completed", false).toBool();
         BookProgress book = {
-          title, path, currentPage, pages, current
+          title, path, currentPage, pages, current, completed
         };
         result[path] = book;
         settings.endGroup();

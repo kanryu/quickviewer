@@ -8,7 +8,7 @@ namespace Ui {
 class ExifDialog;
 }
 
-class ExifDialog : public QDialog
+class ExifDialog : public QWidget
 {
     Q_OBJECT
 
@@ -17,6 +17,10 @@ public:
     ~ExifDialog();
 
     void setExif(const easyexif::EXIFInfo& info);
+    void closeEvent(QCloseEvent *event) override;
+
+signals:
+    void closed();
 
 private:
     Ui::ExifDialog *ui;

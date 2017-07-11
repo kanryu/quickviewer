@@ -1001,7 +1001,6 @@
     <slot>on_rightSideBook_triggered(bool)</slot>
     <slot>on_wideImageAsOneView_triggered(bool)</slot>
     <slot>on_openFiler_triggered()</slot>
-    <slot>on_openExifDialog_triggered()</slot>
     <slot>on_nextPage_triggered()</slot>
     <slot>on_prevPage_triggered()</slot>
     <slot>on_firstPage_triggered()</slot>
@@ -1289,7 +1288,7 @@
   <connection>
    <sender>actionOpenExif</sender>
    <signal>triggered()</signal>
-   <receiver>graphicsView</receiver>
+   <receiver>MainWindow</receiver>
    <slot>on_openExifDialog_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1298,7 +1297,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
-     <y>296</y>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -2191,5 +2190,6 @@
   <slot>on_showReadProgress_triggered(bool)</slot>
   <slot>on_openOptionsDialog_triggered()</slot>
   <slot>on_renameImageFile_triggered()</slot>
+  <slot>on_openExifDialog_triggered()</slot>
  </slots>
 </ui>

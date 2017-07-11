@@ -12,6 +12,7 @@
 #include "catalogwindow.h"
 #include "folderwindow.h"
 #include "renamedialog.h"
+#include "exifdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pageManager(this)
     , m_folderWindow(nullptr)
     , m_catalogWindow(nullptr)
+    , m_exifDialog(nullptr)
 {
     ui->setupUi(this);
     ui->graphicsView->setPageManager(&m_pageManager);
@@ -546,6 +548,11 @@ void MainWindow::on_pageChanged_triggered()
 
     if(!qApp->ShowStatusBar())
         setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
+
+    if(m_exifDialog && m_pageManager.currentPageCount() > 0) {
+        const easyexif::EXIFInfo& info = m_pageManager.currentPageContent()[0].Info;
+        m_exifDialog->setExif(info);
+    }
 }
 
 void MainWindow::on_volumeChanged_triggered(QString path)
@@ -609,6 +616,20 @@ void MainWindow::on_historyMenu_triggered(QAction *action)
     loadVolume(action->text().mid(4));
 }
 
+#define EXIF_DIALOG_WIDTH 250
+
+void MainWindow::resizeEvent(QResizeEvent *e)
+{
+    if(m_exifDialog && m_exifDialog->parent()) {
+        auto sizes = ui->catalogSplitter->sizes();
+        int sum = sizes[0]+sizes[1];
+        sizes[1] = EXIF_DIALOG_WIDTH;
+        sizes[0] = sum-sizes[1];
+        ui->catalogSplitter->setSizes(sizes);
+    }
+    QMainWindow::resizeEvent(e);
+}
+
 void MainWindow::on_folderWindow_triggered()
 {
     if(m_folderWindow) {
@@ -631,6 +652,8 @@ void MainWindow::on_folderWindow_triggered()
     }
     if(m_catalogWindow && m_catalogWindow->parent())
         on_manageCatalogsClosed_triggered();
+    if(m_exifDialog && m_exifDialog->parent())
+        on_openExifDialogClosed_triggered();
     m_folderWindow = new FolderWindow(nullptr, ui);
     QString path = m_pageManager.volumePath();
     if(path.isEmpty())
@@ -694,6 +717,8 @@ void MainWindow::on_manageCatalogs_triggered()
     }
     if(m_folderWindow && m_folderWindow->parent())
         on_folderWindowClosed_triggered();
+    if(m_exifDialog && m_exifDialog->parent())
+        on_openExifDialogClosed_triggered();
     m_catalogWindow = new CatalogWindow(nullptr, ui);
     m_catalogWindow->setThumbnailManager(m_thumbManager);
     connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
@@ -730,6 +755,39 @@ bool MainWindow::isFolderSearching()
         return false;
     return true;
 }
+
+void MainWindow::on_openExifDialog_triggered()
+{
+    if(m_exifDialog || m_pageManager.currentPageCount()==0)
+        return;
+    const easyexif::EXIFInfo& info = m_pageManager.currentPageContent()[0].Info;
+    if(info.ImageWidth == 0)
+        return;
+    if(m_catalogWindow && m_catalogWindow->parent())
+        on_manageCatalogsClosed_triggered();
+    if(m_folderWindow && m_folderWindow->parent())
+        on_folderWindowClosed_triggered();
+
+    m_exifDialog = new ExifDialog();
+    m_exifDialog->setExif(info);
+    connect(m_exifDialog, SIGNAL(closed()), this, SLOT(on_openExifDialogClosed_triggered()));
+
+    ui->catalogSplitter->insertWidget(1, m_exifDialog);
+    auto sizes = ui->catalogSplitter->sizes();
+    int sum = sizes[0]+sizes[1];
+    sizes[1] = EXIF_DIALOG_WIDTH;
+    sizes[0] = sum-sizes[1];
+    ui->catalogSplitter->setSizes(sizes);
+}
+
+void MainWindow::on_openExifDialogClosed_triggered()
+{
+    if(m_exifDialog) {
+        delete m_exifDialog;
+        m_exifDialog = nullptr;
+    }
+}
+
 
 void MainWindow::on_openVolumeByCatalog_triggered(QString path)
 {

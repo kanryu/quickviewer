@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.0
+VERSION = 0.8.1
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -52,7 +52,10 @@ win32 { !CONFIG(debug, debug|release) {
     translations.path = $${MY_DEFAULT_INSTALL}/translations
     translations.files = $${PWD}/translations/quickviewer_ja.qm
     qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
-    qrawspeed.files = ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll
+    qrawspeed.files = \
+        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
+        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
+
     # dlls instead of vcredist_xxx.exe
     msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
     msvcrt.path = $${MY_DEFAULT_INSTALL}

@@ -235,23 +235,28 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     QString aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
             ? TURBO_JPEG_FMT : QFileInfo(path.toLower()).suffix();
 
-    // the image maybe a animated image
-    if(IFileLoader::isAnimatedImageFile(path)) {
+    // extention "png" might be a apng
+    if(aformat == "png" && IFileLoader::isImageFile("apng")) {
+        aformat = "apng";
+    }
+    QImageReader reader(&buffer, aformat.toUtf8());
+    reader.canRead();
+
+    if(reader.supportsAnimation()) {
         Movie movie = Movie(bytes, aformat.toUtf8());
-//        QMovie* qm = movie.data();
-//        qDebug() << qm->isValid() << qm->jumpToFrame(0);
-//        QPixmap firstFrame = qm->currentPixmap();
-//        ImageContent ic(firstFrame, path, firstFrame.size(), info);
         ImageContent ic;
         ic.Path = path;
         ic.Movie = movie;
-//        ic.Movie.moveToThread(qApp->mainThread());
+        ic.BaseSize = ic.ImportSize = reader.size();
         return ic;
     }
-
+    if(aformat == "apng") {
+        buffer.seek(0);
+        reader.setFormat(QByteArray("png"));
+        reader.setDevice(&buffer);
+        reader.canRead();
+    }
     // turbjpeg can turbo rescaling when loading
-    QImageReader reader(&buffer, aformat.toUtf8());
-    reader.canRead();
     QSize baseSize = reader.size();
     QSize loadingSize = baseSize;
     // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
@@ -262,14 +267,14 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         reader.setScaledSize(loadingSize);
     }
     QImage src;
-#ifdef Q_OS_WIN
+//#ifdef Q_OS_WIN
     {
         QImage tmp = reader.read();
         src = QZimg::toPackedImage(tmp);
     }
-#else
-    src = reader.read();
-#endif
+//#else
+//    src = reader.read();
+//#endif
     if(src.isNull()) {
         src = QImage::fromData(bytes, QFileInfo(path.toLower()).suffix().toUtf8());
     }

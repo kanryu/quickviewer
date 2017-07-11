@@ -19,6 +19,7 @@ public:
     QString CurrenPage;
     int Pages;
     int Current;
+    bool Completed;
 };
 
 /**
