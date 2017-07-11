@@ -69,6 +69,10 @@
         {{ content }}
       </section>
 
+      
+      <section id="disqus">
+        {% include disqus.html %}
+      </section>
       <footer>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
@@ -86,7 +90,6 @@
         <span class="octocat"></span>
       </footer>
 
-    {% include disqus.html %}
     </div>
 
     {% if site.google_analytics %}
