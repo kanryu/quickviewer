@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## v0.8.1 (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+
+Support for Animated PNG(APNG), read completed check, improve ExifDialog
+
+- read completed check, if you read complate, FolderWindow shows a green bar
+- improve ExifDialog
+- will be embedded
+- can next/prev changing
+
+- other commits
+    - disqus (Tue Jul 11 11:34:14 2017 +0900) [39fc33e](https://github.com/kanryu/quickviewer/commit/39fc33e755458624d845f7ea1bb845af555546df)
+    - Update index.md (Tue Jul 11 11:20:33 2017 +0900) [4e86e0e](https://github.com/kanryu/quickviewer/commit/4e86e0e64f4152d61c4994efb89741739efffc69)
+    - Update index.md (Sun Jul 9 12:07:55 2017 +0900) [a6bcc20](https://github.com/kanryu/quickviewer/commit/a6bcc202e335e8d8aeea687c2e5aa0c2f3a14110)
+    - Update index.md (Sat Jul 8 10:33:13 2017 +0900) [4e9c154](https://github.com/kanryu/quickviewer/commit/4e9c1549f59b809ae670d1d9f70298eded5f42b2)
+    - Update index.md (Sat Jul 8 10:22:49 2017 +0900) [c3c9cc2](https://github.com/kanryu/quickviewer/commit/c3c9cc2980d8afde0617904921513a4db80e82d2)
+    - Update index.md (Sat Jul 8 10:17:29 2017 +0900) [708a71c](https://github.com/kanryu/quickviewer/commit/708a71c630cd10d0b2a8bb87d602f714ce2071a4)
+    - Update index.md (Sat Jul 8 10:15:54 2017 +0900) [7825b98](https://github.com/kanryu/quickviewer/commit/7825b98918dd41b788d75da6c7a2668e9c60f89a)
+    - Update index.md (Fri Jul 7 23:32:47 2017 +0900) [f80a381](https://github.com/kanryu/quickviewer/commit/f80a38152be4bab214d0a8aff234417a2e57d550)
+    - Update index-ja.md (Fri Jul 7 19:08:31 2017 +0900) [f100b44](https://github.com/kanryu/quickviewer/commit/f100b44671102342ee54f283de026a1ed69de4c3)
+    - Update README.md (Fri Jul 7 19:05:58 2017 +0900) [f439a28](https://github.com/kanryu/quickviewer/commit/f439a289647731f2f878860d1653cf5bd1659ee2)
+    - Update index.md (Fri Jul 7 19:05:55 2017 +0900) [264cf0c](https://github.com/kanryu/quickviewer/commit/264cf0ca918047a9133b27d7d9fd8ddb4751190b)
+    - Update README.md (Fri Jul 7 19:01:20 2017 +0900) [127874e](https://github.com/kanryu/quickviewer/commit/127874edf57ff4b73f0775c05563a7da91527b3d)
+    - changelog (Fri Jul 7 18:22:43 2017 +0900) [bc588dd](https://github.com/kanryu/quickviewer/commit/bc588dd2bb99c862df070c85211aa105218a18b2)
+
 ## v0.8.0 (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
 
 support animation GIFs, mouse wheel resizing, bugfixed
