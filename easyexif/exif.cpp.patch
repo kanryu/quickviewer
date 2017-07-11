@@ -1,0 +1,13 @@
+diff --git a/easyexif/exif.cpp b/easyexif/exif.cpp
+index 8d1431c..224f2d6 100644
+--- a/exif.cpp
++++ b/exif.cpp
+@@ -646,7 +646,7 @@ int easyexif::EXIFInfo::parseFromEXIFSegment(const unsigned char *buf,
+ 
+         case 0x9209:
+           // Flash used
+-          if (result.format() == 3) this->Flash = result.data() ? 1 : 0;
++          if (result.format() == 3) this->Flash = result.data();
+           break;
+ 
+         case 0x920a:
