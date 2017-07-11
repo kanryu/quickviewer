@@ -2,8 +2,11 @@
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-this.page.url = "https://kanryu.github.com{{ page.url }}"; // <--- use canonical URL
-this.page.identifier = "{{ page.id }}";
+  this.page.url = "https://kanryu.github.com/quickviewer{{ page.url }}"; // <--- use canonical URL
+  this.page.identifier = "{{ page.url }}";
+  if("{{ page.url }}" == "/index-ja.html") {
+    this.language = "ja";
+  }
 };
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');

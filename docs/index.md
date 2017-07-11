@@ -1,6 +1,7 @@
 ---
 layout: default
 comments: true
+categories: jekyll disqus
 # other options
 ---
 
@@ -79,16 +80,20 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/](https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/)
 - **SOFT DOWNLOAD** (in Portuguese)
     - [http://www.softdownload.com.br/visualize-fotos-rapidamente-windows-quickviewer.html](http://www.softdownload.com.br/visualize-fotos-rapidamente-windows-quickviewer.html)
-- **01net.com telecharger.com** (in French)
-    - [http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html](http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html)
+- **CGWeb** (in French)
+    - [http://cgweb.fr.nf/quickviewer-0-7-5-visionneuse-de-photos/](http://cgweb.fr.nf/quickviewer-0-7-5-visionneuse-de-photos/)
 - **jetelecharge** (in French)
     - [http://www.jetelecharge.com/Multimedia/9150.php](http://www.jetelecharge.com/Multimedia/9150.php)
+- **01net.com telecharger.com** (in French)
+    - [http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html](http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html)
 - **快乐无极** (in Simplified Chinese)
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
 - **sekizbir.com** (in Turkish)
     - [https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/](https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/)
 - **indiriliyo** (in Turkish)
     - [http://www.indiriliyo.com/quickviewer-indir-11274/](http://www.indiriliyo.com/quickviewer-indir-11274/)
+- **DUNDI** (in Italian)
+    - [http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/](http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/)
 - **Download HTML.it** (in Italian)
     - [http://download.html.it/software/quickviewer/](http://download.html.it/software/quickviewer/)
 - **مدونة حاسب سهل** (in Arabic)
