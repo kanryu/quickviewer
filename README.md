@@ -16,7 +16,7 @@ https://kanryu.github.io/quickviewer/
  - To read archives directly (zip/7z/rar/cbr/cbz)
  - To show images (bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
    - Supported for Animated GIF/PNG(APNG)
- - Auto rotation (using JPEG EXIF)
+   - Auto rotation (using JPEG EXIF)
  - To show Raw digital camera images
    - Canon(crw, cr2)
    - Nicon(nef)
