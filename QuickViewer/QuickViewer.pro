@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.1
+VERSION = 0.8.2
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -50,7 +50,10 @@ win32 { !CONFIG(debug, debug|release) {
     deploy_files.depends = install_target
     deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
     translations.path = $${MY_DEFAULT_INSTALL}/translations
-    translations.files = $${PWD}/translations/quickviewer_ja.qm
+    translations.files = \
+        $${PWD}/translations/quickviewer_ja.qm \
+        $${PWD}/translations/quickviewer_es.qm \
+
     qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
     qrawspeed.files = \
         ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \

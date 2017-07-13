@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Visualización</translation>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -53,11 +53,11 @@
     </message>
     <message>
         <source>Drop image folders here and create Catalogs.</source>
-        <translation>Traslada el archivo de imagen y hace los catálogos</translation>
+        <translation>Traslada el archivo de imagen y hace los catálogos.</translation>
     </message>
     <message>
         <source>(%1/%2) volumes listed.</source>
-        <translation>(%1/%2) está en visualización</translation>
+        <translation>(%1/%2) está en visualización.</translation>
     </message>
     <message>
         <source>Remove (Options) from Book Title</source>
@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation>Nombre</translation>
+        <translation>Nombre:</translation>
     </message>
     <message>
         <source>&amp;SelectFolder</source>
@@ -309,6 +309,10 @@
         <source>MeteringMode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Exif is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FolderItemModel</name>
@@ -337,7 +341,7 @@
     </message>
     <message>
         <source>Move to Home</source>
-        <translation>Se mueve a archivo de Internet</translation>
+        <translation>Vuelve al inicio</translation>
     </message>
     <message>
         <source>Prev</source>
@@ -361,7 +365,7 @@
     </message>
     <message>
         <source>Home</source>
-        <translation>Archivo de Internet</translation>
+        <translation>Inicio</translation>
     </message>
     <message>
         <source>ToParent</source>
@@ -377,7 +381,7 @@
     </message>
     <message>
         <source>set the folder as Home</source>
-        <translation>programa este archivo como carpeta de Internet</translation>
+        <translation>Vuelve a carpeta de inicio</translation>
     </message>
     <message>
         <source>No folders or archives</source>
@@ -400,7 +404,7 @@
     </message>
     <message>
         <source>Key Sequence:</source>
-        <translation>Escribir teclado</translation>
+        <translation>Escribir teclado:</translation>
     </message>
     <message>
         <source>Enter key sequence as text</source>
@@ -428,11 +432,11 @@
     </message>
     <message>
         <source>Invalid key sequence.</source>
-        <translation>Escribir de teclado injusticia</translation>
+        <translation>Escribir de teclado injusticia.</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
-        <translation>Compitiendo con otoro atajo teclado</translation>
+        <translation>Compitiendo con otoro atajo teclado.</translation>
     </message>
 </context>
 <context>
@@ -471,19 +475,19 @@
     </message>
     <message>
         <source>&amp;Fitting</source>
-        <translation>&amp;Ajuste para mostrar</translation>
+        <translation>&amp;Agrandamiento o Reducción de imagen automático</translation>
     </message>
     <message>
         <source>Fitting</source>
-        <translation>Ajuste para mostrar</translation>
+        <translation>Agrandamiento o Reducción de imagen automático</translation>
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
-        <translation>&amp;Extensión de Visualización</translation>
+        <translation>&amp;Vista de dos páginas</translation>
     </message>
     <message>
         <source>Spread Viewing</source>
-        <translation>Extensión de Visualización</translation>
+        <translation>Vista de dos páginas</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
@@ -495,7 +499,7 @@
     </message>
     <message>
         <source>Bound on the &amp;right side book</source>
-        <translation>Visualiza a la derecha</translation>
+        <translation>Limitar en el libro de lado derecho</translation>
     </message>
     <message>
         <source>&amp;Open Image Folder</source>
@@ -819,7 +823,15 @@
     </message>
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los archivos( *.*);;Imágenes (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</translation>
+    </message>
+    <message>
+        <source>Fullscreen on next run</source>
+        <translation>Pantalla completa en la siguiente ejecución</translation>
+    </message>
+    <message>
+        <source>Show texts on Fullscreen</source>
+        <translation>Mostrar textos en pantalla completa</translation>
     </message>
 </context>
 <context>
@@ -940,7 +952,7 @@
     </message>
     <message>
         <source>Color1</source>
-        <translation type="unfinished"></translation>
+        <translation>Color1</translation>
     </message>
     <message>
         <source>Use checkered pattern</source>
@@ -948,7 +960,7 @@
     </message>
     <message>
         <source>Color2</source>
-        <translation type="unfinished"></translation>
+        <translation>Color2</translation>
     </message>
 </context>
 <context>
@@ -999,19 +1011,19 @@
     <name>RenameDialog</name>
     <message>
         <source>RenameDialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar nombre de diálogo</translation>
     </message>
     <message>
         <source>EditFilename</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar nombre de archivo</translation>
     </message>
     <message>
         <source>Filename can&apos;t be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>El nombre de archivo no puede estar vacío.</translation>
     </message>
     <message>
         <source>Rename failed. Does the same file name exist?</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo cambiar el nombre. ¿Existe el mismo nombre de archivo?</translation>
     </message>
 </context>
 <context>

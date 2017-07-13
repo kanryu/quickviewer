@@ -64,6 +64,8 @@ public:
      *      or some1.jpg (10/2182)[WIDTHxHEIGHT]
      */
     QString currentPageStatusAsString() const;
+    QString pageSignage(int page) const;
+
     QString volumePath(){ return m_fileVolume ? m_fileVolume->volumePath() : ""; }
     QString realVolumePath() { return m_fileVolume ? m_fileVolume->realVolumePath() : ""; }
     bool isArchive() {

@@ -309,6 +309,10 @@
         <source>MeteringMode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Exif is empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FolderItemModel</name>
@@ -1059,6 +1063,14 @@
     <message>
         <source>Don&apos;t enlarge small images on Fitting</source>
         <translation>フィット表示時、画面より小さな画像は拡大しない</translation>
+    </message>
+    <message>
+        <source>Fullscreen on next run</source>
+        <translation>起動時はフルスクリーン固定</translation>
+    </message>
+    <message>
+        <source>Show texts on Fullscreen</source>
+        <translation>フルスクリーン時にテキストを表示する</translation>
     </message>
 </context>
 <context>

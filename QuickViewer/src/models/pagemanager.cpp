@@ -366,6 +366,16 @@ QString PageManager::currentPageStatusAsString() const
     }
     return status;
 }
+
+QString PageManager::pageSignage(int page) const
+{
+    if(m_pages.size() <= page)
+        return "";
+    return QString("%1 (%2/%3)")
+            .arg(QDir::toNativeSeparators(m_fileVolume->getPathByFileName(m_pages[page].Path)))
+            .arg(m_currentPage+1+page)
+            .arg(m_fileVolume->size());
+}
 bool PageManager::canDualView() const
 {
     QVApplication* myapp = qApp;

@@ -143,8 +143,7 @@ void ImageView::on_clearImages_triggered()
     if(m_pageManager == nullptr) return;
     QGraphicsScene *s = scene();
     for(int i = 0; i < m_pages.length(); i++) {
-        s->removeItem(m_pages[i].GrItem);
-        delete m_pages[i].GrItem;
+        m_pages[i].dispose();
     }
 
     m_pages.resize(0);
@@ -172,6 +171,8 @@ void ImageView::readyForPaint() {
                 qreal scale = 1.0*currentViewSize()/100;
                 drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations[pageCount+i]);
             }
+            m_pages[i].Text = qApp->ShowFullscreenSignage() && m_isFullScreen ? m_pageManager->pageSignage(i) : "";
+            m_pages[i].resetSignage(QRect(QPoint(), viewport()->size()), fitting);
             m_effectManager.prepare(dynamic_cast<QGraphicsPixmapItem*>(m_pages[i].GrItem), m_pages[i].Ic, drawRect.size());
             sceneRect = sceneRect.united(drawRect);
         }

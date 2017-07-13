@@ -41,6 +41,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(QColor BackgroundColor2 READ BackgroundColor2 WRITE setBackgroundColor2)
     Q_PROPERTY(bool UseCheckeredPattern READ UseCheckeredPattern WRITE setUseCheckeredPattern)
     Q_PROPERTY(bool DontEnlargeSmallImagesOnFitting READ DontEnlargeSmallImagesOnFitting WRITE setDontEnlargeSmallImagesOnFitting)
+    Q_PROPERTY(bool ShowFullscreenSignage READ ShowFullscreenSignage WRITE setShowFullscreenSignage)
 
     // DuapView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
@@ -60,6 +61,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool RestoreWindowState READ RestoreWindowState WRITE setRestoreWindowState)
     Q_PROPERTY(QByteArray WindowGeometry READ WindowGeometry WRITE setWindowGeometry)
     Q_PROPERTY(QByteArray WindowState READ WindowState WRITE setWindowState)
+    Q_PROPERTY(bool BeginAsFullscreen READ BeginAsFullscreen WRITE setBeginAsFullscreen)
 
     // Folder
     Q_PROPERTY(QString HomeFolderPath READ HomeFolderPath WRITE setHomeFolderPath)
@@ -85,9 +87,14 @@ class QVApplication : public QApplication
     Q_PROPERTY(QString BicubicShaderPath READ BicubicShaderPath WRITE setBicubicShaderPath)
     Q_PROPERTY(QString LanczosShaderPath READ LanczosShaderPath WRITE setLanczosShaderPath)
 
+    // Other
+    Q_PROPERTY(QString UiLanguage READ UiLanguage WRITE setUiLanguage)
+
 public:
     explicit QVApplication(int &argc, char **argv);
     QString getApplicationFilePath(QString subFilePath);
+
+    void installTranslator();
 
     // View
     bool Fitting() { return m_fitting; }
@@ -116,6 +123,8 @@ public:
     void setUseCheckeredPattern (bool useCheckeredPattern) { m_useCheckeredPattern = useCheckeredPattern; }
     bool DontEnlargeSmallImagesOnFitting() { return m_dontEnlargeSmallImagesOnFitting; }
     void setDontEnlargeSmallImagesOnFitting (bool dontEnlargeSmallImagesOnFitting) { m_dontEnlargeSmallImagesOnFitting = dontEnlargeSmallImagesOnFitting; }
+    bool ShowFullscreenSignage() { return m_showFullscreenSignage; }
+    void setShowFullscreenSignage (bool showFullscreenSignage) { m_showFullscreenSignage = showFullscreenSignage; }
 
 
     // Show Bars
@@ -135,6 +144,8 @@ public:
     void setWindowGeometry (QByteArray windowGeometry) { m_windowGeometry = windowGeometry; }
     QByteArray WindowState() { return m_windowState; }
     void setWindowState (QByteArray windowState) { m_windowState = windowState; }
+    bool BeginAsFullscreen() { return m_beginAsFullscreen; }
+    void setBeginAsFullscreen (bool beginAsFullscreen) { m_beginAsFullscreen = beginAsFullscreen; }
 
     // File
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
@@ -193,6 +204,10 @@ public:
     void setBicubicShaderPath (QString bicubicShaderPath) { m_bicubicShaderPath = bicubicShaderPath; }
     QString LanczosShaderPath() { return getApplicationFilePath(m_lanczosShaderPath); }
     void setLanczosShaderPath (QString lanczosShaderPath) { m_lanczosShaderPath = lanczosShaderPath; }
+
+    // Others
+    QString UiLanguage() { return m_uiLanguage; }
+    void setUiLanguage (QString uiLanguage) { m_uiLanguage = uiLanguage; }
 
     // Key Config
     QMap<QString, QKeySequence>& KeyConfigMap() { return m_keyConfigs; }
@@ -298,6 +313,7 @@ private:
     QColor m_backgroundColor2;
     bool m_useCheckeredPattern;
     bool m_dontEnlargeSmallImagesOnFitting;
+    bool m_showFullscreenSignage;
 
     // ToolBars
     bool m_showToolBar;
@@ -309,6 +325,7 @@ private:
     bool m_restoreWindowState;
     QByteArray m_windowGeometry;
     QByteArray m_windowState;
+    bool m_beginAsFullscreen;
 
     // File
     bool m_autoLoaded;
@@ -345,8 +362,13 @@ private:
     QString m_bicubicShaderPath;
     QString m_lanczosShaderPath;
 
+    // Others
+    QString m_uiLanguage;
+    QTranslator *m_translator;
+
     QSettings m_settings;
     BookProgressManager* m_bookshelfManager;
+
 };
 
 #endif // QVAPPLICATION_H

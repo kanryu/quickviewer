@@ -47,7 +47,7 @@ void IFileVolume::on_ready()
             if(ic.ImportSize.isValid()) {
                 QSize resized = m_pageManager->viewportSize();
                 resized.setWidth(ic.ImportSize.width()*resized.height()/ic.ImportSize.height());
-                if(ic.ResizedImage.size() != resized) {
+                if(ic.ResizedImage.size() != resized && !ic.Image.isNull()) {
 //                    qDebug() << ic.ResizedImage.size() << resized;
                     m_imageCache.insert(cnt, QtConcurrent::run(futureReizeImage, ic, m_pageManager->viewportSize()));
                 }

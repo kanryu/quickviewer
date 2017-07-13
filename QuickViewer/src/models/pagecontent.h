@@ -70,16 +70,6 @@ public:
 };
 
 /**
- * @brief The ISizeNotifier class
- */
-class ISizeNotifier
-{
-public:
-    virtual QSize size()=0;
-};
-
-
-/**
  * @brief PageContent
  * contains the informations of a Page
  */
@@ -104,6 +94,13 @@ public:
      * @brief Rotate: rotation as digrees
      */
     int Rotate;
+    /**
+     * @brief GText is information as a text on fullscreen
+     */
+    QString Text;
+    QGraphicsTextItem* GText;
+    QGraphicsRectItem* GTextSurface;
+
     enum Fitting {
         FitCenter,
         FitLeft,
@@ -126,8 +123,10 @@ public:
 
     void applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize);
     void initializePage(bool resetResized=false);
+    void resetSignage(QRect viewport, PageContent::Fitting fitting);
     void resetScene(QGraphicsScene* scene);
     void checkInitialize();
+    void dispose();
 signals:
     void resizeFinished();
 public slots:

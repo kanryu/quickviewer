@@ -179,8 +179,9 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
         {
             QStringList archives;
             foreach(const QString name, dir.entryList(QDir::NoDotAndDotDot | QDir::Files, QDir::Unsorted)) {
-                if(IFileLoader::isArchiveFile(name))
-                    archives << name;
+                if(!IFileLoader::isArchiveFile(name) && !IFileLoader::isImageFile(name))
+                    continue;
+                archives << name;
             }
             foreach(const QString& ar, archives) {
                 QFileInfo fi(dir.absoluteFilePath(ar));

@@ -15,12 +15,13 @@ int main(int argc, char *argv[])
     QVApplication app(argc, argv);
 
     // multi-language-support
-    QTranslator translator;
-    bool exist = translator.load(QLocale::system(),
-                                 "translations/", "quickviewer_", qApp->applicationDirPath());
-    if(exist) {
-        app.installTranslator(&translator);
-    }
+//    QTranslator translator;
+//    bool exist = translator.load(QLocale(qApp->UiLanguage()),
+//                                 "translations/", "quickviewer_", qApp->applicationDirPath());
+//    if(exist) {
+//        app.installTranslator(&translator);
+//    }
+    app.installTranslator();
 #ifdef Q_OS_WIN
     MainWindowForWindows w;
 #else

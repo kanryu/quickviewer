@@ -56,6 +56,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
 
     ui->actionDontEnlargeSmallImagesOnFitting->setChecked(qApp->DontEnlargeSmallImagesOnFitting());
+    ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
+    ui->actionBeginAsFullscreen->setChecked(qApp->BeginAsFullscreen());
+    ui->actionShowFullscreenSignage->setChecked(qApp->ShowFullscreenSignage());
+
+    // Languages
+    m_languageMenuGroup
+            << ui->actionLanguageJapanese
+            << ui->actionLanguageSpanish
+            << ui->actionLanguageEnglish;
+    QString lang = qApp->UiLanguage().left(2);
+    if(lang == "ja") ui->actionLanguageJapanese->setChecked(true);
+    else if(lang == "es") ui->actionLanguageSpanish->setChecked(true);
+    else ui->actionLanguageEnglish->setChecked(true);
 
     // ToolBar/PageBar/StatusBar/MenuBar
     ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
@@ -130,19 +143,20 @@ MainWindow::MainWindow(QWidget *parent)
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
-    if(qApp->RestoreWindowState()) {
-        ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
+    if(qApp->BeginAsFullscreen()) {
+        showFullScreen();
+    } else if(qApp->RestoreWindowState()) {
         restoreGeometry(qApp->WindowGeometry());
         restoreState(qApp->WindowState());
-        if(isFullScreen()) {
-            menuBar()->hide();
-            ui->mainToolBar->hide();
-            ui->pageFrame->hide();
-            statusBar()->hide();
-            ui->actionFullscreen->setChecked(true);
-            ui->graphicsView->setWillFullscreen(true);
-            ui->graphicsView->readyForPaint();
-        }
+    }
+    if(isFullScreen()) {
+        menuBar()->hide();
+        ui->mainToolBar->hide();
+        ui->pageFrame->hide();
+        statusBar()->hide();
+        ui->actionFullscreen->setChecked(true);
+        ui->graphicsView->setWillFullscreen(true);
+        ui->graphicsView->readyForPaint();
     }
 
     // when drop a folder/archive icon to this app
@@ -605,6 +619,33 @@ void MainWindow::on_appVersion_triggered()
     msgBox.exec();
 }
 
+void MainWindow::on_languageEnglish_triggered()
+{
+    qApp->setUiLanguage("en");
+    uncheckAllLanguageMenus();
+    ui->actionLanguageEnglish->setChecked(true);
+    qApp->installTranslator();
+    ui->retranslateUi(this);
+}
+
+void MainWindow::on_languageJapanese_triggered()
+{
+    qApp->setUiLanguage("ja");
+    uncheckAllLanguageMenus();
+    ui->actionLanguageJapanese->setChecked(true);
+    qApp->installTranslator();
+    ui->retranslateUi(this);
+}
+
+void MainWindow::on_languageSpanish_triggered()
+{
+    qApp->setUiLanguage("es");
+    uncheckAllLanguageMenus();
+    ui->actionLanguageSpanish->setChecked(true);
+    qApp->installTranslator();
+    ui->retranslateUi(this);
+}
+
 void MainWindow::on_autoloaded_triggered(bool autoloaded)
 {
     qApp->setAutoLoaded(autoloaded);
@@ -628,6 +669,14 @@ void MainWindow::resizeEvent(QResizeEvent *e)
         ui->catalogSplitter->setSizes(sizes);
     }
     QMainWindow::resizeEvent(e);
+}
+
+void MainWindow::changeEvent(QEvent *e)
+{
+//    if(e->type() == QEvent::LanguageChange) {
+//        ui->retranslateUi(this);
+//    }
+    QMainWindow::changeEvent(e);
 }
 
 void MainWindow::on_folderWindow_triggered()
@@ -658,7 +707,7 @@ void MainWindow::on_folderWindow_triggered()
     QString path = m_pageManager.volumePath();
     if(path.isEmpty())
         path = qApp->HomeFolderPath();
-    m_folderWindow->setFolderPath(path);
+    m_folderWindow->setFolderPath(path, false);
     connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
     connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByFolder_triggered(QString)));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
@@ -952,6 +1001,16 @@ void MainWindow::on_openOptionsDialog_triggered()
             ui->graphicsView->resetBackgroundColor();
         }
     }
+}
+
+void MainWindow::on_beginAsFullscreen_triggered(bool enable)
+{
+    qApp->setBeginAsFullscreen(enable);
+}
+
+void MainWindow::on_showFullscreenSignage_triggered(bool enable)
+{
+    qApp->setShowFullscreenSignage(enable);
 }
 
 void MainWindow::on_projectPage_triggered()

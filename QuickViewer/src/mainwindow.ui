@@ -242,15 +242,26 @@
     <addaction name="actionShowPageBar"/>
     <addaction name="actionShowStatusBar"/>
     <addaction name="separator"/>
+    <addaction name="actionBeginAsFullscreen"/>
     <addaction name="actionRestoreWindowState"/>
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
+    <addaction name="actionShowFullscreenSignage"/>
     <addaction name="actionStayOnTop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <widget class="QMenu" name="menuChange_Language">
+     <property name="title">
+      <string notr="true">Language</string>
+     </property>
+     <addaction name="actionLanguageEnglish"/>
+     <addaction name="actionLanguageSpanish"/>
+     <addaction name="actionLanguageJapanese"/>
+    </widget>
+    <addaction name="menuChange_Language"/>
     <addaction name="actionOpenKeyConfig"/>
     <addaction name="actionOpenOptionsDialog"/>
     <addaction name="separator"/>
@@ -981,6 +992,51 @@
    </property>
    <property name="text">
     <string>Don't enlarge small images on Fitting</string>
+   </property>
+  </action>
+  <action name="actionLanguageEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">English</string>
+   </property>
+  </action>
+  <action name="actionLanguageJapanese">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Japanese</string>
+   </property>
+  </action>
+  <action name="actionLanguageSpanish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Spanish</string>
+   </property>
+  </action>
+  <action name="actionChange_Language">
+   <property name="text">
+    <string notr="true">Language</string>
+   </property>
+  </action>
+  <action name="actionBeginAsFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fullscreen on next run</string>
+   </property>
+  </action>
+  <action name="actionShowFullscreenSignage">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show texts on Fullscreen</string>
    </property>
   </action>
  </widget>
@@ -2133,6 +2189,86 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionLanguageEnglish</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_languageEnglish_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLanguageJapanese</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_languageJapanese_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLanguageSpanish</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_languageSpanish_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionBeginAsFullscreen</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_beginAsFullscreen_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowFullscreenSignage</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_showFullscreenSignage_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -2191,5 +2327,10 @@
   <slot>on_openOptionsDialog_triggered()</slot>
   <slot>on_renameImageFile_triggered()</slot>
   <slot>on_openExifDialog_triggered()</slot>
+  <slot>on_languageEnglish_triggered()</slot>
+  <slot>on_languageJapanese_triggered()</slot>
+  <slot>on_languageSpanish_triggered()</slot>
+  <slot>on_beginAsFullscreen_triggered(bool)</slot>
+  <slot>on_showFullscreenSignage_triggered(bool)</slot>
  </slots>
 </ui>

@@ -17,6 +17,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_maxTextureSize(4096)
     , m_bookshelfManager(nullptr)
     , m_mainThread(QThread::currentThread())
+    , m_translator(nullptr)
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -31,6 +32,24 @@ QVApplication::QVApplication(int &argc, char **argv)
 QString QVApplication::getApplicationFilePath(QString subFilePath)
 {
     return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
+}
+
+void QVApplication::installTranslator()
+{
+    // multi-language-support
+    if(m_translator) {
+        removeTranslator(m_translator);
+        delete m_translator;
+    }
+    m_translator = new QTranslator;
+    bool exist = m_translator->load(QLocale(qApp->UiLanguage()),
+                                 "translations/", "quickviewer_", qApp->applicationDirPath());
+    if(exist) {
+        QApplication::installTranslator(m_translator);
+    } else {
+        delete m_translator;
+        m_translator = nullptr;
+    }
 }
 
 void QVApplication::registDefaultKeyMap()
@@ -253,12 +272,14 @@ void QVApplication::loadSettings()
     m_backgroundColor2 = QColor(m_settings.value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
     m_useCheckeredPattern  = m_settings.value("UseCheckeredPattern", true).toBool();
     m_dontEnlargeSmallImagesOnFitting  = m_settings.value("DontEnlargeSmallImagesOnFitting", true).toBool();
+    m_showFullscreenSignage  = m_settings.value("ShowFullscreenSignage", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
     m_restoreWindowState  = m_settings.value("RestoreWindowState", false).toBool();
     m_windowGeometry  = m_settings.value("WindowGeometry", "").toByteArray();
     m_windowState  = m_settings.value("WindowState", "").toByteArray();
+    m_beginAsFullscreen  = m_settings.value("BeginAsFullscreen", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("File");
@@ -310,6 +331,10 @@ void QVApplication::loadSettings()
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
     m_settings.endGroup();
 
+    m_settings.beginGroup("Others");
+    m_uiLanguage = m_settings.value("UiLanguage", QLocale::system().name()).toString();
+    m_settings.endGroup();
+
     m_bookshelfManager = new BookProgressManager(this);
 }
 
@@ -338,12 +363,14 @@ void QVApplication::saveSettings()
     m_settings.setValue("BackgroundColor2", rgbstring);
     m_settings.setValue("UseCheckeredPattern", m_useCheckeredPattern);
     m_settings.setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
+    m_settings.setValue("ShowFullscreenSignage", m_showFullscreenSignage);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
     m_settings.setValue("RestoreWindowState", m_restoreWindowState);
     m_settings.setValue("WindowGeometry", m_windowGeometry);
     m_settings.setValue("WindowState", m_windowState);
+    m_settings.setValue("BeginAsFullscreen", m_beginAsFullscreen);
     m_settings.endGroup();
 
     m_settings.beginGroup("File");
@@ -390,6 +417,10 @@ void QVApplication::saveSettings()
     m_settings.setValue("Effect", ShaderManager::shaderEffectToString(m_effect));
     m_settings.setValue("BicubicShaderPath", m_bicubicShaderPath);
     m_settings.setValue("LanczosShaderPath", m_lanczosShaderPath);
+    m_settings.endGroup();
+
+    m_settings.beginGroup("Others");
+    m_settings.setValue("UiLanguage", m_uiLanguage);
     m_settings.endGroup();
 
 

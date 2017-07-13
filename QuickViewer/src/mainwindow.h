@@ -34,6 +34,11 @@ public:
             action->setChecked(false);
         }
     }
+    void uncheckAllLanguageMenus() {
+        foreach(QAction* action, m_languageMenuGroup) {
+            action->setChecked(false);
+        }
+    }
     void makeBookmarkMenu();
     void setThumbnailManager(ThumbnailManager* manager);
     void loadVolume(QString path);
@@ -49,6 +54,7 @@ protected:
     void mousePressEvent(QMouseEvent *e) override;
     void closeEvent(QCloseEvent *e) override;
     void resizeEvent(QResizeEvent *e) override;
+    void changeEvent(QEvent *e) override;
 
 public slots:
     // File
@@ -93,6 +99,8 @@ public slots:
     void on_restoreWindowState_triggered(bool saveState);
     void on_maximizeOrNormal_triggered();
     void on_openOptionsDialog_triggered();
+    void on_beginAsFullscreen_triggered(bool enable);
+    void on_showFullscreenSignage_triggered(bool enable);
 
     // SlideShow
     void on_slideShow_triggered(bool enable);
@@ -108,6 +116,9 @@ public slots:
     void on_projectPage_triggered();
     void on_checkVersion_triggered();
     void on_appVersion_triggered();
+    void on_languageEnglish_triggered();
+    void on_languageJapanese_triggered();
+    void on_languageSpanish_triggered();
 
     // ContextMenus
     void on_openfolder_triggered();
@@ -149,6 +160,7 @@ protected:
 
     PageManager m_pageManager;
     QList<QAction*> m_shaderMenuGroup;
+    QList<QAction*> m_languageMenuGroup;
     ThumbnailManager* m_thumbManager;
     FolderWindow* m_folderWindow;
     CatalogWindow* m_catalogWindow;
