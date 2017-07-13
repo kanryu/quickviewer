@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## v0.8.2 (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+
+Support display in Spanish, change language, start on fullscreen, fullscreen signage, bugfixed
+
+- change language on the app, you select
+- start the app on fullscreen
+- a signage of fullpath of the image on fullscreen
+- bugfixed: While using CPU zooming, displaying an animation image was incorrectly terminated
+
+- other commits
+    - Update index-ja.md (Wed Jul 12 01:28:43 2017 +0900) [ec61c4a](https://github.com/kanryu/quickviewer/commit/ec61c4a1d7d5e0ddd5ba249a480c0b4908987e66)
+    - Update index.md (Wed Jul 12 01:28:14 2017 +0900) [fcc287f](https://github.com/kanryu/quickviewer/commit/fcc287f5ffa2f274ed2ae5aa2414002715fbf6b1)
+    - Update README.md (Wed Jul 12 01:27:47 2017 +0900) [bbe8d04](https://github.com/kanryu/quickviewer/commit/bbe8d0469469044aa7a6934104a01e18bd5d20db)
+    - Update README.md (Wed Jul 12 00:03:28 2017 +0900) [87321d9](https://github.com/kanryu/quickviewer/commit/87321d97c198e6744324749c5651b6e647f78a38)
+    - Update index.md (Tue Jul 11 23:55:23 2017 +0900) [004177d](https://github.com/kanryu/quickviewer/commit/004177d84edfc556038ff80ffba3c1f926228634)
+    - Update index-ja.md (Tue Jul 11 23:54:54 2017 +0900) [f68faef](https://github.com/kanryu/quickviewer/commit/f68faef636b065c69747e9ade6a787998b7dc1b6)
+    - Update index-ja.md (Tue Jul 11 23:54:01 2017 +0900) [795f49d](https://github.com/kanryu/quickviewer/commit/795f49dd6e32212fecbb4cc5deee6b451f4d6959)
+    - Update index.md (Tue Jul 11 23:53:08 2017 +0900) [1a28122](https://github.com/kanryu/quickviewer/commit/1a281220dae99740390e290257be59101cd00c4f)
+    - Update README.md (Tue Jul 11 23:52:28 2017 +0900) [6d0851d](https://github.com/kanryu/quickviewer/commit/6d0851db3f0ccd357a3597b7dd870c2a8eca9d2d)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Tue Jul 11 23:45:41 2017 +0900) [6ff7371](https://github.com/kanryu/quickviewer/commit/6ff73717a6de41d96a4f590dfcc8b30527e762dc)
+    - changelog (Tue Jul 11 23:45:15 2017 +0900) [15a1645](https://github.com/kanryu/quickviewer/commit/15a164502aef9e7f1c2ebc51e4e686de94f81055)
+
 ## v0.8.1 (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
 
 Support for Animated PNG(APNG), read completed check, improve ExifDialog
@@ -10,6 +32,20 @@ Support for Animated PNG(APNG), read completed check, improve ExifDialog
 - can next/prev changing
 
 - other commits
+    - Update index.md (Tue Jul 11 14:43:55 2017 +0900) [a6b72f5](https://github.com/kanryu/quickviewer/commit/a6b72f5513e5e2c172baab765c53b4367ba747f9)
+    - Update default.html (Tue Jul 11 12:09:03 2017 +0900) [0eb9b32](https://github.com/kanryu/quickviewer/commit/0eb9b327d563f8414a9e57b0b572de798c71dbd3)
+    - Update disqus.html (Tue Jul 11 12:07:07 2017 +0900) [e6d5951](https://github.com/kanryu/quickviewer/commit/e6d59513f83e886de02c1ec2d2f59c2f329ac5c1)
+    - Update disqus.html (Tue Jul 11 12:03:38 2017 +0900) [9a3a91e](https://github.com/kanryu/quickviewer/commit/9a3a91e03cce9c611e57cb9cfc527555e57987c8)
+    - Update index-ja.md (Tue Jul 11 12:00:01 2017 +0900) [6736171](https://github.com/kanryu/quickviewer/commit/6736171de1ce263ccbc9e148be54e5b5e676f8d6)
+    - Update disqus.html (Tue Jul 11 11:57:57 2017 +0900) [a37b17a](https://github.com/kanryu/quickviewer/commit/a37b17a6d9a9f4e004da93ab21cf957600a637bd)
+    - Update default.html (Tue Jul 11 11:57:31 2017 +0900) [5dba1b4](https://github.com/kanryu/quickviewer/commit/5dba1b4f7b60d875d3cc02e5138c697e40798d65)
+    - Update default.html (Tue Jul 11 11:55:50 2017 +0900) [2611490](https://github.com/kanryu/quickviewer/commit/26114908c1415cb61b8545995f2964af76a3da0a)
+    - Update default.html (Tue Jul 11 11:45:44 2017 +0900) [d9dabb9](https://github.com/kanryu/quickviewer/commit/d9dabb9a31c75843c67bd9512de98c1dec21e655)
+    - Update default.html (Tue Jul 11 11:43:28 2017 +0900) [e03319a](https://github.com/kanryu/quickviewer/commit/e03319aaf02d3632b3de2750ee45a8efd8df33c5)
+    - Update default.html (Tue Jul 11 11:42:04 2017 +0900) [d3250c2](https://github.com/kanryu/quickviewer/commit/d3250c22a5d8fa415bbeabddd205b2d94672d89c)
+    - Update default.html (Tue Jul 11 11:38:59 2017 +0900) [83491b0](https://github.com/kanryu/quickviewer/commit/83491b0f6105fec854b9ab3b9dc3e782d9d4b1d3)
+    - Update default.html (Tue Jul 11 11:37:38 2017 +0900) [9b1c22e](https://github.com/kanryu/quickviewer/commit/9b1c22e3f5203ed2d8a91c99cf213316ebf9a170)
+    - Update index.md (Tue Jul 11 11:34:35 2017 +0900) [f1b0104](https://github.com/kanryu/quickviewer/commit/f1b0104f12554bb0cf3c28d0ce72f46f7925e743)
     - disqus (Tue Jul 11 11:34:14 2017 +0900) [39fc33e](https://github.com/kanryu/quickviewer/commit/39fc33e755458624d845f7ea1bb845af555546df)
     - Update index.md (Tue Jul 11 11:20:33 2017 +0900) [4e86e0e](https://github.com/kanryu/quickviewer/commit/4e86e0e64f4152d61c4994efb89741739efffc69)
     - Update index.md (Sun Jul 9 12:07:55 2017 +0900) [a6bcc20](https://github.com/kanryu/quickviewer/commit/a6bcc202e335e8d8aeea687c2e5aa0c2f3a14110)
