@@ -58,7 +58,7 @@ $ [QTSDK]/bin/windelpyqt  --release --compiler-runtime QuickViewer.exe
 1. select C/++ PreProcessor tab
 1. remove "ASMV;ASMINF;" from Definition of PreProcessor
 1. build the solution
-1. copy from "QuickViewer\Debug\moc_catalogwindow.cpp;Debug\moc_mainwindowforwindows.cpp" to "QuickViewer\Debug\moc_catalogwindow.cpp;Debug"
+1. copy from "QuickViewer\Debug\moc_catalogwindow.cpp;Debug\moc_mainwindowforwindows.cpp" to "QuickViewer\Debug"
 1. continue to build
 
 I think that [Qt VS Tools] has some broken :(
