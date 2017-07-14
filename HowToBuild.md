@@ -43,6 +43,8 @@ Your QtSDK and Makefile for the compiler will be generated to build QuickViewer.
 Please note that if you use VisualStudio2015, you need nmake instead of MinGW make. Of course there is a distinction x86 / x64.
 
 ```
+$ [amd64]/vsvars64.bat
+$ nmake
 $ nmake install
 (created QuickViewer distribution)
 $ cd ../QuickViewer-0.8.2-x64
