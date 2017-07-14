@@ -53,6 +53,7 @@ win32 { !CONFIG(debug, debug|release) {
     translations.files = \
         $${PWD}/translations/quickviewer_ja.qm \
         $${PWD}/translations/quickviewer_es.qm \
+        $${PWD}/translations/quickviewer_zh.qm \
 
     qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
     qrawspeed.files = \
@@ -96,116 +97,67 @@ unix {
 
 
 SOURCES += \
-    src/main.cpp \
-    src/mainwindow.cpp \
-    src/imageview.cpp \
-    src/exifdialog.cpp \
-    src/keyconfigdialog.cpp \
     src/catalog/catalogwindow.cpp \
     src/catalog/databasesettingdialog.cpp \
     src/catalog/managedatabasedialog.cpp \
     src/catalog/volumeitemmodel.cpp \
-    src/models/qvapplication.cpp \
-    src/models/thumbnailmanager.cpp \
-    src/models/filevolume.cpp \
-    src/models/pagemanager.cpp \
-    src/models/timeorderdcache.cpp \
-    src/models/shadermanager.cpp \
-    src/widgets/flowlayout.cpp \
-    src/widgets/pageslider.cpp \
-    src/widgets/shortcutbutton.cpp \
-    src/folderview/folderitemmodel.cpp \
-    src/folderview/folderwindow.cpp \
-    src/models/pagecontent.cpp \
-    src/folderview/folderitemdelegate.cpp \
-    src/models/bookprogressmanager.cpp \
-    src/folderview/foldertreeview.cpp \
-    src/catalog/catalogwindow.cpp \
-    src/catalog/databasesettingdialog.cpp \
-    src/catalog/managedatabasedialog.cpp \
-    src/catalog/volumeitemmodel.cpp \
-    src/folderview/folderitemdelegate.cpp \
-    src/folderview/folderitemmodel.cpp \
-    src/folderview/foldertreeview.cpp \
-    src/folderview/folderwindow.cpp \
-    src/models/bookprogressmanager.cpp \
-    src/models/filevolume.cpp \
-    src/models/pagecontent.cpp \
-    src/models/pagemanager.cpp \
-    src/models/qvapplication.cpp \
-    src/models/shadermanager.cpp \
-    src/models/thumbnailmanager.cpp \
-    src/models/timeorderdcache.cpp \
-    src/widgets/flowlayout.cpp \
-    src/widgets/pageslider.cpp \
-    src/widgets/shortcutbutton.cpp \
     src/exifdialog.cpp \
+    src/folderview/folderitemdelegate.cpp \
+    src/folderview/folderitemmodel.cpp \
+    src/folderview/foldertreeview.cpp \
+    src/folderview/folderwindow.cpp \
     src/imageview.cpp \
     src/keyconfigdialog.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/mainwindowforwindows.cpp \
+    src/models/bookprogressmanager.cpp \
+    src/models/filevolume.cpp \
+    src/models/movie.cpp \
+    src/models/pagecontent.cpp \
+    src/models/pagemanager.cpp \
+    src/models/qvapplication.cpp \
+    src/models/shadermanager.cpp \
+    src/models/thumbnailmanager.cpp \
+    src/models/timeorderdcache.cpp \
     src/optionsdialog.cpp \
     src/renamedialog.cpp \
-    src/models/movie.cpp
+    src/widgets/flowlayout.cpp \
+    src/widgets/pageslider.cpp \
+    src/widgets/shortcutbutton.cpp \
 
 HEADERS  += \
-    src/qv_init.h \
-    src/exifdialog.h \
-    src/mainwindow.h \
-    src/stdafx.h \
-    src/keyconfigdialog.h \
-    src/imageview.h \
     src/catalog/catalogwindow.h \
     src/catalog/databasesettingdialog.h \
     src/catalog/managedatabasedialog.h \
     src/catalog/qc_init.h \
     src/catalog/volumeitemmodel.h \
-    src/models/filevolume.h \
-    src/models/qvapplication.h \
-    src/models/pagemanager.h \
-    src/models/timeorderdcache.h \
-    src/models/shadermanager.h \
-    src/models/thumbnailmanager.h \
-    src/widgets/flowlayout.h \
-    src/widgets/pageslider.h \
-    src/widgets/shortcutbutton.h \
-    src/folderview/folderitemmodel.h \
-    src/folderview/folderwindow.h \
-    src/models/pagecontent.h \
-    src/folderview/folderitemdelegate.h \
-    src/models/bookprogressmanager.h \
-    src/folderview/foldertreeview.h \
-    src/catalog/catalogwindow.h \
-    src/catalog/databasesettingdialog.h \
-    src/catalog/managedatabasedialog.h \
-    src/catalog/qc_init.h \
-    src/catalog/volumeitemmodel.h \
-    src/folderview/folderitemdelegate.h \
-    src/folderview/folderitemmodel.h \
-    src/folderview/foldertreeview.h \
-    src/folderview/folderwindow.h \
-    src/models/bookprogressmanager.h \
-    src/models/filevolume.h \
-    src/models/pagecontent.h \
-    src/models/pagemanager.h \
-    src/models/qvapplication.h \
-    src/models/shadermanager.h \
-    src/models/thumbnailmanager.h \
-    src/models/timeorderdcache.h \
-    src/widgets/flowlayout.h \
-    src/widgets/pageslider.h \
-    src/widgets/shortcutbutton.h \
     src/exifdialog.h \
+    src/folderview/folderitemdelegate.h \
+    src/folderview/folderitemmodel.h \
+    src/folderview/foldertreeview.h \
+    src/folderview/folderwindow.h \
     src/imageview.h \
     src/keyconfigdialog.h \
     src/mainwindow.h \
     src/mainwindowforwindows.h \
-    src/qv_init.h \
-    src/stdafx.h \
+    src/models/bookprogressmanager.h \
+    src/models/filevolume.h \
+    src/models/movie.h \
+    src/models/pagecontent.h \
+    src/models/pagemanager.h \
+    src/models/qvapplication.h \
+    src/models/shadermanager.h \
+    src/models/thumbnailmanager.h \
+    src/models/timeorderdcache.h \
     src/optionsdialog.h \
+    src/qv_init.h \
     src/renamedialog.h \
-    src/models/movie.h
+    src/stdafx.h \
+    src/widgets/flowlayout.h \
+    src/widgets/pageslider.h \
+    src/widgets/shortcutbutton.h \
+
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp
@@ -237,6 +189,7 @@ RC_ICONS = icons/appicon.ico
 DISTFILES += \
     translations/quickviewer_ja.qm \
     translations/quickviewer_es.qm \
+    translations/quickviewer_zh.qm \
 
 # Shaders will be installed into DIST_DIR/shaders
 SHADERS += \

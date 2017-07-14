@@ -259,6 +259,7 @@
      </property>
      <addaction name="actionLanguageEnglish"/>
      <addaction name="actionLanguageSpanish"/>
+     <addaction name="actionLanguageChinese"/>
      <addaction name="actionLanguageJapanese"/>
     </widget>
     <addaction name="menuChange_Language"/>
@@ -592,15 +593,6 @@
   <action name="actionOpenExif">
    <property name="text">
     <string>Exif &amp;Information</string>
-   </property>
-  </action>
-  <action name="actionOpenKeyConfig">
-   <property name="icon">
-    <iconset resource="../toolbar.qrc">
-     <normaloff>:/icons/preference_icon</normaloff>:/icons/preference_icon</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Key Config</string>
    </property>
   </action>
   <action name="actionCheckVersion">
@@ -1039,6 +1031,23 @@
     <string>Show texts on Fullscreen</string>
    </property>
   </action>
+  <action name="actionLanguageChinese">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Chinese</string>
+   </property>
+  </action>
+  <action name="actionOpenKeyConfig">
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/preference_icon</normaloff>:/icons/preference_icon</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Key Config</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1370,22 +1379,6 @@
     <hint type="destinationlabel">
      <x>350</x>
      <y>296</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionOpenKeyConfig</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_openKeyConfig_triggered()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>350</x>
-     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -2269,6 +2262,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionLanguageChinese</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_languageChinese_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpenKeyConfig</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_openKeyConfig_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -2332,5 +2357,6 @@
   <slot>on_languageSpanish_triggered()</slot>
   <slot>on_beginAsFullscreen_triggered(bool)</slot>
   <slot>on_showFullscreenSignage_triggered(bool)</slot>
+  <slot>on_languageChinese_triggered()</slot>
  </slots>
 </ui>

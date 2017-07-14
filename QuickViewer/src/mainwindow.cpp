@@ -64,10 +64,12 @@ MainWindow::MainWindow(QWidget *parent)
     m_languageMenuGroup
             << ui->actionLanguageJapanese
             << ui->actionLanguageSpanish
-            << ui->actionLanguageEnglish;
+            << ui->actionLanguageEnglish
+            << ui->actionLanguageChinese;
     QString lang = qApp->UiLanguage().left(2);
     if(lang == "ja") ui->actionLanguageJapanese->setChecked(true);
     else if(lang == "es") ui->actionLanguageSpanish->setChecked(true);
+    else if(lang == "zh") ui->actionLanguageChinese->setChecked(true);
     else ui->actionLanguageEnglish->setChecked(true);
 
     // ToolBar/PageBar/StatusBar/MenuBar
@@ -642,6 +644,15 @@ void MainWindow::on_languageSpanish_triggered()
     qApp->setUiLanguage("es");
     uncheckAllLanguageMenus();
     ui->actionLanguageSpanish->setChecked(true);
+    qApp->installTranslator();
+    ui->retranslateUi(this);
+}
+
+void MainWindow::on_languageChinese_triggered()
+{
+    qApp->setUiLanguage("zh");
+    uncheckAllLanguageMenus();
+    ui->actionLanguageChinese->setChecked(true);
     qApp->installTranslator();
     ui->retranslateUi(this);
 }

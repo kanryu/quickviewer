@@ -119,6 +119,7 @@ public slots:
     void on_languageEnglish_triggered();
     void on_languageJapanese_triggered();
     void on_languageSpanish_triggered();
+    void on_languageChinese_triggered();
 
     // ContextMenus
     void on_openfolder_triggered();

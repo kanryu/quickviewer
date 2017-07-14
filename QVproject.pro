@@ -23,6 +23,7 @@ CODECFORSRC = UTF-8
 TRANSLATIONS = \
     QuickViewer/translations/quickviewer_ja.ts \
     QuickViewer/translations/quickviewer_es.ts \
+    QuickViewer/translations/quickviewer_zh.ts \
 
 DISTFILES += \
     QuickViewer/translations/quickviewer_ja.qm \
