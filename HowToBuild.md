@@ -25,7 +25,7 @@ So you just need to have QtCreator load the pro file.
 
 If you has setuped Qt SDK as 'msvc2015' or 'msvc2015_64', the distribution package is automatically generated. By running "jom install".
 
-You can custom build step. Edit the Release build, add new build step, enter 'install' into 'Argument of Make'.
+You can add a custom build step. Edit the Release build, add new build step, enter 'install' into 'Argument of Make'.
 
 If you has setuped Qt SDK as 'mingw53_32'. Also you can build.
 Since there is no script of the distribution package, I want you to create it yourself.
