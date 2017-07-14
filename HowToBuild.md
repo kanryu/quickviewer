@@ -1,3 +1,11 @@
+# How to build
+
+Since I was told that He hasn't known how to build from this person who clone this source code before, I created this document.
+
+With GPLv 3, you have copied this source code and the right to build it yourself is guaranteed, so please build it if you are interested in this application.
+
+If you have something you do not recognize or are aware of when building, please send me a mail or post to the Issue of the project.
+
 ## Set Up Qt SDK
 You should install Qt SDK on your pc.
 
