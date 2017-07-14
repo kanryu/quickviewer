@@ -62,6 +62,7 @@ $ [QTSDK]/bin/windelpyqt  --release --compiler-runtime QuickViewer.exe
 1. continue to build
 
 I think that [Qt VS Tools] has some broken :(
+
 Since VisualStudio can use masm, you can set it to assemble asm files if you have skills. This time it is a procedure to change to a setting not used.
 
 
