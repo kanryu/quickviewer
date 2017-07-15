@@ -61,7 +61,9 @@ $ [QTSDK]/bin/windelpyqt  --release --compiler-runtime QuickViewer.exe
 
 ### for Visual Studio 2015
 
+1. install VisualStudio2015Community, QtSDK(msvc2015 or msvc2015_64), QtVSTools
 1. select menu [Qt VS Tools] -> [Open Qt Project File(.pro)]
+1. select QVProject.pro
 1. open dialog of zlib project
 1. select C/++ PreProcessor tab
 1. remove "ASMV;ASMINF;" from Definition of PreProcessor
