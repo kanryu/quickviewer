@@ -65,7 +65,7 @@ $ [QTSDK]/bin/windelpyqt  --release --compiler-runtime QuickViewer.exe
 1. select menu [Qt VS Tools] -> [Open Qt Project File(.pro)]
 1. select QVProject.pro
 1. open dialog of zlib project
-1. select C/++ PreProcessor tab
+1. select C/C++ PreProcessor tab
 1. remove "ASMV;ASMINF;" from Definition of PreProcessor
 1. build the solution
 1. copy from "QuickViewer\Debug\moc_catalogwindow.cpp;Debug\moc_mainwindowforwindows.cpp" to "QuickViewer\Debug"
