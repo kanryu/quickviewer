@@ -1,6 +1,6 @@
 # How to build
 
-Since I was told that He hasn't known how to build from this person who clone this source code before, I created this document.
+Since I was told that He hadn't known how to build from this source code before, I wrote this document.
 
 With GPLv 3, you have copied this source code and the right to build it yourself is guaranteed, so please build it if you are interested in this application.
 
