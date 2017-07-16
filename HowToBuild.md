@@ -56,7 +56,7 @@ $ nmake
 $ nmake install
 (created QuickViewer distribution)
 $ cd ../QuickViewer-0.8.2-x64
-$ [QTSDK]/bin/windelpyqt  --release --compiler-runtime QuickViewer.exe
+$ [QTSDK]/bin/windeployqt  --release --compiler-runtime QuickViewer.exe
 ```
 
 ### for Visual Studio 2015
