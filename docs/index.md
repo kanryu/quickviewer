@@ -100,7 +100,7 @@ You can also clone the latest source code from **[this repository.](https://gith
 - **مدونة حاسب سهل** (in Arabic)
     - [http://www.pcfacile1.com/archives/13505](http://www.pcfacile1.com/archives/13505)
 - **SARZAMINDOWNLOAD.COM** (in Arabic)
-    - [http://www.sarzamindownload.com/9899/-%D9%86%D8%B1%D9%85-%D8%A7%D9%81%D8%B2%D8%A7%D8%B1-%D9%86%D9%85%D8%A7%DB%8C%D8%B4%DA%AF%D8%B1-%D8%B3%D8%B1%DB%8C%D8%B9-%D8%B9%DA%A9%D8%B3-(%D8%A8%D8%B1%D8%A7%DB%8C-%D9%88%DB%8C%D9%86%D8%AF%D9%88%D8%B2)---QuickViewer-0.8.2-Windows](http://www.sarzamindownload.com/9899/-%D9%86%D8%B1%D9%85-%D8%A7%D9%81%D8%B2%D8%A7%D8%B1-%D9%86%D9%85%D8%A7%DB%8C%D8%B4%DA%AF%D8%B1-%D8%B3%D8%B1%DB%8C%D8%B9-%D8%B9%DA%A9%D8%B3-(%D8%A8%D8%B1%D8%A7%DB%8C-%D9%88%DB%8C%D9%86%D8%AF%D9%88%D8%B2)---QuickViewer-0.8.2-Windows)
+    - [http://www.sarzamindownload.com/9899/](http://www.sarzamindownload.com/9899/)
 - **Мир Софта** (in Russian)
     - [https://mirsofta.ru/soft/QuickViewer.html](https://mirsofta.ru/soft/QuickViewer.html)
 - **Quergedacht 3.0** (in German)
