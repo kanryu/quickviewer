@@ -53,6 +53,7 @@ You can also clone the latest source code from **[this repository.](https://gith
 
 - **the PORTABLE FREEWARE collection**
     - [https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353](https://www.portablefreeware.com/forums/viewtopic.php?f=4&t=23353)
+    - [https://www.portablefreeware.com/index.php?id=2899](https://www.portablefreeware.com/index.php?id=2899)
 - **MajorGeeks.com**
     - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
 - **ghacks.net**
