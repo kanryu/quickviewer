@@ -1,5 +1,38 @@
 # CHANGELOG
 
+## v0.8.3 (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+
+Support for Simplified Chinese, file associations, not confirm to delete file
+
+- Support for Simplified Chinese
+- now you can add other language support without editing programs
+- Support for file assciations
+- not portable, but If you do not run it will not change to the system
+- not confirm to delete file
+
+- other commits
+    - Update index.md (Thu Jul 20 04:21:59 2017 +0900) [e3e3735](https://github.com/kanryu/quickviewer/commit/e3e37353263782175db60403fd83c7eabb548b5f)
+    - Update HowToBuild.md (Sun Jul 16 16:17:37 2017 +0900) [d5e4c23](https://github.com/kanryu/quickviewer/commit/d5e4c238d3a763550e555495f0e3a0e567498496)
+    - Update index.md (Sun Jul 16 15:29:46 2017 +0900) [5140d2d](https://github.com/kanryu/quickviewer/commit/5140d2deb674cb9f817b78caffc2a0dce6b2d932)
+    - Update index.md (Sun Jul 16 15:28:48 2017 +0900) [e7f895b](https://github.com/kanryu/quickviewer/commit/e7f895bdac20a28c6268a5769a8e7dd17c0ef4d9)
+    - Update HowToBuild.md (Sun Jul 16 11:04:04 2017 +0900) [d8429f8](https://github.com/kanryu/quickviewer/commit/d8429f81444a696c184581938191506cd15a4f83)
+    - Update HowToBuild.md (Sat Jul 15 23:43:00 2017 +0900) [ee4c5a2](https://github.com/kanryu/quickviewer/commit/ee4c5a2b3bf594dd3778bdb6019b45d7782e63bc)
+    - Update HowToBuild.md (Sat Jul 15 23:12:15 2017 +0900) [b3ee717](https://github.com/kanryu/quickviewer/commit/b3ee7173b84305311e63d03ca67cbbcd097881fe)
+    - Update HowToBuild.md (Sat Jul 15 03:51:55 2017 +0900) [e8e71ed](https://github.com/kanryu/quickviewer/commit/e8e71eda92648ffaf54b481b8c682ec2df04419b)
+    - Update HowToBuild.md (Sat Jul 15 03:50:48 2017 +0900) [97afceb](https://github.com/kanryu/quickviewer/commit/97afceb2743668aef22320e7fe81cf9d1729073a)
+    - Update HowToBuild.md (Sat Jul 15 03:34:46 2017 +0900) [ec348a9](https://github.com/kanryu/quickviewer/commit/ec348a906adc9da47268728ba89928b7770f28b1)
+    - Update HowToBuild.md (Sat Jul 15 03:32:06 2017 +0900) [d6b443a](https://github.com/kanryu/quickviewer/commit/d6b443af3bf28ceee19efc0761cc8aff8a001e13)
+    - Update HowToBuild.md (Sat Jul 15 03:28:33 2017 +0900) [f563965](https://github.com/kanryu/quickviewer/commit/f56396563164723c5c5616dcbeebd8bfb4d589d2)
+    - Update HowToBuild.md (Sat Jul 15 03:28:09 2017 +0900) [1c296c4](https://github.com/kanryu/quickviewer/commit/1c296c4b969681ba20869d0fd6e1b9531711f4b3)
+    - Update HowToBuild.md (Sat Jul 15 03:25:19 2017 +0900) [cc71203](https://github.com/kanryu/quickviewer/commit/cc7120367317e70fae26b78e7fca44adff59e3ff)
+    - Update HowToBuild.md (Sat Jul 15 03:23:45 2017 +0900) [65aa56b](https://github.com/kanryu/quickviewer/commit/65aa56bc87f2000527dcc471dfea46bdbd8ec3af)
+    - Create HowToBuild.md (Sat Jul 15 03:20:36 2017 +0900) [1001134](https://github.com/kanryu/quickviewer/commit/1001134da20548a969284bfaa1cf5ba1c63b034f)
+    - add chinise resource, remove doubled source files (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
+    -  (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
+    -  add chinise resource (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
+    -  remove doubled source files (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
+    - changelog (Thu Jul 13 20:31:50 2017 +0900) [c1d97ab](https://github.com/kanryu/quickviewer/commit/c1d97abf74b873e044d1dba2705d58028a4a82b6)
+
 ## v0.8.2 (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
 
 Support display in Spanish, change language, start on fullscreen, fullscreen signage, bugfixed
