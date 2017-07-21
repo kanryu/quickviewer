@@ -18,6 +18,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_bookshelfManager(nullptr)
     , m_mainThread(QThread::currentThread())
     , m_translator(nullptr)
+    , m_languageSelector("quickviewer_", "translations/")
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -34,22 +35,13 @@ QString QVApplication::getApplicationFilePath(QString subFilePath)
     return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
 }
 
-void QVApplication::installTranslator()
+void QVApplication::myInstallTranslator()
 {
-    // multi-language-support
-    if(m_translator) {
-        removeTranslator(m_translator);
-        delete m_translator;
-    }
-    m_translator = new QTranslator;
-    bool exist = m_translator->load(QLocale(qApp->UiLanguage()),
-                                 "translations/", "quickviewer_", qApp->applicationDirPath());
-    if(exist) {
-        QApplication::installTranslator(m_translator);
-    } else {
-        delete m_translator;
-        m_translator = nullptr;
-    }
+    m_languageSelector.resetTranslator(UiLanguage());
+    // It is "" when it is started for the first time,
+    // but it is better to set the value in order to cause unnecessary processing
+    if(m_uiLanguage.isEmpty())
+        setUiLanguage(m_languageSelector.language());
 }
 
 void QVApplication::registDefaultKeyMap()
@@ -332,7 +324,8 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("Others");
-    m_uiLanguage = m_settings.value("UiLanguage", QLocale::system().name()).toString();
+    m_uiLanguage = m_settings.value("UiLanguage", "").toString();
+    m_confirmDeletePage = m_settings.value("ConfirmDeletePage", true).toBool();
     m_settings.endGroup();
 
     m_bookshelfManager = new BookProgressManager(this);
@@ -421,6 +414,7 @@ void QVApplication::saveSettings()
 
     m_settings.beginGroup("Others");
     m_settings.setValue("UiLanguage", m_uiLanguage);
+    m_settings.setValue("ConfirmDeletePage", m_confirmDeletePage);
     m_settings.endGroup();
 
 

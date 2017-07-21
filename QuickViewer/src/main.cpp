@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 //    if(exist) {
 //        app.installTranslator(&translator);
 //    }
-    app.installTranslator();
+    app.myInstallTranslator();
 #ifdef Q_OS_WIN
     MainWindowForWindows w;
 #else

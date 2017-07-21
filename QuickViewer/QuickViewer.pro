@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.2
+VERSION = 0.8.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -44,13 +44,14 @@ win32 { !CONFIG(debug, debug|release) {
     MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
 
     target.path = $${MY_DEFAULT_INSTALL}
-    target.files = $${DESTDIR}/QuickViewer.exe
+    target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
     deploy_files.path = $${MY_DEFAULT_INSTALL}
     deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     deploy_files.depends = install_target
     deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
     translations.path = $${MY_DEFAULT_INSTALL}/translations
     translations.files = \
+        $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \
         $${PWD}/translations/quickviewer_es.qm \
         $${PWD}/translations/quickviewer_zh.qm \
@@ -72,7 +73,21 @@ win32 { !CONFIG(debug, debug|release) {
         "$${msvcrt.PATH}/vccorlib140.dll" \
         "$${msvcrt.PATH}/vcruntime140.dll"
 
-    INSTALLS += target deploy_files translations qrawspeed msvcrt
+    assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
+    assoc_icons.files = \
+        ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_dds.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_gif.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_icon.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_jpeg.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_png.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_raw.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tga.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
+
+    INSTALLS += target deploy_files translations qrawspeed msvcrt assoc_icons
 } }
 
 
@@ -80,7 +95,7 @@ INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
-INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
+INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview ./src/qlanguageselector
 
 LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
 
@@ -125,6 +140,7 @@ SOURCES += \
     src/widgets/flowlayout.cpp \
     src/widgets/pageslider.cpp \
     src/widgets/shortcutbutton.cpp \
+    src/qlanguageselector/qlanguageselector.cpp
 
 HEADERS  += \
     src/catalog/catalogwindow.h \
@@ -157,6 +173,7 @@ HEADERS  += \
     src/widgets/flowlayout.h \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
+    src/qlanguageselector/qlanguageselector.h
 
 
 win32 {

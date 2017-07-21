@@ -201,19 +201,6 @@
        </widget>
       </item>
      </layout>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>413</x>
-        <y>98</y>
-        <width>56</width>
-        <height>145</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string notr="true"/>
-      </property>
-     </widget>
     </widget>
    </item>
    <item>

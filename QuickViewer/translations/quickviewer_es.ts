@@ -315,6 +315,141 @@
     </message>
 </context>
 <context>
+    <name>FileAssocDialog</name>
+    <message>
+        <source>File Associations to QuickViewer</source>
+        <translation>Asociaciones de archivos a QuickViewer</translation>
+    </message>
+    <message>
+        <source>All On</source>
+        <translation type="unfinished">Todo encendido</translation>
+    </message>
+    <message>
+        <source>Truevision Graphics Adapter Format (*.tga)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nicon Raw Format (*.nef)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canon Raw Format (*.crw, *.cr2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Off</source>
+        <translation type="unfinished">Todo apagado</translation>
+    </message>
+    <message>
+        <source>Sony Raw Format (*.arw)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for Ricoh, Casio, Pentax, Nokia, Leica, etc..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adobe Digital Negative Format (*.dng)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitmap Format (*.bmp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WebP Format (*.webp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG Format (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Animated PNG Format (*.apng)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows Icon Format (*.ico)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TIFF Format (*.tif, *.tiff)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Format (*.dds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GIF Format (*.gif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JPEG Format (*.jpg, *.jpeg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JPEG Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG Format Image</source>
+        <translation>PNG Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Truevision Graphics Adapter Format Image</source>
+        <translation>Truevision Graphics Adapter Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Animated PNG Format Image</source>
+        <translation>PNG animado Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Windows Bitmap Format Image</source>
+        <translation>Windows Bitmap Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Format Image</source>
+        <translation>DirectDraw Surface Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>GIF Format Image</source>
+        <translation>GIF Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Windows Icon Format</source>
+        <translation>Windows Icon Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Tiff Format Image</source>
+        <translation>Tiff Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>WebP Format Image</source>
+        <translation>WebP Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Canon Raw Format</source>
+        <translation>Canon Raw Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Adobe Digital Negative Format</source>
+        <translation>Adobe Digital Negative Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Nicon Raw Format</source>
+        <translation>Nicon Raw Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>Sony Raw Format</source>
+        <translation>Sony Raw Formatear Imagen</translation>
+    </message>
+    <message>
+        <source>&amp;View with QuickViewer</source>
+        <translation>&amp;Ver con QuickViewer</translation>
+    </message>
+</context>
+<context>
     <name>FolderItemModel</name>
     <message>
         <source>Name</source>
@@ -475,6 +610,7 @@
     </message>
     <message>
         <source>&amp;Fitting</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
         <translation>&amp;Agrandamiento o Reducción de imagen automático</translation>
     </message>
     <message>
@@ -483,6 +619,7 @@
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
+        <extracomment>Arranging two images side by side like when opening a book</extracomment>
         <translation>&amp;Vista de dos páginas</translation>
     </message>
     <message>
@@ -499,6 +636,7 @@
     </message>
     <message>
         <source>Bound on the &amp;right side book</source>
+        <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
         <translation>Limitar en el libro de lado derecho</translation>
     </message>
     <message>
@@ -507,6 +645,7 @@
     </message>
     <message>
         <source>&amp;Always open wide images as one view</source>
+        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
         <translation>&amp;Imágenes amplia siempre abiertos como una vista</translation>
     </message>
     <message>
@@ -523,6 +662,7 @@
     </message>
     <message>
         <source>&amp;Auto load last used</source>
+        <extracomment>Opening the image automatically when opening the application the last time it was started</extracomment>
         <translation>Restaurar el inicio al final de la última</translation>
     </message>
     <message>
@@ -579,10 +719,12 @@
     </message>
     <message>
         <source>Next only &amp;one page</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation>Avanza solo &amp;Una Página</translation>
     </message>
     <message>
         <source>Prev only o&amp;ne page</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation>Vuelve solo &amp;Una Página</translation>
     </message>
     <message>
@@ -595,6 +737,7 @@
     </message>
     <message>
         <source>Always open &amp;first images as one view</source>
+        <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
         <translation>Primera imagen abiertos como una vista</translation>
     </message>
     <message>
@@ -639,6 +782,7 @@
     </message>
     <message>
         <source>&amp;Restore Window State on next run</source>
+        <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
         <translation>&amp;Restaura Window State el próximo arranque</translation>
     </message>
     <message>
@@ -783,6 +927,7 @@
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
+        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
         <translation>CPU Bicúbica después GPU Bilineal(estándar)</translation>
     </message>
     <message>
@@ -791,6 +936,7 @@
     </message>
     <message>
         <source>ShowSubfolders</source>
+        <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
         <translation>También abre la imágen de subarchivo</translation>
     </message>
     <message>
@@ -832,6 +978,14 @@
     <message>
         <source>Show texts on Fullscreen</source>
         <translation>Mostrar textos en pantalla completa</translation>
+    </message>
+    <message>
+        <source>Confirm to move Image to &amp;Recycle Bin</source>
+        <translation>Confirmar para mover la imagen a la Papelera de &amp;reciclaje</translation>
+    </message>
+    <message>
+        <source>Image Associations (require Administration)</source>
+        <translation>Asociaciones de imágenes (requieren administración)</translation>
     </message>
 </context>
 <context>

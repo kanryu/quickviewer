@@ -54,7 +54,6 @@ protected:
     void mousePressEvent(QMouseEvent *e) override;
     void closeEvent(QCloseEvent *e) override;
     void resizeEvent(QResizeEvent *e) override;
-    void changeEvent(QEvent *e) override;
 
 public slots:
     // File
@@ -116,10 +115,12 @@ public slots:
     void on_projectPage_triggered();
     void on_checkVersion_triggered();
     void on_appVersion_triggered();
-    void on_languageEnglish_triggered();
-    void on_languageJapanese_triggered();
-    void on_languageSpanish_triggered();
-    void on_languageChinese_triggered();
+//    void on_languageEnglish_triggered();
+//    void on_languageJapanese_triggered();
+//    void on_languageSpanish_triggered();
+//    void on_languageChinese_triggered();
+    void on_languageChanged_triggered(QString language);
+    void on_registAssocs_triggered();
 
     // ContextMenus
     void on_openfolder_triggered();
@@ -127,6 +128,7 @@ public slots:
     void on_exitApplicationOrFullscreen_triggered();
     void on_mailAttachment_triggered();
     void on_renameImageFile_triggered();
+    void on_confirmDeletePage_triggered(bool enable);
 
     // Shaders
     void on_shaderNearestNeighbor_triggered();

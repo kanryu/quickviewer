@@ -61,16 +61,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionShowFullscreenSignage->setChecked(qApp->ShowFullscreenSignage());
 
     // Languages
-    m_languageMenuGroup
-            << ui->actionLanguageJapanese
-            << ui->actionLanguageSpanish
-            << ui->actionLanguageEnglish
-            << ui->actionLanguageChinese;
-    QString lang = qApp->UiLanguage().left(2);
-    if(lang == "ja") ui->actionLanguageJapanese->setChecked(true);
-    else if(lang == "es") ui->actionLanguageSpanish->setChecked(true);
-    else if(lang == "zh") ui->actionLanguageChinese->setChecked(true);
-    else ui->actionLanguageEnglish->setChecked(true);
+    qApp->languageSelector()->initializeMenu(ui->menuChange_Language);
+    connect(qApp->languageSelector(), SIGNAL(languageChanged(QString)), this, SLOT(on_languageChanged_triggered(QString)));
 
     // ToolBar/PageBar/StatusBar/MenuBar
     ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
@@ -621,40 +613,17 @@ void MainWindow::on_appVersion_triggered()
     msgBox.exec();
 }
 
-void MainWindow::on_languageEnglish_triggered()
+void MainWindow::on_languageChanged_triggered(QString language)
 {
-    qApp->setUiLanguage("en");
-    uncheckAllLanguageMenus();
-    ui->actionLanguageEnglish->setChecked(true);
-    qApp->installTranslator();
+    qApp->setUiLanguage(language);
     ui->retranslateUi(this);
 }
 
-void MainWindow::on_languageJapanese_triggered()
+void MainWindow::on_registAssocs_triggered()
 {
-    qApp->setUiLanguage("ja");
-    uncheckAllLanguageMenus();
-    ui->actionLanguageJapanese->setChecked(true);
-    qApp->installTranslator();
-    ui->retranslateUi(this);
-}
-
-void MainWindow::on_languageSpanish_triggered()
-{
-    qApp->setUiLanguage("es");
-    uncheckAllLanguageMenus();
-    ui->actionLanguageSpanish->setChecked(true);
-    qApp->installTranslator();
-    ui->retranslateUi(this);
-}
-
-void MainWindow::on_languageChinese_triggered()
-{
-    qApp->setUiLanguage("zh");
-    uncheckAllLanguageMenus();
-    ui->actionLanguageChinese->setChecked(true);
-    qApp->installTranslator();
-    ui->retranslateUi(this);
+    QProcess::startDetached("AssociateFilesWithQuickViewer",
+                            QStringList(),
+                            QDir::toNativeSeparators(qApp->applicationDirPath()));
 }
 
 void MainWindow::on_autoloaded_triggered(bool autoloaded)
@@ -680,14 +649,6 @@ void MainWindow::resizeEvent(QResizeEvent *e)
         ui->catalogSplitter->setSizes(sizes);
     }
     QMainWindow::resizeEvent(e);
-}
-
-void MainWindow::changeEvent(QEvent *e)
-{
-//    if(e->type() == QEvent::LanguageChange) {
-//        ui->retranslateUi(this);
-//    }
-    QMainWindow::changeEvent(e);
 }
 
 void MainWindow::on_folderWindow_triggered()
@@ -1068,6 +1029,11 @@ void MainWindow::on_renameImageFile_triggered()
     }
 }
 
+void MainWindow::on_confirmDeletePage_triggered(bool enable)
+{
+    qApp->setConfirmDeletePage(enable);
+}
+
 void MainWindow::on_deletePage_triggered()
 {
     if(m_pageManager.currentPageCount() <= 0 || !m_pageManager.isFolder())
@@ -1075,27 +1041,29 @@ void MainWindow::on_deletePage_triggered()
     QString path = m_pageManager.currentPagePath();
     if(!path.length())
         return;
-    QMessageBox msgBox(this);
-    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-    msgBox.setDefaultButton(QMessageBox::Cancel);
-    msgBox.setWindowTitle(tr("Confirmation"));
+    if(qApp->ConfirmDeletePage()) {
+        QMessageBox msgBox(this);
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        msgBox.setWindowTitle(tr("Confirmation"));
 
-    //text
-    msgBox.setTextFormat(Qt::RichText);
-    QString message = QString("<h2>%1</h2><p>%2</p>" )
-            .arg(tr("Are you sure you delete the image?"))
-            .arg(path);
-    msgBox.setText(message);
+        //text
+        msgBox.setTextFormat(Qt::RichText);
+        QString message = QString("<h2>%1</h2><p>%2</p>" )
+                .arg(tr("Are you sure you delete the image?"))
+                .arg(path);
+        msgBox.setText(message);
 
-    //icon
-    QVector<ImageContent> ic = m_pageManager.currentPageContent();
-    QImage image = ic[0].Image.toImage();
-    image = image.scaled(QSize(100, 100), Qt::KeepAspectRatio);
-    msgBox.setIconPixmap(QPixmap::fromImage(image));
+        //icon
+        QVector<ImageContent> ic = m_pageManager.currentPageContent();
+        QImage image = ic[0].Image.toImage();
+        image = image.scaled(QSize(100, 100), Qt::KeepAspectRatio);
+        msgBox.setIconPixmap(QPixmap::fromImage(image));
 
 
-    if(msgBox.exec() == QMessageBox::Cancel) {
-        return;
+        if(msgBox.exec() == QMessageBox::Cancel) {
+            return;
+        }
     }
     if(moveToTrush(path))  {
         // if deletion successed, reload the volume

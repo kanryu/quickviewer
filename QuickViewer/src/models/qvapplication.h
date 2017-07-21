@@ -7,6 +7,7 @@
 
 #include "qv_init.h"
 #include "bookprogressmanager.h"
+#include "qlanguageselector.h"
 
 #if defined(qApp)
 #undef qApp
@@ -89,12 +90,13 @@ class QVApplication : public QApplication
 
     // Other
     Q_PROPERTY(QString UiLanguage READ UiLanguage WRITE setUiLanguage)
+    Q_PROPERTY(bool ConfirmDeletePage READ ConfirmDeletePage WRITE setConfirmDeletePage)
 
 public:
     explicit QVApplication(int &argc, char **argv);
     QString getApplicationFilePath(QString subFilePath);
 
-    void installTranslator();
+    void myInstallTranslator();
 
     // View
     bool Fitting() { return m_fitting; }
@@ -208,6 +210,9 @@ public:
     // Others
     QString UiLanguage() { return m_uiLanguage; }
     void setUiLanguage (QString uiLanguage) { m_uiLanguage = uiLanguage; }
+    QLanguageSelector* languageSelector() { return &m_languageSelector; }
+    bool ConfirmDeletePage() { return m_confirmDeletePage; }
+    void setConfirmDeletePage(bool confirmDeletePage) { m_confirmDeletePage = confirmDeletePage; }
 
     // Key Config
     QMap<QString, QKeySequence>& KeyConfigMap() { return m_keyConfigs; }
@@ -222,6 +227,13 @@ public:
     QKeySequence getKeyDefault (const QString& actionName) { return m_keyConfigDefauls.contains(actionName) ? m_keyConfigDefauls[actionName] : QKeySequence(); }
     QMap<QString, QAction*>& ActionMapByName() { return m_actionsByName; }
     QMap<QKeySequence, QString>& KeyConfigMapReverse() { return m_keyConfigsReverse; }
+    /**
+     * @brief registAction
+     * @param actionName
+     * @param action
+     * Register action into QMap. A shortcut key is assigned to each action,
+     *  and it becomes editable on KeyConfigDialog.
+     */
     void registAction(const QString& actionName, QAction* action) {
         m_actionsByName[actionName] = action;
         QKeySequence seq = m_keyConfigs[actionName];
@@ -365,6 +377,8 @@ private:
     // Others
     QString m_uiLanguage;
     QTranslator *m_translator;
+    QLanguageSelector m_languageSelector;
+    bool m_confirmDeletePage;
 
     QSettings m_settings;
     BookProgressManager* m_bookshelfManager;

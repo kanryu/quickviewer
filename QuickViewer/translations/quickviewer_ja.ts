@@ -315,6 +315,141 @@
     </message>
 </context>
 <context>
+    <name>FileAssocDialog</name>
+    <message>
+        <source>File Associations to QuickViewer</source>
+        <translation>QuickViewerへのファイルの関連付け</translation>
+    </message>
+    <message>
+        <source>All On</source>
+        <translation>全て有効</translation>
+    </message>
+    <message>
+        <source>Truevision Graphics Adapter Format (*.tga)</source>
+        <translation>Truevision Graphics Adapterフォーマット (*.tga)</translation>
+    </message>
+    <message>
+        <source>Nicon Raw Format (*.nef)</source>
+        <translation>Nicon Raw形式 (*.nef)</translation>
+    </message>
+    <message>
+        <source>Canon Raw Format (*.crw, *.cr2)</source>
+        <translation>Canon Raw形式 (*.crw, *.cr2)</translation>
+    </message>
+    <message>
+        <source>All Off</source>
+        <translation>全て無効</translation>
+    </message>
+    <message>
+        <source>Sony Raw Format (*.arw)</source>
+        <translation>Sony Raw形式 (*.arw)</translation>
+    </message>
+    <message>
+        <source>for Ricoh, Casio, Pentax, Nokia, Leica, etc..</source>
+        <translation>リコー、カシオ、ペンタックス、ノキア、ライカなど</translation>
+    </message>
+    <message>
+        <source>Adobe Digital Negative Format (*.dng)</source>
+        <translation>Adobe Digital Negativeフォーマット (*.dng)</translation>
+    </message>
+    <message>
+        <source>Bitmap Format (*.bmp)</source>
+        <translation>ビットマップ形式 (*.bmp)</translation>
+    </message>
+    <message>
+        <source>WebP Format (*.webp)</source>
+        <translation>WebP イメージ (*.webp)</translation>
+    </message>
+    <message>
+        <source>PNG Format (*.png)</source>
+        <translation>PNG ファイル (*.png)</translation>
+    </message>
+    <message>
+        <source>Animated PNG Format (*.apng)</source>
+        <translation>アニメーションPNG形式 (*a.png)</translation>
+    </message>
+    <message>
+        <source>Windows Icon Format (*.ico)</source>
+        <translation>Windowsアイコン形式 (*.ico)</translation>
+    </message>
+    <message>
+        <source>TIFF Format (*.tif, *.tiff)</source>
+        <translation>TIFFイメージ (*.tif, *.tiff)</translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Format (*.dds)</source>
+        <translation>DirectDraw Surface形式 (*.dds)</translation>
+    </message>
+    <message>
+        <source>GIF Format (*.gif)</source>
+        <translation>GIF イメージ (*.gif)</translation>
+    </message>
+    <message>
+        <source>JPEG Format (*.jpg, *.jpeg)</source>
+        <translation>JPEG イメージ (*.jpg, *.jpeg)</translation>
+    </message>
+    <message>
+        <source>JPEG Format Image</source>
+        <translation>JPEG イメージ</translation>
+    </message>
+    <message>
+        <source>PNG Format Image</source>
+        <translation>PNG ファイル</translation>
+    </message>
+    <message>
+        <source>Truevision Graphics Adapter Format Image</source>
+        <translation>Truevision Graphics Adapter イメージ</translation>
+    </message>
+    <message>
+        <source>Animated PNG Format Image</source>
+        <translation>アニメーション PNG ファイル</translation>
+    </message>
+    <message>
+        <source>Windows Bitmap Format Image</source>
+        <translation>Windows ビットマップ画像</translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Format Image</source>
+        <translation>DirectDraw Surfaceイメージ</translation>
+    </message>
+    <message>
+        <source>GIF Format Image</source>
+        <translation>GIF イメージ</translation>
+    </message>
+    <message>
+        <source>Windows Icon Format</source>
+        <translation>Windows アイコンファイル</translation>
+    </message>
+    <message>
+        <source>Tiff Format Image</source>
+        <translation>Tiff イメージ</translation>
+    </message>
+    <message>
+        <source>WebP Format Image</source>
+        <translation>WebP イメージ</translation>
+    </message>
+    <message>
+        <source>Canon Raw Format</source>
+        <translation>Canon Raw形式</translation>
+    </message>
+    <message>
+        <source>Adobe Digital Negative Format</source>
+        <translation>Adobe Digital Negative形式</translation>
+    </message>
+    <message>
+        <source>Nicon Raw Format</source>
+        <translation>Nicon Raw形式</translation>
+    </message>
+    <message>
+        <source>Sony Raw Format</source>
+        <translation>Sony Raw形式</translation>
+    </message>
+    <message>
+        <source>&amp;View with QuickViewer</source>
+        <translation>QuickViewerで開く(&amp;V)</translation>
+    </message>
+</context>
+<context>
     <name>FolderItemModel</name>
     <message>
         <source>Name</source>
@@ -638,6 +773,7 @@
     </message>
     <message>
         <source>&amp;Fitting</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
         <translation>フィット表示(&amp;F)</translation>
     </message>
     <message>
@@ -646,6 +782,7 @@
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
+        <extracomment>Arranging two images side by side like when opening a book</extracomment>
         <translation>見開き表示(&amp;D)</translation>
     </message>
     <message>
@@ -670,6 +807,7 @@
     </message>
     <message>
         <source>Bound on the &amp;right side book</source>
+        <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
         <translation>右開きで表示(&amp;R)</translation>
     </message>
     <message>
@@ -678,6 +816,7 @@
     </message>
     <message>
         <source>&amp;Always open wide images as one view</source>
+        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
         <translation>横長の画像は見開き表示でも1枚だけ表示する(&amp;A)</translation>
     </message>
     <message>
@@ -702,6 +841,7 @@
     </message>
     <message>
         <source>&amp;Auto load last used</source>
+        <extracomment>Opening the image automatically when opening the application the last time it was started</extracomment>
         <translation>起動時に前回終了時に復元(&amp;A)</translation>
     </message>
     <message>
@@ -766,10 +906,12 @@
     </message>
     <message>
         <source>Next only &amp;one page</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation>1ページだけ進める(&amp;O)</translation>
     </message>
     <message>
         <source>Prev only o&amp;ne page</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation>1ページだけ戻る(&amp;N)</translation>
     </message>
     <message>
@@ -786,6 +928,7 @@
     </message>
     <message>
         <source>Always open &amp;first images as one view</source>
+        <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
         <translation>最初(表紙)の画像は見開き表示でも1枚だけ表示する(&amp;F)</translation>
     </message>
     <message>
@@ -866,6 +1009,7 @@
     </message>
     <message>
         <source>&amp;Restore Window State on next run</source>
+        <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
         <translation>ウィンドウの表示を次回起動時に復元する(&amp;R)</translation>
     </message>
     <message>
@@ -1026,6 +1170,7 @@
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
+        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
         <translation>GPUによるバイリニアの後、CPUによるバイキュービック(標準)</translation>
     </message>
     <message>
@@ -1034,6 +1179,7 @@
     </message>
     <message>
         <source>ShowSubfolders</source>
+        <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
         <translation>サブフォルダの画像も開く</translation>
     </message>
     <message>
@@ -1071,6 +1217,14 @@
     <message>
         <source>Show texts on Fullscreen</source>
         <translation>フルスクリーン時にテキストを表示する</translation>
+    </message>
+    <message>
+        <source>Confirm to move Image to &amp;Recycle Bin</source>
+        <translation>ゴミ箱に移動する際に確認する(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Image Associations (require Administration)</source>
+        <translation>画像の関連付け (管理者権限が必要)</translation>
     </message>
 </context>
 <context>

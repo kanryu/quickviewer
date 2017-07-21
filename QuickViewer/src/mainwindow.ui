@@ -257,14 +257,11 @@
      <property name="title">
       <string notr="true">Language</string>
      </property>
-     <addaction name="actionLanguageEnglish"/>
-     <addaction name="actionLanguageSpanish"/>
-     <addaction name="actionLanguageChinese"/>
-     <addaction name="actionLanguageJapanese"/>
     </widget>
     <addaction name="menuChange_Language"/>
     <addaction name="actionOpenKeyConfig"/>
     <addaction name="actionOpenOptionsDialog"/>
+    <addaction name="actionRegistAssocs"/>
     <addaction name="separator"/>
     <addaction name="actionProjectWeb"/>
     <addaction name="actionCheckVersion"/>
@@ -358,6 +355,7 @@
     <addaction name="actionShowReadProgress"/>
     <addaction name="separator"/>
     <addaction name="actionShowSubfolders"/>
+    <addaction name="actionConfirmDeletePage"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuNavigation"/>
@@ -474,7 +472,7 @@
      <normaloff>:/icons/maximize_icon</normaloff>:/icons/maximize_icon</iconset>
    </property>
    <property name="text">
-    <string>&amp;Fitting</string>
+    <string extracomment="Automatically resize the image according to the size of the window">&amp;Fitting</string>
    </property>
    <property name="toolTip">
     <string>Fitting</string>
@@ -489,7 +487,7 @@
      <normaloff>:/icons/dualview</normaloff>:/icons/dualview</iconset>
    </property>
    <property name="text">
-    <string>&amp;Spread Viewing</string>
+    <string extracomment="Arranging two images side by side like when opening a book">&amp;Spread Viewing</string>
    </property>
    <property name="iconText">
     <string>Spread Viewing</string>
@@ -524,7 +522,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Auto load last used</string>
+    <string extracomment="Opening the image automatically when opening the application the last time it was started">&amp;Auto load last used</string>
    </property>
   </action>
   <action name="actionRightSideBook">
@@ -532,7 +530,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Bound on the &amp;right side book</string>
+    <string extracomment="Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page">Bound on the &amp;right side book</string>
    </property>
   </action>
   <action name="actionOpenFolder">
@@ -545,7 +543,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Always open wide images as one view</string>
+    <string extracomment="Automatically switch because it may spread 2 pages are combined into one image in the digital book">&amp;Always open wide images as one view</string>
    </property>
   </action>
   <action name="actionLastPage">
@@ -620,12 +618,12 @@
   </action>
   <action name="actionNextOnePage">
    <property name="text">
-    <string>Next only &amp;one page</string>
+    <string extracomment="Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation">Next only &amp;one page</string>
    </property>
   </action>
   <action name="actionPrevOnePage">
    <property name="text">
-    <string>Prev only o&amp;ne page</string>
+    <string extracomment="Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation">Prev only o&amp;ne page</string>
    </property>
   </action>
   <action name="actionExitApplicationOrFullscreen">
@@ -646,7 +644,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Always open &amp;first images as one view</string>
+    <string extracomment="In the case of a digital book, since the first image is a cover page, only one image is displayed">Always open &amp;first images as one view</string>
    </property>
   </action>
   <action name="actionShowMenuBar">
@@ -726,7 +724,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Restore Window State on next run</string>
+    <string extracomment="When restarting the next time, restore the position size of the window at the time of the last termination">&amp;Restore Window State on next run</string>
    </property>
   </action>
   <action name="actionFastForward">
@@ -923,7 +921,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>CPU Bicubic after GPU Bilinear(standard)</string>
+    <string extracomment="Preview by bilinear with GPU, then replace with bicubic resized image by CPU">CPU Bicubic after GPU Bilinear(standard)</string>
    </property>
   </action>
   <action name="actionShaderCpuBicubic">
@@ -943,7 +941,7 @@
      <normaloff>:/icons/subfolders_icon</normaloff>:/icons/subfolders_icon</iconset>
    </property>
    <property name="text">
-    <string>ShowSubfolders</string>
+    <string extracomment="When enumerating images, subfolders are also included in the range">ShowSubfolders</string>
    </property>
    <property name="iconText">
     <string>ShowImages in sub folders</string>
@@ -986,30 +984,6 @@
     <string>Don't enlarge small images on Fitting</string>
    </property>
   </action>
-  <action name="actionLanguageEnglish">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string notr="true">English</string>
-   </property>
-  </action>
-  <action name="actionLanguageJapanese">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string notr="true">Japanese</string>
-   </property>
-  </action>
-  <action name="actionLanguageSpanish">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string notr="true">Spanish</string>
-   </property>
-  </action>
   <action name="actionChange_Language">
    <property name="text">
     <string notr="true">Language</string>
@@ -1031,14 +1005,6 @@
     <string>Show texts on Fullscreen</string>
    </property>
   </action>
-  <action name="actionLanguageChinese">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Chinese</string>
-   </property>
-  </action>
   <action name="actionOpenKeyConfig">
    <property name="icon">
     <iconset resource="../toolbar.qrc">
@@ -1046,6 +1012,19 @@
    </property>
    <property name="text">
     <string>&amp;Key Config</string>
+   </property>
+  </action>
+  <action name="actionConfirmDeletePage">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Confirm to move Image to &amp;Recycle Bin</string>
+   </property>
+  </action>
+  <action name="actionRegistAssocs">
+   <property name="text">
+    <string>Image Associations (require Administration)</string>
    </property>
   </action>
  </widget>
@@ -2183,54 +2162,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionLanguageEnglish</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_languageEnglish_triggered()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>350</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionLanguageJapanese</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_languageJapanese_triggered()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>350</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionLanguageSpanish</sender>
-   <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>on_languageSpanish_triggered()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>350</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionBeginAsFullscreen</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
@@ -2263,10 +2194,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionLanguageChinese</sender>
+   <sender>actionOpenKeyConfig</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_languageChinese_triggered()</slot>
+   <slot>on_openKeyConfig_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2279,10 +2210,26 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionOpenKeyConfig</sender>
+   <sender>actionConfirmDeletePage</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_confirmDeletePage_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRegistAssocs</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openKeyConfig_triggered()</slot>
+   <slot>on_registAssocs_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2352,11 +2299,9 @@
   <slot>on_openOptionsDialog_triggered()</slot>
   <slot>on_renameImageFile_triggered()</slot>
   <slot>on_openExifDialog_triggered()</slot>
-  <slot>on_languageEnglish_triggered()</slot>
-  <slot>on_languageJapanese_triggered()</slot>
-  <slot>on_languageSpanish_triggered()</slot>
   <slot>on_beginAsFullscreen_triggered(bool)</slot>
   <slot>on_showFullscreenSignage_triggered(bool)</slot>
-  <slot>on_languageChinese_triggered()</slot>
+  <slot>on_confirmDeletePage_triggered(bool)</slot>
+  <slot>on_registAssocs_triggered()</slot>
  </slots>
 </ui>

@@ -8,7 +8,8 @@ SUBDIRS = \
     zimg \
     QuickViewer \
     zlib \
-    quazip 
+    quazip \ 
+
 #    QuickCatalog
 
 
@@ -16,6 +17,10 @@ quazip.depends = zlib
 fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar quazip zlib
 QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 
+win32 {
+    SUBDIRS += AssociateFilesWithQuickViewer
+    QuickViewer.depends += AssociateFilesWithQuickViewer
+}
 
 
 CODECFORSRC = UTF-8

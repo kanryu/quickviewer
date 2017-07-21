@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FileAssocDialog</class>
+ <widget class="QDialog" name="FileAssocDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>465</width>
+    <height>261</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>File Associations to QuickViewer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons2/app_icon2</normaloff>:/icons2/app_icon2</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="8" column="0">
+    <widget class="QPushButton" name="btnAllOn">
+     <property name="text">
+      <string>All On</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QCheckBox" name="checkBoxTga">
+     <property name="text">
+      <string>Truevision Graphics Adapter Format (*.tga)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QCheckBox" name="checkBoxRawNicon">
+     <property name="text">
+      <string>Nicon Raw Format (*.nef)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxRawCanon">
+     <property name="text">
+      <string>Canon Raw Format (*.crw, *.cr2)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QPushButton" name="btnAllOff">
+     <property name="text">
+      <string>All Off</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxRawSony">
+     <property name="text">
+      <string>Sony Raw Format (*.arw)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QCheckBox" name="checkBoxRawDng">
+     <property name="toolTip">
+      <string>for Ricoh, Casio, Pentax, Nokia, Leica, etc..</string>
+     </property>
+     <property name="text">
+      <string>Adobe Digital Negative Format (*.dng)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxBmp">
+     <property name="text">
+      <string>Bitmap Format (*.bmp)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxWebp">
+     <property name="text">
+      <string>WebP Format (*.webp)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxPng">
+     <property name="text">
+      <string>PNG Format (*.png)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QCheckBox" name="checkBoxApng">
+     <property name="text">
+      <string>Animated PNG Format (*.apng)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QCheckBox" name="checkBoxIcon">
+     <property name="text">
+      <string>Windows Icon Format (*.ico)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxTiff">
+     <property name="text">
+      <string>TIFF Format (*.tif, *.tiff)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QCheckBox" name="checkBoxDds">
+     <property name="text">
+      <string>DirectDraw Surface Format (*.dds)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QCheckBox" name="checkBoxGif">
+     <property name="text">
+      <string>GIF Format (*.gif)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxJpeg">
+     <property name="text">
+      <string>JPEG Format (*.jpg, *.jpeg)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>FileAssocDialog</receiver>
+   <slot>on_tryRegist_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>FileAssocDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAllOff</sender>
+   <signal>clicked()</signal>
+   <receiver>FileAssocDialog</receiver>
+   <slot>on_allOff_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>152</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>232</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAllOn</sender>
+   <signal>clicked()</signal>
+   <receiver>FileAssocDialog</receiver>
+   <slot>on_allOn_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>54</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>232</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>closed()</signal>
+  <slot>on_allOn_triggered()</slot>
+  <slot>on_allOff_triggered()</slot>
+  <slot>on_tryRegist_triggered()</slot>
+ </slots>
+</ui>

@@ -315,6 +315,141 @@
     </message>
 </context>
 <context>
+    <name>FileAssocDialog</name>
+    <message>
+        <source>File Associations to QuickViewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Truevision Graphics Adapter Format (*.tga)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nicon Raw Format (*.nef)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canon Raw Format (*.crw, *.cr2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sony Raw Format (*.arw)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>for Ricoh, Casio, Pentax, Nokia, Leica, etc..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adobe Digital Negative Format (*.dng)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitmap Format (*.bmp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WebP Format (*.webp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG Format (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Animated PNG Format (*.apng)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows Icon Format (*.ico)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TIFF Format (*.tif, *.tiff)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Format (*.dds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GIF Format (*.gif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JPEG Format (*.jpg, *.jpeg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JPEG Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Truevision Graphics Adapter Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Animated PNG Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows Bitmap Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GIF Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows Icon Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tiff Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WebP Format Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Canon Raw Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adobe Digital Negative Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nicon Raw Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sony Raw Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View with QuickViewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FolderItemModel</name>
     <message>
         <source>Name</source>
@@ -475,6 +610,7 @@
     </message>
     <message>
         <source>&amp;Fitting</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
         <translation>按APP尺寸显示(&amp;F)</translation>
     </message>
     <message>
@@ -483,6 +619,7 @@
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
+        <extracomment>Arranging two images side by side like when opening a book</extracomment>
         <translation>合页显示(&amp;D)</translation>
     </message>
     <message>
@@ -499,6 +636,7 @@
     </message>
     <message>
         <source>Bound on the &amp;right side book</source>
+        <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
         <translation>右侧开启的装订显示(&amp;R)</translation>
     </message>
     <message>
@@ -507,6 +645,7 @@
     </message>
     <message>
         <source>&amp;Always open wide images as one view</source>
+        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
         <translation>横宽的图像合页显示时也只显示一张(&amp;A)</translation>
     </message>
     <message>
@@ -523,6 +662,7 @@
     </message>
     <message>
         <source>&amp;Auto load last used</source>
+        <extracomment>Opening the image automatically when opening the application the last time it was started</extracomment>
         <translation>启动时复原以前关掉时的状态(&amp;A)</translation>
     </message>
     <message>
@@ -579,10 +719,12 @@
     </message>
     <message>
         <source>Next only &amp;one page</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation>只翻一页(&amp;O)</translation>
     </message>
     <message>
         <source>Prev only o&amp;ne page</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation>只回一页(&amp;N)</translation>
     </message>
     <message>
@@ -595,6 +737,7 @@
     </message>
     <message>
         <source>Always open &amp;first images as one view</source>
+        <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
         <translation>开始(封面)的图像合页显示时也只显示一张(&amp;F)</translation>
     </message>
     <message>
@@ -639,6 +782,7 @@
     </message>
     <message>
         <source>&amp;Restore Window State on next run</source>
+        <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
         <translation>把窗口的表示下打开程序时恢复以前的状态(&amp;R)</translation>
     </message>
     <message>
@@ -783,6 +927,7 @@
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
+        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
         <translation>用GPU双线性插值后，用CPU双三次插值(标准）</translation>
     </message>
     <message>
@@ -791,6 +936,7 @@
     </message>
     <message>
         <source>ShowSubfolders</source>
+        <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
         <translation>打开子文件夹</translation>
     </message>
     <message>
@@ -832,6 +978,14 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <translation>全文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
+    </message>
+    <message>
+        <source>Confirm to move Image to &amp;Recycle Bin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image Associations (require Administration)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
