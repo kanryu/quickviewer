@@ -23,7 +23,7 @@ void RenameDialog::on_textChanged_triggered(QString text)
 //    QFileInfo info(QDir::toNativeSeparators(dir.absoluteFilePath(text)));
 //    info.exists();
     if(text.isEmpty()) {
-        ui->labelErrorMessage->setText(tr("Filename can't be empty."));
+        ui->labelErrorMessage->setText(tr("Filename can't be empty.", "An error message to be displayed when the file name is set to the empty character in the file name change dialog"));
         ui->labelErrorMessage->setVisible(true);
     } else {
         ui->labelErrorMessage->setVisible(false);
@@ -37,6 +37,6 @@ void RenameDialog::on_tryChangingFilenameAndAccept_triggered()
         accept();
         return;
     }
-    ui->labelErrorMessage->setText(tr("Rename failed. Does the same file name exist?"));
+    ui->labelErrorMessage->setText(tr("Rename failed. Does the same file name exist?", "Error message to display when file name change fails"));
     ui->labelErrorMessage->setVisible(true);
 }

@@ -25,46 +25,46 @@ FileAssocDialog::FileAssocDialog(QWidget *parent) :
     ui->setupUi(this);
 
     m_assocOfActions[ui->checkBoxJpeg] = "Jpeg";
-    m_assocs["Jpeg"] = AssocInfo{"Jpeg", tr("JPEG Format Image"), "qv_jpeg.ico", {".jpg",".jpeg"}};
+    m_assocs["Jpeg"] = AssocInfo{"Jpeg", tr("JPEG Format Image", "description of File format on Explorer(.jpeg)"), "qv_jpeg.ico", {".jpg",".jpeg"}};
 
     m_assocOfActions[ui->checkBoxPng]  = "Png";
-    m_assocs["Png"] = AssocInfo{"Png", tr("PNG Format Image"), "qv_png.ico", {".png"}};
+    m_assocs["Png"] = AssocInfo{"Png", tr("PNG Format Image", "description of File format on Explorer(.png)"), "qv_png.ico", {".png"}};
 
     m_assocOfActions[ui->checkBoxTga]  = "Tga";
-    m_assocs["Tga"] = AssocInfo{"Tga", tr("Truevision Graphics Adapter Format Image"), "qv_tga.ico", {".tga"}};
+    m_assocs["Tga"] = AssocInfo{"Tga", tr("Truevision Graphics Adapter Format Image", "description of File format on Explorer(.tga)"), "qv_tga.ico", {".tga"}};
 
     m_assocOfActions[ui->checkBoxApng] = "Apng";
-    m_assocs["Apng"] = AssocInfo{"Apng", tr("Animated PNG Format Image"), "qv_apng.ico", {".apng"}};
+    m_assocs["Apng"] = AssocInfo{"Apng", tr("Animated PNG Format Image", "description of File format on Explorer(.apng)"), "qv_apng.ico", {".apng"}};
 
     m_assocOfActions[ui->checkBoxBmp]  = "Bitmap";
-    m_assocs["Bitmap"] = AssocInfo{"Bitmap", tr("Windows Bitmap Format Image"), "qv_bmp.ico", {".bmp"}};
+    m_assocs["Bitmap"] = AssocInfo{"Bitmap", tr("Windows Bitmap Format Image", "description of File format on Explorer(.bmp)"), "qv_bmp.ico", {".bmp"}};
 
     m_assocOfActions[ui->checkBoxDds]  = "Dds";
-    m_assocs["Dds"] = AssocInfo{"Dds", tr("DirectDraw Surface Format Image"), "qv_dds.ico", {".dds"}};
+    m_assocs["Dds"] = AssocInfo{"Dds", tr("DirectDraw Surface Format Image", "description of File format on Explorer(.dds)"), "qv_dds.ico", {".dds"}};
 
     m_assocOfActions[ui->checkBoxGif]  = "Gif";
-    m_assocs["Gif"] = AssocInfo{"Gif", tr("GIF Format Image"), "qv_gif.ico", {".gif"}};
+    m_assocs["Gif"] = AssocInfo{"Gif", tr("GIF Format Image", "description of File format on Explorer(.gif)"), "qv_gif.ico", {".gif"}};
 
     m_assocOfActions[ui->checkBoxIcon] = "Icon";
-    m_assocs["Icon"] = AssocInfo{"Icon", tr("Windows Icon Format"), "", {".ico"}};
+    m_assocs["Icon"] = AssocInfo{"Icon", tr("Windows Icon Format", "description of File format on Explorer(.ico)"), "", {".ico"}};
 
     m_assocOfActions[ui->checkBoxTiff] = "Tiff";
-    m_assocs["Tiff"] = AssocInfo{"Tiff", tr("Tiff Format Image"), "qv_tiff.ico", {".tif", ".tiff"}};
+    m_assocs["Tiff"] = AssocInfo{"Tiff", tr("Tiff Format Image", "description of File format on Explorer(.tiff)"), "qv_tiff.ico", {".tif", ".tiff"}};
 
     m_assocOfActions[ui->checkBoxWebp] = "WebP";
-    m_assocs["WebP"] = AssocInfo{"WebP", tr("WebP Format Image"), "qv_webp.ico", {".webp"}};
+    m_assocs["WebP"] = AssocInfo{"WebP", tr("WebP Format Image", "description of File format on Explorer(.webp)"), "qv_webp.ico", {".webp"}};
 
     m_assocOfActions[ui->checkBoxRawCanon] = "RawCanon";
-    m_assocs["RawCanon"] = AssocInfo{"RawCanon", tr("Canon Raw Format"), "qv_raw.ico", {".crw", ".cr2"}};
+    m_assocs["RawCanon"] = AssocInfo{"RawCanon", tr("Canon Raw Format", "description of File format on Explorer(.cr2)"), "qv_raw.ico", {".crw", ".cr2"}};
 
     m_assocOfActions[ui->checkBoxRawDng]   = "RawDng";
-    m_assocs["RawDng"] = AssocInfo{"RawDng", tr("Adobe Digital Negative Format"), "qv_raw.ico", {".dng"}};
+    m_assocs["RawDng"] = AssocInfo{"RawDng", tr("Adobe Digital Negative Format", "description of File format on Explorer(.dng)"), "qv_raw.ico", {".dng"}};
 
     m_assocOfActions[ui->checkBoxRawNicon] = "RawNicon";
-    m_assocs["RawNicon"] = AssocInfo{"RawNicon", tr("Nicon Raw Format"), "qv_raw.ico", {".nef"}};
+    m_assocs["RawNicon"] = AssocInfo{"RawNicon", tr("Nicon Raw Format", "description of File format on Explorer(.nef)"), "qv_raw.ico", {".nef"}};
 
     m_assocOfActions[ui->checkBoxRawSony]  = "RawSony";
-    m_assocs["RawSony"] = AssocInfo{"RawSony", tr("Sony Raw Format"), "qv_raw.ico", {".arw"}};
+    m_assocs["RawSony"] = AssocInfo{"RawSony", tr("Sony Raw Format", "description of File format on Explorer(.arw)"), "qv_raw.ico", {".arw"}};
 }
 
 FileAssocDialog::~FileAssocDialog()
@@ -144,7 +144,7 @@ void FileAssocDialog::registEntries(QStringList formats)
             }
             settings.beginGroup("shell");
             settings.beginGroup("open");
-            settings.setValue(".", tr("&View with QuickViewer"));
+            settings.setValue(".", tr("&View with QuickViewer", "Menu displayed when right clicking on file in Explorer"));
             settings.beginGroup("command");
             settings.setValue(".", getExecuteApplication());
             settings.endGroup();
@@ -180,7 +180,7 @@ void FileAssocDialog::registEntries(QStringList formats)
         QSettings settings(REGKEY_ROOT_QUICKVIEWER, RegFormat);
         settings.beginGroup("shell");
         settings.beginGroup("open");
-        settings.setValue(".", "&View with QuickViewer");
+        settings.setValue(".", tr("&View with QuickViewer", "Menu displayed when right clicking on file in Explorer"));
         settings.beginGroup("command");
         settings.setValue(".", getExecuteApplication());
         settings.endGroup();

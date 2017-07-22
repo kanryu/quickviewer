@@ -66,10 +66,10 @@ ShortcutButton::ShortcutButton(QWidget *parent)
     , m_key({{0, 0, 0, 0}})
 {
     // Using ShortcutButton::tr() as workaround for QTBUG-34128
-    setToolTip(ShortcutButton::tr("Click and type the new key sequence."));
+    setToolTip(ShortcutButton::tr("Click and type the new key sequence.", "Gray text to be displayed on LineEdit to input the shortcut key"));
     setCheckable(true);
-    m_checkedText = ShortcutButton::tr("Stop Recording");
-    m_uncheckedText = ShortcutButton::tr("Record");
+    m_checkedText = ShortcutButton::tr("Stop Recording", "Button for canceling shortcut key input");
+    m_uncheckedText = ShortcutButton::tr("Record", "Button for starting entering the shortcut key");
     updateText();
     connect(this, &ShortcutButton::toggled, this, &ShortcutButton::handleToggleChange);
 }
@@ -174,9 +174,9 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
 
     ui->treeWidget->sortByColumn(0, Qt::AscendingOrder);
     QTreeWidgetItem *header = ui->treeWidget->headerItem();
-    header->setText(0, tr("Command"));
-    header->setText(1, tr("Label"));
-    header->setText(2, tr("Target"));
+    header->setText(0, tr("Command", "Title of the column of Action to be registered with the shortcut key"));
+    header->setText(1, tr("Label", "Title of the column that displays the meaning of the action to be registered with the shortcut key"));
+    header->setText(2, tr("Target", "Title of the column of the content of the shortcut key registered for Action"));
 
     //QVApplication* app = qApp;
     QMap<QString, QAction*>& actions = qApp->ActionMapByName();
@@ -237,11 +237,11 @@ void KeyConfigDialog::on_keySequence_changed(QKeySequence key)
     QString shortcutText = keySequenceToEditString(key);
     setEditTextWithoutSignal(shortcutText);
     if(!keySequenceIsValid(key)) {
-        ui->warningLabel->setText(tr("Invalid key sequence."));
+        ui->warningLabel->setText(tr("Invalid key sequence.", "Message when rejecting input contents of inappropriate shortcut key"));
         return;
     }
     if(markCollisions(key)) {
-        ui->warningLabel->setText(tr("Key sequence has potential conflicts."));
+        ui->warningLabel->setText(tr("Key sequence has potential conflicts.", "Text to be displayed when the entered shortcut key conflicts with another shortcut key"));
         return;
     }
     ui->warningLabel->clear();
@@ -259,7 +259,7 @@ void KeyConfigDialog::on_resetToDefault()
     QString shortcutText = keySequenceToEditString(key);
     setEditTextWithoutSignal(shortcutText);
     if(markCollisions(key)) {
-        ui->warningLabel->setText(tr("Key sequence has potential conflicts."));
+        ui->warningLabel->setText(tr("Key sequence has potential conflicts.", "Text to be displayed when the entered shortcut key conflicts with another shortcut key"));
         return;
     }
     ui->warningLabel->clear();
@@ -279,7 +279,7 @@ void KeyConfigDialog::on_shortcutEdit_changed(QString text)
     if(!m_ignoreEdited) {
         QKeySequence key(text);
         if(!keySequenceIsValid(key)) {
-            ui->warningLabel->setText(tr("Invalid key sequence."));
+            ui->warningLabel->setText(tr("Invalid key sequence.", "Message when rejecting input contents of inappropriate shortcut key"));
             return;
         }
         on_keySequence_changed(key);

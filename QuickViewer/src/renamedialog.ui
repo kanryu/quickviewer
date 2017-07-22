@@ -17,7 +17,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>EditFilename</string>
+      <string extracomment="Label text prompting for file name">EditFilename</string>
      </property>
     </widget>
    </item>

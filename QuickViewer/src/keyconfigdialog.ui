@@ -29,7 +29,7 @@
       <number>3</number>
      </property>
      <attribute name="headerVisible">
-      <bool>true</bool>
+      <bool>false</bool>
      </attribute>
      <attribute name="headerDefaultSectionSize">
       <number>240</number>
@@ -57,7 +57,7 @@
       <bool>false</bool>
      </property>
      <property name="title">
-      <string>Shortcut</string>
+      <string extracomment="Title of the frame in which the shortcut changing function is arranged">Shortcut</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -65,7 +65,7 @@
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Key Sequence:</string>
+           <string extracomment="Title of LineEdit label to which shortcut key is input">Key Sequence:</string>
           </property>
          </widget>
         </item>
@@ -81,7 +81,7 @@
            <bool>false</bool>
           </property>
           <property name="placeholderText">
-           <string>Enter key sequence as text</string>
+           <string extracomment="Enter shortcut keys Gray text to display before inputting LineEdit">Enter key sequence as text</string>
           </property>
           <property name="clearButtonEnabled">
            <bool>true</bool>

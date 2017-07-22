@@ -15,7 +15,7 @@ WNDPROC MainWindowForWindows::DefStaticProc;
 MainWindowForWindows::MainWindowForWindows(QWidget *parent)
     : MainWindow(parent), bFirstView(true)
 {
-    QString menutxt = tr("Sh&ow or Hide MainMenuBar");
+    QString menutxt = tr("Sh&ow or Hide MainMenuBar", "An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden");
     menutxt = ui->actionShowMainMenuBar->text();
 
     MainWindowForWindows_self = this;

@@ -101,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     ui->statusBar->addPermanentWidget(ui->statusLabel);
-    ui->statusLabel->setText(tr("any folder or archive is not loaded."));
+    ui->statusLabel->setText(tr("any folder or archive is not loaded.", "The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated"));
 
     // Shader
     m_shaderMenuGroup
@@ -356,7 +356,7 @@ void MainWindow::loadVolume(QString path)
 //    msgBox.setText(message);
 //    msgBox.exec();
 
-    ui->statusLabel->setText(tr("Can't be opened. Is there no images?"));
+    ui->statusLabel->setText(tr("Can't be opened. Is there no images?", "Text to display in the status bar when failed to open the specified Volume"));
 }
 
 
@@ -876,8 +876,8 @@ void MainWindow::on_catalogIconLongText_triggered(bool enable)
 
 void MainWindow::on_openfolder_triggered()
 {
-    QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)");
-    QString folder = QFileDialog::getOpenFileName(this, tr("Open a image or archive"), "", filter);
+    QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)", "Text that specifies the file extension to be displayed when opening a file with OpenFileFolder");
+    QString folder = QFileDialog::getOpenFileName(this, tr("Open a image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"), "", filter);
 //    QFileDialog dialog = QFileDialog(this, tr("Open a image folder"));
 //    if(dialog.exec()) {
     if(folder.length() > 0) {
@@ -932,8 +932,8 @@ void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
         msgBox.setTextFormat(Qt::RichText);
         QString message = QString("<h2>%1</h2>"
                                   "<p>%2</p>")
-                .arg(tr("Do you really want to clear the main menu?"))
-                .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>"));
+                .arg(tr("Do you really want to clear the main menu?", "Message confirming to hide the main menu"))
+                .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>", "Message confirming to hide the main menu"));
         msgBox.setText(message);
         if(msgBox.exec() == QMessageBox::Cancel) {
             ui->actionShowMenuBar->setChecked(true);
@@ -1045,12 +1045,12 @@ void MainWindow::on_deletePage_triggered()
         QMessageBox msgBox(this);
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
-        msgBox.setWindowTitle(tr("Confirmation"));
+        msgBox.setWindowTitle(tr("Confirmation", "Confirm putting displayed file in Recycle Box MessageBox title"));
 
         //text
         msgBox.setTextFormat(Qt::RichText);
         QString message = QString("<h2>%1</h2><p>%2</p>" )
-                .arg(tr("Are you sure you delete the image?"))
+                .arg(tr("Are you sure you delete the image?", "Confirm putting displayed file in Recycle Box Message Box body"))
                 .arg(path);
         msgBox.setText(message);
 

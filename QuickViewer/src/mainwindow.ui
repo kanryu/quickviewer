@@ -406,7 +406,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
    <property name="text">
-    <string>E&amp;xit</string>
+    <string extracomment="End application">E&amp;xit</string>
    </property>
   </action>
   <action name="actionNextPage">
@@ -415,7 +415,7 @@
      <normaloff>:/icons/page_next_icon2</normaloff>:/icons/page_next_icon2</iconset>
    </property>
    <property name="text">
-    <string>&amp;NextPage</string>
+    <string extracomment="Switch to the next image button">&amp;NextPage</string>
    </property>
    <property name="toolTip">
     <string>NextPage</string>
@@ -433,7 +433,7 @@
      <normaloff>:/icons/page_previous_icon2</normaloff>:/icons/page_previous_icon2</iconset>
    </property>
    <property name="text">
-    <string>&amp;PrevPage</string>
+    <string extracomment="Switch to previous image button">&amp;PrevPage</string>
    </property>
    <property name="toolTip">
     <string>PrevPage</string>
@@ -445,7 +445,7 @@
      <normaloff>:/icons/power_plus_icon</normaloff>:/icons/power_plus_icon</iconset>
    </property>
    <property name="text">
-    <string>Zoom&amp;In</string>
+    <string extracomment="Button for enlarging the currently displayed image">Zoom&amp;In</string>
    </property>
    <property name="toolTip">
     <string>ZoomIn</string>
@@ -457,7 +457,7 @@
      <normaloff>:/icons/power_minus_icon</normaloff>:/icons/power_minus_icon</iconset>
    </property>
    <property name="text">
-    <string>Zoom&amp;Out</string>
+    <string extracomment="Reduce the image currently displayed button">Zoom&amp;Out</string>
    </property>
    <property name="toolTip">
     <string>ZoomOut</string>
@@ -505,7 +505,7 @@
      <normaloff>:/icons/fullscreen2</normaloff>:/icons/fullscreen2</iconset>
    </property>
    <property name="text">
-    <string>&amp;Fullscreen</string>
+    <string extracomment="Button to switch the window display to full screen">&amp;Fullscreen</string>
    </property>
   </action>
   <action name="actionAppVersion">
@@ -514,7 +514,7 @@
      <normaloff>:/icons/appicon</normaloff>:/icons/appicon</iconset>
    </property>
    <property name="text">
-    <string>&amp;About QuickViewer</string>
+    <string extracomment="A menu for displaying a message box for displaying application information">&amp;About QuickViewer</string>
    </property>
   </action>
   <action name="actionAutoLoaded">
@@ -535,7 +535,7 @@
   </action>
   <action name="actionOpenFolder">
    <property name="text">
-    <string>&amp;Open Image Folder</string>
+    <string extracomment="A menu for displaying a dialog for selecting an image to be displayed">&amp;Open Image Folder</string>
    </property>
   </action>
   <action name="actionWideImageAsOneView">
@@ -552,7 +552,7 @@
      <normaloff>:/icons/page_last_icon</normaloff>:/icons/page_last_icon</iconset>
    </property>
    <property name="text">
-    <string>&amp;LastPage</string>
+    <string extracomment="Switch to the last image of Volume currently displayed button">&amp;LastPage</string>
    </property>
   </action>
   <action name="actionFirstPage">
@@ -561,7 +561,7 @@
      <normaloff>:/icons/page_first_icon</normaloff>:/icons/page_first_icon</iconset>
    </property>
    <property name="text">
-    <string>&amp;FirstPage</string>
+    <string extracomment="Switch to the first image of the currently displayed Volume button">&amp;FirstPage</string>
    </property>
   </action>
   <action name="actionShowStatusBar">
@@ -585,17 +585,17 @@
   </action>
   <action name="actionOpenFiler">
    <property name="text">
-    <string>Open &amp;Explorer</string>
+    <string extracomment="Menu that displays Explorer with the currently displayed image file selected">Open &amp;Explorer</string>
    </property>
   </action>
   <action name="actionOpenExif">
    <property name="text">
-    <string>Exif &amp;Information</string>
+    <string extracomment="Button for displaying JPEG Exif information (if any)">Exif &amp;Information</string>
    </property>
   </action>
   <action name="actionCheckVersion">
    <property name="text">
-    <string>Check &amp;Version by your browser</string>
+    <string extracomment="A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page">Check &amp;Version by your browser</string>
    </property>
   </action>
   <action name="actionNextVolume">
@@ -604,7 +604,7 @@
      <normaloff>:/icons/volume_next_icon</normaloff>:/icons/volume_next_icon</iconset>
    </property>
    <property name="text">
-    <string>N&amp;extVolume</string>
+    <string extracomment="Switch to the next Volume in the same folder as the currently displayed Volume button">N&amp;extVolume</string>
    </property>
   </action>
   <action name="actionPrevVolume">
@@ -613,7 +613,7 @@
      <normaloff>:/icons/volume_prev_icon</normaloff>:/icons/volume_prev_icon</iconset>
    </property>
    <property name="text">
-    <string>P&amp;revVolume</string>
+    <string extracomment="Switch to the previous Volume in the same folder as Volume currently being displayed Button">P&amp;revVolume</string>
    </property>
   </action>
   <action name="actionNextOnePage">
@@ -628,7 +628,7 @@
   </action>
   <action name="actionExitApplicationOrFullscreen">
    <property name="text">
-    <string>ExitApplicationOrFullscreen</string>
+    <string extracomment="Function that cancels it while full screen is displayed and terminates the application otherwise">ExitApplicationOrFullscreen</string>
    </property>
   </action>
   <action name="actionShowToolBar">
@@ -657,7 +657,7 @@
   </action>
   <action name="actionClearHistory">
    <property name="text">
-    <string>&amp;Clear History</string>
+    <string extracomment="Menu for clearing the history of opening images">&amp;Clear History</string>
    </property>
   </action>
   <action name="actionStayOnTop">
@@ -669,17 +669,17 @@
      <normaloff>:/icons/stayontop_icon</normaloff>:/icons/stayontop_icon</iconset>
    </property>
    <property name="text">
-    <string>Stay On &amp;Top</string>
+    <string extracomment="Button to display window at the front">Stay On &amp;Top</string>
    </property>
   </action>
   <action name="actionCopyPage">
    <property name="text">
-    <string>&amp;Copy Image to clipboard</string>
+    <string extracomment="A menu for copying the bitmap of the currently displayed image to the clipboard">&amp;Copy Image to clipboard</string>
    </property>
   </action>
   <action name="actionDeletePage">
    <property name="text">
-    <string>Move Image to &amp;Recycle Bin</string>
+    <string extracomment="Menu that puts the currently displayed image in Recycle Bin">Move Image to &amp;Recycle Bin</string>
    </property>
   </action>
   <action name="actionShaderBilinear">
@@ -687,7 +687,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Bilinear interpolation (fast)</string>
+    <string extracomment="Menu to resize the image by bilinear interpolation by GPU">&amp;Bilinear interpolation (fast)</string>
    </property>
   </action>
   <action name="actionShaderBicubic">
@@ -695,7 +695,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Bi&amp;cubic interpolation (slow)</string>
+    <string extracomment="Menu for resizing image by bicubic interpolation by GPU">Bi&amp;cubic interpolation (slow)</string>
    </property>
   </action>
   <action name="actionShaderLanczos">
@@ -703,7 +703,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Lanczos interpolation (very slow)</string>
+    <string extracomment="Menu for resizing image by Lanczos interpolation by GPU">&amp;Lanczos interpolation (very slow)</string>
    </property>
   </action>
   <action name="actionShaderNearestNeighbor">
@@ -711,12 +711,12 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Nearest Neighbor interpolation (coarse)</string>
+    <string extracomment="Menu to resize image by Nearest Neighbor interpolation by GPU">&amp;Nearest Neighbor interpolation (coarse)</string>
    </property>
   </action>
   <action name="actionMaximizeOrNormal">
    <property name="text">
-    <string>&amp;Maximize or Normal</string>
+    <string extracomment="Function to switch windows to maximize or normal display">&amp;Maximize or Normal</string>
    </property>
   </action>
   <action name="actionRestoreWindowState">
@@ -733,7 +733,7 @@
      <normaloff>:/icons/page_next_fast_icon</normaloff>:/icons/page_next_fast_icon</iconset>
    </property>
    <property name="text">
-    <string>FastForward</string>
+    <string extracomment="Switch to 10 images in Volume button">FastForward</string>
    </property>
   </action>
   <action name="actionFastBackward">
@@ -742,12 +742,12 @@
      <normaloff>:/icons/page_previous_fast_icon</normaloff>:/icons/page_previous_fast_icon</iconset>
    </property>
    <property name="text">
-    <string>FastBackward</string>
+    <string extracomment="Switch to the previous 10 images in Volume button">FastBackward</string>
    </property>
   </action>
   <action name="actionCopyFile">
    <property name="text">
-    <string>Copy File to clipboard</string>
+    <string extracomment="Menu to copy currently displayed image file on Explorer">Copy File to clipboard</string>
    </property>
   </action>
   <action name="actionRotate">
@@ -756,7 +756,7 @@
      <normaloff>:/icons/rotation_icon</normaloff>:/icons/rotation_icon</iconset>
    </property>
    <property name="text">
-    <string>&amp;Rotate</string>
+    <string extracomment="Button to rotate the currently displayed image 90 degrees clockwise">&amp;Rotate</string>
    </property>
   </action>
   <action name="actionSlideShow">
@@ -768,7 +768,7 @@
      <normaloff>:/icons/slideshow_icon</normaloff>:/icons/slideshow_icon</iconset>
    </property>
    <property name="text">
-    <string>&amp;SlideShow</string>
+    <string extracomment="Button to start displaying slideshow">&amp;SlideShow</string>
    </property>
   </action>
   <action name="actionSaveBookmark">
@@ -777,7 +777,7 @@
      <normaloff>:/icons/bookmark_save_icon</normaloff>:/icons/bookmark_save_icon</iconset>
    </property>
    <property name="text">
-    <string>SaveBookmark</string>
+    <string extracomment="Button to add the currently displayed volume and page to bookmark">SaveBookmark</string>
    </property>
   </action>
   <action name="actionManageBookmarks">
@@ -795,17 +795,17 @@
      <normaloff>:/icons/bookmark_load_icon</normaloff>:/icons/bookmark_load_icon</iconset>
    </property>
    <property name="text">
-    <string>LoadBookmark</string>
+    <string extracomment="Button to restore saved image page from registered bookmark">LoadBookmark</string>
    </property>
   </action>
   <action name="actionClearBookmarks">
    <property name="text">
-    <string>clearBookmarks</string>
+    <string extracomment="Button to delete all saved bookmarks">clearBookmarks</string>
    </property>
   </action>
   <action name="actionProjectWeb">
    <property name="text">
-    <string>&amp;Project WebPage by your browser</string>
+    <string extracomment="Button to display the web page of the project in the browser">&amp;Project WebPage by your browser</string>
    </property>
   </action>
   <action name="actionShowCatalog">
@@ -814,7 +814,7 @@
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
    </property>
    <property name="text">
-    <string>Show&amp;Catalog</string>
+    <string extracomment="Button to display Catalog Window. Switch between internal display, independent display, and erase">Show&amp;Catalog</string>
    </property>
    <property name="toolTip">
     <string>ShowCatalog</string>
@@ -825,7 +825,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Remove (Options) from Book Title</string>
+    <string extracomment="Ability to remove and display (parenthesized) text from Volume title in the catalog">Remove (Options) from Book Title</string>
    </property>
   </action>
   <action name="actionSearchTitleWithOptions">
@@ -833,7 +833,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Remove (Options) from book title when searching</string>
+    <string extracomment="Ability to search with the title removed (parenthesized) removed from the title of Volume in the catalog">Remove (Options) from book title when searching</string>
    </property>
   </action>
   <action name="actionCatalogViewIcon">
@@ -845,7 +845,7 @@
      <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
    </property>
    <property name="text">
-    <string>CatalogViewIcon</string>
+    <string extracomment="For Volume in the catalog, a mode to list up icons and titles vertically">CatalogViewIcon</string>
    </property>
    <property name="toolTip">
     <string>CatalogViewIcon</string>
@@ -860,7 +860,7 @@
      <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
    </property>
    <property name="text">
-    <string>CatalogViewIconNoText</string>
+    <string extracomment="Mode to list Volume in the catalog with only the icons side by side">CatalogViewIconNoText</string>
    </property>
    <property name="toolTip">
     <string>CatalogViewIconNoText</string>
@@ -872,7 +872,7 @@
      <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
    </property>
    <property name="text">
-    <string>CatalogViewList</string>
+    <string extracomment="Mode to list volumes in the catalog with icons and titles arranged side by side">CatalogViewList</string>
    </property>
    <property name="toolTip">
     <string>CatalogViewList</string>
@@ -883,7 +883,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>ShowTagBar</string>
+    <string extracomment="Squeeze the Volume of the catalog Function to erase the bar displaying the tag button">ShowTagBar</string>
    </property>
   </action>
   <action name="actionShowMainMenuBar">
@@ -893,7 +893,7 @@
   </action>
   <action name="actionMailAttachment">
    <property name="text">
-    <string>Run your &amp;mailer with an attachment</string>
+    <string extracomment="Menu to attach the currently displayed image to the mail software and start up">Run your &amp;mailer with an attachment</string>
    </property>
    <property name="iconText">
     <string>Run your mailer with an attachment</string>
@@ -904,7 +904,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Show large &amp;grid for long titles</string>
+    <string extracomment="Functions to be used when the Volume title in the catalog is long">Show large &amp;grid for long titles</string>
    </property>
   </action>
   <action name="actionShowFolder">
@@ -913,7 +913,7 @@
      <normaloff>:/icons/folder_32_icon</normaloff>:/icons/folder_32_icon</iconset>
    </property>
    <property name="text">
-    <string>Show&amp;Folder</string>
+    <string extracomment="Button to display FolderWindow. Switch between internal display, independent display, and erase">Show&amp;Folder</string>
    </property>
   </action>
   <action name="actionShaderBilinearBeforeCpuBicubic">
@@ -929,7 +929,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>CPU Bicubic interpolation</string>
+    <string extracomment="Menu that performs bicubic interpolation with CPU when resizing image">CPU Bicubic interpolation</string>
    </property>
   </action>
   <action name="actionShowSubfolders">
@@ -955,7 +955,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Open volume with progress</string>
+    <string extracomment="A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again">Open volume with progress</string>
    </property>
   </action>
   <action name="actionShowReadProgress">
@@ -963,17 +963,17 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>ShowReadProgress</string>
+    <string extracomment="Ability to display read information read in the middle in FolderWindow">ShowReadProgress</string>
    </property>
   </action>
   <action name="actionOpenOptionsDialog">
    <property name="text">
-    <string>&amp;Options Config</string>
+    <string extracomment="Menu for displaying a dialog for changing the adjunct setting of the application">&amp;Options Config</string>
    </property>
   </action>
   <action name="actionRenameImageFile">
    <property name="text">
-    <string>Rename the image</string>
+    <string extracomment="A menu for changing the file name of the currently displayed image">Rename the image</string>
    </property>
   </action>
   <action name="actionDontEnlargeSmallImagesOnFitting">
@@ -981,7 +981,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Don't enlarge small images on Fitting</string>
+    <string extracomment="Ability to display an image smaller than the window as it is when fit is displayed">Don't enlarge small images on Fitting</string>
    </property>
   </action>
   <action name="actionChange_Language">
@@ -994,7 +994,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Fullscreen on next run</string>
+    <string extracomment="Ability to always launch applications in full screen">Fullscreen on next run</string>
    </property>
   </action>
   <action name="actionShowFullscreenSignage">
@@ -1002,7 +1002,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Show texts on Fullscreen</string>
+    <string extracomment="Signage that displays the file name of the image at full screen display">Show texts on Fullscreen</string>
    </property>
   </action>
   <action name="actionOpenKeyConfig">
@@ -1011,7 +1011,7 @@
      <normaloff>:/icons/preference_icon</normaloff>:/icons/preference_icon</iconset>
    </property>
    <property name="text">
-    <string>&amp;Key Config</string>
+    <string extracomment="Menu that displays a dialog for changing keyboard shortcuts">&amp;Key Config</string>
    </property>
   </action>
   <action name="actionConfirmDeletePage">
@@ -1019,12 +1019,12 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Confirm to move Image to &amp;Recycle Bin</string>
+    <string extracomment="A function to display a confirmation screen when moving the currently displayed image to Recycle Bin">Confirm to move Image to &amp;Recycle Bin</string>
    </property>
   </action>
   <action name="actionRegistAssocs">
    <property name="text">
-    <string>Image Associations (require Administration)</string>
+    <string extracomment="Ability to associate QuickViewer and image files on Explorer">Image Associations (require Administration)</string>
    </property>
   </action>
  </widget>

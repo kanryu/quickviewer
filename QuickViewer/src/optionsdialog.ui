@@ -49,7 +49,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Number of volumes managed simultaneously (Restart is required)</string>
+         <string extracomment="Maximum number of volumes that an application simultaneously manages on memory">Number of volumes managed simultaneously (Restart is required)</string>
         </property>
        </widget>
       </item>
@@ -88,7 +88,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>SlideShow Delay (millisecond)</string>
+         <string extracomment="Wait time when images are automatically switched in slide show">SlideShow Delay (millisecond)</string>
         </property>
        </widget>
       </item>
@@ -142,7 +142,7 @@
             <item row="1" column="0">
              <widget class="QCheckBox" name="checkBoxCheckeredPattern">
               <property name="text">
-               <string>Use checkered pattern</string>
+               <string extracomment="Function to make the background of the application a pattern of chessboard">Use checkered pattern</string>
               </property>
              </widget>
             </item>

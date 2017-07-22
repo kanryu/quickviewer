@@ -17,9 +17,9 @@ ManageDatabaseDialog::ManageDatabaseDialog(QWidget* parent)
     // CatalogTree
     ui->treeWidget->sortByColumn(1, Qt::DescendingOrder);
     QTreeWidgetItem *header = ui->treeWidget->headerItem();
-    header->setText(0, tr("Name"));
-    header->setText(1, tr("Created"));
-    header->setText(2, tr("Path"));
+    header->setText(0, tr("Name", "Title of the column in the list part of the folder registered as Catalog"));
+    header->setText(1, tr("Created", "Title of the column in the list part of the folder registered as Catalog"));
+    header->setText(2, tr("Path", "Title of the column in the list part of the folder registered as Catalog"));
     header->setHidden(false);
 
     // Buttons
@@ -66,7 +66,7 @@ void ManageDatabaseDialog::normalButtonStates()
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     } else {
         ui->cancelButton->setVisible(true);
-        ui->cancelButton->setText(tr("Start Work"));
+        ui->cancelButton->setText(tr("Start Work", "Button to start catalog creation for specified folder"));
         ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }
     ui->progressBar->setVisible(false);
@@ -84,7 +84,7 @@ void ManageDatabaseDialog::progressButtonStates()
     ui->buttonBox->setEnabled(false);
 
     ui->progressBar->setVisible(true);
-    ui->cancelButton->setText(tr("Cancel Work"));
+    ui->cancelButton->setText(tr("Cancel Work", "Button to cancel the catalog being generated"));
     ui->cancelButton->setVisible(true);
     ui->volumeNameLabel->setVisible(true);
 }
@@ -108,7 +108,7 @@ void ManageDatabaseDialog::resetCatalogList()
         foreach(const CatalogRecord& catalog, m_makeCatalogs) {
             QTreeWidgetItem* item = new QTreeWidgetItem;
             item->setText(0, "* "  + catalog.name);
-            item->setText(1, tr("soon"));
+            item->setText(1, tr("soon", "Representation of time indicating that the catalog is not currently created and will be generated from now"));
             item->setText(2, catalog.path);
             item->setData(0, Qt::UserRole, cnt--);
             item->setBackgroundColor(0, QColor("lightgreen"));
@@ -171,7 +171,7 @@ bool ManageDatabaseDialog::databaseSettingDialog(CatalogRecord& catalog, bool ed
     dialog.setPath(catalog.path);
     dialog.setForEditing(editing);
     if(editing)
-        dialog.setWindowTitle(tr("Edit a Catalog"));
+        dialog.setWindowTitle(tr("Edit a Catalog", "Button for editing contents of already created catalog"));
 
     int result = dialog.exec();
     if(result == QDialog::Rejected) {
@@ -223,8 +223,8 @@ void ManageDatabaseDialog::on_catalogCreateFinished()
     normalButtonStates();
 
     QMessageBox msgBox(this);
-    msgBox.setWindowTitle(tr("Successed!"));
-    QString message = QString(tr("Creating Catalog Finished"));
+    msgBox.setWindowTitle(tr("Successed!", "Title of message box when catalog generation finished successfully"));
+    QString message = QString(tr("Creating Catalog Finished", "Body of message box when catalog generation finished successfully"));
 
     msgBox.setText(message);
     msgBox.exec();
@@ -255,8 +255,8 @@ void ManageDatabaseDialog::on_cancelWork_triggered()
         normalButtonStates();
 
         QMessageBox msgBox(this);
-        msgBox.setWindowTitle(tr("Cancelled!"));
-        QString message = QString(tr("Catalog Create Cancelled"));
+        msgBox.setWindowTitle(tr("Cancelled!", "Title of message box when catalog generation was canceled"));
+        QString message = QString(tr("Catalog Create Cancelled", "Body of message box when catalog generation is canceled"));
         msgBox.setText(message);
         msgBox.exec();
     }

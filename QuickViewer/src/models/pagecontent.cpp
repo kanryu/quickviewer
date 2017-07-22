@@ -41,7 +41,7 @@ PageContent::PageContent(QObject* parent, QGraphicsScene *s, ImageContent ic)
     , GTextSurface(nullptr)
 {
     if(!Ic.ImportSize.width()) {
-        QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE"));
+        QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE", "Error messages to be displayed on screen when image loading fails"));
         gtext->setDefaultTextColor(Qt::white);
         //qDebug() << gtext;
         GrItem = gtext;

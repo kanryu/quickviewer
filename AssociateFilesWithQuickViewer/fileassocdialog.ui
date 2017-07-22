@@ -21,7 +21,7 @@
    <item row="8" column="0">
     <widget class="QPushButton" name="btnAllOn">
      <property name="text">
-      <string>All On</string>
+      <string extracomment="Button to turn all check boxes on">All On</string>
      </property>
     </widget>
    </item>
@@ -49,7 +49,7 @@
    <item row="8" column="1">
     <widget class="QPushButton" name="btnAllOff">
      <property name="text">
-      <string>All Off</string>
+      <string extracomment="Button to turn off all check box">All Off</string>
      </property>
     </widget>
    </item>

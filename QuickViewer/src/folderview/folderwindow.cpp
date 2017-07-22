@@ -197,7 +197,7 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
     }
 
     if(m_volumes.empty()) {
-        m_volumes << FolderItem(tr("No folders or archives"), FolderItem::NoItems, QDateTime());
+        m_volumes << FolderItem(tr("No folders or archives", "Display when there is no display item in Folder Window"), FolderItem::NoItems, QDateTime());
     }
     m_itemModel.setVolumes(&m_volumes);
 
