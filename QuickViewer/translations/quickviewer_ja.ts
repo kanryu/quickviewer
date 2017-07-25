@@ -5,7 +5,7 @@
     <name>CatalogWindow</name>
     <message>
         <source>CatalogWindow</source>
-        <translation>カタログ表示</translation>
+        <translation type="vanished">カタログ表示</translation>
     </message>
     <message>
         <source>FolderViewSelect</source>
@@ -66,6 +66,22 @@
     <message>
         <source>Remove (Options) from book title when searching</source>
         <translation>本のタイトルを検索する際に(かっこ)で書かれたオプションを取り除く</translation>
+    </message>
+    <message>
+        <source>CatalogDisplay</source>
+        <translation>カタログ表示</translation>
+    </message>
+    <message>
+        <source>switch display format</source>
+        <translation>表示方法の切り替え</translation>
+    </message>
+    <message>
+        <source>catalog management</source>
+        <translation>カタログの管理</translation>
+    </message>
+    <message>
+        <source>Catalog management</source>
+        <translation>カタログの管理(&amp;C)</translation>
     </message>
 </context>
 <context>

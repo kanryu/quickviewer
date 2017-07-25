@@ -5,7 +5,7 @@
     <name>CatalogWindow</name>
     <message>
         <source>CatalogWindow</source>
-        <translation>Visualización de ctálogo</translation>
+        <translation type="vanished">Visualización de ctálogo</translation>
     </message>
     <message>
         <source>FolderViewSelect</source>
@@ -66,6 +66,22 @@
     <message>
         <source>Remove (Options) from book title when searching</source>
         <translation>Quita (Options) a título de libro cuando busca</translation>
+    </message>
+    <message>
+        <source>CatalogDisplay</source>
+        <translation>Visualización de ctálogo</translation>
+    </message>
+    <message>
+        <source>switch display format</source>
+        <translation>Cambio de manera de visualización</translation>
+    </message>
+    <message>
+        <source>catalog management</source>
+        <translation>Administración de catálogo</translation>
+    </message>
+    <message>
+        <source>Catalog management</source>
+        <translation>Administración de catálogo</translation>
     </message>
 </context>
 <context>

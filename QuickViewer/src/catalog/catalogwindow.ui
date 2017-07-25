@@ -14,7 +14,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>CatalogWindow</string>
+   <string>CatalogDisplay</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../toolbar.qrc">
@@ -79,13 +79,13 @@
        </size>
       </property>
       <property name="toolTip">
-       <string>FolderViewSelect</string>
+       <string>switch display format</string>
       </property>
       <property name="statusTip">
        <string/>
       </property>
       <property name="accessibleName">
-       <string>FolderViewSelect</string>
+       <string>switch display format</string>
       </property>
       <property name="text">
        <string/>
@@ -115,7 +115,7 @@
        </size>
       </property>
       <property name="toolTip">
-       <string>ManageCatalogs</string>
+       <string>catalog management</string>
       </property>
       <property name="statusTip">
        <string/>
@@ -357,6 +357,12 @@ QFrame.layout {
    </property>
    <property name="text">
     <string>ManageCatalogs</string>
+   </property>
+   <property name="iconText">
+    <string>Catalog management</string>
+   </property>
+   <property name="toolTip">
+    <string>Catalog management</string>
    </property>
   </action>
   <action name="actionCloseWindow">

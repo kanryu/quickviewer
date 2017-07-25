@@ -5,7 +5,7 @@
     <name>CatalogWindow</name>
     <message>
         <source>CatalogWindow</source>
-        <translation>显示目录</translation>
+        <translation type="vanished">显示目录</translation>
     </message>
     <message>
         <source>FolderViewSelect</source>
@@ -66,6 +66,22 @@
     <message>
         <source>Remove (Options) from book title when searching</source>
         <translation>检索书题时,除掉(括号)里的选项</translation>
+    </message>
+    <message>
+        <source>CatalogDisplay</source>
+        <translation>显示目录</translation>
+    </message>
+    <message>
+        <source>switch display format</source>
+        <translation>转换显示方式</translation>
+    </message>
+    <message>
+        <source>catalog management</source>
+        <translation>管理目录</translation>
+    </message>
+    <message>
+        <source>Catalog management</source>
+        <translation>管理目录</translation>
     </message>
 </context>
 <context>
