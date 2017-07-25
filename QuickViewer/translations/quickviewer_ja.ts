@@ -237,12 +237,12 @@
     <message>
         <source>Flash did not fire</source>
         <comment>JPEG EXIF Flash setting value (0x0)</comment>
-        <translation type="unfinished">フラッシュなし</translation>
+        <translation>フラッシュなし</translation>
     </message>
     <message>
         <source>Flash fired</source>
         <comment>JPEG EXIF Flash setting value (0x1)</comment>
-        <translation type="unfinished">フラッシュあり</translation>
+        <translation>フラッシュあり</translation>
     </message>
     <message>
         <source>Strobe return light not detected</source>
@@ -347,47 +347,47 @@
     <message>
         <source>Horizontal (normal)</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(0 or 1)</comment>
-        <translation type="unfinished">水平(標準)</translation>
+        <translation>水平(標準)</translation>
     </message>
     <message>
         <source>Mirror horizontal</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(2)</comment>
-        <translation type="unfinished">上下反転</translation>
+        <translation>上下反転</translation>
     </message>
     <message>
         <source>Rotate 180</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(3)</comment>
-        <translation type="unfinished">180°回転</translation>
+        <translation>180°回転</translation>
     </message>
     <message>
         <source>Mirror vertical</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(4)</comment>
-        <translation type="unfinished">左右反転</translation>
+        <translation>左右反転</translation>
     </message>
     <message>
         <source>Mirror horizontal and rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(5)</comment>
-        <translation type="unfinished">上下反転、時計回りに270°回転</translation>
+        <translation>上下反転、時計回りに270°回転</translation>
     </message>
     <message>
         <source>Rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(6)</comment>
-        <translation type="unfinished">時計回りに90°回転</translation>
+        <translation>時計回りに90°回転</translation>
     </message>
     <message>
         <source>Mirror horizontal and rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(7)</comment>
-        <translation type="unfinished">上下反転、時計回りに90°回転</translation>
+        <translation>上下反転、時計回りに90°回転</translation>
     </message>
     <message>
         <source>Rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(8)</comment>
-        <translation type="unfinished">時計回りに270°回転</translation>
+        <translation>時計回りに270°回転</translation>
     </message>
     <message>
         <source>Exif is empty.</source>
         <comment>Text to display if EXIF is not included in JPEG</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -534,77 +534,77 @@
     <message>
         <source>JPEG Format Image</source>
         <comment>description of File format on Explorer(.jpeg)</comment>
-        <translation type="unfinished">JPEG イメージ</translation>
+        <translation>JPEG イメージ</translation>
     </message>
     <message>
         <source>PNG Format Image</source>
         <comment>description of File format on Explorer(.png)</comment>
-        <translation type="unfinished">PNG ファイル</translation>
+        <translation>PNG ファイル</translation>
     </message>
     <message>
         <source>Truevision Graphics Adapter Format Image</source>
         <comment>description of File format on Explorer(.tga)</comment>
-        <translation type="unfinished">Truevision Graphics Adapter イメージ</translation>
+        <translation>Truevision Graphics Adapter イメージ</translation>
     </message>
     <message>
         <source>Animated PNG Format Image</source>
         <comment>description of File format on Explorer(.apng)</comment>
-        <translation type="unfinished">アニメーション PNG ファイル</translation>
+        <translation>アニメーション PNG ファイル</translation>
     </message>
     <message>
         <source>Windows Bitmap Format Image</source>
         <comment>description of File format on Explorer(.bmp)</comment>
-        <translation type="unfinished">Windows ビットマップ画像</translation>
+        <translation>Windows ビットマップ画像</translation>
     </message>
     <message>
         <source>DirectDraw Surface Format Image</source>
         <comment>description of File format on Explorer(.dds)</comment>
-        <translation type="unfinished">DirectDraw Surfaceイメージ</translation>
+        <translation>DirectDraw Surfaceイメージ</translation>
     </message>
     <message>
         <source>GIF Format Image</source>
         <comment>description of File format on Explorer(.gif)</comment>
-        <translation type="unfinished">GIF イメージ</translation>
+        <translation>GIF イメージ</translation>
     </message>
     <message>
         <source>Windows Icon Format</source>
         <comment>description of File format on Explorer(.ico)</comment>
-        <translation type="unfinished">Windows アイコンファイル</translation>
+        <translation>Windows アイコンファイル</translation>
     </message>
     <message>
         <source>Tiff Format Image</source>
         <comment>description of File format on Explorer(.tiff)</comment>
-        <translation type="unfinished">Tiff イメージ</translation>
+        <translation>Tiff イメージ</translation>
     </message>
     <message>
         <source>WebP Format Image</source>
         <comment>description of File format on Explorer(.webp)</comment>
-        <translation type="unfinished">WebP イメージ</translation>
+        <translation>WebP イメージ</translation>
     </message>
     <message>
         <source>Canon Raw Format</source>
         <comment>description of File format on Explorer(.cr2)</comment>
-        <translation type="unfinished">Canon Raw形式</translation>
+        <translation>Canon Raw形式</translation>
     </message>
     <message>
         <source>Adobe Digital Negative Format</source>
         <comment>description of File format on Explorer(.dng)</comment>
-        <translation type="unfinished">Adobe Digital Negative形式</translation>
+        <translation>Adobe Digital Negative形式</translation>
     </message>
     <message>
         <source>Nicon Raw Format</source>
         <comment>description of File format on Explorer(.nef)</comment>
-        <translation type="unfinished">Nicon Raw形式</translation>
+        <translation>Nicon Raw形式</translation>
     </message>
     <message>
         <source>Sony Raw Format</source>
         <comment>description of File format on Explorer(.arw)</comment>
-        <translation type="unfinished">Sony Raw形式</translation>
+        <translation>Sony Raw形式</translation>
     </message>
     <message>
         <source>&amp;View with QuickViewer</source>
         <comment>Menu displayed when right clicking on file in Explorer</comment>
-        <translation type="unfinished">QuickViewerで開く(&amp;V)</translation>
+        <translation>QuickViewerで開く(&amp;V)</translation>
     </message>
 </context>
 <context>
@@ -620,12 +620,12 @@
     <message>
         <source>Name</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>ModifiedTime</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -708,7 +708,7 @@
     <message>
         <source>No folders or archives</source>
         <comment>Display when there is no display item in Folder Window</comment>
-        <translation type="unfinished">フォルダやアーカイブが見つかりません</translation>
+        <translation>フォルダやアーカイブが見つかりません</translation>
     </message>
 </context>
 <context>
@@ -902,27 +902,27 @@
     <message>
         <source>Command</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="unfinished">動作</translation>
+        <translation>動作</translation>
     </message>
     <message>
         <source>Label</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="unfinished">説明</translation>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Target</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="unfinished">現在のショートカット</translation>
+        <translation>現在のショートカット</translation>
     </message>
     <message>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
-        <translation type="unfinished">不正なキー入力です。</translation>
+        <translation>不正なキー入力です。</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
-        <translation type="unfinished">他のショートカットキーと競合しています。</translation>
+        <translation>他のショートカットキーと競合しています。</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
@@ -1497,42 +1497,42 @@
     <message>
         <source>any folder or archive is not loaded.</source>
         <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
-        <translation type="unfinished">フォルダまたはアーカイブが読み込まれていません</translation>
+        <translation>フォルダまたはアーカイブが読み込まれていません</translation>
     </message>
     <message>
         <source>Can&apos;t be opened. Is there no images?</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation type="unfinished">開くことができませんでした。画像ファイルが見つかりません。</translation>
+        <translation>開くことができませんでした。画像ファイルが見つかりません。</translation>
     </message>
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation type="unfinished">全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z *.rar)</translation>
+        <translation>全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z *.rar)</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
-        <translation type="unfinished">閲覧したい画像またはアーカイブを選択してください</translation>
+        <translation>閲覧したい画像またはアーカイブを選択してください</translation>
     </message>
     <message>
         <source>Do you really want to clear the main menu?</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation type="unfinished">本当にメインメニューを非表示にしますか？</translation>
+        <translation>本当にメインメニューを非表示にしますか？</translation>
     </message>
     <message>
         <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation type="unfinished">F8キー(デフォルト)を押すか、もしくはタイトルバー上でコンテキストメニューを表示し&lt;br /&gt;&lt;strong&gt;『メインメニューの表示／非表示切り替え』&lt;/strong&gt;を選択してください</translation>
+        <translation>F8キー(デフォルト)を押すか、もしくはタイトルバー上でコンテキストメニューを表示し&lt;br /&gt;&lt;strong&gt;『メインメニューの表示／非表示切り替え』&lt;/strong&gt;を選択してください</translation>
     </message>
     <message>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation type="unfinished">確認</translation>
+        <translation>確認</translation>
     </message>
     <message>
         <source>Are you sure you delete the image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="unfinished">本当にこの画像をゴミ箱に入れますか？</translation>
+        <translation>本当にこの画像をゴミ箱に入れますか？</translation>
     </message>
 </context>
 <context>
@@ -1552,7 +1552,7 @@
     <message>
         <source>Sh&amp;ow or Hide MainMenuBar</source>
         <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
-        <translation type="unfinished">メインメニューの表示／非表示切り替え(&amp;O)</translation>
+        <translation>メインメニューの表示／非表示切り替え(&amp;O)</translation>
     </message>
 </context>
 <context>
@@ -1651,57 +1651,57 @@
     <message>
         <source>Name</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Created</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished">作成日時</translation>
+        <translation>作成日時</translation>
     </message>
     <message>
         <source>Path</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished">フォルダ</translation>
+        <translation>フォルダ</translation>
     </message>
     <message>
         <source>Start Work</source>
         <comment>Button to start catalog creation for specified folder</comment>
-        <translation type="unfinished">処理開始</translation>
+        <translation>処理開始</translation>
     </message>
     <message>
         <source>Cancel Work</source>
         <comment>Button to cancel the catalog being generated</comment>
-        <translation type="unfinished">処理キャンセル</translation>
+        <translation>処理キャンセル</translation>
     </message>
     <message>
         <source>soon</source>
         <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
-        <translation type="unfinished">これから</translation>
+        <translation>これから</translation>
     </message>
     <message>
         <source>Edit a Catalog</source>
         <comment>Button for editing contents of already created catalog</comment>
-        <translation type="unfinished">カタログを編集する</translation>
+        <translation>カタログを編集する</translation>
     </message>
     <message>
         <source>Successed!</source>
         <comment>Title of message box when catalog generation finished successfully</comment>
-        <translation type="unfinished">完了!</translation>
+        <translation>完了!</translation>
     </message>
     <message>
         <source>Creating Catalog Finished</source>
         <comment>Body of message box when catalog generation finished successfully</comment>
-        <translation type="unfinished">カタログの作成が完了しました</translation>
+        <translation>カタログの作成が完了しました</translation>
     </message>
     <message>
         <source>Cancelled!</source>
         <comment>Title of message box when catalog generation was canceled</comment>
-        <translation type="unfinished">キャンセルされました!</translation>
+        <translation>キャンセルされました!</translation>
     </message>
     <message>
         <source>Catalog Create Cancelled</source>
         <comment>Body of message box when catalog generation is canceled</comment>
-        <translation type="unfinished">カタログの作成がキャンセルされました</translation>
+        <translation>カタログの作成がキャンセルされました</translation>
     </message>
 </context>
 <context>
@@ -1763,7 +1763,7 @@
     <message>
         <source>NOT IMAGE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
-        <translation type="unfinished">画像以外のファイルです</translation>
+        <translation>画像以外のファイルです</translation>
     </message>
 </context>
 <context>
@@ -1825,12 +1825,12 @@
     <message>
         <source>Filename can&apos;t be empty.</source>
         <comment>An error message to be displayed when the file name is set to the empty character in the file name change dialog</comment>
-        <translation type="unfinished">ファイル名は必ず必要です。</translation>
+        <translation>ファイル名は必ず必要です。</translation>
     </message>
     <message>
         <source>Rename failed. Does the same file name exist?</source>
         <comment>Error message to display when file name change fails</comment>
-        <translation type="unfinished">ファイル名を変更できません。同じ名前のファイルがありませんか？</translation>
+        <translation>ファイル名を変更できません。同じ名前のファイルがありませんか？</translation>
     </message>
 </context>
 <context>
@@ -1850,17 +1850,17 @@
     <message>
         <source>Click and type the new key sequence.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation type="unfinished">クリックして、新しいショートカットキーをキーボードで入力してください。</translation>
+        <translation>クリックして、新しいショートカットキーをキーボードで入力してください。</translation>
     </message>
     <message>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>
-        <translation type="unfinished">記録を停止</translation>
+        <translation>記録を停止</translation>
     </message>
     <message>
         <source>Record</source>
         <comment>Button for starting entering the shortcut key</comment>
-        <translation type="unfinished">記録</translation>
+        <translation>記録</translation>
     </message>
 </context>
 </TS>

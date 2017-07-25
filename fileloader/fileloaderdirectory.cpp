@@ -1,5 +1,5 @@
 #include "fileloaderdirectory.h"
-
+#include <QtConcurrent>
 
 FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
     : IFileLoader(parent)
@@ -11,6 +11,8 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
         return;
 
     initialize();
+//    m_valid = true;
+//    QtConcurrent::run(this, FileLoaderDirectory::initialize);
 }
 
 FileLoaderDirectory::FileLoaderDirectory(QObject *parent, QString path, int forsubclass)
@@ -25,14 +27,14 @@ FileLoaderDirectory::FileLoaderDirectory(QObject *parent, QString path, int fors
 QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
 {
     QByteArray bytes;
-    if(m_imageFileList.contains(name)) {
+//    if(m_imageFileList.contains(name)) {
         const QString abso = m_directory.absoluteFilePath(name);
         QFile file(abso);
         file.open(QIODevice::ReadOnly);
         bytes = file.readAll();
         return bytes;
-    }
-    return bytes;
+//    }
+//    return bytes;
 }
 
 void FileLoaderDirectory::initialize()
@@ -58,5 +60,6 @@ void FileLoaderDirectory::initialize()
     IFileLoader::sortFiles(m_imageFileList);
     IFileLoader::sortFiles(m_subArchiveList);
     m_valid = true;
+    emit loadFinished();
 }
 

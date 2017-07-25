@@ -25,7 +25,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
 
 void IFileVolume::on_ready()
 {
-    if(m_cnt < 0 || m_cnt >= m_filelist.size())
+    if(m_cnt < 0 || m_cnt >= m_filelist.size() || m_loader->contents().size()==0)
         return;
 
 //    qDebug() << "on_ready: m_cnt" << m_cnt;
@@ -78,7 +78,7 @@ const ImageContent IFileVolume::getIndexedImageContent(int idx)
 bool IFileVolume::nextPage()
 {
 //    qDebug() << "nextPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();
-    if(m_cnt >= m_filelist.size())
+    if(m_cnt >= m_filelist.size() || m_loader->contents().size()==0)
         return false;
     m_cnt++;
     on_ready();
@@ -88,7 +88,7 @@ bool IFileVolume::nextPage()
 bool IFileVolume::prevPage()
 {
 //    qDebug() << "prevPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();
-    if(m_cnt <= 0)
+    if(m_cnt <= 0 || m_loader->contents().size()==0)
         return false;
     m_cnt--;
     on_ready();

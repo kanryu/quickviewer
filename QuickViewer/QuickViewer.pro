@@ -140,7 +140,8 @@ SOURCES += \
     src/widgets/flowlayout.cpp \
     src/widgets/pageslider.cpp \
     src/widgets/shortcutbutton.cpp \
-    src/qlanguageselector/qlanguageselector.cpp
+    src/qlanguageselector/qlanguageselector.cpp \
+
 
 HEADERS  += \
     src/catalog/catalogwindow.h \
@@ -173,12 +174,13 @@ HEADERS  += \
     src/widgets/flowlayout.h \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
-    src/qlanguageselector/qlanguageselector.h
+    src/qlanguageselector/qlanguageselector.h \
+
 
 
 win32 {
-    SOURCES += src/mainwindowforwindows.cpp
-    HEADERS += src/mainwindowforwindows.h
+    SOURCES += src/mainwindowforwindows.cpp src/fullscreentopframe.cpp
+    HEADERS += src/mainwindowforwindows.h src/fullscreentopframe.h
     PRECOMPILED_HEADER += src/stdafx.h
 }
 

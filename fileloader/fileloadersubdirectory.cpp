@@ -1,4 +1,5 @@
 #include "fileloadersubdirectory.h"
+#include <QtConcurrent>
 
 FileLoaderSubDirectory::FileLoaderSubDirectory(QObject* parent, QString path)
     : FileLoaderDirectory(parent, path, 1)
@@ -8,12 +9,15 @@ FileLoaderSubDirectory::FileLoaderSubDirectory(QObject* parent, QString path)
         return;
 
     initialize();
+//    m_valid = true;
+//    QtConcurrent::run(this, FileLoaderDirectory::initialize);
 }
 
 void FileLoaderSubDirectory::initialize()
 {
     getFilesWithSubdirs(m_directory.path(), "");
     m_valid = true;
+    emit loadFinished();
 }
 
 void FileLoaderSubDirectory::getFilesWithSubdirs(QString path, QString subpath)

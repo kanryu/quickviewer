@@ -54,6 +54,7 @@ protected:
     QStringList m_subArchiveList;
     bool m_valid;
 
+
     virtual void initialize();
 };
 

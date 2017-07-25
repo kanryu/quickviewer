@@ -14,6 +14,10 @@
 #include "renamedialog.h"
 #include "exifdialog.h"
 
+#ifdef Q_OS_WIN
+#include "fullscreentopframe.h"
+#endif
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -324,10 +328,12 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         }
         break;
     case QEvent::Leave:
+#ifndef Q_OS_WIN
         if(obj == ui->mainToolBar && isFullScreen()) {
             ui->mainToolBar->hide();
             return true;
         }
+#endif
         if(obj == ui->pageFrame && isFullScreen()) {
             ui->pageFrame->hide();
             return true;
@@ -446,9 +452,39 @@ void MainWindow::on_clearHistory_triggered()
     makeHistoryMenu();
 }
 
+FullscreenTopFrame *fullscreenTopFrame;
+void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
+{
+    if(!isFullScreen()) {
+        return;
+    }
+    if(anchor == Qt::AnchorTop) {
+#ifdef Q_OS_WIN
+        fullscreenTopFrame = new FullscreenTopFrame(this, ui);
+        fullscreenTopFrame->showMaximized();
+#else
+        ui->mainToolBar->show();
+#endif
+    }
+    if(anchor == Qt::AnchorBottom) {
+        if(qApp->ShowSliderBar())
+            ui->pageFrame->show();
+    }
+    if(anchor == Qt::AnchorHorizontalCenter) {
+#ifndef Q_OS_WIN
+        ui->mainToolBar->hide();
+#endif
+        ui->pageFrame->hide();
+    }
+    ui->graphicsView->readyForPaint();
+}
+
 void MainWindow::on_fullscreen_triggered()
 {
-
+    if(fullscreenTopFrame && fullscreenTopFrame->isValid()) {
+        fullscreenTopFrame->closeAndShowNormal();
+        return;
+    }
     if(isFullScreen()) {
         ui->graphicsView->setWillFullscreen(false);
         ui->graphicsView->skipRisizeEvent(true);
@@ -501,25 +537,6 @@ void MainWindow::on_stayOnTop_triggered(bool top)
 //    flags |= Qt::WindowFullscreenButtonHint;
     setWindowFlags(flags);
     show();
-}
-
-void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
-{
-    if(!isFullScreen()) {
-        return;
-    }
-    if(anchor == Qt::AnchorTop) {
-        ui->mainToolBar->show();
-    }
-    if(anchor == Qt::AnchorBottom) {
-        if(qApp->ShowSliderBar())
-            ui->pageFrame->show();
-    }
-    if(anchor == Qt::AnchorHorizontalCenter) {
-        ui->mainToolBar->hide();
-        ui->pageFrame->hide();
-    }
-    ui->graphicsView->readyForPaint();
 }
 
 void MainWindow::on_fittingChanged(bool fitting)
