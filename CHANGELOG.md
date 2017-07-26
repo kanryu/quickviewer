@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v0.8.4 (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
+
+Improvement on fullscreen, calibrated English notation
+
+- Improvement on how to display the toolbar at fullscreen
+- calibrated English notation of QuickViewer
+- Since Spanish or Chinese notation was manually fixed, it may be wrong
+
+- other commits
+    - English Notation (Wed Jul 26 02:59:21 2017 +0900) [415425f](https://github.com/kanryu/quickviewer/commit/415425fe02edb3e5d11a9a60aa58fbfaf690d584)
+
+## v0.8.4_pre (Wed Jul 26 02:10:29 2017 +0900) [6173437](https://github.com/kanryu/quickviewer/commit/6173437db9b9934068715b9874731877fd9ee891)
+
+Improvement on how to display the toolbar at full screen
+
+- other commits
+    - add comments for translators (Sat Jul 22 23:38:05 2017 +0900) [3f75cb0](https://github.com/kanryu/quickviewer/commit/3f75cb00de8dedeb26a4b116911b3cdfc257ce72)
+    - changelog (Fri Jul 21 20:25:14 2017 +0900) [00d942d](https://github.com/kanryu/quickviewer/commit/00d942d3148037c77756783e73b1eb31d05d34c9)
+
 ## v0.8.3 (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
 
 Support for Simplified Chinese, file associations, not confirm to delete file
