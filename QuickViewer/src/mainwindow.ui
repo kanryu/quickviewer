@@ -274,7 +274,7 @@
     </property>
     <widget class="QMenu" name="menuLoadBookmark">
      <property name="title">
-      <string>LoadBookmark</string>
+      <string extracomment="Button to restore saved image page from registered bookmark">LoadBookmark</string>
      </property>
      <property name="icon">
       <iconset resource="../toolbar.qrc">
@@ -415,16 +415,7 @@
      <normaloff>:/icons/page_next_icon2</normaloff>:/icons/page_next_icon2</iconset>
    </property>
    <property name="text">
-    <string extracomment="Switch to the next image button">&amp;NextPage</string>
-   </property>
-   <property name="toolTip">
-    <string>NextPage</string>
-   </property>
-   <property name="shortcut">
-    <string/>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::WindowShortcut</enum>
+    <string extracomment="Switch to the next image button">&amp;NextImage</string>
    </property>
   </action>
   <action name="actionPrevPage">
@@ -433,10 +424,7 @@
      <normaloff>:/icons/page_previous_icon2</normaloff>:/icons/page_previous_icon2</iconset>
    </property>
    <property name="text">
-    <string extracomment="Switch to previous image button">&amp;PrevPage</string>
-   </property>
-   <property name="toolTip">
-    <string>PrevPage</string>
+    <string extracomment="Switch to previous image button">&amp;PrevImage</string>
    </property>
   </action>
   <action name="actionZoomIn">
@@ -487,13 +475,7 @@
      <normaloff>:/icons/dualview</normaloff>:/icons/dualview</iconset>
    </property>
    <property name="text">
-    <string extracomment="Arranging two images side by side like when opening a book">&amp;Spread Viewing</string>
-   </property>
-   <property name="iconText">
-    <string>Spread Viewing</string>
-   </property>
-   <property name="toolTip">
-    <string>Spread Viewing</string>
+    <string extracomment="Arranging two images side by side like when opening a book">2page &amp;Spread</string>
    </property>
   </action>
   <action name="actionFullscreen">
@@ -530,7 +512,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page">Bound on the &amp;right side book</string>
+    <string extracomment="Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page">Bound on the &amp;right side</string>
    </property>
   </action>
   <action name="actionOpenFolder">
@@ -543,7 +525,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Automatically switch because it may spread 2 pages are combined into one image in the digital book">&amp;Always open wide images as one view</string>
+    <string extracomment="Automatically switch because it may spread 2 pages are combined into one image in the digital book">&amp;Always display one landscape image even in 2 page display.</string>
    </property>
   </action>
   <action name="actionLastPage">
@@ -585,7 +567,7 @@
   </action>
   <action name="actionOpenFiler">
    <property name="text">
-    <string extracomment="Menu that displays Explorer with the currently displayed image file selected">Open &amp;Explorer</string>
+    <string extracomment="Menu that displays Explorer with the currently displayed image file selected">Open in &amp;Explorer</string>
    </property>
   </action>
   <action name="actionOpenExif">
@@ -595,7 +577,7 @@
   </action>
   <action name="actionCheckVersion">
    <property name="text">
-    <string extracomment="A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page">Check &amp;Version by your browser</string>
+    <string extracomment="A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page">Open browser to check &amp;Version</string>
    </property>
   </action>
   <action name="actionNextVolume">
@@ -618,12 +600,12 @@
   </action>
   <action name="actionNextOnePage">
    <property name="text">
-    <string extracomment="Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation">Next only &amp;one page</string>
+    <string extracomment="Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation">Advance &amp;one page only</string>
    </property>
   </action>
   <action name="actionPrevOnePage">
    <property name="text">
-    <string extracomment="Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation">Prev only o&amp;ne page</string>
+    <string extracomment="Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation">Prev o&amp;ne page only</string>
    </property>
   </action>
   <action name="actionExitApplicationOrFullscreen">
@@ -644,7 +626,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="In the case of a digital book, since the first image is a cover page, only one image is displayed">Always open &amp;first images as one view</string>
+    <string extracomment="In the case of a digital book, since the first image is a cover page, only one image is displayed">Always open &amp;first images even withas only one page</string>
    </property>
   </action>
   <action name="actionShowMenuBar">
@@ -711,7 +693,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Menu to resize image by Nearest Neighbor interpolation by GPU">&amp;Nearest Neighbor interpolation (coarse)</string>
+    <string extracomment="Menu to resize image by Nearest Neighbor interpolation by GPU">&amp;Nearest Neighbor interpolation (fast but coarse)</string>
    </property>
   </action>
   <action name="actionMaximizeOrNormal">
@@ -724,7 +706,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="When restarting the next time, restore the position size of the window at the time of the last termination">&amp;Restore Window State on next run</string>
+    <string extracomment="When restarting the next time, restore the position size of the window at the time of the last termination">&amp;Restore window display at next startup</string>
    </property>
   </action>
   <action name="actionFastForward">
@@ -777,7 +759,7 @@
      <normaloff>:/icons/bookmark_save_icon</normaloff>:/icons/bookmark_save_icon</iconset>
    </property>
    <property name="text">
-    <string extracomment="Button to add the currently displayed volume and page to bookmark">SaveBookmark</string>
+    <string extracomment="Button to add the currently displayed volume and page to bookmark">AddBookmark</string>
    </property>
   </action>
   <action name="actionManageBookmarks">
@@ -805,7 +787,7 @@
   </action>
   <action name="actionProjectWeb">
    <property name="text">
-    <string extracomment="Button to display the web page of the project in the browser">&amp;Project WebPage by your browser</string>
+    <string extracomment="Button to display the web page of the project in the browser">Display Home&amp;page on browser</string>
    </property>
   </action>
   <action name="actionShowCatalog">
@@ -860,10 +842,7 @@
      <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
    </property>
    <property name="text">
-    <string extracomment="Mode to list Volume in the catalog with only the icons side by side">CatalogViewIconNoText</string>
-   </property>
-   <property name="toolTip">
-    <string>CatalogViewIconNoText</string>
+    <string extracomment="Mode to list Volume in the catalog with only the icons side by side">IconViewOnly</string>
    </property>
   </action>
   <action name="actionCatalogViewList">
@@ -893,10 +872,7 @@
   </action>
   <action name="actionMailAttachment">
    <property name="text">
-    <string extracomment="Menu to attach the currently displayed image to the mail software and start up">Run your &amp;mailer with an attachment</string>
-   </property>
-   <property name="iconText">
-    <string>Run your mailer with an attachment</string>
+    <string extracomment="Menu to attach the currently displayed image to the mail software and start up">Activate your e-mail software with an attachment</string>
    </property>
   </action>
   <action name="actionCatalogIconLongText">
@@ -904,7 +880,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Functions to be used when the Volume title in the catalog is long">Show large &amp;grid for long titles</string>
+    <string extracomment="Functions to be used when the Volume title in the catalog is long">Larger &amp;grid to display long title</string>
    </property>
   </action>
   <action name="actionShowFolder">
@@ -929,7 +905,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Menu that performs bicubic interpolation with CPU when resizing image">CPU Bicubic interpolation</string>
+    <string extracomment="Menu that performs bicubic interpolation with CPU when resizing image">Bicubic interpolation by CPU (quality)</string>
    </property>
   </action>
   <action name="actionShowSubfolders">
@@ -941,13 +917,7 @@
      <normaloff>:/icons/subfolders_icon</normaloff>:/icons/subfolders_icon</iconset>
    </property>
    <property name="text">
-    <string extracomment="When enumerating images, subfolders are also included in the range">ShowSubfolders</string>
-   </property>
-   <property name="iconText">
-    <string>ShowImages in sub folders</string>
-   </property>
-   <property name="toolTip">
-    <string>ShowImages in sub folders</string>
+    <string extracomment="When enumerating images, subfolders are also included in the range">Open with Subfolders Image</string>
    </property>
   </action>
   <action name="actionOpenVolumeWithProgress">
@@ -955,7 +925,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again">Open volume with progress</string>
+    <string extracomment="A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again">Previously opened page in Preview</string>
    </property>
   </action>
   <action name="actionShowReadProgress">
@@ -963,7 +933,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Ability to display read information read in the middle in FolderWindow">ShowReadProgress</string>
+    <string extracomment="Ability to display read information read in the middle in FolderWindow">Show how far you read</string>
    </property>
   </action>
   <action name="actionOpenOptionsDialog">
@@ -973,7 +943,7 @@
   </action>
   <action name="actionRenameImageFile">
    <property name="text">
-    <string extracomment="A menu for changing the file name of the currently displayed image">Rename the image</string>
+    <string extracomment="A menu for changing the file name of the currently displayed image">Rename</string>
    </property>
   </action>
   <action name="actionDontEnlargeSmallImagesOnFitting">
@@ -994,7 +964,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Ability to always launch applications in full screen">Fullscreen on next run</string>
+    <string extracomment="Ability to always launch applications in full screen">Full screen on startup</string>
    </property>
   </action>
   <action name="actionShowFullscreenSignage">

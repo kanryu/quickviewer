@@ -18,7 +18,7 @@ ManageDatabaseDialog::ManageDatabaseDialog(QWidget* parent)
     ui->treeWidget->sortByColumn(1, Qt::DescendingOrder);
     QTreeWidgetItem *header = ui->treeWidget->headerItem();
     header->setText(0, tr("Name", "Title of the column in the list part of the folder registered as Catalog"));
-    header->setText(1, tr("Created", "Title of the column in the list part of the folder registered as Catalog"));
+    header->setText(1, tr("CreationTime", "Title of the column in the list part of the folder registered as Catalog"));
     header->setText(2, tr("Path", "Title of the column in the list part of the folder registered as Catalog"));
     header->setHidden(false);
 
@@ -108,7 +108,7 @@ void ManageDatabaseDialog::resetCatalogList()
         foreach(const CatalogRecord& catalog, m_makeCatalogs) {
             QTreeWidgetItem* item = new QTreeWidgetItem;
             item->setText(0, "* "  + catalog.name);
-            item->setText(1, tr("soon", "Representation of time indicating that the catalog is not currently created and will be generated from now"));
+            item->setText(1, tr("approach to", "Representation of time indicating that the catalog is not currently created and will be generated from now"));
             item->setText(2, catalog.path);
             item->setData(0, Qt::UserRole, cnt--);
             item->setBackgroundColor(0, QColor("lightgreen"));
@@ -171,7 +171,7 @@ bool ManageDatabaseDialog::databaseSettingDialog(CatalogRecord& catalog, bool ed
     dialog.setPath(catalog.path);
     dialog.setForEditing(editing);
     if(editing)
-        dialog.setWindowTitle(tr("Edit a Catalog", "Button for editing contents of already created catalog"));
+        dialog.setWindowTitle(tr("Edit Catalog", "Button for editing contents of already created catalog"));
 
     int result = dialog.exec();
     if(result == QDialog::Rejected) {
@@ -224,7 +224,7 @@ void ManageDatabaseDialog::on_catalogCreateFinished()
 
     QMessageBox msgBox(this);
     msgBox.setWindowTitle(tr("Successed!", "Title of message box when catalog generation finished successfully"));
-    QString message = QString(tr("Creating Catalog Finished", "Body of message box when catalog generation finished successfully"));
+    QString message = QString(tr("Creating Catalog is Completed", "Body of message box when catalog generation finished successfully"));
 
     msgBox.setText(message);
     msgBox.exec();
@@ -256,7 +256,7 @@ void ManageDatabaseDialog::on_cancelWork_triggered()
 
         QMessageBox msgBox(this);
         msgBox.setWindowTitle(tr("Cancelled!", "Title of message box when catalog generation was canceled"));
-        QString message = QString(tr("Catalog Create Cancelled", "Body of message box when catalog generation is canceled"));
+        QString message = QString(tr("Creationing Catalog is Cancelled", "Body of message box when catalog generation is canceled"));
         msgBox.setText(message);
         msgBox.exec();
     }

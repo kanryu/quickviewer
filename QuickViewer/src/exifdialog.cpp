@@ -66,7 +66,7 @@ QString ExifDialog::generateOrientation(unsigned short orient)
 void ExifDialog::setExif(const easyexif::EXIFInfo& info)
 {
     if(!info.ImageWidth) {
-        ui->textEdit->setText(tr("Exif is empty.", "Text to display if EXIF is not included in JPEG"));
+        ui->textEdit->setText(tr("Exif is not included.", "Text to display if EXIF is not included in JPEG"));
         return;
     }
     QStringList tags;
@@ -76,7 +76,7 @@ void ExifDialog::setExif(const easyexif::EXIFInfo& info)
     tags << linefmt.arg(tr("ImageHeight")).arg(info.ImageHeight);
     tags << linefmt.arg(tr("Make")).arg(QString::fromStdString(info.Make));
     tags << linefmt.arg(tr("Model")).arg(QString::fromStdString(info.Model));
-    tags << linefmt.arg(tr("Orientation")).arg(generateOrientation(info.Orientation));
+    tags << linefmt.arg(tr("Orientation of camera")).arg(generateOrientation(info.Orientation));
 
     tags << linefmt.arg(tr("BitsPerSample")).arg(info.BitsPerSample);
     tags << linefmt.arg(tr("Software")).arg(QString::fromStdString(info.Software));

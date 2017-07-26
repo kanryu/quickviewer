@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>KeyConfig</string>
+   <string extracomment="Title of the dialog to customize the shortcut keys">KeyConfig</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

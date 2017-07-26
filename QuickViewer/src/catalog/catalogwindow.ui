@@ -314,7 +314,7 @@ QFrame.layout {
      <normaloff>:/icons/folder_view_list_blue</normaloff>:/icons/folder_view_list_blue</iconset>
    </property>
    <property name="text">
-    <string>FolderViewList</string>
+    <string>List</string>
    </property>
   </action>
   <action name="actionFolderViewIcon">
@@ -326,7 +326,7 @@ QFrame.layout {
      <normaloff>:/icons/folder_view_icon_red</normaloff>:/icons/folder_view_icon_red</iconset>
    </property>
    <property name="text">
-    <string>FolderViewIcon</string>
+    <string>DisplaySide-By-Side</string>
    </property>
   </action>
   <action name="actionFolderViewIconNoText">
@@ -338,7 +338,10 @@ QFrame.layout {
      <normaloff>:/icons/folder_view_icon_green</normaloff>:/icons/folder_view_icon_green</iconset>
    </property>
    <property name="text">
-    <string>FolderViewIconNoText</string>
+    <string>IconOnly</string>
+   </property>
+   <property name="iconText">
+    <string>IconOnly</string>
    </property>
   </action>
   <action name="actionFolderViewSelect">
@@ -347,7 +350,7 @@ QFrame.layout {
      <normaloff>:/icons/folder_view_icon_blue</normaloff>:/icons/folder_view_icon_blue</iconset>
    </property>
    <property name="text">
-    <string>FolderViewSelect</string>
+    <string>Switch display format</string>
    </property>
   </action>
   <action name="actionManageCatalogs">
@@ -356,13 +359,13 @@ QFrame.layout {
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
    </property>
    <property name="text">
-    <string>ManageCatalogs</string>
+    <string>CatalogManagement</string>
    </property>
    <property name="iconText">
-    <string>Catalog management</string>
+    <string>CatalogManagement</string>
    </property>
    <property name="toolTip">
-    <string>Catalog management</string>
+    <string>CatalogManagement</string>
    </property>
   </action>
   <action name="actionCloseWindow">
@@ -375,7 +378,7 @@ QFrame.layout {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Remove (Options) from Book Title</string>
+    <string extracomment="Ability to remove and display (parenthesized) text from Volume title in the catalog">Remove (Options) from book title</string>
    </property>
   </action>
   <action name="actionSearchTitleWithOptions">
@@ -383,7 +386,7 @@ QFrame.layout {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Remove (Options) from book title when searching</string>
+    <string extracomment="Ability to search with the title removed (parenthesized) removed from the title of Volume in the catalog">Remove (Options) from book title when searching</string>
    </property>
   </action>
  </widget>

@@ -9,11 +9,11 @@
     </message>
     <message>
         <source>FolderViewSelect</source>
-        <translation>转换显示方式</translation>
+        <translation type="vanished">转换显示方式</translation>
     </message>
     <message>
         <source>ManageCatalogs</source>
-        <translation>管理目录</translation>
+        <translation type="vanished">管理目录</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -33,15 +33,15 @@
     </message>
     <message>
         <source>FolderViewList</source>
-        <translation>清单</translation>
+        <translation type="vanished">清单</translation>
     </message>
     <message>
         <source>FolderViewIcon</source>
-        <translation>垂直并排</translation>
+        <translation type="vanished">垂直并排</translation>
     </message>
     <message>
         <source>FolderViewIconNoText</source>
-        <translation>只表示图标</translation>
+        <translation type="vanished">只表示图标</translation>
     </message>
     <message>
         <source>&amp;CloseWindow</source>
@@ -49,22 +49,23 @@
     </message>
     <message>
         <source>Input Search words and Press Enter-key</source>
-        <translation>以标题检索,要将关键词输入在这栏里</translation>
+        <translation type="vanished">以标题检索,要将关键词输入在这栏里</translation>
     </message>
     <message>
         <source>Drop image folders here and create Catalogs.</source>
-        <translation>拖放图像文件,制作目录</translation>
+        <translation type="vanished">拖放图像文件,制作目录</translation>
     </message>
     <message>
         <source>(%1/%2) volumes listed.</source>
-        <translation>(%1/%2)件 正在显示。</translation>
+        <translation type="vanished">(%1/%2)件 正在显示。</translation>
     </message>
     <message>
         <source>Remove (Options) from Book Title</source>
-        <translation>从书题除掉(括号)里的选项</translation>
+        <translation type="vanished">从书题除掉(括号)里的选项</translation>
     </message>
     <message>
         <source>Remove (Options) from book title when searching</source>
+        <extracomment>Ability to search with the title removed (parenthesized) removed from the title of Volume in the catalog</extracomment>
         <translation>检索书题时,除掉(括号)里的选项</translation>
     </message>
     <message>
@@ -81,7 +82,47 @@
     </message>
     <message>
         <source>Catalog management</source>
+        <translation type="vanished">管理目录</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>清单</translation>
+    </message>
+    <message>
+        <source>DisplaySide-By-Side</source>
+        <translation>垂直并排</translation>
+    </message>
+    <message>
+        <source>IconOnly</source>
+        <translation>只表示图标</translation>
+    </message>
+    <message>
+        <source>Switch display format</source>
+        <translation>转换显示方式</translation>
+    </message>
+    <message>
+        <source>CatalogManagement</source>
         <translation>管理目录</translation>
+    </message>
+    <message>
+        <source>Remove (Options) from book title</source>
+        <extracomment>Ability to remove and display (parenthesized) text from Volume title in the catalog</extracomment>
+        <translation>从书题除掉(括号)里的选项</translation>
+    </message>
+    <message>
+        <source>Field the search term and press enter key to search by the title.</source>
+        <comment>Gray text that prompts a keyword search of Volume</comment>
+        <translation>以标题检索,要将关键词输入在这栏里。</translation>
+    </message>
+    <message>
+        <source>Drop picture folder here and create a catalog.</source>
+        <comment>Status bar text briefly explaining how to use CatalogWindow</comment>
+        <translation>拖放图像文件,制作目录。</translation>
+    </message>
+    <message>
+        <source>(%1/%2) volume display.</source>
+        <comment>Text of the status bar showing [the number of hits]/[total number] of Volume</comment>
+        <translation>(%1/%2)件 正在显示。</translation>
     </message>
 </context>
 <context>
@@ -100,12 +141,22 @@
     </message>
     <message>
         <source>Select a folder which contains Images or Archives</source>
-        <translation>选择包括图像或档案的文件夹</translation>
+        <translation type="vanished">选择包括图像或档案的文件夹</translation>
     </message>
     <message>
         <source>Each catalog can contain subfolders or archives</source>
         <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
+        <translation type="vanished">各目录能以包含子文件或档案形式制作</translation>
+    </message>
+    <message>
+        <source>Each catalog can be created including Subfolders and/or Archives</source>
+        <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
         <translation>各目录能以包含子文件或档案形式制作</translation>
+    </message>
+    <message>
+        <source>Please select a folder containing Images or Archives</source>
+        <comment>Caption of FolderSelectDialog urging selection of folders containing Images and Archives</comment>
+        <translation>选择包括图像或档案的文件夹</translation>
     </message>
 </context>
 <context>
@@ -128,7 +179,7 @@
     </message>
     <message>
         <source>Orientation</source>
-        <translation>镜头方向</translation>
+        <translation type="vanished">镜头方向</translation>
     </message>
     <message>
         <source>FNumber</source>
@@ -249,12 +300,12 @@
     <message>
         <source>Flash did not fire</source>
         <comment>JPEG EXIF Flash setting value (0x0)</comment>
-        <translation type="unfinished">无闪光</translation>
+        <translation>无闪光</translation>
     </message>
     <message>
         <source>Flash fired</source>
         <comment>JPEG EXIF Flash setting value (0x1)</comment>
-        <translation type="unfinished">有闪光</translation>
+        <translation>有闪光</translation>
     </message>
     <message>
         <source>Strobe return light not detected</source>
@@ -359,60 +410,55 @@
     <message>
         <source>Horizontal (normal)</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(0 or 1)</comment>
-        <translation type="unfinished">水平(标准)</translation>
+        <translation>水平(标准)</translation>
     </message>
     <message>
         <source>Mirror horizontal</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(2)</comment>
-        <translation type="unfinished">上下反转</translation>
+        <translation>上下反转</translation>
     </message>
     <message>
         <source>Rotate 180</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(3)</comment>
-        <translation type="unfinished">旋转180°</translation>
+        <translation>旋转180°</translation>
     </message>
     <message>
         <source>Mirror vertical</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(4)</comment>
-        <translation type="unfinished">左右反转</translation>
+        <translation>左右反转</translation>
     </message>
     <message>
         <source>Mirror horizontal and rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(5)</comment>
-        <translation type="unfinished">上下反转,按顺时针方向旋转270°</translation>
+        <translation>上下反转,按顺时针方向旋转270°</translation>
     </message>
     <message>
         <source>Rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(6)</comment>
-        <translation type="unfinished">按顺时针方向旋转90°</translation>
+        <translation>按顺时针方向旋转90°</translation>
     </message>
     <message>
         <source>Mirror horizontal and rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(7)</comment>
-        <translation type="unfinished">上下反转,按顺时针方向旋转90°</translation>
+        <translation>上下反转,按顺时针方向旋转90°</translation>
     </message>
     <message>
         <source>Rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(8)</comment>
-        <translation type="unfinished">按顺时针方向旋转270°</translation>
+        <translation>按顺时针方向旋转270°</translation>
     </message>
     <message>
-        <source>Exif is empty.</source>
+        <source>Exif is not included.</source>
         <comment>Text to display if EXIF is not included in JPEG</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Orientation of camera</source>
+        <translation>镜头方向</translation>
     </message>
 </context>
 <context>
     <name>FileAssocDialog</name>
-    <message>
-        <source>File Associations to QuickViewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All On</source>
-        <extracomment>Button to turn all check boxes on</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Truevision Graphics Adapter Format (*.tga)</source>
         <translation type="unfinished"></translation>
@@ -423,11 +469,6 @@
     </message>
     <message>
         <source>Canon Raw Format (*.crw, *.cr2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Off</source>
-        <extracomment>Button to turn off all check box</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -447,14 +488,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>WebP Format (*.webp)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PNG Format (*.png)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Animated PNG Format (*.apng)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -463,69 +496,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>TIFF Format (*.tif, *.tiff)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>DirectDraw Surface Format (*.dds)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GIF Format (*.gif)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>JPEG Format (*.jpg, *.jpeg)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>JPEG Format Image</source>
-        <comment>description of File format on Explorer(.jpeg)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PNG Format Image</source>
-        <comment>description of File format on Explorer(.png)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Truevision Graphics Adapter Format Image</source>
         <comment>description of File format on Explorer(.tga)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Animated PNG Format Image</source>
-        <comment>description of File format on Explorer(.apng)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Windows Bitmap Format Image</source>
-        <comment>description of File format on Explorer(.bmp)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>DirectDraw Surface Format Image</source>
-        <comment>description of File format on Explorer(.dds)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GIF Format Image</source>
-        <comment>description of File format on Explorer(.gif)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Windows Icon Format</source>
-        <comment>description of File format on Explorer(.ico)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tiff Format Image</source>
-        <comment>description of File format on Explorer(.tiff)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WebP Format Image</source>
-        <comment>description of File format on Explorer(.webp)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -553,6 +529,85 @@
         <comment>Menu displayed when right clicking on file in Explorer</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Associate files with QuickViewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AllValid</source>
+        <extracomment>Button to turn all check boxes on</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AllInvalid</source>
+        <extracomment>Button to turn off all check box</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WebP Image (*.webp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG File (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TIFF Image (*.tif, *.tiff)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GIF Image (*.gif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JPEG Image (*.jpg, *.jpeg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>JPEG Image</source>
+        <comment>description of File format on Explorer(.jpeg)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PNG File</source>
+        <comment>description of File format on Explorer(.png)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Animated PNG File</source>
+        <comment>description of File format on Explorer(.apng)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitmap File</source>
+        <comment>description of File format on Explorer(.bmp)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DirectDraw Surface Image</source>
+        <comment>description of File format on Explorer(.dds)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GIF Image</source>
+        <comment>description of File format on Explorer(.gif)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows Icon File</source>
+        <comment>description of File format on Explorer(.ico)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tiff Image</source>
+        <comment>description of File format on Explorer(.tiff)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WebP Image</source>
+        <comment>description of File format on Explorer(.webp)</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FolderItemModel</name>
@@ -567,28 +622,28 @@
     <message>
         <source>Name</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
-        <translation type="unfinished"></translation>
+        <translation>文件内容名</translation>
     </message>
     <message>
-        <source>ModifiedTime</source>
+        <source>UpDate</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
-        <translation type="unfinished"></translation>
+        <translation>更新时间</translation>
     </message>
 </context>
 <context>
     <name>FolderWindow</name>
     <message>
         <source>FolderWindow</source>
-        <translation>文件表</translation>
+        <translation type="vanished">文件表</translation>
     </message>
     <message>
         <source>Current Folder</source>
         <extracomment>Label indicating that the current folder PATH is being displayed</extracomment>
-        <translation>现在使用的</translation>
+        <translation type="vanished">现在使用的</translation>
     </message>
     <message>
         <source>My Pictures</source>
-        <translation>图片收藏</translation>
+        <translation type="vanished">图片收藏</translation>
     </message>
     <message>
         <source>Move to Home</source>
@@ -608,11 +663,10 @@
     <message>
         <source>To parent folder</source>
         <extracomment>Button for moving from the currently displayed folder to the next higher folder</extracomment>
-        <translation>上文件</translation>
+        <translation type="vanished">上文件</translation>
     </message>
     <message>
         <source>Reload</source>
-        <extracomment>Button for updating the currently displayed folder information</extracomment>
         <translation>更新</translation>
     </message>
     <message>
@@ -634,11 +688,11 @@
     </message>
     <message>
         <source>ModifiedTime</source>
-        <translation>按更新时间排列</translation>
+        <translation type="vanished">按更新时间排列</translation>
     </message>
     <message>
         <source>set the folder as Home</source>
-        <translation>这个文件夹做主文件夹</translation>
+        <translation type="vanished">这个文件夹做主文件夹</translation>
     </message>
     <message>
         <source>No folders or archives</source>
@@ -646,18 +700,64 @@
     </message>
     <message>
         <source>ChangeSorting</source>
-        <translation>变更排列方法</translation>
+        <translation type="vanished">变更排列方法</translation>
     </message>
     <message>
         <source>No folders or archives</source>
         <comment>Display when there is no display item in Folder Window</comment>
-        <translation type="unfinished">找不到文件夹或档案</translation>
+        <translation type="obsolete">找不到文件夹或档案</translation>
+    </message>
+    <message>
+        <source>FolderList</source>
+        <translation>清单</translation>
+    </message>
+    <message>
+        <source>CurrentFolder</source>
+        <extracomment>Label indicating that the current folder PATH is being displayed</extracomment>
+        <translation>现在使用的</translation>
+    </message>
+    <message>
+        <source>Move to Home Folder</source>
+        <translation>移动到主文件上</translation>
+    </message>
+    <message>
+        <source>TopFolder</source>
+        <extracomment>Button for moving from the currently displayed folder to the next higher folder</extracomment>
+        <translation>上文件</translation>
+    </message>
+    <message>
+        <source>UpDate</source>
+        <extracomment>Button for updating the currently displayed folder information</extracomment>
+        <translation>更新</translation>
+    </message>
+    <message>
+        <source>Change the sorting method</source>
+        <extracomment>Tooltip for pulldown to change folder sorting method</extracomment>
+        <translation>变更排列方法</translation>
+    </message>
+    <message>
+        <source>Sort by Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sorted by UpDate</source>
+        <translation>按更新时间排列</translation>
+    </message>
+    <message>
+        <source>Set this folder to Home folder</source>
+        <translation>这个文件夹做主文件夹</translation>
+    </message>
+    <message>
+        <source>Not found any Folders or Archives</source>
+        <comment>Display when there is no display item in Folder Window</comment>
+        <translation>找不到文件夹或档案</translation>
     </message>
 </context>
 <context>
     <name>KeyConfigDialog</name>
     <message>
         <source>KeyConfig</source>
+        <extracomment>Title of the dialog to customize the shortcut keys</extracomment>
         <translation>设定键入方式</translation>
     </message>
     <message>
@@ -706,32 +806,47 @@
     <message>
         <source>Command</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="unfinished">命令</translation>
+        <translation type="obsolete">命令</translation>
     </message>
     <message>
         <source>Label</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="unfinished">说明</translation>
+        <translation type="obsolete">说明</translation>
     </message>
     <message>
         <source>Target</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="unfinished">现在的快捷方式</translation>
+        <translation type="obsolete">现在的快捷方式</translation>
     </message>
     <message>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
-        <translation type="unfinished">无效的键入</translation>
+        <translation>无效的键入。</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
-        <translation type="unfinished">冲突其他快捷键</translation>
+        <translation>冲突其他快捷键。</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key));</comment>
         <translation type="obsolete">冲突其他快捷键</translation>
+    </message>
+    <message>
+        <source>Motions</source>
+        <comment>Title of the column of Action to be registered with the shortcut key</comment>
+        <translation>命令</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
+        <translation>说明</translation>
+    </message>
+    <message>
+        <source>CurrentShortcut</source>
+        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
+        <translation>快捷</translation>
     </message>
 </context>
 <context>
@@ -756,20 +871,20 @@
     <message>
         <source>&amp;NextPage</source>
         <extracomment>Switch to the next image button</extracomment>
-        <translation>下个图像(&amp;N)</translation>
+        <translation type="vanished">下个图像(&amp;N)</translation>
     </message>
     <message>
         <source>NextPage</source>
-        <translation>下个图像</translation>
+        <translation type="vanished">下个图像</translation>
     </message>
     <message>
         <source>&amp;PrevPage</source>
         <extracomment>Switch to previous image button</extracomment>
-        <translation>上个图像(&amp;P)</translation>
+        <translation type="vanished">上个图像(&amp;P)</translation>
     </message>
     <message>
         <source>PrevPage</source>
-        <translation>上个图像</translation>
+        <translation type="vanished">上个图像</translation>
     </message>
     <message>
         <source>&amp;Fitting</source>
@@ -783,11 +898,11 @@
     <message>
         <source>&amp;Spread Viewing</source>
         <extracomment>Arranging two images side by side like when opening a book</extracomment>
-        <translation>合页显示(&amp;D)</translation>
+        <translation type="vanished">合页显示(&amp;D)</translation>
     </message>
     <message>
         <source>Spread Viewing</source>
-        <translation>合页显示</translation>
+        <translation type="vanished">合页显示</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
@@ -801,7 +916,7 @@
     <message>
         <source>Bound on the &amp;right side book</source>
         <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
-        <translation>右侧开启的装订显示(&amp;R)</translation>
+        <translation type="vanished">右侧开启的装订显示(&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Open Image Folder</source>
@@ -811,11 +926,11 @@
     <message>
         <source>&amp;Always open wide images as one view</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation>横宽的图像合页显示时也只显示一张(&amp;A)</translation>
+        <translation type="vanished">横宽的图像合页显示时也只显示一张(&amp;A)</translation>
     </message>
     <message>
         <source>Can&apos;t be opened. Is there no images?</source>
-        <translation>打不开了。找不到图像文件。</translation>
+        <translation type="vanished">打不开了。找不到图像文件。</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
@@ -851,7 +966,7 @@
     <message>
         <source>Open &amp;Explorer</source>
         <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
-        <translation>用Explorer视窗软件打开(&amp;E)</translation>
+        <translation type="vanished">用Explorer视窗软件打开(&amp;E)</translation>
     </message>
     <message>
         <source>Exif &amp;Information</source>
@@ -875,7 +990,7 @@
     <message>
         <source>Check &amp;Version by your browser</source>
         <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation>打开浏览器确认现在版本(&amp;V)</translation>
+        <translation type="vanished">打开浏览器确认现在版本(&amp;V)</translation>
     </message>
     <message>
         <source>N&amp;extVolume</source>
@@ -894,12 +1009,12 @@
     <message>
         <source>Next only &amp;one page</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation>只翻一页(&amp;O)</translation>
+        <translation type="vanished">只翻一页(&amp;O)</translation>
     </message>
     <message>
         <source>Prev only o&amp;ne page</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation>只回一页(&amp;N)</translation>
+        <translation type="vanished">只回一页(&amp;N)</translation>
     </message>
     <message>
         <source>ExitApplicationOrFullscreen</source>
@@ -913,7 +1028,7 @@
     <message>
         <source>Always open &amp;first images as one view</source>
         <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
-        <translation>开始(封面)的图像合页显示时也只显示一张(&amp;F)</translation>
+        <translation type="vanished">开始(封面)的图像合页显示时也只显示一张(&amp;F)</translation>
     </message>
     <message>
         <source>Show&amp;MenuBar</source>
@@ -961,7 +1076,7 @@
     <message>
         <source>&amp;Restore Window State on next run</source>
         <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
-        <translation>把窗口的表示下打开程序时恢复以前的状态(&amp;R)</translation>
+        <translation type="vanished">把窗口的表示下打开程序时恢复以前的状态(&amp;R)</translation>
     </message>
     <message>
         <source>FastForward</source>
@@ -991,7 +1106,7 @@
     <message>
         <source>SaveBookmark</source>
         <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
-        <translation>加入书签</translation>
+        <translation type="vanished">加入书签</translation>
     </message>
     <message>
         <source>ManageBookmarks</source>
@@ -1023,12 +1138,12 @@
     <message>
         <source>&amp;Nearest Neighbor interpolation (coarse)</source>
         <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
-        <translation>最近插法处理(&amp;N 太快而粗))</translation>
+        <translation type="vanished">最近插法处理(&amp;N 太快而粗))</translation>
     </message>
     <message>
         <source>&amp;Project WebPage by your browser</source>
         <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation>主页通过浏览器显示(&amp;P)</translation>
+        <translation type="vanished">主页通过浏览器显示(&amp;P)</translation>
     </message>
     <message>
         <source>&amp;Catalog</source>
@@ -1079,7 +1194,7 @@
     <message>
         <source>CatalogViewIconNoText</source>
         <extracomment>Mode to list Volume in the catalog with only the icons side by side</extracomment>
-        <translation>只显示图标</translation>
+        <translation type="vanished">只显示图标</translation>
     </message>
     <message>
         <source>CatalogViewList</source>
@@ -1109,16 +1224,16 @@
     <message>
         <source>Run your &amp;mailer with an attachment</source>
         <extracomment>Menu to attach the currently displayed image to the mail software and start up</extracomment>
-        <translation>调出附件启动电子邮件软件(&amp;M)</translation>
+        <translation type="vanished">调出附件启动电子邮件软件(&amp;M)</translation>
     </message>
     <message>
         <source>Run your mailer with an attachment</source>
-        <translation>调出附件启动电子邮件软件</translation>
+        <translation type="vanished">调出附件启动电子邮件软件</translation>
     </message>
     <message>
         <source>Show large &amp;grid for long titles</source>
         <extracomment>Functions to be used when the Volume title in the catalog is long</extracomment>
-        <translation>为了显示长题扩大框架(&amp;G)</translation>
+        <translation type="vanished">为了显示长题扩大框架(&amp;G)</translation>
     </message>
     <message>
         <source>&amp;Bilinear interpolation (fast)</source>
@@ -1138,16 +1253,16 @@
     <message>
         <source>CPU Bicubic interpolation</source>
         <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
-        <translation>用CPU双三次插值</translation>
+        <translation type="vanished">用CPU双三次插值</translation>
     </message>
     <message>
         <source>ShowSubfolders</source>
         <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
-        <translation>打开子文件夹</translation>
+        <translation type="vanished">打开子文件夹</translation>
     </message>
     <message>
         <source>ShowImages in sub folders</source>
-        <translation>打开子文件夹内的图像</translation>
+        <translation type="vanished">打开子文件夹内的图像</translation>
     </message>
     <message>
         <source>F&amp;older</source>
@@ -1156,12 +1271,12 @@
     <message>
         <source>Open volume with progress</source>
         <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
-        <translation>打开以前打开过的书页</translation>
+        <translation type="vanished">打开以前打开过的书页</translation>
     </message>
     <message>
         <source>ShowReadProgress</source>
         <extracomment>Ability to display read information read in the middle in FolderWindow</extracomment>
-        <translation>显示读到那里</translation>
+        <translation type="vanished">显示读到那里</translation>
     </message>
     <message>
         <source>&amp;Options Config</source>
@@ -1169,18 +1284,8 @@
         <translation>选项设置(&amp;O)</translation>
     </message>
     <message>
-        <source>Rename the image</source>
-        <extracomment>A menu for changing the file name of the currently displayed image</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Don&apos;t enlarge small images on Fitting</source>
         <extracomment>Ability to display an image smaller than the window as it is when fit is displayed</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fullscreen on next run</source>
-        <extracomment>Ability to always launch applications in full screen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1205,42 +1310,187 @@
     <message>
         <source>any folder or archive is not loaded.</source>
         <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
-        <translation type="unfinished">没读出文件夹或档案</translation>
+        <translation type="obsolete">没读出文件夹或档案</translation>
     </message>
     <message>
         <source>Can&apos;t be opened. Is there no images?</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation type="unfinished">打不开了。找不到图像文件。</translation>
+        <translation type="obsolete">打不开了。找不到图像文件。</translation>
     </message>
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation type="unfinished">全文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
+        <translation>全文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
-        <translation type="unfinished">选择要阅览的图像或档案</translation>
+        <translation type="obsolete">选择要阅览的图像或档案</translation>
     </message>
     <message>
         <source>Do you really want to clear the main menu?</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation type="unfinished">真的不表示主菜单?</translation>
+        <translation type="obsolete">真的不表示主菜单?</translation>
     </message>
     <message>
         <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation type="unfinished">按F8键盘(默认)或者在标题栏上表示快捷菜单选择&lt;br /&gt;&lt;strong&gt;《转换表示主菜单／不表示》&lt;/strong&gt;</translation>
+        <translation>按F8键盘(默认)或者在标题栏上表示快捷菜单选择&lt;br /&gt;&lt;strong&gt;《转换表示主菜单／不表示》&lt;/strong&gt;</translation>
     </message>
     <message>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation type="unfinished">确认</translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>Are you sure you delete the image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="unfinished">真的将这图像扔进垃圾箱吗?</translation>
+        <translation type="obsolete">真的将这图像扔进垃圾箱吗?</translation>
+    </message>
+    <message>
+        <source>&amp;NextImage</source>
+        <extracomment>Switch to the next image button</extracomment>
+        <translation>下个图像(&amp;N)</translation>
+    </message>
+    <message>
+        <source>&amp;PrevImage</source>
+        <extracomment>Switch to previous image button</extracomment>
+        <translation>上个图像(&amp;P)</translation>
+    </message>
+    <message>
+        <source>2page &amp;Spread</source>
+        <extracomment>Arranging two images side by side like when opening a book</extracomment>
+        <translation>合页显示(&amp;D)</translation>
+    </message>
+    <message>
+        <source>Bound on the &amp;right side</source>
+        <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
+        <translation>右侧开启的装订显示(&amp;R)</translation>
+    </message>
+    <message>
+        <source>&amp;Always display one landscape image even in 2 page display.</source>
+        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
+        <translation>横宽的图像合页显示时也只显示一张(&amp;A)</translation>
+    </message>
+    <message>
+        <source>Open in &amp;Explorer</source>
+        <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
+        <translation>用Explorer视窗软件打开(&amp;E)</translation>
+    </message>
+    <message>
+        <source>Open browser to check &amp;Version</source>
+        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
+        <translation>打开浏览器确认现在版本(&amp;V)</translation>
+    </message>
+    <message>
+        <source>Advance &amp;one page only</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
+        <translation>只翻一页(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Prev o&amp;ne page only</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
+        <translation>只回一页(&amp;N)</translation>
+    </message>
+    <message>
+        <source>Always open &amp;first images even withas only one page</source>
+        <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
+        <translation>开始(封面)的图像合页显示时也只显示一张(&amp;F)</translation>
+    </message>
+    <message>
+        <source>&amp;Nearest Neighbor interpolation (fast but coarse)</source>
+        <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
+        <translation>最近插法处理(&amp;N 太快而粗))</translation>
+    </message>
+    <message>
+        <source>&amp;Restore window display at next startup</source>
+        <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
+        <translation>把窗口的表示下打开程序时恢复以前的状态(&amp;R)</translation>
+    </message>
+    <message>
+        <source>AddBookmark</source>
+        <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
+        <translation>加入书签</translation>
+    </message>
+    <message>
+        <source>Display Home&amp;page on browser</source>
+        <extracomment>Button to display the web page of the project in the browser</extracomment>
+        <translation>主页通过浏览器显示(&amp;P)</translation>
+    </message>
+    <message>
+        <source>IconViewOnly</source>
+        <extracomment>Mode to list Volume in the catalog with only the icons side by side</extracomment>
+        <translation>只表示图标</translation>
+    </message>
+    <message>
+        <source>Activate your e-mail software with an attachment</source>
+        <extracomment>Menu to attach the currently displayed image to the mail software and start up</extracomment>
+        <translation>调出附件启动电子邮件软件</translation>
+    </message>
+    <message>
+        <source>Larger &amp;grid to display long title</source>
+        <extracomment>Functions to be used when the Volume title in the catalog is long</extracomment>
+        <translation>为了显示长题扩大框架(&amp;G)</translation>
+    </message>
+    <message>
+        <source>Bicubic interpolation by CPU (quality)</source>
+        <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
+        <translation>用CPU双三次插值</translation>
+    </message>
+    <message>
+        <source>Open with Subfolders Image</source>
+        <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
+        <translation>打开子文件夹内的图像</translation>
+    </message>
+    <message>
+        <source>Previously opened page in Preview</source>
+        <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
+        <translation>打开以前打开过的书页</translation>
+    </message>
+    <message>
+        <source>Show how far you read</source>
+        <extracomment>Ability to display read information read in the middle in FolderWindow</extracomment>
+        <translation>显示读到那里</translation>
+    </message>
+    <message>
+        <source>Rename</source>
+        <extracomment>A menu for changing the file name of the currently displayed image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full screen on startup</source>
+        <extracomment>Ability to always launch applications in full screen</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any folder or archive is not loaded.</source>
+        <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
+        <translation>没读出文件夹或档案。</translation>
+    </message>
+    <message>
+        <source>Image file not found. Can&apos;t be opened</source>
+        <comment>Text to display in the status bar when failed to open the specified Volume</comment>
+        <translation>打不开了。找不到图像文件。</translation>
+    </message>
+    <message>
+        <source>Image file was not found. Can&apos;t be opened.</source>
+        <comment>Text to display in the status bar when failed to open the specified Volume</comment>
+        <translation>打不开了。找不到图像文件。</translation>
+    </message>
+    <message>
+        <source>Please select the image or archive</source>
+        <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
+        <translation>选择要阅览的图像或档案</translation>
+    </message>
+    <message>
+        <source>Do you really want to hide the main menu?</source>
+        <comment>Message confirming to hide the main menu</comment>
+        <translation>真的不表示主菜单?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
+        <translation>真的将这图像扔进垃圾箱吗?</translation>
     </message>
 </context>
 <context>
@@ -1252,7 +1502,12 @@
     <message>
         <source>Sh&amp;ow or Hide MainMenuBar</source>
         <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
-        <translation type="unfinished">转换主菜单的显示/不显示(&amp;O)</translation>
+        <translation type="obsolete">转换主菜单的显示/不显示(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Sh&amp;ow/Hide MainMenuBar</source>
+        <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
+        <translation>转换表示主菜单／不表示</translation>
     </message>
 </context>
 <context>
@@ -1264,7 +1519,7 @@
     <message>
         <source>Manage a Catalog</source>
         <extracomment>Name of the frame in which buttons for operating one catalog are arranged</extracomment>
-        <translation>选择的目录</translation>
+        <translation type="vanished">选择的目录</translation>
     </message>
     <message>
         <source>&amp;AddNew</source>
@@ -1289,7 +1544,7 @@
     <message>
         <source>Manage all Catalogs</source>
         <extracomment>Name of the frame in which buttons for operating all catalogs are arranged</extracomment>
-        <translation>全目录</translation>
+        <translation type="vanished">全目录</translation>
     </message>
     <message>
         <source>DeleteAll</source>
@@ -1347,57 +1602,92 @@
     <message>
         <source>Name</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished"></translation>
+        <translation>目录名</translation>
     </message>
     <message>
         <source>Created</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished">制作时间</translation>
+        <translation type="obsolete">制作时间</translation>
     </message>
     <message>
         <source>Path</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished">文件夹</translation>
+        <translation>文件夹</translation>
     </message>
     <message>
         <source>Start Work</source>
         <comment>Button to start catalog creation for specified folder</comment>
-        <translation type="unfinished">开始处理</translation>
+        <translation>开始处理</translation>
     </message>
     <message>
         <source>Cancel Work</source>
         <comment>Button to cancel the catalog being generated</comment>
-        <translation type="unfinished">取消处理</translation>
+        <translation>取消处理</translation>
     </message>
     <message>
         <source>soon</source>
         <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
-        <translation type="unfinished">即将开始</translation>
+        <translation type="obsolete">即将开始</translation>
     </message>
     <message>
         <source>Edit a Catalog</source>
         <comment>Button for editing contents of already created catalog</comment>
-        <translation type="unfinished">剪辑目录</translation>
+        <translation type="obsolete">剪辑目录</translation>
     </message>
     <message>
         <source>Successed!</source>
         <comment>Title of message box when catalog generation finished successfully</comment>
-        <translation type="unfinished">成功了！</translation>
+        <translation>成功了！</translation>
     </message>
     <message>
         <source>Creating Catalog Finished</source>
         <comment>Body of message box when catalog generation finished successfully</comment>
-        <translation type="unfinished">制作目录结束了</translation>
+        <translation type="obsolete">制作目录结束了</translation>
     </message>
     <message>
         <source>Cancelled!</source>
         <comment>Title of message box when catalog generation was canceled</comment>
-        <translation type="unfinished">取消了！</translation>
+        <translation>取消了！</translation>
     </message>
     <message>
         <source>Catalog Create Cancelled</source>
         <comment>Body of message box when catalog generation is canceled</comment>
-        <translation type="unfinished">取消了目录制作</translation>
+        <translation type="obsolete">取消了目录制作</translation>
+    </message>
+    <message>
+        <source>Selected Catalog</source>
+        <extracomment>Name of the frame in which buttons for operating one catalog are arranged</extracomment>
+        <translation>选择的目录</translation>
+    </message>
+    <message>
+        <source>All Catalogs</source>
+        <extracomment>Name of the frame in which buttons for operating all catalogs are arranged</extracomment>
+        <translation>全目录</translation>
+    </message>
+    <message>
+        <source>CreationTime</source>
+        <comment>Title of the column in the list part of the folder registered as Catalog</comment>
+        <translation>制作时间</translation>
+    </message>
+    <message>
+        <source>approach to</source>
+        <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
+        <translation>即将开始</translation>
+    </message>
+    <message>
+        <source>Edit Catalog</source>
+        <comment>Button for editing contents of already created catalog</comment>
+        <translation>剪辑目录</translation>
+    </message>
+    <message>
+        <source>Creating Catalog is Completed</source>
+        <comment>Body of message box when catalog generation finished successfully</comment>
+        <translation>制作目录结束了</translation>
+    </message>
+    <message>
+        <source>Creationing Catalog is Cancelled</source>
+        <comment>Body of message box when catalog generation is canceled</comment>
+        <translation>取消了目录制作</translation>
     </message>
 </context>
 <context>
@@ -1408,7 +1698,7 @@
     </message>
     <message>
         <source>Increasing it makes NextVolume / PrevVolume more comfortable but increases memory consumption. 1 is appropriate for 32 bit version.</source>
-        <translation>增加数值就改善《下卷》/《上卷》的举动，可多占内存。32位元版以1为合适的。</translation>
+        <translation type="vanished">增加数值就改善《下卷》/《上卷》的举动，可多占内存。32位元版以1为合适的。</translation>
     </message>
     <message>
         <source>Increasing the value increases the display time of one image</source>
@@ -1425,20 +1715,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>BackgroundColor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use checkered pattern</source>
         <extracomment>Function to make the background of the application a pattern of chessboard</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Color2</source>
+        <source>Increasing the number, the behavior of &quot;NextVolume&quot; / &quot;PrevVolume&quot; improves but, increases memory consumption. 1 is appropriate for 32 bit version.</source>
+        <translation>增加数值就改善《下卷》/《上卷》的举动，可多占内存。32位元版以1为合适的。</translation>
+    </message>
+    <message>
+        <source>Increasing the value increases the display time of per image</source>
+        <translation>增加数值每一张图像显示时间就长</translation>
+    </message>
+    <message>
+        <source>BackgroundPattern</source>
+        <extracomment>Title of frame to change background color or pattern</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BackgroundColor1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BackgroundColor2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1451,7 +1750,12 @@
     <message>
         <source>NOT IMAGE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
-        <translation type="unfinished">不是图像文件</translation>
+        <translation type="obsolete">不是图像文件</translation>
+    </message>
+    <message>
+        <source>NOT IMAGE FILE</source>
+        <comment>Error messages to be displayed on screen when image loading fails</comment>
+        <translation>不是图像文件</translation>
     </message>
 </context>
 <context>
@@ -1503,12 +1807,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Filename can&apos;t be empty.</source>
+        <source>Filename is required.</source>
         <comment>An error message to be displayed when the file name is set to the empty character in the file name change dialog</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Rename failed. Does the same file name exist?</source>
+        <source>Rename failed. Same filename might be already existed?</source>
         <comment>Error message to display when file name change fails</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1530,17 +1834,22 @@
     <message>
         <source>Click and type the new key sequence.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation type="unfinished">点击用键盘输入新快捷键</translation>
+        <translation type="obsolete">点击用键盘输入新快捷键</translation>
     </message>
     <message>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>
-        <translation type="unfinished">停止保存</translation>
+        <translation>停止保存</translation>
     </message>
     <message>
         <source>Record</source>
         <comment>Button for starting entering the shortcut key</comment>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
+    </message>
+    <message>
+        <source>Click and enter a new shortcut key.</source>
+        <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
+        <translation>点击用键盘输入新快捷键。</translation>
     </message>
 </context>
 </TS>

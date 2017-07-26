@@ -108,7 +108,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string extracomment="A message indicating that one catalog can register multiple subfolders at once">Each catalog can contain subfolders or archives</string>
+         <string extracomment="A message indicating that one catalog can register multiple subfolders at once">Each catalog can be created including Subfolders and/or Archives</string>
         </property>
        </widget>
       </item>

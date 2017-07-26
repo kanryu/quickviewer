@@ -10,6 +10,7 @@ class MainWindow;
 
 class FullscreenTopFrame : public QMainWindow
 {
+    Q_OBJECT
 public:
     explicit FullscreenTopFrame(MainWindow* mainWindow, Ui::MainWindow *ui, QWidget *parent = 0);
     ~FullscreenTopFrame();
@@ -21,6 +22,8 @@ public:
     void closeAndShowNormal();
     bool isValid() { return m_valid; }
 
+public slots:
+    void closeWhenMouseIsOut();
 
 private:
     MainWindow* m_mainWindow;
@@ -30,6 +33,7 @@ private:
     int initializeCount;
     bool m_toShowNormal;
     bool m_valid;
+    QTimer m_timer;
 };
 
 #endif // FULLSCREENTOPFRAME_H

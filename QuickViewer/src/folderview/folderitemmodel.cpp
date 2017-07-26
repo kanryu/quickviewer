@@ -15,7 +15,7 @@ QVariant FolderItemModel::headerData(int section, Qt::Orientation , int role) co
     case Qt::DisplayRole:
         switch(section) {
         case 0: return tr("Name", "Title of the column in the folder list when displaying as an independent Window in Folder Window");
-        case 1: return tr("ModifiedTime", "Title of the column in the folder list when displaying as an independent Window in Folder Window");
+        case 1: return tr("UpDate", "Title of the column in the folder list when displaying as an independent Window in Folder Window");
         }
         break;
 //    case Qt::SizeHintRole:

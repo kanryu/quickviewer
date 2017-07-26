@@ -14,10 +14,6 @@
 #include "renamedialog.h"
 #include "exifdialog.h"
 
-#ifdef Q_OS_WIN
-#include "fullscreentopframe.h"
-#endif
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -105,7 +101,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     ui->statusBar->addPermanentWidget(ui->statusLabel);
-    ui->statusLabel->setText(tr("any folder or archive is not loaded.", "The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated"));
+    ui->statusLabel->setText(tr("Any folder or archive is not loaded.", "The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated"));
 
     // Shader
     m_shaderMenuGroup
@@ -123,10 +119,6 @@ MainWindow::MainWindow(QWidget *parent)
     case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
     case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
     }
-//#ifndef Q_OS_WIN
-//    ui->actionShaderBilinearBeforeCpuBicubic->setVisible(false);
-//#endif
-
 
     ui->graphicsView->installEventFilter(this);
     ui->mainToolBar->installEventFilter(this);
@@ -328,12 +320,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         }
         break;
     case QEvent::Leave:
-#ifndef Q_OS_WIN
         if(obj == ui->mainToolBar && isFullScreen()) {
             ui->mainToolBar->hide();
             return true;
         }
-#endif
         if(obj == ui->pageFrame && isFullScreen()) {
             ui->pageFrame->hide();
             return true;
@@ -352,17 +342,8 @@ void MainWindow::loadVolume(QString path)
             ui->pageFrame->show();
         return;
     }
-//    QMessageBox msgBox(this);
-//    msgBox.setWindowTitle(tr("open error"));
-//    msgBox.setIcon(QMessageBox::Warning);
-//    msgBox.setText(QApplication::applicationVersion());
-//    QString message = QString("<h2>%1</h2><p>%2</p>")
-//            .arg(tr("Can't be opened. Is there no images?"))
-//            .arg(path);
-//    msgBox.setText(message);
-//    msgBox.exec();
 
-    ui->statusLabel->setText(tr("Can't be opened. Is there no images?", "Text to display in the status bar when failed to open the specified Volume"));
+    ui->statusLabel->setText(tr("Image file not found. Can't be opened", "Text to display in the status bar when failed to open the specified Volume"));
 }
 
 
@@ -452,28 +433,20 @@ void MainWindow::on_clearHistory_triggered()
     makeHistoryMenu();
 }
 
-FullscreenTopFrame *fullscreenTopFrame;
 void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
 {
     if(!isFullScreen()) {
         return;
     }
     if(anchor == Qt::AnchorTop) {
-#ifdef Q_OS_WIN
-        fullscreenTopFrame = new FullscreenTopFrame(this, ui);
-        fullscreenTopFrame->showMaximized();
-#else
         ui->mainToolBar->show();
-#endif
     }
     if(anchor == Qt::AnchorBottom) {
         if(qApp->ShowSliderBar())
             ui->pageFrame->show();
     }
     if(anchor == Qt::AnchorHorizontalCenter) {
-#ifndef Q_OS_WIN
         ui->mainToolBar->hide();
-#endif
         ui->pageFrame->hide();
     }
     ui->graphicsView->readyForPaint();
@@ -481,10 +454,7 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
 
 void MainWindow::on_fullscreen_triggered()
 {
-    if(fullscreenTopFrame && fullscreenTopFrame->isValid()) {
-        fullscreenTopFrame->closeAndShowNormal();
-        return;
-    }
+
     if(isFullScreen()) {
         ui->graphicsView->setWillFullscreen(false);
         ui->graphicsView->skipRisizeEvent(true);
@@ -610,7 +580,7 @@ void MainWindow::on_pageNolongerNeeded_triggered()
 {
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     ui->pageFrame->hide();
-    ui->statusLabel->setText(tr("Can't be opened. Is there no images?"));
+    ui->statusLabel->setText(tr("Image file was not found. Can't be opened.", "Text to display in the status bar when failed to open the specified Volume"));
 }
 
 void MainWindow::on_appVersion_triggered()
@@ -634,6 +604,7 @@ void MainWindow::on_languageChanged_triggered(QString language)
 {
     qApp->setUiLanguage(language);
     ui->retranslateUi(this);
+    ui->menuLoadBookmark->setTitle(QApplication::translate("MainWindow", "LoadBookmark", Q_NULLPTR));
 }
 
 void MainWindow::on_registAssocs_triggered()
@@ -894,7 +865,7 @@ void MainWindow::on_catalogIconLongText_triggered(bool enable)
 void MainWindow::on_openfolder_triggered()
 {
     QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)", "Text that specifies the file extension to be displayed when opening a file with OpenFileFolder");
-    QString folder = QFileDialog::getOpenFileName(this, tr("Open a image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"), "", filter);
+    QString folder = QFileDialog::getOpenFileName(this, tr("Please select the image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"), "", filter);
 //    QFileDialog dialog = QFileDialog(this, tr("Open a image folder"));
 //    if(dialog.exec()) {
     if(folder.length() > 0) {
@@ -949,7 +920,7 @@ void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
         msgBox.setTextFormat(Qt::RichText);
         QString message = QString("<h2>%1</h2>"
                                   "<p>%2</p>")
-                .arg(tr("Do you really want to clear the main menu?", "Message confirming to hide the main menu"))
+                .arg(tr("Do you really want to hide the main menu?", "Message confirming to hide the main menu"))
                 .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>", "Message confirming to hide the main menu"));
         msgBox.setText(message);
         if(msgBox.exec() == QMessageBox::Cancel) {
@@ -1067,7 +1038,7 @@ void MainWindow::on_deletePage_triggered()
         //text
         msgBox.setTextFormat(Qt::RichText);
         QString message = QString("<h2>%1</h2><p>%2</p>" )
-                .arg(tr("Are you sure you delete the image?", "Confirm putting displayed file in Recycle Box Message Box body"))
+                .arg(tr("Are you sure you want to delete this image?", "Confirm putting displayed file in Recycle Box Message Box body"))
                 .arg(path);
         msgBox.setText(message);
 

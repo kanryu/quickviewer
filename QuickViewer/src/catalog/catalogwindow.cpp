@@ -43,7 +43,7 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
 
     // SearchCombo
     connect(ui->searchCombo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(on_searchTextFinished()));
-    ui->searchCombo->lineEdit()->setPlaceholderText(tr("Input Search words and Press Enter-key"));
+    ui->searchCombo->lineEdit()->setPlaceholderText(tr("Field the search term and press enter key to search by the title.", "Gray text that prompts a keyword search of Volume"));
 
     // TagFrame
     if(!qApp->ShowTagBar())
@@ -59,7 +59,7 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
 
     // Status Bar
     ui->statusBar->addPermanentWidget(ui->statusLabel);
-    ui->statusLabel->setText(tr("Drop image folders here and create Catalogs."));
+    ui->statusLabel->setText(tr("Drop picture folder here and create a catalog.", "Status bar text briefly explaining how to use CatalogWindow"));
 
     ui->menu_View->addAction(uiMain->actionShowTagBar);
     ui->menu_View->addAction(uiMain->actionCatalogIconLongText);
@@ -170,7 +170,7 @@ void CatalogWindow::resetVolumes()
     m_itemModel.setVolumes(&m_volumeSearch);
     if(!m_volumes.size())
         return;
-    QString volumestxt = QString(tr("(%1/%2) volumes listed."))
+    QString volumestxt = QString(tr("(%1/%2) volume display.", "Text of the status bar showing [the number of hits]/[total number] of Volume"))
             .arg(m_volumeSearch.size()).arg(m_volumes.size());
     ui->statusLabel->setText(volumestxt);
 

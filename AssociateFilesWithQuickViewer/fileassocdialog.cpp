@@ -25,34 +25,34 @@ FileAssocDialog::FileAssocDialog(QWidget *parent) :
     ui->setupUi(this);
 
     m_assocOfActions[ui->checkBoxJpeg] = "Jpeg";
-    m_assocs["Jpeg"] = AssocInfo{"Jpeg", tr("JPEG Format Image", "description of File format on Explorer(.jpeg)"), "qv_jpeg.ico", {".jpg",".jpeg"}};
+    m_assocs["Jpeg"] = AssocInfo{"Jpeg", tr("JPEG Image", "description of File format on Explorer(.jpeg)"), "qv_jpeg.ico", {".jpg",".jpeg"}};
 
     m_assocOfActions[ui->checkBoxPng]  = "Png";
-    m_assocs["Png"] = AssocInfo{"Png", tr("PNG Format Image", "description of File format on Explorer(.png)"), "qv_png.ico", {".png"}};
+    m_assocs["Png"] = AssocInfo{"Png", tr("PNG File", "description of File format on Explorer(.png)"), "qv_png.ico", {".png"}};
 
     m_assocOfActions[ui->checkBoxTga]  = "Tga";
     m_assocs["Tga"] = AssocInfo{"Tga", tr("Truevision Graphics Adapter Format Image", "description of File format on Explorer(.tga)"), "qv_tga.ico", {".tga"}};
 
     m_assocOfActions[ui->checkBoxApng] = "Apng";
-    m_assocs["Apng"] = AssocInfo{"Apng", tr("Animated PNG Format Image", "description of File format on Explorer(.apng)"), "qv_apng.ico", {".apng"}};
+    m_assocs["Apng"] = AssocInfo{"Apng", tr("Animated PNG File", "description of File format on Explorer(.apng)"), "qv_apng.ico", {".apng"}};
 
     m_assocOfActions[ui->checkBoxBmp]  = "Bitmap";
-    m_assocs["Bitmap"] = AssocInfo{"Bitmap", tr("Windows Bitmap Format Image", "description of File format on Explorer(.bmp)"), "qv_bmp.ico", {".bmp"}};
+    m_assocs["Bitmap"] = AssocInfo{"Bitmap", tr("Bitmap File", "description of File format on Explorer(.bmp)"), "qv_bmp.ico", {".bmp"}};
 
     m_assocOfActions[ui->checkBoxDds]  = "Dds";
-    m_assocs["Dds"] = AssocInfo{"Dds", tr("DirectDraw Surface Format Image", "description of File format on Explorer(.dds)"), "qv_dds.ico", {".dds"}};
+    m_assocs["Dds"] = AssocInfo{"Dds", tr("DirectDraw Surface Image", "description of File format on Explorer(.dds)"), "qv_dds.ico", {".dds"}};
 
     m_assocOfActions[ui->checkBoxGif]  = "Gif";
-    m_assocs["Gif"] = AssocInfo{"Gif", tr("GIF Format Image", "description of File format on Explorer(.gif)"), "qv_gif.ico", {".gif"}};
+    m_assocs["Gif"] = AssocInfo{"Gif", tr("GIF Image", "description of File format on Explorer(.gif)"), "qv_gif.ico", {".gif"}};
 
     m_assocOfActions[ui->checkBoxIcon] = "Icon";
-    m_assocs["Icon"] = AssocInfo{"Icon", tr("Windows Icon Format", "description of File format on Explorer(.ico)"), "", {".ico"}};
+    m_assocs["Icon"] = AssocInfo{"Icon", tr("Windows Icon File", "description of File format on Explorer(.ico)"), "", {".ico"}};
 
     m_assocOfActions[ui->checkBoxTiff] = "Tiff";
-    m_assocs["Tiff"] = AssocInfo{"Tiff", tr("Tiff Format Image", "description of File format on Explorer(.tiff)"), "qv_tiff.ico", {".tif", ".tiff"}};
+    m_assocs["Tiff"] = AssocInfo{"Tiff", tr("Tiff Image", "description of File format on Explorer(.tiff)"), "qv_tiff.ico", {".tif", ".tiff"}};
 
     m_assocOfActions[ui->checkBoxWebp] = "WebP";
-    m_assocs["WebP"] = AssocInfo{"WebP", tr("WebP Format Image", "description of File format on Explorer(.webp)"), "qv_webp.ico", {".webp"}};
+    m_assocs["WebP"] = AssocInfo{"WebP", tr("WebP Image", "description of File format on Explorer(.webp)"), "qv_webp.ico", {".webp"}};
 
     m_assocOfActions[ui->checkBoxRawCanon] = "RawCanon";
     m_assocs["RawCanon"] = AssocInfo{"RawCanon", tr("Canon Raw Format", "description of File format on Explorer(.cr2)"), "qv_raw.ico", {".crw", ".cr2"}};

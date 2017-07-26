@@ -23,10 +23,10 @@ public:
     virtual bool setStayOnTop(bool ) {return false;}
     virtual void setWindowTop() {}
     virtual void setMailAttachment(QString path) {}
+    virtual bool eventFilter(QObject *obj, QEvent *event);
 
     void resetShortcutKeys();
     void keyPressEvent(QKeyEvent *event);
-    bool eventFilter(QObject *obj, QEvent *event);
     void makeHistoryMenu();
     void resetVolume(IFileVolume* newer);
     void uncheckAllShaderMenus() {
@@ -93,7 +93,7 @@ public slots:
     void on_pageNolongerNeeded_triggered();
 
     // View
-    void on_fullscreen_triggered();
+    virtual void on_fullscreen_triggered();
     void on_stayOnTop_triggered(bool top);
     void on_restoreWindowState_triggered(bool saveState);
     void on_maximizeOrNormal_triggered();
@@ -144,10 +144,11 @@ public slots:
     void on_loadBookmark_triggered();
     void on_loadBookmarkMenu_triggered(QAction *action);
 
+    // Others
     void on_messageReceived(QString data);
+    virtual void on_hover_anchor(Qt::AnchorPoint anchor);
 
 private slots:
-    void on_hover_anchor(Qt::AnchorPoint anchor);
     void on_fittingChanged(bool fitting);
 
 

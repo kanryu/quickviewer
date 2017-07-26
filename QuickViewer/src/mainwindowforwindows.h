@@ -13,13 +13,12 @@ public:
     virtual bool setStayOnTop(bool top) override;
     virtual void setWindowTop() override;
     virtual void setMailAttachment(QString path) override;
+    virtual bool eventFilter(QObject *obj, QEvent *event) override;
+    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
 public slots:
-//    void showEvent(QShowEvent * event);
-//    void focusInEvent(QFocusEvent * event);
-//    void enterEvent(QEnterEvent* event);
-//    bool winEvent(MSG * message, long * result);
-    bool nativeEvent(const QByteArray &eventType, void *message, long *result);
+    virtual void on_hover_anchor(Qt::AnchorPoint anchor) override;
+    virtual void on_fullscreen_triggered() override;
 
 private:
     bool bFirstView;

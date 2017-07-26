@@ -6,6 +6,7 @@
 #include "qvapplication.h"
 #include "mainwindowforwindows.h"
 #include "ui_mainwindow.h"
+#include "fullscreentopframe.h"
 
 #define IDM_SHOWMAINMENU 2
 
@@ -15,7 +16,7 @@ WNDPROC MainWindowForWindows::DefStaticProc;
 MainWindowForWindows::MainWindowForWindows(QWidget *parent)
     : MainWindow(parent), bFirstView(true)
 {
-    QString menutxt = tr("Sh&ow or Hide MainMenuBar", "An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden");
+    QString menutxt = tr("Sh&ow/Hide MainMenuBar", "An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden");
     menutxt = ui->actionShowMainMenuBar->text();
 
     MainWindowForWindows_self = this;
@@ -142,7 +143,49 @@ void MainWindowForWindows::setMailAttachment(QString path)
             return;
         default: break;
         }
+        }
+}
+
+bool MainWindowForWindows::eventFilter(QObject *obj, QEvent *event)
+{
+    switch (event->type()) {
+    case QEvent::Leave:
+        if(obj == ui->pageFrame && isFullScreen()) {
+            ui->pageFrame->hide();
+            return true;
+        }
+        return QObject::eventFilter(obj, event);
     }
+    return MainWindow::eventFilter(obj, event);
+}
+
+static FullscreenTopFrame *fullscreenTopFrame;
+void MainWindowForWindows::on_hover_anchor(Qt::AnchorPoint anchor)
+{
+    if(!isFullScreen()) {
+        return;
+    }
+    if(anchor == Qt::AnchorTop) {
+        fullscreenTopFrame = new FullscreenTopFrame(this, ui);
+        fullscreenTopFrame->showMaximized();
+    }
+    if(anchor == Qt::AnchorBottom) {
+        if(qApp->ShowSliderBar())
+            ui->pageFrame->show();
+    }
+    if(anchor == Qt::AnchorHorizontalCenter) {
+        ui->pageFrame->hide();
+    }
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindowForWindows::on_fullscreen_triggered()
+{
+    if(fullscreenTopFrame && fullscreenTopFrame->isValid()) {
+        fullscreenTopFrame->closeAndShowNormal();
+        return;
+    }
+    MainWindow::on_fullscreen_triggered();
 }
 
 // This method is used because QShowEvent may not be called

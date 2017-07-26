@@ -14,7 +14,7 @@ FullscreenTopFrame::FullscreenTopFrame(MainWindow* mainWindow, Ui::MainWindow *u
     , m_valid(true)
     , initializeCount(2)
 {
-
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(closeWhenMouseIsOut()));
 
     Qt::WindowFlags flags = windowFlags();
     flags |= Qt::CustomizeWindowHint | Qt::WindowStaysOnTopHint;
@@ -29,8 +29,7 @@ FullscreenTopFrame::FullscreenTopFrame(MainWindow* mainWindow, Ui::MainWindow *u
     setWindowTitle(mainWindow->windowTitle());
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
     QRect rectMain = mainWindow->geometry();
-    setGeometry(QRect(QPoint(rectMain.left()+2, rectMain.top()+2), QSize(100, 10)));
-
+    setGeometry(QRect(QPoint(rectMain.left(), rectMain.top()+20), QSize(rectMain.width()-100, minimumSize().height())));
 }
 
 FullscreenTopFrame::~FullscreenTopFrame()
@@ -44,7 +43,8 @@ void FullscreenTopFrame::changeEvent(QEvent *event)
     if(event->type() == QEvent::WindowStateChange && (winEvent = dynamic_cast<QWindowStateChangeEvent*>(event)) != nullptr) {
 //        qDebug() << winEvent << winEvent->oldState();
 //        qDebug() << windowHandle()->windowState();
-        switch(windowHandle()->windowState()) {
+        QWindow* qwindow = windowHandle();
+        switch(qwindow->windowState()) {
             case Qt::WindowMaximized:
                 if(winEvent->oldState() == Qt::WindowMinimized) {
                     m_mainWindow->setVisible(true);
@@ -57,13 +57,18 @@ void FullscreenTopFrame::changeEvent(QEvent *event)
                 if(initializeCount > 0) {
                     setMaximumHeight(size().height());
                 } else {
-                    auto hwnd = reinterpret_cast<HWND>(winId());
-                    RECT rect;
-                    ::GetWindowRect(hwnd, &rect);
+//                    qDebug() << qwindow->geometry() << qwindow->frameGeometry();
+
+                    // As QMainWindow::geometry() does not include size of the window frame,
+                    // you need to set the position and size considering QWindow::frameMargines()
                     QRect rectMain = m_mainWindow->geometry();
-                    ::SetWindowPos(hwnd, HWND_TOPMOST, rectMain.left(), rectMain.top(), rectMain.width(), rect.bottom-rect.top, 0);
+                    QMargins margin = qwindow->frameMargins();
+                    qwindow->setGeometry(QRect(QPoint(rectMain.left()+margin.left(), rectMain.top()+margin.top()),
+                                               QSize(rectMain.width()-margin.left()-margin.right(), qwindow->height()-margin.top()-margin.bottom())));
 
                     m_wasFullscreen = true;
+                    closeWhenMouseIsOut();
+                    m_timer.start(2000);
                 }
                 break;
             case Qt::WindowMinimized:
@@ -72,6 +77,7 @@ void FullscreenTopFrame::changeEvent(QEvent *event)
                 m_mainWindow->setVisible(false);
                 break;
             case Qt::WindowNoState:
+                // First call should be ignored
                 if(m_wasFullscreen) {
                     closeAndShowNormal();
                 }
@@ -85,6 +91,14 @@ void FullscreenTopFrame::closeAndShowNormal()
 {
     m_toShowNormal = true;
     close();
+}
+
+void FullscreenTopFrame::closeWhenMouseIsOut()
+{
+    if(m_mainWindow->mapFromGlobal(cursor().pos()).y() > size().height()+30) {
+        m_mouseleft = true;
+        close();
+    }
 }
 
 void FullscreenTopFrame::moveEvent(QMoveEvent *event)
@@ -104,9 +118,8 @@ bool FullscreenTopFrame::nativeEvent(const QByteArray &, void *message, long *re
     MSG *msg = reinterpret_cast<MSG*>(message);
     auto hwnd = msg->hwnd;
     // Only react when the mouse cursor moves below the window
-    if(msg->message == WM_NCMOUSELEAVE && cursor().pos().y() > 30) {
-        m_mouseleft = true;
-        close();
+    if(msg->message == WM_NCMOUSELEAVE) {
+        closeWhenMouseIsOut();
     }
     // Prevent movement of the window by dragging the title bar of FullscreenTopFrame
     if(isMaximized() && (msg->message == WM_NCLBUTTONDOWN || msg->message == WM_NCLBUTTONUP)) {
@@ -123,6 +136,7 @@ bool FullscreenTopFrame::nativeEvent(const QByteArray &, void *message, long *re
 void FullscreenTopFrame::closeEvent(QCloseEvent *event)
 {
 //    qDebug() << "FullscreenTopFrame::closeEvent";
+    m_timer.stop();
     m_valid = false;
     m_mainWindow->addToolBar(ui->mainToolBar);
     m_mainWindow->setMenuBar(ui->menuBar);

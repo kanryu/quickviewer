@@ -29,7 +29,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>FolderWindow</string>
+   <string>FolderList</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../toolbar.qrc">
@@ -76,14 +76,14 @@
       <bool>false</bool>
      </property>
      <property name="text">
-      <string extracomment="Label indicating that the current folder PATH is being displayed">Current Folder</string>
+      <string extracomment="Label indicating that the current folder PATH is being displayed">CurrentFolder</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="pathLabel">
      <property name="text">
-      <string>My Pictures</string>
+      <string notr="true">My Pictures</string>
      </property>
      <property name="textFormat">
       <enum>Qt::PlainText</enum>
@@ -131,7 +131,7 @@ QPushButton:hover {
          </size>
         </property>
         <property name="toolTip">
-         <string>Move to Home</string>
+         <string>Move to Home Folder</string>
         </property>
         <property name="text">
          <string extracomment="Button for returning to QuickViewer's home folder">Move to Home</string>
@@ -209,10 +209,10 @@ QPushButton:hover {
          </size>
         </property>
         <property name="toolTip">
-         <string>To parent folder</string>
+         <string>TopFolder</string>
         </property>
         <property name="text">
-         <string extracomment="Button for moving from the currently displayed folder to the next higher folder">To parent folder</string>
+         <string extracomment="Button for moving from the currently displayed folder to the next higher folder">TopFolder</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -238,7 +238,7 @@ QPushButton:hover {
          <string>Reload</string>
         </property>
         <property name="text">
-         <string extracomment="Button for updating the currently displayed folder information">Reload</string>
+         <string extracomment="Button for updating the currently displayed folder information">UpDate</string>
         </property>
         <property name="icon">
          <iconset resource="../../toolbar.qrc">
@@ -274,7 +274,7 @@ QPushButton:hover {
          </font>
         </property>
         <property name="toolTip">
-         <string>ChangeSorting</string>
+         <string extracomment="Tooltip for pulldown to change folder sorting method">Change the sorting method</string>
         </property>
         <property name="text">
          <string extracomment="Change the order of file names Pull down button">Name</string>
@@ -381,7 +381,7 @@ QPushButton:hover {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Name</string>
+    <string>Sort by Name</string>
    </property>
   </action>
   <action name="actionOrderByUpdatedAt">
@@ -389,12 +389,12 @@ QPushButton:hover {
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>ModifiedTime</string>
+    <string>Sorted by UpDate</string>
    </property>
   </action>
   <action name="actionSetAsHomeFolder">
    <property name="text">
-    <string>set the folder as Home</string>
+    <string>Set this folder to Home folder</string>
    </property>
   </action>
  </widget>

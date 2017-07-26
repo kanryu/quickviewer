@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>File Associations to QuickViewer</string>
+   <string>Associate files with QuickViewer</string>
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
@@ -21,7 +21,7 @@
    <item row="8" column="0">
     <widget class="QPushButton" name="btnAllOn">
      <property name="text">
-      <string extracomment="Button to turn all check boxes on">All On</string>
+      <string extracomment="Button to turn all check boxes on">AllValid</string>
      </property>
     </widget>
    </item>
@@ -49,7 +49,7 @@
    <item row="8" column="1">
     <widget class="QPushButton" name="btnAllOff">
      <property name="text">
-      <string extracomment="Button to turn off all check box">All Off</string>
+      <string extracomment="Button to turn off all check box">AllInvalid</string>
      </property>
     </widget>
    </item>
@@ -90,14 +90,14 @@
    <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxWebp">
      <property name="text">
-      <string>WebP Format (*.webp)</string>
+      <string>WebP Image (*.webp)</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxPng">
      <property name="text">
-      <string>PNG Format (*.png)</string>
+      <string>PNG File (*.png)</string>
      </property>
     </widget>
    </item>
@@ -118,7 +118,7 @@
    <item row="4" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxTiff">
      <property name="text">
-      <string>TIFF Format (*.tif, *.tiff)</string>
+      <string>TIFF Image (*.tif, *.tiff)</string>
      </property>
     </widget>
    </item>
@@ -132,14 +132,14 @@
    <item row="0" column="2">
     <widget class="QCheckBox" name="checkBoxGif">
      <property name="text">
-      <string>GIF Format (*.gif)</string>
+      <string>GIF Image (*.gif)</string>
      </property>
     </widget>
    </item>
    <item row="0" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxJpeg">
      <property name="text">
-      <string>JPEG Format (*.jpg, *.jpeg)</string>
+      <string>JPEG Image (*.jpg, *.jpeg)</string>
      </property>
     </widget>
    </item>

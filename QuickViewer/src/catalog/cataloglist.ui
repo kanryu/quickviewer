@@ -37,7 +37,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string extracomment="Name of the frame in which buttons for operating one catalog are arranged">Manage a Catalog</string>
+      <string extracomment="Name of the frame in which buttons for operating one catalog are arranged">Selected Catalog</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
@@ -83,7 +83,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string extracomment="Name of the frame in which buttons for operating all catalogs are arranged">Manage all Catalogs</string>
+      <string extracomment="Name of the frame in which buttons for operating all catalogs are arranged">All Catalogs</string>
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
