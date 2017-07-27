@@ -265,6 +265,7 @@ void QVApplication::loadSettings()
     m_useCheckeredPattern  = m_settings.value("UseCheckeredPattern", true).toBool();
     m_dontEnlargeSmallImagesOnFitting  = m_settings.value("DontEnlargeSmallImagesOnFitting", true).toBool();
     m_showFullscreenSignage  = m_settings.value("ShowFullscreenSignage", true).toBool();
+    m_showFullscreenTitleBar = m_settings.value("ShowFullscreenTitleBar", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -357,6 +358,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("UseCheckeredPattern", m_useCheckeredPattern);
     m_settings.setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
     m_settings.setValue("ShowFullscreenSignage", m_showFullscreenSignage);
+    m_settings.setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

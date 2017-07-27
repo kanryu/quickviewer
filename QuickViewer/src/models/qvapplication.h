@@ -43,6 +43,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool UseCheckeredPattern READ UseCheckeredPattern WRITE setUseCheckeredPattern)
     Q_PROPERTY(bool DontEnlargeSmallImagesOnFitting READ DontEnlargeSmallImagesOnFitting WRITE setDontEnlargeSmallImagesOnFitting)
     Q_PROPERTY(bool ShowFullscreenSignage READ ShowFullscreenSignage WRITE setShowFullscreenSignage)
+    Q_PROPERTY(bool ShowFullscreenTitleBar READ ShowFullscreenTitleBar WRITE setShowFullscreenTitleBar)
 
     // DuapView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
@@ -127,6 +128,8 @@ public:
     void setDontEnlargeSmallImagesOnFitting (bool dontEnlargeSmallImagesOnFitting) { m_dontEnlargeSmallImagesOnFitting = dontEnlargeSmallImagesOnFitting; }
     bool ShowFullscreenSignage() { return m_showFullscreenSignage; }
     void setShowFullscreenSignage (bool showFullscreenSignage) { m_showFullscreenSignage = showFullscreenSignage; }
+    bool ShowFullscreenTitleBar() { return m_showFullscreenTitleBar; }
+    void setShowFullscreenTitleBar (bool showFullscreenTitleBar) { m_showFullscreenTitleBar = showFullscreenTitleBar; }
 
 
     // Show Bars
@@ -326,6 +329,7 @@ private:
     bool m_useCheckeredPattern;
     bool m_dontEnlargeSmallImagesOnFitting;
     bool m_showFullscreenSignage;
+    bool m_showFullscreenTitleBar;
 
     // ToolBars
     bool m_showToolBar;
