@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.8.5_rev2 (Fri Jul 28 02:16:55 2017 +0900) [27d1cf0](https://github.com/kanryu/quickviewer/commit/27d1cf0bec05889c66f4ae5152d42cd469338853)
+
+merged
+
+- other commits
+    - changelog (Fri Jul 28 02:03:02 2017 +0900) [02e7ee0](https://github.com/kanryu/quickviewer/commit/02e7ee0323a7fbe0a7466dde4bdb8d16c236c130)
+
 ## v0.8.5 (Fri Jul 28 02:02:25 2017 +0900) [d335d27](https://github.com/kanryu/quickviewer/commit/d335d2736117ecbc27a2513bfa83c074eca0e14c)
 
 Improve the behavior at fullscreen
