@@ -112,6 +112,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://software.thaiware.com/13230-QuickViewer-Download.html](https://software.thaiware.com/13230-QuickViewer-Download.html)
 - **Dataporten** (in Norwegian)
     - [http://www.dataporten.net/quickviewer/](http://www.dataporten.net/quickviewer/)
+- **happycgi** (in Korean)
+    - [http://www.happycgi.com/16255](http://www.happycgi.com/16255)
 
 Thanks for reviewers! :)
 
