@@ -1,35 +1,44 @@
 # CHANGELOG
 
-## v0.8.4 (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
+## v0.8.5 (Fri Jul 28 02:02:25 2017 +0900) [d335d27](https://github.com/kanryu/quickviewer/commit/d335d2736117ecbc27a2513bfa83c074eca0e14c)
 
-Improvement on fullscreen, calibrated English notation
+Improve the behavior at fullscreen
 
-- Improvement on how to display the toolbar at fullscreen
-- calibrated English notation of QuickViewer
-- Since Spanish or Chinese notation was manually fixed, it may be wrong
+- add Frame-less fullscreen toolbar
+- Improve the behavior of pagebar at fullscreen
 
 - other commits
+    - qlanguageselector (Fri Jul 28 01:51:03 2017 +0900) [96c46a3](https://github.com/kanryu/quickviewer/commit/96c46a393296b824aec7a7378c2b872762520ca0)
+    - qlanguageselector (Fri Jul 28 01:43:40 2017 +0900) [302a993](https://github.com/kanryu/quickviewer/commit/302a99316168569729e49f9bc593e2bc9c1e6384)
+    - Update index.md (Thu Jul 27 21:23:42 2017 +0900) [7fd1b8f](https://github.com/kanryu/quickviewer/commit/7fd1b8f411b364d5e3c20d9baa672f8cf96dca2a)
+    - Update HowToBuild.md (Thu Jul 27 15:50:04 2017 +0900) [80bf0d6](https://github.com/kanryu/quickviewer/commit/80bf0d65c20e6f82801e37ab7b6d2096d1d01090)
+
+## v0.8.4 (Wed Jul 26 23:03:40 2017 +0900) [46df730](https://github.com/kanryu/quickviewer/commit/46df730c25c80baac3120f5fc59df49dc108e01c)
+
+changelog
+
+- other commits
+    - Improvement on fullscreen, calibrated English notation (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
+    -  (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
+    -  Improvement on how to display the toolbar at fullscreen (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
+    -  calibrated English notation of QuickViewer (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
+    -  Since Spanish or Chinese notation was manually fixed, it may be wrong (Wed Jul 26 23:03:10 2017 +0900) [a55339f](https://github.com/kanryu/quickviewer/commit/a55339f150e1273685d7e7004c3a0aa927c1bca9)
     - English Notation (Wed Jul 26 02:59:21 2017 +0900) [415425f](https://github.com/kanryu/quickviewer/commit/415425fe02edb3e5d11a9a60aa58fbfaf690d584)
-
-## v0.8.4_pre (Wed Jul 26 02:10:29 2017 +0900) [6173437](https://github.com/kanryu/quickviewer/commit/6173437db9b9934068715b9874731877fd9ee891)
-
-Improvement on how to display the toolbar at full screen
-
-- other commits
+    - Improvement on how to display the toolbar at full screen (Wed Jul 26 02:10:29 2017 +0900) [6173437](https://github.com/kanryu/quickviewer/commit/6173437db9b9934068715b9874731877fd9ee891)
     - add comments for translators (Sat Jul 22 23:38:05 2017 +0900) [3f75cb0](https://github.com/kanryu/quickviewer/commit/3f75cb00de8dedeb26a4b116911b3cdfc257ce72)
-    - changelog (Fri Jul 21 20:25:14 2017 +0900) [00d942d](https://github.com/kanryu/quickviewer/commit/00d942d3148037c77756783e73b1eb31d05d34c9)
 
-## v0.8.3 (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+## v0.8.3 (Fri Jul 21 20:25:14 2017 +0900) [00d942d](https://github.com/kanryu/quickviewer/commit/00d942d3148037c77756783e73b1eb31d05d34c9)
 
-Support for Simplified Chinese, file associations, not confirm to delete file
-
-- Support for Simplified Chinese
-- now you can add other language support without editing programs
-- Support for file assciations
-- not portable, but If you do not run it will not change to the system
-- not confirm to delete file
+changelog
 
 - other commits
+    - Support for Simplified Chinese, file associations, not confirm to delete file (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+    -  (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+    -  Support for Simplified Chinese (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+    -  now you can add other language support without editing programs (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+    -  Support for file assciations (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+    -  not portable, but If you do not run it will not change to the system (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
+    -  not confirm to delete file (Fri Jul 21 20:24:49 2017 +0900) [e3057fd](https://github.com/kanryu/quickviewer/commit/e3057fdaaee047a77462f6715dcfaaa076474818)
     - Update index.md (Thu Jul 20 04:21:59 2017 +0900) [e3e3735](https://github.com/kanryu/quickviewer/commit/e3e37353263782175db60403fd83c7eabb548b5f)
     - Update HowToBuild.md (Sun Jul 16 16:17:37 2017 +0900) [d5e4c23](https://github.com/kanryu/quickviewer/commit/d5e4c238d3a763550e555495f0e3a0e567498496)
     - Update index.md (Sun Jul 16 15:29:46 2017 +0900) [5140d2d](https://github.com/kanryu/quickviewer/commit/5140d2deb674cb9f817b78caffc2a0dce6b2d932)
@@ -50,18 +59,18 @@ Support for Simplified Chinese, file associations, not confirm to delete file
     -  (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
     -  add chinise resource (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
     -  remove doubled source files (Sat Jul 15 01:22:45 2017 +0900) [3f9b2b9](https://github.com/kanryu/quickviewer/commit/3f9b2b9311b770565b2c321730ccc9d8f0519edc)
-    - changelog (Thu Jul 13 20:31:50 2017 +0900) [c1d97ab](https://github.com/kanryu/quickviewer/commit/c1d97abf74b873e044d1dba2705d58028a4a82b6)
 
-## v0.8.2 (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+## v0.8.2 (Thu Jul 13 20:31:50 2017 +0900) [c1d97ab](https://github.com/kanryu/quickviewer/commit/c1d97abf74b873e044d1dba2705d58028a4a82b6)
 
-Support display in Spanish, change language, start on fullscreen, fullscreen signage, bugfixed
-
-- change language on the app, you select
-- start the app on fullscreen
-- a signage of fullpath of the image on fullscreen
-- bugfixed: While using CPU zooming, displaying an animation image was incorrectly terminated
+changelog
 
 - other commits
+    - Support display in Spanish, change language, start on fullscreen, fullscreen signage, bugfixed (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+    -  (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+    -  change language on the app, you select (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+    -  start the app on fullscreen (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+    -  a signage of fullpath of the image on fullscreen (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
+    -  bugfixed: While using CPU zooming, displaying an animation image was incorrectly terminated (Thu Jul 13 20:31:16 2017 +0900) [a8a2982](https://github.com/kanryu/quickviewer/commit/a8a298257d7666ff7bb91ab55b7f177d02399351)
     - Update index-ja.md (Wed Jul 12 01:28:43 2017 +0900) [ec61c4a](https://github.com/kanryu/quickviewer/commit/ec61c4a1d7d5e0ddd5ba249a480c0b4908987e66)
     - Update index.md (Wed Jul 12 01:28:14 2017 +0900) [fcc287f](https://github.com/kanryu/quickviewer/commit/fcc287f5ffa2f274ed2ae5aa2414002715fbf6b1)
     - Update README.md (Wed Jul 12 01:27:47 2017 +0900) [bbe8d04](https://github.com/kanryu/quickviewer/commit/bbe8d0469469044aa7a6934104a01e18bd5d20db)
@@ -71,19 +80,19 @@ Support display in Spanish, change language, start on fullscreen, fullscreen sig
     - Update index-ja.md (Tue Jul 11 23:54:01 2017 +0900) [795f49d](https://github.com/kanryu/quickviewer/commit/795f49dd6e32212fecbb4cc5deee6b451f4d6959)
     - Update index.md (Tue Jul 11 23:53:08 2017 +0900) [1a28122](https://github.com/kanryu/quickviewer/commit/1a281220dae99740390e290257be59101cd00c4f)
     - Update README.md (Tue Jul 11 23:52:28 2017 +0900) [6d0851d](https://github.com/kanryu/quickviewer/commit/6d0851db3f0ccd357a3597b7dd870c2a8eca9d2d)
-    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Tue Jul 11 23:45:41 2017 +0900) [6ff7371](https://github.com/kanryu/quickviewer/commit/6ff73717a6de41d96a4f590dfcc8b30527e762dc)
-    - changelog (Tue Jul 11 23:45:15 2017 +0900) [15a1645](https://github.com/kanryu/quickviewer/commit/15a164502aef9e7f1c2ebc51e4e686de94f81055)
 
-## v0.8.1 (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+## v0.8.1 (Tue Jul 11 23:45:41 2017 +0900) [6ff7371](https://github.com/kanryu/quickviewer/commit/6ff73717a6de41d96a4f590dfcc8b30527e762dc)
 
-Support for Animated PNG(APNG), read completed check, improve ExifDialog
-
-- read completed check, if you read complate, FolderWindow shows a green bar
-- improve ExifDialog
-- will be embedded
-- can next/prev changing
+Merge branch 'master' of https://github.com/kanryu/quickviewer
 
 - other commits
+    - changelog (Tue Jul 11 23:45:15 2017 +0900) [15a1645](https://github.com/kanryu/quickviewer/commit/15a164502aef9e7f1c2ebc51e4e686de94f81055)
+    - Support for Animated PNG(APNG), read completed check, improve ExifDialog (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+    -  (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+    -  read completed check, if you read complate, FolderWindow shows a green bar (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+    -  improve ExifDialog (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+    -  will be embedded (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
+    -  can next/prev changing (Tue Jul 11 23:44:39 2017 +0900) [aef78a1](https://github.com/kanryu/quickviewer/commit/aef78a1b5d7f308a4a41ca7a914e1597bbb189f6)
     - Update index.md (Tue Jul 11 14:43:55 2017 +0900) [a6b72f5](https://github.com/kanryu/quickviewer/commit/a6b72f5513e5e2c172baab765c53b4367ba747f9)
     - Update default.html (Tue Jul 11 12:09:03 2017 +0900) [0eb9b32](https://github.com/kanryu/quickviewer/commit/0eb9b327d563f8414a9e57b0b572de798c71dbd3)
     - Update disqus.html (Tue Jul 11 12:07:07 2017 +0900) [e6d5951](https://github.com/kanryu/quickviewer/commit/e6d59513f83e886de02c1ec2d2f59c2f329ac5c1)
@@ -110,324 +119,282 @@ Support for Animated PNG(APNG), read completed check, improve ExifDialog
     - Update README.md (Fri Jul 7 19:05:58 2017 +0900) [f439a28](https://github.com/kanryu/quickviewer/commit/f439a289647731f2f878860d1653cf5bd1659ee2)
     - Update index.md (Fri Jul 7 19:05:55 2017 +0900) [264cf0c](https://github.com/kanryu/quickviewer/commit/264cf0ca918047a9133b27d7d9fd8ddb4751190b)
     - Update README.md (Fri Jul 7 19:01:20 2017 +0900) [127874e](https://github.com/kanryu/quickviewer/commit/127874edf57ff4b73f0775c05563a7da91527b3d)
-    - changelog (Fri Jul 7 18:22:43 2017 +0900) [bc588dd](https://github.com/kanryu/quickviewer/commit/bc588dd2bb99c862df070c85211aa105218a18b2)
 
-## v0.8.0 (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+## v0.8.0 (Fri Jul 7 18:22:43 2017 +0900) [bc588dd](https://github.com/kanryu/quickviewer/commit/bc588dd2bb99c862df070c85211aa105218a18b2)
 
-support animation GIFs, mouse wheel resizing, bugfixed
-
-- support animation GIFs(Not enough when CPU resizing)
-- mouse wheel resizing
-- Ctrl+Wheel Clicked/Right Button+Wheel Clicked: toggle Fitting
-- Ctrl+Wheel Scrolled/Right Button+Wheel Scrolled: manual resizing
-- bugfixed: left trimmed when images bigger than the window
+changelog
 
 - other commits
+    - support animation GIFs, mouse wheel resizing, bugfixed (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+    -  (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+    -  support animation GIFs(Not enough when CPU resizing) (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+    -  mouse wheel resizing (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+    -  Ctrl+Wheel Clicked/Right Button+Wheel Clicked: toggle Fitting (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+    -  Ctrl+Wheel Scrolled/Right Button+Wheel Scrolled: manual resizing (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
+    -  bugfixed: left trimmed when images bigger than the window (Fri Jul 7 18:22:05 2017 +0900) [67ff497](https://github.com/kanryu/quickviewer/commit/67ff49720fd40bbec1e232692d30d530516aa652)
     - Update index.md (Wed Jul 5 23:42:19 2017 +0900) [85e6a54](https://github.com/kanryu/quickviewer/commit/85e6a543700b5585c370e6a3c9c24cac15a464e5)
-    - changelog (Wed Jul 5 19:02:03 2017 +0900) [e565436](https://github.com/kanryu/quickviewer/commit/e5654367e0c8c52325eacad674332a9c34e576dc)
 
-## v0.7.8 (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
+## v0.7.8 (Wed Jul 5 19:02:03 2017 +0900) [e565436](https://github.com/kanryu/quickviewer/commit/e5654367e0c8c52325eacad674332a9c34e576dc)
 
-support for drag scrolling, show original size, fixed wheel paging
-
-- support for drag scrolling when images bigger than window
-- show original size when images smaller than window on fitting
-- fixed: wheel paging when images bigger than window
+changelog
 
 - other commits
+    - support for drag scrolling, show original size, fixed wheel paging (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
+    -  (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
+    -  support for drag scrolling when images bigger than window (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
+    -  show original size when images smaller than window on fitting (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
+    -  fixed: wheel paging when images bigger than window (Wed Jul 5 19:01:13 2017 +0900) [e6a2ef9](https://github.com/kanryu/quickviewer/commit/e6a2ef958d392840147b6a649488c6c1df1695d8)
     - Update index-ja.md (Wed Jul 5 11:57:45 2017 +0900) [6c5af91](https://github.com/kanryu/quickviewer/commit/6c5af919f70ee12e8ffcb222c31d827ea799b26d)
     - Update index.md (Tue Jul 4 19:15:47 2017 +0900) [32e4396](https://github.com/kanryu/quickviewer/commit/32e4396f1ed0096017255045b6c0f058db036f7c)
     - Update index.md (Tue Jul 4 18:36:07 2017 +0900) [25d60c4](https://github.com/kanryu/quickviewer/commit/25d60c4e835df8e327d5b8bca2c3c03970256348)
     - Update index.md (Tue Jul 4 18:26:28 2017 +0900) [2ba6907](https://github.com/kanryu/quickviewer/commit/2ba6907dc01a49018767a4e2c8a910ed2f0ace4c)
     - Update index.md (Tue Jul 4 18:18:51 2017 +0900) [a6ac7da](https://github.com/kanryu/quickviewer/commit/a6ac7da1b950a84985d261ac1b7a1cf600e41347)
-    - changelog (Tue Jul 4 13:22:29 2017 +0900) [e9682d0](https://github.com/kanryu/quickviewer/commit/e9682d0a3bfa39a92b03dbef5a78e3e7f11bb141)
 
-## v0.7.7 (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+## v0.7.7 (Tue Jul 4 13:22:29 2017 +0900) [e9682d0](https://github.com/kanryu/quickviewer/commit/e9682d0a3bfa39a92b03dbef5a78e3e7f11bb141)
 
-add support to Rename, change background color, bugfixed
-
-- support to Rename current image file, only for folders
-- support to change background color, can be checkered pattern
-- bugfixed: if set max volume cache < 4, changing the volume resulted in an unauthorized termination
-- buffixed: If the volume is already read, even if you specify the file of the folder and open the volume, the read file was opened
+changelog
 
 - other commits
+    - add support to Rename, change background color, bugfixed (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+    -  (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+    -  support to Rename current image file, only for folders (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+    -  support to change background color, can be checkered pattern (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+    -  bugfixed: if set max volume cache < 4, changing the volume resulted in an unauthorized termination (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
+    -  buffixed: If the volume is already read, even if you specify the file of the folder and open the volume, the read file was opened (Tue Jul 4 13:21:25 2017 +0900) [9ac7966](https://github.com/kanryu/quickviewer/commit/9ac79669ef8162e4ea8ce54e10d196899e2fe7a8)
     - Update index.md (Sat Jul 1 08:48:06 2017 +0900) [391deec](https://github.com/kanryu/quickviewer/commit/391deec64cf9627bbbdc4e092f42c8ded72390fc)
     - Update index.md (Sat Jul 1 08:28:57 2017 +0900) [c9e7929](https://github.com/kanryu/quickviewer/commit/c9e7929c87cfd46722672233a3aeb68bdee1c7ab)
     - Update index.md (Sat Jul 1 08:26:45 2017 +0900) [380b5f5](https://github.com/kanryu/quickviewer/commit/380b5f5a133d57164e334f25e9c2c8e0570ec2fc)
     - changelog (Thu Jun 29 17:10:20 2017 +0900) [9694db2](https://github.com/kanryu/quickviewer/commit/9694db2c9a4c60bc7fed624dce8802f8eacbf697)
+    - Support for resizing Alpha Images by CPU, add Option Dialog, save memory (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
+    -  (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
+    -  Support for resizing Alpha Images by CPU(zimg) (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
+    -  add Option Dialog(2 options) (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
+    -  save memory hack(x86) (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
 
-## v0.7.6 (Thu Jun 29 17:01:28 2017 +0900) [e472373](https://github.com/kanryu/quickviewer/commit/e47237378ac3b2d84d29d0a895c572eac32829a3)
+## v0.7.6 (Wed Jun 28 11:21:59 2017 +0900) [84cce6c](https://github.com/kanryu/quickviewer/commit/84cce6c22267be8c438c596dbad8d050d79b210f)
 
-Support for resizing Alpha Images by CPU, add Option Dialog, save memory
-
-- Support for resizing Alpha Images by CPU(zimg)
-- add Option Dialog(2 options)
-- save memory hack(x86)
+add language resource for Spanish
 
 - other commits
-    - add language resource for Spanish (Wed Jun 28 11:21:59 2017 +0900) [84cce6c](https://github.com/kanryu/quickviewer/commit/84cce6c22267be8c438c596dbad8d050d79b210f)
     - Update index.md (Wed Jun 28 04:11:33 2017 +0900) [8d82be9](https://github.com/kanryu/quickviewer/commit/8d82be9237c26555329d1e4b8b5891cbaf785d93)
     - Update index.md (Wed Jun 28 03:52:28 2017 +0900) [f065230](https://github.com/kanryu/quickviewer/commit/f065230b4035d58098c01caa7bbcd5806572726e)
     - Update index.md (Wed Jun 28 03:38:19 2017 +0900) [18c7d40](https://github.com/kanryu/quickviewer/commit/18c7d407c9dd5f207fa3bb1dd845be08a3794490)
-    - changelog (Fri Jun 16 04:42:31 2017 +0900) [d6e7cc2](https://github.com/kanryu/quickviewer/commit/d6e7cc2b5e78ab6df2bad5563a643302ab9d863d)
 
-## v0.7.5 (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+## v0.7.5 (Fri Jun 16 04:42:31 2017 +0900) [d6e7cc2](https://github.com/kanryu/quickviewer/commit/d6e7cc2b5e78ab6df2bad5563a643302ab9d863d)
 
-4 bugfixed
-
-- bugfixed: Opening the volume again after reading over 10 pages resulted in an unauthorized termination
-- bugfixed: Keyboard input did not work if FolderWindow is displayed in the main window
-- bugfixed: The image was not loaded even if switching the volume with the keyboard in FolderWindow
-- bugfixed: After switching to another Volume with SpreadViewing, and go back to original Volume, it goes one page
-- changed: for including some Qt common headers
+changelog
 
 - other commits
-    - changelog (Thu Jun 15 05:04:28 2017 +0900) [8e1b3ea](https://github.com/kanryu/quickviewer/commit/8e1b3eaa6ba115896355ee730a21708c435107bf)
+    - 4 bugfixed (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+    -  (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+    -  bugfixed: Opening the volume again after reading over 10 pages resulted in an unauthorized termination (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+    -  bugfixed: Keyboard input did not work if FolderWindow is displayed in the main window (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+    -  bugfixed: The image was not loaded even if switching the volume with the keyboard in FolderWindow (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+    -  bugfixed: After switching to another Volume with SpreadViewing, and go back to original Volume, it goes one page (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
+    -  changed: for including some Qt common headers (Fri Jun 16 04:41:20 2017 +0900) [c477d7f](https://github.com/kanryu/quickviewer/commit/c477d7f3a79e66aec97f44133542e793d43f9207)
 
-## v0.7.4 (Thu Jun 15 05:03:53 2017 +0900) [9043573](https://github.com/kanryu/quickviewer/commit/90435737146b3a12d77660fcb9e73a648a5efbd3)
+## v0.7.4 (Thu Jun 15 05:04:28 2017 +0900) [8e1b3ea](https://github.com/kanryu/quickviewer/commit/8e1b3eaa6ba115896355ee730a21708c435107bf)
 
-Record/Show/Load read progress of volumes
-- to show read progress in FolderWindow
-- to load with read progress for volumes
+changelog
 
 - other commits
+    - Record/Show/Load read progress of volumes (Thu Jun 15 05:03:53 2017 +0900) [9043573](https://github.com/kanryu/quickviewer/commit/90435737146b3a12d77660fcb9e73a648a5efbd3)
+    -  to show read progress in FolderWindow (Thu Jun 15 05:03:53 2017 +0900) [9043573](https://github.com/kanryu/quickviewer/commit/90435737146b3a12d77660fcb9e73a648a5efbd3)
+    -  to load with read progress for volumes (Thu Jun 15 05:03:53 2017 +0900) [9043573](https://github.com/kanryu/quickviewer/commit/90435737146b3a12d77660fcb9e73a648a5efbd3)
     - changelog (Mon Jun 12 17:20:43 2017 +0900) [2a2960b](https://github.com/kanryu/quickviewer/commit/2a2960b391f11f2f82d3269cd69f74dd28f5efb7)
+    - Problems arise when building fileloader with g ++, so make it a shared library and avoid it (Mon Jun 12 17:19:51 2017 +0900) [4dd9f68](https://github.com/kanryu/quickviewer/commit/4dd9f682df21da2060cbc3ea844402f086c34cb4)
 
-## v0.7.4_pre (Mon Jun 12 17:19:51 2017 +0900) [4dd9f68](https://github.com/kanryu/quickviewer/commit/4dd9f682df21da2060cbc3ea844402f086c34cb4)
+## v0.7.3 (Fri Jun 9 01:29:10 2017 +0900) [b000f92](https://github.com/kanryu/quickviewer/commit/b000f9293a0b71beaf2a485b511e6cd3c64ebdad)
 
-Problems arise when building fileloader with g ++, so make it a shared library and avoid it
-
-- other commits
-    - changelog (Fri Jun 9 01:29:10 2017 +0900) [b000f92](https://github.com/kanryu/quickviewer/commit/b000f9293a0b71beaf2a485b511e6cd3c64ebdad)
-
-## v0.7.3 (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
-
-add support to list-up image in subfolders, 2 bugfixed
-- add support to list-up image in subfolders, ignored archives
-- bugfixed: Garbled characters occurred in the display of file names containing multi-byte characters in the zip archive
-- bugfixed: When resizing with CPU, some images with α were not displayed
+changelog
 
 - other commits
+    - add support to list-up image in subfolders, 2 bugfixed (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
+    -  add support to list-up image in subfolders, ignored archives (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
+    -  bugfixed: Garbled characters occurred in the display of file names containing multi-byte characters in the zip archive (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
+    -  bugfixed: When resizing with CPU, some images with α were not displayed (Fri Jun 9 01:28:47 2017 +0900) [f37f10a](https://github.com/kanryu/quickviewer/commit/f37f10a816822e301a32ef9eaa6cf460023d088f)
     - Update index-ja.md (Tue Jun 6 23:21:33 2017 +0900) [c224fbf](https://github.com/kanryu/quickviewer/commit/c224fbf38645e8c71969aa1523f1da525e37c357)
-    - changelog (Mon Jun 5 18:35:03 2017 +0900) [e9cf927](https://github.com/kanryu/quickviewer/commit/e9cf9276b9cda67c8141baf9f7feab917a3cc6d1)
 
-## v0.7.2 (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+## v0.7.2 (Mon Jun 5 18:35:03 2017 +0900) [e9cf927](https://github.com/kanryu/quickviewer/commit/e9cf9276b9cda67c8141baf9f7feab917a3cc6d1)
 
-improve zip loader, 1 bug fixed
-
-- improve zip loader, couldn't load multibyte inner filenames of files
-- bugfixed: wrong view size for auto rounded by JPEG EXIF with CPU interplations
-- don't use OpenGL until use Shaders
+changelog
 
 - other commits
-    - changelog (Fri Jun 2 14:23:28 2017 +0900) [0f5be54](https://github.com/kanryu/quickviewer/commit/0f5be54cc8e627817e4e55446ee5b3b68a33288c)
+    - improve zip loader, 1 bug fixed (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+    -  (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+    -  improve zip loader, couldn't load multibyte inner filenames of files (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+    -  bugfixed: wrong view size for auto rounded by JPEG EXIF with CPU interplations (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+    -  don't use OpenGL until use Shaders (Mon Jun 5 18:34:34 2017 +0900) [d05e849](https://github.com/kanryu/quickviewer/commit/d05e8492e613dbe73ccb3fe9b3b7bc69310abbb4)
+
+## v0.7.1 (Fri Jun 2 14:23:28 2017 +0900) [0f5be54](https://github.com/kanryu/quickviewer/commit/0f5be54cc8e627817e4e55446ee5b3b68a33288c)
+
+changelog
+
+- other commits
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Jun 2 14:23:16 2017 +0900) [ab2b044](https://github.com/kanryu/quickviewer/commit/ab2b044b091853a0d5cbbefcddcda85bafee8931)
-
-## v0.7.1 (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
-
-add CPU Bicubic interpolation
-- build tested on ubuntu linux
-- build support about zimg by g++
-- list drives on FolderWindow
-
-- other commits
+    - add CPU Bicubic interpolation (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
+    -  build tested on ubuntu linux (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
+    -  build support about zimg by g++ (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
+    -  list drives on FolderWindow (Fri Jun 2 14:22:47 2017 +0900) [fd1cce7](https://github.com/kanryu/quickviewer/commit/fd1cce767108eb179fdb936b36906f06c528f044)
     - Update index.md (Thu Jun 1 18:56:18 2017 +0900) [e7b9524](https://github.com/kanryu/quickviewer/commit/e7b952470f0148581a18df4a83474cea72d7e982)
     - Update index.md (Tue May 30 09:42:33 2017 +0900) [91f5ac2](https://github.com/kanryu/quickviewer/commit/91f5ac2de3a7f6608a2b835667439abd5e3e284a)
     - changelog (Tue May 30 06:25:07 2017 +0900) [723ed9c](https://github.com/kanryu/quickviewer/commit/723ed9c939a1c3a40676dba33039f72eee496348)
+    - build/run checked on ubuntu-16.04.2 x64 (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
+    -  zimg don't run correctly(so can't run with shader/CPU Bicubic) (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
+    -  Catalog don't run correctly (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
 
-## v0.7.1_pre (Tue May 30 06:24:07 2017 +0900) [8bb5c62](https://github.com/kanryu/quickviewer/commit/8bb5c62eebf5e9a3a6af7ea035cd4c0097d57857)
+## v0.7.0 (Sat May 27 18:10:44 2017 +0900) [8101cef](https://github.com/kanryu/quickviewer/commit/8101cefdf01abe8e56de36751d2beb995e1394d2)
 
-build/run checked on ubuntu-16.04.2 x64
-- zimg don't run correctly(so can't run with shader/CPU Bicubic)
-- Catalog don't run correctly
-
-- other commits
-    - changelog (Sat May 27 18:10:44 2017 +0900) [8101cef](https://github.com/kanryu/quickviewer/commit/8101cefdf01abe8e56de36751d2beb995e1394d2)
-
-## v0.7.0 (Sat May 27 18:10:11 2017 +0900) [26f0b31](https://github.com/kanryu/quickviewer/commit/26f0b31a94542a2121b4a307bb921a4cacc759d5)
-
-Add FolderWindow, CPU Interpolation
-- FolderWindow provides a simple view for folders/archives on current folder
-- support CPU Interpolation, very high quality but shortly slow
+changelog
 
 - other commits
+    - Add FolderWindow, CPU Interpolation (Sat May 27 18:10:11 2017 +0900) [26f0b31](https://github.com/kanryu/quickviewer/commit/26f0b31a94542a2121b4a307bb921a4cacc759d5)
+    -  FolderWindow provides a simple view for folders/archives on current folder (Sat May 27 18:10:11 2017 +0900) [26f0b31](https://github.com/kanryu/quickviewer/commit/26f0b31a94542a2121b4a307bb921a4cacc759d5)
+    -  support CPU Interpolation, very high quality but shortly slow (Sat May 27 18:10:11 2017 +0900) [26f0b31](https://github.com/kanryu/quickviewer/commit/26f0b31a94542a2121b4a307bb921a4cacc759d5)
     - Add FolderWindow (Sat May 27 08:39:49 2017 +0900) [41328f3](https://github.com/kanryu/quickviewer/commit/41328f3cd1b18af937dd6cf1b374768a7b5c9fa4)
     -  (Sat May 27 08:39:49 2017 +0900) [41328f3](https://github.com/kanryu/quickviewer/commit/41328f3cd1b18af937dd6cf1b374768a7b5c9fa4)
     -  when to load volume from folder, search into only one subfolder (Sat May 27 08:39:49 2017 +0900) [41328f3](https://github.com/kanryu/quickviewer/commit/41328f3cd1b18af937dd6cf1b374768a7b5c9fa4)
+    -  bug fixed: can't load inner path of zip which contains multibyte words (Fri May 26 09:45:28 2017 +0900) [f07e541](https://github.com/kanryu/quickviewer/commit/f07e541317f4ba4424e3f72eeb6b459c34492dfc)
+    -  refactoring: relocated the source tree (Fri May 26 09:45:28 2017 +0900) [f07e541](https://github.com/kanryu/quickviewer/commit/f07e541317f4ba4424e3f72eeb6b459c34492dfc)
+    -  begin to implement folderwindow (Fri May 26 09:45:28 2017 +0900) [f07e541](https://github.com/kanryu/quickviewer/commit/f07e541317f4ba4424e3f72eeb6b459c34492dfc)
 
-## v0.7.0_pre (Fri May 26 09:45:28 2017 +0900) [f07e541](https://github.com/kanryu/quickviewer/commit/f07e541317f4ba4424e3f72eeb6b459c34492dfc)
+## v0.6.6 (Tue May 16 21:57:40 2017 +0900) [0f64a5d](https://github.com/kanryu/quickviewer/commit/0f64a5d5bfd286d73ad48b0192a2438669269c96)
 
-- bug fixed: can't load inner path of zip which contains multibyte words
-- refactoring: relocated the source tree
-- begin to implement folderwindow
-
-- other commits
-    - changelog (Tue May 16 21:57:40 2017 +0900) [0f64a5d](https://github.com/kanryu/quickviewer/commit/0f64a5d5bfd286d73ad48b0192a2438669269c96)
-
-## v0.6.6 (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
-
-Support archives of Catalog, smaller Catalog grid, improve folder loading, refactoring
-
-- now support archives of Catalog, including zip,rar,cbr,cbz
-- smaller Catalog grid for not long titles(folder or archive name)
-- if folder not have files and have subfolders, QuickViewer attempt open a subfolder
-- refactoring(remove Japanese comments, remove Unnecessary source codes)
-- change some menu texts
+changelog
 
 - other commits
-    - changelog (Sun May 14 17:18:41 2017 +0900) [69fda94](https://github.com/kanryu/quickviewer/commit/69fda94ca6769e223037959636392e8e878fee6d)
+    - Support archives of Catalog, smaller Catalog grid, improve folder loading, refactoring (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+    -  (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+    -  now support archives of Catalog, including zip,rar,cbr,cbz (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+    -  smaller Catalog grid for not long titles(folder or archive name) (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+    -  if folder not have files and have subfolders, QuickViewer attempt open a subfolder (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+    -  refactoring(remove Japanese comments, remove Unnecessary source codes) (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
+    -  change some menu texts (Tue May 16 21:56:47 2017 +0900) [b8acaf0](https://github.com/kanryu/quickviewer/commit/b8acaf06b90e2f1d81529b69f480af431c25d0cc)
 
-## v0.6.5 (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
+## v0.6.5 (Sun May 14 17:18:41 2017 +0900) [69fda94](https://github.com/kanryu/quickviewer/commit/69fda94ca6769e223037959636392e8e878fee6d)
 
-2 bugfixed
-
-- application ends abnormally after catalog deletion
-- if filename of image is too long, the width of the main window was forcibly changed
+changelog
 
 - other commits
+    - 2 bugfixed (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
+    -  (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
+    -  application ends abnormally after catalog deletion (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
+    -  if filename of image is too long, the width of the main window was forcibly changed (Sun May 14 17:17:43 2017 +0900) [1bd4baf](https://github.com/kanryu/quickviewer/commit/1bd4bafe9b0c1e656017997713eda4260373986f)
     - Update index-ja.md (Sun May 14 16:06:44 2017 +0900) [6bd491d](https://github.com/kanryu/quickviewer/commit/6bd491d5e30d89bba44b18dbf7acfda61e3c32de)
     - Update index-ja.md (Sun May 14 16:04:19 2017 +0900) [09459c2](https://github.com/kanryu/quickviewer/commit/09459c2aaa814ffab583630aa2ae9522f5a182c8)
     - Update index.md (Sun May 14 15:56:40 2017 +0900) [a0ad58c](https://github.com/kanryu/quickviewer/commit/a0ad58c28afb65d4c6e9b8e1e541831acd789a17)
     - Update index.md (Sun May 14 02:07:09 2017 +0900) [593429b](https://github.com/kanryu/quickviewer/commit/593429b2477f3eb09ce135dcbda42539f56a2347)
-    - changelog (Sun May 14 01:56:44 2017 +0900) [7fb809a](https://github.com/kanryu/quickviewer/commit/7fb809a21528385199d23d81347271fdda088e95)
 
-## v0.6.4 (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
+## v0.6.4 (Sun May 14 01:56:44 2017 +0900) [7fb809a](https://github.com/kanryu/quickviewer/commit/7fb809a21528385199d23d81347271fdda088e95)
 
-add new feature, TagBar
-
-- 'Tag' is a auto generated words from Book Titles, include Publishers, Authors, and other properties
-- each 'Tag' as a small buttons on CatalogWindow
-- if you click Tag buttons, Catalog only shows the books have the tag
+changelog
 
 - other commits
-    - changelog (Sat May 13 06:59:07 2017 +0900) [332f255](https://github.com/kanryu/quickviewer/commit/332f2559a612b2ca607dad66d29865d8a68d367a)
+    - add new feature, TagBar (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
+    -  (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
+    -  'Tag' is a auto generated words from Book Titles, include Publishers, Authors, and other properties (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
+    -  each 'Tag' as a small buttons on CatalogWindow (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
+    -  if you click Tag buttons, Catalog only shows the books have the tag (Sun May 14 01:56:06 2017 +0900) [5753dc4](https://github.com/kanryu/quickviewer/commit/5753dc46e7bf2eb987c23af05609524b6e1c6c76)
 
-## v0.6.3 (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+## v0.6.3 (Sat May 13 06:59:07 2017 +0900) [332f255](https://github.com/kanryu/quickviewer/commit/332f2559a612b2ca607dad66d29865d8a68d367a)
 
-much faster CatalogWindow
-- remove limitation volume counts
-- background volumes initialization
-- scroll vertical for ListMode on CatalogWindow
-- bugfixed: CatalogWindow as modeless, can't accept drop files
-- known problem: mouse wheel scroll is slow on CatalogWindow when ListMode -> Icon/IconNoText changed
+changelog
 
 - other commits
+    - much faster CatalogWindow (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+    -  remove limitation volume counts (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+    -  background volumes initialization (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+    -  scroll vertical for ListMode on CatalogWindow (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+    -  bugfixed: CatalogWindow as modeless, can't accept drop files (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
+    -  known problem: mouse wheel scroll is slow on CatalogWindow when ListMode -> Icon/IconNoText changed (Sat May 13 06:56:22 2017 +0900) [bc1787e](https://github.com/kanryu/quickviewer/commit/bc1787e36ff87f64b91a7dcb91e47ef737f40bd3)
     - Update README.md (Fri May 12 01:46:20 2017 +0900) [02b037b](https://github.com/kanryu/quickviewer/commit/02b037bbc018ca748d9a8822f48adee9ba22c809)
-    - changelog (Thu May 11 22:48:28 2017 +0900) [b338740](https://github.com/kanryu/quickviewer/commit/b3387406eafee3bdce9c1eaffe1d2b14297ca833)
 
-## v0.6.2 (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+## v0.6.2 (Thu May 11 22:48:28 2017 +0900) [b338740](https://github.com/kanryu/quickviewer/commit/b3387406eafee3bdce9c1eaffe1d2b14297ca833)
 
-Add notation of shortcut, speedup for catalog, more simple title
-
-- Add notation of shortcut key to each item of main menu
-- Add a function to remove (Options) under certain conditions from the
-title of the book registered in the catalog
-- Speed up thumbnail loading process saved in database
-- Accelerated Incremental Search and Display Switching in Catalog Window
-- Fix some display phrases
-
-## v0.6.2_pre (Wed May 10 03:32:57 2017 +0900) [9830d72](https://github.com/kanryu/quickviewer/commit/9830d720a6da2aba1bbe72cad43550c9f668834f)
-
-refactoring
-
-- add precompiled header(stdafx.h)
-- remove wornings(Remove unnecessary local variables)
+changelog
 
 - other commits
-    - changelog (Tue May 9 02:48:11 2017 +0900) [e618790](https://github.com/kanryu/quickviewer/commit/e6187908bb5a96ad4814719c6453bd6f6df03ba5)
+    - Add notation of shortcut, speedup for catalog, more simple title (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    -  (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    -  Add notation of shortcut key to each item of main menu (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    -  Add a function to remove (Options) under certain conditions from the (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    - title of the book registered in the catalog (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    -  Speed up thumbnail loading process saved in database (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    -  Accelerated Incremental Search and Display Switching in Catalog Window (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    -  Fix some display phrases (Thu May 11 22:45:52 2017 +0900) [2413c69](https://github.com/kanryu/quickviewer/commit/2413c69b3735f59ed14c8db24fed3558c12a53d1)
+    - refactoring (Wed May 10 03:32:57 2017 +0900) [9830d72](https://github.com/kanryu/quickviewer/commit/9830d720a6da2aba1bbe72cad43550c9f668834f)
+    -  (Wed May 10 03:32:57 2017 +0900) [9830d72](https://github.com/kanryu/quickviewer/commit/9830d720a6da2aba1bbe72cad43550c9f668834f)
+    -  add precompiled header(stdafx.h) (Wed May 10 03:32:57 2017 +0900) [9830d72](https://github.com/kanryu/quickviewer/commit/9830d720a6da2aba1bbe72cad43550c9f668834f)
+    -  remove wornings(Remove unnecessary local variables) (Wed May 10 03:32:57 2017 +0900) [9830d72](https://github.com/kanryu/quickviewer/commit/9830d720a6da2aba1bbe72cad43550c9f668834f)
 
-## v0.6.1 (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
+## v0.6.1 (Tue May 9 02:48:11 2017 +0900) [e618790](https://github.com/kanryu/quickviewer/commit/e6187908bb5a96ad4814719c6453bd6f6df03ba5)
 
-add inner CatalogWindow, 3 bugfixed
-- bug fixed: when to run from other directries, wrong ini files created.
-- bug fixed: onle newer catalogs, don't activeted about edit/delete buttons.
-- bug fixed: when manual resizing and image is smaller than the window, image was wrong position
-- when a catalog executed, make MainWindow activate
+changelog
 
 - other commits
+    - add inner CatalogWindow, 3 bugfixed (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
+    -  bug fixed: when to run from other directries, wrong ini files created. (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
+    -  bug fixed: onle newer catalogs, don't activeted about edit/delete buttons. (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
+    -  bug fixed: when manual resizing and image is smaller than the window, image was wrong position (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
+    -  when a catalog executed, make MainWindow activate (Tue May 9 02:47:33 2017 +0900) [0d8eeb1](https://github.com/kanryu/quickviewer/commit/0d8eeb13ff7d3b2fd01c4ecf6c11a09620771c55)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon May 8 17:03:11 2017 +0900) [66e4257](https://github.com/kanryu/quickviewer/commit/66e4257ec77f327a0d75c27c2b16f57197fba28e)
-
-## v0.6.1_pre (Mon May 8 17:01:58 2017 +0900) [0f1d753](https://github.com/kanryu/quickviewer/commit/0f1d75314e78eb1154387cae6b40f8f9243f6fad)
-
-merge QuickCatalog.pro into QuickViewer.pro
-
-- other commits
+    - merge QuickCatalog.pro into QuickViewer.pro (Mon May 8 17:01:58 2017 +0900) [0f1d753](https://github.com/kanryu/quickviewer/commit/0f1d75314e78eb1154387cae6b40f8f9243f6fad)
     - Update index.md (Mon May 8 16:27:07 2017 +0900) [8338cf8](https://github.com/kanryu/quickviewer/commit/8338cf8ac48562d5b24a77db58b0339a2f2ef4f9)
     - Update index.md (Mon May 8 16:24:13 2017 +0900) [e05340f](https://github.com/kanryu/quickviewer/commit/e05340f24cdb9873586fd3c937d74a64334ac64d)
-    - changelog (Sun May 7 01:58:16 2017 +0900) [388ed47](https://github.com/kanryu/quickviewer/commit/388ed4707b43110ddb32d9c0857c35c727c0bdb9)
 
-## v0.6.0 (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+## v0.6.0 (Sun May 7 01:58:16 2017 +0900) [388ed47](https://github.com/kanryu/quickviewer/commit/388ed4707b43110ddb32d9c0857c35c727c0bdb9)
 
-Support Book Catalogs, easy to view thumbnails of frontpage of books and search fast
-
-- to create/view/search 'Catalogs'
-- whihc contains the thumbnails of frontpage of Books as icon
-- search by title(folder name of volumes)
-- change words 'Database' -> 'Catalog'
-- change QuickCatalog app to static lib
-- hide updateButton/updateAllButton
-- MainWindow can open CatalogWindow
-
-## v0.6.0_pre5 (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
-
-- add icons/catalog.ico
-- add mainmenu(CatalogWindow)
-- reserved create catalogs on ManageDatabaseDialog
-- can drop CatalogWIndow
-- can multi drop ManageDatabaseDialog
-- bugfixed deleteAllCatalogs
-
-## v0.6.0_pre4 (Sat May 6 18:13:32 2017 +0900) [944097e](https://github.com/kanryu/quickviewer/commit/944097e3a1c94538e0e18e3a45a071f79074b605)
-
-- implement searchCombo
-- fast to create Frontpage Thumbnails of Books
-
-## v0.6.0_pre3 (Wed May 3 22:33:06 2017 +0900) [59666fa](https://github.com/kanryu/quickviewer/commit/59666fa8fe2ff967f8a5e035e85f5a7017a4c6fa)
-
-making catalogwindow, managedatabasedialog, databasesettingdialog
-- making catalogwindow(volumeList)
+changelog
 
 - other commits
+    - Support Book Catalogs, easy to view thumbnails of frontpage of books and search fast (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  to create/view/search 'Catalogs' (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  whihc contains the thumbnails of frontpage of Books as icon (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  search by title(folder name of volumes) (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  change words 'Database' -> 'Catalog' (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  change QuickCatalog app to static lib (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  hide updateButton/updateAllButton (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  MainWindow can open CatalogWindow (Sun May 7 01:57:35 2017 +0900) [59a25a8](https://github.com/kanryu/quickviewer/commit/59a25a8ee47e2035084c07e00f5c84599453173a)
+    -  add icons/catalog.ico (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+    -  add mainmenu(CatalogWindow) (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+    -  reserved create catalogs on ManageDatabaseDialog (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+    -  can drop CatalogWIndow (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+    -  can multi drop ManageDatabaseDialog (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+    -  bugfixed deleteAllCatalogs (Sat May 6 22:18:57 2017 +0900) [b68ab0b](https://github.com/kanryu/quickviewer/commit/b68ab0bdf2e2651af17a9adc7b23f733cff3b974)
+    -  implement searchCombo (Sat May 6 18:13:32 2017 +0900) [944097e](https://github.com/kanryu/quickviewer/commit/944097e3a1c94538e0e18e3a45a071f79074b605)
+    -  fast to create Frontpage Thumbnails of Books (Sat May 6 18:13:32 2017 +0900) [944097e](https://github.com/kanryu/quickviewer/commit/944097e3a1c94538e0e18e3a45a071f79074b605)
+    - making catalogwindow, managedatabasedialog, databasesettingdialog (Wed May 3 22:33:06 2017 +0900) [59666fa](https://github.com/kanryu/quickviewer/commit/59666fa8fe2ff967f8a5e035e85f5a7017a4c6fa)
+    -  making catalogwindow(volumeList) (Wed May 3 22:33:06 2017 +0900) [59666fa](https://github.com/kanryu/quickviewer/commit/59666fa8fe2ff967f8a5e035e85f5a7017a4c6fa)
     -  to create t_files uses workers (Mon May 1 19:46:51 2017 +0900) [67f883a](https://github.com/kanryu/quickviewer/commit/67f883acc8e704b03853165985e4598716917a1a)
     -  initialize of ManageDatabaseDialog (Mon May 1 19:46:51 2017 +0900) [67f883a](https://github.com/kanryu/quickviewer/commit/67f883acc8e704b03853165985e4598716917a1a)
-
-## v0.6.0_pre2 (Mon May 1 18:25:50 2017 +0900) [2d4c75d](https://github.com/kanryu/quickviewer/commit/2d4c75dfa9cd9e7fc84dbdce2ca916e14b3ee51d)
-
-Create/Delete Catalog which can cancel
-
-- other commits
+    - Create/Delete Catalog which can cancel (Mon May 1 18:25:50 2017 +0900) [2d4c75d](https://github.com/kanryu/quickviewer/commit/2d4c75dfa9cd9e7fc84dbdce2ca916e14b3ee51d)
     - changelog (Mon May 1 13:42:34 2017 +0900) [896b2c0](https://github.com/kanryu/quickviewer/commit/896b2c0155ab22e8832892321c42f3345cd8de79)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon May 1 13:40:57 2017 +0900) [994cfb9](https://github.com/kanryu/quickviewer/commit/994cfb9423911c6003be59c72db85a8ea889b13c)
-
-## v0.6.0_pre (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
-
-parted to new project 'fileloader.pro', new project QuickCatalog
-
-- parted to new project 'fileloader.pro'
-- which contains commonly modules to load archives
-- new project QuickCatalog
-- it provides functions to create/manage Thumbnail Catalogs, and
-Catalog Filer
-
-- other commits
+    - parted to new project 'fileloader.pro', new project QuickCatalog (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+    -  (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+    -  parted to new project 'fileloader.pro' (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+    -  which contains commonly modules to load archives (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+    -  new project QuickCatalog (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+    -  it provides functions to create/manage Thumbnail Catalogs, and (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
+    - Catalog Filer (Mon May 1 13:38:06 2017 +0900) [c2d620c](https://github.com/kanryu/quickviewer/commit/c2d620ca3fc59801e0470547764fc9a483f56523)
     - Update index.md (Tue Apr 25 21:40:12 2017 +0900) [d8829f3](https://github.com/kanryu/quickviewer/commit/d8829f329f146f6996cb2399b50802f08c8170bc)
     - Update index.md (Tue Apr 25 19:48:47 2017 +0900) [082efbd](https://github.com/kanryu/quickviewer/commit/082efbdb9aaae44afdf7005f9fde2d93c8aeba69)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Tue Apr 25 19:43:46 2017 +0900) [2c4daef](https://github.com/kanryu/quickviewer/commit/2c4daef85cfb6a1b6e90d49a33df4568942def1c)
     - max width 1080px (Tue Apr 25 19:43:20 2017 +0900) [53a41cd](https://github.com/kanryu/quickviewer/commit/53a41cdcc82b8fce61206bf8dce86dcbf2f49980)
     - Update index.md (Tue Apr 25 08:13:05 2017 +0900) [43349c9](https://github.com/kanryu/quickviewer/commit/43349c98300d26f1c71ba6e3743ecd5a95c5acd3)
-    - changelog (Mon Apr 24 23:40:38 2017 +0900) [3fe835b](https://github.com/kanryu/quickviewer/commit/3fe835b3a77fbb4bc26b362fe6ffeb0616224a65)
 
-## v0.5.6 (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+## v0.5.6 (Mon Apr 24 23:40:38 2017 +0900) [3fe835b](https://github.com/kanryu/quickviewer/commit/3fe835b3a77fbb4bc26b362fe6ffeb0616224a65)
 
-improve AutoLoaded, ScaleUp behavior, add a menu
-
-- AutoLoad from Bookmarks
-- after this version auto saved to latest bookmarks when to exit the app
-- Show ScrollBars when manual ScaleUp on normal/maximize windowFlags
-- add menu(OpenProjectWeb)
+changelog
 
 - other commits
+    - improve AutoLoaded, ScaleUp behavior, add a menu (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+    -  (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+    -  AutoLoad from Bookmarks (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+    -  after this version auto saved to latest bookmarks when to exit the app (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+    -  Show ScrollBars when manual ScaleUp on normal/maximize windowFlags (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
+    -  add menu(OpenProjectWeb) (Mon Apr 24 23:38:19 2017 +0900) [29dea25](https://github.com/kanryu/quickviewer/commit/29dea252da40d0e7c3760a708dcb540818ed9d71)
     - Update index.md (Mon Apr 24 18:39:58 2017 +0900) [52b4384](https://github.com/kanryu/quickviewer/commit/52b43840cbd2e5dc7d015db915fa18a5b7223901)
     - Update index.md (Mon Apr 24 18:36:48 2017 +0900) [1311785](https://github.com/kanryu/quickviewer/commit/1311785d6d67f43d9994870c2701c483c0f399a7)
     - Update index.md (Mon Apr 24 16:33:57 2017 +0900) [4a3ce17](https://github.com/kanryu/quickviewer/commit/4a3ce17d4fb4fa9e67fb31bca92d177eddb24065)
@@ -436,31 +403,26 @@ improve AutoLoaded, ScaleUp behavior, add a menu
     - Update index.md (Mon Apr 24 00:31:33 2017 +0900) [89471b2](https://github.com/kanryu/quickviewer/commit/89471b2872fc667d844e47f990c738cd60dd7266)
     - changelog (Sun Apr 23 17:45:39 2017 +0900) [ba3bf93](https://github.com/kanryu/quickviewer/commit/ba3bf93dd1713838cebc27e94d2f6f0cb4b012fd)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 23 17:44:30 2017 +0900) [c1abe1f](https://github.com/kanryu/quickviewer/commit/c1abe1f412cff4a8173a9f7ede08cc6eb481932a)
-
-## v0.5.6_pre (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
-
-removed QtRAR, add latest unrar
-
-- removed QtRAR, because it needs some changes and bundled unrar is old
-- add latest unrar and a simple wrapper(RarExtractor)
-
-- other commits
+    - removed QtRAR, add latest unrar (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
+    -  (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
+    -  removed QtRAR, because it needs some changes and bundled unrar is old (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
+    -  add latest unrar and a simple wrapper(RarExtractor) (Sun Apr 23 17:42:29 2017 +0900) [7e37d4c](https://github.com/kanryu/quickviewer/commit/7e37d4c802554ac4e88b171cdefe8cd8ee6839eb)
     - Update index.md (Sun Apr 23 10:24:53 2017 +0900) [20ef220](https://github.com/kanryu/quickviewer/commit/20ef220232222b3702687704c09edd94b81ddf3a)
     - Update index.md (Sun Apr 23 00:29:19 2017 +0900) [8aea2cf](https://github.com/kanryu/quickviewer/commit/8aea2cf625bef02c62e4c222bbfbf96ff0f840ce)
     - Update README.md (Sat Apr 22 11:23:46 2017 +0900) [de8faef](https://github.com/kanryu/quickviewer/commit/de8faef38237dfa8abf0f18e8c51fa3d5dcf2b03)
-    - changelog (Sat Apr 22 00:27:37 2017 +0900) [2f13827](https://github.com/kanryu/quickviewer/commit/2f1382746a71b83b7fbd489e8266319a27a6a1df)
 
-## v0.5.5 (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+## v0.5.5 (Sat Apr 22 00:27:37 2017 +0900) [2f13827](https://github.com/kanryu/quickviewer/commit/2f1382746a71b83b7fbd489e8266319a27a6a1df)
 
-speed up for large JPEG, support cbr/cbz, improve ScaleUp/ScaleOut, 2 bug fix
-
-- twice times speed up for loading JPEGs over 4096px
-- now can load cbr/cbz format(without support for book database)
-- improve behavior ScaleUp/ScaleOut
-- bug fix, An error occurred when closing the application after changing Volume
-- bug fix, File sharing archive can not be opened
+changelog
 
 - other commits
+    - speed up for large JPEG, support cbr/cbz, improve ScaleUp/ScaleOut, 2 bug fix (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+    -  (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+    -  twice times speed up for loading JPEGs over 4096px (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+    -  now can load cbr/cbz format(without support for book database) (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+    -  improve behavior ScaleUp/ScaleOut (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+    -  bug fix, An error occurred when closing the application after changing Volume (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
+    -  bug fix, File sharing archive can not be opened (Sat Apr 22 00:26:15 2017 +0900) [6d61dba](https://github.com/kanryu/quickviewer/commit/6d61dba5131b0bef932f350223e755b679014ee0)
     - Update index-ja.md (Fri Apr 21 10:36:51 2017 +0900) [4d143b5](https://github.com/kanryu/quickviewer/commit/4d143b5de771a2e5278595e43dd913d9818c1222)
     - Update index.md (Fri Apr 21 10:35:26 2017 +0900) [221383e](https://github.com/kanryu/quickviewer/commit/221383e3e1478d4451555325afb9369212c545d2)
     - Update README.md (Fri Apr 21 10:32:46 2017 +0900) [2240a28](https://github.com/kanryu/quickviewer/commit/2240a2883fde0cd6e4f326410308cedf922ca624)
@@ -469,29 +431,29 @@ speed up for large JPEG, support cbr/cbz, improve ScaleUp/ScaleOut, 2 bug fix
     - Update index.md (Fri Apr 21 03:34:26 2017 +0900) [dd2431a](https://github.com/kanryu/quickviewer/commit/dd2431a2bb41963d8ffce6462bbcd9ceda9b3eba)
     - Update index-ja.md (Fri Apr 21 03:33:38 2017 +0900) [bcbb2a7](https://github.com/kanryu/quickviewer/commit/bcbb2a7b6aeb9e52ccc77f3246248e07905e8c9e)
     - Update index.md (Fri Apr 21 03:31:53 2017 +0900) [19d6f42](https://github.com/kanryu/quickviewer/commit/19d6f4236776da9562a4920dd12b936fd8b72f12)
-    - changelog (Thu Apr 20 18:03:54 2017 +0900) [53f4108](https://github.com/kanryu/quickviewer/commit/53f41086b81c0f55f4372658f46b62087565a383)
 
-## v0.5.4 (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+## v0.5.4 (Thu Apr 20 18:03:54 2017 +0900) [53f4108](https://github.com/kanryu/quickviewer/commit/53f41086b81c0f55f4372658f46b62087565a383)
 
-add Bookmarks, improve behavior about loading JPEGs
-
-- add Bookmarks(Save/Load/Clear)
-- improve behavior about loading JPEGs
-- turbojpeg returns -1 when to load some JPEGs(e.g. Photoshop CS5!)
-- because it is not real error, so loaded correctly
+changelog
 
 - other commits
-    - changelog (Mon Apr 17 20:22:21 2017 +0900) [697b723](https://github.com/kanryu/quickviewer/commit/697b723ea6717a097cf3875b7106679ef2a932c5)
+    - add Bookmarks, improve behavior about loading JPEGs (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+    -  (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+    -  add Bookmarks(Save/Load/Clear) (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+    -  improve behavior about loading JPEGs (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+    -  turbojpeg returns -1 when to load some JPEGs(e.g. Photoshop CS5!) (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
+    -  because it is not real error, so loaded correctly (Thu Apr 20 18:02:38 2017 +0900) [a967ffc](https://github.com/kanryu/quickviewer/commit/a967ffc1c0e3e00cbc330d419d602337acbac093)
 
-## v0.5.3 (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
+## v0.5.3 (Mon Apr 17 20:22:21 2017 +0900) [697b723](https://github.com/kanryu/quickviewer/commit/697b723ea6717a097cf3875b7106679ef2a932c5)
 
-improve file sorting/fixed bug
-
-- improve file sorting(Windows caseInsensitive using StrCmpLogicalW())
-- fixed bug about StayOnTop(using WinAPI)
-- add some Japanese translations
+changelog
 
 - other commits
+    - improve file sorting/fixed bug (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
+    -  (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
+    -  improve file sorting(Windows caseInsensitive using StrCmpLogicalW()) (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
+    -  fixed bug about StayOnTop(using WinAPI) (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
+    -  add some Japanese translations (Mon Apr 17 20:21:35 2017 +0900) [b693e96](https://github.com/kanryu/quickviewer/commit/b693e962c6a3835fff00e8392867a4e416895a51)
     - Update index-ja.md (Mon Apr 17 15:42:50 2017 +0900) [87d0fe0](https://github.com/kanryu/quickviewer/commit/87d0fe010485a38525099200a3e7caced5243b84)
     - Update index.md (Mon Apr 17 15:39:01 2017 +0900) [93743f7](https://github.com/kanryu/quickviewer/commit/93743f7927ced40ccbf5cedffaad68004823f2ae)
     - Update default.html (Mon Apr 17 15:37:55 2017 +0900) [fe0dee9](https://github.com/kanryu/quickviewer/commit/fe0dee9b798c68f1a695434f986c6a64c9f77080)
@@ -511,72 +473,72 @@ improve file sorting/fixed bug
     - Update index-ja.md (Sun Apr 16 19:54:36 2017 +0900) [43ff583](https://github.com/kanryu/quickviewer/commit/43ff5832f8b46568536264382040731a01a96e1b)
     - Update index-ja.md (Sun Apr 16 19:53:49 2017 +0900) [02854bc](https://github.com/kanryu/quickviewer/commit/02854bcd80ffbdecca3e7d3292774034dc5b86f9)
     - Update index.md (Sun Apr 16 19:51:51 2017 +0900) [cb9af00](https://github.com/kanryu/quickviewer/commit/cb9af004d4811c057277f537bd10b98831992c91)
-    - changelog (Sun Apr 16 18:24:32 2017 +0900) [2d8db4d](https://github.com/kanryu/quickviewer/commit/2d8db4d77f6cef7684a598277a9b8edab8279f41)
 
-## v0.5.2_rev2 (Sun Apr 16 18:23:21 2017 +0900) [9cc3dc5](https://github.com/kanryu/quickviewer/commit/9cc3dc5ef03cbdd1be3720d18d32068f5d0ccc9c)
+## v0.5.2_rev2 (Sun Apr 16 18:24:32 2017 +0900) [2d8db4d](https://github.com/kanryu/quickviewer/commit/2d8db4d77f6cef7684a598277a9b8edab8279f41)
 
-add Key Config(Rotate/CopyFile/SlideShow)
+changelog
 
 - other commits
-    - changelog (Sun Apr 16 18:01:44 2017 +0900) [4f0d11d](https://github.com/kanryu/quickviewer/commit/4f0d11d59a79aaab0ec438812ce282fde7094938)
+    - add Key Config(Rotate/CopyFile/SlideShow) (Sun Apr 16 18:23:21 2017 +0900) [9cc3dc5](https://github.com/kanryu/quickviewer/commit/9cc3dc5ef03cbdd1be3720d18d32068f5d0ccc9c)
+
+## v0.5.2 (Sun Apr 16 18:01:44 2017 +0900) [4f0d11d](https://github.com/kanryu/quickviewer/commit/4f0d11d59a79aaab0ec438812ce282fde7094938)
+
+changelog
+
+- other commits
     - changelog (Sun Apr 16 17:59:32 2017 +0900) [cde4f30](https://github.com/kanryu/quickviewer/commit/cde4f300d86673dfd487cb7d1ea660b621a1d903)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 16 17:58:55 2017 +0900) [11b60dc](https://github.com/kanryu/quickviewer/commit/11b60dc274ec37054ee132ed2440b0ae5f6a7eb9)
-
-## v0.5.2 (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
-
-add SlideShow/CopyFile/RotateImage, 2 bug fixed
-
-- add SlideShow/CopyFile/RotateImage
-- refactoring(ImageShaderEffect -> ShaderManager)
-- bug fixed(last 2 paging)
-- bug fixed(open explorer)
-- improve(more collect page bar on dualview)
-
-- other commits
+    - add SlideShow/CopyFile/RotateImage, 2 bug fixed (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  add SlideShow/CopyFile/RotateImage (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  refactoring(ImageShaderEffect -> ShaderManager) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  bug fixed(last 2 paging) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  bug fixed(open explorer) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
+    -  improve(more collect page bar on dualview) (Sun Apr 16 17:58:41 2017 +0900) [59d12fe](https://github.com/kanryu/quickviewer/commit/59d12fe9e92038cb41de49b9897b778df073d19f)
     - Update README.md (Fri Apr 14 16:35:43 2017 +0900) [fd8da52](https://github.com/kanryu/quickviewer/commit/fd8da52e1505043f5066b3b5bcd5d70abbab72e4)
-    - changelog (Thu Apr 13 21:14:25 2017 +0900) [78d1ecf](https://github.com/kanryu/quickviewer/commit/78d1ecfb4d1b222c7f560fd64f65a556cd5609f3)
 
-## v0.5.1 (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+## v0.5.1 (Thu Apr 13 21:14:25 2017 +0900) [78d1ecf](https://github.com/kanryu/quickviewer/commit/78d1ecfb4d1b222c7f560fd64f65a556cd5609f3)
 
-Support Shaders, Save Window States, Add FastFoward/Backward
-
-- Support GPU Shaders(NearestNeighbor/Bicubic/Lanczos)
-- Save/Restore Window States(Position/Size/WindowStates)
-- add FastForward/Backward buttons(fixed by 10 pages)
-- Key Config Rules Changed
-- Please remove old ini files
+changelog
 
 - other commits
-    - changelog (Wed Apr 12 10:25:42 2017 +0900) [0095c41](https://github.com/kanryu/quickviewer/commit/0095c416faaff71b420e73c608c125563313a73c)
+    - Support Shaders, Save Window States, Add FastFoward/Backward (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+    -  (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+    -  Support GPU Shaders(NearestNeighbor/Bicubic/Lanczos) (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+    -  Save/Restore Window States(Position/Size/WindowStates) (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+    -  add FastForward/Backward buttons(fixed by 10 pages) (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+    -  Key Config Rules Changed (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
+    -  Please remove old ini files (Thu Apr 13 21:13:04 2017 +0900) [dad17cf](https://github.com/kanryu/quickviewer/commit/dad17cf3f87fce576126960cdef1940184ecfb55)
 
-## v0.5.0 (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+## v0.5.0 (Wed Apr 12 10:25:42 2017 +0900) [0095c41](https://github.com/kanryu/quickviewer/commit/0095c416faaff71b420e73c608c125563313a73c)
 
-more faster volume changing, refactoring
-
-- add pre loading for volume changing(NextVolume/PrevVolume)
-- QuickViewer.pro now can provide distribution package(Windows)
-- refactoring
-- add PageManager, TimeOrderedCache
-- comment outed qDebug()
+changelog
 
 - other commits
+    - more faster volume changing, refactoring (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+    -  (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+    -  add pre loading for volume changing(NextVolume/PrevVolume) (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+    -  QuickViewer.pro now can provide distribution package(Windows) (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+    -  refactoring (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+    -  add PageManager, TimeOrderedCache (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
+    -  comment outed qDebug() (Wed Apr 12 10:24:23 2017 +0900) [1c561d1](https://github.com/kanryu/quickviewer/commit/1c561d1050fd90789bd852c43eadbc9ea9699319)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Tue Apr 11 09:38:00 2017 +0900) [ed3e260](https://github.com/kanryu/quickviewer/commit/ed3e2607158499ee40bc144628cccad7e97fea83)
     - support deploying, refactoring (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
     -  (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
     -  support deploying by pro(nolonger deploy.bat needed, run 'jom install') (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
     -  refactoring(add PageGraphicsItem) (Tue Apr 11 09:36:13 2017 +0900) [7ed282c](https://github.com/kanryu/quickviewer/commit/7ed282c5051872e4b5e3c1671b317eb5a900fc8a)
     - Update index.md (Tue Apr 11 05:44:01 2017 +0900) [fc91c0b](https://github.com/kanryu/quickviewer/commit/fc91c0b1c8d34d0e093a17b4dd056c231791fe6e)
-    - changelog (Mon Apr 10 05:15:19 2017 +0900) [34de18f](https://github.com/kanryu/quickviewer/commit/34de18f33237f6f33c8ca3e2cde9757c2cca13cd)
 
-## v0.4.3 (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
+## v0.4.3 (Mon Apr 10 05:15:19 2017 +0900) [34de18f](https://github.com/kanryu/quickviewer/commit/34de18f33237f6f33c8ca3e2cde9757c2cca13cd)
 
-fixed bug, add shortcut newmenus
-
-- fixed bug NextVolume/PageVolume, default key configs were in the opposite direction by mistake
-- add shortcut DeletePage/CopyPage
-- change words, delete image -> move the image to trash box
+changelog
 
 - other commits
+    - fixed bug, add shortcut newmenus (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
+    -  (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
+    -  fixed bug NextVolume/PageVolume, default key configs were in the opposite direction by mistake (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
+    -  add shortcut DeletePage/CopyPage (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
+    -  change words, delete image -> move the image to trash box (Mon Apr 10 05:13:47 2017 +0900) [a2ccbe6](https://github.com/kanryu/quickviewer/commit/a2ccbe68558021b1105810cfb2d1f2d1ec158838)
     - changelog (Mon Apr 10 04:59:05 2017 +0900) [d8477d1](https://github.com/kanryu/quickviewer/commit/d8477d100a36fe1f11cb92b4ac398861ca3a6a47)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Apr 10 04:57:52 2017 +0900) [ad5e04b](https://github.com/kanryu/quickviewer/commit/ad5e04b3e5865074e065b1f1fa49b03ebba74369)
     - improve PageBar, add CopyImage/DeleteImage (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
@@ -585,52 +547,52 @@ fixed bug, add shortcut newmenus
     -  add CopyImage to clipboard (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
     -  add DeleteImage to trashbox(referred to https://github.com/siliconscholar/sherman/blob/6397a274c704519f8e0b7f628ad0beadde0e1d53/src/win/deleter.cpp) (Mon Apr 10 04:55:58 2017 +0900) [2c582d8](https://github.com/kanryu/quickviewer/commit/2c582d86aac988e1feb2a474a1ca836168ebb643)
     - Create .gitattributes (Sat Apr 8 00:01:41 2017 +0900) [ee555e3](https://github.com/kanryu/quickviewer/commit/ee555e3850fdb99b33f559cf92a8b2d274950dd3)
-    - changelog (Fri Apr 7 03:10:57 2017 +0900) [fd3f2f6](https://github.com/kanryu/quickviewer/commit/fd3f2f605f4a977584cf571a57c998b464da5f16)
 
-## v0.4.2 (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+## v0.4.2 (Fri Apr 7 03:10:57 2017 +0900) [fd3f2f6](https://github.com/kanryu/quickviewer/commit/fd3f2f605f4a977584cf571a57c998b464da5f16)
 
-Build Support on linux, can hide menubar, add 3 menus
-
-- Build Support for linux(tested on Ubuntu 16.02.2)
-- fixed a bug, Next only one page
-- can hide menubar on windows
-- add 3 menus
-- ShowMainMenu
-- ClearHistory
-- StayOnTop
+changelog
 
 - other commits
+    - Build Support on linux, can hide menubar, add 3 menus (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  Build Support for linux(tested on Ubuntu 16.02.2) (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  fixed a bug, Next only one page (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  can hide menubar on windows (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  add 3 menus (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  ShowMainMenu (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  ClearHistory (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
+    -  StayOnTop (Fri Apr 7 03:03:25 2017 +0900) [3c7cb8c](https://github.com/kanryu/quickviewer/commit/3c7cb8cb83eccbffb548fc86c40f70d85c26d599)
     - Linux Builde checked (Thu Apr 6 03:54:05 2017 +0900) [3858a36](https://github.com/kanryu/quickviewer/commit/3858a3655e68c2fd0d96aa5432159914cb37749a)
-    - changelog (Wed Apr 5 07:31:42 2017 +0900) [151203d](https://github.com/kanryu/quickviewer/commit/151203ddee158ec03bad4e81ec76b606d15520f5)
 
-## v0.4.1 (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
+## v0.4.1 (Wed Apr 5 07:31:42 2017 +0900) [151203d](https://github.com/kanryu/quickviewer/commit/151203ddee158ec03bad4e81ec76b606d15520f5)
 
-JPEG/Raw loader plugin updated. 2 menus added
-
-- JPEG/Raw image loader plugin updated. much faster than before(especially on x64)
-- add flag to show toolbar
-- add flag that always first image is one view
+changelog
 
 - other commits
-    - changelog (Mon Apr 3 22:00:11 2017 +0900) [9777572](https://github.com/kanryu/quickviewer/commit/977757234e442c58676aa57d2f8c119d3147ba6b)
+    - JPEG/Raw loader plugin updated. 2 menus added (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
+    -  (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
+    -  JPEG/Raw image loader plugin updated. much faster than before(especially on x64) (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
+    -  add flag to show toolbar (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
+    -  add flag that always first image is one view (Wed Apr 5 07:29:41 2017 +0900) [36d4b39](https://github.com/kanryu/quickviewer/commit/36d4b39c927c3b6ac758885e6bed432213b42cd7)
 
-## v0.4.0 (Mon Apr 3 21:57:02 2017 +0900) [20da721](https://github.com/kanryu/quickviewer/commit/20da721fca323590c9aa480fca24249dafa5e3e0)
+## v0.4.0 (Mon Apr 3 22:00:11 2017 +0900) [9777572](https://github.com/kanryu/quickviewer/commit/977757234e442c58676aa57d2f8c119d3147ba6b)
 
-support Key Configs
-- support all actions save/load ini, customized run actions
-- add Key Config Dialog
-
-- other commits
-    - changelog (Mon Apr 3 03:10:41 2017 +0900) [af12a95](https://github.com/kanryu/quickviewer/commit/af12a95b70ef0e2b0c852859349ec1b1060c64e9)
-
-## v0.3.5 (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
-
-add NextOnePage/PrevOnePage, fixed Open Explorer
-
-- add NextOnePage/PrevOnePage (to next/prev 1 Page whether if DualView is on)
-- fixed Open Explorer(for spaces included file path), use as reference https://github.com/owncloud/client/blob/master/src/gui/openfilemanager.cpp
+changelog
 
 - other commits
+    - support Key Configs (Mon Apr 3 21:57:02 2017 +0900) [20da721](https://github.com/kanryu/quickviewer/commit/20da721fca323590c9aa480fca24249dafa5e3e0)
+    -  support all actions save/load ini, customized run actions (Mon Apr 3 21:57:02 2017 +0900) [20da721](https://github.com/kanryu/quickviewer/commit/20da721fca323590c9aa480fca24249dafa5e3e0)
+    -  add Key Config Dialog (Mon Apr 3 21:57:02 2017 +0900) [20da721](https://github.com/kanryu/quickviewer/commit/20da721fca323590c9aa480fca24249dafa5e3e0)
+
+## v0.3.5 (Mon Apr 3 03:10:41 2017 +0900) [af12a95](https://github.com/kanryu/quickviewer/commit/af12a95b70ef0e2b0c852859349ec1b1060c64e9)
+
+changelog
+
+- other commits
+    - add NextOnePage/PrevOnePage, fixed Open Explorer (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
+    -  (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
+    -  add NextOnePage/PrevOnePage (to next/prev 1 Page whether if DualView is on) (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
+    -  fixed Open Explorer(for spaces included file path), use as reference https://github.com/owncloud/client/blob/master/src/gui/openfilemanager.cpp (Mon Apr 3 03:07:26 2017 +0900) [f9ef10e](https://github.com/kanryu/quickviewer/commit/f9ef10ea8854810cf721e1b3b90760c7a4ec18cc)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Apr 3 02:07:43 2017 +0900) [e8794ca](https://github.com/kanryu/quickviewer/commit/e8794caafed8e143e664d69ef58e9044ca7e2aee)
     - Update index-ja.md (Sun Apr 2 19:00:47 2017 +0900) [1318e14](https://github.com/kanryu/quickviewer/commit/1318e1402799f7965c59ff38941f175e3ac287dd)
     - Update index.md (Sun Apr 2 18:52:32 2017 +0900) [247b297](https://github.com/kanryu/quickviewer/commit/247b297358589cee7d87eb2fd24d80b912804dae)
@@ -638,18 +600,18 @@ add NextOnePage/PrevOnePage, fixed Open Explorer
     - changelog (Sun Apr 2 17:53:20 2017 +0900) [77bfc81](https://github.com/kanryu/quickviewer/commit/77bfc81868e9b9e34a2e63b4a8e26df206fec02b)
     - Update index.html (Sat Apr 1 22:17:46 2017 +0900) [668a936](https://github.com/kanryu/quickviewer/commit/668a936f227b0808851532c7fec60b6ed16c305b)
     - Update index.html (Sat Apr 1 22:15:59 2017 +0900) [61ded06](https://github.com/kanryu/quickviewer/commit/61ded06c1381e23e1acccb9404fe145b773b9380)
-    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 2 17:53:26 2017 +0900) [8f4876e](https://github.com/kanryu/quickviewer/commit/8f4876ee85163c80e0725a055069ba190dc9f763)
-    - changelog (Sun Apr 2 17:53:20 2017 +0900) [a87b92f](https://github.com/kanryu/quickviewer/commit/a87b92f52be3c2252f9104489fbc68f3b444de6c)
 
-## v0.3.4 (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
+## v0.3.4 (Sun Apr 2 17:53:26 2017 +0900) [8f4876e](https://github.com/kanryu/quickviewer/commit/8f4876ee85163c80e0725a055069ba190dc9f763)
 
 Merge branch 'master' of https://github.com/kanryu/quickviewer
 
-support NextVolume/PrevVolume
-
-- PrevPage by BackSpase Key pressed
-
 - other commits
+    - changelog (Sun Apr 2 17:53:20 2017 +0900) [a87b92f](https://github.com/kanryu/quickviewer/commit/a87b92f52be3c2252f9104489fbc68f3b444de6c)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
+    -  (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
+    - support NextVolume/PrevVolume (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
+    -  (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
+    -  PrevPage by BackSpase Key pressed (Sun Apr 2 17:52:00 2017 +0900) [38bc291](https://github.com/kanryu/quickviewer/commit/38bc2919e7432ab667d065ae5fa095e1ab5cf79f)
     - Update index.html (Sat Apr 1 22:17:46 2017 +0900) [81a3303](https://github.com/kanryu/quickviewer/commit/81a330386ad2821f4cd3d6bfe27c9a406faf1ea9)
     - Update index.html (Sat Apr 1 22:15:59 2017 +0900) [5724289](https://github.com/kanryu/quickviewer/commit/5724289024e24a17b876658d85ed97de0f0c99e7)
     - Update index.html (Sat Apr 1 22:12:46 2017 +0900) [0d0ea78](https://github.com/kanryu/quickviewer/commit/0d0ea78ef1a97319ec59b48627e304745faf2dd5)
@@ -660,31 +622,31 @@ support NextVolume/PrevVolume
     - Update index-ja.md (Sat Apr 1 02:09:23 2017 +0900) [4960a19](https://github.com/kanryu/quickviewer/commit/4960a194c5bd52495432975050aee96196f35f7d)
     - Update index.md (Sat Apr 1 02:07:22 2017 +0900) [86b35d7](https://github.com/kanryu/quickviewer/commit/86b35d7295601de507445c5259e4bc671564163e)
     - Update README.md (Sat Apr 1 02:06:58 2017 +0900) [1f8554a](https://github.com/kanryu/quickviewer/commit/1f8554aba80e2915272ca3335e07ef0dcd987b53)
-    - changelog (Sat Apr 1 01:59:25 2017 +0900) [0139667](https://github.com/kanryu/quickviewer/commit/0139667ad5090dff73329f4a386e03cc69462119)
-    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Apr 1 01:58:59 2017 +0900) [6a6d0b5](https://github.com/kanryu/quickviewer/commit/6a6d0b5229aaf51b967f65af9702b8574a49df07)
 
-## v0.3.3 (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
+## v0.3.3 (Sat Apr 1 01:59:25 2017 +0900) [0139667](https://github.com/kanryu/quickviewer/commit/0139667ad5090dff73329f4a386e03cc69462119)
 
-support Raw Images, check version
-
-- support Raw Images (Canon/Nicon/Sony/Ricoh/etc..)
-- test support for EXIF of Raw images (very rude behavior)
-- check version with browser
+changelog
 
 - other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Apr 1 01:58:59 2017 +0900) [6a6d0b5](https://github.com/kanryu/quickviewer/commit/6a6d0b5229aaf51b967f65af9702b8574a49df07)
+    - support Raw Images, check version (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
+    -  (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
+    -  support Raw Images (Canon/Nicon/Sony/Ricoh/etc..) (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
+    -  test support for EXIF of Raw images (very rude behavior) (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
+    -  check version with browser (Sat Apr 1 01:57:37 2017 +0900) [8aa44a2](https://github.com/kanryu/quickviewer/commit/8aa44a210cf40c1a1aa4ab5125c3959c4716b352)
     - Update index.md (Sat Apr 1 01:38:12 2017 +0900) [c260615](https://github.com/kanryu/quickviewer/commit/c260615697f40a60286159732d379b7733eda6c5)
     - Update index.md (Sat Apr 1 01:30:04 2017 +0900) [f0a180f](https://github.com/kanryu/quickviewer/commit/f0a180fc6c0b01efdd4f3187e2c5faa9e5c4e890)
     - Update index.md (Sat Apr 1 01:27:19 2017 +0900) [c2c1966](https://github.com/kanryu/quickviewer/commit/c2c1966a3e12339f29d716186c35e0ea6716d86c)
     - Update index.md (Sat Apr 1 01:25:58 2017 +0900) [0c7cbe7](https://github.com/kanryu/quickviewer/commit/0c7cbe783e65074ecba033b6f408fc2fe8f96603)
     - checkversion script (Sat Apr 1 01:21:50 2017 +0900) [ef673aa](https://github.com/kanryu/quickviewer/commit/ef673aa2f3150b8f8342e2c11b127b072a671cdc)
-    - CHANGELOG (Fri Mar 31 06:28:50 2017 +0900) [5ef95b5](https://github.com/kanryu/quickviewer/commit/5ef95b5e047ad7680ba8fa838e4d1df016e276b7)
-    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Mar 31 06:28:17 2017 +0900) [cb7b450](https://github.com/kanryu/quickviewer/commit/cb7b4501030df65048821b669ab071dce7b37aa1)
 
-## v0.3.2 (Fri Mar 31 06:27:49 2017 +0900) [c6ff3be](https://github.com/kanryu/quickviewer/commit/c6ff3be94044612100b06d54fe4bb7f3f0a93406)
+## v0.3.2 (Fri Mar 31 06:28:50 2017 +0900) [5ef95b5](https://github.com/kanryu/quickviewer/commit/5ef95b5e047ad7680ba8fa838e4d1df016e276b7)
 
-fixed when png file dropped
+CHANGELOG
 
 - other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Mar 31 06:28:17 2017 +0900) [cb7b450](https://github.com/kanryu/quickviewer/commit/cb7b4501030df65048821b669ab071dce7b37aa1)
+    - fixed when png file dropped (Fri Mar 31 06:27:49 2017 +0900) [c6ff3be](https://github.com/kanryu/quickviewer/commit/c6ff3be94044612100b06d54fe4bb7f3f0a93406)
     - Update README.md (Fri Mar 31 05:28:30 2017 +0900) [f00c36d](https://github.com/kanryu/quickviewer/commit/f00c36de540508aec55d0797c43e5690dba12854)
     - Update README.md (Fri Mar 31 05:27:16 2017 +0900) [8bd3ccd](https://github.com/kanryu/quickviewer/commit/8bd3ccd9e07a09c73099c56fcae3646da8c1fdc8)
     - Update index-ja.md (Fri Mar 31 05:23:53 2017 +0900) [6f0cc66](https://github.com/kanryu/quickviewer/commit/6f0cc660ff91e15a67d0469b8b63314d1eebbe15)
@@ -692,37 +654,27 @@ fixed when png file dropped
     - Update README.md (Fri Mar 31 05:19:21 2017 +0900) [fda1e21](https://github.com/kanryu/quickviewer/commit/fda1e21fd60367747356fb19a325b9153f032b40)
     - Update index.md (Fri Mar 31 05:06:35 2017 +0900) [9f484f3](https://github.com/kanryu/quickviewer/commit/9f484f3c8529c06e9375a830521abe40fd43c857)
     - Update index.md (Fri Mar 31 05:06:15 2017 +0900) [f763498](https://github.com/kanryu/quickviewer/commit/f76349814736a8e6e8ed4cfb7785c80f17f1b393)
-    - CHANGELOG (Fri Mar 31 04:37:29 2017 +0900) [283d783](https://github.com/kanryu/quickviewer/commit/283d783a4221deae190328808ebe63f296ff5c42)
 
-## v0.3.1 (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
+## v0.3.1 (Fri Mar 31 04:37:29 2017 +0900) [283d783](https://github.com/kanryu/quickviewer/commit/283d783a4221deae190328808ebe63f296ff5c42)
 
-- refactoring
-- support RAR archive
-- add Key Config Dialog
-- improve behavior of changing between normal and fullscreen
+CHANGELOG
 
 - other commits
+    -  refactoring (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
+    -  support RAR archive (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
+    -  add Key Config Dialog (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
+    -  improve behavior of changing between normal and fullscreen (Fri Mar 31 03:42:55 2017 +0900) [f1cd515](https://github.com/kanryu/quickviewer/commit/f1cd515820748a241a6036bfe4e9ff60dc37eb8e)
     - CHANGELOG (Thu Mar 30 14:25:48 2017 +0900) [e9f8189](https://github.com/kanryu/quickviewer/commit/e9f81892e517f505d38951b5405b079fdcd61708)
     - CHANGELOG (Thu Mar 30 14:22:50 2017 +0900) [661a7b1](https://github.com/kanryu/quickviewer/commit/661a7b17fdac7fb78275bfcc6ebd381f1f7054ac)
-
-## v0.3.1_pre2 (Thu Mar 30 14:19:25 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
-
-refactoring
-
-- remove comments outdated
-- followed for version up of ResizeHalf
-
-- other commits
+    - refactoring (Thu Mar 30 14:19:25 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
+    -  (Thu Mar 30 14:19:25 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
+    -  remove comments outdated (Thu Mar 30 14:19:25 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
+    -  followed for version up of ResizeHalf (Thu Mar 30 14:19:25 2017 +0900) [961b44a](https://github.com/kanryu/quickviewer/commit/961b44adf69a69408732498b0b8dde59831a2343)
     - Update CHANGELOG.md (Thu Mar 30 05:30:03 2017 +0900) [d348354](https://github.com/kanryu/quickviewer/commit/d348354dd8b1d79cdd9bf5ad02bd94e78d42db27)
     - Update CHANGELOG.md (Thu Mar 30 05:23:40 2017 +0900) [4381c43](https://github.com/kanryu/quickviewer/commit/4381c437506434746dedb8df31d02fa83584539f)
-
-## v0.3.1_pre (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
-
-- add keyconfig dialog
-- refactoring
-- add FileLoader object(supports external plugin)
-
-- other commits
+    -  add keyconfig dialog (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
+    -  refactoring (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
+    -  add FileLoader object(supports external plugin) (Thu Mar 30 05:20:11 2017 +0900) [26b4536](https://github.com/kanryu/quickviewer/commit/26b45365790e108d8313cb52919cb5766945e3fc)
     - Update index.md (Thu Mar 30 03:16:49 2017 +0900) [96a4008](https://github.com/kanryu/quickviewer/commit/96a4008d34fee6203f9457e015ff23d23756fddb)
     - Update index.md (Thu Mar 30 03:16:04 2017 +0900) [cedc13b](https://github.com/kanryu/quickviewer/commit/cedc13bc70e8cf821feb963662946361bb73a509)
     - Update index.md (Thu Mar 30 03:05:39 2017 +0900) [12d8c97](https://github.com/kanryu/quickviewer/commit/12d8c976552e594a897030f5146adc139d40d3c1)
@@ -751,16 +703,14 @@ refactoring
 - those function are on context menus
 - fixed for images which RGBA8888 and not 4 multpiles of width
 
-- other commits
-    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Mar 27 17:28:50 2017 +0900) [2b514bf](https://github.com/kanryu/quickviewer/commit/2b514bfcf96795512aa355c9009c3fb2ed9c1229)
+## v0.2.6 (Mon Mar 27 17:28:50 2017 +0900) [2b514bf](https://github.com/kanryu/quickviewer/commit/2b514bfcf96795512aa355c9009c3fb2ed9c1229)
 
-## v0.2.6 (Mon Mar 27 17:25:52 2017 +0900) [c5217cc](https://github.com/kanryu/quickviewer/commit/c5217cc7e5febbae460a585438ff15381812ce7f)
-
-- followed for version up of ResizeHalf
-- fixed behavior of knob on page slider
-- fixed paging as Spread Viewing
+Merge branch 'master' of https://github.com/kanryu/quickviewer
 
 - other commits
+    -  followed for version up of ResizeHalf (Mon Mar 27 17:25:52 2017 +0900) [c5217cc](https://github.com/kanryu/quickviewer/commit/c5217cc7e5febbae460a585438ff15381812ce7f)
+    -  fixed behavior of knob on page slider (Mon Mar 27 17:25:52 2017 +0900) [c5217cc](https://github.com/kanryu/quickviewer/commit/c5217cc7e5febbae460a585438ff15381812ce7f)
+    -  fixed paging as Spread Viewing (Mon Mar 27 17:25:52 2017 +0900) [c5217cc](https://github.com/kanryu/quickviewer/commit/c5217cc7e5febbae460a585438ff15381812ce7f)
     - Update README.md (Mon Mar 27 06:55:32 2017 +0900) [4c27474](https://github.com/kanryu/quickviewer/commit/4c27474ce32a8f117e64a82b572190160bf649a9)
     - Update README.md (Mon Mar 27 06:52:42 2017 +0900) [ec1151d](https://github.com/kanryu/quickviewer/commit/ec1151df295dfed8aaae748e1b22a0f934b635a6)
 
@@ -812,21 +762,18 @@ fixed pre load cache algorithm
     - index (Thu Mar 23 22:28:15 2017 +0900) [bc41b31](https://github.com/kanryu/quickviewer/commit/bc41b31235f14a8ec9fe3ed72821e172d3343e67)
     - index (Thu Mar 23 22:19:28 2017 +0900) [b80b5b0](https://github.com/kanryu/quickviewer/commit/b80b5b054a687a6855a006254dd0723f65555391)
     - project web page (Thu Mar 23 21:58:57 2017 +0900) [3c29e76](https://github.com/kanryu/quickviewer/commit/3c29e769aef6489e14be72f289301c61887de444)
+    - fixed bug about archive pre loading (Thu Mar 23 17:41:34 2017 +0900) [946e367](https://github.com/kanryu/quickviewer/commit/946e367cc058051479d4ff15ac255a2b2a7ee069)
 
-## v0.2.0 (Thu Mar 23 17:41:34 2017 +0900) [946e367](https://github.com/kanryu/quickviewer/commit/946e367cc058051479d4ff15ac255a2b2a7ee069)
+## v0.1.10 (Thu Mar 23 17:15:32 2017 +0900) [8e3cdd6](https://github.com/kanryu/quickviewer/commit/8e3cdd667958c2c1977d98ebb4264313ecfd6d63)
 
-fixed bug about archive pre loading
+README
 
 - other commits
-    - README (Thu Mar 23 17:15:32 2017 +0900) [8e3cdd6](https://github.com/kanryu/quickviewer/commit/8e3cdd667958c2c1977d98ebb4264313ecfd6d63)
     - implements a feature about page pre loading (Thu Mar 23 17:13:52 2017 +0900) [d8fe6cd](https://github.com/kanryu/quickviewer/commit/d8fe6cd5534d2ea87d720bb42f3b67ec9a02db19)
-
-## v0.1.10 (Thu Mar 23 17:02:37 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
-
-- add a menu which open a image folder
-- to show "NOT IMAGE" which the page is not a valid image file
-- add a menu "always open wide image as one view"
-- fixed a bug which there is page number wrong when one page viewing
+    -  add a menu which open a image folder (Thu Mar 23 17:02:37 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
+    -  to show "NOT IMAGE" which the page is not a valid image file (Thu Mar 23 17:02:37 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
+    -  add a menu "always open wide image as one view" (Thu Mar 23 17:02:37 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
+    -  fixed a bug which there is page number wrong when one page viewing (Thu Mar 23 17:02:37 2017 +0900) [78692c6](https://github.com/kanryu/quickviewer/commit/78692c681c36856033d26a8b438f606b2e40cac9)
 
 ## v_0.1.9 (Wed Mar 22 15:11:22 2017 +0900) [45f44d8](https://github.com/kanryu/quickviewer/commit/45f44d8f9e055c5cae556037cbc2b402f9c9d975)
 
@@ -848,7 +795,4 @@ i18n between English and Japanese
     - add images (Mon Mar 20 21:06:43 2017 +0900) [7eb7d08](https://github.com/kanryu/quickviewer/commit/7eb7d08c5182228323362ade9d0942a499e7062a)
     - README (Mon Mar 20 20:52:37 2017 +0900) [77bff1a](https://github.com/kanryu/quickviewer/commit/77bff1a08544f6db5825d0fa948a7aa85291ff61)
     - initial version (Mon Mar 20 20:31:18 2017 +0900) [a5e2d86](https://github.com/kanryu/quickviewer/commit/a5e2d860b48060c1088e32241f691aa89d68291c)
-
-## v_0.1.0 (Mon Mar 20 20:20:42 2017 +0900) [cf7a533](https://github.com/kanryu/quickviewer/commit/cf7a533b634deb04eeff4036958bc934215920c9)
-
-Initial commit
+    - Initial commit (Mon Mar 20 20:20:42 2017 +0900) [cf7a533](https://github.com/kanryu/quickviewer/commit/cf7a533b634deb04eeff4036958bc934215920c9)
