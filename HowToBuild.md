@@ -46,7 +46,7 @@ $ mkdir build
 $ cd build
 $ [QTSDK]/bin/qmake -o Makefile -recursive ../quickviewer/QVProject.pro
 ```
-Your QtSDK and Makefile for the compiler will be generated to build QuickViewer. All you have to do is build it with that Makefile.
+A Makefile for the compiler will be generated to build QuickViewer. All you have to do is build it with that Makefile.
 
 Please note that if you use VisualStudio2015, you need nmake instead of MinGW make. Of course there is a distinction x86 / x64.
 
