@@ -13,3 +13,9 @@
 [submodule "quazip/quazip"]
 	path = quazip/quazip
 	url = https://github.com/kanryu/quazip
+[submodule "QuickViewer/src/qfullscreenframe"]
+	path = QuickViewer/src/qfullscreenframe
+	url = https://github.com/kanryu/qfullscreenframe
+[submodule "QuickViewer/src/qlanguageselector"]
+	path = QuickViewer/src/qlanguageselector
+	url = https://github.com/kanryu/qlanguageselector
