@@ -26,6 +26,16 @@ MainWindow::MainWindow(QWidget *parent)
     , m_exifDialog(nullptr)
 {
     ui->setupUi(this);
+
+    ui->actionFullscreen->setVisible(false);
+    auto fullscreenButton = new QToolButton(this);
+    fullscreenButton->setToolTip(tr("&Fullscreen"));
+    fullscreenButton->setCheckable(true);
+    fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
+    connect(fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(on_fullscreen_triggered()));
+    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), fullscreenButton, SLOT(setChecked(bool)));
+    ui->menuBar->setCornerWidget(fullscreenButton);
+
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
     ui->pageSlider->hide();
@@ -59,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
     ui->actionBeginAsFullscreen->setChecked(qApp->BeginAsFullscreen());
     ui->actionShowFullscreenSignage->setChecked(qApp->ShowFullscreenSignage());
+    ui->actionShowFullscreenTitleBar->setChecked(qApp->ShowFullscreenTitleBar());
 
     // Languages
     qApp->languageSelector()->initializeMenu(ui->menuChange_Language);
@@ -126,7 +137,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Context menus(independent from menuBar)
     ui->menuBar->removeAction(ui->menuContextMenu->menuAction());
-    contextMenu = ui->menuContextMenu;
+    m_contextMenu = ui->menuContextMenu;
 
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(on_volumeChanged_triggered(QString)));
@@ -234,8 +245,8 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *e)
         return;
     QWidget *child = childAt(e->pos());
 //    qDebug() << child << child->parent();
-    if(child->parent() == ui->graphicsView && contextMenu)
-        contextMenu->exec(QCursor::pos());
+    if(child->parent() == ui->graphicsView && m_contextMenu)
+        m_contextMenu->exec(QCursor::pos());
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *e)
@@ -260,8 +271,8 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 void MainWindow::closeEvent(QCloseEvent *)
 {
     on_manageCatalogsClosed_triggered();
-    delete contextMenu;
-    contextMenu = nullptr;
+    delete m_contextMenu;
+    m_contextMenu = nullptr;
     qApp->setWindowGeometry(saveGeometry());
     qApp->setWindowState(saveState());
 }
@@ -971,6 +982,11 @@ void MainWindow::on_beginAsFullscreen_triggered(bool enable)
 void MainWindow::on_showFullscreenSignage_triggered(bool enable)
 {
     qApp->setShowFullscreenSignage(enable);
+}
+
+void MainWindow::on_showFullscreenTitleBar_triggered(bool enable)
+{
+    qApp->setShowFullscreenTitleBar(enable);
 }
 
 void MainWindow::on_projectPage_triggered()

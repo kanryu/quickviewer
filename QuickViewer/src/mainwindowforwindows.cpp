@@ -6,7 +6,7 @@
 #include "qvapplication.h"
 #include "mainwindowforwindows.h"
 #include "ui_mainwindow.h"
-#include "fullscreentopframe.h"
+#include "qfullscreenframe.h"
 
 #define IDM_SHOWMAINMENU 2
 
@@ -150,39 +150,67 @@ bool MainWindowForWindows::eventFilter(QObject *obj, QEvent *event)
 {
     switch (event->type()) {
     case QEvent::Leave:
-        if(obj == ui->pageFrame && isFullScreen()) {
-            ui->pageFrame->hide();
-            return true;
-        }
+//        if(obj == ui->pageFrame && isFullScreen()) {
+//            ui->pageFrame->hide();
+//            return true;
+//        }
         return QObject::eventFilter(obj, event);
     }
     return MainWindow::eventFilter(obj, event);
 }
 
-static FullscreenTopFrame *fullscreenTopFrame;
+static QFullscreenFrame *fullscreenFrame;
 void MainWindowForWindows::on_hover_anchor(Qt::AnchorPoint anchor)
 {
     if(!isFullScreen()) {
         return;
     }
     if(anchor == Qt::AnchorTop) {
-        fullscreenTopFrame = new FullscreenTopFrame(this, ui);
-        fullscreenTopFrame->showMaximized();
+        fullscreenFrame = new QFullscreenFrame(this);
+        connect(fullscreenFrame, &QFullscreenFrame::init, this, [&]{
+            fullscreenFrame->addToolBar(Qt::TopToolBarArea, ui->mainToolBar);
+            ui->mainToolBar->setVisible(true);
+            fullscreenFrame->setMenuBar(ui->menuBar);
+            ui->menuBar->setVisible(true);
+        });
+        connect(fullscreenFrame, &QFullscreenFrame::deinit, this, [&]{
+            ui->menuBar->setVisible(false);
+            ui->mainToolBar->setVisible(false);
+            addToolBar(ui->mainToolBar);
+            setMenuBar(ui->menuBar);
+        });
+        connect(fullscreenFrame, SIGNAL(toShowNormal()), this, SLOT(on_fullscreen_triggered()));
+        connect(fullscreenFrame, SIGNAL(exitApp()), this, SLOT(close()));
+
+        if(qApp->ShowFullscreenTitleBar())
+            fullscreenFrame->showWithTitlebar();
+        else
+            fullscreenFrame->showWithoutTitleBar();
     }
     if(anchor == Qt::AnchorBottom) {
-        if(qApp->ShowSliderBar())
+        fullscreenFrame = new QFullscreenFrame(this, Qt::AnchorBottom);
+        connect(fullscreenFrame, &QFullscreenFrame::init, this, [&]{
+            fullscreenFrame->setCentralWidget(ui->pageFrame);
             ui->pageFrame->show();
+        });
+        connect(fullscreenFrame, &QFullscreenFrame::deinit, this, [&]{
+            ui->pageFrame->hide();
+            ui->verticalViewPage->layout()->addWidget(ui->pageFrame);
+        });
+        fullscreenFrame->showWithoutTitleBar();
+//        if(qApp->ShowSliderBar())
+//            ui->pageFrame->show();
     }
     if(anchor == Qt::AnchorHorizontalCenter) {
-        ui->pageFrame->hide();
+//        ui->pageFrame->hide();
     }
     ui->graphicsView->readyForPaint();
 }
 
 void MainWindowForWindows::on_fullscreen_triggered()
 {
-    if(fullscreenTopFrame && fullscreenTopFrame->isValid()) {
-        fullscreenTopFrame->closeAndShowNormal();
+    if(fullscreenFrame && fullscreenFrame->isValid()) {
+        fullscreenFrame->closeAndShowNormal();
         return;
     }
     MainWindow::on_fullscreen_triggered();

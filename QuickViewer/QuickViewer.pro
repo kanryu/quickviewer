@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.4
+VERSION = 0.8.5
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -179,8 +179,10 @@ HEADERS  += \
 
 
 win32 {
-    SOURCES += src/mainwindowforwindows.cpp src/fullscreentopframe.cpp
-    HEADERS += src/mainwindowforwindows.h src/fullscreentopframe.h
+    SOURCES += src/mainwindowforwindows.cpp src/qfullscreenframe/qfullscreenframe.cpp
+    HEADERS += src/mainwindowforwindows.h src/qfullscreenframe/qfullscreenframe.h
+    INCLUDEPATH += src/qfullscreenframe
+
     PRECOMPILED_HEADER += src/stdafx.h
 }
 

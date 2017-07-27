@@ -100,6 +100,7 @@ public slots:
     void on_openOptionsDialog_triggered();
     void on_beginAsFullscreen_triggered(bool enable);
     void on_showFullscreenSignage_triggered(bool enable);
+    void on_showFullscreenTitleBar_triggered(bool enable);
 
     // SlideShow
     void on_slideShow_triggered(bool enable);
@@ -157,7 +158,10 @@ protected:
     bool m_viewerWindowStateMaximized;
     bool m_sliderChanging;
 
-    QMenu* contextMenu;
+    /**
+     * @brief m_contextMenu Define on the context menu mainwindow.ui for the main screen and separate at startup
+     */
+    QMenu* m_contextMenu;
 
     QString m_volumeCaption;
     QString m_pageCaption;
