@@ -12,7 +12,19 @@ This is because the interpolation method to reduce the image is changed.
 
 On this page, we will explain the difference in each option.
 
+## Summary
+
+- Normally, in many cases bilinear interpolation will be OK.
+- If you are hard to read a fine letter or you are reading Japanese comics please try **Bicubic interpolation by CPU**.
+- **Selecting CPU Bicubic after GPU Bilinear** will animate though drawing speed and quality are compatible.
+- If you are dissatisfied with the above options, please try **Bicubic or Lanczos interpolation**.
+
 ## Options
+
+In the following explanation, as a sample image, a reduced image of Japanese free comic "赤き血潮に(for Red Blood)" is used.
+About the use on this page, I have obtained permission from 相生青唯(AIOI Aoi) of the author.
+
+[赤き血潮に(www.pixiv.net)](https://www.pixiv.net/member_illust.php?mode=medium&illust_id=62086450)
 
 ### 1. Bilinear interpolation
 
@@ -32,9 +44,3 @@ Because it does not use the function of GPU, it will work normally on old PC.
 
 You may feel dissatisfied if drawing is not too fast, but we still do our best :)
 
-## Finally
-
-- Normally, in many cases bilinear interpolation will be OK.
-- If you are hard to read a fine letter or you are reading Japanese comics please try **Bicubic interpolation by CPU**.
-- **Selecting CPU Bicubic after GPU Bilinear** will animate though drawing speed and quality are compatible.
-- If you are dissatisfied with the above options, please try **Bicubic or Lanczos interpolation**.
