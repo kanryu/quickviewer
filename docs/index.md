@@ -125,7 +125,7 @@ Thanks for reviewers! :)
     - **History** by menu
     - NextVolume, PrevVolume
         - Folders and archives next to the current open position
-- Spread Viewing(left/right 2 images at once)
+- 2 Page Spread(left/right 2 images at once)
     - Bound on the right side book(toggled)
     - Always open wide images as one view(toggled)
     - Always open first image as one view(toggled)
