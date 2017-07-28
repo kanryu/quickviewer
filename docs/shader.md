@@ -26,6 +26,9 @@ About the use on this page, I have obtained permission from 相生青唯(AIOI Ao
 
 To see the original about [赤き血潮に(www.pixiv.net)](https://www.pixiv.net/member_illust.php?mode=medium&illust_id=62086450)
 
+This is [the original image](62086450_p3.jpg) of the following reduced image.
+
+
 ### 1. Bilinear interpolation
 
 It is a standard interpolation method of QuickViewer, and it is enough for many images as it is. It will look similar to Windows Photo Viewer.
@@ -40,7 +43,7 @@ For 50-100% magnification, it seems that it often shows better results than bili
 
 These options do not work properly on some PCs, as the load on the GPU is higher than usual.
 
-![2.1 Bicubic interpolation](shurink-2-bicubic)
+![2.1 Bicubic interpolation](shurink-2-bicubic.png)
 ![2.2 Lanczos interpolation](shurink-3-lanczos.png)
 
 
