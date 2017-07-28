@@ -19,7 +19,7 @@ On this page, we will explain the difference in each option.
 - **Selecting CPU Bicubic after GPU Bilinear** will animate though drawing speed and quality are compatible.
 - If you are dissatisfied with the above options, please try **Bicubic or Lanczos interpolation**.
 
-## Options
+## About the sample image
 
 In the following explanation, as a sample image, a reduced image of Japanese free comic "赤き血潮に(for Red Blood)" is used.
 About the use on this page, I have obtained permission from 相生青唯(AIOI Aoi) of the author.
