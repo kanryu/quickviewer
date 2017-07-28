@@ -16,7 +16,7 @@ On this page, we will explain the difference in each option.
 
 - Normally, in many cases **Bilinear interpolation** will be OK.
 - If you are hard to read a fine letter or you are reading Japanese comics please try **Bicubic interpolation by CPU**.
-- **Selecting CPU Bicubic after GPU Bilinear** will animate though drawing speed and quality are compatible.
+- Selecting **CPU Bicubic after GPU Bilinear** will animate though drawing speed and quality are compatible.
 - If you are dissatisfied with the above options, please try **Bicubic or Lanczos interpolation**.
 
 ## About the sample image
