@@ -24,7 +24,7 @@ On this page, we will explain the difference in each option.
 In the following explanation, as a sample image, a reduced image of Japanese free comic "赤き血潮に(for Red Blood)" is used.
 About the use on this page, I have obtained permission from 相生青唯(AIOI Aoi) of the author.
 
-[赤き血潮に(www.pixiv.net)](https://www.pixiv.net/member_illust.php?mode=medium&illust_id=62086450)
+To see the original about [赤き血潮に(www.pixiv.net)](https://www.pixiv.net/member_illust.php?mode=medium&illust_id=62086450)
 
 ### 1. Bilinear interpolation
 
