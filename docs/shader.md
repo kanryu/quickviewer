@@ -56,3 +56,8 @@ You may feel dissatisfied if drawing is not too fast, but we still do our best :
 
 ![4 Bicubic interpolation by CPU](shurink-4-bicubic-by-cpu.png)
 
+## Comparison of reduction results
+
+![1 of compared](compared1.png)
+![2 of compared](compared2.png)
+
