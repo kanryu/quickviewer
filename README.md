@@ -12,7 +12,7 @@ https://kanryu.github.io/quickviewer/
 
  - To show images very fast (using OpenGL)
  - Portable (without installers, registries, external libraries)
- - Spread viewing (two images once, for digital books/comics)
+ - 2 Page Spread viewing (two images once, for digital books/comics)
  - To read archives directly (zip/7z/rar/cbr/cbz)
  - To show images (bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
    - Supported for Animated PNG(APNG)/GIF
