@@ -37,7 +37,7 @@ https://kanryu.github.io/quickviewer/
 
 ![1 page viewing](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
 
-### Spread viewing
+### 2 page spread viewing
 
 ![Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
@@ -59,12 +59,15 @@ https://kanryu.github.io/quickviewer/
 - Pre page loading(via v0.2.0)
 - Exif Information(via v0.3.0)
 - Show Windows Explorer for the current image
+- Put the current image into your mailer
 - Shader Program Filters(via v0.5.1)
     - Nearest Neighber
-    - Bicubic
+    - Bicubic (by GPU)
     - Lanczos
+    - Bicubic by CPU
 - Catalog(via v0.6.0)
     - Database for your digital books, can manage thansands of volumes, quick view and search
+- File Associations(via v0.8.3)
 
 ## Screen operations
 
