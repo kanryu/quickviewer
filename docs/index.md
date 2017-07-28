@@ -157,7 +157,7 @@ Thanks for reviewers! :)
     - Restore Window State on next run
     - Always start on fullscreen
     - Show/Hide title bar on fullscreen
-- Shaders(quality of resize)
+- [Shaders](shader) (quality of resize)
     - Bilinear interpolation (normal)
     - Bicubic interpolation (by GPU)
     - Lanczos interpolation
@@ -188,6 +188,13 @@ You can see images as long as taken picture with digital camera.
 
 You can checkout EXIF Information of the current JPEG image which you have taken picture by a digital camera.
 Click right button on the image view, to be shown a context menu, select 'Exif Information' menu.
+
+### Shaders
+
+Image rendering quality improves. For details, to see [Shader](shader).
+
+![1 of compared](compared1.png)
+
 
 ### Checkout the location of the image file
 
