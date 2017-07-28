@@ -21,7 +21,7 @@ You can browse images with much smoother response than ever before.
 
  - To show images very fast (using OpenGL)
  - Portable (without installers, registries, external libraries)
- - Spread viewing (two images once, for digital books/comics)
+ - 2 Page Spread viewing (two images once, for digital books/comics)
  - To read archives directly (zip/7z/rar/cbr/cbz)
  - To show images (bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
    - Supported for Animated PNG(APNG)/GIF
@@ -143,7 +143,7 @@ Thanks for reviewers! :)
     - Catalog generate 'Tags'. each tag as a button which can search easier.
 - Image Resize
     - Fitting(to the window, normal)
-    - ScaleUp, ScaleOut(25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%, one of them)
+    - ScaleUp, ScaleOut(13%, 25%, 33%, 50%, 75%, 100%, 150%, 200%, 300%, 400%, 800%, one of them)
 - Operation on images
     - Copy Image to the clipboard
     - Copy File to the clipboard
@@ -155,11 +155,14 @@ Thanks for reviewers! :)
     - Fullscreen
     - Stay On Top
     - Restore Window State on next run
+    - Always start on fullscreen
+    - Show/Hide title bar on fullscreen
 - Shaders(quality of resize)
-    - Bilinear interpolation(normal)
-    - Bicubic interpolation
+    - Bilinear interpolation (normal)
+    - Bicubic interpolation (by GPU)
     - Lanczos interpolation
     - Nearest Neighbor interpolation
+    - Bicubic interpolation by CPU (high quality)
 - Keyboard Config Setting
 
 ### Normal Viewing(One Page View)
