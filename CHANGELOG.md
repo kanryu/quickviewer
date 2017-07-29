@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## v0.8.6 (Sun Jul 30 00:26:32 2017 +0900) [a080bb1](https://github.com/kanryu/quickviewer/commit/a080bb1ca8c185f873b6bf5a3f6036cf26cd973c)
+
+Support for ProhibitMultipleRunning, improved Toolbar/Menubar/PageBar behaviors
+
+- Support for ProhibitMultipleRunning
+- set as top window when run QuickViewr again
+- Images will be loaded by first QuickViewr if you drop images onto the Executable file
+- improved Toolbar/Menubar/PageBar behaviors
+- Each hidden bar is automatically displayed when hovering with the mouse
+
+- other commits
+    - Update shader-ja.md (Sat Jul 29 03:53:33 2017 +0900) [bf31d1b](https://github.com/kanryu/quickviewer/commit/bf31d1ba39812c32c20121975dc616b4d0a15bce)
+    - Update shader.md (Sat Jul 29 03:50:47 2017 +0900) [9c109ce](https://github.com/kanryu/quickviewer/commit/9c109cee26481b1fdd8fc9186d06d29b13776072)
+    - Update shader.md (Sat Jul 29 03:49:53 2017 +0900) [783ed72](https://github.com/kanryu/quickviewer/commit/783ed72ecab27c9ec9c573b10d41fbc8ed6fc8f6)
+    - Update shader.md (Sat Jul 29 03:47:04 2017 +0900) [78221f8](https://github.com/kanryu/quickviewer/commit/78221f8809afc12fb49ef7d91b83a6b09c108530)
+    - Update index-ja.md (Sat Jul 29 03:42:30 2017 +0900) [27cb10a](https://github.com/kanryu/quickviewer/commit/27cb10acdbd87a9d92890eda8ed8647ee83a6e34)
+    - Update index.md (Sat Jul 29 03:40:41 2017 +0900) [baf24be](https://github.com/kanryu/quickviewer/commit/baf24be959cea61716877935594834dc6e2b3bc7)
+    - Create shader-ja.md (Sat Jul 29 03:34:18 2017 +0900) [bc67998](https://github.com/kanryu/quickviewer/commit/bc67998fa0c7f6dc2dba31d8bfd334f08a5b07ef)
+    - Add files via upload (Sat Jul 29 03:21:39 2017 +0900) [cc8f206](https://github.com/kanryu/quickviewer/commit/cc8f206a04990b5236153533cffb19986561d2bd)
+    - Update shader.md (Sat Jul 29 03:20:32 2017 +0900) [dd595b9](https://github.com/kanryu/quickviewer/commit/dd595b909158b0e888e2d1b9d33c3e446c25f039)
+    - Add files via upload (Sat Jul 29 03:19:11 2017 +0900) [f75396f](https://github.com/kanryu/quickviewer/commit/f75396fd66dea3b41666655a7877b5d4e2bfb3c4)
+    - Add files via upload (Sat Jul 29 03:12:07 2017 +0900) [f7b46fe](https://github.com/kanryu/quickviewer/commit/f7b46fed2c4cb93d4acf2b2f4ff132ccd9c62c3f)
+    - Update shader.md (Sat Jul 29 03:10:21 2017 +0900) [dc7d752](https://github.com/kanryu/quickviewer/commit/dc7d7524c7772984df25d10da40afaac2cde0381)
+    - Update shader.md (Sat Jul 29 03:08:13 2017 +0900) [360e121](https://github.com/kanryu/quickviewer/commit/360e1216a86bb0fd5a89a5c1e8f6f6a12175504e)
+    - Add files via upload (Sat Jul 29 03:05:47 2017 +0900) [81d9e89](https://github.com/kanryu/quickviewer/commit/81d9e8917df501ff9a0eab4f6b54bf2c958c7a95)
+    - Update shader.md (Sat Jul 29 03:04:50 2017 +0900) [068ef9b](https://github.com/kanryu/quickviewer/commit/068ef9bd5fda9aa414a690d045c3433b3c14fe2a)
+    - Update shader.md (Sat Jul 29 03:04:04 2017 +0900) [b1623ab](https://github.com/kanryu/quickviewer/commit/b1623abbd39348460eac4e8aa46c568fc8877781)
+    - Create shader.md (Sat Jul 29 02:49:11 2017 +0900) [e1ccc27](https://github.com/kanryu/quickviewer/commit/e1ccc27418b02d2a1be3e1431a23b12c47d99936)
+    - Update index.md (Sat Jul 29 01:52:05 2017 +0900) [6c47fdf](https://github.com/kanryu/quickviewer/commit/6c47fdf4fabd588af39ad53f6a7b9e282219e249)
+    - Update index.md (Fri Jul 28 12:00:41 2017 +0900) [c83e69b](https://github.com/kanryu/quickviewer/commit/c83e69bccb9cbaa2168cb6495a267634f1744960)
+    - Update README.md (Fri Jul 28 11:54:28 2017 +0900) [2e7b6ce](https://github.com/kanryu/quickviewer/commit/2e7b6ceac13f6ebe9aecef04c0d122b6bd867fdd)
+    - Update README.md (Fri Jul 28 11:52:11 2017 +0900) [d63345d](https://github.com/kanryu/quickviewer/commit/d63345d74614dbf4f01b4ea6499225cb65af3607)
+    - changelog (Fri Jul 28 02:19:27 2017 +0900) [3da4349](https://github.com/kanryu/quickviewer/commit/3da43497c1b5a66e23e641557f10e5ed57819949)
+
 ## v0.8.5_rev2 (Fri Jul 28 02:16:55 2017 +0900) [27d1cf0](https://github.com/kanryu/quickviewer/commit/27d1cf0bec05889c66f4ae5152d42cd469338853)
 
 merged
