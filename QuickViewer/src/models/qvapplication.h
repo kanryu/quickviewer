@@ -31,6 +31,7 @@ class QVApplication : public QApplication
     // File
     Q_PROPERTY(bool AutoLoaded READ AutoLoaded WRITE setAutoLoaded)
     Q_PROPERTY(int MaxHistoryCount READ MaxHistoryCount WRITE setMaxHistoryCount)
+    Q_PROPERTY(bool ProhibitMultipleRunning READ ProhibitMultipleRunning WRITE setProhibitMultipleRunning)
     // Bookmark
 //    Q_PROPERTY(int MaxBookmarkCount READ MaxBookmarkCount WRITE setMaxBookmarkCount)
 
@@ -156,6 +157,9 @@ public:
     void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     bool AutoLoaded() { return m_autoLoaded; }
     void setAutoLoaded (bool autoLoaded) { m_autoLoaded = autoLoaded; }
+    bool ProhibitMultipleRunning() { return m_prohibitMultipleRunning; }
+    void setProhibitMultipleRunning (bool prohibitMultipleRunning) { m_prohibitMultipleRunning = prohibitMultipleRunning; }
+
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
@@ -349,6 +353,7 @@ private:
     int m_maxHistoryCount;
     QStringList m_bookmarks;
     int m_maxBookmarkCount;
+    bool m_prohibitMultipleRunning;
 
     // Folder
     QString m_homeFolderPath;

@@ -1156,7 +1156,7 @@
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>Comprobación</translation>
+        <translation type="vanished">Comprobación</translation>
     </message>
     <message>
         <source>Do you really want to clear the main menu?</source>
@@ -1455,7 +1455,7 @@
     <message>
         <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation>Aprieta F8(default), o visualiza un contexto munú en la barra de titúlo, &lt;br /&gt; y selecciona &lt;strong&gt; &apos;Visualiza/Oculta de Menú principal&apos;&lt;/strong&gt;</translation>
+        <translation type="vanished">Aprieta F8(default), o visualiza un contexto munú en la barra de titúlo, &lt;br /&gt; y selecciona &lt;strong&gt; &apos;Visualiza/Oculta de Menú principal&apos;&lt;/strong&gt;</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -1605,12 +1605,17 @@
     <message>
         <source>Do you really want to hide the main menu?</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation>¿No visualiza el menú principal? ¿Es verdad?</translation>
+        <translation type="vanished">¿No visualiza el menú principal? ¿Es verdad?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation>¿Tira esta imagen a la basura? ¿Es verdad?</translation>
+    </message>
+    <message>
+        <source>Show title bar on Fullscreen</source>
+        <extracomment>When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1871,6 +1876,10 @@
     <message>
         <source>BackgroundColor2</source>
         <translation>Color2</translation>
+    </message>
+    <message>
+        <source>Prohibit multiple running (Restart is required)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

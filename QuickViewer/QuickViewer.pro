@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.5
+VERSION = 0.8.6
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -141,6 +141,7 @@ SOURCES += \
     src/widgets/pageslider.cpp \
     src/widgets/shortcutbutton.cpp \
     src/qlanguageselector/qlanguageselector.cpp \
+    src/models/qnamedpipe.cpp
 
 
 HEADERS  += \
@@ -175,6 +176,7 @@ HEADERS  += \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
     src/qlanguageselector/qlanguageselector.h \
+    src/models/qnamedpipe.h
 
 
 

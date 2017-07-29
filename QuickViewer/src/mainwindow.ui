@@ -2298,5 +2298,6 @@
   <slot>on_confirmDeletePage_triggered(bool)</slot>
   <slot>on_registAssocs_triggered()</slot>
   <slot>on_showFullscreenTitleBar_triggered(bool)</slot>
+  <slot>on_prohibitMultipleRunning_triggered(bool)</slot>
  </slots>
 </ui>

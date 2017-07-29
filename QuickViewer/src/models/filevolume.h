@@ -135,6 +135,7 @@ protected:
     CacheMode m_cacheMode;
     PageManager* m_pageManager;
     bool m_openedWithSpecifiedImageFile;
+    QString m_volumePath;
 };
 
 

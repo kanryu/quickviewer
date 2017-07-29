@@ -13,6 +13,7 @@
 #include "folderwindow.h"
 #include "renamedialog.h"
 #include "exifdialog.h"
+#include "qnamedpipe.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -430,6 +431,11 @@ void MainWindow::on_exit_triggered()
     QCoreApplication::quit();
 }
 
+void MainWindow::on_prohibitMultipleRunning_triggered(bool enable)
+{
+    qApp->setProhibitMultipleRunning(enable);
+}
+
 
 
 void MainWindow::on_file_changed(QString path)
@@ -465,7 +471,7 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
 
 void MainWindow::on_fullscreen_triggered()
 {
-
+    qDebug() << "on_fullscreen_triggered";
     if(isFullScreen()) {
         ui->graphicsView->setWillFullscreen(false);
         ui->graphicsView->skipRisizeEvent(true);
@@ -815,6 +821,11 @@ void MainWindow::on_openVolumeByCatalog_triggered(QString path)
     setWindowTop();
 }
 
+void MainWindow::on_windowTop()
+{
+    setWindowTop();
+}
+
 void MainWindow::on_searchTitleWithOptions_triggered(bool enable)
 {
     qApp->setSearchTitleWithOptions(enable);
@@ -921,26 +932,29 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
 
 void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
 {
-    if(!showMenuBar) {
-        QMessageBox msgBox(this);
-        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Cancel);
-        msgBox.setWindowTitle(tr("Confirmation"));
-        msgBox.setIcon(QMessageBox::Warning);
+//    if(!showMenuBar) {
+//        QMessageBox msgBox(this);
+//        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+//        msgBox.setDefaultButton(QMessageBox::Cancel);
+//        msgBox.setWindowTitle(tr("Confirmation"));
+//        msgBox.setIcon(QMessageBox::Warning);
 
-        msgBox.setTextFormat(Qt::RichText);
-        QString message = QString("<h2>%1</h2>"
-                                  "<p>%2</p>")
-                .arg(tr("Do you really want to hide the main menu?", "Message confirming to hide the main menu"))
-                .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>", "Message confirming to hide the main menu"));
-        msgBox.setText(message);
-        if(msgBox.exec() == QMessageBox::Cancel) {
-            ui->actionShowMenuBar->setChecked(true);
-            return;
-        }
-    }
-    if(showMenuBar)
+//        msgBox.setTextFormat(Qt::RichText);
+//        QString message = QString("<h2>%1</h2>"
+//                                  "<p>%2</p>")
+//                .arg(tr("Do you really want to hide the main menu?", "Message confirming to hide the main menu"))
+//                .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>", "Message confirming to hide the main menu"));
+//        msgBox.setText(message);
+//        if(msgBox.exec() == QMessageBox::Cancel) {
+//            ui->actionShowMenuBar->setChecked(true);
+//            return;
+//        }
+//    }
+    if(showMenuBar) {
+        if(qApp->ShowToolBar()) ui->mainToolBar->hide();
         menuBar()->show();
+        if(qApp->ShowToolBar()) ui->mainToolBar->show();
+    }
     else
         menuBar()->hide();
     qApp->setShowMenuBar(showMenuBar);

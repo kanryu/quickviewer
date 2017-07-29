@@ -49,12 +49,12 @@ void PageManager::nextVolume()
     QString current = fileinfo.fileName();
     if(!dir.cdUp())
         return;
-    int matchCount = 0;
     if(m_volumenames.size() == 0) {
         m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
         IFileLoader::sortFiles(m_volumenames);
     }
     bool beforeMatch = true;
+    int preloadCount = 0;
     foreach (const QString& name, m_volumenames) {
         if(beforeMatch) {
             if(name == current)
@@ -62,14 +62,25 @@ void PageManager::nextVolume()
             continue;
         }
         QString path = dir.filePath(name);
-        if(matchCount++==0) {
+        if(preloadCount++==0) {
             // if load new volume failed, search continue
             if(!loadVolume(path, true))
-                matchCount = 0;
+                preloadCount = 0;
         } else {
             addVolumeCache(path, true);
         }
-        if(matchCount >= qApp->MaxVolumesCache()*3/2-1)
+        // preloadCount <- MaxVolumesCache()
+        // 0            <- 1
+        // 0            <- 2
+        // 1            <- 3
+        // 1            <- 4
+        // 2            <- 5
+        // 3            <- 6
+        // 4            <- 7
+        // 4            <- 8
+        // 5            <- 9
+        // 6            <-10
+        if(preloadCount >= (qApp->MaxVolumesCache()-1)*2/3)
             break;
     }
 }

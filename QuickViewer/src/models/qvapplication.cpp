@@ -281,6 +281,7 @@ void QVApplication::loadSettings()
     m_maxHistoryCount = m_settings.value("MaxHistoryCount", 36).toInt();
     m_bookmarks = m_settings.value("Bookmarks", QStringList()).value<QStringList>();
     m_maxBookmarkCount = m_settings.value("MaxBookmarkCount", 20).toInt();
+    m_prohibitMultipleRunning  = m_settings.value("ProhibitMultipleRunning", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");
@@ -374,6 +375,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("History", QVariant::fromValue(m_history));
     m_settings.setValue("MaxBookmarkCount", m_maxBookmarkCount);
     m_settings.setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
+    m_settings.setValue("ProhibitMultipleRunning", m_prohibitMultipleRunning);
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");

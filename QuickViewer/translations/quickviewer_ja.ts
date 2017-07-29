@@ -1385,7 +1385,7 @@
     </message>
     <message>
         <source>Confirmation</source>
-        <translation>確認</translation>
+        <translation type="vanished">確認</translation>
     </message>
     <message>
         <source>Do you really want to clear the main menu?</source>
@@ -1732,7 +1732,7 @@
     <message>
         <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation>F8キー(デフォルト)を押すか、もしくはタイトルバー上でコンテキストメニューを表示し&lt;br /&gt;&lt;strong&gt;『メインメニューの表示／非表示切り替え』&lt;/strong&gt;を選択してください</translation>
+        <translation type="vanished">F8キー(デフォルト)を押すか、もしくはタイトルバー上でコンテキストメニューを表示し&lt;br /&gt;&lt;strong&gt;『メインメニューの表示／非表示切り替え』&lt;/strong&gt;を選択してください</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -1882,12 +1882,17 @@
     <message>
         <source>Do you really want to hide the main menu?</source>
         <comment>Message confirming to hide the main menu</comment>
-        <translation>本当にメインメニューを非表示にしますか？</translation>
+        <translation type="vanished">本当にメインメニューを非表示にしますか？</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation>本当にこの画像をゴミ箱に入れますか？</translation>
+    </message>
+    <message>
+        <source>Show title bar on Fullscreen</source>
+        <extracomment>When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time</extracomment>
+        <translation>フルスクリーン時にタイトルバーを表示する</translation>
     </message>
 </context>
 <context>
@@ -2168,6 +2173,10 @@
     <message>
         <source>BackgroundColor2</source>
         <translation>背景色2</translation>
+    </message>
+    <message>
+        <source>Prohibit multiple running (Restart is required)</source>
+        <translation type="unfinished">多重起動を禁止する (再起動後有効)</translation>
     </message>
 </context>
 <context>

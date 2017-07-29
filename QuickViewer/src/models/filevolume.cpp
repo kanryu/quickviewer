@@ -21,6 +21,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
     , m_openedWithSpecifiedImageFile(false)
 {
     m_filelist = m_loader->contents();
+    m_volumePath = m_loader->volumePath();
 }
 
 void IFileVolume::on_ready()

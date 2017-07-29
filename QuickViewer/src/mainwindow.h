@@ -41,7 +41,6 @@ public:
     }
     void makeBookmarkMenu();
     void setThumbnailManager(ThumbnailManager* manager);
-    void loadVolume(QString path);
     bool isCatalogSearching();
     bool isFolderSearching();
 
@@ -57,11 +56,13 @@ protected:
 
 public slots:
     // File
+    void loadVolume(QString path);
     void on_file_changed(QString path);
     void on_autoloaded_triggered(bool autoreload);
     void on_clearHistory_triggered();
     void on_historyMenu_triggered(QAction *action);
     void on_exit_triggered();
+    void on_prohibitMultipleRunning_triggered(bool enable);
 
     // Folder
     void on_folderWindow_triggered();
@@ -101,6 +102,7 @@ public slots:
     void on_beginAsFullscreen_triggered(bool enable);
     void on_showFullscreenSignage_triggered(bool enable);
     void on_showFullscreenTitleBar_triggered(bool enable);
+    void on_windowTop();
 
     // SlideShow
     void on_slideShow_triggered(bool enable);
