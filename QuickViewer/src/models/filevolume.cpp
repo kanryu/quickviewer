@@ -244,7 +244,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     reader.canRead();
 
     if(reader.supportsAnimation()) {
-        Movie movie = Movie(bytes, aformat.toUtf8());
+        QvMovie movie = QvMovie(bytes, aformat.toUtf8());
         ImageContent ic;
         ic.Path = path;
         ic.Movie = movie;

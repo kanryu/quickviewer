@@ -127,7 +127,6 @@ SOURCES += \
     src/mainwindow.cpp \
     src/models/bookprogressmanager.cpp \
     src/models/filevolume.cpp \
-    src/models/movie.cpp \
     src/models/pagecontent.cpp \
     src/models/pagemanager.cpp \
     src/models/qvapplication.cpp \
@@ -140,7 +139,8 @@ SOURCES += \
     src/widgets/pageslider.cpp \
     src/widgets/shortcutbutton.cpp \
     src/qlanguageselector/qlanguageselector.cpp \
-    src/models/qnamedpipe.cpp
+    src/models/qnamedpipe.cpp \
+    src/models/qvmovie.cpp
 
 
 HEADERS  += \
@@ -159,7 +159,6 @@ HEADERS  += \
     src/mainwindow.h \
     src/models/bookprogressmanager.h \
     src/models/filevolume.h \
-    src/models/movie.h \
     src/models/pagecontent.h \
     src/models/pagemanager.h \
     src/models/qvapplication.h \
@@ -174,8 +173,10 @@ HEADERS  += \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
     src/qlanguageselector/qlanguageselector.h \
-    src/models/qnamedpipe.h
+    src/models/qnamedpipe.h \
+    src/models/qvmovie.h
 
+PRECOMPILED_HEADER += src/stdafx.h
 
 
 win32 {
@@ -183,7 +184,6 @@ win32 {
     HEADERS += src/mainwindowforwindows.h src/qfullscreenframe/qfullscreenframe.h
     INCLUDEPATH += src/qfullscreenframe
 
-    PRECOMPILED_HEADER += src/stdafx.h
 }
 
 precompile_header:!isEmpty(PRECOMPILED_HEADER) {

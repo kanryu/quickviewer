@@ -103,7 +103,21 @@ QNamedPipe::QNamedPipe(QString pipepath, bool valid, QObject *parent)
 
 }
 #else
-QNamedPipe::QNamedPipe(QString pipepath, QObject *parent)
+
+class QNamedPipePrivate
+{
+public:
+    QNamedPipePrivate();
+    void sendMessage(QByteArray bytes) {}
+    void waitAsync() {}
+
+    void* m_handlepipe;
+    bool m_serverMode;
+    QNamedPipe* m_parent;
+    bool m_willBeClose;
+};
+
+QNamedPipe::QNamedPipe(QString pipepath, bool valid, QObject *parent)
     : QObject(parent)
     , d(nullptr)
 {

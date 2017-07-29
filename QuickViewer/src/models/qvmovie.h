@@ -3,20 +3,20 @@
 
 #include <QtGui>
 
-class Movie : public QObject
+class QvMovie : public QObject
 {
     Q_OBJECT
 public:
-    Movie(QByteArray bytes, QString format, QObject* parent=nullptr);
-    Movie(QObject* parent=nullptr);
-    Movie(const Movie& rhs)
+    QvMovie(QByteArray bytes, QString format, QObject* parent=nullptr);
+    QvMovie(QObject* parent=nullptr);
+    QvMovie(const QvMovie& rhs)
         : QObject(nullptr)
         , m_movie(rhs.m_movie)
         , m_buffer(rhs.m_buffer)
         , m_bytes(rhs.m_bytes)
         , m_format(rhs.m_format)
     {}
-    inline Movie& operator=(const Movie &rhs)
+    inline QvMovie& operator=(const QvMovie &rhs)
     {
         m_movie = rhs.m_movie;
         m_buffer = rhs.m_buffer;

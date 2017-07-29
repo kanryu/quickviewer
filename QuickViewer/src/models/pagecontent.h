@@ -5,7 +5,7 @@
 #include <QtWidgets>
 
 #include "exif.h"
-#include "movie.h"
+#include "qvmovie.h"
 
 /**
  * @brief The ImageContent struct
@@ -25,7 +25,7 @@ public:
     /**
      * @brief Movie will be initialized when imageReader.supportsAnimation() == true
      */
-    Movie Movie;
+    QvMovie Movie;
     /**
      * @brief BaseSize is original size of the image
      */
