@@ -125,7 +125,6 @@ SOURCES += \
     src/keyconfigdialog.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/mainwindowforwindows.cpp \
     src/models/bookprogressmanager.cpp \
     src/models/filevolume.cpp \
     src/models/movie.cpp \
@@ -158,7 +157,6 @@ HEADERS  += \
     src/imageview.h \
     src/keyconfigdialog.h \
     src/mainwindow.h \
-    src/mainwindowforwindows.h \
     src/models/bookprogressmanager.h \
     src/models/filevolume.h \
     src/models/movie.h \
