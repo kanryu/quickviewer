@@ -39,58 +39,6 @@ contains(TARGET_ARCH, x86_64) {
 
 DESTDIR = ../bin
 
-# win32 depoying, please add 'jom install' into build setting on qt-creator
-win32 { !CONFIG(debug, debug|release) {
-    MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
-
-    target.path = $${MY_DEFAULT_INSTALL}
-    target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
-    deploy_files.path = $${MY_DEFAULT_INSTALL}
-    deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
-    deploy_files.depends = install_target
-    deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
-    translations.path = $${MY_DEFAULT_INSTALL}/translations
-    translations.files = \
-        $${PWD}/translations/languages.ini \
-        $${PWD}/translations/quickviewer_ja.qm \
-        $${PWD}/translations/quickviewer_es.qm \
-        $${PWD}/translations/quickviewer_zh.qm \
-
-    qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
-    qrawspeed.files = \
-        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
-        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
-
-    # dlls instead of vcredist_xxx.exe
-    msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
-    msvcrt.path = $${MY_DEFAULT_INSTALL}
-    msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
-    msvcrt.commands = -$(DEL_FILE) "$${msvcrt.removefiles}"
-    msvcrt.depends = install_deploy_files
-    msvcrt.files = \
-        "$${msvcrt.PATH}/concrt140.dll" \
-        "$${msvcrt.PATH}/msvcp140.dll" \
-        "$${msvcrt.PATH}/vccorlib140.dll" \
-        "$${msvcrt.PATH}/vcruntime140.dll"
-
-    assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
-    assoc_icons.files = \
-        ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_dds.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_gif.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_icon.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_jpeg.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_png.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_raw.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_tga.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
-        ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
-
-    INSTALLS += target deploy_files translations qrawspeed msvcrt assoc_icons
-} }
-
-
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
@@ -227,54 +175,104 @@ DBBIN += \
 
 DBDIR += database/
 
+# win32 depoying, please add 'jom install' into build setting on qt-creator
 win32 { !CONFIG(debug, debug|release) {
+    MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
+
+    target.path = $${MY_DEFAULT_INSTALL}
+    target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
+    deploy_files.path = $${MY_DEFAULT_INSTALL}
+    deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    deploy_files.depends = install_target
+    deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
+    translations.path = $${MY_DEFAULT_INSTALL}/translations
+    translations.files = \
+        $${PWD}/translations/languages.ini \
+        $${PWD}/translations/quickviewer_ja.qm \
+        $${PWD}/translations/quickviewer_es.qm \
+        $${PWD}/translations/quickviewer_zh.qm \
+
+    qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
+    qrawspeed.files = \
+        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
+        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
+
+    # dlls instead of vcredist_xxx.exe
+    msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
+    msvcrt.path = $${MY_DEFAULT_INSTALL}
+    msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
+    msvcrt.commands = -$(DEL_FILE) "$${msvcrt.removefiles}"
+    msvcrt.depends = install_deploy_files
+    msvcrt.files = \
+        "$${msvcrt.PATH}/concrt140.dll" \
+        "$${msvcrt.PATH}/msvcp140.dll" \
+        "$${msvcrt.PATH}/vccorlib140.dll" \
+        "$${msvcrt.PATH}/vcruntime140.dll"
+
+    assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
+    assoc_icons.files = \
+        ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_dds.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_gif.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_icon.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_jpeg.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_png.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_raw.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tga.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
+
+    INSTALLS += target deploy_files translations qrawspeed msvcrt assoc_icons
+
     shaders_install.path = $${MY_DEFAULT_INSTALL}/shaders
     shaders_install.files = $$SHADERS
     db_install.path = $${MY_DEFAULT_INSTALL}/database
     db_install.files = $$DBS $$DBBIN
+
     INSTALLS += shaders_install db_install
 } }
 
-SHADERDIR += shaders/
+#SHADERDIR += shaders/
 
-shader_dir.name = shaderpath
-shader_dir.target = ${QMAKE_FILE_OUT}
-shader_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
-shader_dir.variable_out = DEPENDPATH
-shader_dir.CONFIG = verify
-shader_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
-shader_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
-shader_dir.input = SHADERDIR
+#shader_dir.name = shaderpath
+#shader_dir.target = ${QMAKE_FILE_OUT}
+#shader_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
+#shader_dir.variable_out = DEPENDPATH
+#shader_dir.CONFIG = verify
+#shader_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
+#shader_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
+#shader_dir.input = SHADERDIR
 
-shaders.name  = ${QMAKE_FILE_OUT}
-shaders.target = ${QMAKE_FILE_OUT}
-shaders.output = $$DESTDIR/shaders/${QMAKE_FILE_BASE}.frag
-shaders.variable_out = DEPENDPATH
-shaders.CONFIG = verify target_predeps
-shaders.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
-#shaderd.depends = shader_dir
-shaders.input = SHADERS
+#shaders.name  = ${QMAKE_FILE_OUT}
+#shaders.target = ${QMAKE_FILE_OUT}
+#shaders.output = $$DESTDIR/shaders/${QMAKE_FILE_BASE}.frag
+#shaders.variable_out = DEPENDPATH
+#shaders.CONFIG = verify target_predeps
+#shaders.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+##shaderd.depends = shader_dir
+#shaders.input = SHADERS
 
 
-db_dir.name = dbpath
-db_dir.target = ${QMAKE_FILE_OUT}
-db_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
-db_dir.variable_out = DEPENDPATH
-db_dir.CONFIG = verify
-db_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
-db_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
-db_dir.input = DBDIR
+#db_dir.name = dbpath
+#db_dir.target = ${QMAKE_FILE_OUT}
+#db_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
+#db_dir.variable_out = DEPENDPATH
+#db_dir.CONFIG = verify
+#db_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
+#db_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
+#db_dir.input = DBDIR
 
-db.name  = ${QMAKE_FILE_OUT}
-db.target = ${QMAKE_FILE_OUT}
-db.output = $$DESTDIR/database/${QMAKE_FILE_BASE}.db
-db.variable_out = DEPENDPATH
-db.CONFIG = verify target_predeps
-db.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
-#db.depends = db_dir
-db.input = DBBIN
+#db.name  = ${QMAKE_FILE_OUT}
+#db.target = ${QMAKE_FILE_OUT}
+#db.output = $$DESTDIR/database/${QMAKE_FILE_BASE}.db
+#db.variable_out = DEPENDPATH
+#db.CONFIG = verify target_predeps
+#db.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+##db.depends = db_dir
+#db.input = DBBIN
 
-QMAKE_EXTRA_COMPILERS += shader_dir shaders db_dir db
+#QMAKE_EXTRA_COMPILERS += shader_dir shaders db_dir db
 
 
 OTHER_FILES += SHADERS

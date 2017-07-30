@@ -17,7 +17,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
     , m_loader(loader)
     , m_cacheMode(CacheMode::Normal)
     , m_pageManager(pageManager)
-    , m_imageCache(20)
+    , m_imageCache(23)
     , m_openedWithSpecifiedImageFile(false)
 {
     m_filelist = m_loader->contents();
@@ -33,8 +33,10 @@ void IFileVolume::on_ready()
     QVector<int> offsets;
     switch(m_cacheMode) {
     case CacheMode::Normal: offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6}; break;
-    case CacheMode::NormalForward: offsets = {0, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}; break;
-    case CacheMode::NormalBackward: offsets = {0, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10}; break;
+//    case CacheMode::NormalForward: offsets = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; break;
+    case CacheMode::NormalForward: offsets = {10, 11, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7}; break;
+//    case CacheMode::NormalBackward: offsets = {0, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10}; break;
+    case CacheMode::NormalBackward: offsets = {-9, -10, -7, -8, 0, 1, -1, -2, -3, -4, -5, -6}; break;
     case CacheMode::FastForward: offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19}; break;
     case CacheMode::CoverOnly: offsets = {0, 1}; break;
     case CacheMode::NoAsync:
