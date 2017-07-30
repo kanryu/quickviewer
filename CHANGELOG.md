@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.8.7 (Sun Jul 30 20:35:42 2017 +0900) [7387d35](https://github.com/kanryu/quickviewer/commit/7387d35cd89c850ff500ec20f12b419c3ef7f23c)
+
+Speed up of prefetching, 2 bugfixed
+
+- Speed up by improvement of prefetching
+- Significant speedup of bicubic interpolation by CPU
+- bugfixed: occasionally ended illegally when PrevPage was executed
+- bugfixed: does not disappear when displaying the tool bar at full screen
+
+- other commits
+    - build check for gcc 5.4.0 on Ubuntu 16.04.4 (Sun Jul 30 03:26:58 2017 +0900) [cbf265e](https://github.com/kanryu/quickviewer/commit/cbf265e60b9ca4858753e1a7591a52e689dfe507)
+    - removed duplicated source file specification (Sun Jul 30 02:41:18 2017 +0900) [c7d4171](https://github.com/kanryu/quickviewer/commit/c7d41711d72d9449a03a8fc439ba71c6701bea4e)
+    - changelog (Sun Jul 30 00:27:14 2017 +0900) [f7b5c41](https://github.com/kanryu/quickviewer/commit/f7b5c411e2f54ab1cbc991cac43c26fa0f8c185a)
+
 ## v0.8.6 (Sun Jul 30 00:26:32 2017 +0900) [a080bb1](https://github.com/kanryu/quickviewer/commit/a080bb1ca8c185f873b6bf5a3f6036cf26cd973c)
 
 Support for ProhibitMultipleRunning, improved Toolbar/Menubar/PageBar behaviors
