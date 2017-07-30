@@ -164,9 +164,10 @@ void PageManager::nextPage()
 {
     //qDebug() << "ImageView::nextPage()" << m_currentPage;
     if(m_fileVolume == nullptr || m_fileVolume->pageCount() >= m_fileVolume->size()-1) return;
+
+    m_fileVolume->setCacheMode(IFileVolume::NormalForward);
     bool result = m_fileVolume->nextPage();
     if(!result) return;
-    m_fileVolume->setCacheMode(IFileVolume::Normal);
 
     int pageIncr = m_pages.size();
     m_currentPage += pageIncr;
@@ -183,8 +184,10 @@ void PageManager::prevPage()
 {
     if(m_fileVolume == nullptr) return;
     if(m_fileVolume->pageCount() < m_pages.size()) return;
-    m_fileVolume->setCacheMode(IFileVolume::Normal);
 
+    m_fileVolume->setCacheMode(IFileVolume::NormalBackward);
+    bool result = m_fileVolume->prevPage();
+    if(!result) return;
     //QVApplication* app = qApp;
     m_currentPage--;
     if(qApp->DualView() && m_currentPage >= 1) {
@@ -198,7 +201,7 @@ void PageManager::prevPage()
 
     bookProgress();
 
-    selectPage(m_currentPage);
+    selectPage(m_currentPage, IFileVolume::NormalBackward);
 }
 
 #define PAGE_INTERVAL 10
@@ -211,7 +214,7 @@ void PageManager::fastForwardPage()
     if(m_currentPage >= m_fileVolume->size() -1)
         m_currentPage = m_fileVolume->size() -1;
 
-    selectPage(m_currentPage, IFileVolume::FastFowrard);
+    selectPage(m_currentPage, IFileVolume::FastForward);
 }
 
 void PageManager::fastBackwardPage()
@@ -222,7 +225,7 @@ void PageManager::fastBackwardPage()
     m_currentPage -= PAGE_INTERVAL;
     if(m_currentPage < 0)
         m_currentPage = 0;
-    selectPage(m_currentPage, IFileVolume::FastFowrard);
+    selectPage(m_currentPage, IFileVolume::FastForward);
 }
 
 void PageManager::selectPage(int idx, IFileVolume::CacheMode cacheMode)

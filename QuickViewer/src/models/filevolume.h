@@ -19,7 +19,10 @@ public:
     enum CacheMode
     {
         Normal,
-        FastFowrard,
+        NormalForward,
+        NormalBackward,
+        FastForward,
+        FastBackrard,
         CoverOnly,
         NoAsync,
     };

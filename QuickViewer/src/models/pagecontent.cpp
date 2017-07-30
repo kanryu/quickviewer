@@ -155,7 +155,7 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
         // only CPU resizing
         if(qApp->Effect() < qvEnums::UsingFixedShader) {
             if(Ic.ResizedImage.isNull()
-            || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize)) {
+            || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
                 QImage resized = QZimg::scaled(Ic.Image.toImage(), newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
                 Ic.ResizedImage = QPixmap::fromImage(resized);
                 Scene->removeItem(GrItem);

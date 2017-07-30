@@ -33,7 +33,9 @@ void IFileVolume::on_ready()
     QVector<int> offsets;
     switch(m_cacheMode) {
     case CacheMode::Normal: offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6}; break;
-    case CacheMode::FastFowrard: offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19}; break;
+    case CacheMode::NormalForward: offsets = {0, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}; break;
+    case CacheMode::NormalBackward: offsets = {0, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10}; break;
+    case CacheMode::FastForward: offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19}; break;
     case CacheMode::CoverOnly: offsets = {0, 1}; break;
     case CacheMode::NoAsync:
         m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[m_cnt], QSize());
@@ -43,13 +45,15 @@ void IFileVolume::on_ready()
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())
             continue;
-        if(m_imageCache.contains(cnt) && qApp->Effect() < qvEnums::UsingFixedShader) {
+        if(qApp->Effect() < qvEnums::UsingFixedShader && m_imageCache.contains(cnt) && m_imageCache.object(cnt).isFinished() ) {
             ImageContent ic = m_imageCache.object(cnt).result();
             if(ic.ImportSize.isValid()) {
-                QSize resized = m_pageManager->viewportSize();
+                QSize pageSize = m_pageManager->viewportSize();
+                QSize resized = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
                 resized.setWidth(ic.ImportSize.width()*resized.height()/ic.ImportSize.height());
+
                 if(ic.ResizedImage.size() != resized && !ic.Image.isNull()) {
-//                    qDebug() << ic.ResizedImage.size() << resized;
+                    qDebug() << ic.ResizedImage.size() << resized;
                     m_imageCache.insert(cnt, QtConcurrent::run(futureReizeImage, ic, m_pageManager->viewportSize()));
                 }
             }
@@ -331,6 +335,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         ic.Image = QPixmap::fromImage(half);
         ic.ImportSize = srcSizeReal;
     }
+    // CPU resizing before Page Viewing
     if(!pageSize.isEmpty() && !ic.Image.isNull()) {
         QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
         ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), newsize, Qt::KeepAspectRatio));
@@ -341,6 +346,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
 
 ImageContent IFileVolume::futureReizeImage(ImageContent ic, QSize pageSize)
 {
+//    qDebug() << "futureReizeImage:" << ic.Path;
     QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
     ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), newsize, Qt::KeepAspectRatio));
     return ic;

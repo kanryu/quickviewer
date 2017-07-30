@@ -405,7 +405,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     //int key = event->key();
     QKeySequence seq(event->key() | event->modifiers());
-    qDebug() << seq;
+//    qDebug() << seq;
 
     if(this->focusWidget() != ui->graphicsView)
         return;
