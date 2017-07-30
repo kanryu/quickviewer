@@ -84,9 +84,9 @@ You can find the directories in the build directry named e.g. *'build-QVproject-
 - lib
 - (each sub projects)
 
-**lib** has static librares built for each subproject.
+**lib** has static librares built from each subproject.
 
-**bin** has executable programs built for each subproject.
+**bin** has executable programs built from each subproject.
 
 To test all the functions of QuickViewer, please do the following.
 
