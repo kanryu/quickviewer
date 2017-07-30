@@ -76,5 +76,32 @@ I think that [Qt VS Tools] has some broken :(
 Since VisualStudio can use masm, you can set it to assemble asm files if you have skills. This time it is a procedure to change to a setting not used.
 
 
+## Build directory structure
+
+You can find the directories after building completed.
+
+- bin
+- lib
+- (each sub projects)
+
+'lib' has static librares built for each subproject.
+
+'bin' has executable programs built for each subproject.
+
+To test all the functions of QuickViewer, please do the following.
+
+```
+$ cd [build]/bin
+$ ln -s ../../quickviewer/QuickViewer/database database
+$ ln -s ../../quickviewer/QuickViewer/shaders shaders
+$ ln -s ../../quickviewer/QuickViewer/translations translations
+```
+
+'database' is a SQLite database which contains Catalogs and thumbnails.
+
+'shaders' has Fragment Shaders for image resizing.
+
+'translations' has multi-language qm files.
+
 
 Enjoy! :)
