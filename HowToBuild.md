@@ -78,7 +78,7 @@ Since VisualStudio can use masm, you can set it to assemble asm files if you hav
 
 ## Build directory structure
 
-You can find the directories in the build directry named e.g. *'build-QVproject-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug'* after building completed.
+You can find the directories in the build directry named e.g. *'build-QVproject-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug'* after building completed. (VisualStudio won't make [build])
 
 - bin
 - lib
