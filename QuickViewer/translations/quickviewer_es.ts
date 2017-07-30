@@ -1016,7 +1016,6 @@
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <extracomment>Button to switch the window display to full screen</extracomment>
         <translation>&amp;Pantalla completa</translation>
     </message>
     <message>
@@ -1067,11 +1066,11 @@
     </message>
     <message>
         <source>ShowStatus&amp;Bar</source>
-        <translation>Visualiza la barra de estatus</translation>
+        <translation type="vanished">Visualiza la barra de estatus</translation>
     </message>
     <message>
         <source>Show&amp;PageBar</source>
-        <translation>Visualiza la barra de página</translation>
+        <translation type="vanished">Visualiza la barra de página</translation>
     </message>
     <message>
         <source>Open &amp;Explorer</source>
@@ -1080,7 +1079,7 @@
     </message>
     <message>
         <source>Exif &amp;Information</source>
-        <extracomment>Button for displaying JPEG Exif information (if any)</extracomment>
+        <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
         <translation>Exif &amp;Información</translation>
     </message>
     <message>
@@ -1110,7 +1109,7 @@
     <message>
         <source>P&amp;revVolume</source>
         <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
-        <translation>&amp;Volume anterior</translation>
+        <translation type="vanished">&amp;Volume anterior</translation>
     </message>
     <message>
         <source>&amp;Navigation</source>
@@ -1133,7 +1132,7 @@
     </message>
     <message>
         <source>Show&amp;ToolBar</source>
-        <translation>Visualiza la barra de herramientas</translation>
+        <translation type="vanished">Visualiza la barra de herramientas</translation>
     </message>
     <message>
         <source>Always open &amp;first images as one view</source>
@@ -1142,7 +1141,7 @@
     </message>
     <message>
         <source>Show&amp;MenuBar</source>
-        <translation>Visualiza&amp;barra de menú</translation>
+        <translation type="vanished">Visualiza&amp;barra de menú</translation>
     </message>
     <message>
         <source>&amp;Clear History</source>
@@ -1206,7 +1205,7 @@
     <message>
         <source>&amp;SlideShow</source>
         <extracomment>Button to start displaying slideshow</extracomment>
-        <translation>&amp;Presentación de diapositivas</translation>
+        <translation type="vanished">&amp;Presentación de diapositivas</translation>
     </message>
     <message>
         <source>LoadBookmark</source>
@@ -1280,11 +1279,11 @@
     <message>
         <source>Show&amp;Catalog</source>
         <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
-        <translation>Visualiza el catálogo</translation>
+        <translation type="vanished">Visualiza el catálogo</translation>
     </message>
     <message>
         <source>ShowCatalog</source>
-        <translation>Visualiza el catálogo</translation>
+        <translation type="vanished">Visualiza el catálogo</translation>
     </message>
     <message>
         <source>Remove (Options) from Book Title</source>
@@ -1319,12 +1318,12 @@
     <message>
         <source>&amp;Copy Image to clipboard</source>
         <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
-        <translation>Copia imagen en tablero</translation>
+        <translation type="vanished">Copia imagen en tablero</translation>
     </message>
     <message>
         <source>Move Image to &amp;Recycle Bin</source>
         <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
-        <translation>Coloca la imagen en la basura</translation>
+        <translation type="vanished">Coloca la imagen en la basura</translation>
     </message>
     <message>
         <source>Copy File to clipboard</source>
@@ -1353,12 +1352,12 @@
     <message>
         <source>Show&amp;Folder</source>
         <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
-        <translation>Visualiza un archivo</translation>
+        <translation type="vanished">Visualiza un archivo</translation>
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
         <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
-        <translation>CPU Bicúbica después GPU Bilineal(estándar)</translation>
+        <translation type="vanished">CPU Bicúbica después GPU Bilineal(estándar)</translation>
     </message>
     <message>
         <source>CPU Bicubic interpolation</source>
@@ -1391,7 +1390,7 @@
     <message>
         <source>&amp;Options Config</source>
         <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
-        <translation>Programa la opción</translation>
+        <translation type="vanished">Programa la opción</translation>
     </message>
     <message>
         <source>Rename the image</source>
@@ -1420,12 +1419,12 @@
     <message>
         <source>Confirm to move Image to &amp;Recycle Bin</source>
         <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
-        <translation>Confirmar para mover la imagen a la Papelera de &amp;reciclaje</translation>
+        <translation type="vanished">Confirmar para mover la imagen a la Papelera de &amp;reciclaje</translation>
     </message>
     <message>
         <source>Image Associations (require Administration)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
-        <translation>Asociaciones de imágenes (requieren administración)</translation>
+        <translation type="vanished">Asociaciones de imágenes (requieren administración)</translation>
     </message>
     <message>
         <source>any folder or archive is not loaded.</source>
@@ -1490,7 +1489,7 @@
     <message>
         <source>&amp;Always display one landscape image even in 2 page display.</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation>&amp;Imágenes amplia siempre abiertos como una vista.</translation>
+        <translation type="vanished">&amp;Imágenes amplia siempre abiertos como una vista.</translation>
     </message>
     <message>
         <source>Open in &amp;Explorer</source>
@@ -1500,12 +1499,12 @@
     <message>
         <source>Open browser to check &amp;Version</source>
         <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation>Abre su navegador y comprueba su &amp;versión</translation>
+        <translation type="vanished">Abre su navegador y comprueba su &amp;versión</translation>
     </message>
     <message>
         <source>Advance &amp;one page only</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation>Avanza solo &amp;Una Página</translation>
+        <translation type="vanished">Avanza solo &amp;Una Página</translation>
     </message>
     <message>
         <source>Prev o&amp;ne page only</source>
@@ -1535,7 +1534,7 @@
     <message>
         <source>Display Home&amp;page on browser</source>
         <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation>Visualiza la &amp;página de Internet en el navegador</translation>
+        <translation type="vanished">Visualiza la &amp;página de Internet en el navegador</translation>
     </message>
     <message>
         <source>IconViewOnly</source>
@@ -1580,7 +1579,7 @@
     <message>
         <source>Full screen on startup</source>
         <extracomment>Ability to always launch applications in full screen</extracomment>
-        <translation>Pantalla completa en la siguiente ejecución</translation>
+        <translation type="vanished">Pantalla completa en la siguiente ejecución</translation>
     </message>
     <message>
         <source>Any folder or archive is not loaded.</source>
@@ -1616,6 +1615,106 @@
         <source>Show title bar on Fullscreen</source>
         <extracomment>When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time</extracomment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <extracomment>Button to switch the window display to full screen</extracomment>
+        <translation>Pantalla completa</translation>
+    </message>
+    <message>
+        <source>&amp;Always display one landscape image even in 2 page display</source>
+        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
+        <translation>&amp;Imágenes amplia siempre abiertos como una vista</translation>
+    </message>
+    <message>
+        <source>Show Status&amp;Bar</source>
+        <translation>Visualiza la &amp;barra de estatus</translation>
+    </message>
+    <message>
+        <source>Show &amp;PageBar</source>
+        <translation>Visualiza la barra de &amp;página</translation>
+    </message>
+    <message>
+        <source>Check &amp;version in browser</source>
+        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
+        <translation>Abre su navegador y comprueba su &amp;versión</translation>
+    </message>
+    <message>
+        <source>P&amp;rev Volume</source>
+        <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
+        <translation>Volume anterio&amp;r</translation>
+    </message>
+    <message>
+        <source>Next &amp;one page only</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
+        <translation>Avanza s&amp;olo &amp;Una Página</translation>
+    </message>
+    <message>
+        <source>Show &amp;ToolBar</source>
+        <translation>Visualiza la barra de herramien&amp;tas</translation>
+    </message>
+    <message>
+        <source>Show &amp;MenuBar</source>
+        <translation>Visualiza barra de &amp;menú</translation>
+    </message>
+    <message>
+        <source>&amp;Copy image to clipboard</source>
+        <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
+        <translation>&amp;Copia imagen en tablero</translation>
+    </message>
+    <message>
+        <source>Move image to &amp;Recycle Bin</source>
+        <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
+        <translation>Coloca la imagen en la basu&amp;ra</translation>
+    </message>
+    <message>
+        <source>&amp;Slideshow</source>
+        <extracomment>Button to start displaying slideshow</extracomment>
+        <translation>Presentación de diapositiva&amp;s</translation>
+    </message>
+    <message>
+        <source>Display Home&amp;page in browser</source>
+        <extracomment>Button to display the web page of the project in the browser</extracomment>
+        <translation>Visualiza la &amp;página de Internet en el navegador</translation>
+    </message>
+    <message>
+        <source>Show &amp;Catalog</source>
+        <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
+        <translation>Visualiza el &amp;catálogo</translation>
+    </message>
+    <message>
+        <source>Show Catalog</source>
+        <translation>Visualiza el catálogo</translation>
+    </message>
+    <message>
+        <source>Show &amp;Folder</source>
+        <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
+        <translation>Visualiza un archivo(&amp;F)</translation>
+    </message>
+    <message>
+        <source>CPU Bicubic after GPU Bilinear (standard)</source>
+        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
+        <translation>CPU Bicúbica después GPU Bilineal(estándar)</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
+        <translation>Ajuste&amp;s</translation>
+    </message>
+    <message>
+        <source>Fullscreen on startup</source>
+        <extracomment>Ability to always launch applications in full screen</extracomment>
+        <translation>Pantalla completa en la siguiente ejecución</translation>
+    </message>
+    <message>
+        <source>Confirm moving image to &amp;Recycle Bin</source>
+        <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
+        <translation>Confirmar para mover la imagen a la Papelera de &amp;reciclaje</translation>
+    </message>
+    <message>
+        <source>Image Associations (requires Admin)</source>
+        <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
+        <translation>Asociaciones de imágenes (requieren Admin)</translation>
     </message>
 </context>
 <context>

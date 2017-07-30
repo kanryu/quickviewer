@@ -906,7 +906,6 @@
     </message>
     <message>
         <source>&amp;Fullscreen</source>
-        <extracomment>Button to switch the window display to full screen</extracomment>
         <translation>全屏显示(&amp;F)</translation>
     </message>
     <message>
@@ -957,11 +956,11 @@
     </message>
     <message>
         <source>ShowStatus&amp;Bar</source>
-        <translation>显示状态栏(&amp;B)</translation>
+        <translation type="vanished">显示状态栏(&amp;B)</translation>
     </message>
     <message>
         <source>Show&amp;PageBar</source>
-        <translation>显示页面栏(&amp;P)</translation>
+        <translation type="vanished">显示页面栏(&amp;P)</translation>
     </message>
     <message>
         <source>Open &amp;Explorer</source>
@@ -970,7 +969,7 @@
     </message>
     <message>
         <source>Exif &amp;Information</source>
-        <extracomment>Button for displaying JPEG Exif information (if any)</extracomment>
+        <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
         <translation>显示Exif信息(&amp;I)</translation>
     </message>
     <message>
@@ -1000,7 +999,7 @@
     <message>
         <source>P&amp;revVolume</source>
         <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
-        <translation>上卷(&amp;R)</translation>
+        <translation type="vanished">上卷(&amp;R)</translation>
     </message>
     <message>
         <source>&amp;Navigation</source>
@@ -1023,7 +1022,7 @@
     </message>
     <message>
         <source>Show&amp;ToolBar</source>
-        <translation>显示工具栏(&amp;T)</translation>
+        <translation type="vanished">显示工具栏(&amp;T)</translation>
     </message>
     <message>
         <source>Always open &amp;first images as one view</source>
@@ -1032,7 +1031,7 @@
     </message>
     <message>
         <source>Show&amp;MenuBar</source>
-        <translation>显示菜单栏(&amp;M)</translation>
+        <translation type="vanished">显示菜单栏(&amp;M)</translation>
     </message>
     <message>
         <source>&amp;Clear History</source>
@@ -1096,7 +1095,7 @@
     <message>
         <source>&amp;SlideShow</source>
         <extracomment>Button to start displaying slideshow</extracomment>
-        <translation>幻灯片(&amp;S)</translation>
+        <translation type="vanished">幻灯片(&amp;S)</translation>
     </message>
     <message>
         <source>LoadBookmark</source>
@@ -1170,11 +1169,11 @@
     <message>
         <source>Show&amp;Catalog</source>
         <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
-        <translation>显示目录(&amp;C)</translation>
+        <translation type="vanished">显示目录(&amp;C)</translation>
     </message>
     <message>
         <source>ShowCatalog</source>
-        <translation>显示目录</translation>
+        <translation type="vanished">显示目录</translation>
     </message>
     <message>
         <source>Remove (Options) from Book Title</source>
@@ -1209,12 +1208,12 @@
     <message>
         <source>&amp;Copy Image to clipboard</source>
         <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
-        <translation>将图像拷在剪贴板上(&amp;C)</translation>
+        <translation type="vanished">将图像拷在剪贴板上(&amp;C)</translation>
     </message>
     <message>
         <source>Move Image to &amp;Recycle Bin</source>
         <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
-        <translation>将现在表示页放进垃圾箱(&amp;R)</translation>
+        <translation type="vanished">将现在表示页放进垃圾箱(&amp;R)</translation>
     </message>
     <message>
         <source>Copy File to clipboard</source>
@@ -1243,12 +1242,12 @@
     <message>
         <source>Show&amp;Folder</source>
         <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
-        <translation>显示文件夹(&amp;F)</translation>
+        <translation type="vanished">显示文件夹(&amp;F)</translation>
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear(standard)</source>
         <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
-        <translation>用GPU双线性插值后，用CPU双三次插值(标准）</translation>
+        <translation type="vanished">用GPU双线性插值后，用CPU双三次插值(标准）</translation>
     </message>
     <message>
         <source>CPU Bicubic interpolation</source>
@@ -1281,7 +1280,7 @@
     <message>
         <source>&amp;Options Config</source>
         <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
-        <translation>选项设置(&amp;O)</translation>
+        <translation type="vanished">选项设置(&amp;O)</translation>
     </message>
     <message>
         <source>Don&apos;t enlarge small images on Fitting</source>
@@ -1296,16 +1295,6 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <translation type="vanished">全文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
-    </message>
-    <message>
-        <source>Confirm to move Image to &amp;Recycle Bin</source>
-        <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Image Associations (require Administration)</source>
-        <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>any folder or archive is not loaded.</source>
@@ -1370,7 +1359,7 @@
     <message>
         <source>&amp;Always display one landscape image even in 2 page display.</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation>横宽的图像合页显示时也只显示一张(&amp;A)</translation>
+        <translation type="vanished">横宽的图像合页显示时也只显示一张(&amp;A)</translation>
     </message>
     <message>
         <source>Open in &amp;Explorer</source>
@@ -1380,12 +1369,12 @@
     <message>
         <source>Open browser to check &amp;Version</source>
         <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation>打开浏览器确认现在版本(&amp;V)</translation>
+        <translation type="vanished">打开浏览器确认现在版本(&amp;V)</translation>
     </message>
     <message>
         <source>Advance &amp;one page only</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation>只翻一页(&amp;O)</translation>
+        <translation type="vanished">只翻一页(&amp;O)</translation>
     </message>
     <message>
         <source>Prev o&amp;ne page only</source>
@@ -1415,7 +1404,7 @@
     <message>
         <source>Display Home&amp;page on browser</source>
         <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation>主页通过浏览器显示(&amp;P)</translation>
+        <translation type="vanished">主页通过浏览器显示(&amp;P)</translation>
     </message>
     <message>
         <source>IconViewOnly</source>
@@ -1458,11 +1447,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Full screen on startup</source>
-        <extracomment>Ability to always launch applications in full screen</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Any folder or archive is not loaded.</source>
         <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
         <translation>没读出文件夹或档案。</translation>
@@ -1495,6 +1479,106 @@
     <message>
         <source>Show title bar on Fullscreen</source>
         <extracomment>When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <extracomment>Button to switch the window display to full screen</extracomment>
+        <translation>全屏显示</translation>
+    </message>
+    <message>
+        <source>&amp;Always display one landscape image even in 2 page display</source>
+        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
+        <translation>横宽的图像合页显示时也只显示一张(&amp;A)</translation>
+    </message>
+    <message>
+        <source>Show Status&amp;Bar</source>
+        <translation>显示状态栏(&amp;B)</translation>
+    </message>
+    <message>
+        <source>Show &amp;PageBar</source>
+        <translation>显示页面栏(&amp;P)</translation>
+    </message>
+    <message>
+        <source>Check &amp;version in browser</source>
+        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
+        <translation>打开浏览器确认现在版本(&amp;V)</translation>
+    </message>
+    <message>
+        <source>P&amp;rev Volume</source>
+        <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
+        <translation>上卷(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Next &amp;one page only</source>
+        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
+        <translation>只翻一页(&amp;O)</translation>
+    </message>
+    <message>
+        <source>Show &amp;ToolBar</source>
+        <translation>显示工具栏(&amp;T)</translation>
+    </message>
+    <message>
+        <source>Show &amp;MenuBar</source>
+        <translation>显示菜单栏(&amp;M)</translation>
+    </message>
+    <message>
+        <source>&amp;Copy image to clipboard</source>
+        <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
+        <translation>将图像拷在剪贴板上(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Move image to &amp;Recycle Bin</source>
+        <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
+        <translation>将现在表示页放进垃圾箱(&amp;R)</translation>
+    </message>
+    <message>
+        <source>&amp;Slideshow</source>
+        <extracomment>Button to start displaying slideshow</extracomment>
+        <translation>幻灯片(&amp;S)</translation>
+    </message>
+    <message>
+        <source>Display Home&amp;page in browser</source>
+        <extracomment>Button to display the web page of the project in the browser</extracomment>
+        <translation>主页通过浏览器显示(&amp;P)</translation>
+    </message>
+    <message>
+        <source>Show &amp;Catalog</source>
+        <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
+        <translation>显示目录(&amp;C)</translation>
+    </message>
+    <message>
+        <source>Show Catalog</source>
+        <translation>显示目录</translation>
+    </message>
+    <message>
+        <source>Show &amp;Folder</source>
+        <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
+        <translation>显示文件夹(&amp;F)</translation>
+    </message>
+    <message>
+        <source>CPU Bicubic after GPU Bilinear (standard)</source>
+        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
+        <translation>用GPU双线性插值后，用CPU双三次插值(标准）</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
+        <translation>设置(&amp;S)</translation>
+    </message>
+    <message>
+        <source>Fullscreen on startup</source>
+        <extracomment>Ability to always launch applications in full screen</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm moving image to &amp;Recycle Bin</source>
+        <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image Associations (requires Admin)</source>
+        <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
