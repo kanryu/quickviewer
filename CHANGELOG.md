@@ -1,5 +1,33 @@
 # CHANGELOG
 
+## v0.8.8 (Thu Aug 3 12:44:53 2017 +0900) [ddb84a3](https://github.com/kanryu/quickviewer/commit/ddb84a3e5eac6c00c9b9d61946f6e8f35f952d09)
+
+Improvement of English notation and toolbar display, Mouse input customization, bugfixed
+
+- Improvement of English notation
+- Improvement of toolbar display
+- Each hidden bar is automatically displayed when hovering with the mouse
+- Mouse input customization
+- Customizable mouse input as well as shortcut key
+- bugfixed: When image or volume switching was performed in the state that the image leading was not completed, it was illegally terminated
+
+- other commits
+    - Update HowToBuild.md (Mon Jul 31 17:39:37 2017 +0900) [e023382](https://github.com/kanryu/quickviewer/commit/e023382fbbb86ef110b97d2e66c087161ad5d022)
+    - Update HowToBuild.md (Mon Jul 31 17:38:31 2017 +0900) [98bd792](https://github.com/kanryu/quickviewer/commit/98bd7921e5bc410ab387bb8179501162a675bcaa)
+    - translations (Mon Jul 31 08:48:56 2017 +0900) [d7ee522](https://github.com/kanryu/quickviewer/commit/d7ee52244a239515b717ab0eb9b9ec495addd969)
+    - Merge pull request #18 from Gitoffthelawn/patch-1 (Mon Jul 31 08:34:04 2017 +0900) [f99f61e](https://github.com/kanryu/quickviewer/commit/f99f61e18a9cd595967e80e15fc5f9ac1660e958)
+    -  (Mon Jul 31 08:34:04 2017 +0900) [f99f61e](https://github.com/kanryu/quickviewer/commit/f99f61e18a9cd595967e80e15fc5f9ac1660e958)
+    - Multiple improvements (Mon Jul 31 08:34:04 2017 +0900) [f99f61e](https://github.com/kanryu/quickviewer/commit/f99f61e18a9cd595967e80e15fc5f9ac1660e958)
+    - don't create shared folders into bin (Mon Jul 31 08:24:54 2017 +0900) [21477f9](https://github.com/kanryu/quickviewer/commit/21477f98cdce72d418efea4aeaad8471cb4ab785)
+    - Update HowToBuild.md (Mon Jul 31 08:17:41 2017 +0900) [d042920](https://github.com/kanryu/quickviewer/commit/d04292058d6ff9efbd300cb9a13b19eccc3a6f3b)
+    - Update HowToBuild.md (Mon Jul 31 08:14:08 2017 +0900) [79d607a](https://github.com/kanryu/quickviewer/commit/79d607a9baa4ccc6ff66a8ebe12e4e7bcd366e1d)
+    - Update HowToBuild.md (Mon Jul 31 08:03:03 2017 +0900) [0a20f2b](https://github.com/kanryu/quickviewer/commit/0a20f2bac69fadb95d6ee9b142d50538989214ee)
+    - Update HowToBuild.md (Mon Jul 31 07:57:46 2017 +0900) [643b668](https://github.com/kanryu/quickviewer/commit/643b668d903cfdab9b1c8a09529627cd516a65a3)
+    - Multiple improvements (Sun Jul 30 11:38:10 2017 -0700) [5006c25](https://github.com/kanryu/quickviewer/commit/5006c25b8cc9125ffd9aa4d6ace998ce718ffc63)
+    -  (Sun Jul 30 11:38:10 2017 -0700) [5006c25](https://github.com/kanryu/quickviewer/commit/5006c25b8cc9125ffd9aa4d6ace998ce718ffc63)
+    - I hope this helps you :) (Sun Jul 30 11:38:10 2017 -0700) [5006c25](https://github.com/kanryu/quickviewer/commit/5006c25b8cc9125ffd9aa4d6ace998ce718ffc63)
+    - changelog (Sun Jul 30 20:36:38 2017 +0900) [30967dc](https://github.com/kanryu/quickviewer/commit/30967dc30c09fd20efe0395f19442ea0e407c18b)
+
 ## v0.8.7 (Sun Jul 30 20:35:42 2017 +0900) [7387d35](https://github.com/kanryu/quickviewer/commit/7387d35cd89c850ff500ec20f12b419c3ef7f23c)
 
 Speed up of prefetching, 2 bugfixed
