@@ -169,6 +169,14 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
     , m_ignoreEdited(false)
 {
     ui->setupUi(this);
+    ui->frameMouseOptions->setVisible(false);
+    ui->addSequenceButton->setVisible(false);
+    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(ui->treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(on_currentCommandChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+    connect(ui->resetButton, SIGNAL(clicked()), this, SLOT(on_resetToDefault()));
+    connect(ui->shortcutEdit, SIGNAL(textChanged(QString)), this, SLOT(on_shortcutEdit_changed(QString)));
+
     connect(ui->recordButton, &ShortcutButton::keySequenceChanged,
             this, &KeyConfigDialog::on_keySequence_changed);
 

@@ -24,6 +24,14 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
     m_volumePath = m_loader->volumePath();
 }
 
+IFileVolume::~IFileVolume() {
+    m_imageCache.clear();
+    if(m_loader) {
+        delete m_loader;
+        m_loader = nullptr;
+    }
+}
+
 void IFileVolume::on_ready()
 {
     if(m_cnt < 0 || m_cnt >= m_filelist.size() || m_loader->contents().size()==0)

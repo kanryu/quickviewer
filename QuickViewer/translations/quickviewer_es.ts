@@ -958,6 +958,66 @@
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
         <translation>Atajo actualidad</translation>
     </message>
+    <message>
+        <source>Add Sequence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option Keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wheel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wheel Scrolling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scroll Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scroll Down</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1716,6 +1776,10 @@
         <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
         <translation>Asociaciones de imágenes (requieren Admin)</translation>
     </message>
+    <message>
+        <source>&amp;Mouse Config</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1912,6 +1976,64 @@
         <source>Creationing Catalog is Cancelled</source>
         <comment>Body of message box when catalog generation is canceled</comment>
         <translation>Crear un catálogo ha estado cancelado</translation>
+    </message>
+</context>
+<context>
+    <name>MouseConfigDialog</name>
+    <message>
+        <source>Mouse Sequence:</source>
+        <comment>Title of LineEdit label to which mouse sequence is input</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
+        <comment>Placeholder text urging the mouse input setting procedure</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Motions</source>
+        <comment>Title of the column of Action to be registered with the shortcut key</comment>
+        <translation type="obsolete">Movimiento</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
+        <translation type="obsolete">Explicación</translation>
+    </message>
+    <message>
+        <source>CurrentShortcut</source>
+        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
+        <translation type="obsolete">Atajo actualidad</translation>
+    </message>
+    <message>
+        <source>Key sequence has potential conflicts.</source>
+        <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
+        <translation type="obsolete">Compitiendo con otoro atajo teclado.</translation>
+    </message>
+    <message>
+        <source>Motions</source>
+        <comment>Title of the column of Action to be registered with the mouse sequence</comment>
+        <translation>Movimiento</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
+        <translation>Explicación</translation>
+    </message>
+    <message>
+        <source>Current Mouse Sequence</source>
+        <comment>Title of the column of the content of the mouse sequence registered for Action</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse sequence has potential conflicts.</source>
+        <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
+        <translation>Compitiendo con otoro atajo ratón.</translation>
+    </message>
+    <message>
+        <source>Mouse Config</source>
+        <comment>Title of the dialog to customize the mouse sequences</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

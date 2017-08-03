@@ -11,6 +11,7 @@
 
 class PageManager;
 
+
 class IFileVolume : public QObject
 {
     Q_OBJECT
@@ -30,12 +31,7 @@ public:
     typedef QFuture<ImageContent> future_image;
 
     explicit IFileVolume(QObject *parent, IFileLoader* loader, PageManager* pageManager);
-    ~IFileVolume() {
-        if(m_loader) {
-            delete m_loader;
-            m_loader = nullptr;
-        }
-    }
+    ~IFileVolume();
     /**
      * @brief A factory function that returns an instance of IFileVolume from the path of the specified file or directory
      * @return An object that inherits the IFileVolume interface. It is null if generation failed
@@ -119,6 +115,17 @@ public:
     bool openedWithSpecifiedImageFile() { return m_openedWithSpecifiedImageFile; }
     void setOpenedWithSpecifiedImageFile(bool openedWithSpecifiedImageFile) { m_openedWithSpecifiedImageFile = openedWithSpecifiedImageFile; }
 
+
+    class ImageContentCache : public TimeOrderdCache<int, future_image>
+    {
+    public:
+        ImageContentCache(int maxsize):TimeOrderdCache<int, future_image>(maxsize){}
+        void trash(future_image val) override
+        {
+            val.result();
+        }
+    };
+
 protected:
     /**
      * @brief m_cnt File counter in the volume
@@ -128,7 +135,7 @@ protected:
     future_image m_currentCache;
     ImageContent m_currentCacheSync;
 
-    TimeOrderdCache<int, future_image> m_imageCache;
+    ImageContentCache m_imageCache;
 //    QMap<int, future_image> m_imageCache;
 //    QList<int> m_pageCache;
 

@@ -88,6 +88,9 @@
         </property>
         <item>
          <widget class="ImageView" name="graphicsView">
+          <property name="contextMenuPolicy">
+           <enum>Qt::NoContextMenu</enum>
+          </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
           </property>
@@ -261,6 +264,7 @@
     </widget>
     <addaction name="menuChange_Language"/>
     <addaction name="actionOpenKeyConfig"/>
+    <addaction name="actionOpenMouseConfig"/>
     <addaction name="actionOpenOptionsDialog"/>
     <addaction name="actionRegistAssocs"/>
     <addaction name="separator"/>
@@ -1003,6 +1007,16 @@
    </property>
    <property name="text">
     <string extracomment="When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time">Show title bar on Fullscreen</string>
+   </property>
+  </action>
+  <action name="actionContextMenu">
+   <property name="text">
+    <string>ContextMenu</string>
+   </property>
+  </action>
+  <action name="actionOpenMouseConfig">
+   <property name="text">
+    <string>&amp;Mouse Config</string>
    </property>
   </action>
  </widget>
@@ -2235,6 +2249,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionContextMenu</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_contextMenu_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpenMouseConfig</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_openMouseConfig_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_file_changed(QString)</slot>
@@ -2299,5 +2345,7 @@
   <slot>on_registAssocs_triggered()</slot>
   <slot>on_showFullscreenTitleBar_triggered(bool)</slot>
   <slot>on_prohibitMultipleRunning_triggered(bool)</slot>
+  <slot>on_contextMenu_triggered()</slot>
+  <slot>on_openMouseConfig_triggered()</slot>
  </slots>
 </ui>

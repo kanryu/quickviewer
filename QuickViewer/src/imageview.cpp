@@ -141,7 +141,7 @@ bool ImageView::on_addImage_triggered(ImageContent ic, bool pageNext)
 void ImageView::on_clearImages_triggered()
 {
     if(m_pageManager == nullptr) return;
-    QGraphicsScene *s = scene();
+//    QGraphicsScene *s = scene();
     for(int i = 0; i < m_pages.length(); i++) {
         m_pages[i].dispose();
     }

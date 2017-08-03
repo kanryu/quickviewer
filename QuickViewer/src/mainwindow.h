@@ -49,8 +49,8 @@ protected:
     void dropEvent(QDropEvent *e) override;
 //    void paintEvent( QPaintEvent *event ) override;
     void wheelEvent(QWheelEvent *e) override;
-    void contextMenuEvent(QContextMenuEvent *e) override;
-    void mousePressEvent(QMouseEvent *e) override;
+//    void contextMenuEvent(QContextMenuEvent *e) override;
+//    void mousePressEvent(QMouseEvent *e) override;
     void closeEvent(QCloseEvent *e) override;
     void resizeEvent(QResizeEvent *e) override;
 
@@ -115,6 +115,7 @@ public slots:
 
     // Help
     void on_openKeyConfig_triggered();
+    void on_openMouseConfig_triggered();
     void on_projectPage_triggered();
     void on_checkVersion_triggered();
     void on_appVersion_triggered();
@@ -126,6 +127,7 @@ public slots:
     void on_registAssocs_triggered();
 
     // ContextMenus
+    void on_contextMenu_triggered();
     void on_openfolder_triggered();
     void on_deletePage_triggered();
     void on_exitApplicationOrFullscreen_triggered();

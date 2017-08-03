@@ -932,7 +932,7 @@
     </message>
     <message>
         <source>Right</source>
-        <translation type="vanished">右キー</translation>
+        <translation>右クリック</translation>
     </message>
     <message>
         <source>Space</source>
@@ -944,7 +944,7 @@
     </message>
     <message>
         <source>Left</source>
-        <translation type="vanished">左キー</translation>
+        <translation>クリック</translation>
     </message>
     <message>
         <source>First Page</source>
@@ -1138,6 +1138,58 @@
         <source>CurrentShortcut</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
         <translation>現在のショートカット</translation>
+    </message>
+    <message>
+        <source>Add Sequence</source>
+        <translation>設定追加</translation>
+    </message>
+    <message>
+        <source>Option Keys</source>
+        <translation>追加キー入力</translation>
+    </message>
+    <message>
+        <source>Ctrl</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Shift</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Alt</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Mouse Buttons</source>
+        <translation>マウスのボタン</translation>
+    </message>
+    <message>
+        <source>Wheel</source>
+        <translation>ホイール</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation>戻る</translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation>進む</translation>
+    </message>
+    <message>
+        <source>Wheel Scrolling</source>
+        <translation>ホイールのスクロール</translation>
+    </message>
+    <message>
+        <source>Scroll Up</source>
+        <translation>上へ回す</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>なし</translation>
+    </message>
+    <message>
+        <source>Scroll Down</source>
+        <translation>下へ回す</translation>
     </message>
 </context>
 <context>
@@ -1993,6 +2045,10 @@
         <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
         <translation>画像の関連付け (管理者権限が必要)</translation>
     </message>
+    <message>
+        <source>&amp;Mouse Config</source>
+        <translation>マウス入力設定(&amp;M)</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -2201,6 +2257,64 @@
         <source>Creationing Catalog is Cancelled</source>
         <comment>Body of message box when catalog generation is canceled</comment>
         <translation>カタログの作成がキャンセルされました</translation>
+    </message>
+</context>
+<context>
+    <name>MouseConfigDialog</name>
+    <message>
+        <source>Mouse Sequence:</source>
+        <comment>Title of LineEdit label to which mouse sequence is input</comment>
+        <translation>マウス入力:</translation>
+    </message>
+    <message>
+        <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
+        <comment>Placeholder text urging the mouse input setting procedure</comment>
+        <translation>下のチェックの組み合わせを選択し、『設定追加』ボタンを押してください</translation>
+    </message>
+    <message>
+        <source>Motions</source>
+        <comment>Title of the column of Action to be registered with the shortcut key</comment>
+        <translation type="obsolete">動作</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
+        <translation type="obsolete">説明</translation>
+    </message>
+    <message>
+        <source>CurrentShortcut</source>
+        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
+        <translation type="obsolete">現在のショートカット</translation>
+    </message>
+    <message>
+        <source>Key sequence has potential conflicts.</source>
+        <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
+        <translation type="obsolete">他のショートカットキーと競合しています。</translation>
+    </message>
+    <message>
+        <source>Motions</source>
+        <comment>Title of the column of Action to be registered with the mouse sequence</comment>
+        <translation>動作</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
+        <translation>説明</translation>
+    </message>
+    <message>
+        <source>Current Mouse Sequence</source>
+        <comment>Title of the column of the content of the mouse sequence registered for Action</comment>
+        <translation>現在のマウス入力</translation>
+    </message>
+    <message>
+        <source>Mouse sequence has potential conflicts.</source>
+        <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
+        <translation>他のマウス入力と競合しています。</translation>
+    </message>
+    <message>
+        <source>Mouse Config</source>
+        <comment>Title of the dialog to customize the mouse sequences</comment>
+        <translation>マウス入力設定</translation>
     </message>
 </context>
 <context>

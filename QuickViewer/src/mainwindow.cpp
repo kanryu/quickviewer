@@ -8,12 +8,14 @@
 #include "qv_init.h"
 #include "qvapplication.h"
 #include "keyconfigdialog.h"
+#include "mouseconfigdialog.h"
 #include "optionsdialog.h"
 #include "catalogwindow.h"
 #include "folderwindow.h"
 #include "renamedialog.h"
 #include "exifdialog.h"
 #include "qnamedpipe.h"
+#include "qmousesequence.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -218,56 +220,82 @@ static bool needContextMenu = false;
 
 void MainWindow::wheelEvent(QWheelEvent *e)
 {
-    if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
-        if(e->delta() < 0) {
-            ui->actionZoomOut->trigger();
-        }
-        if(e->delta() > 0) {
-            ui->actionZoomIn->trigger();
-        }
-        e->accept();
+    int delta = e->delta() < 0 ? -Q_MOUSE_DELTA : e->delta() > 0 ? Q_MOUSE_DELTA : 0;
+    QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), e->buttons(), delta);
+    QAction* action = qApp->getActionFromMouse(mv);
+    if(e->buttons() & Qt::RightButton)
         needContextMenu = false;
+    if(action == ui->actionZoomIn || action == ui->actionZoomOut) {
+        action->trigger();
+        e->accept();
         return;
     }
     if(ui->graphicsView->isScrollMode())
         return;
-    if(e->delta() < 0) {
-        ui->actionNextPage->trigger();
-    }
-    if(e->delta() > 0) {
-        ui->actionPrevPage->trigger();
-    }
+    action->trigger();
     e->accept();
-}
-
-void MainWindow::contextMenuEvent(QContextMenuEvent *e)
-{
-    if(!needContextMenu)
-        return;
-    QWidget *child = childAt(e->pos());
-//    qDebug() << child << child->parent();
-    if(child->parent() == ui->graphicsView && m_contextMenu)
-        m_contextMenu->exec(QCursor::pos());
-}
-
-void MainWindow::mousePressEvent(QMouseEvent *e)
-{
-    needContextMenu = true;
-    if(e->buttons() & Qt::MiddleButton) {
-        if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
-            ui->actionFitting->trigger();
-            needContextMenu = false;
-        } else {
-            on_fullscreen_triggered();
-        }
-        e->accept();
-    }
-    QMainWindow::mousePressEvent(e);
-//    if(e->button() == Qt::RightButton) {
-//        if(contextMenu)
-//            contextMenu->exec(QCursor::pos());
+//    if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
+//        if(e->delta() < 0) {
+//            ui->actionZoomOut->trigger();
+//        }
+//        if(e->delta() > 0) {
+//            ui->actionZoomIn->trigger();
+//        }
+//        e->accept();
+//        needContextMenu = false;
+//        return;
 //    }
+//    if(ui->graphicsView->isScrollMode())
+//        return;
+//    if(e->delta() < 0) {
+//        ui->actionNextPage->trigger();
+//    }
+//    if(e->delta() > 0) {
+//        ui->actionPrevPage->trigger();
+//    }
+//    e->accept();
 }
+
+//void MainWindow::contextMenuEvent(QContextMenuEvent *e)
+//{
+//    if(!needContextMenu)
+//        return;
+//    QWidget *child = childAt(e->pos());
+////    qDebug() << child << child->parent();
+//    if(child->parent() == ui->graphicsView && m_contextMenu)
+//        m_contextMenu->exec(QCursor::pos());
+//}
+
+//void MainWindow::mousePressEvent(QMouseEvent *e)
+//{
+////    needContextMenu = true;
+////    QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), e->buttons(), 0);
+////    if(mv.Key != "+::LeftButton" && mv.Key != "+::RightButton") {
+////        QAction* action = qApp->getActionFromMouse(mv);
+////        if(action) {
+////            if(action == ui->actionFitting)
+////                needContextMenu = false;
+////            action->trigger();
+////            e->accept();
+////        }
+////    }
+
+////    if(e->buttons() & Qt::MiddleButton) {
+////        if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
+////            ui->actionFitting->trigger();
+////            needContextMenu = false;
+////        } else {
+////            on_fullscreen_triggered();
+////        }
+////        e->accept();
+////    }
+//    QMainWindow::mousePressEvent(e);
+////    if(e->button() == Qt::RightButton) {
+////        if(contextMenu)
+////            contextMenu->exec(QCursor::pos());
+//    //    }
+//}
+
 
 void MainWindow::closeEvent(QCloseEvent *)
 {
@@ -300,18 +328,19 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         }
         break;
     case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonDblClick:
         if(obj == ui->graphicsView) {
             mouseEvent = dynamic_cast<QMouseEvent*>(event);
-            // 5 buttons mouse forward for browsers
-            if(mouseEvent->button() == Qt::ForwardButton) {
-                ui->actionNextPage->trigger();
-                return true;
-            }
-            // 5 buttons mouse back for browsers
-            if(mouseEvent->button() == Qt::BackButton) {
-                ui->actionPrevPage->trigger();
-                return true;
-            }
+//            // 5 buttons mouse forward for browsers
+//            if(mouseEvent->button() == Qt::ForwardButton) {
+//                ui->actionNextPage->trigger();
+//                return true;
+//            }
+//            // 5 buttons mouse back for browsers
+//            if(mouseEvent->button() == Qt::BackButton) {
+//                ui->actionPrevPage->trigger();
+//                return true;
+//            }
             // tap left/right of window
             if(mouseEvent->button() == Qt::LeftButton) {
                 if(ui->graphicsView->hoverState() == Qt::AnchorLeft) {
@@ -329,6 +358,41 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
                     return true;
                 }
             }
+            // The ContextMenu event is valid only when RightButton is pushed alone
+            // and it is invalidated when the other button is pushed or the wheel moves
+            if(mouseEvent->buttons() == Qt::RightButton)
+                needContextMenu = true;
+            if((mouseEvent->buttons() & Qt::RightButton) && (mouseEvent->buttons() & ~Qt::RightButton))
+                needContextMenu = false;
+            QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), mouseEvent->buttons(), 0);
+            // Processed in ContextMenu event
+            if(mv.Key == "+::RightButton")
+                break;
+            // If isScrollMode () is enabled, priority is given to screen drag scroll
+            if(mv.Key == "+::LeftButton" && ui->graphicsView->isScrollMode())
+                break;
+            QAction* action = qApp->getActionFromMouse(mv);
+            if(action) {
+                action->trigger();
+                return true;
+            }
+        }
+        break;
+    // ContextMenu event occurs when releasing the RightButton
+    case QEvent::ContextMenu:
+        if(obj == ui->graphicsView) {
+            QContextMenuEvent *contextMenuEvent = dynamic_cast<QContextMenuEvent*>(event);
+//            qDebug() << contextMenuEvent;
+            QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), Qt::RightButton, 0);
+            QAction* action = qApp->getActionFromMouse(mv);
+            if(action && needContextMenu) {
+                action->trigger();
+                needContextMenu = false;
+            }
+            return true;
+        }
+        if(obj == ui->mainToolBar) {
+            return true;
         }
         break;
     case QEvent::Leave:
@@ -419,7 +483,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 //            return;
 //        }
 //    }
-    QAction* action = qApp->getAction(seq);
+    QAction* action = qApp->getActionFromKey(seq);
     if(action)
         action->trigger();
 }
@@ -629,6 +693,11 @@ void MainWindow::on_registAssocs_triggered()
     QProcess::startDetached("AssociateFilesWithQuickViewer",
                             QStringList(),
                             QDir::toNativeSeparators(qApp->applicationDirPath()));
+}
+
+void MainWindow::on_contextMenu_triggered()
+{
+    m_contextMenu->exec(QCursor::pos());
 }
 
 void MainWindow::on_autoloaded_triggered(bool autoloaded)
@@ -969,6 +1038,15 @@ void MainWindow::on_openKeyConfig_triggered()
         dialog.revertKeyChanges();
     } else {
         resetShortcutKeys();
+    }
+}
+
+void MainWindow::on_openMouseConfig_triggered()
+{
+    MouseConfigDialog dialog(this);
+    int result = dialog.exec();
+    if(result == QDialog::Rejected) {
+        dialog.revertMouseChanges();
     }
 }
 

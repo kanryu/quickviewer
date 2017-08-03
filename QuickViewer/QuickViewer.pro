@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.7
+VERSION = 0.8.8
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -88,7 +88,10 @@ SOURCES += \
     src/widgets/shortcutbutton.cpp \
     src/qlanguageselector/qlanguageselector.cpp \
     src/models/qnamedpipe.cpp \
-    src/models/qvmovie.cpp
+    src/models/qvmovie.cpp \
+    src/models/qmousesequence.cpp \
+    src/qfullscreenframe/qinnerframe.cpp \
+    src/mouseconfigdialog.cpp
 
 
 HEADERS  += \
@@ -122,7 +125,10 @@ HEADERS  += \
     src/widgets/shortcutbutton.h \
     src/qlanguageselector/qlanguageselector.h \
     src/models/qnamedpipe.h \
-    src/models/qvmovie.h
+    src/models/qvmovie.h \
+    src/models/qmousesequence.h \
+    src/qfullscreenframe/qinnerframe.h \
+    src/mouseconfigdialog.h
 
 PRECOMPILED_HEADER += src/stdafx.h
 

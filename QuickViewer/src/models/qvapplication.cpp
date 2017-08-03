@@ -27,6 +27,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     registDefaultKeyMap();
+    registDefaultMouseMap();
     loadSettings();
 }
 
@@ -47,42 +48,63 @@ void QVApplication::myInstallTranslator()
 void QVApplication::registDefaultKeyMap()
 {
     // Default key configs
-    m_keyConfigDefauls["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
-    m_keyConfigDefauls["actionNextPage"] = QKeySequence("L, Right, Space");
-    m_keyConfigDefauls["actionPrevPage"] = QKeySequence("H, Left, Backspace");
-    m_keyConfigDefauls["actionFastForward"] = QKeySequence("Shift+L, Num+3");
-    m_keyConfigDefauls["actionFastBackward"] = QKeySequence("Shift+H, Num+1");
-    m_keyConfigDefauls["actionLastPage"] = QKeySequence("Ctrl+L, End");
-    m_keyConfigDefauls["actionFirstPage"] = QKeySequence("Ctrl+H, Home");
-    m_keyConfigDefauls["actionNextVolume"] = QKeySequence("Ctrl+J, PgDown");
-    m_keyConfigDefauls["actionPrevVolume"] = QKeySequence("Ctrl+K, PgUp");
+    m_keyConfigDefaults["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
+    m_keyConfigDefaults["actionNextPage"] = QKeySequence("L, Right, Space");
+    m_keyConfigDefaults["actionPrevPage"] = QKeySequence("H, Left, Backspace");
+    m_keyConfigDefaults["actionFastForward"] = QKeySequence("Shift+L, Num+3");
+    m_keyConfigDefaults["actionFastBackward"] = QKeySequence("Shift+H, Num+1");
+    m_keyConfigDefaults["actionLastPage"] = QKeySequence("Ctrl+L, End");
+    m_keyConfigDefaults["actionFirstPage"] = QKeySequence("Ctrl+H, Home");
+    m_keyConfigDefaults["actionNextVolume"] = QKeySequence("Ctrl+J, PgDown");
+    m_keyConfigDefaults["actionPrevVolume"] = QKeySequence("Ctrl+K, PgUp");
 
-    m_keyConfigDefauls["actionZoomIn"] = QKeySequence("K, Num++");
-    m_keyConfigDefauls["actionZoomOut"] = QKeySequence("J, Num+-");
+    m_keyConfigDefaults["actionZoomIn"] = QKeySequence("K, Num++");
+    m_keyConfigDefaults["actionZoomOut"] = QKeySequence("J, Num+-");
 
-    m_keyConfigDefauls["actionRenameImageFile"] = QKeySequence("F2");
-    m_keyConfigDefauls["actionShowFolder"] = QKeySequence("F4");
-    m_keyConfigDefauls["actionShowCatalog"] = QKeySequence("Ctrl+/, F6");
-    m_keyConfigDefauls["actionSlideShow"] = QKeySequence("F7");
-    m_keyConfigDefauls["actionStayOnTop"] = QKeySequence("F8");
-    m_keyConfigDefauls["actionShowMenuBar"] = QKeySequence("F9");
-    m_keyConfigDefauls["actionDualView"] = QKeySequence("Y, F10");
-    m_keyConfigDefauls["actionFullscreen"] = QKeySequence("F11");
-    m_keyConfigDefauls["actionFitting"] = QKeySequence("M, F12, Num+*");
+    m_keyConfigDefaults["actionRenameImageFile"] = QKeySequence("F2");
+    m_keyConfigDefaults["actionShowFolder"] = QKeySequence("F4");
+    m_keyConfigDefaults["actionShowCatalog"] = QKeySequence("Ctrl+/, F6");
+    m_keyConfigDefaults["actionSlideShow"] = QKeySequence("F7");
+    m_keyConfigDefaults["actionStayOnTop"] = QKeySequence("F8");
+    m_keyConfigDefaults["actionShowMenuBar"] = QKeySequence("F9");
+    m_keyConfigDefaults["actionDualView"] = QKeySequence("Y, F10");
+    m_keyConfigDefaults["actionFullscreen"] = QKeySequence("F11");
+    m_keyConfigDefaults["actionFitting"] = QKeySequence("M, F12, Num+*");
 
-    m_keyConfigDefauls["actionRotate"] = QKeySequence("R");
-    m_keyConfigDefauls["actionDeletePage"] = QKeySequence("Del");
+    m_keyConfigDefaults["actionRotate"] = QKeySequence("R");
+    m_keyConfigDefaults["actionDeletePage"] = QKeySequence("Del");
 
-    m_keyConfigDefauls["actionCopyPage"] = QKeySequence("Ctrl+C");
-    m_keyConfigDefauls["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
+    m_keyConfigDefaults["actionCopyPage"] = QKeySequence("Ctrl+C");
+    m_keyConfigDefaults["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
 
-    m_keyConfigDefauls["actionLoadBookmark"] = QKeySequence("Q");
-    m_keyConfigDefauls["actionSaveBookmark"] = QKeySequence("W");
+    m_keyConfigDefaults["actionLoadBookmark"] = QKeySequence("Q");
+    m_keyConfigDefaults["actionSaveBookmark"] = QKeySequence("W");
 
-    m_keyConfigDefauls["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
+    m_keyConfigDefaults["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
 
-    m_keyConfigs = m_keyConfigDefauls;
+    m_keyConfigs = m_keyConfigDefaults;
     m_keyConfigs.detach();
+}
+
+void QVApplication::registDefaultMouseMap()
+{
+    // Default mouse configs
+//    m_mouseConfigDefaults["actionNextPage"] = QMouseSequence("+::WheelDown, +::ForwardButton, +::LeftButton");
+//    m_mouseConfigDefaults["actionPrevPage"] = QMouseSequence("+::WheelUp, +::BackButton, +::RightButton");
+//    m_mouseConfigDefaults["actionContextMenu"] = QMouseSequence("+::LeftButton+RightButton");
+
+    m_mouseConfigDefaults["actionNextPage"] = QMouseSequence("+::WheelDown, +::ForwardButton");
+    m_mouseConfigDefaults["actionPrevPage"] = QMouseSequence("+::WheelUp, +::BackButton");
+    m_mouseConfigDefaults["actionContextMenu"] = QMouseSequence("+::RightButton");
+
+    m_mouseConfigDefaults["actionFitting"] = QMouseSequence("+::RightButton+MiddleButton, Ctrl+::MiddleButton");
+    m_mouseConfigDefaults["actionZoomIn"]  = QMouseSequence("+::RightButton+WheelUp, Ctrl+::WheelUp");
+    m_mouseConfigDefaults["actionZoomOut"] = QMouseSequence("+::RightButton+WheelDown, Ctrl+::WheelDown");
+    m_mouseConfigDefaults["actionFullscreen"] = QMouseSequence("+::MiddleButton");
+
+
+    m_mouseConfigs = m_mouseConfigDefaults;
+    m_mouseConfigs.detach();
 }
 
 void QVApplication::registActions(Ui::MainWindow *ui)
@@ -146,6 +168,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionShowMenuBar", ui->actionShowMenuBar);
 
     // ContextMenu
+    registAction("actionContextMenu", ui->actionContextMenu);
     registAction("actionOpenFiler", ui->actionOpenFiler);
     registAction("actionOpenExif", ui->actionOpenExif);
     registAction("actionCopyPage", ui->actionCopyPage);
@@ -318,6 +341,13 @@ void QVApplication::loadSettings()
     }
     m_settings.endGroup();
 
+    m_settings.beginGroup("MouseConfig");
+    foreach(const QString& action, m_settings.childKeys()) {
+        QString str = m_settings.value(action, "").toString();
+        m_mouseConfigs[action] = QMouseSequence(str);
+    }
+    m_settings.endGroup();
+
     m_settings.beginGroup("Shader");
     QString effectstring = m_settings.value("Effect", "Bilinear").toString();
     m_effect = ShaderManager::stringToShaderEffect(effectstring);
@@ -406,6 +436,13 @@ void QVApplication::saveSettings()
     m_settings.beginGroup("KeyConfig");
     foreach(const QString& action, m_keyConfigs.keys()) {
         QKeySequence seqs = m_keyConfigs[action];
+        m_settings.setValue(action, seqs.toString());
+    }
+    m_settings.endGroup();
+
+    m_settings.beginGroup("MouseConfig");
+    foreach(const QString& action, m_mouseConfigs.keys()) {
+        QMouseSequence seqs = m_mouseConfigs[action];
         m_settings.setValue(action, seqs.toString());
     }
     m_settings.endGroup();
