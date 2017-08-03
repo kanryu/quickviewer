@@ -144,6 +144,13 @@ categories: jekyll disqus
 
 『見開き表示』をオンにしている場合、画像を2枚横に並べて表示します。
 
+### シンプルな表示
+
+画像だけを見たいというときは、シンプルな表示はいかがですか。
+隠れたバーは必要なときに自動で表示されます。
+
+![Stripped viewing](https://github.com/kanryu/quickviewer/wiki/images/stripped.jpg)
+
 ### JPEG EXIF情報の表示
 
 ![EXIF情報](https://github.com/kanryu/quickviewer/wiki/images/exifdialog.jpg)
