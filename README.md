@@ -41,6 +41,15 @@ https://kanryu.github.io/quickviewer/
 
 ![Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
+### Stripped viewing
+
+If you want, you can remove all attached bars and display only images.
+Hidden bars are displayed automatically when needed.
+
+![Stripped viewing](https://github.com/kanryu/quickviewer/wiki/images/stripped.jpg)
+
+
+
 ## How to use
 
 - Run the app, and drop image folder/archive to the window.
