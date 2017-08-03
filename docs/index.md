@@ -179,6 +179,14 @@ If **Spread Viewing** is off, the window shows one image.
 
 If **Spread Viewing** is on, the window shows two images on side by side.
 
+### Stripped Viewing
+
+If you want, you can remove all attached bars and display only images.
+Hidden bars are displayed automatically when needed.
+
+![Stripped viewing](https://github.com/kanryu/quickviewer/wiki/images/stripped.jpg)
+
+
 ### JPEG EXIF Information
 
 ![EXIF Information](https://github.com/kanryu/quickviewer/wiki/images/exifdialog.jpg)
