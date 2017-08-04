@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v0.8.9 (Sat Aug 5 04:33:11 2017 +0900) [9faebb7](https://github.com/kanryu/quickviewer/commit/9faebb765be55f498c6cecc2cf6fe9a57754c67f)
+
+Improved stability of x86 release, Speed up the Volume switching, 3 bugfixed
+
+- Improved stability of x86 release
+- bugfixed: Often, when an image exceeding 4096 pixels is read, it is illegitimate
+- bugfixed: Irregular end when image loading high load
+- Speed up the Volume switching
+- bugfixed: Illegal termination when reading images from archives
+
+- other commits
+    - Update index-ja.md (Thu Aug 3 19:14:37 2017 +0900) [bf8318b](https://github.com/kanryu/quickviewer/commit/bf8318ba309f3df5831d059d82f0aa7b4b113570)
+    - Update index.md (Thu Aug 3 19:11:51 2017 +0900) [20a4ff1](https://github.com/kanryu/quickviewer/commit/20a4ff107b0781face7628ee365945f561845a3f)
+    - Update README.md (Thu Aug 3 19:09:36 2017 +0900) [5df72b5](https://github.com/kanryu/quickviewer/commit/5df72b51e681652035171c90e37a4583e32bee5b)
+    - changelog (Thu Aug 3 12:45:26 2017 +0900) [923c221](https://github.com/kanryu/quickviewer/commit/923c221440543cb3fd11d81fad62a58c567dd28b)
+
 ## v0.8.8 (Thu Aug 3 12:44:53 2017 +0900) [ddb84a3](https://github.com/kanryu/quickviewer/commit/ddb84a3e5eac6c00c9b9d61946f6e8f35f952d09)
 
 Improvement of English notation and toolbar display, Mouse input customization, bugfixed
