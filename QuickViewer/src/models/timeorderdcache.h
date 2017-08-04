@@ -47,7 +47,7 @@ public:
     int count() const { return m_cache.size(); }
     bool empty() const { return m_cache.empty(); }
     bool contains(Key& key) const {return m_newerOrders.contains(key); }
-    T object(Key &key) const { return m_cache[key]; }
+    T& object(Key &key) { return m_cache[key]; }
     void clear() {
         foreach(const Key& key, m_cache.keys()) {
             trash(m_cache.take(key));
@@ -73,6 +73,29 @@ public:
          : TimeOrderdCache<Key, T*>(maxsize){}
     void trash(T* oldest) {
         delete oldest;
+    }
+};
+
+template <typename Key, class T>
+class TimeOrderdCacheFuture : public TimeOrderdCache<Key, QFuture<T> >
+{
+public:
+     TimeOrderdCacheFuture(int maxsize=30)
+         : TimeOrderdCache<Key, QFuture<T> >(maxsize){}
+    void trash(QFuture<T> oldest) {
+        oldest.result();
+    }
+};
+
+
+template <typename Key, class T>
+class TimeOrderdCacheFuturePtr : public TimeOrderdCache<Key, QFuture<T*> >
+{
+public:
+     TimeOrderdCacheFuturePtr(int maxsize=30)
+         : TimeOrderdCache<Key, QFuture<T*> >(maxsize){}
+    void trash(QFuture<T*> oldest) {
+        delete oldest.result();
     }
 };
 

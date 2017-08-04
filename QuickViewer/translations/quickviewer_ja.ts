@@ -2391,6 +2391,15 @@
         <source>Prohibit multiple running (Restart is required)</source>
         <translation>多重起動を禁止する (再起動後有効)</translation>
     </message>
+    <message>
+        <source>Increasing the number, the behavior of &quot;NextImage&quot; / &quot;PrevImage&quot; improves but, increases memory consumption. 6 is appropriate for 32 bit version.</source>
+        <translation>数を大きくすると「次の画像」／「前の画像」の挙動が改善しますが、多くのメモリを消費します。32ビット版の場合6のままがよいでしょう。</translation>
+    </message>
+    <message>
+        <source>Number of images managed simultaneously (Restart is required)</source>
+        <extracomment>Maximum number of images that an application simultaneously manages on memory</extracomment>
+        <translation>同時に管理する画像の最大数 (再起動後有効)</translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>

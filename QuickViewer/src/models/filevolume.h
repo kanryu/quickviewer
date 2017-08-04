@@ -114,17 +114,7 @@ public:
     const ImageContent getIndexedImageContent(int idx);
     bool openedWithSpecifiedImageFile() { return m_openedWithSpecifiedImageFile; }
     void setOpenedWithSpecifiedImageFile(bool openedWithSpecifiedImageFile) { m_openedWithSpecifiedImageFile = openedWithSpecifiedImageFile; }
-
-
-    class ImageContentCache : public TimeOrderdCache<int, future_image>
-    {
-    public:
-        ImageContentCache(int maxsize):TimeOrderdCache<int, future_image>(maxsize){}
-        void trash(future_image val) override
-        {
-            val.result();
-        }
-    };
+    void moveToThread(QThread *targetThread);
 
 protected:
     /**
@@ -135,7 +125,7 @@ protected:
     future_image m_currentCache;
     ImageContent m_currentCacheSync;
 
-    ImageContentCache m_imageCache;
+    TimeOrderdCacheFuture<int, ImageContent> m_imageCache;
 //    QMap<int, future_image> m_imageCache;
 //    QList<int> m_pageCache;
 

@@ -17,11 +17,11 @@ public:
     /**
      * @brief Image is a pixmap of the image for viewing
      */
-    QPixmap Image;
+    QImage Image;
     /**
      * @brief ResizedImage is resized to actual view size from Image
      */
-    QPixmap ResizedImage;
+    QImage ResizedImage;
     /**
      * @brief Movie will be initialized when imageReader.supportsAnimation() == true
      */
@@ -44,7 +44,7 @@ public:
     easyexif::EXIFInfo Info;
 
     ImageContent(){}
-    ImageContent(QPixmap image, QString path, QSize size, easyexif::EXIFInfo info)
+    ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info)
         : Image(image), Path(path), BaseSize(size), ImportSize(image.size()), Info(info) {}
     ImageContent(const ImageContent& rhs)
         : Image(rhs.Image)

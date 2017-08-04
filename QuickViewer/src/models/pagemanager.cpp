@@ -67,7 +67,7 @@ void PageManager::nextVolume()
             if(!loadVolume(path, true))
                 preloadCount = 0;
         } else {
-            addVolumeCache(path, true);
+            addVolumeCache(path, true, false);
         }
         // preloadCount <- MaxVolumesCache()
         // 0            <- 1
@@ -114,7 +114,7 @@ void PageManager::prevVolume()
             if(!loadVolume(path, true))
                 matchCount = 0;
         } else {
-            addVolumeCache(path, true);
+            addVolumeCache(path, true, false);
         }
         if(matchCount >= qApp->MaxVolumesCache()*3/2-1)
             break;
@@ -122,13 +122,20 @@ void PageManager::prevVolume()
 }
 
 
-IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
+IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover, bool immediate)
 {
     IFileVolume* newer = nullptr;
     QString pathbase = IFileVolume::FullPathToVolumePath(path);
     QString subfilename = IFileVolume::FullPathToSubFilePath(path);
     if(m_volumes.contains(pathbase)) {
+        if(!immediate)
+            return nullptr;
         IFileVolume* cached = m_volumes.object(pathbase);
+        if(!cached) {
+            m_volumes.remove(pathbase);
+            return nullptr;
+        }
+        // If the subdirectory search is switched valid, we need to recreate the instance
         if(!cached->isArchive() &&
                 ((qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)!=nullptr)
                  || (!qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)==nullptr))) {
@@ -136,26 +143,38 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover)
         }
     }
     if(!m_volumes.contains(pathbase)) {
-        newer = onlyCover
-                ? IFileVolume::CreateVolumeWithOnlyCover(this, path, this)
-                : IFileVolume::CreateVolume(this, path, this);
-        if(newer) {
-            m_volumes.insert(pathbase, newer);
-
-            // change page by progress.ini
-            QString volumepath = QDir::fromNativeSeparators(newer->volumePath());
-            if(qApp->OpenVolumeWithProgress()
-               && !newer->openedWithSpecifiedImageFile()
-               && qApp->bookshelfManager()->contains(volumepath)) {
-                BookProgress book = qApp->bookshelfManager()->at(volumepath);
-                newer->findPageByIndex(book.Current);
-            }
+        if(immediate) {
+            newer = createVolume(path, onlyCover);
+            if(newer)
+                m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
+            return newer;
+        } else {
+            m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::createVolume, path, onlyCover));
         }
     } else {
         m_volumes.retain(pathbase);
         newer = m_volumes.object(pathbase);
         if(subfilename.length())
             newer->findImageByName(subfilename);
+    }
+    return newer;
+}
+
+IFileVolume *PageManager::createVolume(QString path, bool onlyCover)
+{
+    IFileVolume* newer = onlyCover
+            ? IFileVolume::CreateVolumeWithOnlyCover(nullptr, path, this)
+            : IFileVolume::CreateVolume(nullptr, path, this);
+    if(newer) {
+        // change page by progress.ini
+        QString volumepath = QDir::fromNativeSeparators(newer->volumePath());
+        if(qApp->OpenVolumeWithProgress()
+           && !newer->openedWithSpecifiedImageFile()
+           && qApp->bookshelfManager()->contains(volumepath)) {
+            BookProgress book = qApp->bookshelfManager()->at(volumepath);
+            newer->findPageByIndex(book.Current);
+        }
+        newer->moveToThread(thread());
     }
     return newer;
 }

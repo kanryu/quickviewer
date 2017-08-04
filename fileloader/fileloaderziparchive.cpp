@@ -28,8 +28,8 @@ FileLoaderZipArchive::FileLoaderZipArchive(QObject* parent, QString zippath)
 QByteArray FileLoaderZipArchive::getFile(QString name, QMutex& mutex)
 {
     QByteArray bytes;
+    mutex.lock();
     if(m_imageFileList.contains(name)) {
-        mutex.lock();
         bool check = d->setCurrentFile(name);
         if(!check) {
             qDebug() << name << "can't be found in the zip:" << volumePath();
@@ -37,7 +37,7 @@ QByteArray FileLoaderZipArchive::getFile(QString name, QMutex& mutex)
         QuaZipFile zipFile(d);
         zipFile.open(QIODevice::ReadOnly, nullptr);
         bytes = zipFile.readAll();
-        mutex.unlock();
     }
+    mutex.unlock();
     return bytes;
 }

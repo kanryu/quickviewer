@@ -1950,6 +1950,15 @@
         <source>Prohibit multiple running (Restart is required)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Increasing the number, the behavior of &quot;NextImage&quot; / &quot;PrevImage&quot; improves but, increases memory consumption. 6 is appropriate for 32 bit version.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number of images managed simultaneously (Restart is required)</source>
+        <extracomment>Maximum number of images that an application simultaneously manages on memory</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>

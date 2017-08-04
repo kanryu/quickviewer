@@ -111,7 +111,9 @@ signals:
     void pageAdded(ImageContent ic, bool pageNext);
 
 private:
-    IFileVolume* addVolumeCache(QString path, bool onlyCover=false);
+    IFileVolume* addVolumeCache(QString path, bool onlyCover=false, bool immediate=true);
+    IFileVolume* createVolume(QString path, bool onlyCover);
+    IFileVolume* passThrough(IFileVolume* vol) { return vol; }
     /**
      * @brief younger page number
      */
@@ -119,7 +121,7 @@ private:
 
     bool m_wideImage;
     QVector<ImageContent> m_pages;
-    TimeOrderdCachePtr<QString, IFileVolume> m_volumes;
+    TimeOrderdCacheFuturePtr<QString, IFileVolume> m_volumes;
     QStringList m_volumenames;
 
     IFileVolume* m_fileVolume;

@@ -280,8 +280,10 @@ void QVApplication::loadSettings()
     m_slideShowWait = m_settings.value("SlideShowWait", 5000).toInt();
 #ifdef Q_OS_WIN64
     m_maxVolumesCache = m_settings.value("MaxVolumesCache", 3).toInt();
+    m_maxImagesCache = m_settings.value("MaxImagesCache", 22).toInt();
 #else
     m_maxVolumesCache = m_settings.value("MaxVolumesCache", 1).toInt();
+    m_maxImagesCache = m_settings.value("MaxImagesCache", 6).toInt();
 #endif
     m_backgroundColor = QColor(m_settings.value("BackgroundColor", "0x797979").toString().toUInt(nullptr, 16));
     m_backgroundColor2 = QColor(m_settings.value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
@@ -381,6 +383,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowSubfolders", m_showSubfolders);
     m_settings.setValue("SlideShowWait", m_slideShowWait);
     m_settings.setValue("MaxVolumesCache", m_maxVolumesCache);
+    m_settings.setValue("MaxImagesCache", m_maxImagesCache);
     QString rgbstring;
     rgbstring.setNum(m_backgroundColor.rgb(), 16);
     m_settings.setValue("BackgroundColor", rgbstring);

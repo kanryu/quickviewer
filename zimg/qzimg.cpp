@@ -266,34 +266,55 @@ QImage QZimg::createPackedImage(QSize size, QImage::Format fmt, int stridePack)
 
 QImage QZimg::toPackedImage(const QImage &src, int stridePack)
 {
-    switch(src.format()) {
-    case QImage::Format_Indexed8:
-        return src.convertToFormat(QImage::Format_ARGB32);
-    case QImage::Format_ARGB32_Premultiplied:
-    case QImage::Format_ARGB8565_Premultiplied:
-    case QImage::Format_ARGB6666_Premultiplied:
-    case QImage::Format_ARGB8555_Premultiplied:
-    case QImage::Format_ARGB4444_Premultiplied:
-    case QImage::Format_RGBA8888:
-    case QImage::Format_RGBA8888_Premultiplied:
-    case QImage::Format_A2BGR30_Premultiplied:
-    case QImage::Format_A2RGB30_Premultiplied:
-        return src.convertToFormat(QImage::Format_ARGB32);
-    case QImage::Format_RGB555:
-    case QImage::Format_RGB666:
-    case QImage::Format_RGB30:
-    case QImage::Format_BGR30:
-    case QImage::Format_RGBX8888:
-    case QImage::Format_RGB888:
-    case QImage::Format_RGB444:
-        return src.convertToFormat(QImage::Format_RGB32);
+    QImage converted;
+    // QImage processing sometimes fails
+    for(int count = 1; ; count++) {
+        switch(src.format()) {
+        case QImage::Format_ARGB32:
+        case QImage::Format_RGB32:
+            return src;
+        case QImage::Format_RGB555:
+        case QImage::Format_RGB666:
+        case QImage::Format_RGB30:
+        case QImage::Format_BGR30:
+        case QImage::Format_RGBX8888:
+        case QImage::Format_RGB888:
+        case QImage::Format_RGB444:
+            converted = src.convertToFormat(QImage::Format_RGB32);
+            break;
+//        case QImage::Format_Indexed8:
+//            converted = src.convertToFormat(QImage::Format_ARGB32);
+//            break;
+//        case QImage::Format_ARGB32_Premultiplied:
+//        case QImage::Format_ARGB8565_Premultiplied:
+//        case QImage::Format_ARGB6666_Premultiplied:
+//        case QImage::Format_ARGB8555_Premultiplied:
+//        case QImage::Format_ARGB4444_Premultiplied:
+//        case QImage::Format_RGBA8888:
+//        case QImage::Format_RGBA8888_Premultiplied:
+//        case QImage::Format_A2BGR30_Premultiplied:
+//        case QImage::Format_A2RGB30_Premultiplied:
+        default:
+            converted = src.convertToFormat(QImage::Format_ARGB32);
+            break;
+        }
+        if(!converted.isNull()) break;
+        if(count >= 100) return QImage();
+        QThread::currentThread()->usleep(40000);
     }
-    return src;
+    return converted;
 }
 
 QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_format out_format)
 {
-    QImage oimg = QImage(QSize(out_format.width, out_format.height), img.format());
+    QImage oimg;
+    // QImage processing sometimes fails
+    for(int count = 1; ; count++) {
+        oimg = QImage(QSize(out_format.width, out_format.height), img.format());
+        if(!oimg.isNull()) break;
+        if(count >= 100) return QImage();
+        QThread::currentThread()->usleep(40000);
+    }
     try {
         //        zimgxx::zfilter_graph_builder_params params;
         //        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(ifmt, ofmt, &params) };
@@ -302,11 +323,11 @@ QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_for
         unsigned output_buffering = graph.get_output_buffering();
         size_t tmp_size = graph.get_tmp_size();
 
-        qDebug() << "input buffering:  " << input_buffering;
-        qDebug() << "output buffering: " << output_buffering;
-        qDebug() << "heap usage: " << tmp_size;
-        qDebug() << "img: " << img;
-        qDebug() << "oimg: " << oimg;
+//        qDebug() << "input buffering:  " << input_buffering;
+//        qDebug() << "output buffering: " << output_buffering;
+//        qDebug() << "heap usage: " << tmp_size;
+//        qDebug() << "img: " << img;
+//        qDebug() << "oimg: " << oimg;
         uchar* obuff = oimg.bits();
 
         auto in_buf = allocate_buffer(in_format, input_buffering);
@@ -335,7 +356,14 @@ QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_for
 QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_format out_format,
                   zimgxx::zimage_format in_format_alpha, zimgxx::zimage_format out_format_alpha)
 {
-    QImage oimg = QImage(QSize(out_format.width, out_format.height), img.format());
+    QImage oimg;
+    // QImage processing sometimes fails
+    for(int count = 1; ; count++) {
+        oimg = QImage(QSize(out_format.width, out_format.height), img.format());
+        if(!oimg.isNull()) break;
+        if(count >= 100) return QImage();
+        QThread::currentThread()->usleep(40000);
+    }
     try {
         //        zimgxx::zfilter_graph_builder_params params;
         //        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(ifmt, ofmt, &params) };
@@ -346,11 +374,11 @@ QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_fo
         unsigned output_buffering = std::max(graph.get_output_buffering(), graph_alpha.get_output_buffering());
         size_t tmp_size = std::max(graph.get_tmp_size(), graph_alpha.get_tmp_size());
 
-        qDebug() << "input buffering:  " << input_buffering;
-        qDebug() << "output buffering: " << output_buffering;
-        qDebug() << "heap usage: " << tmp_size;
-        qDebug() << "img: " << img;
-        qDebug() << "oimg: " << oimg;
+//        qDebug() << "input buffering:  " << input_buffering;
+//        qDebug() << "output buffering: " << output_buffering;
+//        qDebug() << "heap usage: " << tmp_size;
+//        qDebug() << "img: " << img;
+//        qDebug() << "oimg: " << oimg;
         uchar* obuff = oimg.bits();
 
         auto in_rgb_buf = allocate_buffer(in_format, input_buffering);

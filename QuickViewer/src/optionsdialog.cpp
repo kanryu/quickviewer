@@ -16,6 +16,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     ui->spinSlideshow->setValue(m_slideShowWait);
     ui->spinVolumes->setValue(m_maxVolumesCache);
+    ui->spinImages->setValue(qApp->MaxImagesCache());
     ui->checkBoxCheckeredPattern->setChecked(m_useCheckeredPattern);
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
 
@@ -33,6 +34,7 @@ void OptionsDialog::reflectResults()
 {
     qApp->setSlideShowWait(ui->spinSlideshow->value());
     qApp->setMaxVolumesCache(ui->spinVolumes->value());
+    qApp->setMaxImagesCache(ui->spinImages->value());
     qApp->setBackgroundColor(m_backgroundColor);
     qApp->setBackgroundColor2(m_backgroundColor2);
     qApp->setUseCheckeredPattern(m_useCheckeredPattern);

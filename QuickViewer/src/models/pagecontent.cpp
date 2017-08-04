@@ -11,7 +11,7 @@ void ImageContent::initialize()
         QMovie* qm = Movie.data();
         qm->jumpToFrame(0);
         QPixmap firstFrame = qm->currentPixmap();
-        Image = firstFrame;
+        Image = firstFrame.toImage();
         BaseSize = ImportSize = firstFrame.size();
     }
 }
@@ -156,11 +156,11 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
         if(qApp->Effect() < qvEnums::UsingFixedShader) {
             if(Ic.ResizedImage.isNull()
             || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
-                QImage resized = QZimg::scaled(Ic.Image.toImage(), newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
-                Ic.ResizedImage = QPixmap::fromImage(resized);
+                QImage resized = QZimg::scaled(Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+                Ic.ResizedImage = resized;
                 Scene->removeItem(GrItem);
                 delete GrItem;
-                GrItem = Scene->addPixmap(Ic.ResizedImage);
+                GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
                 GrItem->setRotation(Rotate);
             }
             GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
@@ -172,14 +172,14 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
             }
             if(Ic.ResizedImage.isNull() && m_resizeGeneratingState==0) {
                 m_resizeGeneratingState = 1;
-                QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image.toImage(), newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+                QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
                 connect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));
                 generateWatcher.setFuture(future);
             }
             if(!Ic.ResizedImage.isNull() && m_resizeGeneratingState==2) {
                 Scene->removeItem(GrItem);
                 delete GrItem;
-                GrItem = Scene->addPixmap(Ic.ResizedImage);
+                GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
                 GrItem->setRotation(Rotate);
             }
             GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
@@ -201,10 +201,10 @@ void PageContent::initializePage(bool resetResized)
         Scene->removeItem(GrItem);
         delete GrItem;
     }
-    GrItem = Scene->addPixmap(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? Ic.Image : Ic.ResizedImage);
+    GrItem = Scene->addPixmap(QPixmap::fromImage(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? Ic.Image : Ic.ResizedImage));
     GrItem->setRotation(Rotate);
     if(resetResized)
-        Ic.ResizedImage = QPixmap();
+        Ic.ResizedImage = QImage();
     m_resizeGeneratingState = 0;
 }
 
@@ -256,7 +256,7 @@ void PageContent::resetScene(QGraphicsScene *)
 
 void PageContent::on_resizeFinished_trigger()
 {
-    Ic.ResizedImage = QPixmap::fromImage(generateWatcher.result());
+    Ic.ResizedImage = generateWatcher.result();
 
     m_resizeGeneratingState = 2;
     disconnect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));

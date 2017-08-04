@@ -27,11 +27,11 @@ FileLoaderRarArchive::FileLoaderRarArchive(QObject* parent, QString rarpath)
 QByteArray FileLoaderRarArchive::getFile(QString name, QMutex& mutex)
 {
     QByteArray bytes;
+    mutex.lock();
     if(m_imageFileList.contains(name)) {
-        mutex.lock();
         bytes = d->fileData(name);
-        mutex.unlock();
     }
+    mutex.unlock();
     return bytes;
 }
 

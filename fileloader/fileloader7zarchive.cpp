@@ -40,15 +40,15 @@ FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath)
 QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
 {
     QByteArray bytes;
+    mutex.lock();
     if(m_imageFileList.contains(name)) {
-        mutex.lock();
         Qt7zFileInfo info = d->m_fileinfomap[name];
 
         QBuffer iobuffer(&bytes, this);
         iobuffer.open(QIODevice::WriteOnly);
         d->m_reader.extractFile(name, &iobuffer);
-        mutex.unlock();
     }
+    mutex.unlock();
     return bytes;
 }
 

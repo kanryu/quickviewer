@@ -17,7 +17,7 @@ IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* page
     , m_loader(loader)
     , m_cacheMode(CacheMode::Normal)
     , m_pageManager(pageManager)
-    , m_imageCache(23)
+    , m_imageCache(qApp->MaxImagesCache())
     , m_openedWithSpecifiedImageFile(false)
 {
     m_filelist = m_loader->contents();
@@ -38,16 +38,41 @@ void IFileVolume::on_ready()
         return;
 
 //    qDebug() << "on_ready: m_cnt" << m_cnt;
-    QVector<int> offsets;
+    QList<int> offsets;
     switch(m_cacheMode) {
-    case CacheMode::Normal: offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6}; break;
-//    case CacheMode::NormalForward: offsets = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; break;
-    case CacheMode::NormalForward: offsets = {10, 11, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7}; break;
-//    case CacheMode::NormalBackward: offsets = {0, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10}; break;
-    case CacheMode::NormalBackward: offsets = {-9, -10, -7, -8, 0, 1, -1, -2, -3, -4, -5, -6}; break;
-    case CacheMode::FastForward: offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19}; break;
+    case CacheMode::Normal:
+        offsets = {0, 1, 2, 3, -1, -2, 4, 5, -3, -4, 6, 7, -5, -6};
+        while(offsets.size() > qApp->MaxImagesCache())
+            offsets.removeLast();
+        break;
+    case CacheMode::NormalForward:
+        offsets = {10, 11, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7};
+        if(offsets.size() > qApp->MaxImagesCache())  {
+            QMutableListIterator<int> i(offsets);
+            while (i.hasNext()) {
+                if (i.next() >= qApp->MaxImagesCache())
+                    i.remove();
+            }
+        }
+        break;
+    case CacheMode::NormalBackward:
+        offsets = {-9, -10, -7, -8, 0, 1, -1, -2, -3, -4, -5, -6};
+        if(offsets.size() > qApp->MaxImagesCache())  {
+            QMutableListIterator<int> i(offsets);
+            while (i.hasNext()) {
+                if (i.next() < -qApp->MaxImagesCache()+2)
+                    i.remove();
+            }
+        }
+        break;
+    case CacheMode::FastForward:
+        offsets = {0, 1, 10, 11, -10, -9, 20, 21, -20, 19};
+        while(offsets.size() > qApp->MaxImagesCache())
+            offsets.removeLast();
+        break;
     case CacheMode::CoverOnly: offsets = {0, 1}; break;
     case CacheMode::NoAsync:
+//        qDebug() << "on_ready()NoAsync" << m_filelist[m_cnt];
         m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[m_cnt], QSize());
         return;
     }
@@ -68,7 +93,8 @@ void IFileVolume::on_ready()
                 }
             }
         }
-        if(m_imageCache.checkShouldBeInserted(cnt))
+        if(m_imageCache.checkShouldBeInserted(cnt)) {
+//            qDebug() << "on_ready()" << m_filelist[cnt];
             m_imageCache.insertNoChecked(cnt, QtConcurrent::run(
                  futureLoadImageFromFileVolume,
                  this,
@@ -77,6 +103,7 @@ void IFileVolume::on_ready()
                      ? m_pageManager->viewportSize()
                      : QSize())
             );
+        }
     }
     m_currentCache = m_imageCache.object(m_cnt);
 }
@@ -84,10 +111,16 @@ void IFileVolume::on_ready()
 const ImageContent IFileVolume::getIndexedImageContent(int idx)
 {
 //    future_image cache = m_imageCache[idx];
-    future_image cache = m_imageCache.object(idx);
-    if(!cache.isFinished())
-        cache.waitForFinished();
+    future_image& cache = m_imageCache.object(idx);
+//    if(!cache.isFinished())
+//        cache.waitForFinished();
     return cache.result();
+}
+
+void IFileVolume::moveToThread(QThread *targetThread)
+{
+    QObject::moveToThread(targetThread);
+    m_loader->moveToThread(targetThread);
 }
 
 bool IFileVolume::nextPage()
@@ -242,6 +275,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 
 ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path, QSize pageSize)
 {
+//    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
     int maxTextureSize = qApp->maxTextureSize();
     easyexif::EXIFInfo info;
 
@@ -282,16 +316,18 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         reader.setScaledSize(loadingSize);
     }
     QImage src;
-//#ifdef Q_OS_WIN
     {
-        QImage tmp = reader.read();
+        QImage tmp;
+        // QImage processing sometimes fails
+        for(int count = 1; ; count++) {
+            tmp = reader.read();
+            if(!tmp.isNull()) break;
+            qDebug() << "[0]" << path << tmp << count;
+            if(count >= 100) return ImageContent();
+            QThread::currentThread()->usleep(40000);
+        }
         src = QZimg::toPackedImage(tmp);
-    }
-//#else
-//    src = reader.read();
-//#endif
-    if(src.isNull()) {
-        src = QImage::fromData(bytes, QFileInfo(path.toLower()).suffix().toUtf8());
+        if(src.isNull()) return ImageContent();
     }
 
     // parsing JPEG EXIF
@@ -304,8 +340,15 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     }
 
 
-    ImageContent ic(QPixmap::fromImage(src), path, baseSize, info);
+//    ImageContent ic(QPixmap::fromImage(src), path, baseSize, info);
+    ImageContent ic;
+    ic.Path = path;
+    ic.BaseSize = baseSize;
+    ic.Info = info;
+    if(src.isNull())
+        return ic;
     if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
+        ic = ImageContent(src, path, baseSize, info);;
     } else {
         // resample for too big images
         QSize srcSizeReal = src.size();
@@ -313,9 +356,15 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         switch(src.depth()) {
         case 32:
             if((src.width() | 0x3) > 0) {
-                src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
-                //qDebug() << path << "[4]Source:" <<  src2;
-                src = src2;
+                // QImage processing sometimes fails
+                for(int count = 1; ; count++) {
+                    src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
+                    if(!src2.isNull()) break;
+                    qDebug() << "[2]" << path << src2 << count;
+                    if(count >= 100) return ImageContent();
+                    QThread::currentThread()->usleep(40000);
+                }
+                src.swap(src2);
             }
             break;
         default:
@@ -323,9 +372,20 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
                 src = src.convertToFormat(QImage::Format::Format_RGB888);
             }
             if((src.width() | 0xF) > 0) {
-                src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
-                //qDebug() << path << "[4]Source:" <<  src2;
-                src = src2;
+                // QImage processing sometimes fails
+                int count = 0;
+                do {
+                    src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
+//                    qDebug() << "[2]" << path << src2 << count;
+                    if(!src2.isNull())
+                        break;
+                    if(src2.isNull() && count++ < 1000) {
+                        QThread::currentThread()->usleep(1000);
+                        continue;
+                    }
+                    return ImageContent();
+                } while(1);
+                src.swap(src2);
             }
             break;
         }
@@ -337,18 +397,19 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
         //qDebug() << path << "[2]Dest:" <<  half;
 
+//        qDebug() << path << src;
         ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
         ResizeHalf resizer(fmt);
         resizer.resizeHV(half.bits(), src.bits(), src.width(), srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
 
 //        ImageContent ic(QPixmap::fromImage(half), path, srcSizeReal, info);
-        ic.Image = QPixmap::fromImage(half);
+        ic.Image = half;
         ic.ImportSize = srcSizeReal;
     }
     // CPU resizing before Page Viewing
     if(!pageSize.isEmpty() && !ic.Image.isNull()) {
         QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-        ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), newsize, Qt::KeepAspectRatio));
+        ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
     }
 
     return ic;
@@ -358,6 +419,6 @@ ImageContent IFileVolume::futureReizeImage(ImageContent ic, QSize pageSize)
 {
 //    qDebug() << "futureReizeImage:" << ic.Path;
     QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-    ic.ResizedImage = QPixmap::fromImage(QZimg::scaled(ic.Image.toImage(), newsize, Qt::KeepAspectRatio));
+    ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
     return ic;
 }

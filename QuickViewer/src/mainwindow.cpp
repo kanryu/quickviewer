@@ -1152,7 +1152,7 @@ void MainWindow::on_deletePage_triggered()
 
         //icon
         QVector<ImageContent> ic = m_pageManager.currentPageContent();
-        QImage image = ic[0].Image.toImage();
+        QImage image = ic[0].Image;
         image = image.scaled(QSize(100, 100), Qt::KeepAspectRatio);
         msgBox.setIconPixmap(QPixmap::fromImage(image));
 

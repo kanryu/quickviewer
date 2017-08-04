@@ -39,6 +39,7 @@ class QVApplication : public QApplication
     // View
     Q_PROPERTY(int SlideShowWait READ SlideShowWait WRITE setSlideShowWait)
     Q_PROPERTY(int MaxVolumesCache READ MaxVolumesCache WRITE setMaxVolumesCache)
+    Q_PROPERTY(int MaxImagesCache READ MaxImagesCache WRITE setMaxImagesCache)
     Q_PROPERTY(bool Fitting READ Fitting WRITE setFitting)
     Q_PROPERTY(QColor BackgroundColor READ BackgroundColor WRITE setBackgroundColor)
     Q_PROPERTY(QColor BackgroundColor2 READ BackgroundColor2 WRITE setBackgroundColor2)
@@ -120,6 +121,8 @@ public:
     void setSlideShowWait (int slideShowWait) { m_slideShowWait = slideShowWait; }
     int MaxVolumesCache() { return m_maxVolumesCache; }
     void setMaxVolumesCache (int maxVolumesCache) { m_maxVolumesCache = maxVolumesCache; }
+    int MaxImagesCache() { return m_maxImagesCache; }
+    void setMaxImagesCache (int maxImagesCache) { m_maxImagesCache = maxImagesCache; }
     QColor BackgroundColor() { return m_backgroundColor; }
     void setBackgroundColor (QColor backgroundColor) { m_backgroundColor = backgroundColor; }
     QColor BackgroundColor2() { return m_backgroundColor2; }
@@ -371,6 +374,7 @@ private:
     bool m_showSubfolders;
     int m_slideShowWait;
     int m_maxVolumesCache;
+    int m_maxImagesCache;
     QColor m_backgroundColor;
     QColor m_backgroundColor2;
     bool m_useCheckeredPattern;

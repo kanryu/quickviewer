@@ -489,7 +489,7 @@ void ImageView::on_copyPage_triggered()
     if(m_pages.empty())
         return;
     QClipboard* clipboard = qApp->clipboard();
-    clipboard->setImage(m_pages[0].Ic.Image.toImage());
+    clipboard->setImage(m_pages[0].Ic.Image);
 }
 
 void ImageView::on_copyFile_triggered()

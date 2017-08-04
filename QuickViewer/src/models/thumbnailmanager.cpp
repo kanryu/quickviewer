@@ -571,7 +571,7 @@ FileWorker ThumbnailManager::createFileRecordFromArchive(QString archivePath, Im
     result.filepath = ic.Path;
     result.info.setFile(archivePath);
     result.asc = filename_asc;
-    QImage img = ic.Image.toImage();
+    QImage img = ic.Image;
     if(!img.width()) {
         result.asc = -1;
         return result;
