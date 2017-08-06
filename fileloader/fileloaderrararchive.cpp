@@ -8,10 +8,19 @@ FileLoaderRarArchive::FileLoaderRarArchive(QObject* parent, QString rarpath)
     , m_valid(false)
     , d(new RarExtractor(rarpath))
 {
-
     if(!(m_valid = d->open(RarExtractor::OpenModeList, "")))
         return;
+}
 
+QStringList FileLoaderRarArchive::contents()
+{
+    if(m_imageFileList.empty())
+        initialize();
+    return m_imageFileList;
+}
+
+void FileLoaderRarArchive::initialize()
+{
     foreach(const QString& name, d->fileNameList()) {
         if(IFileLoader::isImageFile(name)) {
             m_imageFileList.append(name);

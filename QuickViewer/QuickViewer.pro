@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.8.9
+VERSION = 0.9.0
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -79,7 +79,6 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/models/bookprogressmanager.cpp \
-    src/models/filevolume.cpp \
     src/models/pagecontent.cpp \
     src/models/pagemanager.cpp \
     src/models/qvapplication.cpp \
@@ -96,7 +95,9 @@ SOURCES += \
     src/models/qvmovie.cpp \
     src/models/qmousesequence.cpp \
     src/qfullscreenframe/qinnerframe.cpp \
-    src/mouseconfigdialog.cpp
+    src/mouseconfigdialog.cpp \
+    src/models/volumemanager.cpp \
+    src/models/volumemanagerbuilder.cpp
 
 
 HEADERS  += \
@@ -114,7 +115,6 @@ HEADERS  += \
     src/keyconfigdialog.h \
     src/mainwindow.h \
     src/models/bookprogressmanager.h \
-    src/models/filevolume.h \
     src/models/pagecontent.h \
     src/models/pagemanager.h \
     src/models/qvapplication.h \
@@ -133,7 +133,9 @@ HEADERS  += \
     src/models/qvmovie.h \
     src/models/qmousesequence.h \
     src/qfullscreenframe/qinnerframe.h \
-    src/mouseconfigdialog.h
+    src/mouseconfigdialog.h \
+    src/models/volumemanager.h \
+    src/models/volumemanagerbuilder.h
 
 PRECOMPILED_HEADER += src/stdafx.h
 

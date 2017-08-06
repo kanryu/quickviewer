@@ -1,30 +1,26 @@
 #include <QtGui>
 
-#include "filevolume.h"
-#include "fileloaderdirectory.h"
-#include "fileloadersubdirectory.h"
-#include "fileloaderziparchive.h"
-#include "fileloader7zarchive.h"
-#include "fileloaderrararchive.h"
+#include "volumemanager.h"
 #include "ResizeHalf.h"
 #include "qvapplication.h"
 #include "qzimg.h"
 #include "pagemanager.h"
+#include "fileloader.h"
 
-IFileVolume::IFileVolume(QObject *parent, IFileLoader* loader, PageManager* pageManager)
+VolumeManager::VolumeManager(QObject *parent, IFileLoader* loader, PageManager* pageManager)
     : QObject(parent)
     , m_cnt(0)
     , m_loader(loader)
     , m_cacheMode(CacheMode::Normal)
     , m_pageManager(pageManager)
+    , m_enumerated(false)
     , m_imageCache(qApp->MaxImagesCache())
     , m_openedWithSpecifiedImageFile(false)
 {
-    m_filelist = m_loader->contents();
     m_volumePath = m_loader->volumePath();
 }
 
-IFileVolume::~IFileVolume() {
+VolumeManager::~VolumeManager() {
     m_imageCache.clear();
     if(m_loader) {
         delete m_loader;
@@ -32,8 +28,18 @@ IFileVolume::~IFileVolume() {
     }
 }
 
-void IFileVolume::on_ready()
+void VolumeManager::enumerate()
 {
+    m_filelist = m_loader->contents();
+    m_enumerated = true;
+}
+
+static ImageContent pathThrough(ImageContent ic) { return ic; }
+
+void VolumeManager::on_ready()
+{
+    if(!m_enumerated)
+        enumerate();
     if(m_cnt < 0 || m_cnt >= m_filelist.size() || m_loader->contents().size()==0)
         return;
 
@@ -70,12 +76,21 @@ void IFileVolume::on_ready()
         while(offsets.size() > qApp->MaxImagesCache())
             offsets.removeLast();
         break;
-    case CacheMode::CoverOnly: offsets = {0, 1}; break;
-    case CacheMode::NoAsync:
-//        qDebug() << "on_ready()NoAsync" << m_filelist[m_cnt];
-        m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[m_cnt], QSize());
+    case CacheMode::CreateThumbnail:
+        m_currentCacheSync = futureLoadImageFromFileVolume(this, 0, QSize());
+        break;
+    case CacheMode::CoverOnly:
+        offsets = {0, 1};
+        foreach (const int of, offsets) {
+            int cnt = m_cnt+of;
+            if(cnt < 0 || cnt >= m_filelist.size())
+                continue;
+            ImageContent ic = futureLoadImageFromFileVolume(this, m_filelist[m_cnt], QSize());
+            m_imageCache.insert(cnt, QtConcurrent::run(pathThrough, ic));
+        }
         return;
     }
+    m_currentCacheSync = ImageContent();
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())
@@ -108,7 +123,7 @@ void IFileVolume::on_ready()
     m_currentCache = m_imageCache.object(m_cnt);
 }
 
-const ImageContent IFileVolume::getIndexedImageContent(int idx)
+const ImageContent VolumeManager::getIndexedImageContent(int idx)
 {
 //    future_image cache = m_imageCache[idx];
     future_image& cache = m_imageCache.object(idx);
@@ -117,13 +132,13 @@ const ImageContent IFileVolume::getIndexedImageContent(int idx)
     return cache.result();
 }
 
-void IFileVolume::moveToThread(QThread *targetThread)
+void VolumeManager::moveToThread(QThread *targetThread)
 {
     QObject::moveToThread(targetThread);
     m_loader->moveToThread(targetThread);
 }
 
-bool IFileVolume::nextPage()
+bool VolumeManager::nextPage()
 {
 //    qDebug() << "nextPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();
     if(m_cnt >= m_filelist.size() || m_loader->contents().size()==0)
@@ -133,7 +148,7 @@ bool IFileVolume::nextPage()
     return true;
 }
 
-bool IFileVolume::prevPage()
+bool VolumeManager::prevPage()
 {
 //    qDebug() << "prevPage: " << m_cnt << m_filelist.size() <<  "prevCache.size()" << m_prevCache.size() << "nextCache.size()" << m_nextCache.size();
     if(m_cnt <= 0 || m_loader->contents().size()==0)
@@ -143,7 +158,7 @@ bool IFileVolume::prevPage()
     return true;
 }
 
-bool IFileVolume::findPageByIndex(int idx)
+bool VolumeManager::findPageByIndex(int idx)
 {
     if(m_cnt == idx)
         return true;
@@ -155,7 +170,7 @@ bool IFileVolume::findPageByIndex(int idx)
     return true;
 }
 
-bool IFileVolume::findImageByIndex(int idx) {
+bool VolumeManager::findImageByIndex(int idx) {
     if(idx < 0 || idx >= m_filelist.size())
         return false;
     m_cnt = idx;
@@ -163,7 +178,7 @@ bool IFileVolume::findImageByIndex(int idx) {
     return true;
 }
 
-bool IFileVolume::findImageByName(QString name) {
+bool VolumeManager::findImageByName(QString name) {
     int idx = m_filelist.indexOf(name);
     if(idx < 0)
         return false;
@@ -172,61 +187,7 @@ bool IFileVolume::findImageByName(QString name) {
     return true;
 }
 
-static IFileVolume* CreateVolumeImpl(QObject* parent, QString path, PageManager* pageManager)
-{
-    QDir dir(path);
-
-    //    if(dir.exists() && dir.entryList(QDir::Files, QDir::Name).size() > 0) {
-    if(dir.exists()) {
-        return new IFileVolume(parent, qApp->ShowSubfolders() ? new FileLoaderSubDirectory(parent, path) : new FileLoaderDirectory(parent, path), pageManager);
-    }
-    QString lower = path.toLower();
-    if(lower.endsWith(".zip") || lower.endsWith(".cbz")) {
-        return new IFileVolume(parent, new FileLoaderZipArchive(parent, path), pageManager);
-    }
-    if(lower.endsWith(".7z")) {
-        return new IFileVolume(parent, new FileLoader7zArchive(parent, path), pageManager);
-    }
-    if(lower.endsWith(".rar") || lower.endsWith(".cbr")) {
-        return new IFileVolume(parent, new FileLoaderRarArchive(parent, path), pageManager);
-    }
-    if(IFileLoader::isImageFile(path)) {
-        dir.cdUp();
-        QString dirpath = dir.canonicalPath();
-        IFileVolume* fvd = new IFileVolume(parent, qApp->ShowSubfolders() ? new FileLoaderSubDirectory(parent, path) : new FileLoaderDirectory(parent, dirpath), pageManager);
-        fvd->findImageByName(path.mid(dirpath.length()+1));
-        fvd->setOpenedWithSpecifiedImageFile(true);
-        return fvd;
-    }
-    return nullptr;
-}
-
-IFileVolume* IFileVolume::CreateVolume(QObject* parent, QString path, PageManager* pageManager)
-{
-    QString pathbase = path;
-    QString subfilename;
-    if(path.contains("::")) {
-        QStringList seps = path.split("::");
-        pathbase = seps[0];
-        subfilename = seps[1];
-    }
-    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(pathbase), pageManager);
-    if(!fv)
-        return fv;
-    if(fv->size() == 0) {
-        delete fv;
-        return nullptr;
-    }
-    if(subfilename.length() > 0)
-    {
-        fv->findImageByName(subfilename);
-    }
-    fv->on_ready();
-    return fv;
-}
-
-
-QString IFileVolume::FullPathToVolumePath(QString path)
+QString VolumeManager::FullPathToVolumePath(QString path)
 {
     if(!path.contains("::")) {
         return path;
@@ -234,7 +195,7 @@ QString IFileVolume::FullPathToVolumePath(QString path)
     return path.left(path.indexOf("::"));
 }
 
-QString IFileVolume::FullPathToSubFilePath(QString path)
+QString VolumeManager::FullPathToSubFilePath(QString path)
 {
     if(!path.contains("::")) {
         return "";
@@ -242,19 +203,6 @@ QString IFileVolume::FullPathToSubFilePath(QString path)
     return path.mid(path.indexOf("::")+2);
 }
 
-IFileVolume *IFileVolume::CreateVolumeWithOnlyCover(QObject *parent, QString path, PageManager* pageManager, CacheMode mode)
-{
-    IFileVolume* fv = CreateVolumeImpl(parent, QDir::toNativeSeparators(path), pageManager);
-    if(!fv)
-        return fv;
-    if(fv->size() == 0) {
-        delete fv;
-        return nullptr;
-    }
-    fv->m_cacheMode = mode;
-    fv->on_ready();
-    return fv;
-}
 
 static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 {
@@ -273,7 +221,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 }
 
 
-ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QString path, QSize pageSize)
+ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)
 {
 //    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
     int maxTextureSize = qApp->maxTextureSize();
@@ -289,7 +237,14 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         aformat = "apng";
     }
     QImageReader reader(&buffer, aformat.toUtf8());
-    reader.canRead();
+    if(!reader.canRead()) {
+        buffer.seek(0);
+        reader.setDevice(&buffer);
+        reader.setFormat(QByteArray());
+        reader.canRead();
+    }
+    // Emptying the format of QImageReader will get the format of the internal QImageIoHandler
+    reader.setFormat("");
 
     if(reader.supportsAnimation()) {
         QvMovie movie = QvMovie(bytes, aformat.toUtf8());
@@ -299,7 +254,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
         ic.BaseSize = ic.ImportSize = reader.size();
         return ic;
     }
-    if(aformat == "apng") {
+    if(reader.format() == "apng") {
         buffer.seek(0);
         reader.setFormat(QByteArray("png"));
         reader.setDevice(&buffer);
@@ -310,7 +265,7 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     QSize loadingSize = baseSize;
     // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
     // but usualy thumbnails are too small, so we don't use
-    if(aformat == TURBO_JPEG_FMT) {
+    if(reader.format() == TURBO_JPEG_FMT) {
         while(loadingSize.width() > maxTextureSize || loadingSize.height() > maxTextureSize)
             loadingSize = QSize((loadingSize.width()+1) >> 1,(loadingSize.height()+1) >> 1);
         reader.setScaledSize(loadingSize);
@@ -415,10 +370,11 @@ ImageContent IFileVolume::futureLoadImageFromFileVolume(IFileVolume* volume, QSt
     return ic;
 }
 
-ImageContent IFileVolume::futureReizeImage(ImageContent ic, QSize pageSize)
+ImageContent VolumeManager::futureReizeImage(ImageContent ic, QSize pageSize)
 {
 //    qDebug() << "futureReizeImage:" << ic.Path;
     QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
     ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
     return ic;
 }
+

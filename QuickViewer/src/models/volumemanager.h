@@ -1,5 +1,5 @@
-#ifndef FILELIST_H
-#define FILELIST_H
+#ifndef VOLUMEMANAGER_H
+#define VOLUMEMANAGER_H
 
 #include <QtCore>
 #include <QtGui>
@@ -10,9 +10,16 @@
 #include "pagecontent.h"
 
 class PageManager;
-
-
-class IFileVolume : public QObject
+class VolumeManagerBuilder;
+/**
+ * @brief The VolumeManager class
+ *
+ * This class manages a Volume (Folder or Archive).
+ * Image pre-reading is performed by the prefetch algorithm specified by CacheMode.
+ * Images in Volume are listed in advance and can be opened with numbers or subpaths.
+ * The loaded image is cached by the FIFO method(TimeOrderdCache).
+ */
+class VolumeManager : public QObject
 {
     Q_OBJECT
 //    Q_DISABLE_COPY(IFileVolume)
@@ -25,26 +32,24 @@ public:
         FastForward,
         FastBackrard,
         CoverOnly,
-        NoAsync,
+        CreateThumbnail,
     };
 
     typedef QFuture<ImageContent> future_image;
 
-    explicit IFileVolume(QObject *parent, IFileLoader* loader, PageManager* pageManager);
-    ~IFileVolume();
-    /**
-     * @brief A factory function that returns an instance of IFileVolume from the path of the specified file or directory
-     * @return An object that inherits the IFileVolume interface. It is null if generation failed
-     */
-    static IFileVolume* CreateVolume(QObject* parent, QString path, PageManager* pageManager);
-    static IFileVolume* CreateVolumeWithOnlyCover(QObject* parent, QString path, PageManager* pageManager, CacheMode mode = CacheMode::CoverOnly);
+    explicit VolumeManager(QObject *parent, IFileLoader* loader, PageManager* pageManager);
+    ~VolumeManager();
+    void enumerate();
+    bool enumerated() { return m_enumerated; }
 
-    static ImageContent futureLoadImageFromFileVolume(IFileVolume* volume, QString path, QSize pageSize);
+    static ImageContent futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize);
     static ImageContent futureReizeImage(ImageContent ic, QSize pageSize);
     static QString FullPathToVolumePath(QString path);
     static QString FullPathToSubFilePath(QString path);
 
     bool isArchive() const { return m_loader->isArchive(); }
+    bool hasSubDirectories() const { return m_loader->hasSubDirectories(); }
+
 
     QString currentPath() {
         if(m_loader->isArchive())
@@ -76,7 +81,7 @@ public:
     CacheMode cacheMode() const { return m_cacheMode; }
 
 
-    const ImageContent currentImage() { return m_cacheMode == NoAsync ? m_currentCacheSync : m_currentCache.result(); }
+    const ImageContent currentImage() { return m_cacheMode == CreateThumbnail ? m_currentCacheSync : m_currentCache.result(); }
     QString volumePath() { return m_loader->volumePath(); }
     QString realVolumePath() { return m_loader->realVolumePath(); }
 
@@ -116,7 +121,7 @@ public:
     void setOpenedWithSpecifiedImageFile(bool openedWithSpecifiedImageFile) { m_openedWithSpecifiedImageFile = openedWithSpecifiedImageFile; }
     void moveToThread(QThread *targetThread);
 
-protected:
+private:
     /**
      * @brief m_cnt File counter in the volume
      */
@@ -134,10 +139,12 @@ protected:
     IFileLoader* m_loader;
     CacheMode m_cacheMode;
     PageManager* m_pageManager;
+    bool m_enumerated;
     bool m_openedWithSpecifiedImageFile;
     QString m_volumePath;
+
+    friend class VolumeManagerBuilder;
 };
 
 
-
-#endif // FILELIST_H
+#endif // VOLUMEMANAGER_H

@@ -103,26 +103,14 @@ public:
     void myInstallTranslator();
 
     // View
-    bool Fitting() { return m_fitting; }
-    void setFitting (bool fitting) { m_fitting = fitting; }
-    bool DualView() { return m_dualView; }
-    void setStayOnTop (bool stayOnTop) { m_stayOnTop = stayOnTop; }
-    bool StayOnTop() { return m_stayOnTop; }
-    void setDualView (bool dualView) { m_dualView = dualView; }
-    bool RightSideBook() { return m_rightSideBook; }
-    void setRightSideBook (bool rightSideBook) { m_rightSideBook = rightSideBook; }
-    bool WideImageAsOnePageInDualView() { return m_wideImageAsOnePageInDualView; }
-    void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
-    bool FirstImageAsOnePageInDualView() { return m_firstImageAsOnePageInDualView; }
-    void setFirstImageAsOnePageInDualView (bool firstImageAsOnePageInDualView) { m_firstImageAsOnePageInDualView = firstImageAsOnePageInDualView; }
-    bool ShowSubfolders() { return m_showSubfolders; }
-    void setShowSubfolders (bool showSubfolders) { m_showSubfolders = showSubfolders; }
     int SlideShowWait() { return m_slideShowWait; }
     void setSlideShowWait (int slideShowWait) { m_slideShowWait = slideShowWait; }
     int MaxVolumesCache() { return m_maxVolumesCache; }
     void setMaxVolumesCache (int maxVolumesCache) { m_maxVolumesCache = maxVolumesCache; }
     int MaxImagesCache() { return m_maxImagesCache; }
     void setMaxImagesCache (int maxImagesCache) { m_maxImagesCache = maxImagesCache; }
+    bool Fitting() { return m_fitting; }
+    void setFitting (bool fitting) { m_fitting = fitting; }
     QColor BackgroundColor() { return m_backgroundColor; }
     void setBackgroundColor (QColor backgroundColor) { m_backgroundColor = backgroundColor; }
     QColor BackgroundColor2() { return m_backgroundColor2; }
@@ -136,6 +124,18 @@ public:
     bool ShowFullscreenTitleBar() { return m_showFullscreenTitleBar; }
     void setShowFullscreenTitleBar (bool showFullscreenTitleBar) { m_showFullscreenTitleBar = showFullscreenTitleBar; }
 
+
+    // DualView
+    bool DualView() { return m_dualView; }
+    void setStayOnTop (bool stayOnTop) { m_stayOnTop = stayOnTop; }
+    bool StayOnTop() { return m_stayOnTop; }
+    void setDualView (bool dualView) { m_dualView = dualView; }
+    bool RightSideBook() { return m_rightSideBook; }
+    void setRightSideBook (bool rightSideBook) { m_rightSideBook = rightSideBook; }
+    bool WideImageAsOnePageInDualView() { return m_wideImageAsOnePageInDualView; }
+    void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
+    bool FirstImageAsOnePageInDualView() { return m_firstImageAsOnePageInDualView; }
+    void setFirstImageAsOnePageInDualView (bool firstImageAsOnePageInDualView) { m_firstImageAsOnePageInDualView = firstImageAsOnePageInDualView; }
 
     // Show Bars
     bool ShowToolBar() { return m_showToolBar; }
@@ -191,6 +191,8 @@ public:
     void setOpenVolumeWithProgress (bool openVolumeWithProgress) { m_openVolumeWithProgress = openVolumeWithProgress; }
     bool ShowReadProgress() { return m_showReadProgress; }
     void setShowReadProgress (bool showReadProgress) { m_showReadProgress = showReadProgress; }
+    bool ShowSubfolders() { return m_showSubfolders; }
+    void setShowSubfolders (bool showSubfolders) { m_showSubfolders = showSubfolders; }
 
     // Catalog
     qvEnums::CatalogViewMode CatalogViewModeSetting() { return m_catalogViewModeSetting; }

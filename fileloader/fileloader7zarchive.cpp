@@ -14,13 +14,23 @@ public:
 
 FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath)
     : IFileLoader(parent)
+    , d(new FileLoader7zArchivePrivate(sevenzippath))
     , m_volumepath(sevenzippath)
     , m_valid(false)
-    , d(new FileLoader7zArchivePrivate(sevenzippath))
 {
     if(!(m_valid = d->m_reader.open()))
         return;
+}
 
+QStringList FileLoader7zArchive::contents()
+{
+    if(m_imageFileList.empty())
+        initialize();
+    return m_imageFileList;
+}
+
+void FileLoader7zArchive::initialize()
+{
     foreach(const Qt7zFileInfo& info, d->m_reader.fileInfoList()) {
         if(!info.isDir) {
             if(IFileLoader::isImageFile(info.fileName)) {

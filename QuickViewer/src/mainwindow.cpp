@@ -16,6 +16,7 @@
 #include "exifdialog.h"
 #include "qnamedpipe.h"
 #include "qmousesequence.h"
+#include "fileloader.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->actionFullscreen->setVisible(false);
     auto fullscreenButton = new QToolButton(this);
     fullscreenButton->setToolTip(tr("&Fullscreen"));
     fullscreenButton->setCheckable(true);
@@ -41,8 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
-    ui->pageSlider->hide();
-    //QVApplication* myapp = qApp;
 
     // Mapping to Key-Action Table and Key Config Dialog
     qApp->registActions(ui);
@@ -232,70 +230,13 @@ void MainWindow::wheelEvent(QWheelEvent *e)
     }
     if(ui->graphicsView->isScrollMode())
         return;
-    action->trigger();
-    e->accept();
-//    if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
-//        if(e->delta() < 0) {
-//            ui->actionZoomOut->trigger();
-//        }
-//        if(e->delta() > 0) {
-//            ui->actionZoomIn->trigger();
-//        }
-//        e->accept();
-//        needContextMenu = false;
-//        return;
-//    }
-//    if(ui->graphicsView->isScrollMode())
-//        return;
-//    if(e->delta() < 0) {
-//        ui->actionNextPage->trigger();
-//    }
-//    if(e->delta() > 0) {
-//        ui->actionPrevPage->trigger();
-//    }
-//    e->accept();
+    if(action) {
+        action->trigger();
+        e->accept();
+        return;
+    }
+    QMainWindow::wheelEvent(e);
 }
-
-//void MainWindow::contextMenuEvent(QContextMenuEvent *e)
-//{
-//    if(!needContextMenu)
-//        return;
-//    QWidget *child = childAt(e->pos());
-////    qDebug() << child << child->parent();
-//    if(child->parent() == ui->graphicsView && m_contextMenu)
-//        m_contextMenu->exec(QCursor::pos());
-//}
-
-//void MainWindow::mousePressEvent(QMouseEvent *e)
-//{
-////    needContextMenu = true;
-////    QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), e->buttons(), 0);
-////    if(mv.Key != "+::LeftButton" && mv.Key != "+::RightButton") {
-////        QAction* action = qApp->getActionFromMouse(mv);
-////        if(action) {
-////            if(action == ui->actionFitting)
-////                needContextMenu = false;
-////            action->trigger();
-////            e->accept();
-////        }
-////    }
-
-////    if(e->buttons() & Qt::MiddleButton) {
-////        if(e->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier) {
-////            ui->actionFitting->trigger();
-////            needContextMenu = false;
-////        } else {
-////            on_fullscreen_triggered();
-////        }
-////        e->accept();
-////    }
-//    QMainWindow::mousePressEvent(e);
-////    if(e->button() == Qt::RightButton) {
-////        if(contextMenu)
-////            contextMenu->exec(QCursor::pos());
-//    //    }
-//}
-
 
 void MainWindow::closeEvent(QCloseEvent *)
 {
@@ -331,16 +272,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     case QEvent::MouseButtonDblClick:
         if(obj == ui->graphicsView) {
             mouseEvent = dynamic_cast<QMouseEvent*>(event);
-//            // 5 buttons mouse forward for browsers
-//            if(mouseEvent->button() == Qt::ForwardButton) {
-//                ui->actionNextPage->trigger();
-//                return true;
-//            }
-//            // 5 buttons mouse back for browsers
-//            if(mouseEvent->button() == Qt::BackButton) {
-//                ui->actionPrevPage->trigger();
-//                return true;
-//            }
             // tap left/right of window
             if(mouseEvent->button() == Qt::LeftButton) {
                 if(ui->graphicsView->hoverState() == Qt::AnchorLeft) {
@@ -381,7 +312,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     // ContextMenu event occurs when releasing the RightButton
     case QEvent::ContextMenu:
         if(obj == ui->graphicsView) {
-            QContextMenuEvent *contextMenuEvent = dynamic_cast<QContextMenuEvent*>(event);
+//            QContextMenuEvent *contextMenuEvent = dynamic_cast<QContextMenuEvent*>(event);
 //            qDebug() << contextMenuEvent;
             QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), Qt::RightButton, 0);
             QAction* action = qApp->getActionFromMouse(mv);
@@ -413,9 +344,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::loadVolume(QString path)
 {
+    if(IFileLoader::isImageFile(path)) {
+        m_pageManager.loadVolumeWithFile(path);
+        return;
+    }
     if(m_pageManager.loadVolume(path)) {
-        if(!isFullScreen() && qApp->ShowSliderBar())
-            ui->pageFrame->show();
         return;
     }
 
@@ -467,25 +400,17 @@ const static QKeySequence seqEnter("Num+Enter");
  */
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    //int key = event->key();
     QKeySequence seq(event->key() | event->modifiers());
-//    qDebug() << seq;
 
     if(this->focusWidget() != ui->graphicsView)
         return;
-//    // if the focus is on searchbar on CatalogWindow
-//    if(seq == seqReturn || seq == seqEnter) {
-//        if(isCatalogSearching()) {
-//            return;
-//        }
-//        if(isFolderSearching()) {
-//            m_folderWindow->on_currentItem_triggered();
-//            return;
-//        }
-//    }
     QAction* action = qApp->getActionFromKey(seq);
-    if(action)
+    if(action) {
         action->trigger();
+        event->accept();
+        return;
+    }
+    QMainWindow::keyPressEvent(event);
 }
 
 
@@ -612,7 +537,6 @@ void MainWindow::on_pageChanged_triggered()
     ui->pageSlider->setMaximum(maxVolume);
     ui->pageSlider->setValue(m_pageManager.currentPage()+1);
     m_sliderChanging = false;
-    ui->pageSlider->show();
 
     // StatusBar
     m_pageCaption = m_pageManager.currentPageStatusAsString();
@@ -638,6 +562,8 @@ void MainWindow::on_volumeChanged_triggered(QString path)
         return;
     }
     qApp->addHistory(path);
+    if(!isFullScreen() && qApp->ShowSliderBar())
+        ui->pageFrame->show();
 
     m_volumeCaption = QString("%1 - %2")
             .arg(path).arg(qApp->applicationName());
@@ -1001,24 +927,6 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
 
 void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
 {
-//    if(!showMenuBar) {
-//        QMessageBox msgBox(this);
-//        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-//        msgBox.setDefaultButton(QMessageBox::Cancel);
-//        msgBox.setWindowTitle(tr("Confirmation"));
-//        msgBox.setIcon(QMessageBox::Warning);
-
-//        msgBox.setTextFormat(Qt::RichText);
-//        QString message = QString("<h2>%1</h2>"
-//                                  "<p>%2</p>")
-//                .arg(tr("Do you really want to hide the main menu?", "Message confirming to hide the main menu"))
-//                .arg(tr("Press F8(default), or Show a context menu on the title bar, <br />and select <strong>'Show/Hide MainMenuBar'</strong>", "Message confirming to hide the main menu"));
-//        msgBox.setText(message);
-//        if(msgBox.exec() == QMessageBox::Cancel) {
-//            ui->actionShowMenuBar->setChecked(true);
-//            return;
-//        }
-//    }
     if(showMenuBar) {
         if(qApp->ShowToolBar()) ui->mainToolBar->hide();
         menuBar()->show();

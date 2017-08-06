@@ -10,7 +10,8 @@
 
 #include "thumbnailmanager.h"
 #include "qc_init.h"
-#include "filevolume.h"
+#include "volumemanager.h"
+#include "volumemanagerbuilder.h"
 
 QList<QByteArray> ThumbnailManager::st_supportedImageFormats;
 QStringList ThumbnailManager::st_jpegpegImageFormats;
@@ -165,12 +166,17 @@ VolumeWorker ThumbnailManager::createSubVolumesConcurrent(QString dirpath, int v
     vw.parent_id = parent_id;
 
     if(IFileLoader::isArchiveFile(dirpath)) {
-        IFileVolume* fv = IFileVolume::CreateVolumeWithOnlyCover(nullptr, dirpath, nullptr, IFileVolume::NoAsync);
-        if(fv) {
-            ImageContent ic = fv->currentImage();
+//        VolumeManager* fv = VolumeManager::CreateVolumeWithOnlyCover(nullptr, dirpath, nullptr, VolumeManager::CreateThumbnail);
+//        if(fv) {
+//            ImageContent ic = fv->currentImage();
+//            vw.frontPage = createFileRecordFromArchive(dirpath, ic, 0);
+//            delete fv;
+//        }
+        VolumeManagerBuilder builder(dirpath);
+        ImageContent ic = builder.thumbnail();
+        if(!ic.Image.isNull())
             vw.frontPage = createFileRecordFromArchive(dirpath, ic, 0);
-            delete fv;
-        }
+
         if(m_catalogWatcher.isStarted()) {
             emit m_catalogWatcher.progressValueChanged(m_catalogWorkProgress++);
         }

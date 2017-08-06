@@ -7,7 +7,7 @@
 #include <QtConcurrent>
 #include <QImage>
 
-#include "filevolume.h"
+#include "volumemanager.h"
 
 // t_thumbnails
 class ThumbnailRecord

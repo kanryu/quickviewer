@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include <QtCore>
 
-class FolderItem
+class QvFolderItem
 {
 public:
     enum FileType {
@@ -18,8 +18,8 @@ public:
     FileType type; // 0:folder, 1:archive
     QDateTime updated_at;
 
-    FolderItem():type(Dir){}
-    FolderItem(QString n, FileType t, QDateTime u)
+    QvFolderItem():type(Dir){}
+    QvFolderItem(QString n, FileType t, QDateTime u)
         : name(n), type(t), updated_at(u)
     {}
 };
@@ -38,11 +38,11 @@ public:
     QModelIndex	index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
     QModelIndex	parent(const QModelIndex &) const override;
 
-    void setVolumes(QList<FolderItem>* volumes);
+    void setVolumes(QList<QvFolderItem>* volumes);
     void setColumns(int c) { m_columns=c; }
 
 private:
-    QList<FolderItem>* m_searchedVolumes;
+    QList<QvFolderItem>* m_searchedVolumes;
     int m_columns;
 };
 

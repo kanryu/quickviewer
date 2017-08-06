@@ -4,7 +4,7 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "filevolume.h"
+#include "volumemanager.h"
 #include "exifdialog.h"
 #include "models/pagemanager.h"
 #include "models/shadermanager.h"

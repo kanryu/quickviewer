@@ -22,6 +22,7 @@ public:
      * @return return true, if the instance can load images
      */
     bool isValid() { return m_valid; }
+    virtual bool hasSubDirectories() override { return false; }
     /**
      * @brief volumePath
      * @return the path of the instance
@@ -32,7 +33,7 @@ public:
      * @brief contents
      * @return all image files without parent path(filename only)
      */
-    QStringList contents() { return m_imageFileList; }
+    QStringList contents();
     /**
      * @brief subArchives
      * @return all archive files with in the instance

@@ -9,6 +9,7 @@ public:
     FileLoaderSubDirectory(QObject* parent, QString path);
 
     ~FileLoaderSubDirectory() {}
+    bool hasSubDirectories() override { return true; }
 protected:
     void initialize() override;
     void getFilesWithSubdirs(QString path, QString subpath);

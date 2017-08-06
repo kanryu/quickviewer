@@ -147,6 +147,8 @@ void ImageView::on_clearImages_triggered()
     }
 
     m_pages.resize(0);
+    horizontalScrollBar()->setValue(0);
+    verticalScrollBar()->setValue(0);
 }
 static int paintCnt=0;
 void ImageView::readyForPaint() {
@@ -166,10 +168,10 @@ void ImageView::readyForPaint() {
             }
             QRect drawRect;
             if(qApp->Fitting()) {
-                drawRect = m_pages[i].setPageLayoutFitting(pageRect, fitting, m_pageRotations[pageCount+i]);
+                drawRect = m_pages[i].setPageLayoutFitting(pageRect, fitting, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
             } else {
                 qreal scale = 1.0*currentViewSize()/100;
-                drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations[pageCount+i]);
+                drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
             }
             m_pages[i].Text = qApp->ShowFullscreenSignage() && m_isFullScreen ? m_pageManager->pageSignage(i) : "";
             m_pages[i].resetSignage(QRect(QPoint(), viewport()->size()), fitting);

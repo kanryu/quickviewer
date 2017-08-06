@@ -12,7 +12,17 @@ FileLoaderZipArchive::FileLoaderZipArchive(QObject* parent, QString zippath)
     d->open(QuaZip::mdUnzip);
     if(!(m_valid = d->isOpen()))
         return;
+}
 
+QStringList FileLoaderZipArchive::contents()
+{
+    if(m_imageFileList.empty())
+        initialize();
+    return m_imageFileList;
+}
+
+void FileLoaderZipArchive::initialize()
+{
     foreach(const QString& name, d->getFileNameList()) {
         if(IFileLoader::isImageFile(name)) {
             m_imageFileList.append(name);

@@ -4,7 +4,7 @@
 #include "ui_mainwindow.h"
 
 #include "folderwindow.h"
-#include "models/filevolume.h"
+#include "models/volumemanager.h"
 #include "models/qvapplication.h"
 
 FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *)
@@ -82,7 +82,7 @@ void FolderWindow::on_setHome_triggered()
     int row = selectedIdx.row();
     if(row < 0 || row >= m_volumes.size())
         return;
-    const FolderItem& item = m_volumes[row];
+    const QvFolderItem& item = m_volumes[row];
     QDir dir(m_currentPath);
     qApp->setHomeFolderPath(dir.filePath(item.name));
 }
@@ -118,14 +118,14 @@ void FolderWindow::resizeEvent(QResizeEvent *event)
 
 }
 
-static bool filenameLessThan(const FolderItem& lhs, const FolderItem& rhs)
+static bool filenameLessThan(const QvFolderItem& lhs, const QvFolderItem& rhs)
 {
     if(lhs.type != rhs.type)
         return lhs.type < rhs.type;
     return IFileLoader::caseInsensitiveLessThan(lhs.name, rhs.name);
 }
 
-static bool updatedAtLessThan(const FolderItem& lhs, const FolderItem& rhs)
+static bool updatedAtLessThan(const QvFolderItem& lhs, const QvFolderItem& rhs)
 {
     if(lhs.type != rhs.type)
         return lhs.type < rhs.type;
@@ -143,7 +143,7 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
             m_currentPath = "";
             QList<QFileInfo> drives = QDir::drives();
             foreach(QFileInfo drive , drives){
-                m_volumes << FolderItem(drive.absoluteFilePath(), FolderItem::Dir, drive.lastModified());
+                m_volumes << QvFolderItem(drive.absoluteFilePath(), QvFolderItem::Dir, drive.lastModified());
             }
         }
     } else
@@ -172,7 +172,7 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
             QStringList subfolders = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Unsorted);
             foreach(const QString& sf, subfolders) {
                 QFileInfo fi(dir.absoluteFilePath(sf));
-                m_volumes << FolderItem(sf, FolderItem::Dir, fi.lastModified());
+                m_volumes << QvFolderItem(sf, QvFolderItem::Dir, fi.lastModified());
             }
         }
 
@@ -185,7 +185,7 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
             }
             foreach(const QString& ar, archives) {
                 QFileInfo fi(dir.absoluteFilePath(ar));
-                m_volumes << FolderItem(ar, FolderItem::Archive, fi.lastModified());
+                m_volumes << QvFolderItem(ar, QvFolderItem::Archive, fi.lastModified());
             }
         }
         qvEnums::FolderViewSort sortmode = qApp->FolderSortMode();
@@ -197,7 +197,7 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
     }
 
     if(m_volumes.empty()) {
-        m_volumes << FolderItem(tr("Not found any Folders or Archives", "Display when there is no display item in Folder Window"), FolderItem::NoItems, QDateTime());
+        m_volumes << QvFolderItem(tr("Not found any Folders or Archives", "Display when there is no display item in Folder Window"), QvFolderItem::NoItems, QDateTime());
     }
     m_itemModel.setVolumes(&m_volumes);
 
@@ -327,7 +327,7 @@ void FolderWindow::on_volumeChanged_triggered(QString path)
         return;
     QString name = info.fileName();
     int row = -1;
-    foreach(const FolderItem& item, m_volumes) {
+    foreach(const QvFolderItem& item, m_volumes) {
         row++;
         if(name != item.name)
             continue;
@@ -343,8 +343,8 @@ void FolderWindow::on_itemSingleClicked(const QModelIndex &index)
     int row = index.row();
     if(row >= m_volumes.size())
         return;
-    FolderItem& item = m_volumes[row];
-    if(item.type == FolderItem::NoItems)
+    QvFolderItem& item = m_volumes[row];
+    if(item.type == QvFolderItem::NoItems)
         return;
     QDir dir(m_currentPath);
     QString subpath = dir.absoluteFilePath(item.name);
@@ -356,8 +356,8 @@ void FolderWindow::on_itemDoubleClicked(const QModelIndex &index)
     int row = index.row();
     if(row >= m_volumes.size())
         return;
-    FolderItem& item = m_volumes[row];
-    if(item.type == FolderItem::NoItems)
+    QvFolderItem& item = m_volumes[row];
+    if(item.type == QvFolderItem::NoItems)
         return;
     QDir dir(m_currentPath);
     QString subpath = dir.absoluteFilePath(item.name);

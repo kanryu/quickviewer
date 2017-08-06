@@ -338,13 +338,13 @@ QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_for
         Callback unpack_cb_data = { &in_buf.first, nullptr, &img };
         Callback pack_cb_data = { &out_buf.first, nullptr, &oimg };
 
-        qDebug() << "resize begin: ";
+//        qDebug() << "resize begin: ";
         QElapsedTimer et_qt;et_qt.start();
         graph.process(in_buf.first.as_const(), out_buf.first, tmp_buf.get(),
                       unpack_image, &unpack_cb_data, pack_image, &pack_cb_data);
 
         qint64 t_qt = et_qt.elapsed();
-        qDebug() << "resize end. time: " << t_qt;
+//        qDebug() << "resize end. time: " << t_qt;
     } catch(zimgxx::zerror e) {
         qDebug() << e.code;
         qDebug() << e.msg;
@@ -393,7 +393,7 @@ QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_fo
         Callback unpack_cb_data = { &in_rgb_buf.first, &in_alpha_plane_buf.first, &img };
         Callback pack_cb_data = { &out_rgb_plane_buf.first, &out_alpha_buf.first, &oimg };
 
-        qDebug() << "resize begin: ";
+//        qDebug() << "resize begin: ";
         QElapsedTimer et_qt;et_qt.start();
 //        graph.process(in_buf.first.as_const(), out_buf.first, tmp_buf.get(),
 //                      unpack_image, &unpack_cb_data, pack_image, &pack_cb_data);
@@ -401,7 +401,7 @@ QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_fo
         graph_alpha.process(in_alpha_plane_buf.first.as_const(), out_alpha_buf.first, tmp_buf.get(), nullptr, nullptr, pack_bgra, &pack_cb_data);
 
         qint64 t_qt = et_qt.elapsed();
-        qDebug() << "resize end. time: " << t_qt;
+//        qDebug() << "resize end. time: " << t_qt;
     } catch(zimgxx::zerror e) {
         qDebug() << e.code;
         qDebug() << e.msg;

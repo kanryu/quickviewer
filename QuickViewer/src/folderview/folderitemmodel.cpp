@@ -34,7 +34,7 @@ QVariant FolderItemModel::data(const QModelIndex &index, int role) const
     int column = index.column();
     if(!m_searchedVolumes)
         return QVariant();
-    const FolderItem& fi = m_searchedVolumes->at(row);
+    const QvFolderItem& fi = m_searchedVolumes->at(row);
     switch(role) {
     case Qt::DisplayRole:
         switch(column) {
@@ -42,7 +42,7 @@ QVariant FolderItemModel::data(const QModelIndex &index, int role) const
         case 1: return fi.updated_at;
         }
     case Qt::DecorationRole:
-        if(column == 0 && fi.type == FolderItem::Dir) {
+        if(column == 0 && fi.type == QvFolderItem::Dir) {
             QIcon icon(":/icons/24/checkbox_off_icon_24");
             return icon;
         }
@@ -82,7 +82,7 @@ QModelIndex FolderItemModel::index(int row, int column, const QModelIndex &) con
 
 QModelIndex FolderItemModel::parent(const QModelIndex &) const {return QModelIndex();}
 
-void FolderItemModel::setVolumes(QList<FolderItem> *volumes)
+void FolderItemModel::setVolumes(QList<QvFolderItem> *volumes)
 {
     if(!volumes)
         return;

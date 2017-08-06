@@ -60,7 +60,7 @@ private:
     QMenu* m_sortModeMenu;
     QMenu* m_itemContextMenu;
     QString m_currentPath;
-    QList<FolderItem> m_volumes;
+    QList<QvFolderItem> m_volumes;
     QStringList m_historyPrev;
     QStringList m_historyNext;
     FolderItemModel m_itemModel;

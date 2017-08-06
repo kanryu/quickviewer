@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QtWidgets>
-#include "models/filevolume.h"
+#include "models/volumemanager.h"
 #include "imageview.h"
 
 namespace Ui {
@@ -28,7 +28,7 @@ public:
     void resetShortcutKeys();
     void keyPressEvent(QKeyEvent *event);
     void makeHistoryMenu();
-    void resetVolume(IFileVolume* newer);
+    void resetVolume(VolumeManager* newer);
     void uncheckAllShaderMenus() {
         foreach(QAction* action, m_shaderMenuGroup) {
             action->setChecked(false);

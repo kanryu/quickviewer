@@ -21,6 +21,7 @@ public:
      * @return return true, if the instance can load images
      */
     bool isValid() { return m_valid; }
+    bool hasSubDirectories() override { return true; }
     /**
      * @brief volumePath
      * @return the path of the instance
@@ -31,7 +32,7 @@ public:
      * @brief contents
      * @return all image files without parent path(filename only)
      */
-    QStringList contents() { return m_imageFileList; }
+    QStringList contents();
     /**
      * @brief subArchives
      * @return all archive files with in the instance
@@ -51,6 +52,8 @@ protected:
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;
+
+    void initialize();
 };
 
 //class FileLoader7zPlugin : public QObject, public FileLoaderPluginInterface

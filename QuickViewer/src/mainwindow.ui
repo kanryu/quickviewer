@@ -405,7 +405,6 @@
    <addaction name="actionDualView"/>
    <addaction name="separator"/>
    <addaction name="actionStayOnTop"/>
-   <addaction name="actionFullscreen"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
@@ -655,7 +654,7 @@
      <normaloff>:/icons/stayontop_icon</normaloff>:/icons/stayontop_icon</iconset>
    </property>
    <property name="text">
-    <string extracomment="Button to display window at the front">Stay On &amp;Top</string>
+    <string extracomment="When on it keeps the window always on top">Stay On &amp;Top</string>
    </property>
   </action>
   <action name="actionCopyPage">

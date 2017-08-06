@@ -2,9 +2,10 @@
 #define PAGEMANAGER_H
 
 #include <QtGui>
-#include "filevolume.h"
+#include "volumemanager.h"
+#include "volumemanagerbuilder.h"
 
-class IFileVolume;
+class VolumeManager;
 class ImageView;
 
 class PageManager : public QObject
@@ -15,6 +16,7 @@ public:
 
     // Volumes
     bool loadVolume(QString path, bool coverOnly=false);
+    bool loadVolumeWithFile(QString path, QStringList images=QStringList());
     void nextVolume();
     void prevVolume();
 
@@ -23,7 +25,7 @@ public:
     void prevPage();
     void fastForwardPage();
     void fastBackwardPage();
-    void selectPage(int pageNum, IFileVolume::CacheMode cacheMode=IFileVolume::Normal);
+    void selectPage(int pageNum, VolumeManager::CacheMode cacheMode=VolumeManager::Normal);
     void firstPage();
     void lastPage();
     void nextOnlyOnePage();
@@ -110,10 +112,14 @@ signals:
      */
     void pageAdded(ImageContent ic, bool pageNext);
 
+public slots:
+    void on_pageEnumerated();
+
+
 private:
-    IFileVolume* addVolumeCache(QString path, bool onlyCover=false, bool immediate=true);
-    IFileVolume* createVolume(QString path, bool onlyCover);
-    IFileVolume* passThrough(IFileVolume* vol) { return vol; }
+    VolumeManager* addVolumeCache(QString path, bool onlyCover=false, bool immediate=true);
+    VolumeManager* createVolume(QString path, bool onlyCover);
+    VolumeManager* passThrough(VolumeManager* vol) { return vol; }
     /**
      * @brief younger page number
      */
@@ -121,11 +127,12 @@ private:
 
     bool m_wideImage;
     QVector<ImageContent> m_pages;
-    TimeOrderdCacheFuturePtr<QString, IFileVolume> m_volumes;
+    TimeOrderdCacheFuturePtr<QString, VolumeManager> m_volumes;
     QStringList m_volumenames;
 
-    IFileVolume* m_fileVolume;
+    VolumeManager* m_fileVolume;
     ImageView * m_imaveView;
+    VolumeManagerBuilder m_builderForAssoc;
 };
 
 #endif // PAGEMANAGER_H

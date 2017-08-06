@@ -2,6 +2,7 @@
 #include "qvapplication.h"
 #include "imageview.h"
 #include "fileloadersubdirectory.h"
+#include "volumemanagerbuilder.h"
 
 PageManager::PageManager(QObject* parent)
     : QObject(parent)
@@ -9,6 +10,7 @@ PageManager::PageManager(QObject* parent)
     , m_wideImage(false)
     , m_fileVolume(nullptr)
     , m_volumes(qApp->MaxVolumesCache())
+    , m_builderForAssoc("", this)
 {
 
 }
@@ -20,14 +22,14 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
     }
     clearPages();
     m_fileVolume = nullptr;
-    IFileVolume* newer = addVolumeCache(path, coverOnly);
+    VolumeManager* newer = addVolumeCache(path, coverOnly);
     if(!newer) {
         emit volumeChanged("");
         return false;
     }
     m_fileVolume = newer;
     if(coverOnly) {
-        m_fileVolume->setCacheMode(IFileVolume::CoverOnly);
+        m_fileVolume->setCacheMode(VolumeManager::CoverOnly);
     } else {
         m_volumenames = QStringList();
     }
@@ -38,7 +40,29 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
     return true;
 }
 
-#define PRE_LOAD_VOLUMES 4
+bool PageManager::loadVolumeWithFile(QString path, QStringList images)
+{
+    m_builderForAssoc.Path = path;
+    m_builderForAssoc.Filenames = images;
+    VolumeManager* newer = m_builderForAssoc.buildForAssoc();
+    emit volumeChanged("");
+    if(!newer) {
+        return false;
+    }
+    m_fileVolume = newer;
+    clearPages();
+    m_currentPage = 0;
+    addNewPage(m_builderForAssoc.Ic, true);
+    emit readyForPaint();
+}
+
+
+void PageManager::on_pageEnumerated()
+{
+    m_currentPage = m_fileVolume->pageCount();
+    emit volumeChanged(m_fileVolume->volumePath());
+    emit pageChanged();
+}
 
 void PageManager::nextVolume()
 {
@@ -116,40 +140,62 @@ void PageManager::prevVolume()
         } else {
             addVolumeCache(path, true, false);
         }
-        if(matchCount >= qApp->MaxVolumesCache()*3/2-1)
+        // preloadCount <- MaxVolumesCache()
+        // 0            <- 1
+        // 0            <- 2
+        // 1            <- 3
+        // 1            <- 4
+        // 2            <- 5
+        // 3            <- 6
+        // 4            <- 7
+        // 4            <- 8
+        // 5            <- 9
+        // 6            <-10
+        if(matchCount >= (qApp->MaxVolumesCache()-1)*2/3)
             break;
     }
 }
 
-
-IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover, bool immediate)
+static VolumeManager* buildAsync(QString path, PageManager* manager, bool onlyCover)
 {
-    IFileVolume* newer = nullptr;
-    QString pathbase = IFileVolume::FullPathToVolumePath(path);
-    QString subfilename = IFileVolume::FullPathToSubFilePath(path);
+    VolumeManagerBuilder builder(path, manager);
+    return builder.build(onlyCover);
+}
+
+VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool immediate)
+{
+    VolumeManager* newer = nullptr;
+    QString pathbase = QDir::fromNativeSeparators(VolumeManager::FullPathToVolumePath(path));
+    QString subfilename = VolumeManager::FullPathToSubFilePath(path);
     if(m_volumes.contains(pathbase)) {
-        if(!immediate)
+        if(!immediate && !m_volumes.object(pathbase).isFinished())
             return nullptr;
-        IFileVolume* cached = m_volumes.object(pathbase);
+        VolumeManager* cached = m_volumes.object(pathbase);
         if(!cached) {
             m_volumes.remove(pathbase);
             return nullptr;
         }
         // If the subdirectory search is switched valid, we need to recreate the instance
         if(!cached->isArchive() &&
-                ((qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)!=nullptr)
-                 || (!qApp->ShowSubfolders() && dynamic_cast<FileLoaderSubDirectory*>(cached)==nullptr))) {
+                ((qApp->ShowSubfolders() && !cached->hasSubDirectories())
+                 || (!qApp->ShowSubfolders() && cached->hasSubDirectories()))) {
+            qDebug() << qApp->ShowSubfolders() << cached->hasSubDirectories();
             m_volumes.remove(pathbase);
         }
     }
     if(!m_volumes.contains(pathbase)) {
         if(immediate) {
-            newer = createVolume(path, onlyCover);
+            VolumeManagerBuilder builder(path, this);
+            qDebug() << "addVolumeCache:immediate" << path;
+//            newer = createVolume(path, onlyCover);
+            newer = builder.build(onlyCover);
             if(newer)
                 m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
             return newer;
         } else {
-            m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::createVolume, path, onlyCover));
+            qDebug() << "addVolumeCache:prefetch" << path;
+//            m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::createVolume, path, onlyCover));
+            m_volumes.insert(pathbase, QtConcurrent::run(&buildAsync, path, this, onlyCover));
         }
     } else {
         m_volumes.retain(pathbase);
@@ -160,31 +206,14 @@ IFileVolume* PageManager::addVolumeCache(QString path, bool onlyCover, bool imme
     return newer;
 }
 
-IFileVolume *PageManager::createVolume(QString path, bool onlyCover)
-{
-    IFileVolume* newer = onlyCover
-            ? IFileVolume::CreateVolumeWithOnlyCover(nullptr, path, this)
-            : IFileVolume::CreateVolume(nullptr, path, this);
-    if(newer) {
-        // change page by progress.ini
-        QString volumepath = QDir::fromNativeSeparators(newer->volumePath());
-        if(qApp->OpenVolumeWithProgress()
-           && !newer->openedWithSpecifiedImageFile()
-           && qApp->bookshelfManager()->contains(volumepath)) {
-            BookProgress book = qApp->bookshelfManager()->at(volumepath);
-            newer->findPageByIndex(book.Current);
-        }
-        newer->moveToThread(thread());
-    }
-    return newer;
-}
-
 void PageManager::nextPage()
 {
     //qDebug() << "ImageView::nextPage()" << m_currentPage;
-    if(m_fileVolume == nullptr || m_fileVolume->pageCount() >= m_fileVolume->size()-1) return;
+    if(m_fileVolume == nullptr
+            || !m_fileVolume->enumerated()
+            || m_fileVolume->pageCount() >= m_fileVolume->size()-1) return;
 
-    m_fileVolume->setCacheMode(IFileVolume::NormalForward);
+    m_fileVolume->setCacheMode(VolumeManager::NormalForward);
     bool result = m_fileVolume->nextPage();
     if(!result) return;
 
@@ -201,10 +230,11 @@ void PageManager::nextPage()
 
 void PageManager::prevPage()
 {
-    if(m_fileVolume == nullptr) return;
-    if(m_fileVolume->pageCount() < m_pages.size()) return;
+    if(m_fileVolume == nullptr
+            || !m_fileVolume->enumerated()
+            || m_fileVolume->pageCount() < m_pages.size()) return;
 
-    m_fileVolume->setCacheMode(IFileVolume::NormalBackward);
+    m_fileVolume->setCacheMode(VolumeManager::NormalBackward);
     bool result = m_fileVolume->prevPage();
     if(!result) return;
     //QVApplication* app = qApp;
@@ -220,7 +250,7 @@ void PageManager::prevPage()
 
     bookProgress();
 
-    selectPage(m_currentPage, IFileVolume::NormalBackward);
+    selectPage(m_currentPage, VolumeManager::NormalBackward);
 }
 
 #define PAGE_INTERVAL 10
@@ -233,7 +263,7 @@ void PageManager::fastForwardPage()
     if(m_currentPage >= m_fileVolume->size() -1)
         m_currentPage = m_fileVolume->size() -1;
 
-    selectPage(m_currentPage, IFileVolume::FastForward);
+    selectPage(m_currentPage, VolumeManager::FastForward);
 }
 
 void PageManager::fastBackwardPage()
@@ -244,10 +274,10 @@ void PageManager::fastBackwardPage()
     m_currentPage -= PAGE_INTERVAL;
     if(m_currentPage < 0)
         m_currentPage = 0;
-    selectPage(m_currentPage, IFileVolume::FastForward);
+    selectPage(m_currentPage, VolumeManager::FastForward);
 }
 
-void PageManager::selectPage(int idx, IFileVolume::CacheMode cacheMode)
+void PageManager::selectPage(int idx, VolumeManager::CacheMode cacheMode)
 {
     //qDebug() << "PageManager::selectPage()" << idx;
     if(m_fileVolume == nullptr) return;
@@ -262,14 +292,14 @@ void PageManager::selectPage(int idx, IFileVolume::CacheMode cacheMode)
 
 void PageManager::firstPage()
 {
-    m_fileVolume->setCacheMode(IFileVolume::Normal);
+    m_fileVolume->setCacheMode(VolumeManager::Normal);
     selectPage(0);
 }
 
 void PageManager::lastPage()
 {
     if(m_fileVolume && m_fileVolume->size() > 0) {
-        m_fileVolume->setCacheMode(IFileVolume::Normal);
+        m_fileVolume->setCacheMode(VolumeManager::Normal);
         selectPage(m_fileVolume->size()-1);
     }
 }
@@ -277,7 +307,7 @@ void PageManager::lastPage()
 void PageManager::nextOnlyOnePage()
 {
     if(m_fileVolume == nullptr || m_fileVolume->pageCount() == m_fileVolume->size() -1) return;
-    m_fileVolume->setCacheMode(IFileVolume::Normal);
+    m_fileVolume->setCacheMode(VolumeManager::Normal);
     if(m_pages.size() == 1) {
         m_fileVolume->nextPage();
     }
@@ -293,7 +323,7 @@ void PageManager::prevOnlyOnePage()
     if(m_fileVolume == nullptr) return;
 
     if(m_fileVolume->pageCount() < m_pages.size()) return;
-    m_fileVolume->setCacheMode(IFileVolume::Normal);
+    m_fileVolume->setCacheMode(VolumeManager::Normal);
 
     //QVApplication* app = qApp;
     m_currentPage--;

@@ -15,26 +15,11 @@ FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
 //    QtConcurrent::run(this, FileLoaderDirectory::initialize);
 }
 
-FileLoaderDirectory::FileLoaderDirectory(QObject *parent, QString path, int forsubclass)
-    : IFileLoader(parent)
-    , m_volumepath(path)
-    , m_valid(false)
+QStringList FileLoaderDirectory::contents()
 {
-
-}
-
-
-QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
-{
-    QByteArray bytes;
-//    if(m_imageFileList.contains(name)) {
-        const QString abso = m_directory.absoluteFilePath(name);
-        QFile file(abso);
-        file.open(QIODevice::ReadOnly);
-        bytes = file.readAll();
-        return bytes;
-//    }
-//    return bytes;
+    if(m_imageFileList.empty())
+        initialize();
+    return m_imageFileList;
 }
 
 void FileLoaderDirectory::initialize()
@@ -61,5 +46,27 @@ void FileLoaderDirectory::initialize()
     IFileLoader::sortFiles(m_subArchiveList);
     m_valid = true;
     emit loadFinished();
+}
+
+FileLoaderDirectory::FileLoaderDirectory(QObject *parent, QString path, int)
+    : IFileLoader(parent)
+    , m_volumepath(path)
+    , m_valid(false)
+{
+
+}
+
+
+QByteArray FileLoaderDirectory::getFile(QString name, QMutex& )
+{
+    QByteArray bytes;
+//    if(m_imageFileList.contains(name)) {
+        const QString abso = m_directory.absoluteFilePath(name);
+        QFile file(abso);
+        file.open(QIODevice::ReadOnly);
+        bytes = file.readAll();
+        return bytes;
+//    }
+//    return bytes;
 }
 

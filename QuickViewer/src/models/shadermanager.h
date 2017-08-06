@@ -1,12 +1,11 @@
 #ifndef IMAGESHADEREFFECT_H
 #define IMAGESHADEREFFECT_H
 
-#include <QtGui>
-#include <QGLShaderProgram>
-#include <QGraphicsScene>
-#include <QMetaEnum>
-#include "filevolume.h"
+#include <QtWidgets>
+#include <QtOpenGL>
 #include "qv_init.h"
+
+struct ImageContent;
 
 /**
  * @brief The ShaderManager class

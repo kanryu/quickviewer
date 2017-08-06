@@ -67,6 +67,7 @@ public:
      * @return return true, if the instance can load images
      */
     virtual bool isValid()=0;
+    virtual bool hasSubDirectories()=0;
     /**
      * @brief contents
      * @return all image files without parent path(filename only)
