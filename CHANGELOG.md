@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.9.0_rev2 (Mon Aug 7 03:55:13 2017 +0900) [82c7c6e](https://github.com/kanryu/quickviewer/commit/82c7c6edecd478cb7cbec8c3d08ce6c53659d3e2)
+
+bugfixed: memory leak occurred if you made an image in the same folder more than once
+
+- other commits
+    - changelog (Mon Aug 7 02:16:58 2017 +0900) [b33d4bd](https://github.com/kanryu/quickviewer/commit/b33d4bd54d3741ad0fbcc0f1cc9fd4207e096af0)
+
 ## v0.9.0 (Mon Aug 7 02:16:24 2017 +0900) [7c6a3f5](https://github.com/kanryu/quickviewer/commit/7c6a3f53d461f1d7c4dd0c93e07edf95e5ec6a00)
 
 Improvement of file prefetching, zooming, bugfixed
