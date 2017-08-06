@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v0.9.0 (Mon Aug 7 02:16:24 2017 +0900) [7c6a3f5](https://github.com/kanryu/quickviewer/commit/7c6a3f53d461f1d7c4dd0c93e07edf95e5ec6a00)
+
+Improvement of file prefetching, zooming, bugfixed
+
+- Improvement of file prefetching
+- Speedup when Volume Switching
+- Speedup when QuickViewer is opened with images specified
+- Switching the image while zooming will return to the upper left
+- bugfixed: images which mislabelled the extension, could not be opened
+
+- other commits
+    - build with MinGW (Sun Aug 6 02:14:58 2017 +0900) [c95d8bd](https://github.com/kanryu/quickviewer/commit/c95d8bdbd3518d60043104f8d616628e8d80971e)
+    - changelog (Sat Aug 5 04:33:47 2017 +0900) [bd2a8a0](https://github.com/kanryu/quickviewer/commit/bd2a8a0739c091ec68c4023960e87b1a40b3e579)
+
 ## v0.8.9 (Sat Aug 5 04:33:11 2017 +0900) [9faebb7](https://github.com/kanryu/quickviewer/commit/9faebb765be55f498c6cecc2cf6fe9a57754c67f)
 
 Improved stability of x86 release, Speed up the Volume switching, 3 bugfixed
