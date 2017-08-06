@@ -42,13 +42,21 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
 
 bool PageManager::loadVolumeWithFile(QString path, QStringList images)
 {
-    m_builderForAssoc.Path = path;
+    QString qpath = QDir::fromNativeSeparators(path);
+    QDir dir(qpath);
+    dir.cdUp();
+    QString pathbase = dir.canonicalPath();
+    if(m_volumes.contains(pathbase))
+        return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
+
+    m_builderForAssoc.Path = qpath;
     m_builderForAssoc.Filenames = images;
     VolumeManager* newer = m_builderForAssoc.buildForAssoc();
-    emit volumeChanged("");
     if(!newer) {
         return false;
     }
+    emit volumeChanged("");
+    m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
     m_fileVolume = newer;
     clearPages();
     m_currentPage = 0;

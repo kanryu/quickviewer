@@ -78,7 +78,7 @@ void VolumeManager::on_ready()
         break;
     case CacheMode::CreateThumbnail:
         m_currentCacheSync = futureLoadImageFromFileVolume(this, 0, QSize());
-        break;
+        return;
     case CacheMode::CoverOnly:
         offsets = {0, 1};
         foreach (const int of, offsets) {
@@ -90,7 +90,6 @@ void VolumeManager::on_ready()
         }
         return;
     }
-    m_currentCacheSync = ImageContent();
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;
         if(cnt < 0 || cnt >= m_filelist.size())

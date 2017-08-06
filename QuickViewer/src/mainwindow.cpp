@@ -410,7 +410,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         event->accept();
         return;
     }
-    QMainWindow::keyPressEvent(event);
+//    QMainWindow::keyPressEvent(event);
 }
 
 
