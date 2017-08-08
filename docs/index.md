@@ -172,12 +172,12 @@ Thanks for reviewers! :)
 If **Spread Viewing** is off, the window shows one image.
 
 
-### Spread Viewing(Two Page View)
+### 2 Page Spread viewing(Two Page View)
 
 
-![Spread Viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
+![2 Page Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
-If **Spread Viewing** is on, the window shows two images on side by side.
+If **2 Page Spread viewing** is on, the window shows two images on side by side.
 
 ### Stripped Viewing
 
