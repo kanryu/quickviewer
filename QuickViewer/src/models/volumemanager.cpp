@@ -7,6 +7,8 @@
 #include "pagemanager.h"
 #include "fileloader.h"
 
+static ImageContent pathThrough(ImageContent ic) { return ic; }
+
 VolumeManager::VolumeManager(QObject *parent, IFileLoader* loader, PageManager* pageManager)
     : QObject(parent)
     , m_cnt(0)
@@ -18,6 +20,7 @@ VolumeManager::VolumeManager(QObject *parent, IFileLoader* loader, PageManager* 
     , m_openedWithSpecifiedImageFile(false)
 {
     m_volumePath = m_loader->volumePath();
+    connect(&m_watcher, SIGNAL(finished()), this, SLOT(on_enmumerated()));
 }
 
 VolumeManager::~VolumeManager() {
@@ -34,7 +37,22 @@ void VolumeManager::enumerate()
     m_enumerated = true;
 }
 
-static ImageContent pathThrough(ImageContent ic) { return ic; }
+ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
+{
+    m_subfilename = subfilename;
+    m_currentCacheSync = VolumeManager::futureLoadImageFromFileVolume(this, subfilename, QSize());
+    m_watcher.setFuture(QtConcurrent::run(this, &VolumeManager::enumerate));
+    return m_currentCacheSync;
+}
+
+void VolumeManager::on_enmumerated()
+{
+    m_imageCache.insert(m_filelist.indexOf(m_subfilename), QtConcurrent::run(pathThrough, m_currentCacheSync));
+    findImageByName(m_subfilename);
+    setCacheMode(VolumeManager::Normal);
+    on_ready();
+    m_pageManager->on_pageEnumerated();
+}
 
 void VolumeManager::on_ready()
 {
@@ -85,7 +103,7 @@ void VolumeManager::on_ready()
             int cnt = m_cnt+of;
             if(cnt < 0 || cnt >= m_filelist.size())
                 continue;
-            ImageContent ic = futureLoadImageFromFileVolume(this, m_filelist[m_cnt], QSize());
+            ImageContent ic = futureLoadImageFromFileVolume(this, m_filelist[cnt], QSize());
             m_imageCache.insert(cnt, QtConcurrent::run(pathThrough, ic));
         }
         return;
@@ -222,7 +240,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 
 ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)
 {
-//    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
+    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
     int maxTextureSize = qApp->maxTextureSize();
     easyexif::EXIFInfo info;
 
@@ -330,7 +348,7 @@ ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume,
                 int count = 0;
                 do {
                     src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
-//                    qDebug() << "[2]" << path << src2 << count;
+                    qDebug() << "[2]" << path << src2 << count;
                     if(!src2.isNull())
                         break;
                     if(src2.isNull() && count++ < 1000) {

@@ -118,7 +118,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
 
     QRect drawRect;
     if(newsize.height() == viewport.height()) { // fitting on upper and bottom
-        int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+        int ofsinviewport = fitting==FitRight ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
     } else { // fitting on left and right
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
@@ -139,7 +139,7 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
     QPoint of = Offset(rotateOffset);
     of *= scale;
 
-    int ofsinviewport = fitting==FitLeft ? 0 : fitting==FitCenter ? qMax(0, (viewport.width()-newsize.width())/2) : viewport.width()-newsize.width();
+    int ofsinviewport = fitting==FitRight ? 0 : fitting==FitCenter ? qMax(0, (viewport.width()-newsize.width())/2) : viewport.width()-newsize.width();
     int offsetY = qMax(0, (viewport.height()-newsize.height())/2);
     QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y() + offsetY), newsize);
 
@@ -225,6 +225,7 @@ void PageContent::resetSignage(QRect viewport, PageContent::Fitting fitting)
         return;
     GText = Scene->addText(Text);
     GText->setPos(fitting == PageContent::FitRight ? viewport.right()-GText->boundingRect().width() : 0, 0);
+//qDebug() << GText->pos() << Text;
     GText->setDefaultTextColor(Qt::green);
     GText->setZValue(1);
     QBrush brush(QColor::fromRgb(0, 0, 0, 0x80));

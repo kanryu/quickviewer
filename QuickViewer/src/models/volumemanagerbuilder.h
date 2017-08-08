@@ -29,7 +29,7 @@ public:
      *
      * Generate VolumeManager asynchronously.
      */
-    QFuture<VolumeManager*> buildAsync(bool onlyCover);
+    static VolumeManager* buildAsync(QString path, PageManager* manager, bool onlyCover);
 
     /**
      * @brief buildForAssoc
@@ -53,13 +53,13 @@ public:
      */
     static VolumeManager* CreateVolume(QObject* parent, QString path, PageManager* pageManager);
 
-public slots:
-    void on_enumerated();
+//public slots:
+//    void on_enumerated();
 
 private:
     PageManager* m_pageManager;
     VolumeManager* m_volumeManager;
-    QFutureWatcher<void> m_watcher;
+//    QFutureWatcher<void> m_watcher;
     QString m_subfilename;
 };
 

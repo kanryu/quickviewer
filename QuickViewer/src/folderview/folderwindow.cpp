@@ -222,10 +222,11 @@ void FolderWindow::resetSortMode()
 
 void FolderWindow::resetPathLabel(int maxWidth)
 {
-    QFontMetrics fontMetrics(ui->pathLabel->font());
-    QString pathLabelTxt = fontMetrics.elidedText(
-                QDir::toNativeSeparators(m_currentPath), Qt::ElideMiddle, maxWidth-10);
-    ui->pathLabel->setText(pathLabelTxt);
+//    QFontMetrics fontMetrics(ui->pathLabel->font());
+//    QString pathLabelTxt = fontMetrics.elidedText(
+//                QDir::toNativeSeparators(m_currentPath), Qt::ElideMiddle, maxWidth-10);
+//    ui->pathLabel->setText(pathLabelTxt);
+    ui->pathLabel->setText(m_currentPath);
 }
 
 QString FolderWindow::itemPath(const QModelIndex &index)

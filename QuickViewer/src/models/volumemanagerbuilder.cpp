@@ -43,7 +43,7 @@ VolumeManagerBuilder::VolumeManagerBuilder(QString path, PageManager *pageManage
     , m_pageManager(pageManager)
     , m_volumeManager(nullptr)
 {
-    connect(&m_watcher, SIGNAL(finished()), this, SLOT(on_enumerated()));
+//    connect(&m_watcher, SIGNAL(finished()), this, SLOT(on_enumerated()));
 }
 
 VolumeManager *VolumeManagerBuilder::build(bool onlyCover)
@@ -57,10 +57,13 @@ VolumeManager *VolumeManagerBuilder::build(bool onlyCover)
     }
     if(!(m_volumeManager = CreateVolume(nullptr, pathbase, m_pageManager)))
         return m_volumeManager;
-
     m_volumeManager->moveToThread(QThread::currentThread());
     m_volumeManager->enumerate();
-    VolumeManager::CacheMode mode = onlyCover ? VolumeManager::Normal : VolumeManager::CoverOnly;
+    if(m_volumeManager->size() == 0) {
+        delete m_volumeManager;
+        return m_volumeManager = nullptr;
+    }
+    VolumeManager::CacheMode mode = onlyCover ? VolumeManager::CoverOnly : VolumeManager::Normal;
     m_volumeManager->setCacheMode(mode);
     if(Filenames.isEmpty()) {
         checkBookProgress();
@@ -71,9 +74,10 @@ VolumeManager *VolumeManagerBuilder::build(bool onlyCover)
     return m_volumeManager;
 }
 
-QFuture<VolumeManager *> VolumeManagerBuilder::buildAsync(bool onlyCover)
+VolumeManager* VolumeManagerBuilder::buildAsync(QString path, PageManager* manager, bool onlyCover)
 {
-    return QtConcurrent::run(this, &VolumeManagerBuilder::build, onlyCover);
+    VolumeManagerBuilder builder(path, manager);
+    return builder.build(onlyCover);
 }
 
 VolumeManager *VolumeManagerBuilder::buildForAssoc()
@@ -85,22 +89,10 @@ VolumeManager *VolumeManagerBuilder::buildForAssoc()
         return m_volumeManager;
 
     m_volumeManager->moveToThread(QThread::currentThread());
-    m_watcher.setFuture(QtConcurrent::run(m_volumeManager, &VolumeManager::enumerate));
-
     // load the image
-    Ic = VolumeManager::futureLoadImageFromFileVolume(m_volumeManager, m_subfilename, QSize());
+    Ic = m_volumeManager->getImageBeforeEnmumerate(m_subfilename);
 
     return m_volumeManager;
-}
-
-void VolumeManagerBuilder::on_enumerated()
-{
-    static int cnt = 0;cnt++;
-    qDebug() << "on_enumerated" << cnt;
-    m_volumeManager->findImageByName(m_subfilename);
-    m_volumeManager->setCacheMode(VolumeManager::Normal);
-    m_volumeManager->on_ready();
-    m_pageManager->on_pageEnumerated();
 }
 
 ImageContent VolumeManagerBuilder::thumbnail()

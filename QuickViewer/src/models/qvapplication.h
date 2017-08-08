@@ -158,7 +158,6 @@ public:
     void setBeginAsFullscreen (bool beginAsFullscreen) { m_beginAsFullscreen = beginAsFullscreen; }
 
     // File
-    void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     bool AutoLoaded() { return m_autoLoaded; }
     void setAutoLoaded (bool autoLoaded) { m_autoLoaded = autoLoaded; }
     bool ProhibitMultipleRunning() { return m_prohibitMultipleRunning; }
@@ -167,6 +166,7 @@ public:
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
+    void setMaxHistoryCount (int maxHistoryCount) { m_maxHistoryCount = maxHistoryCount; }
     const QStringList& History() const { return m_history; }
     void clearHistory() { m_history.clear(); }
     /**

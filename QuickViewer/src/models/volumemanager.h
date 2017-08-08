@@ -41,6 +41,7 @@ public:
     ~VolumeManager();
     void enumerate();
     bool enumerated() { return m_enumerated; }
+    ImageContent getImageBeforeEnmumerate(QString subfilename);
 
     static ImageContent futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize);
     static ImageContent futureReizeImage(ImageContent ic, QSize pageSize);
@@ -121,6 +122,9 @@ public:
     void setOpenedWithSpecifiedImageFile(bool openedWithSpecifiedImageFile) { m_openedWithSpecifiedImageFile = openedWithSpecifiedImageFile; }
     void moveToThread(QThread *targetThread);
 
+public slots:
+    void on_enmumerated();
+
 private:
     /**
      * @brief m_cnt File counter in the volume
@@ -142,6 +146,10 @@ private:
     bool m_enumerated;
     bool m_openedWithSpecifiedImageFile;
     QString m_volumePath;
+
+    // fast image loading
+    QString m_subfilename;
+    QFutureWatcher<void> m_watcher;
 
     friend class VolumeManagerBuilder;
 };

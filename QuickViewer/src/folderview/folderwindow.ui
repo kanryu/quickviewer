@@ -91,6 +91,9 @@
      <property name="scaledContents">
       <bool>true</bool>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>

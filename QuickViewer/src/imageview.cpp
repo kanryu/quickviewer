@@ -163,8 +163,8 @@ void ImageView::readyForPaint() {
             QRect pageRect = QRect(QPoint(), viewport()->size());
             if(m_pages.size() == 2) {
                 fitting = ((i==0 && !qApp->RightSideBook()) || (i==1 && qApp->RightSideBook()))
-                            ? PageContent::FitRight : PageContent::FitLeft;
-                pageRect = QRect(QPoint(fitting==PageContent::FitRight ? 0 : pageRect.width()/2, 0), QSize(pageRect.width()/2,pageRect.height()));
+                            ? PageContent::FitLeft : PageContent::FitRight;
+                pageRect = QRect(QPoint(fitting==PageContent::FitRight ? pageRect.width()/2 : 0 , 0), QSize(pageRect.width()/2,pageRect.height()));
             }
             QRect drawRect;
             if(qApp->Fitting()) {

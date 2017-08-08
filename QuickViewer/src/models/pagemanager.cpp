@@ -10,7 +10,7 @@ PageManager::PageManager(QObject* parent)
     , m_wideImage(false)
     , m_fileVolume(nullptr)
     , m_volumes(qApp->MaxVolumesCache())
-    , m_builderForAssoc("", this)
+//    , m_builderForAssoc("", this)
 {
 
 }
@@ -49,9 +49,8 @@ bool PageManager::loadVolumeWithFile(QString path, QStringList images)
     if(m_volumes.contains(pathbase))
         return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
 
-    m_builderForAssoc.Path = qpath;
-    m_builderForAssoc.Filenames = images;
-    VolumeManager* newer = m_builderForAssoc.buildForAssoc();
+    VolumeManagerBuilder builder(qpath, this, images);
+    VolumeManager* newer = builder.buildForAssoc();
     if(!newer) {
         return false;
     }
@@ -60,8 +59,9 @@ bool PageManager::loadVolumeWithFile(QString path, QStringList images)
     m_fileVolume = newer;
     clearPages();
     m_currentPage = 0;
-    addNewPage(m_builderForAssoc.Ic, true);
+    addNewPage(builder.Ic, true);
     emit readyForPaint();
+    return true;
 }
 
 
@@ -164,12 +164,6 @@ void PageManager::prevVolume()
     }
 }
 
-static VolumeManager* buildAsync(QString path, PageManager* manager, bool onlyCover)
-{
-    VolumeManagerBuilder builder(path, manager);
-    return builder.build(onlyCover);
-}
-
 VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool immediate)
 {
     VolumeManager* newer = nullptr;
@@ -195,15 +189,13 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
         if(immediate) {
             VolumeManagerBuilder builder(path, this);
             qDebug() << "addVolumeCache:immediate" << path;
-//            newer = createVolume(path, onlyCover);
             newer = builder.build(onlyCover);
             if(newer)
                 m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
             return newer;
         } else {
             qDebug() << "addVolumeCache:prefetch" << path;
-//            m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::createVolume, path, onlyCover));
-            m_volumes.insert(pathbase, QtConcurrent::run(&buildAsync, path, this, onlyCover));
+            m_volumes.insert(pathbase, QtConcurrent::run(&VolumeManagerBuilder::buildAsync, path, this, onlyCover));
         }
     } else {
         m_volumes.retain(pathbase);
