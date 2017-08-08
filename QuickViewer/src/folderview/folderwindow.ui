@@ -459,7 +459,7 @@ QPushButton:hover {
    <sender>nextButton</sender>
    <signal>clicked()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_next_triggered()</slot>
+   <slot>onNextButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>81</x>
@@ -475,7 +475,7 @@ QPushButton:hover {
    <sender>prevButton</sender>
    <signal>clicked()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_prev_triggered()</slot>
+   <slot>onPrevButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>51</x>
@@ -491,7 +491,7 @@ QPushButton:hover {
    <sender>toParentButton</sender>
    <signal>clicked()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_parent_triggered()</slot>
+   <slot>onParentButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>111</x>
@@ -507,7 +507,7 @@ QPushButton:hover {
    <sender>reloadButton</sender>
    <signal>clicked()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_reload_triggered()</slot>
+   <slot>onReloadButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>141</x>
@@ -523,7 +523,7 @@ QPushButton:hover {
    <sender>homeButton</sender>
    <signal>clicked()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_home_triggered()</slot>
+   <slot>onHomeButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>21</x>
@@ -539,7 +539,7 @@ QPushButton:hover {
    <sender>sortModeButton</sender>
    <signal>clicked()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_sortMode_triggered()</slot>
+   <slot>onSortModeButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>176</x>
@@ -555,7 +555,7 @@ QPushButton:hover {
    <sender>actionOrderByName</sender>
    <signal>triggered()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_orderByName_triggered()</slot>
+   <slot>onActionOrderByName_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -571,7 +571,7 @@ QPushButton:hover {
    <sender>actionOrderByUpdatedAt</sender>
    <signal>triggered()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_orderByUpdatedAt_triggered()</slot>
+   <slot>onActionOrderByUpdatedAt_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -587,7 +587,7 @@ QPushButton:hover {
    <sender>actionSetAsHomeFolder</sender>
    <signal>triggered()</signal>
    <receiver>FolderWindow</receiver>
-   <slot>on_setHome_triggered()</slot>
+   <slot>onActionSetAsHomeFolder_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -603,16 +603,16 @@ QPushButton:hover {
  <slots>
   <slot>on_itemSingleClicked(QModelIndex)</slot>
   <slot>on_itemDoubleClicked(QModelIndex)</slot>
-  <slot>on_prev_triggered()</slot>
-  <slot>on_next_triggered()</slot>
-  <slot>on_parent_triggered()</slot>
-  <slot>on_reload_triggered()</slot>
+  <slot>onPrevButton_clicked()</slot>
+  <slot>onNextButton_clicked()</slot>
+  <slot>onParentButton_clicked()</slot>
+  <slot>onReloadButton_clicked()</slot>
   <slot>on_pathChanged_triggered(QString)</slot>
-  <slot>on_home_triggered()</slot>
-  <slot>on_sortMode_triggered()</slot>
-  <slot>on_orderByName_triggered()</slot>
-  <slot>on_orderByUpdatedAt_triggered()</slot>
-  <slot>on_setHome_triggered()</slot>
+  <slot>onHomeButton_clicked()</slot>
+  <slot>onSortModeButton_clicked()</slot>
+  <slot>onActionOrderByName_triggered()</slot>
+  <slot>onActionOrderByUpdatedAt_triggered()</slot>
+  <slot>onActionSetAsHomeFolder_triggered()</slot>
   <slot>on_currentItem_triggered()</slot>
  </slots>
 </ui>

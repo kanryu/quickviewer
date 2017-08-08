@@ -1431,7 +1431,7 @@
     </message>
     <message>
         <source>Stay On &amp;Top</source>
-        <extracomment>Button to display window at the front</extracomment>
+        <extracomment>When on it keeps the window always on top</extracomment>
         <translation>常に手前に表示(&amp;T)</translation>
     </message>
     <message>
@@ -1788,7 +1788,7 @@
     <message>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation>確認</translation>
+        <translation type="vanished">確認</translation>
     </message>
     <message>
         <source>Are you sure you delete the image?</source>
@@ -1938,7 +1938,7 @@
     <message>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation>本当にこの画像をゴミ箱に入れますか？</translation>
+        <translation type="vanished">本当にこの画像をゴミ箱に入れますか？</translation>
     </message>
     <message>
         <source>Show title bar on Fullscreen</source>
@@ -2048,6 +2048,34 @@
     <message>
         <source>&amp;Mouse Config</source>
         <translation>マウス入力設定(&amp;M)</translation>
+    </message>
+    <message>
+        <source>Delete the image</source>
+        <translation>現在のページの画像ファイルを削除する</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to move the image to Recycle Bin?</source>
+        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
+        <translation>本当にこの画像をゴミ箱に入れますか？</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <comment>Confirm deleting image file on MessageBox title</comment>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <comment>Confirm deleting image file on Message Box body</comment>
+        <translation>本当にこの画像を削除しますか？</translation>
+    </message>
+    <message>
+        <source>Suppress key repeat</source>
+        <translation type="vanished">キーリピートを抑制する</translation>
     </message>
 </context>
 <context>

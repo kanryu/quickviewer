@@ -240,7 +240,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 
 ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)
 {
-    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
+//    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
     int maxTextureSize = qApp->maxTextureSize();
     easyexif::EXIFInfo info;
 

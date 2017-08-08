@@ -165,7 +165,7 @@ bool MainWindowForWindows::eventFilter(QObject *obj, QEvent *event)
 
 
 static QFullscreenFrame *fullscreenFrame;
-void MainWindowForWindows::on_hover_anchor(Qt::AnchorPoint anchor)
+void MainWindowForWindows::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
 {
     bool showMenubar = !qApp->ShowMenuBar();
     bool showToolbar = !qApp->ShowToolBar();
@@ -236,7 +236,7 @@ void MainWindowForWindows::on_hover_anchor(Qt::AnchorPoint anchor)
                         ui->menuBar->setVisible(true);
                 }
             });
-            connect(fullscreenFrame, SIGNAL(toShowNormal()), this, SLOT(on_fullscreen_triggered()));
+            connect(fullscreenFrame, SIGNAL(toShowNormal()), this, SLOT(onActionFullscreen_triggered()));
             connect(fullscreenFrame, SIGNAL(exitApp()), this, SLOT(close()));
 
             if(fullscreen && qApp->ShowFullscreenTitleBar())
@@ -266,13 +266,13 @@ void MainWindowForWindows::on_hover_anchor(Qt::AnchorPoint anchor)
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindowForWindows::on_fullscreen_triggered()
+void MainWindowForWindows::onActionFullscreen_triggered()
 {
     if(fullscreenFrame && fullscreenFrame->isValid()) {
         fullscreenFrame->closeAndShowNormal();
         return;
     }
-    MainWindow::on_fullscreen_triggered();
+    MainWindow::onActionFullscreen_triggered();
 }
 
 // This method is used because QShowEvent may not be called

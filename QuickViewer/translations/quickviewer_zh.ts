@@ -1100,7 +1100,7 @@
     </message>
     <message>
         <source>Stay On &amp;Top</source>
-        <extracomment>Button to display window at the front</extracomment>
+        <extracomment>When on it keeps the window always on top</extracomment>
         <translation>常该程序显示在其他程序窗口的前面(&amp;T)</translation>
     </message>
     <message>
@@ -1389,7 +1389,7 @@
     <message>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation>确认</translation>
+        <translation type="vanished">确认</translation>
     </message>
     <message>
         <source>Are you sure you delete the image?</source>
@@ -1534,7 +1534,7 @@
     <message>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation>真的将这图像扔进垃圾箱吗?</translation>
+        <translation type="vanished">真的将这图像扔进垃圾箱吗?</translation>
     </message>
     <message>
         <source>Show title bar on Fullscreen</source>
@@ -1644,6 +1644,30 @@
     <message>
         <source>&amp;Mouse Config</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to move the image to Recycle Bin?</source>
+        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
+        <translation>真的将这图像扔进垃圾箱吗?</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <comment>Confirm deleting image file on MessageBox title</comment>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <comment>Confirm deleting image file on Message Box body</comment>
+        <translation type="unfinished">真的将这图像扔进垃圾箱吗?</translation>
     </message>
 </context>
 <context>

@@ -124,12 +124,11 @@ public:
     bool ShowFullscreenTitleBar() { return m_showFullscreenTitleBar; }
     void setShowFullscreenTitleBar (bool showFullscreenTitleBar) { m_showFullscreenTitleBar = showFullscreenTitleBar; }
 
-
     // DualView
     bool DualView() { return m_dualView; }
-    void setStayOnTop (bool stayOnTop) { m_stayOnTop = stayOnTop; }
-    bool StayOnTop() { return m_stayOnTop; }
     void setDualView (bool dualView) { m_dualView = dualView; }
+    bool StayOnTop() { return m_stayOnTop; }
+    void setStayOnTop (bool stayOnTop) { m_stayOnTop = stayOnTop; }
     bool RightSideBook() { return m_rightSideBook; }
     void setRightSideBook (bool rightSideBook) { m_rightSideBook = rightSideBook; }
     bool WideImageAsOnePageInDualView() { return m_wideImageAsOnePageInDualView; }
@@ -359,6 +358,9 @@ private:
     QThread* m_mainThread;
     bool m_glInitialized;
     int m_maxTextureSize;
+
+    // Navigations
+    bool m_suppressKeyRepeat;
 
     // View
     bool m_fitting;

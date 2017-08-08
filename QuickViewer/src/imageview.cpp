@@ -152,7 +152,7 @@ void ImageView::on_clearImages_triggered()
 }
 static int paintCnt=0;
 void ImageView::readyForPaint() {
-    qDebug() << "readyForPaint " << paintCnt++;
+//    qDebug() << "readyForPaint " << paintCnt++;
     if(qApp->Effect() > qvEnums::UsingFixedShader)
         setRenderer(OpenGL);
     if(!m_pages.empty()) {

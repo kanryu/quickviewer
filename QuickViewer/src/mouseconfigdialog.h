@@ -20,17 +20,15 @@ public:
 
     void setEditTextWithoutSignal(QString text);
     void revertMouseChanges();
+    void resetMouseCheckBox();
 
 public slots:
-//    void on_keySequenceItemSelected(QTree)
-    void on_currentCommandChanged(QTreeWidgetItem* item, QTreeWidgetItem * previous);
-    void on_keySequence_changed(QMouseSequence key);
-    void on_addSequenc_triggered();
-    void on_resetToDefault();
-    void on_shortcutClearButton_triggered();
-    void on_shortcutEdit_changed(QString text);
-    void on_checkboxChanged_triggered();
-    void resetMouseCheckBox();
+    void onTreeWidget_currentItemChanged(QTreeWidgetItem* item, QTreeWidgetItem * previous);
+    void onRecordButton_keySequenceChanged(QMouseSequence key);
+    void onAddSequenceButton_clicked();
+    void onResetButton_clicked();
+    void onShortcutEdit_textChanged(QString text);
+    void onCheckBox_toggled();
 
 private:
     Ui::KeyConfigDialog *ui;

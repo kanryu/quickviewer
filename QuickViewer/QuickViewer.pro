@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.9.0_rev2
+VERSION = 0.9.1
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -53,7 +53,7 @@ win32 {
         QMAKE_CXXFLAGS += /wd4819
         # more heap area for x86
         equals(TARGET_ARCH, x86) {
-#            QMAKE_CXXFLAGS += /LARGEADDRESSAWARE
+            QMAKE_CXXFLAGS += /LARGEADDRESSAWARE
         }
     }
     LIBS += -luser32 -ladvapi32 -lShlwapi

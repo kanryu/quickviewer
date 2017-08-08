@@ -155,7 +155,7 @@
    <sender>nameEdit</sender>
    <signal>textChanged(QString)</signal>
    <receiver>DatabaseSettingDialog</receiver>
-   <slot>on_nameChanged(QString)</slot>
+   <slot>onNameEdit_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>315</x>
@@ -171,7 +171,7 @@
    <sender>pathEdit</sender>
    <signal>textChanged(QString)</signal>
    <receiver>DatabaseSettingDialog</receiver>
-   <slot>on_pathChanged(QString)</slot>
+   <slot>onPathEdit_textChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>315</x>
@@ -187,7 +187,7 @@
    <sender>selectFolderButton</sender>
    <signal>clicked()</signal>
    <receiver>DatabaseSettingDialog</receiver>
-   <slot>on_selectFolder_triggered()</slot>
+   <slot>onSelectFolderButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>58</x>
@@ -201,8 +201,8 @@
   </connection>
  </connections>
  <slots>
-  <slot>on_nameChanged(QString)</slot>
-  <slot>on_pathChanged(QString)</slot>
-  <slot>on_selectFolder_triggered()</slot>
+  <slot>onNameEdit_textChanged(QString)</slot>
+  <slot>onPathEdit_textChanged(QString)</slot>
+  <slot>onSelectFolderButton_clicked()</slot>
  </slots>
 </ui>

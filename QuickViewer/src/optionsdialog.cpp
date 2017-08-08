@@ -75,7 +75,7 @@ void OptionsDialog::resetColorBox()
     ui->labelBgSample->setPixmap(pattern);
 }
 
-void OptionsDialog::on_changeColor_triggered()
+void OptionsDialog::onBtnColorSelect_clicked()
 {
     QColorDialog dialog(this);
     dialog.setCurrentColor(m_backgroundColor);
@@ -86,7 +86,7 @@ void OptionsDialog::on_changeColor_triggered()
     }
 }
 
-void OptionsDialog::on_changeColor2_triggered()
+void OptionsDialog::onBtnColorSelect2_clicked()
 {
     QColorDialog dialog(this);
     dialog.setCurrentColor(m_backgroundColor2);
@@ -97,7 +97,7 @@ void OptionsDialog::on_changeColor2_triggered()
     }
 }
 
-void OptionsDialog::on_useCheckeredPattern_triggered(bool enabled)
+void OptionsDialog::onCheckBoxCheckeredPattern_clicked(bool enabled)
 {
     m_useCheckeredPattern = enabled;
     resetColorBox();

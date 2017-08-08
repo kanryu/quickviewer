@@ -28,13 +28,13 @@ protected:
     void closeEvent(QCloseEvent *e);
 
 public slots:
-    void on_addNew_triggered();
-    void on_delete_triggered();
-    void on_edit_triggered();
-    void on_update_triggered();
-    void on_deleteAll_triggered();
-    void on_updateAll_triggered();
-    void on_cancelWork_triggered();
+    void onAddButton_clicked();
+    void onDeleteButton_clicked();
+    void onEditButton_clicked();
+    void onUpdateButton_clicked();
+    void onDeleteAllButton_clicked();
+    void onUpdateAllButton_clicked();
+    void onCancelButton_clicked();
 
 private slots:
     void on_catalogCreated(const CatalogRecord cr);

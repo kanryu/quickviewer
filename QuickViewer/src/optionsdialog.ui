@@ -295,7 +295,7 @@
    <sender>btnColorSelect</sender>
    <signal>clicked()</signal>
    <receiver>OptionsDialog</receiver>
-   <slot>on_changeColor_triggered()</slot>
+   <slot>onBtnColorSelect_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>402</x>
@@ -311,7 +311,7 @@
    <sender>btnColorSelect2</sender>
    <signal>clicked()</signal>
    <receiver>OptionsDialog</receiver>
-   <slot>on_changeColor2_triggered()</slot>
+   <slot>onBtnColorSelect2_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>218</x>
@@ -327,7 +327,7 @@
    <sender>checkBoxCheckeredPattern</sender>
    <signal>clicked(bool)</signal>
    <receiver>OptionsDialog</receiver>
-   <slot>on_useCheckeredPattern_triggered(bool)</slot>
+   <slot>onCheckBoxCheckeredPattern_clicked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>122</x>
@@ -341,8 +341,8 @@
   </connection>
  </connections>
  <slots>
-  <slot>on_changeColor_triggered()</slot>
-  <slot>on_changeColor2_triggered()</slot>
-  <slot>on_useCheckeredPattern_triggered(bool)</slot>
+  <slot>onBtnColorSelect_clicked()</slot>
+  <slot>onBtnColorSelect2_clicked()</slot>
+  <slot>onCheckBoxCheckeredPattern_clicked(bool)</slot>
  </slots>
 </ui>

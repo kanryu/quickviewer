@@ -53,108 +53,106 @@ protected:
 //    void mousePressEvent(QMouseEvent *e) override;
     void closeEvent(QCloseEvent *e) override;
     void resizeEvent(QResizeEvent *e) override;
+    void on_pageNolongerNeeded_triggered();
 
 public slots:
     // File
     void loadVolume(QString path);
-    void on_file_changed(QString path);
-    void on_autoloaded_triggered(bool autoreload);
-    void on_clearHistory_triggered();
-    void on_historyMenu_triggered(QAction *action);
-    void on_exit_triggered();
-    void on_prohibitMultipleRunning_triggered(bool enable);
+    void onActionAutoLoaded_triggered(bool autoreload);
+    void onActionClearHistory_triggered();
+    void onMenuHistory_triggered(QAction *action);
+    void onActionExit_triggered();
 
     // Folder
-    void on_folderWindow_triggered();
-    void on_folderWindowClosed_triggered();
-    void on_openVolumeByFolder_triggered(QString path);
-    void on_openVolumeWithProgress_triggered(bool enabled);
-    void on_showReadProgress_triggered(bool enabled);
+    void onActionShowFolder_triggered();
+    void onFolderWindow_closed();
+    void onFolderWindow_openVolume(QString path);
+    void onActionOpenVolumeWithProgress_triggered(bool enabled);
+    void onActionShowReadProgress_triggered(bool enabled);
 
     // Catalog
-    void on_manageCatalogs_triggered();
-    void on_manageCatalogsClosed_triggered();
-    void on_openVolumeByCatalog_triggered(QString path);
-    void on_searchTitleWithOptions_triggered(bool enable);
-    void on_catalogTitleWithoutOptions_triggered(bool enable);
-    void on_catalogViewList_triggered();
-    void on_catalogViewIcon_triggered();
-    void on_catalogViewNotext_triggered();
-    void on_catalogShowTagBar_triggered(bool enable);
-    void on_catalogIconLongText_triggered(bool enable);
+    void onActionShowCatalog_triggered();
+    void onCatalogWindow_closed();
+    void onCatalogWindow_openVolume(QString path);
+    void onActionSearchTitleWithOptions_triggered(bool enable);
+    void onActionCatalogTitleWithoutOptions_triggered(bool enable);
+    void onActionCatalogViewList_triggered();
+    void onActionCatalogViewIcon_triggered();
+    void onActionCatalogViewIconNoText_triggered();
+    void onActionShowTagBar_triggered(bool enable);
+    void onActionCatalogIconLongText_triggered(bool enable);
 
     // Exif
-    void on_openExifDialog_triggered();
-    void on_openExifDialogClosed_triggered();
+    void onActionOpenExif_triggered();
+    void onExifDialog_closed();
 
     // PageBar
-    void on_pageChanged_triggered();
-    void on_volumeChanged_triggered(QString path);
-    void on_pageSlider_changed(int value);
-    void on_pageNolongerNeeded_triggered();
+    void onPageManager_pageChanged();
+    void onPageManager_volumeChanged(QString path);
+    void onPageSlider_valueChanged(int value);
 
     // View
-    virtual void on_fullscreen_triggered();
-    void on_stayOnTop_triggered(bool top);
-    void on_restoreWindowState_triggered(bool saveState);
-    void on_maximizeOrNormal_triggered();
-    void on_openOptionsDialog_triggered();
-    void on_beginAsFullscreen_triggered(bool enable);
-    void on_showFullscreenSignage_triggered(bool enable);
-    void on_showFullscreenTitleBar_triggered(bool enable);
+    virtual void onActionFullscreen_triggered();
+    void onActionStayOnTop_triggered(bool top);
+    void onActionRestoreWindowState_triggered(bool saveState);
+    void onActionMaximizeOrNormal_triggered();
+    void onActionOpenOptionsDialog_triggered();
+    void onActionBeginAsFullscreen_triggered(bool enable);
+    void onActionShowFullscreenSignage_triggered(bool enable);
+    void onActionShowFullscreenTitleBar_triggered(bool enable);
     void on_windowTop();
 
     // SlideShow
-    void on_slideShow_triggered(bool enable);
+    void onActionSlideShow_triggered(bool enable);
 
     // Toolbars
-    void on_showToolBar_triggered(bool showToolBar);
-    void on_showSliderBar_triggered(bool showSliderBar);
-    void on_showStatusBar_triggered(bool showStatusBar);
-    void on_showMenuBar_triggered(bool showMenuBar);
+    void onActionShowToolBar_triggered(bool showToolBar);
+    void onActionShowPageBar_triggered(bool showSliderBar);
+    void onActionShowStatusBar_triggered(bool showStatusBar);
+    void onActionShowMenuBar_triggered(bool showMenuBar);
 
     // Help
-    void on_openKeyConfig_triggered();
-    void on_openMouseConfig_triggered();
-    void on_projectPage_triggered();
-    void on_checkVersion_triggered();
-    void on_appVersion_triggered();
+    void onActionOpenKeyConfig_triggered();
+    void onActionOpenMouseConfig_triggered();
+    void onActionProjectWeb_triggered();
+    void onActionCheckVersion_triggered();
+    void onActionAppVersion_triggered();
 //    void on_languageEnglish_triggered();
 //    void on_languageJapanese_triggered();
 //    void on_languageSpanish_triggered();
 //    void on_languageChinese_triggered();
-    void on_languageChanged_triggered(QString language);
-    void on_registAssocs_triggered();
+    void onLanguageSelector_languageChanged(QString language);
+    void onActionRegistAssocs_triggered();
 
     // ContextMenus
-    void on_contextMenu_triggered();
-    void on_openfolder_triggered();
-    void on_deletePage_triggered();
-    void on_exitApplicationOrFullscreen_triggered();
-    void on_mailAttachment_triggered();
-    void on_renameImageFile_triggered();
-    void on_confirmDeletePage_triggered(bool enable);
+    void onActionContextMenu_triggered();
+    void onActionOpenfolder_triggered();
+    void onActionRecyclePage_triggered();
+    void onActionDeletePage_triggered();
+    void onActionExitApplicationOrFullscreen_triggered();
+    void onActionMailAttachment_triggered();
+    void onActionRenameImageFile_triggered();
+    void onActionConfirmDeletePage_triggered(bool enable);
 
     // Shaders
-    void on_shaderNearestNeighbor_triggered();
-    void on_shaderBilinear_triggered();
-    void on_shaderBicubic_triggered();
-    void on_shaderLanczos_triggered();
-    void on_shaderBilinearBeforeCpuBicubic_triggered();
-    void on_shaderCpuBicubic_triggered();
+    void onActionShaderNearestNeighbor_triggered();
+    void onActionShaderBilinear_triggered();
+    void onActionShaderBicubic_triggered();
+    void onActionShaderLanczos_triggered();
+    void onActionShaderBilinearBeforeCpuBicubic_triggered();
+    void onActionShaderCpuBicubic_triggered();
 
     // Bookmark
-    void on_saveBookmark_triggered();
-    void on_clearBookmarks_triggered();
-    void on_loadBookmark_triggered();
-    void on_loadBookmarkMenu_triggered(QAction *action);
+    void onActionSaveBookmark_triggered();
+    void onActionClearBookmarks_triggered();
+    void onActionLoadBookmark_triggered();
+    void onMenuLoadBookmark_triggered(QAction *action);
 
     // Others
-    void on_messageReceived(QString data);
-    virtual void on_hover_anchor(Qt::AnchorPoint anchor);
+    virtual void onGraphicsView_anchorHovered(Qt::AnchorPoint anchor);
 
 private slots:
-    void on_fittingChanged(bool fitting);
+    void onGraphicsView_fittingChanged(bool fitting);
 
 
 protected:

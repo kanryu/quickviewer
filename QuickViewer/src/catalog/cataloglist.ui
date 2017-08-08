@@ -262,7 +262,7 @@ padding: 8px;
    <sender>addButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_addNew_triggered()</slot>
+   <slot>onAddButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>61</x>
@@ -278,7 +278,7 @@ padding: 8px;
    <sender>deleteButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_delete_triggered()</slot>
+   <slot>onDeleteButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>223</x>
@@ -294,7 +294,7 @@ padding: 8px;
    <sender>editButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_edit_triggered()</slot>
+   <slot>onEditButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>142</x>
@@ -310,7 +310,7 @@ padding: 8px;
    <sender>updateButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_update_triggered()</slot>
+   <slot>onUpdateButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>312</x>
@@ -326,7 +326,7 @@ padding: 8px;
    <sender>deleteAllButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_deleteAll_triggered()</slot>
+   <slot>onDeleteAllButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>432</x>
@@ -342,7 +342,7 @@ padding: 8px;
    <sender>updateAllButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_updateAll_triggered()</slot>
+   <slot>onUpdateAllButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>537</x>
@@ -358,7 +358,7 @@ padding: 8px;
    <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>ManageDatabaseDialog</receiver>
-   <slot>on_cancelWork_triggered()</slot>
+   <slot>onCancelButton_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>64</x>
@@ -372,12 +372,12 @@ padding: 8px;
   </connection>
  </connections>
  <slots>
-  <slot>on_addNew_triggered()</slot>
-  <slot>on_delete_triggered()</slot>
-  <slot>on_edit_triggered()</slot>
-  <slot>on_update_triggered()</slot>
-  <slot>on_deleteAll_triggered()</slot>
-  <slot>on_updateAll_triggered()</slot>
-  <slot>on_cancelWork_triggered()</slot>
+  <slot>onAddButton_clicked()</slot>
+  <slot>onDeleteButton_clicked()</slot>
+  <slot>onEditButton_clicked()</slot>
+  <slot>onUpdateButton_clicked()</slot>
+  <slot>onDeleteAllButton_clicked()</slot>
+  <slot>onUpdateAllButton_clicked()</slot>
+  <slot>onCancelButton_clicked()</slot>
  </slots>
 </ui>

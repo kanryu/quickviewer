@@ -77,7 +77,7 @@ bool FolderWindow::eventFilter(QObject *obj, QEvent *event)
 }
 
 
-void FolderWindow::on_setHome_triggered()
+void FolderWindow::onActionSetAsHomeFolder_triggered()
 {
     int row = selectedIdx.row();
     if(row < 0 || row >= m_volumes.size())
@@ -202,7 +202,7 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
     m_itemModel.setVolumes(&m_volumes);
 
     if(showParent)
-        on_volumeChanged_triggered(path);
+        onPageManager_volumeChanged(path);
 }
 
 void FolderWindow::reset()
@@ -250,9 +250,9 @@ void FolderWindow::keyPressEvent(QKeyEvent *event)
     }
     if(seq == seqBackspace) {
         if(m_historyPrev.empty())
-            on_parent_triggered();
+            onParentButton_clicked();
         else
-            on_prev_triggered();
+            onPrevButton_clicked();
         return;
     }
 }
@@ -261,17 +261,17 @@ void FolderWindow::mousePressEvent(QMouseEvent *event)
 {
     // 5 buttons mouse forward for browsers
     if(event->button() == Qt::ForwardButton) {
-        on_next_triggered();
+        onNextButton_clicked();
         return;
     }
     // 5 buttons mouse back for browsers
     if(event->button() == Qt::BackButton) {
-        on_prev_triggered();
+        onPrevButton_clicked();
         return;
     }
 }
 
-void FolderWindow::on_home_triggered()
+void FolderWindow::onHomeButton_clicked()
 {
     if(m_historyPrev.contains(m_currentPath))
         m_historyPrev.removeOne(m_currentPath);
@@ -280,7 +280,7 @@ void FolderWindow::on_home_triggered()
     emit openVolume(qApp->HomeFolderPath());
 }
 
-void FolderWindow::on_prev_triggered()
+void FolderWindow::onPrevButton_clicked()
 {
     if(m_historyPrev.empty())
         return;
@@ -293,7 +293,7 @@ void FolderWindow::on_prev_triggered()
     emit openVolume(path);
 }
 
-void FolderWindow::on_next_triggered()
+void FolderWindow::onNextButton_clicked()
 {
     if(m_historyNext.empty())
         return;
@@ -305,7 +305,7 @@ void FolderWindow::on_next_triggered()
     emit openVolume(path);
 }
 
-void FolderWindow::on_parent_triggered()
+void FolderWindow::onParentButton_clicked()
 {
     if(m_currentPath.isEmpty())
         return;
@@ -314,14 +314,14 @@ void FolderWindow::on_parent_triggered()
     emit openVolume(info.canonicalPath());
 }
 
-void FolderWindow::on_reload_triggered()
+void FolderWindow::onReloadButton_clicked()
 {
     if(m_currentPath.isEmpty())
         return;
     setFolderPath(m_currentPath, false);
 }
 
-void FolderWindow::on_volumeChanged_triggered(QString path)
+void FolderWindow::onPageManager_volumeChanged(QString path)
 {
     QFileInfo info(QDir::toNativeSeparators(path));
     if(!info.exists() || m_currentPath != info.canonicalPath())
@@ -375,7 +375,7 @@ void FolderWindow::on_currentItem_triggered()
     on_itemDoubleClicked(ui->folderView->currentIndex());
 }
 
-void FolderWindow::on_sortMode_triggered()
+void FolderWindow::onSortModeButton_clicked()
 {
     QWidget* widget = ui->sortModeButton;
 
@@ -383,18 +383,18 @@ void FolderWindow::on_sortMode_triggered()
     m_sortModeMenu->exec(p);
 }
 
-void FolderWindow::on_orderByName_triggered()
+void FolderWindow::onActionOrderByName_triggered()
 {
     qApp->setFolderSortMode(qvEnums::OrderByName);
     resetSortMode();
-    on_reload_triggered();
+    onReloadButton_clicked();
 }
 
-void FolderWindow::on_orderByUpdatedAt_triggered()
+void FolderWindow::onActionOrderByUpdatedAt_triggered()
 {
     qApp->setFolderSortMode(qvEnums::OrderByUpdatedAt);
     resetSortMode();
-    on_reload_triggered();
+    onReloadButton_clicked();
 }
 
 void FolderWindow::closeEvent(QCloseEvent *e)

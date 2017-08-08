@@ -173,12 +173,12 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
     ui->addSequenceButton->setVisible(false);
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(ui->treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(on_currentCommandChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
-    connect(ui->resetButton, SIGNAL(clicked()), this, SLOT(on_resetToDefault()));
-    connect(ui->shortcutEdit, SIGNAL(textChanged(QString)), this, SLOT(on_shortcutEdit_changed(QString)));
+    connect(ui->treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(onTreeWidget_currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+    connect(ui->resetButton, SIGNAL(clicked()), this, SLOT(onResetButton_clicked()));
+    connect(ui->shortcutEdit, SIGNAL(textChanged(QString)), this, SLOT(onShortcutEdit_textChanged(QString)));
 
     connect(ui->recordButton, &ShortcutButton::keySequenceChanged,
-            this, &KeyConfigDialog::on_keySequence_changed);
+            this, &KeyConfigDialog::onRecordButton_keySequenceChanged);
 
     ui->treeWidget->sortByColumn(0, Qt::AscendingOrder);
     QTreeWidgetItem *header = ui->treeWidget->headerItem();
@@ -226,7 +226,7 @@ void KeyConfigDialog::revertKeyChanges()
     qApp->revertKeyMap(m_prevKeyConfigs);
 }
 
-void KeyConfigDialog::on_currentCommandChanged(QTreeWidgetItem *item, QTreeWidgetItem *)
+void KeyConfigDialog::onTreeWidget_currentItemChanged(QTreeWidgetItem *item, QTreeWidgetItem *)
 {
     //qDebug() << "on_currentCommandChanged: " << (item ? item->text(0):"nullptr") << (previous ? previous->text(0) :"nullptr");
     if(item) {
@@ -236,7 +236,7 @@ void KeyConfigDialog::on_currentCommandChanged(QTreeWidgetItem *item, QTreeWidge
     }
 }
 
-void KeyConfigDialog::on_keySequence_changed(QKeySequence key)
+void KeyConfigDialog::onRecordButton_keySequenceChanged(QKeySequence key)
 {
     //qDebug() << "on_keySequence_changed:" << key;
     if(!m_prevKeyConfigs.contains(m_actionName))
@@ -261,7 +261,7 @@ void KeyConfigDialog::on_keySequence_changed(QKeySequence key)
 
 }
 
-void KeyConfigDialog::on_resetToDefault()
+void KeyConfigDialog::onResetButton_clicked()
 {
     QKeySequence key = qApp->getKeyDefault(m_actionName);
     QString shortcutText = keySequenceToEditString(key);
@@ -277,12 +277,7 @@ void KeyConfigDialog::on_resetToDefault()
     qApp->setKeySequence(m_actionName, key);
 }
 
-void KeyConfigDialog::on_shortcutClearButton_triggered()
-{
-
-}
-
-void KeyConfigDialog::on_shortcutEdit_changed(QString text)
+void KeyConfigDialog::onShortcutEdit_textChanged(QString text)
 {
     if(!m_ignoreEdited) {
         QKeySequence key(text);
@@ -290,7 +285,7 @@ void KeyConfigDialog::on_shortcutEdit_changed(QString text)
             ui->warningLabel->setText(tr("Invalid key sequence.", "Message when rejecting input contents of inappropriate shortcut key"));
             return;
         }
-        on_keySequence_changed(key);
+        onRecordButton_keySequenceChanged(key);
     }
 }
 

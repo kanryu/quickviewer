@@ -32,21 +32,21 @@ public:
     QString itemPath(const QModelIndex& index);
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void on_currentItem_triggered();
 
 public slots:
-    void on_home_triggered();
-    void on_prev_triggered();
-    void on_next_triggered();
-    void on_parent_triggered();
-    void on_reload_triggered();
-    void on_volumeChanged_triggered(QString);
+    void onHomeButton_clicked();
+    void onPrevButton_clicked();
+    void onNextButton_clicked();
+    void onParentButton_clicked();
+    void onReloadButton_clicked();
+    void onPageManager_volumeChanged(QString);
     void on_itemSingleClicked(const QModelIndex & index);
     void on_itemDoubleClicked(const QModelIndex & index);
-    void on_currentItem_triggered();
-    void on_setHome_triggered();
-    void on_sortMode_triggered();
-    void on_orderByName_triggered();
-    void on_orderByUpdatedAt_triggered();
+    void onActionSetAsHomeFolder_triggered();
+    void onSortModeButton_clicked();
+    void onActionOrderByName_triggered();
+    void onActionOrderByUpdatedAt_triggered();
 
 signals:
     void openVolume(QString path);

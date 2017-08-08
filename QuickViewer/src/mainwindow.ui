@@ -324,7 +324,7 @@
     <addaction name="separator"/>
     <addaction name="actionCopyPage"/>
     <addaction name="actionCopyFile"/>
-    <addaction name="actionDeletePage"/>
+    <addaction name="actionRecyclePage"/>
     <addaction name="actionRenameImageFile"/>
     <addaction name="actionMailAttachment"/>
     <addaction name="separator"/>
@@ -662,7 +662,7 @@
     <string extracomment="A menu for copying the bitmap of the currently displayed image to the clipboard">&amp;Copy image to clipboard</string>
    </property>
   </action>
-  <action name="actionDeletePage">
+  <action name="actionRecyclePage">
    <property name="text">
     <string extracomment="Menu that puts the currently displayed image in Recycle Bin">Move image to &amp;Recycle Bin</string>
    </property>
@@ -1018,6 +1018,11 @@
     <string>&amp;Mouse Config</string>
    </property>
   </action>
+  <action name="actionDeletePage">
+   <property name="text">
+    <string>Delete the image</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1164,7 +1169,7 @@
    <sender>actionFullscreen</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_fullscreen_triggered()</slot>
+   <slot>onActionFullscreen_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1180,7 +1185,7 @@
    <sender>actionAppVersion</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_appVersion_triggered()</slot>
+   <slot>onActionAppVersion_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1196,7 +1201,7 @@
    <sender>actionAutoLoaded</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_autoloaded_triggered(bool)</slot>
+   <slot>onActionAutoLoaded_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1228,7 +1233,7 @@
    <sender>actionOpenFolder</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openfolder_triggered()</slot>
+   <slot>onActionOpenfolder_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1292,7 +1297,7 @@
    <sender>actionShowPageBar</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showSliderBar_triggered(bool)</slot>
+   <slot>onActionShowPageBar_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1308,7 +1313,7 @@
    <sender>actionShowStatusBar</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showStatusBar_triggered(bool)</slot>
+   <slot>onActionShowStatusBar_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1324,7 +1329,7 @@
    <sender>actionOpenExif</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openExifDialog_triggered()</slot>
+   <slot>onActionOpenExif_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1356,7 +1361,7 @@
    <sender>actionCheckVersion</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_checkVersion_triggered()</slot>
+   <slot>onActionCheckVersion_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1436,7 +1441,7 @@
    <sender>actionExitApplicationOrFullscreen</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_exitApplicationOrFullscreen_triggered()</slot>
+   <slot>onActionExitApplicationOrFullscreen_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1452,7 +1457,7 @@
    <sender>actionExit</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_exit_triggered()</slot>
+   <slot>onActionExit_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1468,7 +1473,7 @@
    <sender>actionShowToolBar</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showToolBar_triggered(bool)</slot>
+   <slot>onActionShowToolBar_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1500,7 +1505,7 @@
    <sender>actionShowMenuBar</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showMenuBar_triggered(bool)</slot>
+   <slot>onActionShowMenuBar_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1516,7 +1521,7 @@
    <sender>actionClearHistory</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_clearHistory_triggered()</slot>
+   <slot>onActionClearHistory_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1532,7 +1537,7 @@
    <sender>actionStayOnTop</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_stayOnTop_triggered(bool)</slot>
+   <slot>onActionStayOnTop_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1561,10 +1566,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionDeletePage</sender>
+   <sender>actionRecyclePage</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_deletePage_triggered()</slot>
+   <slot>onActionRecyclePage_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1580,7 +1585,7 @@
    <sender>actionShaderNearestNeighbor</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_shaderNearestNeighbor_triggered()</slot>
+   <slot>onActionShaderNearestNeighbor_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1596,7 +1601,7 @@
    <sender>actionShaderBilinear</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_shaderBilinear_triggered()</slot>
+   <slot>onActionShaderBilinear_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1612,7 +1617,7 @@
    <sender>actionShaderBicubic</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_shaderBicubic_triggered()</slot>
+   <slot>onActionShaderBicubic_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1628,7 +1633,7 @@
    <sender>actionShaderLanczos</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_shaderLanczos_triggered()</slot>
+   <slot>onActionShaderLanczos_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1644,7 +1649,7 @@
    <sender>actionMaximizeOrNormal</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_maximizeOrNormal_triggered()</slot>
+   <slot>onActionMaximizeOrNormal_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1692,7 +1697,7 @@
    <sender>actionRestoreWindowState</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_restoreWindowState_triggered(bool)</slot>
+   <slot>onActionRestoreWindowState_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1740,7 +1745,7 @@
    <sender>actionSlideShow</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_slideShow_triggered(bool)</slot>
+   <slot>onActionSlideShow_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1756,7 +1761,7 @@
    <sender>actionSaveBookmark</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_saveBookmark_triggered()</slot>
+   <slot>onActionSaveBookmark_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1772,7 +1777,7 @@
    <sender>actionClearBookmarks</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_clearBookmarks_triggered()</slot>
+   <slot>onActionClearBookmarks_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1788,7 +1793,7 @@
    <sender>actionLoadBookmark</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_loadBookmark_triggered()</slot>
+   <slot>onActionLoadBookmark_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1804,7 +1809,7 @@
    <sender>pageSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_pageSlider_changed(int)</slot>
+   <slot>onPageSlider_valueChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>403</x>
@@ -1820,7 +1825,7 @@
    <sender>graphicsView</sender>
    <signal>fittingChanged(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_fittingChanged(bool)</slot>
+   <slot>onGraphicsView_fittingChanged(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>350</x>
@@ -1836,7 +1841,7 @@
    <sender>graphicsView</sender>
    <signal>anchorHovered(Qt::AnchorPoint)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_hover_anchor(Qt::AnchorPoint)</slot>
+   <slot>onGraphicsView_anchorHovered(Qt::AnchorPoint)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>350</x>
@@ -1852,7 +1857,7 @@
    <sender>actionProjectWeb</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_projectPage_triggered()</slot>
+   <slot>onActionProjectWeb_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1868,7 +1873,7 @@
    <sender>actionShowCatalog</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_manageCatalogs_triggered()</slot>
+   <slot>onActionShowCatalog_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1884,7 +1889,7 @@
    <sender>actionCatalogTitleWithoutOptions</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_catalogTitleWithoutOptions_triggered(bool)</slot>
+   <slot>onActionCatalogTitleWithoutOptions_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1900,7 +1905,7 @@
    <sender>actionSearchTitleWithOptions</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_searchTitleWithOptions_triggered(bool)</slot>
+   <slot>onActionSearchTitleWithOptions_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1916,7 +1921,7 @@
    <sender>actionCatalogViewList</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_catalogViewList_triggered()</slot>
+   <slot>onActionCatalogViewList_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1932,7 +1937,7 @@
    <sender>actionCatalogViewIcon</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_catalogViewIcon_triggered()</slot>
+   <slot>onActionCatalogViewIcon_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1948,7 +1953,7 @@
    <sender>actionCatalogViewIconNoText</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_catalogViewNotext_triggered()</slot>
+   <slot>onActionCatalogViewIconNoText_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1964,7 +1969,7 @@
    <sender>actionShowTagBar</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_catalogShowTagBar_triggered(bool)</slot>
+   <slot>onActionShowTagBar_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1980,7 +1985,7 @@
    <sender>actionMailAttachment</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_mailAttachment_triggered()</slot>
+   <slot>onActionMailAttachment_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1996,7 +2001,7 @@
    <sender>actionCatalogIconLongText</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_catalogIconLongText_triggered(bool)</slot>
+   <slot>onActionCatalogIconLongText_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2012,7 +2017,7 @@
    <sender>actionShowFolder</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_folderWindow_triggered()</slot>
+   <slot>onActionShowFolder_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2028,7 +2033,7 @@
    <sender>actionShaderBilinearBeforeCpuBicubic</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_shaderBilinearBeforeCpuBicubic_triggered()</slot>
+   <slot>onActionShaderBilinearBeforeCpuBicubic_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2044,7 +2049,7 @@
    <sender>actionShaderCpuBicubic</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_shaderCpuBicubic_triggered()</slot>
+   <slot>onActionShaderCpuBicubic_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2076,7 +2081,7 @@
    <sender>actionOpenVolumeWithProgress</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openVolumeWithProgress_triggered(bool)</slot>
+   <slot>onActionOpenVolumeWithProgress_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2092,7 +2097,7 @@
    <sender>actionShowReadProgress</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showReadProgress_triggered(bool)</slot>
+   <slot>onActionShowReadProgress_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2108,7 +2113,7 @@
    <sender>actionOpenOptionsDialog</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openOptionsDialog_triggered()</slot>
+   <slot>onActionOpenOptionsDialog_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2124,7 +2129,7 @@
    <sender>actionRenameImageFile</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_renameImageFile_triggered()</slot>
+   <slot>onActionRenameImageFile_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2156,7 +2161,7 @@
    <sender>actionBeginAsFullscreen</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_beginAsFullscreen_triggered(bool)</slot>
+   <slot>onActionBeginAsFullscreen_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2172,7 +2177,7 @@
    <sender>actionShowFullscreenSignage</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showFullscreenSignage_triggered(bool)</slot>
+   <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2188,7 +2193,7 @@
    <sender>actionOpenKeyConfig</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openKeyConfig_triggered()</slot>
+   <slot>onActionOpenKeyConfig_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2204,7 +2209,7 @@
    <sender>actionConfirmDeletePage</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_confirmDeletePage_triggered(bool)</slot>
+   <slot>onActionConfirmDeletePage_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2220,7 +2225,7 @@
    <sender>actionRegistAssocs</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_registAssocs_triggered()</slot>
+   <slot>onActionRegistAssocs_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2236,7 +2241,7 @@
    <sender>actionShowFullscreenTitleBar</sender>
    <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_showFullscreenTitleBar_triggered(bool)</slot>
+   <slot>onActionShowFullscreenTitleBar_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2252,7 +2257,7 @@
    <sender>actionContextMenu</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_contextMenu_triggered()</slot>
+   <slot>onActionContextMenu_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2268,7 +2273,23 @@
    <sender>actionOpenMouseConfig</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>on_openMouseConfig_triggered()</slot>
+   <slot>onActionOpenMouseConfig_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDeletePage</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionDeletePage_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2282,69 +2303,68 @@
   </connection>
  </connections>
  <slots>
-  <slot>on_file_changed(QString)</slot>
   <slot>on_nextPage_triggered()</slot>
   <slot>on_prevPage_triggered()</slot>
   <slot>on_scaleUp_triggered()</slot>
   <slot>on_scaleDown_triggered()</slot>
-  <slot>on_fullscreen_triggered()</slot>
-  <slot>on_appVersion_triggered()</slot>
-  <slot>on_autoloaded_triggered(bool)</slot>
-  <slot>on_openfolder_triggered()</slot>
+  <slot>onActionFullscreen_triggered()</slot>
+  <slot>onActionAppVersion_triggered()</slot>
+  <slot>onActionAutoLoaded_triggered(bool)</slot>
+  <slot>onActionOpenfolder_triggered()</slot>
   <slot>on_firstPage_triggered()</slot>
   <slot>on_lastPage_triggered()</slot>
-  <slot>on_showSliderBar_triggered(bool)</slot>
-  <slot>on_showStatusBar_triggered(bool)</slot>
-  <slot>on_openKeyConfig_triggered()</slot>
-  <slot>on_checkVersion_triggered()</slot>
-  <slot>on_exitApplicationOrFullscreen_triggered()</slot>
-  <slot>on_exit_triggered()</slot>
-  <slot>on_showToolBar_triggered(bool)</slot>
-  <slot>on_showMenuBar_triggered(bool)</slot>
-  <slot>on_clearHistory_triggered()</slot>
-  <slot>on_stayOnTop_triggered(bool)</slot>
-  <slot>on_deletePage_triggered()</slot>
-  <slot>on_shaderNearestNeighbor_triggered()</slot>
-  <slot>on_shaderBilinear_triggered()</slot>
-  <slot>on_shaderBicubic_triggered()</slot>
-  <slot>on_shaderLanczos_triggered()</slot>
-  <slot>on_maximizeOrNormal_triggered()</slot>
-  <slot>on_restoreWindowState_triggered(bool)</slot>
-  <slot>on_slideShow_triggered(bool)</slot>
-  <slot>on_historymenu_triggered(QAction*)</slot>
-  <slot>on_saveBookmark_triggered()</slot>
-  <slot>on_clearBookmarks_triggered()</slot>
+  <slot>onActionShowPageBar_triggered(bool)</slot>
+  <slot>onActionShowStatusBar_triggered(bool)</slot>
+  <slot>onActionOpenKeyConfig_triggered()</slot>
+  <slot>onActionCheckVersion_triggered()</slot>
+  <slot>onActionExitApplicationOrFullscreen_triggered()</slot>
+  <slot>onActionExit_triggered()</slot>
+  <slot>onActionShowToolBar_triggered(bool)</slot>
+  <slot>onActionShowMenuBar_triggered(bool)</slot>
+  <slot>onActionClearHistory_triggered()</slot>
+  <slot>onActionStayOnTop_triggered(bool)</slot>
+  <slot>onActionDeletePage_triggered()</slot>
+  <slot>onActionShaderNearestNeighbor_triggered()</slot>
+  <slot>onActionShaderBilinear_triggered()</slot>
+  <slot>onActionShaderBicubic_triggered()</slot>
+  <slot>onActionShaderLanczos_triggered()</slot>
+  <slot>onActionMaximizeOrNormal_triggered()</slot>
+  <slot>onActionRestoreWindowState_triggered(bool)</slot>
+  <slot>onActionSlideShow_triggered(bool)</slot>
+  <slot>onActionSaveBookmark_triggered()</slot>
+  <slot>onActionClearBookmarks_triggered()</slot>
   <slot>on_loadBookmarkMenu_triggered(QAction*)</slot>
-  <slot>on_loadBookmark_triggered()</slot>
-  <slot>on_pageSlider_changed(int)</slot>
-  <slot>on_hover_anchor(Qt::AnchorPoint)</slot>
-  <slot>on_fittingChanged(bool)</slot>
-  <slot>on_projectPage_triggered()</slot>
-  <slot>on_manageCatalogs_triggered()</slot>
-  <slot>on_searchTitleWithOptions_triggered(bool)</slot>
-  <slot>on_catalogTitleWithoutOptions_triggered(bool)</slot>
-  <slot>on_catalogViewList_triggered()</slot>
-  <slot>on_catalogViewIcon_triggered()</slot>
-  <slot>on_catalogViewNotext_triggered()</slot>
-  <slot>on_catalogShowTagBar_triggered(bool)</slot>
-  <slot>on_mailAttachment_triggered()</slot>
-  <slot>on_catalogIconLongText_triggered(bool)</slot>
-  <slot>on_folderWindow_triggered()</slot>
+  <slot>onActionLoadBookmark_triggered()</slot>
+  <slot>onPageSlider_valueChanged(int)</slot>
+  <slot>onGraphicsView_anchorHovered(Qt::AnchorPoint)</slot>
+  <slot>onGraphicsView_fittingChanged(bool)</slot>
+  <slot>onActionProjectWeb_triggered()</slot>
+  <slot>onActionShowCatalog_triggered()</slot>
+  <slot>onActionSearchTitleWithOptions_triggered(bool)</slot>
+  <slot>onActionCatalogTitleWithoutOptions_triggered(bool)</slot>
+  <slot>onActionCatalogViewList_triggered()</slot>
+  <slot>onActionCatalogViewIcon_triggered()</slot>
+  <slot>onActionCatalogViewIconNoText_triggered()</slot>
+  <slot>onActionShowTagBar_triggered(bool)</slot>
+  <slot>onActionMailAttachment_triggered()</slot>
+  <slot>onActionCatalogIconLongText_triggered(bool)</slot>
+  <slot>onActionShowFolder_triggered()</slot>
   <slot>on_folderWindowClosed_triggered()</slot>
-  <slot>on_shaderBilinearBeforeCpuBicubic_triggered()</slot>
-  <slot>on_shaderCpuBicubic_triggered()</slot>
-  <slot>on_openVolumeWithProgress_triggered(bool)</slot>
-  <slot>on_showReadProgress_triggered(bool)</slot>
-  <slot>on_openOptionsDialog_triggered()</slot>
-  <slot>on_renameImageFile_triggered()</slot>
-  <slot>on_openExifDialog_triggered()</slot>
-  <slot>on_beginAsFullscreen_triggered(bool)</slot>
-  <slot>on_showFullscreenSignage_triggered(bool)</slot>
-  <slot>on_confirmDeletePage_triggered(bool)</slot>
-  <slot>on_registAssocs_triggered()</slot>
-  <slot>on_showFullscreenTitleBar_triggered(bool)</slot>
-  <slot>on_prohibitMultipleRunning_triggered(bool)</slot>
-  <slot>on_contextMenu_triggered()</slot>
-  <slot>on_openMouseConfig_triggered()</slot>
+  <slot>onActionShaderBilinearBeforeCpuBicubic_triggered()</slot>
+  <slot>onActionShaderCpuBicubic_triggered()</slot>
+  <slot>onActionOpenVolumeWithProgress_triggered(bool)</slot>
+  <slot>onActionShowReadProgress_triggered(bool)</slot>
+  <slot>onActionOpenOptionsDialog_triggered()</slot>
+  <slot>onActionRenameImageFile_triggered()</slot>
+  <slot>onActionOpenExif_triggered()</slot>
+  <slot>onActionBeginAsFullscreen_triggered(bool)</slot>
+  <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
+  <slot>onActionConfirmDeletePage_triggered(bool)</slot>
+  <slot>onActionRegistAssocs_triggered()</slot>
+  <slot>onActionShowFullscreenTitleBar_triggered(bool)</slot>
+  <slot>onActionContextMenu_triggered()</slot>
+  <slot>onActionOpenMouseConfig_triggered()</slot>
+  <slot>onActionRecyclePage_triggered()</slot>
+  <slot>onActionSuppressKeyRepeat_triggered(bool)</slot>
  </slots>
 </ui>

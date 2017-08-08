@@ -42,7 +42,7 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
     ui->volumeList->setModel(&m_itemModel);
 
     // SearchCombo
-    connect(ui->searchCombo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(on_searchTextFinished()));
+    connect(ui->searchCombo->lineEdit(), SIGNAL(editingFinished()), this, SLOT(onLineEdit_editingFinished()));
     ui->searchCombo->lineEdit()->setPlaceholderText(tr("Field the search term and press enter key to search by the title.", "Gray text that prompts a keyword search of Volume"));
 
     // TagFrame
@@ -89,9 +89,9 @@ void CatalogWindow::setThumbnailManager(ThumbnailManager *manager)
 void CatalogWindow::resetViewMode()
 {
     switch(qApp->CatalogViewModeSetting()) {
-    case qvEnums::List: on_folderViewList_triggered(); break;
-    case qvEnums::Icon: on_folderViewIcon_triggered(); break;
-    case qvEnums::IconNoText: on_folderViewNotext_triggered(); break;
+    case qvEnums::List: onActionFolderViewList_triggered(); break;
+    case qvEnums::Icon: onActionFolderViewIcon_triggered(); break;
+    case qvEnums::IconNoText: onActionFolderViewNotext_triggered(); break;
     }
 
 }
@@ -233,7 +233,7 @@ void CatalogWindow::on_treeItemChanged(QString path)
     //ui->pathCombo->setCurrentText(QDir::toNativeSeparators(path));
 }
 
-void CatalogWindow::on_folderViewSelect_triggered()
+void CatalogWindow::onFolderViewButton_clicked()
 {
     QWidget* widget = ui->folderViewButton;
 
@@ -241,7 +241,7 @@ void CatalogWindow::on_folderViewSelect_triggered()
     m_folderViewMenu.exec(p);
 }
 
-void CatalogWindow::on_folderViewList_triggered()
+void CatalogWindow::onActionFolderViewList_triggered()
 {
     qApp->setCatalogViewModeSetting(qvEnums::List);
     ui->actionFolderViewList->setChecked(true);
@@ -262,7 +262,7 @@ void CatalogWindow::on_folderViewList_triggered()
     resetVolumes();
 }
 
-void CatalogWindow::on_folderViewIcon_triggered()
+void CatalogWindow::onActionFolderViewIcon_triggered()
 {
     qApp->setCatalogViewModeSetting(qvEnums::Icon);
     ui->actionFolderViewList->setChecked(false);
@@ -283,7 +283,7 @@ void CatalogWindow::on_folderViewIcon_triggered()
     resetVolumes();
 }
 
-void CatalogWindow::on_folderViewNotext_triggered()
+void CatalogWindow::onActionFolderViewNotext_triggered()
 {
     qApp->setCatalogViewModeSetting(qvEnums::IconNoText);
     ui->actionFolderViewList->setChecked(false);
@@ -298,7 +298,7 @@ void CatalogWindow::on_folderViewNotext_triggered()
     resetVolumes();
 }
 
-void CatalogWindow::on_manageDatabase_triggered()
+void CatalogWindow::onManageCatalogButton_clicked()
 {
     ManageDatabaseDialog dialog(this);
     dialog.setThumbnailManager(m_thumbManager);
@@ -309,7 +309,7 @@ void CatalogWindow::on_manageDatabase_triggered()
     searchByWord(true);
 }
 
-void CatalogWindow::on_searchTextChanged(QString search)
+void CatalogWindow::onSearchCombo_editTextChanged(QString search)
 {
     qDebug() << search;
 //    if(m_volumes.size() < qApp->MaxSearchByCharChanged())
@@ -317,13 +317,13 @@ void CatalogWindow::on_searchTextChanged(QString search)
     return;
 }
 
-void CatalogWindow::on_searchTextIndexChanged(QString search)
+void CatalogWindow::onSearchCombo_currentIndexChanged(QString search)
 {
     qDebug() << "on_searchTextIndexChanged: " << search;
     searchByWord();
 }
 
-void CatalogWindow::on_searchTextFinished()
+void CatalogWindow::onLineEdit_editingFinished()
 {
     qDebug() << "on_searchTextFinished:";
     searchByWord();
@@ -347,13 +347,13 @@ void CatalogWindow::on_itemDoubleClicked(const QModelIndex &index)
     resetTagButtons(tagtxt, getTagWords());
 }
 
-void CatalogWindow::on_searchTitleWithOptions_triggered(bool enable)
+void CatalogWindow::onActionSearchTitleWithOptions_triggered(bool enable)
 {
     qApp->setSearchTitleWithOptions(enable);
     searchByWord(true);
 }
 
-void CatalogWindow::on_catalogTitleWithoutOptions_triggered(bool enable)
+void CatalogWindow::onActionCatalogTitleWithoutOptions_triggered(bool enable)
 {
     qApp->setTitleWithoutOptions(enable);
     searchByWord(true);

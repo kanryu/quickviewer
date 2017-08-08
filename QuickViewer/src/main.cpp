@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 #endif
     ThumbnailManager manager(&w, app.CatalogDatabasePath());
     w.setThumbnailManager(&manager);
-    w.connect(&pipe, SIGNAL(open(QString)), &w, SLOT(on_openVolumeByCatalog_triggered(QString)));
+    w.connect(&pipe, SIGNAL(open(QString)), &w, SLOT(onCatalogWindow_openVolume(QString)));
     w.connect(&pipe, SIGNAL(beetUp()), &w, SLOT(on_windowTop()));
     w.show();
 

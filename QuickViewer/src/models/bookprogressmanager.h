@@ -35,11 +35,12 @@ public:
     BookProgressManager(QObject* parent);
     void save();
 
-    BookProgressMap initializeAsync();
+    static BookProgressMap initializeAsync();
 
     bool contains(QString path) { return m_books.contains(path); }
     BookProgress at(QString path) { return m_books[path]; }
     void insert(QString path, BookProgress& value) { m_books.insert(path, value); }
+    void moveToThread(QThread *targetThread);
 
 public slots:
     void on_Initialized_triggered();

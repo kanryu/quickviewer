@@ -74,13 +74,13 @@ void DatabaseSettingDialog::checkAcceptable()
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(enabled);
 }
 
-void DatabaseSettingDialog::on_nameChanged(QString name)
+void DatabaseSettingDialog::onNameEdit_textChanged(QString name)
 {
      setName(name);
      checkAcceptable();
 }
 
-void DatabaseSettingDialog::on_selectFolder_triggered()
+void DatabaseSettingDialog::onSelectFolderButton_clicked()
 {
     QString folder = QFileDialog::getExistingDirectory(this, tr("Please select a folder containing Images or Archives", "Caption of FolderSelectDialog urging selection of folders containing Images and Archives"));
     if(!folder.isEmpty()) {

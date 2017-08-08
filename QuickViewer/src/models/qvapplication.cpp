@@ -72,7 +72,8 @@ void QVApplication::registDefaultKeyMap()
     m_keyConfigDefaults["actionFitting"] = QKeySequence("M, F12, Num+*");
 
     m_keyConfigDefaults["actionRotate"] = QKeySequence("R");
-    m_keyConfigDefaults["actionDeletePage"] = QKeySequence("Del");
+    m_keyConfigDefaults["actionRecyclePage"] = QKeySequence("Del");
+    m_keyConfigDefaults["actionDeletePage"] = QKeySequence("Shift+Del");
 
     m_keyConfigDefaults["actionCopyPage"] = QKeySequence("Ctrl+C");
     m_keyConfigDefaults["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
@@ -173,6 +174,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionOpenExif", ui->actionOpenExif);
     registAction("actionCopyPage", ui->actionCopyPage);
     registAction("actionCopyFile", ui->actionCopyFile);
+    registAction("actionRecyclePage", ui->actionRecyclePage);
     registAction("actionDeletePage", ui->actionDeletePage);
     registAction("actionMailAttachment", ui->actionMailAttachment);
     registAction("actionRenameImageFile", ui->actionRenameImageFile);

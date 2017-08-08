@@ -6,7 +6,7 @@ BookProgressManager::BookProgressManager(QObject *parent)
     : QObject(parent)
 {
     connect(&m_initializeWatcher, SIGNAL(finished()), SLOT(on_Initialized_triggered()));
-    QFuture<BookProgressMap> future = QtConcurrent::run(this, &BookProgressManager::initializeAsync);
+    QFuture<BookProgressMap> future = QtConcurrent::run(&BookProgressManager::initializeAsync);
     m_initializeWatcher.setFuture(future);
 }
 
@@ -33,7 +33,7 @@ void BookProgressManager::save()
 
 BookProgressManager::BookProgressMap BookProgressManager::initializeAsync()
 {
-    QSettings settings(qApp->getApplicationFilePath(PROGRESS_INI), QSettings::IniFormat, this);
+    QSettings settings(qApp->getApplicationFilePath(PROGRESS_INI), QSettings::IniFormat);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     BookProgressMap result;

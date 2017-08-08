@@ -19,9 +19,9 @@ public:
     void resetColorBox();
 
 public slots:
-    void on_changeColor_triggered();
-    void on_changeColor2_triggered();
-    void on_useCheckeredPattern_triggered(bool enabled);
+    void onBtnColorSelect_clicked();
+    void onBtnColorSelect2_clicked();
+    void onCheckBoxCheckeredPattern_clicked(bool enabled);
 
 private:
     Ui::OptionsDialog *ui;

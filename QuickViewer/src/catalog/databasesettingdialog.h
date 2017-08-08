@@ -28,9 +28,9 @@ public:
     void checkAcceptable();
 
 public slots:
-    void on_nameChanged(QString name);
-    void on_pathChanged(QString path) {setPath(path);checkAcceptable();}
-    void on_selectFolder_triggered();
+    void onNameEdit_textChanged(QString name);
+    void onPathEdit_textChanged(QString path) {setPath(path);checkAcceptable();}
+    void onSelectFolderButton_clicked();
 
 private:
     Ui::DatabaseSettingDialog *ui;

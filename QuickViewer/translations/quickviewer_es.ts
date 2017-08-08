@@ -1210,7 +1210,7 @@
     </message>
     <message>
         <source>Stay On &amp;Top</source>
-        <extracomment>Button to display window at the front</extracomment>
+        <extracomment>When on it keeps the window always on top</extracomment>
         <translation>Siemple indica este lado</translation>
     </message>
     <message>
@@ -1519,7 +1519,7 @@
     <message>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation>Comprobación</translation>
+        <translation type="vanished">Comprobación</translation>
     </message>
     <message>
         <source>Are you sure you delete the image?</source>
@@ -1669,7 +1669,7 @@
     <message>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation>¿Tira esta imagen a la basura? ¿Es verdad?</translation>
+        <translation type="vanished">¿Tira esta imagen a la basura? ¿Es verdad?</translation>
     </message>
     <message>
         <source>Show title bar on Fullscreen</source>
@@ -1778,7 +1778,31 @@
     </message>
     <message>
         <source>&amp;Mouse Config</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración del ratón(&amp;M)</translation>
+    </message>
+    <message>
+        <source>Delete the image</source>
+        <translation>Eliminar la imagen</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
+        <translation>Comprobación</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to move the image to Recycle Bin?</source>
+        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
+        <translation>¿Tira esta imagen a la basura? ¿Es verdad?</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <comment>Confirm deleting image file on MessageBox title</comment>
+        <translation>Comprobación</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete this image?</source>
+        <comment>Confirm deleting image file on Message Box body</comment>
+        <translation>¿Estás seguro de que quieres eliminar esta imagen?</translation>
     </message>
 </context>
 <context>
@@ -2033,7 +2057,7 @@
     <message>
         <source>Mouse Config</source>
         <comment>Title of the dialog to customize the mouse sequences</comment>
-        <translation type="unfinished"></translation>
+        <translation>Configuración del ratón</translation>
     </message>
 </context>
 <context>

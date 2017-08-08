@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     fullscreenButton->setToolTip(tr("&Fullscreen"));
     fullscreenButton->setCheckable(true);
     fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
-    connect(fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(on_fullscreen_triggered()));
+    connect(fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
     connect(ui->actionFullscreen, SIGNAL(toggled(bool)), fullscreenButton, SLOT(setChecked(bool)));
     ui->menuBar->setCornerWidget(fullscreenButton);
 
@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Languages
     qApp->languageSelector()->initializeMenu(ui->menuChange_Language);
-    connect(qApp->languageSelector(), SIGNAL(languageChanged(QString)), this, SLOT(on_languageChanged_triggered(QString)));
+    connect(qApp->languageSelector(), SIGNAL(languageChanged(QString)), this, SLOT(onLanguageSelector_languageChanged(QString)));
 
     // ToolBar/PageBar/StatusBar/MenuBar
     ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
@@ -90,12 +90,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // History
     makeHistoryMenu();
-    connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(on_historyMenu_triggered(QAction*)) );
+    connect(ui->menuHistory, SIGNAL(triggered(QAction*)), this, SLOT(onMenuHistory_triggered(QAction*)) );
 
     // Bookmarks
     makeBookmarkMenu();
     ui->actionLoadBookmark->setMenu(ui->menuLoadBookmark);
-    connect(ui->menuLoadBookmark, SIGNAL(triggered(QAction*)), this, SLOT(on_loadBookmarkMenu_triggered(QAction*)) );
+    connect(ui->menuLoadBookmark, SIGNAL(triggered(QAction*)), this, SLOT(onMenuLoadBookmark_triggered(QAction*)) );
 
     // Folders
     ui->actionOpenVolumeWithProgress->setChecked(qApp->OpenVolumeWithProgress());
@@ -140,8 +140,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menuBar->removeAction(ui->menuContextMenu->menuAction());
     m_contextMenu = ui->menuContextMenu;
 
-    connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(on_pageChanged_triggered()));
-    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(on_volumeChanged_triggered(QString)));
+    connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(onPageManager_pageChanged()));
+    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(onPageManager_volumeChanged(QString)));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
@@ -240,7 +240,7 @@ void MainWindow::wheelEvent(QWheelEvent *e)
 
 void MainWindow::closeEvent(QCloseEvent *)
 {
-    on_manageCatalogsClosed_triggered();
+    onCatalogWindow_closed();
     delete m_contextMenu;
     m_contextMenu = nullptr;
     qApp->setWindowGeometry(saveGeometry());
@@ -404,42 +404,29 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
     if(this->focusWidget() != ui->graphicsView)
         return;
+
     QAction* action = qApp->getActionFromKey(seq);
     if(action) {
         action->trigger();
         event->accept();
         return;
     }
-//    QMainWindow::keyPressEvent(event);
 }
 
 
-void MainWindow::on_exit_triggered()
+void MainWindow::onActionExit_triggered()
 {
     QApplication::quit();
     QCoreApplication::quit();
 }
 
-void MainWindow::on_prohibitMultipleRunning_triggered(bool enable)
-{
-    qApp->setProhibitMultipleRunning(enable);
-}
-
-
-
-void MainWindow::on_file_changed(QString path)
-{
-    //qDebug() << "[MainWindow] newImage:" << path;
-
-}
-
-void MainWindow::on_clearHistory_triggered()
+void MainWindow::onActionClearHistory_triggered()
 {
     qApp->clearHistory();
     makeHistoryMenu();
 }
 
-void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
+void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
 {
     if(!isFullScreen()) {
         return;
@@ -458,7 +445,7 @@ void MainWindow::on_hover_anchor(Qt::AnchorPoint anchor)
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_fullscreen_triggered()
+void MainWindow::onActionFullscreen_triggered()
 {
     qDebug() << "on_fullscreen_triggered";
     if(isFullScreen()) {
@@ -497,7 +484,7 @@ void MainWindow::on_fullscreen_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_stayOnTop_triggered(bool top)
+void MainWindow::onActionStayOnTop_triggered(bool top)
 {
     qApp->setStayOnTop(top);
     // Qt's StayOnTop mechanism is not working correctly in Windows.
@@ -515,12 +502,12 @@ void MainWindow::on_stayOnTop_triggered(bool top)
     show();
 }
 
-void MainWindow::on_fittingChanged(bool fitting)
+void MainWindow::onGraphicsView_fittingChanged(bool fitting)
 {
     ui->actionFitting->setChecked(fitting);
 }
 
-void MainWindow::on_pageChanged_triggered()
+void MainWindow::onPageManager_pageChanged()
 {
     //qDebug() << "on_pageChanged_triggered";
     // PageSlider
@@ -555,7 +542,7 @@ void MainWindow::on_pageChanged_triggered()
     }
 }
 
-void MainWindow::on_volumeChanged_triggered(QString path)
+void MainWindow::onPageManager_volumeChanged(QString path)
 {
     if(path.isEmpty()) {
         on_pageNolongerNeeded_triggered();
@@ -573,7 +560,7 @@ void MainWindow::on_volumeChanged_triggered(QString path)
 }
 
 
-void MainWindow::on_pageSlider_changed(int value)
+void MainWindow::onPageSlider_valueChanged(int value)
 {
     //qDebug() << "on_pageSlider_changed " << value << m_sliderChanging;
     if(m_sliderChanging)
@@ -590,7 +577,7 @@ void MainWindow::on_pageNolongerNeeded_triggered()
     ui->statusLabel->setText(tr("Image file was not found. Can't be opened.", "Text to display in the status bar when failed to open the specified Volume"));
 }
 
-void MainWindow::on_appVersion_triggered()
+void MainWindow::onActionAppVersion_triggered()
 {
     QMessageBox msgBox(this);
     msgBox.setWindowTitle(QString("about %1").arg(QApplication::applicationName()));
@@ -607,31 +594,31 @@ void MainWindow::on_appVersion_triggered()
     msgBox.exec();
 }
 
-void MainWindow::on_languageChanged_triggered(QString language)
+void MainWindow::onLanguageSelector_languageChanged(QString language)
 {
     qApp->setUiLanguage(language);
     ui->retranslateUi(this);
     ui->menuLoadBookmark->setTitle(QApplication::translate("MainWindow", "LoadBookmark", Q_NULLPTR));
 }
 
-void MainWindow::on_registAssocs_triggered()
+void MainWindow::onActionRegistAssocs_triggered()
 {
     QProcess::startDetached("AssociateFilesWithQuickViewer",
                             QStringList(),
                             QDir::toNativeSeparators(qApp->applicationDirPath()));
 }
 
-void MainWindow::on_contextMenu_triggered()
+void MainWindow::onActionContextMenu_triggered()
 {
     m_contextMenu->exec(QCursor::pos());
 }
 
-void MainWindow::on_autoloaded_triggered(bool autoloaded)
+void MainWindow::onActionAutoLoaded_triggered(bool autoloaded)
 {
     qApp->setAutoLoaded(autoloaded);
 }
 
-void MainWindow::on_historyMenu_triggered(QAction *action)
+void MainWindow::onMenuHistory_triggered(QAction *action)
 {
     //qDebug() << action;
     loadVolume(action->text().mid(4));
@@ -651,12 +638,12 @@ void MainWindow::resizeEvent(QResizeEvent *e)
     QMainWindow::resizeEvent(e);
 }
 
-void MainWindow::on_folderWindow_triggered()
+void MainWindow::onActionShowFolder_triggered()
 {
     if(m_folderWindow) {
         bool isChild = m_folderWindow->parent();
         QString oldpath = m_folderWindow->currentPath();
-        on_folderWindowClosed_triggered();
+        onFolderWindow_closed();
         if(isChild) {
             // close child widget, and recreate as independent window
             m_folderWindow = new FolderWindow(nullptr, ui);
@@ -664,25 +651,25 @@ void MainWindow::on_folderWindow_triggered()
             m_folderWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
             m_folderWindow->setAsToplevelWindow();
             m_folderWindow->setFolderPath(oldpath, false);
-            connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
-            connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByFolder_triggered(QString)));
-            connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
+            connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
+            connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
+            connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
             m_folderWindow->show();
         }
         return;
     }
     if(m_catalogWindow && m_catalogWindow->parent())
-        on_manageCatalogsClosed_triggered();
+        onCatalogWindow_closed();
     if(m_exifDialog && m_exifDialog->parent())
-        on_openExifDialogClosed_triggered();
+        onExifDialog_closed();
     m_folderWindow = new FolderWindow(nullptr, ui);
     QString path = m_pageManager.volumePath();
     if(path.isEmpty())
         path = qApp->HomeFolderPath();
     m_folderWindow->setFolderPath(path, false);
-    connect(m_folderWindow, SIGNAL(closed()), this, SLOT(on_folderWindowClosed_triggered()));
-    connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByFolder_triggered(QString)));
-    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(on_volumeChanged_triggered(QString)));
+    connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
+    connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
+    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
     ui->catalogSplitter->insertWidget(0, m_folderWindow);
     auto sizes = ui->catalogSplitter->sizes();
     int sum = sizes[0]+sizes[1];
@@ -692,7 +679,7 @@ void MainWindow::on_folderWindow_triggered()
     m_folderWindow->setAsInnerWidget();
 }
 
-void MainWindow::on_folderWindowClosed_triggered()
+void MainWindow::onFolderWindow_closed()
 {
     if(m_folderWindow) {
         delete m_folderWindow;
@@ -700,18 +687,18 @@ void MainWindow::on_folderWindowClosed_triggered()
     }
 }
 
-void MainWindow::on_openVolumeByFolder_triggered(QString path)
+void MainWindow::onFolderWindow_openVolume(QString path)
 {
     loadVolume(path);
 }
 
 
-void MainWindow::on_openVolumeWithProgress_triggered(bool enabled)
+void MainWindow::onActionOpenVolumeWithProgress_triggered(bool enabled)
 {
     qApp->setOpenVolumeWithProgress(enabled);
 }
 
-void MainWindow::on_showReadProgress_triggered(bool enabled)
+void MainWindow::onActionShowReadProgress_triggered(bool enabled)
 {
     qApp->setShowReadProgress(enabled);
     if(m_folderWindow) {
@@ -719,16 +706,16 @@ void MainWindow::on_showReadProgress_triggered(bool enabled)
     }
 }
 
-void MainWindow::on_manageCatalogs_triggered()
+void MainWindow::onActionShowCatalog_triggered()
 {
     if(m_catalogWindow) {
         bool isChild = m_catalogWindow->parent();
-        on_manageCatalogsClosed_triggered();
+        onCatalogWindow_closed();
         if(isChild) {
             m_catalogWindow = new CatalogWindow(nullptr, ui);
             m_catalogWindow->setThumbnailManager(m_thumbManager);
-            connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
-            connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+            connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
+            connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
             m_catalogWindow->setAsToplevelWindow();
             QRect self = geometry();
             m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
@@ -737,13 +724,13 @@ void MainWindow::on_manageCatalogs_triggered()
         return;
     }
     if(m_folderWindow && m_folderWindow->parent())
-        on_folderWindowClosed_triggered();
+        onFolderWindow_closed();
     if(m_exifDialog && m_exifDialog->parent())
-        on_openExifDialogClosed_triggered();
+        onExifDialog_closed();
     m_catalogWindow = new CatalogWindow(nullptr, ui);
     m_catalogWindow->setThumbnailManager(m_thumbManager);
-    connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(on_manageCatalogsClosed_triggered()));
-    connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(on_openVolumeByCatalog_triggered(QString)));
+    connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
+    connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
     ui->catalogSplitter->insertWidget(0, m_catalogWindow);
     auto sizes = ui->catalogSplitter->sizes();
     int sum = sizes[0]+sizes[1];
@@ -755,7 +742,7 @@ void MainWindow::on_manageCatalogs_triggered()
 //    m_catalogWindow->show();
 }
 
-void MainWindow::on_manageCatalogsClosed_triggered()
+void MainWindow::onCatalogWindow_closed()
 {
     if(m_catalogWindow) {
         delete m_catalogWindow;
@@ -777,7 +764,7 @@ bool MainWindow::isFolderSearching()
     return true;
 }
 
-void MainWindow::on_openExifDialog_triggered()
+void MainWindow::onActionOpenExif_triggered()
 {
     if(m_exifDialog || m_pageManager.currentPageCount()==0)
         return;
@@ -785,13 +772,13 @@ void MainWindow::on_openExifDialog_triggered()
     if(info.ImageWidth == 0)
         return;
     if(m_catalogWindow && m_catalogWindow->parent())
-        on_manageCatalogsClosed_triggered();
+        onCatalogWindow_closed();
     if(m_folderWindow && m_folderWindow->parent())
-        on_folderWindowClosed_triggered();
+        onFolderWindow_closed();
 
     m_exifDialog = new ExifDialog();
     m_exifDialog->setExif(info);
-    connect(m_exifDialog, SIGNAL(closed()), this, SLOT(on_openExifDialogClosed_triggered()));
+    connect(m_exifDialog, SIGNAL(closed()), this, SLOT(onExifDialog_closed()));
 
     ui->catalogSplitter->insertWidget(1, m_exifDialog);
     auto sizes = ui->catalogSplitter->sizes();
@@ -801,7 +788,7 @@ void MainWindow::on_openExifDialog_triggered()
     ui->catalogSplitter->setSizes(sizes);
 }
 
-void MainWindow::on_openExifDialogClosed_triggered()
+void MainWindow::onExifDialog_closed()
 {
     if(m_exifDialog) {
         delete m_exifDialog;
@@ -810,7 +797,7 @@ void MainWindow::on_openExifDialogClosed_triggered()
 }
 
 
-void MainWindow::on_openVolumeByCatalog_triggered(QString path)
+void MainWindow::onCatalogWindow_openVolume(QString path)
 {
     loadVolume(path);
     setWindowTop();
@@ -821,21 +808,21 @@ void MainWindow::on_windowTop()
     setWindowTop();
 }
 
-void MainWindow::on_searchTitleWithOptions_triggered(bool enable)
+void MainWindow::onActionSearchTitleWithOptions_triggered(bool enable)
 {
     qApp->setSearchTitleWithOptions(enable);
     if(m_catalogWindow)
         m_catalogWindow->resetVolumes();
 }
 
-void MainWindow::on_catalogTitleWithoutOptions_triggered(bool enable)
+void MainWindow::onActionCatalogTitleWithoutOptions_triggered(bool enable)
 {
     qApp->setTitleWithoutOptions(enable);
     if(m_catalogWindow)
         m_catalogWindow->searchByWord(true);
 }
 
-void MainWindow::on_catalogViewList_triggered()
+void MainWindow::onActionCatalogViewList_triggered()
 {
     qApp->setCatalogViewModeSetting(qvEnums::List);
     ui->actionCatalogViewList->setChecked(true);
@@ -845,7 +832,7 @@ void MainWindow::on_catalogViewList_triggered()
         m_catalogWindow->resetVolumes();
 }
 
-void MainWindow::on_catalogViewIcon_triggered()
+void MainWindow::onActionCatalogViewIcon_triggered()
 {
     qApp->setCatalogViewModeSetting(qvEnums::Icon);
     ui->actionCatalogViewList->setChecked(false);
@@ -855,7 +842,7 @@ void MainWindow::on_catalogViewIcon_triggered()
         m_catalogWindow->resetVolumes();
 }
 
-void MainWindow::on_catalogViewNotext_triggered()
+void MainWindow::onActionCatalogViewIconNoText_triggered()
 {
     qApp->setCatalogViewModeSetting(qvEnums::IconNoText);
     ui->actionCatalogViewList->setChecked(false);
@@ -865,21 +852,21 @@ void MainWindow::on_catalogViewNotext_triggered()
         m_catalogWindow->resetVolumes();
 }
 
-void MainWindow::on_catalogShowTagBar_triggered(bool enable)
+void MainWindow::onActionShowTagBar_triggered(bool enable)
 {
     qApp->setShowTagBar(enable);
     if(m_catalogWindow)
         m_catalogWindow->on_showTagBar_triggered(enable);
 }
 
-void MainWindow::on_catalogIconLongText_triggered(bool enable)
+void MainWindow::onActionCatalogIconLongText_triggered(bool enable)
 {
     qApp->setIconLongText(enable);
     if(m_catalogWindow)
         m_catalogWindow->resetViewMode();
 }
 
-void MainWindow::on_openfolder_triggered()
+void MainWindow::onActionOpenfolder_triggered()
 {
     QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)", "Text that specifies the file extension to be displayed when opening a file with OpenFileFolder");
     QString folder = QFileDialog::getOpenFileName(this, tr("Please select the image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"), "", filter);
@@ -894,7 +881,7 @@ void MainWindow::on_openfolder_triggered()
     }
 }
 
-void MainWindow::on_showToolBar_triggered(bool showToolBar)
+void MainWindow::onActionShowToolBar_triggered(bool showToolBar)
 {
     if(showToolBar)
         ui->mainToolBar->show();
@@ -903,7 +890,7 @@ void MainWindow::on_showToolBar_triggered(bool showToolBar)
     qApp->setShowToolBar(showToolBar);
 }
 
-void MainWindow::on_showSliderBar_triggered(bool showSliderBar)
+void MainWindow::onActionShowPageBar_triggered(bool showSliderBar)
 {
     if(showSliderBar)
         ui->pageFrame->show();
@@ -912,7 +899,7 @@ void MainWindow::on_showSliderBar_triggered(bool showSliderBar)
     qApp->setShowSliderBar(showSliderBar);
 }
 
-void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
+void MainWindow::onActionShowStatusBar_triggered(bool showStatusBar)
 {
     if(showStatusBar) {
         setWindowTitle(m_volumeCaption);
@@ -925,7 +912,7 @@ void MainWindow::on_showStatusBar_triggered(bool showStatusBar)
     qApp->setShowStatusBar(showStatusBar);
 }
 
-void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
+void MainWindow::onActionShowMenuBar_triggered(bool showMenuBar)
 {
     if(showMenuBar) {
         if(qApp->ShowToolBar()) ui->mainToolBar->hide();
@@ -938,7 +925,7 @@ void MainWindow::on_showMenuBar_triggered(bool showMenuBar)
 
 }
 
-void MainWindow::on_openKeyConfig_triggered()
+void MainWindow::onActionOpenKeyConfig_triggered()
 {
     KeyConfigDialog dialog(this);
     int result = dialog.exec();
@@ -949,7 +936,7 @@ void MainWindow::on_openKeyConfig_triggered()
     }
 }
 
-void MainWindow::on_openMouseConfig_triggered()
+void MainWindow::onActionOpenMouseConfig_triggered()
 {
     MouseConfigDialog dialog(this);
     int result = dialog.exec();
@@ -958,7 +945,7 @@ void MainWindow::on_openMouseConfig_triggered()
     }
 }
 
-void MainWindow::on_openOptionsDialog_triggered()
+void MainWindow::onActionOpenOptionsDialog_triggered()
 {
     OptionsDialog dialog(this);
     QColor back = qApp->BackgroundColor();
@@ -974,37 +961,37 @@ void MainWindow::on_openOptionsDialog_triggered()
     }
 }
 
-void MainWindow::on_beginAsFullscreen_triggered(bool enable)
+void MainWindow::onActionBeginAsFullscreen_triggered(bool enable)
 {
     qApp->setBeginAsFullscreen(enable);
 }
 
-void MainWindow::on_showFullscreenSignage_triggered(bool enable)
+void MainWindow::onActionShowFullscreenSignage_triggered(bool enable)
 {
     qApp->setShowFullscreenSignage(enable);
 }
 
-void MainWindow::on_showFullscreenTitleBar_triggered(bool enable)
+void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)
 {
     qApp->setShowFullscreenTitleBar(enable);
 }
 
-void MainWindow::on_projectPage_triggered()
+void MainWindow::onActionProjectWeb_triggered()
 {
     QUrl url = QString("https://kanryu.github.io/quickviewer/");
     QDesktopServices::openUrl(url);
 }
 
-void MainWindow::on_checkVersion_triggered()
+void MainWindow::onActionCheckVersion_triggered()
 {
     QUrl url = QString("https://kanryu.github.io/quickviewer/checkversion/?ver=%1").arg(qApp->applicationVersion());
     QDesktopServices::openUrl(url);
 }
 
-void MainWindow::on_exitApplicationOrFullscreen_triggered()
+void MainWindow::onActionExitApplicationOrFullscreen_triggered()
 {
     if(m_catalogWindow) {
-        on_manageCatalogsClosed_triggered();
+        onCatalogWindow_closed();
         return;
     }
     if(isFullScreen())
@@ -1013,7 +1000,7 @@ void MainWindow::on_exitApplicationOrFullscreen_triggered()
         ui->actionExit->trigger();
 }
 
-void MainWindow::on_mailAttachment_triggered()
+void MainWindow::onActionMailAttachment_triggered()
 {
     if(m_pageManager.isArchive())
         return;
@@ -1023,7 +1010,7 @@ void MainWindow::on_mailAttachment_triggered()
     setMailAttachment(path);
 }
 
-void MainWindow::on_renameImageFile_triggered()
+void MainWindow::onActionRenameImageFile_triggered()
 {
     if(!m_pageManager.isFolder() || m_pageManager.currentPageCount() == 0)
         return;
@@ -1033,12 +1020,12 @@ void MainWindow::on_renameImageFile_triggered()
     }
 }
 
-void MainWindow::on_confirmDeletePage_triggered(bool enable)
+void MainWindow::onActionConfirmDeletePage_triggered(bool enable)
 {
     qApp->setConfirmDeletePage(enable);
 }
 
-void MainWindow::on_deletePage_triggered()
+void MainWindow::onActionRecyclePage_triggered()
 {
     if(m_pageManager.currentPageCount() <= 0 || !m_pageManager.isFolder())
         return;
@@ -1049,12 +1036,12 @@ void MainWindow::on_deletePage_triggered()
         QMessageBox msgBox(this);
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
-        msgBox.setWindowTitle(tr("Confirmation", "Confirm putting displayed file in Recycle Box MessageBox title"));
+        msgBox.setWindowTitle(tr("Confirmation", "Confirm putting displayed file in Recycle Bing MessageBox title"));
 
         //text
         msgBox.setTextFormat(Qt::RichText);
         QString message = QString("<h2>%1</h2><p>%2</p>" )
-                .arg(tr("Are you sure you want to delete this image?", "Confirm putting displayed file in Recycle Box Message Box body"))
+                .arg(tr("Are you sure you want to move the image to Recycle Bin?", "Confirm putting displayed file in Recycle Box Message Box body"))
                 .arg(path);
         msgBox.setText(message);
 
@@ -1078,7 +1065,47 @@ void MainWindow::on_deletePage_triggered()
     }
 }
 
-void MainWindow::on_maximizeOrNormal_triggered()
+void MainWindow::onActionDeletePage_triggered()
+{
+    if(m_pageManager.currentPageCount() <= 0 || !m_pageManager.isFolder())
+        return;
+    QString path = m_pageManager.currentPagePath();
+    if(!path.length())
+        return;
+    if(qApp->ConfirmDeletePage()) {
+        QMessageBox msgBox(this);
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        msgBox.setWindowTitle(tr("Confirmation", "Confirm deleting image file on MessageBox title"));
+
+        //text
+        msgBox.setTextFormat(Qt::RichText);
+        QString message = QString("<h2>%1</h2><p>%2</p>" )
+                .arg(tr("Are you sure you want to delete this image?", "Confirm deleting image file on Message Box body"))
+                .arg(path);
+        msgBox.setText(message);
+
+        //icon
+        QVector<ImageContent> ic = m_pageManager.currentPageContent();
+        QImage image = ic[0].Image;
+        image = image.scaled(QSize(100, 100), Qt::KeepAspectRatio);
+        msgBox.setIconPixmap(QPixmap::fromImage(image));
+
+
+        if(msgBox.exec() == QMessageBox::Cancel) {
+            return;
+        }
+    }
+    QFile file(path);
+    if(file.remove()) {
+        QString volumepath = m_pageManager.volumePath();
+        if(m_pageManager.nextPagePathAfterDeleted().length())
+            volumepath = m_pageManager.nextPagePathAfterDeleted();
+        loadVolume(volumepath);
+    }
+}
+
+void MainWindow::onActionMaximizeOrNormal_triggered()
 {
     if(isFullScreen()) {
         ui->actionFullscreen->trigger();
@@ -1089,12 +1116,12 @@ void MainWindow::on_maximizeOrNormal_triggered()
     }
 }
 
-void MainWindow::on_restoreWindowState_triggered(bool saveState)
+void MainWindow::onActionRestoreWindowState_triggered(bool saveState)
 {
     qApp->setRestoreWindowState(saveState);
 }
 
-void MainWindow::on_slideShow_triggered(bool )
+void MainWindow::onActionSlideShow_triggered(bool )
 {
     if(m_pageManager.size() == 0)
         return;
@@ -1103,7 +1130,7 @@ void MainWindow::on_slideShow_triggered(bool )
     ui->graphicsView->toggleSlideShow();
 }
 
-void MainWindow::on_shaderNearestNeighbor_triggered()
+void MainWindow::onActionShaderNearestNeighbor_triggered()
 {
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::NearestNeighbor);
@@ -1111,7 +1138,7 @@ void MainWindow::on_shaderNearestNeighbor_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_shaderBilinear_triggered()
+void MainWindow::onActionShaderBilinear_triggered()
 {
     uncheckAllShaderMenus();
     ui->actionShaderBilinear->setChecked(true);
@@ -1119,7 +1146,7 @@ void MainWindow::on_shaderBilinear_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_shaderBicubic_triggered()
+void MainWindow::onActionShaderBicubic_triggered()
 {
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::Bicubic);
@@ -1127,7 +1154,7 @@ void MainWindow::on_shaderBicubic_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_shaderLanczos_triggered()
+void MainWindow::onActionShaderLanczos_triggered()
 {
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::Lanczos);
@@ -1135,7 +1162,7 @@ void MainWindow::on_shaderLanczos_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_shaderBilinearBeforeCpuBicubic_triggered()
+void MainWindow::onActionShaderBilinearBeforeCpuBicubic_triggered()
 {
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::BilinearAndCpuBicubic);
@@ -1143,7 +1170,7 @@ void MainWindow::on_shaderBilinearBeforeCpuBicubic_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_shaderCpuBicubic_triggered()
+void MainWindow::onActionShaderCpuBicubic_triggered()
 {
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::CpuBicubic);
@@ -1151,7 +1178,7 @@ void MainWindow::on_shaderCpuBicubic_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::on_saveBookmark_triggered()
+void MainWindow::onActionSaveBookmark_triggered()
 {
     if(!m_pageManager.currentPageCount())
         return;
@@ -1161,13 +1188,13 @@ void MainWindow::on_saveBookmark_triggered()
     ui->statusBar->showMessage(tr("Bookmark Saved."));
 }
 
-void MainWindow::on_clearBookmarks_triggered()
+void MainWindow::onActionClearBookmarks_triggered()
 {
     qApp->clearBookmarks();
     makeBookmarkMenu();
 }
 
-void MainWindow::on_loadBookmark_triggered()
+void MainWindow::onActionLoadBookmark_triggered()
 {
     QWidget* widget = ui->mainToolBar->widgetForAction(ui->actionLoadBookmark);
 
@@ -1175,7 +1202,7 @@ void MainWindow::on_loadBookmark_triggered()
     ui->menuLoadBookmark->exec(p);
 }
 
-void MainWindow::on_loadBookmarkMenu_triggered(QAction *action)
+void MainWindow::onMenuLoadBookmark_triggered(QAction *action)
 {
     if(action == ui->actionClearBookmarks) {
         return;
@@ -1184,7 +1211,3 @@ void MainWindow::on_loadBookmarkMenu_triggered(QAction *action)
     m_pageManager.loadVolume(QDir::toNativeSeparators(path));
 }
 
-void MainWindow::on_messageReceived(QString data)
-{
-    qDebug() << "on_messageReceived: " << data;
-}
