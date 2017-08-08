@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v0.9.1 (Wed Aug 9 06:13:34 2017 +0900) [a12fc2d](https://github.com/kanryu/quickviewer/commit/a12fc2dd7f0232ba0edcb38d6bc68a2ce30df8d3)
+
+Removal of unnecessary warning output
+
+- other commits
+    - Improvement of behavior, bugfixed (Wed Aug 9 02:36:47 2017 +0900) [2ae13f2](https://github.com/kanryu/quickviewer/commit/2ae13f2518ed3786ea14e0230888cb418c3081da)
+    -  (Wed Aug 9 02:36:47 2017 +0900) [2ae13f2](https://github.com/kanryu/quickviewer/commit/2ae13f2518ed3786ea14e0230888cb418c3081da)
+    -  Improvement of behavior when an image file is specified and opened (Wed Aug 9 02:36:47 2017 +0900) [2ae13f2](https://github.com/kanryu/quickviewer/commit/2ae13f2518ed3786ea14e0230888cb418c3081da)
+    -  bugfixed: When the folder path was long in FolderWindow, the width of the window was widened (Wed Aug 9 02:36:47 2017 +0900) [2ae13f2](https://github.com/kanryu/quickviewer/commit/2ae13f2518ed3786ea14e0230888cb418c3081da)
+    -  bugfixed: When the full screen signage was 2 page spread view, the left and right were opposite (Wed Aug 9 02:36:47 2017 +0900) [2ae13f2](https://github.com/kanryu/quickviewer/commit/2ae13f2518ed3786ea14e0230888cb418c3081da)
+    - changelog (Mon Aug 7 03:55:48 2017 +0900) [46a9f8b](https://github.com/kanryu/quickviewer/commit/46a9f8bf7a3ac400ef8425bc4d6901ed52f72acd)
+
 ## v0.9.0_rev2 (Mon Aug 7 03:55:13 2017 +0900) [82c7c6e](https://github.com/kanryu/quickviewer/commit/82c7c6edecd478cb7cbec8c3d08ce6c53659d3e2)
 
 bugfixed: memory leak occurred if you made an image in the same folder more than once
