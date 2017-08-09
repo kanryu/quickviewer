@@ -66,10 +66,12 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.thumbapps.org/2017/07/QuickViewer-portable-image-viewer.html](http://www.thumbapps.org/2017/07/QuickViewer-portable-image-viewer.html)
 - **FindMySoft**
     - [http://quickviewer.findmysoft.com](http://quickviewer.findmysoft.com)
-- **Download82**
-    - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
 - **connnect.com**
     - [https://connectwww.com/quickviewer-fast-image-viewer/](https://connectwww.com/quickviewer-fast-image-viewer/)
+- **TrishTech.com**
+    - [http://www.trishtech.com/2017/08/quickviewer-comfortable-image-viewer-for-windows/](http://www.trishtech.com/2017/08/quickviewer-comfortable-image-viewer-for-windows/)
+- **Download82**
+    - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
 - **OSDN** (in Japanese)
     - [https://ja.osdn.net/projects/quickviewer/reviews/](https://ja.osdn.net/projects/quickviewer/reviews/)
 - **Free SoftNavi** (in Japanese)
