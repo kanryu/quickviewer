@@ -84,7 +84,7 @@ You can find the directories in the build directry named e.g. *'build-QVproject-
 - lib
 - (each sub projects)
 
-**lib** has static librares built from each subproject.
+**lib** has static libraries built from each subproject.
 
 **bin** has executable programs built from each subproject.
 
