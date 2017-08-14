@@ -116,6 +116,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.dataporten.net/quickviewer/](http://www.dataporten.net/quickviewer/)
 - **happycgi** (in Korean)
     - [http://www.happycgi.com/16255](http://www.happycgi.com/16255)
+- **PCWorld** (in Hungarian)
+    - [https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html](https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html)
 
 Thanks for reviewers! :)
 
