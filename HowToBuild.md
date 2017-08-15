@@ -55,6 +55,7 @@ Please note that if you use VisualStudio2015, you need nmake instead of MinGW ma
 ```
 $ [amd64]/vsvars64.bat
 $ nmake
+$ cd QuickViewer
 $ nmake install
 (created QuickViewer distribution)
 ```
