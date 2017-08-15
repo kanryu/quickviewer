@@ -192,38 +192,36 @@ DBDIR += database/
 win32 { !CONFIG(debug, debug|release) {
     MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
 
-    target.path = $${MY_DEFAULT_INSTALL}
-    target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
-    deploy_files.path = $${MY_DEFAULT_INSTALL}
-    deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
-    deploy_files.depends = install_target
-    deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
-    translations.path = $${MY_DEFAULT_INSTALL}/translations
-    translations.files = \
+    install_target.path = $${MY_DEFAULT_INSTALL}
+    install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
+    install_deploy_files.path = $${MY_DEFAULT_INSTALL}
+    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    install_deploy_files.commands = $$[QT_INSTALL_BINS]/windeployqt  --release --compiler-runtime $${MY_DEFAULT_INSTALL}/QuickViewer.exe
+    install_translations.path = $${MY_DEFAULT_INSTALL}/translations
+    install_translations.files = \
         $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \
         $${PWD}/translations/quickviewer_es.qm \
         $${PWD}/translations/quickviewer_zh.qm \
 
-    qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
-    qrawspeed.files = \
+    install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
+    install_qrawspeed.files = \
         ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
         ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
 
     # dlls instead of vcredist_xxx.exe
-    msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
-    msvcrt.path = $${MY_DEFAULT_INSTALL}
-    msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
-    msvcrt.commands = -$(DEL_FILE) "$${msvcrt.removefiles}"
-    msvcrt.depends = install_deploy_files
-    msvcrt.files = \
+    install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
+    install_msvcrt.path = $${MY_DEFAULT_INSTALL}
+    install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
+    install_msvcrt.commands = -$(DEL_FILE) "$${msvcrt.removefiles}"
+    install_msvcrt.files = \
         "$${msvcrt.PATH}/concrt140.dll" \
         "$${msvcrt.PATH}/msvcp140.dll" \
         "$${msvcrt.PATH}/vccorlib140.dll" \
         "$${msvcrt.PATH}/vcruntime140.dll"
 
-    assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
-    assoc_icons.files = \
+    install_assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
+    install_assoc_icons.files = \
         ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
         ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
         ../AssociateFilesWithQuickViewer/icons/qv_dds.ico \
@@ -236,14 +234,14 @@ win32 { !CONFIG(debug, debug|release) {
         ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
         ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
 
-    INSTALLS += target deploy_files translations qrawspeed msvcrt assoc_icons
+    INSTALLS += install_target install_deploy_files install_translations install_qrawspeed install_msvcrt install_assoc_icons
 
-    shaders_install.path = $${MY_DEFAULT_INSTALL}/shaders
-    shaders_install.files = $$SHADERS
-    db_install.path = $${MY_DEFAULT_INSTALL}/database
-    db_install.files = $$DBS $$DBBIN
+    install_shaders.path = $${MY_DEFAULT_INSTALL}/shaders
+    install_shaders.files = $$SHADERS
+    install_db.path = $${MY_DEFAULT_INSTALL}/database
+    install_db.files = $$DBS $$DBBIN
 
-    INSTALLS += shaders_install db_install
+    INSTALLS += install_shaders install_db
 } }
 
 #SHADERDIR += shaders/
