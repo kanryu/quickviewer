@@ -46,7 +46,7 @@ $ mkdir build
 $ cd build
 $ [QTSDK]/bin/qmake -spec win32-msvc2015 -o Makefile -recursive ../quickviewer/QVProject.pro
 ```
-The **-spec** option is determined automatically by the setting of QtSDK you installed. For details, it is necessary to read qmake's manual.
+The **-spec** option is determined automatically by the setting of QtSDK you installed. For details, to see qmake's manual and **[QtSDK]/src/qtbase/mkspecs**
 
 A Makefile for the compiler will be generated to build QuickViewer. All you have to do is build it with that Makefile.
 
