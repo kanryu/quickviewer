@@ -44,8 +44,10 @@ Since there is no script of the distribution package, I want you to create it yo
 $ cd ../
 $ mkdir build
 $ cd build
-$ [QTSDK]/bin/qmake -o Makefile -recursive ../quickviewer/QVProject.pro
+$ [QTSDK]/bin/qmake -spec win32-msvc2015 -o Makefile -recursive ../quickviewer/QVProject.pro
 ```
+The **-spec** option is determined automatically by the setting of QtSDK you installed. For details, it is necessary to read qmake's manual.
+
 A Makefile for the compiler will be generated to build QuickViewer. All you have to do is build it with that Makefile.
 
 Please note that if you use VisualStudio2015, you need nmake instead of MinGW make. Of course there is a distinction x86 / x64.
