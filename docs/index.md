@@ -92,6 +92,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html](http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html)
 - **快乐无极** (in Simplified Chinese)
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
+- **ZEGMONET** (in Turkish)
+    - [http://zegmonet.com/teknoloji/quickviewer-programi.html](http://zegmonet.com/teknoloji/quickviewer-programi.html)
 - **sekizbir.com** (in Turkish)
     - [https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/](https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/)
 - **indiriliyo** (in Turkish)
