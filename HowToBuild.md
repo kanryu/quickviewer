@@ -1,10 +1,10 @@
 # How to build
 
-Since I was told before that He hadn't known how to build from this source code, I wrote this document.
+Since I was told before that he hadn't known how to build from this source code, so I wrote this document.
 
 With GPLv 3, you have copied this source code and the right to build it yourself is guaranteed, so please build it if you are interested in this application.
 
-If you have something you do not recognize or are aware of when building, please send me a email or post to the Issue of the project.
+If you have something you do not recognize or are aware of when building, please send me a email or post to a issue of the project.
 
 ## Set Up Qt SDK
 You should install Qt SDK on your pc.
@@ -29,7 +29,7 @@ $ git submodule update
 ### for QtCreator
 
 QuickViewer is developed with QtCreator.
-So you just need to have QtCreator load the pro file.
+So you just need to have QtCreator load the QVProject.pro.
 
 If you has setuped Qt SDK as 'msvc2015' or 'msvc2015_64', the distribution package is automatically generated. By running "jom install".
 
