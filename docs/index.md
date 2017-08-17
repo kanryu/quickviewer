@@ -98,7 +98,7 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/](https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/)
 - **indiriliyo** (in Turkish)
     - [http://www.indiriliyo.com/quickviewer-indir-11274/](http://www.indiriliyo.com/quickviewer-indir-11274/)
-- **AlterDown** (in Dutch)
+- **AfterDawn Nederland** (in Dutch)
     - [http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm](http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm)
 - **DUNDI** (in Italian)
     - [http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/](http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/)
