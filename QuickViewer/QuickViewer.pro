@@ -45,7 +45,9 @@ INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
 INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview ./src/qlanguageselector
 
-LIBS += -L../lib  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
+LIBDIR = ../lib
+
+LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
 
 
 win32 {
@@ -190,10 +192,38 @@ DBDIR += database/
 
 # win32 depoying, please add 'jom install' into build setting on qt-creator
 win32 { !CONFIG(debug, debug|release) {
-    MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
+    mingw {
+        MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-mingw-$${TARGET_ARCH}
 
+        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
+
+        INSTALLS += install_target install_deploy_files install_translations install_assoc_icons
+    } else {
+        MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
+
+        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
+
+        install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
+        install_qrawspeed.files = \
+            ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
+            ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
+
+        # dlls instead of vcredist_xxx.exe
+        install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
+        install_msvcrt.path = $${MY_DEFAULT_INSTALL}
+        install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
+        install_msvcrt.commands = -$(DEL_FILE) "$${install_msvcrt.removefiles}"
+        install_msvcrt.depends = install_install_deploy_files
+        install_msvcrt.files = \
+            "$${install_msvcrt.PATH}/concrt140.dll" \
+            "$${install_msvcrt.PATH}/msvcp140.dll" \
+            "$${install_msvcrt.PATH}/vccorlib140.dll" \
+            "$${install_msvcrt.PATH}/vcruntime140.dll"
+
+        INSTALLS += install_target install_deploy_files install_translations install_qrawspeed install_msvcrt install_assoc_icons
+    }
     install_target.path = $${MY_DEFAULT_INSTALL}
-    install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
+#   install_target.files += $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
     install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     install_deploy_files.commands = $$shell_path($$[QT_INSTALL_BINS]/windeployqt) --release --compiler-runtime $$shell_path($${MY_DEFAULT_INSTALL}/QuickViewer.exe)
@@ -203,23 +233,6 @@ win32 { !CONFIG(debug, debug|release) {
         $${PWD}/translations/quickviewer_ja.qm \
         $${PWD}/translations/quickviewer_es.qm \
         $${PWD}/translations/quickviewer_zh.qm \
-
-    install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
-    install_qrawspeed.files = \
-        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
-        ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
-
-    # dlls instead of vcredist_xxx.exe
-    install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
-    install_msvcrt.path = $${MY_DEFAULT_INSTALL}
-    install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
-    install_msvcrt.commands = -$(DEL_FILE) "$${install_msvcrt.removefiles}"
-    install_msvcrt.depends = install_install_deploy_files
-    install_msvcrt.files = \
-        "$${install_msvcrt.PATH}/concrt140.dll" \
-        "$${install_msvcrt.PATH}/msvcp140.dll" \
-        "$${install_msvcrt.PATH}/vccorlib140.dll" \
-        "$${install_msvcrt.PATH}/vcruntime140.dll"
 
     install_assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
     install_assoc_icons.files = \
@@ -235,8 +248,6 @@ win32 { !CONFIG(debug, debug|release) {
         ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
         ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
 
-    INSTALLS += install_target install_deploy_files install_translations install_qrawspeed install_msvcrt install_assoc_icons
-
     install_shaders.path = $${MY_DEFAULT_INSTALL}/shaders
     install_shaders.files = $$SHADERS
     install_db.path = $${MY_DEFAULT_INSTALL}/database
@@ -244,48 +255,6 @@ win32 { !CONFIG(debug, debug|release) {
 
     INSTALLS += install_shaders install_db
 } }
-
-#SHADERDIR += shaders/
-
-#shader_dir.name = shaderpath
-#shader_dir.target = ${QMAKE_FILE_OUT}
-#shader_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
-#shader_dir.variable_out = DEPENDPATH
-#shader_dir.CONFIG = verify
-#shader_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
-#shader_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
-#shader_dir.input = SHADERDIR
-
-#shaders.name  = ${QMAKE_FILE_OUT}
-#shaders.target = ${QMAKE_FILE_OUT}
-#shaders.output = $$DESTDIR/shaders/${QMAKE_FILE_BASE}.frag
-#shaders.variable_out = DEPENDPATH
-#shaders.CONFIG = verify target_predeps
-#shaders.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
-##shaderd.depends = shader_dir
-#shaders.input = SHADERS
-
-
-#db_dir.name = dbpath
-#db_dir.target = ${QMAKE_FILE_OUT}
-#db_dir.output = $$DESTDIR/${QMAKE_FILE_BASE}
-#db_dir.variable_out = DEPENDPATH
-#db_dir.CONFIG = verify
-#db_dir.commands = -$(MKDIR) ${QMAKE_FILE_OUT}
-#db_dir.clean_commands = -$(DEL_DIR) ${QMAKE_FILE_OUT}
-#db_dir.input = DBDIR
-
-#db.name  = ${QMAKE_FILE_OUT}
-#db.target = ${QMAKE_FILE_OUT}
-#db.output = $$DESTDIR/database/${QMAKE_FILE_BASE}.db
-#db.variable_out = DEPENDPATH
-#db.CONFIG = verify target_predeps
-#db.commands = -$(COPY_FILE) ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
-##db.depends = db_dir
-#db.input = DBBIN
-
-#QMAKE_EXTRA_COMPILERS += shader_dir shaders db_dir db
-
 
 OTHER_FILES += SHADERS
 

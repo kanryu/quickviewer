@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 *g++* {
     DEFINES += NTDDI_VERSION=NTDDI_VISTA
+    QMAKE_MANIFEST = $${PWD}/AssociateFilesWithQuickViewer.exe.manifest
 }
 
 # You can also make your code fail to compile if you use deprecated APIs.
@@ -49,7 +50,7 @@ FORMS += \
         fileassocdialog.ui
 
 RC_ICONS = app_icon2.ico
-!CONFIG(debug, debug|release) {
+!CONFIG(debug, debug|release):!mingw {
     CONFIG += embed_manifest_exe
     QMAKE_LFLAGS += /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
 }
