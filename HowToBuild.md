@@ -60,17 +60,27 @@ $ nmake install
 
 ### for Visual Studio 2015
 
+Normal project generation methods are as follows:
+
 1. install VisualStudio2015Community, QtSDK(msvc2015 or msvc2015_64), QtVSTools
 1. select menu [Qt VS Tools] -> [Open Qt Project File(.pro)]
 1. select QVProject.pro
+
+However, I think it would be better to run qmake on the command line. This method is hard to make a mistake.
+
+```
+$ cd ../
+$ mkdir build
+$ cd build
+$ [QTSDK]/bin/qmake  -tp vc ..\quickviewer\QVProject.pro -recursive QMAKE_INCDIR_QT=$(QTDIR)\include QMAKE_LIBDIR=$(QTDIR)\lib QMAKE_MOC
+=$(QTDIR)\bin\moc.exe QMAKE_QMAKE=$(QTDIR)\bin\qmake.exe
+```
+
 1. open dialog of zlib project
 1. select C/C++ PreProcessor tab
 1. remove "ASMV;ASMINF;" from Definition of PreProcessor
+    - if you are building for x64, add *inffast.c* to **Source Files** of zlib
 1. build the solution
-1. copy from "QuickViewer\Debug\moc_catalogwindow.cpp;Debug\moc_mainwindowforwindows.cpp" to "QuickViewer\Debug"
-1. continue to build
-
-I think that [Qt VS Tools] has some broken :(
 
 Since VisualStudio can use masm, you can set it to assemble asm files if you have skills. This time it is a procedure to change to a setting not used.
 
