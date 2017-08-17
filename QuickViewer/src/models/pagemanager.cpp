@@ -52,7 +52,8 @@ bool PageManager::loadVolumeWithFile(QString path, QStringList images)
     VolumeManagerBuilder builder(qpath, this, images);
     VolumeManager* newer = builder.buildForAssoc();
     if(!newer) {
-        return false;
+//        return false;
+        return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
     }
     emit volumeChanged("");
     m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
@@ -186,23 +187,22 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
         }
     }
     if(!m_volumes.contains(pathbase)) {
-        if(immediate) {
-            VolumeManagerBuilder builder(path, this);
-            qDebug() << "addVolumeCache:immediate" << path;
-            newer = builder.build(onlyCover);
-            if(newer)
-                m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
-            return newer;
-        } else {
+        if(!immediate) {
             qDebug() << "addVolumeCache:prefetch" << path;
             m_volumes.insert(pathbase, QtConcurrent::run(&VolumeManagerBuilder::buildAsync, path, this, onlyCover));
+            return nullptr;
         }
+        VolumeManagerBuilder builder(path, this);
+        qDebug() << "addVolumeCache:immediate" << path;
+        newer = builder.build(onlyCover);
+        if(newer)
+            m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
     } else {
         m_volumes.retain(pathbase);
         newer = m_volumes.object(pathbase);
-        if(subfilename.length())
-            newer->findImageByName(subfilename);
     }
+    if(newer && subfilename.length())
+        newer->findImageByName(subfilename);
     return newer;
 }
 

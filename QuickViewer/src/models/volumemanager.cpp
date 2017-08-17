@@ -238,7 +238,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 }
 
 
-ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)
+static ImageContent futureLoadImageFromFileVolumeImpl(VolumeManager* volume, QString path, QSize pageSize)
 {
 //    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
     int maxTextureSize = qApp->maxTextureSize();
@@ -253,6 +253,10 @@ ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume,
     if(aformat == "png" && IFileLoader::isImageFile("apng")) {
         aformat = "apng";
     }
+//    if(IFileLoader::isExifRawImageFile(aformat) && IFileLoader::isImageFile("crw")) {
+//        aformat = "crw";
+//    }
+
     QImageReader reader(&buffer, aformat.toUtf8());
     if(!reader.canRead()) {
         buffer.seek(0);
@@ -384,6 +388,16 @@ ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume,
         ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
     }
 
+    return ic;
+}
+
+ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)
+{
+    QElapsedTimer et_load; et_load.start();
+    ImageContent ic = futureLoadImageFromFileVolumeImpl(volume, path, pageSize);
+    qint64 t_load = et_load.elapsed();
+
+    qDebug() << "futureLoadImageFromFileVolume" << path << t_load << "ms, ResizedImage=" << !ic.ResizedImage.isNull();
     return ic;
 }
 

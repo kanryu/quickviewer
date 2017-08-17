@@ -8,7 +8,7 @@ QT       += core gui opengl concurrent opengl-private sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.9.1
+VERSION = 0.9.2
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -214,6 +214,7 @@ win32 { !CONFIG(debug, debug|release) {
     install_msvcrt.path = $${MY_DEFAULT_INSTALL}
     install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
     install_msvcrt.commands = -$(DEL_FILE) "$${install_msvcrt.removefiles}"
+    install_msvcrt.depends = install_install_deploy_files
     install_msvcrt.files = \
         "$${install_msvcrt.PATH}/concrt140.dll" \
         "$${install_msvcrt.PATH}/msvcp140.dll" \

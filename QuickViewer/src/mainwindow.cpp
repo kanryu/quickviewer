@@ -344,7 +344,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 
 void MainWindow::loadVolume(QString path)
 {
-    if(IFileLoader::isImageFile(path)) {
+    QStringList seps = path.split("::");
+    if(!IFileLoader::isArchiveFile(seps[0]) && IFileLoader::isImageFile(path)) {
         m_pageManager.loadVolumeWithFile(path);
         return;
     }

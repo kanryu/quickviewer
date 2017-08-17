@@ -48,7 +48,7 @@ VolumeManagerBuilder::VolumeManagerBuilder(QString path, PageManager *pageManage
 
 VolumeManager *VolumeManagerBuilder::build(bool onlyCover)
 {
-    QString pathbase = Path;
+    QString pathbase = QDir::toNativeSeparators(Path);
     QString subfilename;
     if(Path.contains("::")) {
         QStringList seps = Path.split("::");
@@ -82,11 +82,15 @@ VolumeManager* VolumeManagerBuilder::buildAsync(QString path, PageManager* manag
 
 VolumeManager *VolumeManagerBuilder::buildForAssoc()
 {
-    QDir dir(Path);
+    QDir dir(QDir::toNativeSeparators(Path));
     dir.cdUp();
     m_subfilename = Path.mid(dir.canonicalPath().length()+1);
     if(!(m_volumeManager = CreateVolume(nullptr, dir.canonicalPath(), m_pageManager)))
         return m_volumeManager;
+    if(m_volumeManager->isArchive()) {
+        delete m_volumeManager;
+        return m_volumeManager = nullptr;
+    }
 
     m_volumeManager->moveToThread(QThread::currentThread());
     // load the image
