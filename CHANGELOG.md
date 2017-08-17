@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## v0.9.2 (Thu Aug 17 11:35:15 2017 +0900) [90c1f31](https://github.com/kanryu/quickviewer/commit/90c1f31e2f5b442cb38f62b9430acec448376fe8)
+
+3 bugfixed
+
+- bugfixed: Rebooting the application with the archive open failed to load correctly
+- bugfixed: There was a Tiff file that can not be read correctly
+- bugfixed: can read special JPEG data such as CMYK and YCCK. However, the color is incorrect
+
+- other commits
+    - Update HowToBuild.md (Wed Aug 16 20:38:18 2017 +0900) [d9c4d7a](https://github.com/kanryu/quickviewer/commit/d9c4d7af1275cd52d98e996182831c8ae1a6555d)
+    - Update HowToBuild.md (Wed Aug 16 07:53:33 2017 +0900) [a952b5c](https://github.com/kanryu/quickviewer/commit/a952b5caaa2d187eac807e0bf20e4e9ae9ea0354)
+    - Update HowToBuild.md (Wed Aug 16 07:52:44 2017 +0900) [82d4ffc](https://github.com/kanryu/quickviewer/commit/82d4ffc9b42f3e5eaed6e49b97d5528d1be34a60)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Wed Aug 16 07:44:06 2017 +0900) [d153bbe](https://github.com/kanryu/quickviewer/commit/d153bbef3e445477b9d93bf4c9836361f859a0e4)
+    -  (Wed Aug 16 07:44:06 2017 +0900) [d153bbe](https://github.com/kanryu/quickviewer/commit/d153bbef3e445477b9d93bf4c9836361f859a0e4)
+    - # Conflicts: (Wed Aug 16 07:44:06 2017 +0900) [d153bbe](https://github.com/kanryu/quickviewer/commit/d153bbef3e445477b9d93bf4c9836361f859a0e4)
+    - #       QuickViewer/QuickViewer.pro (Wed Aug 16 07:44:06 2017 +0900) [d153bbe](https://github.com/kanryu/quickviewer/commit/d153bbef3e445477b9d93bf4c9836361f859a0e4)
+    - build checking for command builders (Wed Aug 16 07:16:45 2017 +0900) [fa640d0](https://github.com/kanryu/quickviewer/commit/fa640d067be3ae8f3e34d3cbce0ce8faf5da56c2)
+    - Update HowToBuild.md (Wed Aug 16 07:19:13 2017 +0900) [1c8defb](https://github.com/kanryu/quickviewer/commit/1c8defb9be54d9b8c56ff8cad3ec3b0759774e09)
+    - build checking for command builders (Wed Aug 16 07:16:45 2017 +0900) [7087bdb](https://github.com/kanryu/quickviewer/commit/7087bdb4eab5b3f5b36ae9f76631689e63aaab92)
+    - Update HowToBuild.md (Wed Aug 16 07:15:31 2017 +0900) [35351b7](https://github.com/kanryu/quickviewer/commit/35351b7485d1765dc990a8d5e1882241c4ad19ac)
+    - Update HowToBuild.md (Wed Aug 16 06:56:33 2017 +0900) [a981e07](https://github.com/kanryu/quickviewer/commit/a981e0784cd38cd3538408d20b9e5c81565ea571)
+    - Update HowToBuild.md (Wed Aug 16 06:51:03 2017 +0900) [f84bf81](https://github.com/kanryu/quickviewer/commit/f84bf81c668609ee8854f35c7abac61b9d3a044a)
+    - Update index.md (Tue Aug 15 20:36:51 2017 +0900) [09d69c6](https://github.com/kanryu/quickviewer/commit/09d69c69adedeba58fc603dcc4ff33fa94cfead4)
+    - Update HowToBuild.md (Tue Aug 15 05:41:24 2017 +0900) [1f30228](https://github.com/kanryu/quickviewer/commit/1f3022868a6aba3427bfd41ac08bb69085d99191)
+    - Update HowToBuild.md (Tue Aug 15 02:20:30 2017 +0900) [535f728](https://github.com/kanryu/quickviewer/commit/535f72864316da45cd4d28d7d252a5ee846ac441)
+    - Update index.md (Mon Aug 14 17:54:24 2017 +0900) [2483973](https://github.com/kanryu/quickviewer/commit/2483973b5eeb8319f27ef8a8c8888f7d0db9c8dd)
+    - Delete google64744654cbb28b4c.html (Wed Aug 9 12:48:39 2017 +0900) [3cbc81f](https://github.com/kanryu/quickviewer/commit/3cbc81f3f34d825384931e368e8dcd4cb1dcd4c3)
+    - Add files via upload (Wed Aug 9 12:31:59 2017 +0900) [4e5f909](https://github.com/kanryu/quickviewer/commit/4e5f90977353d76c841b895c99a37017fac1e63c)
+    - Update index.md (Wed Aug 9 09:59:51 2017 +0900) [ad58657](https://github.com/kanryu/quickviewer/commit/ad586576eb45f36a484fda7168ebacec25ab6f81)
+    - Update index.md (Wed Aug 9 08:24:43 2017 +0900) [26a9e53](https://github.com/kanryu/quickviewer/commit/26a9e53006e3a2dc63129245b59b71c7ceba387b)
+    - changelog (Wed Aug 9 06:16:22 2017 +0900) [db68a38](https://github.com/kanryu/quickviewer/commit/db68a38d0ff1e41e209df7edc2c0ce937336a349)
+
 ## v0.9.1 (Wed Aug 9 06:13:34 2017 +0900) [a12fc2d](https://github.com/kanryu/quickviewer/commit/a12fc2dd7f0232ba0edcb38d6bc68a2ce30df8d3)
 
 Removal of unnecessary warning output
