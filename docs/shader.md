@@ -2,7 +2,7 @@
 layout: default
 comments: true
 categories: jekyll disqus
-title: Shader
+title: Shaders
 # other options
 ---
 
