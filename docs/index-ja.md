@@ -14,7 +14,7 @@ fulltitle: QuickViewer オフィシャルページ
 
 **QuickViewer** は GPLv3 のフリーソフトウェアです。
 
-[英語表記](https://kanryu.github.io/quickviewer/) / [日本語表記](https://kanryu.github.io/quickviewer/index-ja)
+[In English](https://kanryu.github.io/quickviewer/) / [日本語表記](https://kanryu.github.io/quickviewer/index-ja)
 
 
 ## こういうソフトです
