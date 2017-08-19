@@ -2,6 +2,7 @@
 layout: default
 comments: true
 categories: jekyll disqus
+fulltitle: QuickViewer オフィシャルページ
 # other options
 ---
 
