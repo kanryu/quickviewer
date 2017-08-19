@@ -30,7 +30,7 @@
         }
       })
     </script>
-    <title>{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>
+    <title>{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }}{{ site.title_suffix }}{% endif %}</title>
   </head>
 
   <body>
