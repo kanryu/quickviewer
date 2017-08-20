@@ -134,11 +134,12 @@ QuickViewer renders images mainly in three ways.
 1. OpenGL
 1. Direct2D
 
-If you want to use QuickViewer with OpenGL, you need to comment out the QV_WITHOUT_OPENGL switch in QuickViewer.pro.
+If you want to use QuickViewer with OpenGL, you need to comment out the **QV_WITHOUT_OPENGL** switch in QuickViewer.pro.
 
-I read the description that Windows GDI does not support hardware in Windows Vista and later, but in bilinear interpolation drawing of 2D graphics, there is no difference from GPU and it is not necessary to transfer it to drawing texture, so it is even faster .
+I read a document that Windows GDI doesn't use hardware acceleration in Windows Vista and later, but in bilinear interpolation drawing of 2D graphics, there is no difference from GPU and it is not necessary to transfer it to drawing texture, so it is even faster .
 
 Direct2D is implemented as a QPA plugin, and rendering method is automatically changed when plug-in is enabled at application startup.
 
+Although it has not tried yet, in other OSs it should be possible to change the drawing method by other QPAs.
 
 Enjoy! :)
