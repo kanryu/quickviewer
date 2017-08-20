@@ -125,5 +125,20 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
 
 **translations** has multi-language qm files.
 
+## Selection of rendering method
+
+QuickViewer renders images mainly in three ways.
+
+1. Standard rendering method of each OS
+   - on Windows, it is Windows GDI
+1. OpenGL
+1. Direct2D
+
+If you want to use QuickViewer with OpenGL, you need to comment out the QV_WITHOUT_OPENGL switch in QuickViewer.pro.
+
+I read the description that Windows GDI does not support hardware in Windows Vista and later, but in bilinear interpolation drawing of 2D graphics, there is no difference from GPU and it is not necessary to transfer it to drawing texture, so it is even faster .
+
+Direct2D is implemented as a QPA plugin, and rendering method is automatically changed when plug-in is enabled at application startup.
+
 
 Enjoy! :)
