@@ -31,8 +31,10 @@ public:
         BilinearAndCpuLanczos,
 
         UsingSomeShader,
+#ifndef QV_WITHOUT_OPENGL
         Bicubic,
         Lanczos
+#endif
     };
     Q_ENUM(ShaderEffect)
 

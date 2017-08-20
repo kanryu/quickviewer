@@ -1932,7 +1932,7 @@
     </message>
     <message>
         <source>Increasing the value increases the display time of one image</source>
-        <translation>增加数值每一张图像显示时间就长</translation>
+        <translation type="vanished">增加数值每一张图像显示时间就长</translation>
     </message>
     <message>
         <source>Number of volumes managed simultaneously (Restart is required)</source>
@@ -1981,6 +1981,24 @@
     <message>
         <source>Number of images managed simultaneously (Restart is required)</source>
         <extracomment>Maximum number of images that an application simultaneously manages on memory</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increasing the value will degrade performance. Approximately twice the value of your display is appropriate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum size to hold the image (pixel)</source>
+        <extracomment>Keeping a huge image as it is will degrade performance, so if it is larger than this value it automatically shrinks</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rendering with Direct2D (Restart is required)</source>
+        <extracomment>Normally it is drawing with Windows GDI, but switching to drawing by Direct2D. QPA is loaded at startup.</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

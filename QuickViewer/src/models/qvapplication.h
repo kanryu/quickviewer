@@ -123,6 +123,11 @@ public:
     void setShowFullscreenSignage (bool showFullscreenSignage) { m_showFullscreenSignage = showFullscreenSignage; }
     bool ShowFullscreenTitleBar() { return m_showFullscreenTitleBar; }
     void setShowFullscreenTitleBar (bool showFullscreenTitleBar) { m_showFullscreenTitleBar = showFullscreenTitleBar; }
+    bool UseDirect2D() { return m_useDirect2D; }
+    void setUseDirect2D(bool useDirect2D) { m_useDirect2D = useDirect2D; }
+    int MaxTextureSize() { return m_maxTextureSize; }
+    void setMaxTextureSize(int maxTextureSize) { m_maxTextureSize = maxTextureSize; }
+
 
     // DualView
     bool DualView() { return m_dualView; }
@@ -341,8 +346,6 @@ public:
             m_mouseConfigsReverse[seq2.Values()[i]] = actionName;
         }
     }
-    void onGLInitialized();
-    int maxTextureSize() { return m_maxTextureSize; }
 
     /**
      * @brief load settings from "quickviewer.ini"
@@ -385,6 +388,7 @@ private:
     bool m_dontEnlargeSmallImagesOnFitting;
     bool m_showFullscreenSignage;
     bool m_showFullscreenTitleBar;
+    bool m_useDirect2D;
 
     // ToolBars
     bool m_showToolBar;

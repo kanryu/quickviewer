@@ -17,8 +17,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->spinSlideshow->setValue(m_slideShowWait);
     ui->spinVolumes->setValue(m_maxVolumesCache);
     ui->spinImages->setValue(qApp->MaxImagesCache());
+    ui->spinMaxTextureSize->setValue(qApp->MaxTextureSize());
     ui->checkBoxCheckeredPattern->setChecked(m_useCheckeredPattern);
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
+    ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
 
     resetColorButton(ui->btnColorSelect, m_backgroundColor);
     resetColorButton(ui->btnColorSelect2, m_backgroundColor2);
@@ -35,10 +37,12 @@ void OptionsDialog::reflectResults()
     qApp->setSlideShowWait(ui->spinSlideshow->value());
     qApp->setMaxVolumesCache(ui->spinVolumes->value());
     qApp->setMaxImagesCache(ui->spinImages->value());
+    qApp->setMaxTextureSize(ui->spinMaxTextureSize->value());
     qApp->setBackgroundColor(m_backgroundColor);
     qApp->setBackgroundColor2(m_backgroundColor2);
     qApp->setUseCheckeredPattern(m_useCheckeredPattern);
     qApp->setProhibitMultipleRunning(ui->checkBoxProhibitMultipleRunning->isChecked());
+    qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
 }
 
 void OptionsDialog::resetColorButton(QPushButton* btn, QColor color)

@@ -34,38 +34,31 @@ ImageView::ImageView(QWidget *parent)
 
 }
 
-//class MyGLWiget : public QGLWidget
-//{
-//public:
-//    MyGLWiget(QGLFormat fmt) : QGLWidget(fmt) {}
-//    void initializeGL()
-//    {
-//        QGLWidget::initializeGL();
-//        qApp->onGLInitialized();
-//    }
-//    void initializeOverlayGL()
-//    {
-//        QGLWidget::initializeOverlayGL();
-//        qApp->onGLInitialized();
-//    }
-//};
+#ifdef QV_WITHOUT_OPENGL
+QWidget* widgetEngine = nullptr;
+#else
 QGLWidget* widgetEngine = nullptr;
+#endif
 
 void ImageView::setRenderer(RendererType type)
 {
     m_renderer = type;
     if(widgetEngine)
         return;
-
+#ifdef QV_WITHOUT_OPENGL
+    type = RendererType::Native;
+    QWidget* w = new QWidget;
+    widgetEngine = w;
+    setViewport(w);
+#else
     if (m_renderer == OpenGL) {
-#ifndef QT_NO_OPENGL
         QGLWidget* w = new QGLWidget(QGLFormat(QGL::SampleBuffers));
         widgetEngine = w;
         setViewport(w);
-#endif
     } else {
         setViewport(new QWidget);
     }
+#endif
 }
 
 

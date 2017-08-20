@@ -280,6 +280,7 @@ QImage QZimg::toPackedImage(const QImage &src, int stridePack)
         case QImage::Format_RGBX8888:
         case QImage::Format_RGB888:
         case QImage::Format_RGB444:
+        case QImage::Format_Grayscale8:
             converted = src.convertToFormat(QImage::Format_RGB32);
             break;
 //        case QImage::Format_Indexed8:

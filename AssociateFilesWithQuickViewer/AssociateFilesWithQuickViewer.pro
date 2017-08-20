@@ -52,7 +52,7 @@ FORMS += \
 RC_ICONS = app_icon2.ico
 !CONFIG(debug, debug|release):!mingw {
     CONFIG += embed_manifest_exe
-    QMAKE_LFLAGS += /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
+    QMAKE_LFLAGS +=  /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) {

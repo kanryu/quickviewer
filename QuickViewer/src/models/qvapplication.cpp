@@ -1,5 +1,5 @@
 #include <QtGui>
-#include <QtOpenGL>
+//#include <QtOpenGL>
 
 #ifdef Q_OS_WIN
 #include <shlobj.h>
@@ -195,19 +195,6 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     registAction("actionAppVersion", ui->actionAppVersion);
 }
 
-void QVApplication::onGLInitialized()
-{
-    const QGLContext* c0 = QGLContext::currentContext();
-    if(c0) {
-        QOpenGLContext* c1 = QOpenGLContext::currentContext();
-        //QOpenGLContext* c2 = c0->contextHandle();
-        if(c1 && c1->isValid()) {
-            c1->functions()->glGetIntegerv(GL_MAX_TEXTURE_SIZE, &m_maxTextureSize);
-            qDebug() << m_maxTextureSize;
-        }
-    }
-}
-
 void QVApplication::addHistory(QString path)
 {
     const QString unixpath = QDir::fromNativeSeparators(path);
@@ -280,6 +267,7 @@ void QVApplication::loadSettings()
     m_showMenuBar = m_settings.value("ShowMenuBar", true).toBool();
     m_showSubfolders = m_settings.value("ShowSubfolders", false).toBool();
     m_slideShowWait = m_settings.value("SlideShowWait", 5000).toInt();
+    m_maxTextureSize = m_settings.value("MaxTextureSize", 4096).toInt();
 #ifdef Q_OS_WIN64
     m_maxVolumesCache = m_settings.value("MaxVolumesCache", 5).toInt();
     m_maxImagesCache = m_settings.value("MaxImagesCache", 22).toInt();
@@ -293,6 +281,7 @@ void QVApplication::loadSettings()
     m_dontEnlargeSmallImagesOnFitting  = m_settings.value("DontEnlargeSmallImagesOnFitting", true).toBool();
     m_showFullscreenSignage  = m_settings.value("ShowFullscreenSignage", true).toBool();
     m_showFullscreenTitleBar = m_settings.value("ShowFullscreenTitleBar", true).toBool();
+    m_useDirect2D = m_settings.value("UseDirect2D", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -384,6 +373,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowMenuBar", m_showMenuBar);
     m_settings.setValue("ShowSubfolders", m_showSubfolders);
     m_settings.setValue("SlideShowWait", m_slideShowWait);
+    m_settings.setValue("MaxTextureSize", m_maxTextureSize);
     m_settings.setValue("MaxVolumesCache", m_maxVolumesCache);
     m_settings.setValue("MaxImagesCache", m_maxImagesCache);
     QString rgbstring;
@@ -395,6 +385,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
     m_settings.setValue("ShowFullscreenSignage", m_showFullscreenSignage);
     m_settings.setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
+    m_settings.setValue("UseDirect2D", m_useDirect2D);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

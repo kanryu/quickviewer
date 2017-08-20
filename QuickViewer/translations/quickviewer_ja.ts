@@ -2365,7 +2365,7 @@
     </message>
     <message>
         <source>Increasing the value increases the display time of one image</source>
-        <translation>数を大きくすると画像1枚あたりの表示時間が長くなります</translation>
+        <translation type="vanished">数を大きくすると画像1枚あたりの表示時間が長くなります</translation>
     </message>
     <message>
         <source>Number of volumes managed simultaneously (Restart is required)</source>
@@ -2427,6 +2427,24 @@
         <source>Number of images managed simultaneously (Restart is required)</source>
         <extracomment>Maximum number of images that an application simultaneously manages on memory</extracomment>
         <translation>同時に管理する画像の最大数 (再起動後有効)</translation>
+    </message>
+    <message>
+        <source>Increasing the value will degrade performance. Approximately twice the value of your display is appropriate.</source>
+        <translation>数を大きくするとパフォーマンスが悪化します。ディスプレイの2倍程度の大きさが適切です。</translation>
+    </message>
+    <message>
+        <source>Maximum size to hold the image (pixel)</source>
+        <extracomment>Keeping a huge image as it is will degrade performance, so if it is larger than this value it automatically shrinks</extracomment>
+        <translation>保持する最大の画像サイズ (ピクセル)</translation>
+    </message>
+    <message>
+        <source>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</source>
+        <translation>高解像度の環境ではDirect2Dでないと正常に動作しないことがあります。通常はオフでいいでしょう</translation>
+    </message>
+    <message>
+        <source>Rendering with Direct2D (Restart is required)</source>
+        <extracomment>Normally it is drawing with Windows GDI, but switching to drawing by Direct2D. QPA is loaded at startup.</extracomment>
+        <translation>Direct2Dで描画する (再起動後有効)</translation>
     </message>
 </context>
 <context>

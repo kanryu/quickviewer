@@ -238,157 +238,169 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 }
 
 
+static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteArray bytes, QString aformat)
+{
+    for(;;) {
+        int maxTextureSize = qApp->MaxTextureSize();
+        easyexif::EXIFInfo info;
+        QBuffer buffer(&bytes);
+        QImageReader reader(&buffer, aformat.toUtf8());
+
+//        QElapsedTimer et_canRead; et_canRead.start();
+        if(!reader.canRead()) {
+            aformat = "";
+            break;
+        }
+//        qint64 t_canRead = et_canRead.elapsed();
+//        // Emptying the format of QImageReader will get the format of the internal QImageIoHandler
+//        reader.setFormat("");
+
+//        QElapsedTimer et_supportsAnimation; et_supportsAnimation.start();
+        if(reader.supportsAnimation()) {
+            QvMovie movie = QvMovie(bytes, aformat.toUtf8());
+            ImageContent ic;
+            ic.Path = path;
+            ic.Movie = movie;
+            ic.BaseSize = ic.ImportSize = reader.size();
+            return ic;
+        }
+//        qint64 t_supportsAnimation = et_supportsAnimation.elapsed();
+//        qDebug() << path << t_canRead << t_supportsAnimation;
+
+        if(aformat == "apng") {
+            bool lodepng_exist = IFileLoader::isImageFile("lodepng");
+            aformat = lodepng_exist ? "lodepng" : "png";
+            break;
+        }
+        // turbjpeg can turbo rescaling when loading
+        QSize baseSize = reader.size();
+        QSize loadingSize = baseSize;
+        // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
+        // but usualy thumbnails are too small, so we don't use
+        if(reader.format() == TURBO_JPEG_FMT) {
+            while(loadingSize.width() > maxTextureSize || loadingSize.height() > maxTextureSize)
+                loadingSize = QSize((loadingSize.width()+1) >> 1,(loadingSize.height()+1) >> 1);
+            reader.setScaledSize(loadingSize);
+        }
+        QImage src;
+        {
+            QImage tmp;
+            // QImage processing sometimes fails
+            for(int count = 1; ; count++) {
+                tmp = reader.read();
+                if(!tmp.isNull()) break;
+                qDebug() << "[0]" << path << tmp << count;
+                if(count >= 100) return ImageContent();
+                QThread::currentThread()->usleep(40000);
+            }
+            src = QZimg::toPackedImage(tmp);
+            if(src.isNull()) return ImageContent();
+        }
+
+        // parsing JPEG EXIF
+        if(src.width() > 0 && IFileLoader::isExifJpegImageFile(path)) {
+            info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
+        }
+
+        if(src.width() > 0 && IFileLoader::isExifRawImageFile(path)) {
+            parseExifTextExtents(src, info);
+        }
+
+
+    //    ImageContent ic(QPixmap::fromImage(src), path, baseSize, info);
+        ImageContent ic;
+        ic.Path = path;
+        ic.BaseSize = baseSize;
+        ic.Info = info;
+        if(src.isNull())
+            return ic;
+        if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
+            ic = ImageContent(src, path, baseSize, info);;
+        } else {
+            // resample for too big images
+            QSize srcSizeReal = src.size();
+            QImage src2;
+            switch(src.depth()) {
+            case 32:
+                if((src.width() | 0x3) > 0) {
+                    // QImage processing sometimes fails
+                    for(int count = 1; ; count++) {
+                        src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
+                        if(!src2.isNull()) break;
+                        qDebug() << "[2]" << path << src2 << count;
+                        if(count >= 100) return ImageContent();
+                        QThread::currentThread()->usleep(40000);
+                    }
+                    src.swap(src2);
+                }
+                break;
+            default:
+                if(src.format() != QImage::Format::Format_Grayscale8 && src.format() != QImage::Format::Format_RGB888) {
+                    src = src.convertToFormat(QImage::Format::Format_RGB888);
+                }
+                if((src.width() | 0xF) > 0) {
+                    // QImage processing sometimes fails
+                    int count = 0;
+                    do {
+                        src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
+                        qDebug() << "[2]" << path << src2 << count;
+                        if(!src2.isNull())
+                            break;
+                        if(src2.isNull() && count++ < 1000) {
+                            QThread::currentThread()->usleep(1000);
+                            continue;
+                        }
+                        return ImageContent();
+                    } while(1);
+                    src.swap(src2);
+                }
+                break;
+            }
+
+            QSize srcSize = src.size();
+            QSize halfSize = QSize((srcSize.width())/2, (srcSize.height())/2);
+
+            //qDebug() << path << "[3]width:" << srcSize;
+            QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
+            //qDebug() << path << "[2]Dest:" <<  half;
+
+    //        qDebug() << path << src;
+            ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
+            ResizeHalf resizer(fmt);
+            resizer.resizeHV(half.bits(), src.bits(), src.width(), srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
+
+    //        ImageContent ic(QPixmap::fromImage(half), path, srcSizeReal, info);
+            ic.Image = half;
+            ic.ImportSize = srcSizeReal;
+        }
+        // CPU resizing before Page Viewing
+        if(!pageSize.isEmpty() && !ic.Image.isNull()) {
+            QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
+            ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
+        }
+        return ic;
+    }
+    return loadWithSpecifiedFormat(path, pageSize, bytes, aformat);
+}
+
+
+
 static ImageContent futureLoadImageFromFileVolumeImpl(VolumeManager* volume, QString path, QSize pageSize)
 {
 //    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
-    int maxTextureSize = qApp->maxTextureSize();
-    easyexif::EXIFInfo info;
 
     QByteArray bytes = volume->loadByteArrayByName(path);
-    QBuffer buffer(&bytes);
     QString aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
             ? TURBO_JPEG_FMT : QFileInfo(path.toLower()).suffix();
-
     // extention "png" might be a apng
     if(aformat == "png" && IFileLoader::isImageFile("apng")) {
         aformat = "apng";
     }
-//    if(IFileLoader::isExifRawImageFile(aformat) && IFileLoader::isImageFile("crw")) {
-//        aformat = "crw";
+//    if(aformat == "png") {
+//        bool lodepng_exist = IFileLoader::isImageFile("lodepng");
+//        aformat = lodepng_exist ? "lodepng" : "png";
 //    }
-
-    QImageReader reader(&buffer, aformat.toUtf8());
-    if(!reader.canRead()) {
-        buffer.seek(0);
-        reader.setDevice(&buffer);
-        reader.setFormat(QByteArray());
-        reader.canRead();
-    }
-    // Emptying the format of QImageReader will get the format of the internal QImageIoHandler
-    reader.setFormat("");
-
-    if(reader.supportsAnimation()) {
-        QvMovie movie = QvMovie(bytes, aformat.toUtf8());
-        ImageContent ic;
-        ic.Path = path;
-        ic.Movie = movie;
-        ic.BaseSize = ic.ImportSize = reader.size();
-        return ic;
-    }
-    if(reader.format() == "apng") {
-        buffer.seek(0);
-        reader.setFormat(QByteArray("png"));
-        reader.setDevice(&buffer);
-        reader.canRead();
-    }
-    // turbjpeg can turbo rescaling when loading
-    QSize baseSize = reader.size();
-    QSize loadingSize = baseSize;
-    // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
-    // but usualy thumbnails are too small, so we don't use
-    if(reader.format() == TURBO_JPEG_FMT) {
-        while(loadingSize.width() > maxTextureSize || loadingSize.height() > maxTextureSize)
-            loadingSize = QSize((loadingSize.width()+1) >> 1,(loadingSize.height()+1) >> 1);
-        reader.setScaledSize(loadingSize);
-    }
-    QImage src;
-    {
-        QImage tmp;
-        // QImage processing sometimes fails
-        for(int count = 1; ; count++) {
-            tmp = reader.read();
-            if(!tmp.isNull()) break;
-            qDebug() << "[0]" << path << tmp << count;
-            if(count >= 100) return ImageContent();
-            QThread::currentThread()->usleep(40000);
-        }
-        src = QZimg::toPackedImage(tmp);
-        if(src.isNull()) return ImageContent();
-    }
-
-    // parsing JPEG EXIF
-    if(src.width() > 0 && IFileLoader::isExifJpegImageFile(path)) {
-        info.parseFrom(reinterpret_cast<const unsigned char*>(bytes.constData()), bytes.length());
-    }
-
-    if(src.width() > 0 && IFileLoader::isExifRawImageFile(path)) {
-        parseExifTextExtents(src, info);
-    }
-
-
-//    ImageContent ic(QPixmap::fromImage(src), path, baseSize, info);
-    ImageContent ic;
-    ic.Path = path;
-    ic.BaseSize = baseSize;
-    ic.Info = info;
-    if(src.isNull())
-        return ic;
-    if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
-        ic = ImageContent(src, path, baseSize, info);;
-    } else {
-        // resample for too big images
-        QSize srcSizeReal = src.size();
-        QImage src2;
-        switch(src.depth()) {
-        case 32:
-            if((src.width() | 0x3) > 0) {
-                // QImage processing sometimes fails
-                for(int count = 1; ; count++) {
-                    src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
-                    if(!src2.isNull()) break;
-                    qDebug() << "[2]" << path << src2 << count;
-                    if(count >= 100) return ImageContent();
-                    QThread::currentThread()->usleep(40000);
-                }
-                src.swap(src2);
-            }
-            break;
-        default:
-            if(src.format() != QImage::Format::Format_Grayscale8 && src.format() != QImage::Format::Format_RGB888) {
-                src = src.convertToFormat(QImage::Format::Format_RGB888);
-            }
-            if((src.width() | 0xF) > 0) {
-                // QImage processing sometimes fails
-                int count = 0;
-                do {
-                    src2 = src.copy(QRect(0, 0, src.width() >> 4 << 4, src.height() >> 1 << 1));
-                    qDebug() << "[2]" << path << src2 << count;
-                    if(!src2.isNull())
-                        break;
-                    if(src2.isNull() && count++ < 1000) {
-                        QThread::currentThread()->usleep(1000);
-                        continue;
-                    }
-                    return ImageContent();
-                } while(1);
-                src.swap(src2);
-            }
-            break;
-        }
-
-        QSize srcSize = src.size();
-        QSize halfSize = QSize((srcSize.width())/2, (srcSize.height())/2);
-
-        //qDebug() << path << "[3]width:" << srcSize;
-        QImage half = QImage(halfSize.width(), halfSize.height(), src.format());
-        //qDebug() << path << "[2]Dest:" <<  half;
-
-//        qDebug() << path << src;
-        ResizeHalf::FMT fmt = (ResizeHalf::FMT)(src.depth() >> 3);
-        ResizeHalf resizer(fmt);
-        resizer.resizeHV(half.bits(), src.bits(), src.width(), srcSize.height(), half.bytesPerLine(), src.bytesPerLine());
-
-//        ImageContent ic(QPixmap::fromImage(half), path, srcSizeReal, info);
-        ic.Image = half;
-        ic.ImportSize = srcSizeReal;
-    }
-    // CPU resizing before Page Viewing
-    if(!pageSize.isEmpty() && !ic.Image.isNull()) {
-        QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-        ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
-    }
-
-    return ic;
+    return loadWithSpecifiedFormat(path, pageSize, bytes, aformat);
 }
 
 ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)

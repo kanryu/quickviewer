@@ -3,9 +3,12 @@
 
 #include <QtCore>
 #include <QtGui>
-#include <QtOpenGL>
 #include <QtWidgets>
 #include <QtConcurrent>
+
+#ifndef QV_WITHOUT_OPENGL
+#  include <QtOpenGL>
+#endif
 
 #ifdef Q_OS_WIN
 #include <Windows.h>

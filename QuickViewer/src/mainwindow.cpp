@@ -116,18 +116,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusLabel->setText(tr("Any folder or archive is not loaded.", "The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated"));
 
     // Shader
+#ifdef QV_WITHOUT_OPENGL
+    ui->actionShaderBicubic->setVisible(false);
+    ui->actionShaderLanczos->setVisible(false);
+#endif
     m_shaderMenuGroup
             << ui->actionShaderNearestNeighbor
             << ui->actionShaderBilinear
+           #ifndef QV_WITHOUT_OPENGL
             << ui->actionShaderBicubic
             << ui->actionShaderLanczos
+           #endif
             << ui->actionShaderBilinearBeforeCpuBicubic
             << ui->actionShaderCpuBicubic;
     switch(qApp->Effect()) {
     case qvEnums::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
     case qvEnums::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
+#ifndef QV_WITHOUT_OPENGL
     case qvEnums::Bicubic: ui->actionShaderBicubic->setChecked(true); break;
     case qvEnums::Lanczos: ui->actionShaderLanczos->setChecked(true); break;
+#endif
     case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
     case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
     }
@@ -1149,18 +1157,22 @@ void MainWindow::onActionShaderBilinear_triggered()
 
 void MainWindow::onActionShaderBicubic_triggered()
 {
+#ifndef QV_WITHOUT_OPENGL
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::Bicubic);
     ui->actionShaderBicubic->setChecked(true);
     ui->graphicsView->readyForPaint();
+#endif
 }
 
 void MainWindow::onActionShaderLanczos_triggered()
 {
+#ifndef QV_WITHOUT_OPENGL
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::Lanczos);
     ui->actionShaderLanczos->setChecked(true);
     ui->graphicsView->readyForPaint();
+#endif
 }
 
 void MainWindow::onActionShaderBilinearBeforeCpuBicubic_triggered()

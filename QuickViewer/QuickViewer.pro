@@ -4,11 +4,21 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl concurrent opengl-private sql
 
+QT       += core gui concurrent sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-VERSION = 0.9.2
+## Comment out if you need OpenGL support
+DEFINES += QV_WITHOUT_OPENGL
+
+contains(DEFINES, QV_WITHOUT_OPENGL) {
+    message(QuickViewer without OpenGL Support)
+} else {
+    message(QuickViewer with OpenGL Support)
+    QT += opengl opengl-private
+}
+
+VERSION = 0.9.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -55,7 +65,7 @@ win32 {
         QMAKE_CXXFLAGS += /wd4819
         # more heap area for x86
         equals(TARGET_ARCH, x86) {
-            QMAKE_CXXFLAGS += /LARGEADDRESSAWARE
+            QMAKE_LFLAGS += /LARGEADDRESSAWARE
         }
     }
     LIBS += -luser32 -ladvapi32 -lShlwapi
@@ -140,18 +150,17 @@ HEADERS  += \
     src/models/volumemanagerbuilder.h
 
 PRECOMPILED_HEADER += src/stdafx.h
+precompile_header:!isEmpty(PRECOMPILED_HEADER) {
+    DEFINES += USING_PCH
+}
 
 
 win32 {
     SOURCES += src/mainwindowforwindows.cpp src/qfullscreenframe/qfullscreenframe.cpp
     HEADERS += src/mainwindowforwindows.h src/qfullscreenframe/qfullscreenframe.h
     INCLUDEPATH += src/qfullscreenframe
-
 }
 
-precompile_header:!isEmpty(PRECOMPILED_HEADER) {
-    DEFINES += USING_PCH
-}
 
 FORMS    += \
     src/mainwindow.ui \
@@ -191,7 +200,7 @@ DBBIN += \
 DBDIR += database/
 
 # win32 depoying, please add 'jom install' into build setting on qt-creator
-win32 { !CONFIG(debug, debug|release) {
+win32 : !CONFIG(debug, debug|release) {
     mingw {
         MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-mingw-$${TARGET_ARCH}
 
@@ -207,6 +216,8 @@ win32 { !CONFIG(debug, debug|release) {
         install_qrawspeed.files = \
             ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
             ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
+
+#            ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qlodepng0.dll \
 
         # dlls instead of vcredist_xxx.exe
         install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
@@ -253,8 +264,17 @@ win32 { !CONFIG(debug, debug|release) {
     install_db.path = $${MY_DEFAULT_INSTALL}/database
     install_db.files = $$DBS $$DBBIN
 
-    INSTALLS += install_shaders install_db
-} }
+    INSTALLS += install_db
+    !contains(DEFINES, QV_WITHOUT_OPENGL) {
+        INSTALLS += install_shaders
+    }
+    greaterThan(QT_MAJOR_VERSION, 4):greaterThan(QT_MINOR_VERSION, 8):win32 {
+        install_direct2d.path = $${MY_DEFAULT_INSTALL}/platforms
+        install_direct2d.files = $$[QT_INSTALL_PLUGINS]/platforms/qdirect2d.dll
+        INSTALLS += install_direct2d
+    }
+
+}
 
 OTHER_FILES += SHADERS
 

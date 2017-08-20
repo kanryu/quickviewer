@@ -2,7 +2,6 @@
 #define IMAGESHADEREFFECT_H
 
 #include <QtWidgets>
-#include <QtOpenGL>
 #include "qv_init.h"
 
 struct ImageContent;

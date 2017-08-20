@@ -1,8 +1,10 @@
 #include <QGraphicsPixmapItem>
-#include <QtOpenGL/private/qgraphicsshadereffect_p.h>
 #include "shadermanager.h"
 #include "qvapplication.h"
 
+#ifndef QV_WITHOUT_OPENGL
+#include <QtOpenGL>
+#include <QtOpenGL/private/qgraphicsshadereffect_p.h>
 
 class LanczosShaderEffect : public QGraphicsShaderEffect
 {
@@ -82,6 +84,8 @@ void LanczosShaderEffect::createOffsets(int count, float width, Qt::Orientation 
                        QVector2D(i / width, 0) : QVector2D(0, i / width);
     }
 }
+#endif
+
 
 //////////////////////////////////////////////////////
 /// \brief ImageEffectManager::ImageEffectManager
@@ -91,8 +95,10 @@ ShaderManager::ShaderManager(QObject *parent)
     , pageCnt(0)
     , m_oldEffect(qvEnums::Bilinear)
 {
+#ifndef QV_WITHOUT_OPENGL
     loadShader(m_bicubic, qApp->BicubicShaderPath());
     loadShader(m_lanczos, qApp->LanczosShaderPath());
+#endif
 }
 
 void ShaderManager::loadShader(QByteArray& target, QString path)
@@ -106,12 +112,15 @@ void ShaderManager::loadShader(QByteArray& target, QString path)
     }
 }
 
+#ifndef QV_WITHOUT_OPENGL
 void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, QSize size)
+#else
+void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &, QSize)
+#endif
 {
     if(!item)
         return;
     qvEnums::ShaderEffect effect = qApp->Effect();
-    QGraphicsShaderEffect * shader = nullptr;
     switch(effect) {
     case qvEnums::CpuBicubic:
     case qvEnums::Bilinear:
@@ -122,18 +131,20 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
         if(m_oldEffect != qvEnums::Bilinear)
             item->setTransformationMode(Qt::SmoothTransformation);
         if(m_oldEffect > qvEnums::UsingSomeShader)
-            item->setGraphicsEffect(shader);
+            item->setGraphicsEffect(nullptr);
         break;
     case qvEnums::NearestNeighbor:
         if(m_oldEffect != qvEnums::NearestNeighbor)
             item->setTransformationMode(Qt::FastTransformation);
         if(m_oldEffect > qvEnums::UsingSomeShader)
-            item->setGraphicsEffect(shader);
+            item->setGraphicsEffect(nullptr);
         break;
+#ifndef QV_WITHOUT_OPENGL
     case qvEnums::Bicubic:
         if(m_oldEffect == qvEnums::NearestNeighbor)
             item->setTransformationMode(Qt::SmoothTransformation);
         if(m_oldEffect != qvEnums::Bicubic) {
+            QGraphicsShaderEffect * shader = nullptr;
             if(m_bicubic.length() > 0) {
                 shader = new QGraphicsShaderEffect(this);
                 shader->setPixelShaderFragment(m_bicubic);
@@ -145,6 +156,7 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
         if(m_oldEffect == qvEnums::NearestNeighbor)
             item->setTransformationMode(Qt::SmoothTransformation);
         if(m_oldEffect != qvEnums::Lanczos) {
+            QGraphicsShaderEffect * shader = nullptr;
             if(m_lanczos.length() > 0) {
                 auto lanczos = new LanczosShaderEffect(this);
                 lanczos->setPixelShaderFragment(m_lanczos);
@@ -193,6 +205,7 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &ic, Q
 //            lanczos->createOffsets(kernelSize, swb, Qt::Horizontal);
         }
         break;
+#endif
     }
     pageCnt++;
 }
