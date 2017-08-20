@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## v0.9.3 (Sun Aug 20 17:45:39 2017 +0900) [693d005](https://github.com/kanryu/quickviewer/commit/693d00564d079806879b9265fe2c7a7b8dacf2f0)
+
+changing rendering method, support Direct2D, bugfixed
+
+- Rendering with Windows GDI is standard on Windows, from this version
+- significant speed up
+- support Direct2D rendering
+- bugfixed: Reading of PNG was very slow
+
+- other commits
+    - Update shader.md (Sun Aug 20 06:06:58 2017 +0900) [549dd2a](https://github.com/kanryu/quickviewer/commit/549dd2aa02a721b6713ecc8b3cad9d5c13a6a577)
+    - Update index-ja.md (Sun Aug 20 06:06:02 2017 +0900) [83c877c](https://github.com/kanryu/quickviewer/commit/83c877c1466061ee4ad18e76c2afec1698758cea)
+    - Update _config.yml (Sun Aug 20 05:45:35 2017 +0900) [ee0fe1e](https://github.com/kanryu/quickviewer/commit/ee0fe1e57ee43fc3ef379897472a49ebce96d771)
+    - Update index.html (Sun Aug 20 05:44:30 2017 +0900) [1e12cb0](https://github.com/kanryu/quickviewer/commit/1e12cb05864dff2ee3e7fe0459b8ab16ba73d1d7)
+    - Update shader-ja.md (Sun Aug 20 05:42:54 2017 +0900) [db169ea](https://github.com/kanryu/quickviewer/commit/db169ea402538c42af279147b2b0b50af6fd1773)
+    - Update shader.md (Sun Aug 20 05:42:28 2017 +0900) [597a4cf](https://github.com/kanryu/quickviewer/commit/597a4cfd61e16fad629913e01d99a24b6fe58891)
+    - Update index-ja.md (Sun Aug 20 05:41:59 2017 +0900) [659fac0](https://github.com/kanryu/quickviewer/commit/659fac0343ecc7b037ed71f1a5f82f220778bafc)
+    - Update default.html (Sun Aug 20 05:40:34 2017 +0900) [95d8ee3](https://github.com/kanryu/quickviewer/commit/95d8ee37642ce39bece91c713dea2a1042480a93)
+    - Update index.md (Sun Aug 20 05:35:44 2017 +0900) [19662ec](https://github.com/kanryu/quickviewer/commit/19662ecac13a60b32428b128aa954c88041c7b78)
+    - Update _config.yml (Sun Aug 20 05:34:12 2017 +0900) [2e2cff2](https://github.com/kanryu/quickviewer/commit/2e2cff2a7933de64bdb221a76f4912df9c31ec4e)
+    - Update HowToBuild.md (Fri Aug 18 09:01:00 2017 +0900) [3e9e294](https://github.com/kanryu/quickviewer/commit/3e9e294d6ed8c33c326a3ef9237b34b30528fa6a)
+    - support for build by MinGW(windows) (Fri Aug 18 08:54:26 2017 +0900) [c4fad18](https://github.com/kanryu/quickviewer/commit/c4fad184e837d0e7be98445d3f808351fcbdbb8d)
+    - Update index.md (Fri Aug 18 05:45:06 2017 +0900) [881e23c](https://github.com/kanryu/quickviewer/commit/881e23ce1c27dcfd9ff152f707a321892e74887e)
+    - Update index.md (Fri Aug 18 05:39:19 2017 +0900) [3043156](https://github.com/kanryu/quickviewer/commit/3043156fb9a59e0df1ff0c2a78cef933b1d4477b)
+    - Update HowToBuild.md (Thu Aug 17 21:53:36 2017 +0900) [a33eb6f](https://github.com/kanryu/quickviewer/commit/a33eb6f25fc1db3fe2e0db10269175ab2bc9acfd)
+    - Update HowToBuild.md (Thu Aug 17 21:52:42 2017 +0900) [a917b8b](https://github.com/kanryu/quickviewer/commit/a917b8b6dbfce7244800fd431e0d6591893b6c4a)
+    - Update HowToBuild.md (Thu Aug 17 21:39:23 2017 +0900) [fca6aa2](https://github.com/kanryu/quickviewer/commit/fca6aa27fd303fa7fad576cc3408ec2ed2b48e92)
+    - changelog (Thu Aug 17 11:35:53 2017 +0900) [763f7dd](https://github.com/kanryu/quickviewer/commit/763f7ddddd3acb9b579ae664a53b7437cec212bd)
+
 ## v0.9.2 (Thu Aug 17 11:35:15 2017 +0900) [90c1f31](https://github.com/kanryu/quickviewer/commit/90c1f31e2f5b442cb38f62b9430acec448376fe8)
 
 3 bugfixed
