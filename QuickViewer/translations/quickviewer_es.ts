@@ -976,6 +976,7 @@
     </message>
     <message>
         <source>Alt</source>
+        <extracomment>maybe &apos;Option&apos; in OSX</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1016,6 +1017,11 @@
     </message>
     <message>
         <source>Scroll Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta</source>
+        <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2058,6 +2064,16 @@
         <source>Mouse Config</source>
         <comment>Title of the dialog to customize the mouse sequences</comment>
         <translation>Configuración del ratón</translation>
+    </message>
+    <message>
+        <source>Command</source>
+        <comment>caption of Command key</comment>
+        <translation type="unfinished">Movimiento</translation>
+    </message>
+    <message>
+        <source>Option</source>
+        <comment>caption of Option key</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
