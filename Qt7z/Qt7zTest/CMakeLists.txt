@@ -1,0 +1,52 @@
+# set all include directories for in and out of source builds
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Qt7z
+    ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+add_definitions(
+    -DQT7Z_LIBRARY
+)
+
+set(CMAKE_AUTOMOC ON)
+
+file(GLOB TEST_COMMON_RESOURCES
+    "*.qrc"
+)
+
+qt5_add_resources(TEST_COMMON_RESOURCES_RCC ${TEST_COMMON_RESOURCES})
+set(TEST_COMMON_SRCS ${TEST_COMMON_RESOURCES_RCC})
+
+set(TEST_COMMON_LINK_LIBRARIES
+    qt7z
+    Qt5::Widgets
+    Qt5::Test
+)
+
+set(TEST_ROOT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+string(LENGTH ${TEST_ROOT_DIRECTORY} TEST_ROOT_DIRECTORY_LENGTH)
+math(EXPR TEST_ROOT_DIRECTORY_LENGTH "${TEST_ROOT_DIRECTORY_LENGTH} + 1")
+
+file(GLOB_RECURSE TEST_FILES *_Tests.cpp)
+foreach(TEST_FILE ${TEST_FILES})
+    string(SUBSTRING ${TEST_FILE} ${TEST_ROOT_DIRECTORY_LENGTH} -1 TEST_FILE_RELATIVE)
+    string(LENGTH ${TEST_FILE_RELATIVE} TEST_FILE_RELATIVE_LENGTH)
+    math(EXPR TEST_NAME_LENGTH "${TEST_FILE_RELATIVE_LENGTH} - 4")
+    string(SUBSTRING ${TEST_FILE_RELATIVE} 0 ${TEST_NAME_LENGTH} TEST_NAME)
+
+    get_filename_component(TEST_TARGET ${TEST_FILE} NAME_WE)
+
+    add_executable(${TEST_TARGET} ${TEST_FILE} ${TEST_COMMON_SRCS})
+    target_link_libraries(${TEST_TARGET} ${TEST_COMMON_LINK_LIBRARIES})
+    set_target_properties(${TEST_TARGET} PROPERTIES MACOSX_BUNDLE FALSE)
+
+    if(UNIX)
+        set(TEST_ARGS -platform offscreen)
+    endif()
+
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_TARGET} ${TEST_ARGS} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+    if(WIN32)
+        set_property(TEST ${TEST_NAME} PROPERTY ENVIRONMENT "PATH=%PATH%\;${QT_ROOT}\\bin")
+    endif(WIN32)
+endforeach(TEST_FILE)
