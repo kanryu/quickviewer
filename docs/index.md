@@ -94,7 +94,7 @@ You can also clone the latest source code from **[this repository.](https://gith
 - **快乐无极** (in Simplified Chinese)
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
 - **ZEGMONET** (in Turkish)
-    - [http://zegmonet.com/teknoloji/quickviewer-programi.html](http://zegmonet.com/teknoloji/quickviewer-programi.html)
+    - [http://zegmonet.com/2017/08/26/windows-icin-goruntu-goruntuleyici-programi-quickviewer](http://zegmonet.com/2017/08/26/windows-icin-goruntu-goruntuleyici-programi-quickviewer)
 - **sekizbir.com** (in Turkish)
     - [https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/](https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/)
 - **indiriliyo** (in Turkish)
