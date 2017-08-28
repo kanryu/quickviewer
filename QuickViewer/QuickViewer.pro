@@ -18,7 +18,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 0.9.3
+VERSION = 0.9.4
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -57,18 +57,19 @@ INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview .
 
 LIBDIR = ../lib
 
-LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
+#LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
+LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg
 
 
 win32 {
-    equals(QMAKE_CC,"cl") {
+    win32-msvc* {
         QMAKE_CXXFLAGS += /wd4819
         # more heap area for x86
         equals(TARGET_ARCH, x86) {
             QMAKE_LFLAGS += /LARGEADDRESSAWARE
         }
     }
-    LIBS += -luser32 -ladvapi32 -lShlwapi
+    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32
 }
 unix {
     DEFINES += _UNIX
@@ -183,6 +184,7 @@ DISTFILES += \
     translations/quickviewer_ja.qm \
     translations/quickviewer_es.qm \
     translations/quickviewer_zh.qm \
+    translations/quickviewer_el.qm \
 
 # Shaders will be installed into DIST_DIR/shaders
 SHADERS += \
@@ -198,6 +200,14 @@ DBBIN += \
     database/thumbnail.sqlite3.db \
 
 DBDIR += database/
+
+!greaterThan(QT_MAJOR_VERSION, 4) {
+    defineReplace(shell_path) {
+        path = $$1
+        return($$replace(path, "/", "\\"))
+    }
+}
+
 
 # win32 depoying, please add 'jom install' into build setting on qt-creator
 win32 : !CONFIG(debug, debug|release) {
@@ -244,6 +254,7 @@ win32 : !CONFIG(debug, debug|release) {
         $${PWD}/translations/quickviewer_ja.qm \
         $${PWD}/translations/quickviewer_es.qm \
         $${PWD}/translations/quickviewer_zh.qm \
+        $${PWD}/translations/quickviewer_el.qm \
 
     install_assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
     install_assoc_icons.files = \

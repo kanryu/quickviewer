@@ -26,8 +26,12 @@ ImageView::ImageView(QWidget *parent)
 //    setViewportUpdateMode(FullViewportUpdate);
     setAcceptDrops(false);
 //    setDragMode(DragDropMode::InternalMove);
+#ifdef QV_WITHOUT_OPENGL
+    setRenderer(Native);
+#else
     if(qApp->Effect() > qvEnums::UsingFixedShader)
         setRenderer(OpenGL);
+#endif
 
     setMouseTracking(true);
     resetBackgroundColor();

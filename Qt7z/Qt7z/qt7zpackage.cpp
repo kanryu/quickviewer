@@ -41,7 +41,7 @@ struct ForceLinkCodecs
 {
     ForceLinkCodecs()
     {
-        bool forceLinkCRC = g_forceLinkCRC;
+        static bool forceLinkCRC = g_forceLinkCRC;
 
 #define REFER_TO_FORCE_LINK(NAMESPACE, CODEC) \
     bool forceLink##NAMESPACE##CODEC = N##NAMESPACE::N##CODEC::g_forceLink;

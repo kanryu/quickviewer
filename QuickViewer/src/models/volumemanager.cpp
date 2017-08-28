@@ -196,12 +196,8 @@ bool VolumeManager::findImageByIndex(int idx) {
 }
 
 bool VolumeManager::findImageByName(QString name) {
-    int idx = m_filelist.indexOf(name);
-    if(idx < 0)
-        return false;
-    m_cnt = idx;
-    on_ready();
-    return true;
+    int idx = m_filelist.indexOf(QDir::toNativeSeparators(name));
+    return findImageByIndex(idx);
 }
 
 QString VolumeManager::FullPathToVolumePath(QString path)
@@ -390,6 +386,8 @@ static ImageContent futureLoadImageFromFileVolumeImpl(VolumeManager* volume, QSt
 //    qDebug() << "futureLoadImageFromFileVolume" << path << QThread::currentThread();
 
     QByteArray bytes = volume->loadByteArrayByName(path);
+    if(bytes.isNull() || bytes.isEmpty())
+        return ImageContent();
     QString aformat = IFileLoader::isExifJpegImageFile(path) && IFileLoader::isImageFile("turbojpeg")
             ? TURBO_JPEG_FMT : QFileInfo(path.toLower()).suffix();
     // extention "png" might be a apng

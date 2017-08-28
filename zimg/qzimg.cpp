@@ -275,12 +275,14 @@ QImage QZimg::toPackedImage(const QImage &src, int stridePack)
             return src;
         case QImage::Format_RGB555:
         case QImage::Format_RGB666:
+        case QImage::Format_RGB888:
+        case QImage::Format_RGB444:
+#if QT_VERSION_MAJOR >= 5
         case QImage::Format_RGB30:
         case QImage::Format_BGR30:
         case QImage::Format_RGBX8888:
-        case QImage::Format_RGB888:
-        case QImage::Format_RGB444:
         case QImage::Format_Grayscale8:
+#endif
             converted = src.convertToFormat(QImage::Format_RGB32);
             break;
 //        case QImage::Format_Indexed8:
@@ -301,7 +303,12 @@ QImage QZimg::toPackedImage(const QImage &src, int stridePack)
         }
         if(!converted.isNull()) break;
         if(count >= 100) return QImage();
+#if QT_VERSION_MAJOR >= 5
         QThread::currentThread()->usleep(40000);
+#else
+        QThread::currentThread()->wait(40);
+#endif
+
     }
     return converted;
 }
@@ -314,7 +321,11 @@ QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_for
         oimg = QImage(QSize(out_format.width, out_format.height), img.format());
         if(!oimg.isNull()) break;
         if(count >= 100) return QImage();
+#if QT_VERSION_MAJOR >= 5
         QThread::currentThread()->usleep(40000);
+#else
+        QThread::currentThread()->wait(40);
+#endif
     }
     try {
         //        zimgxx::zfilter_graph_builder_params params;
@@ -363,7 +374,11 @@ QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_fo
         oimg = QImage(QSize(out_format.width, out_format.height), img.format());
         if(!oimg.isNull()) break;
         if(count >= 100) return QImage();
+#if QT_VERSION_MAJOR >= 5
         QThread::currentThread()->usleep(40000);
+#else
+        QThread::currentThread()->wait(40);
+#endif
     }
     try {
         //        zimgxx::zfilter_graph_builder_params params;

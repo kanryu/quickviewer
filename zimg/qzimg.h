@@ -16,7 +16,9 @@ public:
         ResizeSpline36,
         ResizeLanczos,
     };
+#if QT_VERSION_MAJOR >= 5
     Q_ENUM(FilterMode)
+#endif
 
 
     explicit QZimg(QObject *parent = 0);

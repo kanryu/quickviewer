@@ -1,5 +1,5 @@
 #include "fileloaderdirectory.h"
-#include <QtConcurrent>
+//#include <QtConcurrent>
 
 FileLoaderDirectory::FileLoaderDirectory(QObject* parent, QString path)
     : IFileLoader(parent)

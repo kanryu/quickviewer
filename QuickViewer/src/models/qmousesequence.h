@@ -5,6 +5,12 @@
 
 #define Q_MOUSE_DELTA 120
 
+/**
+ * @brief The QMouseValue class
+ *
+ * QMouseValue is a unit that constitutes QMouseSequence,
+ * and defines one combination of key input and mouse input.
+ */
 class QMouseValue
 {
 public:
@@ -67,8 +73,10 @@ public:
  * are copyable and comparable, and do not have destructors.
  * Therefore, you can use this class as QMap's Key or Value.
  *
- * An instance can be serialized to a string,
- * and multiple instances can be stored with ',' separator in one string.
+ * QMouseSequence is effectively a list of instances of QMouseValue.
+ *
+ * A QMouseValue instance can be serialized to a string,
+ * and a QMouseSequence instance can be serialized with ',' separator in one string.
  */
 class QMouseSequence
 {

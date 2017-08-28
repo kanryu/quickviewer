@@ -16,6 +16,7 @@ win32-msvc* {
 
 *g++* {
     QMAKE_LFLAGS += -Wl,-rpath,../lib
+    QMAKE_CXXFLAGS += -std=c++11
 }
 
 win32 {
@@ -26,22 +27,36 @@ unix {
 }
 
 SOURCES += \
-    $$PWD/*.cpp \
+    $$PWD/fileloader.cpp \
+    $$PWD/fileloader7zarchive.cpp \
+    $$PWD/fileloaderdirectory.cpp \
+    $$PWD/fileloaderrararchive.cpp \
+    $$PWD/fileloadersubdirectory.cpp \
+
+#    $$PWD/fileloaderziparchive.cpp \
 
 HEADERS += \
-    $$PWD/*.h \
+    $$PWD/fileloader.h \
+    $$PWD/fileloader7zarchive.h \
+    $$PWD/fileloaderdirectory.h \
+    $$PWD/fileloaderrararchive.h \
+    $$PWD/fileloadersubdirectory.h \
 
-INCLUDEPATH += ../Qt7z/Qt7z
+#    $$PWD/fileloaderziparchive.h \
 
 
 DESTDIR = ../lib
+LIBS += -L../lib
 
 DEFINES += UNRAR RARDLL
 INCLUDEPATH += ../unrar
+LIBS += -lunrar
 
-DEFINES += QUAZIP_STATIC
-INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
+#DEFINES += QUAZIP_STATIC
+#INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
+#LIBS += -lquazip -lzlib
 
-
-LIBS += -L../lib -lquazip -lzlib -lunrar -lQt7z
+DEFINES += QT7Z_STATIC
+INCLUDEPATH += ../Qt7z/Qt7z
+LIBS += -lQt7z
 

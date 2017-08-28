@@ -10,6 +10,10 @@ TARGET = easyexif
 TEMPLATE = lib
 CONFIG += staticlib
 
+*g++* {
+    QMAKE_CXXFLAGS += -std=c++11
+}
+
 SOURCES += \
     $$PWD/easyexif/exif.cpp
 

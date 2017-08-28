@@ -7,14 +7,15 @@ SUBDIRS = \
     fileloader \
     zimg \
     QuickViewer \
-    zlib \
-    quazip \ 
 
-#    QuickCatalog
+#    zlib \
+#    quazip \
 
 
-quazip.depends = zlib
-fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar quazip zlib
+
+#quazip.depends = zlib
+#fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar quazip zlib
+fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
 QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 
 win32 {
@@ -29,6 +30,7 @@ TRANSLATIONS = \
     QuickViewer/translations/quickviewer_ja.ts \
     QuickViewer/translations/quickviewer_es.ts \
     QuickViewer/translations/quickviewer_zh.ts \
+    QuickViewer/translations/quickviewer_el.ts \
 
 DISTFILES += \
     QuickViewer/translations/quickviewer_ja.qm \

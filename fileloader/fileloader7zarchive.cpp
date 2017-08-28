@@ -7,6 +7,7 @@ class FileLoader7zArchivePrivate
 public:
     Qt7zPackage m_reader;
     QMap<QString, Qt7zFileInfo> m_fileinfomap;
+    QTemporaryFile m_tempFile;
 
     FileLoader7zArchivePrivate(QString sevenzippath)
      : m_reader(sevenzippath) {}
@@ -54,7 +55,7 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
     if(m_imageFileList.contains(name)) {
         Qt7zFileInfo info = d->m_fileinfomap[name];
 
-        QBuffer iobuffer(&bytes, this);
+        QBuffer iobuffer(&bytes);
         iobuffer.open(QIODevice::WriteOnly);
         d->m_reader.extractFile(name, &iobuffer);
     }

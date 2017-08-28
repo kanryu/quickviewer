@@ -1,7 +1,10 @@
 #ifndef FILEASSOCDIALOG_H
 #define FILEASSOCDIALOG_H
 
-#include <QtWidgets>
+#include <QtGui>
+#if QT_VERSION_MAJOR >= 5
+#  include <QtWidgets>
+#endif
 
 namespace Ui {
 class FileAssocDialog;

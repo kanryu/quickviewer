@@ -10,13 +10,15 @@
 #define REGKEY_ROOT_QUICKVIEWER         "HKEY_CLASSES_ROOT\\Applications\\QuickViewer.exe"
 #define APPLICATION_ID                  "QuickViewer"
 
-
-#ifdef WIN64
+#if QT_VERSION_MAJOR >= 5
+#  ifdef WIN64
 QSettings::Format FileAssocDialog::RegFormat = QSettings::Registry64Format;
-#else
+#  else
 QSettings::Format FileAssocDialog::RegFormat = QSettings::Registry32Format;
+#  endif
+#else
+QSettings::Format FileAssocDialog::RegFormat = QSettings::NativeFormat;
 #endif
-
 
 FileAssocDialog::FileAssocDialog(QWidget *parent) :
     QDialog(parent),

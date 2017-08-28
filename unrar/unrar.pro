@@ -14,6 +14,10 @@ include(unrar.pri)
 #    DEFINES += _UNIX
 #}
 
+!greaterThan(QT_MAJOR_VERSION, 4) {
+    DEFINES += nullptr=NULL
+}
+
 DESTDIR = ../lib
 
 HEADERS += \

@@ -250,7 +250,6 @@
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
     <addaction name="actionShowFullscreenSignage"/>
-    <addaction name="actionShowFullscreenTitleBar"/>
     <addaction name="actionStayOnTop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -998,14 +997,6 @@
   <action name="actionRegistAssocs">
    <property name="text">
     <string extracomment="Ability to associate QuickViewer and image files on Explorer">Image Associations (requires Admin)</string>
-   </property>
-  </action>
-  <action name="actionShowFullscreenTitleBar">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string extracomment="When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time">Show title bar on Fullscreen</string>
    </property>
   </action>
   <action name="actionContextMenu">
@@ -2233,22 +2224,6 @@
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionShowFullscreenTitleBar</sender>
-   <signal>triggered(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onActionShowFullscreenTitleBar_triggered(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>392</x>
      <y>294</y>
     </hint>
    </hints>

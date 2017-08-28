@@ -176,74 +176,38 @@ void MainWindowForWindows::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
             return;
     }
     if(anchor == Qt::AnchorTop && (showMenubar || showToolbar || fullscreen)) {
-        bool inner = (showToolbar || showMenubar) && !(fullscreen && qApp->ShowFullscreenTitleBar());
-        if(inner) {
-            QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView);
-            connect(innerFrame, &QInnerFrame::init, this, [=]{
-                if(showMenubar || fullscreen) {
-                    innerFrame->layout()->addWidget(ui->menuBar);
-                    ui->menuBar->setVisible(true);
-                }
-                if(showToolbar || fullscreen) {
-                    innerFrame->layout()->addWidget(ui->mainToolBar);
+        QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView);
+        connect(innerFrame, &QInnerFrame::init, this, [=]{
+            if(showMenubar || fullscreen) {
+                innerFrame->layout()->addWidget(ui->menuBar);
+                ui->menuBar->setVisible(true);
+            }
+            if(showToolbar || fullscreen) {
+                innerFrame->layout()->addWidget(ui->mainToolBar);
+                ui->mainToolBar->setVisible(true);
+            }
+        });
+        connect(innerFrame, &QInnerFrame::deinit, this, [=]{
+//            qDebug() << showToolbar << showMenubar << fullscreen;
+            bool fullscreen2 = isFullScreen();
+            if(showToolbar || fullscreen2) {
+                ui->mainToolBar->setVisible(false);
+                addToolBar(ui->mainToolBar);
+                if(!fullscreen2 && qApp->ShowToolBar())
                     ui->mainToolBar->setVisible(true);
-                }
-            });
-            connect(innerFrame, &QInnerFrame::deinit, this, [=]{
-    //            qDebug() << showToolbar << showMenubar << fullscreen;
-                if(showToolbar || fullscreen) {
-                    ui->mainToolBar->setVisible(false);
-                    addToolBar(ui->mainToolBar);
-                    if(!fullscreen && qApp->ShowToolBar())
-                        ui->mainToolBar->setVisible(true);
-                }
-                if(showMenubar || fullscreen) {
-                    ui->menuBar->setVisible(false);
-                    setMenuBar(ui->menuBar);
-                    if(!fullscreen && qApp->ShowMenuBar())
-                        ui->menuBar->setVisible(true);
-                }
-            });
-            connect(innerFrame, &QInnerFrame::closed, this, [=]{
-                delete innerFrame;
-            });
-            innerFrame->showWithoutTitleBar();
-        } else {
-            fullscreenFrame = new QFullscreenFrame((QWidget*)this, Qt::AnchorTop);
-            connect(fullscreenFrame, &QFullscreenFrame::init, this, [=]{
-    //            qDebug() << showToolbar << showMenubar << fullscreen;
-                if(showToolbar || fullscreen) {
-                    fullscreenFrame->addToolBar(Qt::TopToolBarArea, ui->mainToolBar);
-                    ui->mainToolBar->setVisible(true);
-                }
-                if(showMenubar || fullscreen) {
-                    fullscreenFrame->setMenuBar(ui->menuBar);
+            }
+            if(showMenubar || fullscreen2) {
+                ui->menuBar->setVisible(false);
+                setMenuBar(ui->menuBar);
+                if(!fullscreen2 && qApp->ShowMenuBar())
                     ui->menuBar->setVisible(true);
-                }
-            });
-            connect(fullscreenFrame, &QFullscreenFrame::deinit, this, [=]{
-    //            qDebug() << showToolbar << showMenubar << fullscreen;
-                if(showToolbar || fullscreen) {
-                    ui->mainToolBar->setVisible(false);
-                    addToolBar(ui->mainToolBar);
-                    if(!fullscreen && qApp->ShowToolBar())
-                        ui->mainToolBar->setVisible(true);
-                }
-                if(showMenubar || fullscreen) {
-                    ui->menuBar->setVisible(false);
-                    setMenuBar(ui->menuBar);
-                    if(!fullscreen && qApp->ShowMenuBar())
-                        ui->menuBar->setVisible(true);
-                }
-            });
-            connect(fullscreenFrame, SIGNAL(toShowNormal()), this, SLOT(onActionFullscreen_triggered()));
-            connect(fullscreenFrame, SIGNAL(exitApp()), this, SLOT(close()));
-
-            if(fullscreen && qApp->ShowFullscreenTitleBar())
-                fullscreenFrame->showWithTitlebar();
-            else
-                fullscreenFrame->showWithoutTitleBar(qApp->StayOnTop());
-        }
+            }
+        });
+        connect(this, SIGNAL(changingFullscreen(bool)), innerFrame, SLOT(close()));
+        connect(innerFrame, &QInnerFrame::closed, this, [=]{
+            delete innerFrame;
+        });
+        innerFrame->showWithoutTitleBar();
     }
     if(anchor == Qt::AnchorBottom && (showPageBar || fullscreen)) {
         QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView, Qt::AnchorBottom);
@@ -255,6 +219,7 @@ void MainWindowForWindows::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
             ui->pageFrame->hide();
             ui->verticalViewPage->layout()->addWidget(ui->pageFrame);
         });
+        connect(this, SIGNAL(changingFullscreen(bool)), innerFrame, SLOT(close()));
         connect(innerFrame, &QInnerFrame::closed, this, [=]{
             delete innerFrame;
         });

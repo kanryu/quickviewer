@@ -55,6 +55,9 @@ protected:
     void resizeEvent(QResizeEvent *e) override;
     void on_pageNolongerNeeded_triggered();
 
+signals:
+    void changingFullscreen(bool);
+
 public slots:
     // File
     void loadVolume(QString path);
@@ -99,7 +102,7 @@ public slots:
     void onActionOpenOptionsDialog_triggered();
     void onActionBeginAsFullscreen_triggered(bool enable);
     void onActionShowFullscreenSignage_triggered(bool enable);
-    void onActionShowFullscreenTitleBar_triggered(bool enable);
+//    void onActionShowFullscreenTitleBar_triggered(bool enable);
     void on_windowTop();
 
     // SlideShow

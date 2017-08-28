@@ -46,12 +46,20 @@ public:
      */
     QByteArray getFile(QString filename, QMutex& mutex);
 
+    /**
+     * @brief getCacheMode
+     *
+     * Indicates the state when Volume created or has already been decompressed.
+     */
+    InflateCacheMode getCacheMode() { return m_cacheMode; }
+
 protected:
     FileLoader7zArchivePrivate* d;
     QString m_volumepath;
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;
+    InflateCacheMode m_cacheMode;
 
     void initialize();
 };

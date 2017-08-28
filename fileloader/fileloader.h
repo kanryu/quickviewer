@@ -1,9 +1,7 @@
 #ifndef FILELOADER_H
 #define FILELOADER_H
 
-#include <QObject>
-#include <QMutex>
-#include <QtCore/qplugin.h>
+#include <QtCore>
 
 
 
@@ -15,13 +13,19 @@
 class IFileLoader : public QObject
 {
     Q_OBJECT
+
+public:
     enum ScanMode {
         Normal,
         ToFastImage, // header scan, and return an image, and end(without worker)
         ToAllFilesExtract, // header scan, and read all archived file under worker thread
     };
 
-public:
+    enum InflateCacheMode {
+        InflateNoCached,
+        InflateCaching,
+        InflateCached
+    };
     IFileLoader(QObject* parent) : QObject(parent) {}
     virtual ~IFileLoader() {}
     /**
@@ -85,6 +89,13 @@ public:
      * @return file binary data
      */
     virtual QByteArray getFile(QString filename, QMutex& mutex)=0;
+
+    /**
+     * @brief getCacheMode
+     *
+     * Indicates the state when Volume created or has already been decompressed.
+     */
+    virtual InflateCacheMode getCacheMode()=0;
 
 signals:
     void imageLoaded(QString name, QByteArray data);

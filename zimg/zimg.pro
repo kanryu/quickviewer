@@ -23,7 +23,7 @@ win32-msvc* {
 }
 
 *g++* {
-    QMAKE_CXXFLAGS += -O2 -MD -MP
+    QMAKE_CXXFLAGS += -O2 -MD -MP -std=c++11
     !CONFIG(debug, debug|release) {
     }
 }

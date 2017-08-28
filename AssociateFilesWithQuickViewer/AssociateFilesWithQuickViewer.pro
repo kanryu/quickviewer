@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 *g++* {
     DEFINES += NTDDI_VERSION=NTDDI_VISTA
+    QMAKE_CXXFLAGS += -std=c++11
     QMAKE_MANIFEST = $${PWD}/AssociateFilesWithQuickViewer.exe.manifest
 }
 

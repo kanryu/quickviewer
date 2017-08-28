@@ -14,6 +14,13 @@ MouseConfigDialog::MouseConfigDialog(QWidget *parent)
     ui->label->setText(tr("Mouse Sequence:", "Title of LineEdit label to which mouse sequence is input"));
     ui->shortcutEdit->setPlaceholderText(tr("Select the combination of the checks below, press the 'Add Sequence' button", "Placeholder text urging the mouse input setting procedure"));
 
+#ifdef Q_OS_WIN
+    ui->checkBoxMeta->setVisible(false);
+#endif
+#ifdef Q_OS_MAC
+    ui->checkBoxMeta->setText(tr("Command", "caption of Command key"));
+    ui->checkBoxAlt->setText(tr("Option", "caption of Option key"));
+#endif
 
 
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
@@ -120,6 +127,7 @@ void MouseConfigDialog::onAddSequenceButton_clicked()
     if(ui->checkBoxCtrl->isChecked())  keys |= Qt::ControlModifier;
     if(ui->checkBoxAlt->isChecked())   keys |= Qt::AltModifier;
     if(ui->checkBoxShift->isChecked()) keys |= Qt::ShiftModifier;
+    if(ui->checkBoxMeta->isChecked()) keys |= Qt::MetaModifier;
 
     Qt::MouseButtons buttons = 0;
     if(ui->checkBoxLeft->isChecked())     buttons |= Qt::LeftButton;
@@ -185,6 +193,7 @@ void MouseConfigDialog::resetMouseCheckBox()
     ui->checkBoxCtrl->setChecked(false);
     ui->checkBoxShift->setChecked(false);
     ui->checkBoxAlt->setChecked(false);
+    ui->checkBoxMeta->setChecked(false);
 
     ui->checkBoxLeft->setChecked(false);
     ui->checkBoxRight->setChecked(false);

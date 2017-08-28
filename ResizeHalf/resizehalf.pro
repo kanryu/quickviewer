@@ -11,8 +11,11 @@ TEMPLATE = lib
 CONFIG += staticlib
 CONFIG += warn_off
 
-equals(QMAKE_CC,"cl") {
+win32-msvc* {
     QMAKE_CXXFLAGS += /wd4819
+}
+*g++* {
+    QMAKE_CXXFLAGS += -std=c++11
 }
 
 SOURCES += \

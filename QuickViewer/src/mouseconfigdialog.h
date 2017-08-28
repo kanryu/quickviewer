@@ -34,7 +34,6 @@ private:
     Ui::KeyConfigDialog *ui;
     bool m_keyCapturing;
     QString m_actionName;
-    QMouseSequence m_seqListEditing;
     QMap<QString, QMouseSequence> m_prevKeyConfigs;
     bool m_ignoreEdited;
 

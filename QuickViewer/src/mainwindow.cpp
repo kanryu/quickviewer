@@ -70,7 +70,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
     ui->actionBeginAsFullscreen->setChecked(qApp->BeginAsFullscreen());
     ui->actionShowFullscreenSignage->setChecked(qApp->ShowFullscreenSignage());
-    ui->actionShowFullscreenTitleBar->setChecked(qApp->ShowFullscreenTitleBar());
+//    ui->actionShowFullscreenTitleBar->setChecked(qApp->ShowFullscreenTitleBar());
 
     // Languages
     qApp->languageSelector()->initializeMenu(ui->menuChange_Language);
@@ -458,6 +458,7 @@ void MainWindow::onActionFullscreen_triggered()
 {
     qDebug() << "on_fullscreen_triggered";
     if(isFullScreen()) {
+        emit changingFullscreen(false);
         ui->graphicsView->setWillFullscreen(false);
         ui->graphicsView->skipRisizeEvent(true);
         if(qApp->ShowMenuBar())
@@ -479,6 +480,7 @@ void MainWindow::onActionFullscreen_triggered()
         if(ui->graphicsView->isSlideShow())
             ui->graphicsView->toggleSlideShow();
     } else {
+        emit changingFullscreen(true);
         ui->graphicsView->setWillFullscreen(true);
         ui->graphicsView->skipRisizeEvent(true);
         m_viewerWindowStateMaximized = isMaximized();
@@ -980,10 +982,10 @@ void MainWindow::onActionShowFullscreenSignage_triggered(bool enable)
     qApp->setShowFullscreenSignage(enable);
 }
 
-void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)
-{
-    qApp->setShowFullscreenTitleBar(enable);
-}
+//void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)
+//{
+//    qApp->setShowFullscreenTitleBar(enable);
+//}
 
 void MainWindow::onActionProjectWeb_triggered()
 {
