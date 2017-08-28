@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v0.9.4 (Mon Aug 28 21:40:31 2017 +0900) [fab2c8e](https://github.com/kanryu/quickviewer/commit/fab2c8ee10c6a4819351d188deff18e130a68831)
+
+Add Greek translation, abolished a menu, support for zip with Deflate64
+
+- Add Greek translation(written by geogeo.gr)
+- thanks a lot! :)
+- abolished 'Show titlebar on fullscreen'
+- Because I concluded that there was an illegal behavior caused by a bug in Qt when I manipulated the menu and I can not fix it.
+- support for zip with Deflate64
+- Discontinued support by zlib / minizip and switched to zip support with 7zip
+
+- other commits
+    - add new Qt7z (Mon Aug 28 19:08:24 2017 +0900) [de74b9c](https://github.com/kanryu/quickviewer/commit/de74b9c73e1b430db0d1b8e0c0d8a97fbf5bf4c1)
+    - remove old qt7z (Mon Aug 28 19:06:40 2017 +0900) [801c967](https://github.com/kanryu/quickviewer/commit/801c9679bbfb67ef0dd8f3b399b15f839f0c187c)
+    -  Add Greek translation(written by geogeo.gr) (Thu Aug 24 13:00:22 2017 +0900) [a4e75e1](https://github.com/kanryu/quickviewer/commit/a4e75e1c6b3df3b5694dc7ae3a1969381da6d7a7)
+    - Update HowToBuild.md (Sun Aug 20 23:19:28 2017 +0900) [8dfe025](https://github.com/kanryu/quickviewer/commit/8dfe02569118108b8239f4641ee9b94b67c1d118)
+    - Update HowToBuild.md (Sun Aug 20 23:02:45 2017 +0900) [7089211](https://github.com/kanryu/quickviewer/commit/70892115061341eda9231c32f3c3cb9f54ed69d1)
+    - changelog (Sun Aug 20 17:46:24 2017 +0900) [2c5505f](https://github.com/kanryu/quickviewer/commit/2c5505f3f44d53b63f144dc1b004c677c2bae315)
+
 ## v0.9.3 (Sun Aug 20 17:45:39 2017 +0900) [693d005](https://github.com/kanryu/quickviewer/commit/693d00564d079806879b9265fe2c7a7b8dacf2f0)
 
 changing rendering method, support Direct2D, bugfixed
