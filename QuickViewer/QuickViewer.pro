@@ -54,6 +54,7 @@ INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
 INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview ./src/qlanguageselector
+INCLUDEPATH += src/qfullscreenframe
 
 LIBDIR = ../lib
 
@@ -110,7 +111,7 @@ SOURCES += \
     src/qfullscreenframe/qinnerframe.cpp \
     src/mouseconfigdialog.cpp \
     src/models/volumemanager.cpp \
-    src/models/volumemanagerbuilder.cpp
+    src/models/volumemanagerbuilder.cpp \
 
 
 HEADERS  += \
@@ -148,20 +149,12 @@ HEADERS  += \
     src/qfullscreenframe/qinnerframe.h \
     src/mouseconfigdialog.h \
     src/models/volumemanager.h \
-    src/models/volumemanagerbuilder.h
+    src/models/volumemanagerbuilder.h \
 
 PRECOMPILED_HEADER += src/stdafx.h
 precompile_header:!isEmpty(PRECOMPILED_HEADER) {
     DEFINES += USING_PCH
 }
-
-
-win32 {
-    SOURCES += src/mainwindowforwindows.cpp src/qfullscreenframe/qfullscreenframe.cpp
-    HEADERS += src/mainwindowforwindows.h src/qfullscreenframe/qfullscreenframe.h
-    INCLUDEPATH += src/qfullscreenframe
-}
-
 
 FORMS    += \
     src/mainwindow.ui \
