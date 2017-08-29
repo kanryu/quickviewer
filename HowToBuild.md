@@ -87,14 +87,6 @@ $ [QTSDK]/bin/qmake  -tp vc ..\quickviewer\QVProject.pro -recursive QMAKE_INCDIR
 =$(QTDIR)\bin\moc.exe QMAKE_QMAKE=$(QTDIR)\bin\qmake.exe
 ```
 
-1. open dialog of zlib project
-1. select C/C++ PreProcessor tab
-1. remove "ASMV;ASMINF;" from Definition of PreProcessor
-    - if you are building for x64, add *inffast.c* to **Source Files** of zlib
-1. build the solution
-
-Since VisualStudio can use masm, you can set it to assemble asm files if you have skills. This time it is a procedure to change to a setting not used.
-
 If you debug the x64 version of QuickViewer, you may encounter an error that QtCored.dll is missing.
 In that case, dropping the built QuickViewer.exe onto [QtSDK]/bin/windeployqt.exe copies the required DLLs.
 
