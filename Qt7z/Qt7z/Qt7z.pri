@@ -223,6 +223,7 @@ unix {
     DEFINES += UNICODE
     DEFINES += _UNICODE
     DEFINES += UNIX_USE_WIN_FILE
+    DEFINES += LOCALE_IS_UTF8
 
     SOURCES += \
         $$PWD/p7zip/C/7zCrc.c \
@@ -379,6 +380,7 @@ unix {
         $$PWD/p7zip/CPP/7zip/Compress/DeflateEncoder.cpp \
         $$PWD/p7zip/CPP/7zip/Compress/DeflateRegister.cpp \
         $$PWD/p7zip/CPP/7zip/Compress/ImplodeDecoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/ImplodeHuffManDecoder.cpp \
         $$PWD/p7zip/CPP/7zip/Compress/LzOutWindow.cpp \
         $$PWD/p7zip/CPP/7zip/Compress/PpmdZip.cpp \
         $$PWD/p7zip/CPP/7zip/Compress/ShrinkDecoder.cpp \

@@ -24,4 +24,6 @@ REGISTER_ARC_IO(
   NArcInfoFlags::kUseGlobalOffset,
   IsArc_Zip)
  
+QT7Z_STATIC_LINK_FORCE_INCLUDE
+
 }}

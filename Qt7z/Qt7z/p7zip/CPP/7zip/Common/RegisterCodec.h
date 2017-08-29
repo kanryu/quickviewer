@@ -107,6 +107,8 @@ void RegisterHasher(const CHasherInfo *hasher) throw();
 
 #ifdef QT7Z_STATIC_LINK
 #define QT7Z_STATIC_LINK_FORCE_INCLUDE bool g_forceLink;
+#define QT7Z_STATIC_LINK_FORCE_INCLUDE64 bool g_forceLink64;
 #else
 #define QT7Z_STATIC_LINK_FORCE_INCLUDE
+#define QT7Z_STATIC_LINK_FORCE_INCLUDE64
 #endif

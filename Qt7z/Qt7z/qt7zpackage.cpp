@@ -70,6 +70,10 @@ struct ForceLinkCodecs
 __declspec(selectany)ForceLinkCodecs forceLink;
 #else
 ForceLinkCodecs forceLink;
+extern "C"
+{
+extern int global_use_utf16_conversion;
+}
 #endif
 
 
@@ -349,6 +353,11 @@ bool Qt7zPackage::open()
 #ifdef Q_OS_WIN
         res = m_p->m_arcLink.Open_Strict(options, &callback);
 #else
+#  ifdef LOCALE_IS_UTF8
+        // Although it is not a very good solution to directly change the internal flag,
+        // but the current operation of p7zip is inevitable to be incomplete.
+        global_use_utf16_conversion = 1;
+#  endif
         res = m_p->m_arcLink.Open3(options, &callback);
 #endif
     }
