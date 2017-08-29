@@ -175,33 +175,31 @@ win32 {
         $$PWD/7zip/CPP/7zip/Archive/Zip/ZipOut.cpp \
         $$PWD/7zip/CPP/7zip/Archive/Zip/ZipRegister.cpp \
         $$PWD/7zip/CPP/7zip/Archive/Zip/ZipUpdate.cpp \
-        $$PWD/7zip/CPP/7zip/Archive/Zip/ZipUpdate.cpp \
-        $$PWD/7zip/CPP/7zip/Compress/PpmdZip.cpp \
-        $$PWD/7zip/CPP/7zip/Compress/ZlibDecoder.cpp \
-        $$PWD/7zip/CPP/7zip/Compress/ZlibEncoder.cpp \
+        $$PWD/7zip/CPP/7zip/Common/MemBlocks.cpp \
+        $$PWD/7zip/CPP/7zip/Common/OutMemStream.cpp \
+        $$PWD/7zip/CPP/7zip/Common/ProgressMt.cpp \
         $$PWD/7zip/CPP/7zip/Compress/BitlDecoder.cpp \
         $$PWD/7zip/CPP/7zip/Compress/Deflate64Register.cpp \
-        $$PWD/7zip/CPP/7zip/Compress/DeflateConst.h \
         $$PWD/7zip/CPP/7zip/Compress/DeflateDecoder.cpp \
         $$PWD/7zip/CPP/7zip/Compress/DeflateEncoder.cpp \
         $$PWD/7zip/CPP/7zip/Compress/DeflateRegister.cpp \
         $$PWD/7zip/CPP/7zip/Compress/ImplodeDecoder.cpp \
         $$PWD/7zip/CPP/7zip/Compress/LzOutWindow.cpp \
+        $$PWD/7zip/CPP/7zip/Compress/PpmdZip.cpp \
         $$PWD/7zip/CPP/7zip/Compress/ShrinkDecoder.cpp \
-        $$PWD/7zip/CPP/7zip/Common/OutMemStream.cpp \
-        $$PWD/7zip/CPP/7zip/Common/MemBlocks.cpp \
-        $$PWD/7zip/CPP/7zip/Common/ProgressMt.cpp \
-        $$PWD/7zip/CPP/Windows/PropVariantUtils.cpp \
+        $$PWD/7zip/CPP/7zip/Compress/ZlibDecoder.cpp \
+        $$PWD/7zip/CPP/7zip/Compress/ZlibEncoder.cpp \
+        $$PWD/7zip/CPP/7zip/Crypto/HmacSha1.cpp \
+        $$PWD/7zip/CPP/7zip/Crypto/Pbkdf2HmacSha1.cpp \
         $$PWD/7zip/CPP/7zip/Crypto/WzAes.cpp \
         $$PWD/7zip/CPP/7zip/Crypto/ZipCrypto.cpp \
         $$PWD/7zip/CPP/7zip/Crypto/ZipStrong.cpp \
-        $$PWD/7zip/CPP/7zip/Crypto/HmacSha1.cpp \
-        $$PWD/7zip/CPP/7zip/Crypto/Pbkdf2HmacSha1.cpp \
+        $$PWD/7zip/CPP/Windows/PropVariantUtils.cpp \
+        $$PWD/7zip/C/HuffEnc.c \
         $$PWD/7zip/C/Ppmd8.c \
         $$PWD/7zip/C/Ppmd8Dec.c \
         $$PWD/7zip/C/Ppmd8Enc.c \
         $$PWD/7zip/C/Sha1.c \
-        $$PWD/7zip/C/HuffEnc.c \
         $$PWD/7zip/C/XzCrc64.c \
         $$PWD/7zip/C/XzCrc64Opt.c \
 
@@ -364,6 +362,41 @@ unix {
         $$PWD/p7zip/CPP/7zip/UI/Common/OpenArchive.cpp \
         $$PWD/p7zip/CPP/7zip/UI/Common/PropIDUtils.cpp \
         $$PWD/p7zip/CPP/7zip/UI/Common/SetProperties.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipAddCommon.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipHandler.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipHandlerOut.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipIn.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipItem.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipOut.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipRegister.cpp \
+        $$PWD/p7zip/CPP/7zip/Archive/Zip/ZipUpdate.cpp \
+        $$PWD/p7zip/CPP/7zip/Common/MemBlocks.cpp \
+        $$PWD/p7zip/CPP/7zip/Common/OutMemStream.cpp \
+        $$PWD/p7zip/CPP/7zip/Common/ProgressMt.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/BitlDecoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/Deflate64Register.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/DeflateDecoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/DeflateEncoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/DeflateRegister.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/ImplodeDecoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/LzOutWindow.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/PpmdZip.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/ShrinkDecoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/ZlibDecoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Compress/ZlibEncoder.cpp \
+        $$PWD/p7zip/CPP/7zip/Crypto/HmacSha1.cpp \
+        $$PWD/p7zip/CPP/7zip/Crypto/Pbkdf2HmacSha1.cpp \
+        $$PWD/p7zip/CPP/7zip/Crypto/WzAes.cpp \
+        $$PWD/p7zip/CPP/7zip/Crypto/ZipCrypto.cpp \
+        $$PWD/p7zip/CPP/7zip/Crypto/ZipStrong.cpp \
+        $$PWD/p7zip/CPP/Windows/PropVariantUtils.cpp \
+        $$PWD/p7zip/C/HuffEnc.c \
+        $$PWD/p7zip/C/Ppmd8.c \
+        $$PWD/p7zip/C/Ppmd8Dec.c \
+        $$PWD/p7zip/C/Ppmd8Enc.c \
+        $$PWD/p7zip/C/Sha1.c \
+        $$PWD/p7zip/C/XzCrc64.c \
+        $$PWD/p7zip/C/XzCrc64Opt.c \
 
 
 }
