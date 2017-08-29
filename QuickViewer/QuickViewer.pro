@@ -151,6 +151,12 @@ HEADERS  += \
     src/models/volumemanager.h \
     src/models/volumemanagerbuilder.h \
 
+win32 {
+    SOURCES += src/mainwindowforwindows.cpp
+    HEADERS += src/mainwindowforwindows.h
+}
+
+
 PRECOMPILED_HEADER += src/stdafx.h
 precompile_header:!isEmpty(PRECOMPILED_HEADER) {
     DEFINES += USING_PCH

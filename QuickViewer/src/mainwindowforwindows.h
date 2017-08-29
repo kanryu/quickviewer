@@ -17,8 +17,6 @@ public:
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);
 
 public slots:
-    virtual void onGraphicsView_anchorHovered(Qt::AnchorPoint anchor) override;
-    virtual void onActionFullscreen_triggered() override;
 
 private:
     bool bFirstView;
