@@ -173,8 +173,16 @@ FORMS    += \
     src/optionsdialog.ui \
     src/renamedialog.ui
 
-RESOURCES += \
-    toolbar.qrc
+RESOURCES += toolbar.qrc
+
+!CONFIG(debug, debug|release) {
+    win32 {
+        RESOURCES += qtconf-win.qrc
+    }
+    unix {
+        RESOURCES += qtconf-unix.qrc
+    }
+}
 
 RC_ICONS = icons/appicon.ico
 
@@ -193,7 +201,7 @@ SHADERS += \
 DBS += \
     database/schema.sql \
 
-OTHER_FILES += $$DBS
+OTHER_FILES  += qt.conf $$DBS
 
 DBBIN += \
     database/thumbnail.sqlite3.db \

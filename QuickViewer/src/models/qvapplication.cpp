@@ -18,8 +18,11 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_bookshelfManager(nullptr)
     , m_mainThread(QThread::currentThread())
     , m_translator(nullptr)
-    , m_languageSelector("quickviewer_", "translations/")
-    , m_qtbaseLanguageSelector("qt_", "translations/")
+//    , m_languageSelector("quickviewer_", "translations/")
+    // ATTENTION:
+    // default 'QLibraryInfo::location(TranslationsPath)' is "[QTDIR]/translations"
+    , m_languageSelector("quickviewer_", QLibraryInfo::location(QLibraryInfo::TranslationsPath))
+    , m_qtbaseLanguageSelector("qt_", QLibraryInfo::location(QLibraryInfo::TranslationsPath))
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
