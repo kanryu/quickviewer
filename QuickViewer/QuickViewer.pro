@@ -254,6 +254,7 @@ win32 : !CONFIG(debug, debug|release) {
         $${PWD}/translations/quickviewer_es.qm \
         $${PWD}/translations/quickviewer_zh.qm \
         $${PWD}/translations/quickviewer_el.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
 
     install_assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
     install_assoc_icons.files = \

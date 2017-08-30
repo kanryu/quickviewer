@@ -19,13 +19,14 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_mainThread(QThread::currentThread())
     , m_translator(nullptr)
     , m_languageSelector("quickviewer_", "translations/")
+    , m_qtbaseLanguageSelector("qt_", "translations/")
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
     setOrganizationName(APP_ORGANIZATION);
 
     m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
-
+    connect(&m_languageSelector, SIGNAL(languageChanged(QString)), &m_qtbaseLanguageSelector, SLOT(resetTranslator(QString)));
     registDefaultKeyMap();
     registDefaultMouseMap();
     loadSettings();

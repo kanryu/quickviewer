@@ -448,6 +448,7 @@ private:
     QString m_uiLanguage;
     QTranslator *m_translator;
     QLanguageSelector m_languageSelector;
+    QLanguageSelector m_qtbaseLanguageSelector;
     bool m_confirmDeletePage;
 
     QSettings m_settings;
