@@ -6,8 +6,13 @@
 #define APP_ORGANIZATION "KATO Kanryu(k.kanryu@gmail.com)"
 #define APP_COPYRIGHT    "Copyright 2017 KATO Kanryu"
 
+#ifdef Q_OS_WIN
 #define APP_INI "quickviewer.ini"
 #define PROGRESS_INI "progress.ini"
+#else
+#define APP_INI ".quickviewer.ini"
+#define PROGRESS_INI ".quickviewer-progress.ini"
+#endif
 #define TURBO_JPEG_FMT "turbojpeg"
 
 class qvEnums : public QObject

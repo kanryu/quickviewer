@@ -11,7 +11,12 @@
 
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
+#ifdef Q_OS_WIN
     , m_settings(getApplicationFilePath(APP_INI), QSettings::IniFormat, this)
+#else
+    , m_settings(getUserHomeFilePath(APP_INI), QSettings::IniFormat, this)
+#endif
+
     , m_effect(qvEnums::Bilinear)
     , m_glInitialized(false)
     , m_maxTextureSize(4096)
@@ -38,6 +43,11 @@ QVApplication::QVApplication(int &argc, char **argv)
 QString QVApplication::getApplicationFilePath(QString subFilePath)
 {
     return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
+}
+
+QString QVApplication::getUserHomeFilePath(QString subFilePath)
+{
+    return QDir::toNativeSeparators(QString("%1/%2").arg(QString(qgetenv("HOME"))).arg(subFilePath));
 }
 
 void QVApplication::myInstallTranslator()
@@ -322,7 +332,11 @@ void QVApplication::loadSettings()
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
         m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
     }
+#ifdef Q_OS_WIN
     m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
+#else
+    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "../../var/database/thumbnail.sqlite3.db").toString();
+#endif
     m_maxSearchByCharChanged = m_settings.value("MaxSearchByCharChanged", 10000).toInt();
     m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();
     m_titleWithoutOptions = m_settings.value("TitleWithoutOptions", false).toBool();

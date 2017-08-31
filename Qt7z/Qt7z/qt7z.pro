@@ -13,8 +13,8 @@ CONFIG += warn_off
 
 include("Qt7z.pri")
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
+#unix {
+#    target.path = /usr/lib
+#    INSTALLS += target
+#}
 DESTDIR = ../../lib

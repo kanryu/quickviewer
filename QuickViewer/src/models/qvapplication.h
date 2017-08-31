@@ -99,6 +99,7 @@ class QVApplication : public QApplication
 public:
     explicit QVApplication(int &argc, char **argv);
     QString getApplicationFilePath(QString subFilePath);
+    QString getUserHomeFilePath(QString subFilePath);
 
     void myInstallTranslator();
 

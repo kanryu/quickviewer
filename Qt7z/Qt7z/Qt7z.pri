@@ -223,7 +223,7 @@ unix {
     DEFINES += UNICODE
     DEFINES += _UNICODE
     DEFINES += UNIX_USE_WIN_FILE
-    DEFINES += LOCALE_IS_UTF8
+#    DEFINES += LOCALE_IS_UTF8
 
     SOURCES += \
         $$PWD/p7zip/C/7zCrc.c \

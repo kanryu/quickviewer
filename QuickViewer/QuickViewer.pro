@@ -41,11 +41,17 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 } else {
     TARGET_ARCH=$${QMAKE_HOST.arch}
 }
-contains(TARGET_ARCH, x86_64) {
-    TARGET_ARCH = x64
-} else {
-    TARGET_ARCH = x86
+win32 {
+    contains(TARGET_ARCH, x86_64) {
+        TARGET_ARCH = x64
+    } else {
+        TARGET_ARCH = x86
+    }
 }
+
+#linux:equals(TARGET_ARCH, x64) {
+#} else {
+#}
 
 DESTDIR = ../bin
 
@@ -293,6 +299,66 @@ win32 : !CONFIG(debug, debug|release) {
         INSTALLS += install_direct2d
     }
 
+}
+
+# win32 depoying, please add 'jom install' into build setting on qt-creator
+linux : !CONFIG(debug, debug|release) {
+    APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
+    MY_DEFAULT_INSTALL = ../../$${APPDIR}
+
+    install_target.files = $${DESTDIR}/QuickViewer
+    install_target.path = $${MY_DEFAULT_INSTALL}/usr/bin
+
+    install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1
+    install_libs.path = $${MY_DEFAULT_INSTALL}/usr/lib
+
+    install_desktop.files = $${PWD}/QuickViewer.desktop $${PWD}/../docs/quickviewer.png
+    install_desktop.path = $${MY_DEFAULT_INSTALL}
+
+    install_deploy_files.path = $${MY_DEFAULT_INSTALL}
+    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake
+    install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
+
+    install_translations.path = $${MY_DEFAULT_INSTALL}/translations
+    install_translations.files = \
+        $${PWD}/translations/languages.ini \
+        $${PWD}/translations/quickviewer_ja.qm \
+        $${PWD}/translations/quickviewer_es.qm \
+        $${PWD}/translations/quickviewer_zh.qm \
+        $${PWD}/translations/quickviewer_el.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
+
+    install_assoc_icons.path = $${MY_DEFAULT_INSTALL}/usr/shared/icons
+    install_assoc_icons.files = \
+        ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_dds.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_gif.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_icon.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_jpeg.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_png.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_raw.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tga.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
+
+    install_appimage.path = $${MY_DEFAULT_INSTALL}/..
+    install_appimage.files = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
+    install_appimage.commands = VERSION=$${VERSION} linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -appimage
+    install_appimage.depends = install_install_deploy_files install_install_translations install_install_assoc_icons install_install_db
+
+    INSTALLS += install_target install_libs install_desktop install_deploy_files install_translations install_assoc_icons install_appimage
+
+    install_shaders.path = $${MY_DEFAULT_INSTALL}/shared/shaders
+    install_shaders.files = $$SHADERS
+    install_db.path = $${MY_DEFAULT_INSTALL}/var/database
+    install_db.files = $$DBS $$DBBIN
+
+    INSTALLS += install_db
+    !contains(DEFINES, QV_WITHOUT_OPENGL) {
+        INSTALLS += install_shaders
+    }
 }
 
 OTHER_FILES += SHADERS

@@ -1,11 +1,14 @@
 #include "volumemanagerbuilder.h"
 #include "fileloaderdirectory.h"
 #include "fileloadersubdirectory.h"
-//#include "fileloaderziparchive.h"
 #include "fileloader7zarchive.h"
 #include "fileloaderrararchive.h"
 #include "pagemanager.h"
 #include "qvapplication.h"
+
+#ifndef Q_OS_WIN
+#include "fileloaderziparchive.h"
+#endif
 
 VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path, PageManager* pageManager)
 {
@@ -17,8 +20,11 @@ VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path,
     }
     QString lower = path.toLower();
     if(lower.endsWith(".zip") || lower.endsWith(".cbz")) {
-//        return new VolumeManager(parent, new FileLoaderZipArchive(parent, path), pageManager);
+#ifdef Q_OS_WIN
         return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);
+#else
+        return new VolumeManager(parent, new FileLoaderZipArchive(parent, path), pageManager);
+#endif
     }
     if(lower.endsWith(".7z")) {
         return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);

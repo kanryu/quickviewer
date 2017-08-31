@@ -358,6 +358,7 @@ bool Qt7zPackage::open()
         // but the current operation of p7zip is inevitable to be incomplete.
         global_use_utf16_conversion = 1;
 #  endif
+        global_use_utf16_conversion = 1;
         res = m_p->m_arcLink.Open3(options, &callback);
 #endif
     }
@@ -367,7 +368,9 @@ bool Qt7zPackage::open()
     }
 
     if (res != S_OK) {
-        qWarning() << "Qt7z: Fail to open archive with result" << res;
+        QString errMessage = QString::fromWCharArray(m_p->m_arcLink.NonOpen_ErrorInfo.ErrorMessage.Ptr(),
+                                                     m_p->m_arcLink.NonOpen_ErrorInfo.ErrorMessage.Len());
+        qWarning() << "Qt7z: Fail to open archive with result" << res << errMessage;
         return false;
     }
 

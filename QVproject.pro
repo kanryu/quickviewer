@@ -8,19 +8,18 @@ SUBDIRS = \
     zimg \
     QuickViewer \
 
-#    zlib \
-#    quazip \
-
-
-
-#quazip.depends = zlib
-#fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar quazip zlib
 fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
 QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 
 win32 {
     SUBDIRS += AssociateFilesWithQuickViewer
     QuickViewer.depends += AssociateFilesWithQuickViewer
+}
+
+unix {
+    SUBDIRS += zlib quazip
+    quazip.depends = zlib
+    fileloader.depends += quazip zlib
 }
 
 

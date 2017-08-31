@@ -10,9 +10,19 @@ BookProgressManager::BookProgressManager(QObject *parent)
     m_initializeWatcher.setFuture(future);
 }
 
+static QString getProgressIniPath()
+{
+#ifdef Q_OS_WIN
+    return qApp->getApplicationFilePath(PROGRESS_INI);
+#else
+    return qApp->getUserHomeFilePath(PROGRESS_INI);
+#endif
+}
+
+
 void BookProgressManager::save()
 {
-    QSettings settings(qApp->getApplicationFilePath(PROGRESS_INI), QSettings::IniFormat, this);
+    QSettings settings(getProgressIniPath(), QSettings::IniFormat, this);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     QStringList titles;
@@ -33,7 +43,7 @@ void BookProgressManager::save()
 
 BookProgressManager::BookProgressMap BookProgressManager::initializeAsync()
 {
-    QSettings settings(qApp->getApplicationFilePath(PROGRESS_INI), QSettings::IniFormat);
+    QSettings settings(getProgressIniPath(), QSettings::IniFormat);
     settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     BookProgressMap result;

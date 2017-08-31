@@ -33,16 +33,12 @@ SOURCES += \
     $$PWD/fileloaderrararchive.cpp \
     $$PWD/fileloadersubdirectory.cpp \
 
-#    $$PWD/fileloaderziparchive.cpp \
-
 HEADERS += \
     $$PWD/fileloader.h \
     $$PWD/fileloader7zarchive.h \
     $$PWD/fileloaderdirectory.h \
     $$PWD/fileloaderrararchive.h \
     $$PWD/fileloadersubdirectory.h \
-
-#    $$PWD/fileloaderziparchive.h \
 
 
 DESTDIR = ../lib
@@ -52,11 +48,15 @@ DEFINES += UNRAR RARDLL
 INCLUDEPATH += ../unrar
 LIBS += -lunrar
 
-#DEFINES += QUAZIP_STATIC
-#INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
-#LIBS += -lquazip -lzlib
-
 DEFINES += QT7Z_STATIC
 INCLUDEPATH += ../Qt7z/Qt7z
 LIBS += -lQt7z
+
+unix {
+    SOURCES += $$PWD/fileloaderziparchive.cpp
+    HEADERS += $$PWD/fileloaderziparchive.h
+    DEFINES += QUAZIP_STATIC
+    INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
+    LIBS += -lquazip -lzlib
+}
 
