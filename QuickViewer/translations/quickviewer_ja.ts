@@ -756,6 +756,10 @@
         <comment>description of File format on Explorer(.webp)</comment>
         <translation>WebP イメージ</translation>
     </message>
+    <message>
+        <source>If you press the OK button you will write a registry. Cancel if unnecessary.</source>
+        <translation type="unfinished">OKボタンを押すとレジストリが書き込まれます。不要な場合はキャンセルしてください。</translation>
+    </message>
 </context>
 <context>
     <name>FolderItemModel</name>
@@ -1949,7 +1953,7 @@
     <message>
         <source>Show title bar on Fullscreen</source>
         <extracomment>When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time</extracomment>
-        <translation>フルスクリーン時にタイトルバーを表示する</translation>
+        <translation type="vanished">フルスクリーン時にタイトルバーを表示する</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2048,7 +2052,7 @@
     </message>
     <message>
         <source>Image Associations (requires Admin)</source>
-        <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
+        <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
         <translation>画像の関連付け (管理者権限が必要)</translation>
     </message>
     <message>
@@ -2082,6 +2086,11 @@
     <message>
         <source>Suppress key repeat</source>
         <translation type="vanished">キーリピートを抑制する</translation>
+    </message>
+    <message>
+        <source>Image Associations (only you)</source>
+        <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
+        <translation type="unfinished">画像の関連付け (あなたのみ)</translation>
     </message>
 </context>
 <context>
@@ -2353,12 +2362,12 @@
     <message>
         <source>Command</source>
         <comment>caption of Command key</comment>
-        <translation type="unfinished">動作</translation>
+        <translation></translation>
     </message>
     <message>
         <source>Option</source>
         <comment>caption of Option key</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2478,43 +2487,6 @@
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>画像以外のファイルです</translation>
-    </message>
-</context>
-<context>
-    <name>QuaGzipFile</name>
-    <message>
-        <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QuaZIODevice</name>
-    <message>
-        <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QuaZipFile</name>
-    <message>
-        <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

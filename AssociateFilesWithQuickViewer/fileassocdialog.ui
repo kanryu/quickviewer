@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
-    <height>261</height>
+    <width>476</width>
+    <height>242</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,138 +17,201 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons2/app_icon2</normaloff>:/icons2/app_icon2</iconset>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="8" column="0">
-    <widget class="QPushButton" name="btnAllOn">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="checkBoxJpeg">
+        <property name="text">
+         <string>JPEG Image (*.jpg, *.jpeg)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="checkBoxGif">
+        <property name="text">
+         <string>GIF Image (*.gif)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="checkBoxPng">
+        <property name="text">
+         <string>PNG File (*.png)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="checkBoxApng">
+        <property name="text">
+         <string>Animated PNG Format (*.apng)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="checkBoxBmp">
+        <property name="text">
+         <string>Bitmap Format (*.bmp)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="checkBoxDds">
+        <property name="text">
+         <string>DirectDraw Surface Format (*.dds)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="checkBoxWebp">
+        <property name="text">
+         <string>WebP Image (*.webp)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QCheckBox" name="checkBoxIcon">
+        <property name="text">
+         <string>Windows Icon Format (*.ico)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBoxTiff">
+        <property name="text">
+         <string>TIFF Image (*.tif, *.tiff)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="checkBoxTga">
+        <property name="text">
+         <string>Truevision Graphics Adapter Format (*.tga)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QCheckBox" name="checkBoxRawCanon">
+        <property name="text">
+         <string>Canon Raw Format (*.crw, *.cr2)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QCheckBox" name="checkBoxRawNicon">
+        <property name="text">
+         <string>Nicon Raw Format (*.nef)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QCheckBox" name="checkBoxRawSony">
+        <property name="text">
+         <string>Sony Raw Format (*.arw)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QCheckBox" name="checkBoxRawDng">
+        <property name="toolTip">
+         <string>for Ricoh, Casio, Pentax, Nokia, Leica, etc..</string>
+        </property>
+        <property name="text">
+         <string>Adobe Digital Negative Format (*.dng)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>0</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>0</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>120</red>
+           <green>120</green>
+           <blue>120</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
      <property name="text">
-      <string extracomment="Button to turn all check boxes on">AllValid</string>
+      <string>If you press the OK button you will write a registry. Cancel if unnecessary.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
-   <item row="4" column="2">
-    <widget class="QCheckBox" name="checkBoxTga">
-     <property name="text">
-      <string>Truevision Graphics Adapter Format (*.tga)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="2">
-    <widget class="QCheckBox" name="checkBoxRawNicon">
-     <property name="text">
-      <string>Nicon Raw Format (*.nef)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxRawCanon">
-     <property name="text">
-      <string>Canon Raw Format (*.crw, *.cr2)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QPushButton" name="btnAllOff">
-     <property name="text">
-      <string extracomment="Button to turn off all check box">AllInvalid</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxRawSony">
-     <property name="text">
-      <string>Sony Raw Format (*.arw)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="2">
-    <widget class="QCheckBox" name="checkBoxRawDng">
-     <property name="toolTip">
-      <string>for Ricoh, Casio, Pentax, Nokia, Leica, etc..</string>
-     </property>
-     <property name="text">
-      <string>Adobe Digital Negative Format (*.dng)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="2">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxBmp">
-     <property name="text">
-      <string>Bitmap Format (*.bmp)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxWebp">
-     <property name="text">
-      <string>WebP Image (*.webp)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxPng">
-     <property name="text">
-      <string>PNG File (*.png)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QCheckBox" name="checkBoxApng">
-     <property name="text">
-      <string>Animated PNG Format (*.apng)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QCheckBox" name="checkBoxIcon">
-     <property name="text">
-      <string>Windows Icon Format (*.ico)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxTiff">
-     <property name="text">
-      <string>TIFF Image (*.tif, *.tiff)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QCheckBox" name="checkBoxDds">
-     <property name="text">
-      <string>DirectDraw Surface Format (*.dds)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QCheckBox" name="checkBoxGif">
-     <property name="text">
-      <string>GIF Image (*.gif)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QCheckBox" name="checkBoxJpeg">
-     <property name="text">
-      <string>JPEG Image (*.jpg, *.jpeg)</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="3">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btnAllOff">
+       <property name="text">
+        <string extracomment="Button to turn off all check box">AllInvalid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnAllOn">
+       <property name="text">
+        <string extracomment="Button to turn all check boxes on">AllValid</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

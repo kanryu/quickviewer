@@ -76,7 +76,7 @@ win32 {
             QMAKE_LFLAGS += /LARGEADDRESSAWARE
         }
     }
-    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32
+    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32
 }
 unix {
     DEFINES += _UNIX
@@ -158,8 +158,9 @@ HEADERS  += \
     src/models/volumemanagerbuilder.h \
 
 win32 {
-    SOURCES += src/mainwindowforwindows.cpp
-    HEADERS += src/mainwindowforwindows.h
+    INCLUDEPATH += ../AssociateFilesWithQuickViewer
+    SOURCES += src/mainwindowforwindows.cpp ../AssociateFilesWithQuickViewer/fileassocdialog.cpp
+    HEADERS += src/mainwindowforwindows.h ../AssociateFilesWithQuickViewer/fileassocdialog.h
 }
 
 
@@ -177,7 +178,8 @@ FORMS    += \
     src/catalog/createdb.ui \
     src/folderview/folderwindow.ui \
     src/optionsdialog.ui \
-    src/renamedialog.ui
+    src/renamedialog.ui \
+    ../AssociateFilesWithQuickViewer/fileassocdialog.ui
 
 RESOURCES += toolbar.qrc
 

@@ -46,7 +46,7 @@ signals:
 private:
     Ui::FileAssocDialog *ui;
     QMap<QString, AssocInfo> m_assocs;
-    QMap<QWidget*, QString> m_assocOfActions;
+    QMap<QString, QCheckBox*> m_assocOfActions;
 };
 
 #endif // FILEASSOCDIALOG_H

@@ -265,6 +265,7 @@
     <addaction name="actionOpenKeyConfig"/>
     <addaction name="actionOpenMouseConfig"/>
     <addaction name="actionOpenOptionsDialog"/>
+    <addaction name="actionRegistAssocsUAC"/>
     <addaction name="actionRegistAssocs"/>
     <addaction name="separator"/>
     <addaction name="actionProjectWeb"/>
@@ -994,9 +995,9 @@
     <string extracomment="A function to display a confirmation screen when moving the currently displayed image to Recycle Bin">Confirm moving image to &amp;Recycle Bin</string>
    </property>
   </action>
-  <action name="actionRegistAssocs">
+  <action name="actionRegistAssocsUAC">
    <property name="text">
-    <string extracomment="Ability to associate QuickViewer and image files on Explorer">Image Associations (requires Admin)</string>
+    <string extracomment="Ability to associate QuickViewer and image files on Explorer (Host Global)">Image Associations (requires Admin)</string>
    </property>
   </action>
   <action name="actionContextMenu">
@@ -1012,6 +1013,11 @@
   <action name="actionDeletePage">
    <property name="text">
     <string>Delete the image</string>
+   </property>
+  </action>
+  <action name="actionRegistAssocs">
+   <property name="text">
+    <string extracomment="Ability to associate QuickViewer and image files on Explorer (Host Global)">Image Associations (only you)</string>
    </property>
   </action>
  </widget>
@@ -2213,10 +2219,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionRegistAssocs</sender>
+   <sender>actionRegistAssocsUAC</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>onActionRegistAssocs_triggered()</slot>
+   <slot>onActionRegistAssocsUAC_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2265,6 +2271,22 @@
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>onActionDeletePage_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRegistAssocs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionRegistAssocs_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2335,11 +2357,12 @@
   <slot>onActionBeginAsFullscreen_triggered(bool)</slot>
   <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
   <slot>onActionConfirmDeletePage_triggered(bool)</slot>
-  <slot>onActionRegistAssocs_triggered()</slot>
+  <slot>onActionRegistAssocsUAC_triggered()</slot>
   <slot>onActionShowFullscreenTitleBar_triggered(bool)</slot>
   <slot>onActionContextMenu_triggered()</slot>
   <slot>onActionOpenMouseConfig_triggered()</slot>
   <slot>onActionRecyclePage_triggered()</slot>
   <slot>onActionSuppressKeyRepeat_triggered(bool)</slot>
+  <slot>onActionRegistAssocs_triggered()</slot>
  </slots>
 </ui>

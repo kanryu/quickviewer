@@ -608,6 +608,10 @@
         <comment>description of File format on Explorer(.webp)</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>If you press the OK button you will write a registry. Cancel if unnecessary.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FolderItemModel</name>
@@ -1543,11 +1547,6 @@
         <translation type="vanished">真的将这图像扔进垃圾箱吗?</translation>
     </message>
     <message>
-        <source>Show title bar on Fullscreen</source>
-        <extracomment>When moving the mouse cursor to the upper part of the window at full screen, the tool bar is displayed, but the function of displaying the title bar at this time</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Fullscreen</source>
         <extracomment>Button to switch the window display to full screen</extracomment>
         <translation>全屏显示</translation>
@@ -1644,7 +1643,7 @@
     </message>
     <message>
         <source>Image Associations (requires Admin)</source>
-        <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
+        <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1674,6 +1673,11 @@
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm deleting image file on Message Box body</comment>
         <translation type="unfinished">真的将这图像扔进垃圾箱吗?</translation>
+    </message>
+    <message>
+        <source>Image Associations (only you)</source>
+        <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2033,43 +2037,6 @@
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>不是图像文件</translation>
-    </message>
-</context>
-<context>
-    <name>QuaGzipFile</name>
-    <message>
-        <source>QIODevice::Append is not supported for GZIP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Opening gzip for both reading and writing is not supported</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You can open a gzip either for reading or for writing. Which is it?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not gzopen() file</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QuaZIODevice</name>
-    <message>
-        <source>QIODevice::Append is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>QIODevice::ReadWrite is not supported for QuaZIODevice</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>QuaZipFile</name>
-    <message>
-        <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

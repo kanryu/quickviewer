@@ -126,6 +126,7 @@ public slots:
 //    void on_languageChinese_triggered();
     void onLanguageSelector_languageChanged(QString language);
     void onActionRegistAssocs_triggered();
+    void onActionRegistAssocsUAC_triggered();
 
     // ContextMenus
     void onActionContextMenu_triggered();

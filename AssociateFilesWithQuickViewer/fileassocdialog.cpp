@@ -3,12 +3,32 @@
 #include <windows.h>
 #include <shobjidl.h>
 
-#define REGKEYFORMAT_ASSOCFILE          "QuickViewer.AssocFile.%1"
-#define REGKEYFORMAT_ASSOCPATH          "HKEY_CLASSES_ROOT\\QuickViewer.AssocFile.%1"
-#define REGKEY_QUICKVIEWER              "HKEY_LOCAL_MACHINE\\SOFTWARE\\QuickViewer"
-#define REGKEY_REGISTEREDAPPLICATIONS   "HKEY_LOCAL_MACHINE\\SOFTWARE\\RegisteredApplications"
-#define REGKEY_ROOT_QUICKVIEWER         "HKEY_CLASSES_ROOT\\Applications\\QuickViewer.exe"
-#define APPLICATION_ID                  "QuickViewer"
+#define APPLICATION_ID                    "QuickViewer"
+//#define REGKEYFORMAT_ASSOCFILE          "QuickViewer.AssocFile.%1"
+#define REGKEYFORMAT_ASSOCFILE            APPLICATION_ID ".AssocFile.%1"
+//#define REGKEYFORMAT_ASSOCPATH          "HKEY_CLASSES_ROOT\\QuickViewer.AssocFile.%1"
+//#define REGKEY_QUICKVIEWER              "HKEY_LOCAL_MACHINE\\SOFTWARE\\QuickViewer"
+//#define REGKEY_REGISTEREDAPPLICATIONS   "HKEY_LOCAL_MACHINE\\SOFTWARE\\RegisteredApplications"
+//#define REGKEY_ROOT_QUICKVIEWER         "HKEY_CLASSES_ROOT\\Applications\\QuickViewer.exe"
+
+#ifdef EXECUTE_ON_UAC
+#  define REGKEY_SOFTWARE               "HKEY_LOCAL_MACHINE\\SOFTWARE"
+#  define REGKEY_CLASSES                REGKEY_SOFTWARE "\\Classes"
+#  define REGKEYFORMAT_CLASSES          REGKEY_SOFTWARE "\\Classes\\%1"
+#  define REGKEYFORMAT_ASSOCPATH        REGKEY_CLASSES  "\\" APPLICATION_ID ".AssocFile.%1"
+#  define REGKEY_REGISTEREDAPPLICATIONS REGKEY_SOFTWARE "\\RegisteredApplications"
+#  define REGKEY_APPLICATION            REGKEY_SOFTWARE "\\" APPLICATION_ID
+#  define REGKEY_APPLICATION_INAPP      REGKEY_CLASSES  "\\Applications\\" APPLICATION_ID ".exe"
+#else
+#  define REGKEY_SOFTWARE               "HKEY_CURRENT_USER\\Software"
+#  define REGKEY_CLASSES                REGKEY_SOFTWARE "\\Classes"
+#  define REGKEYFORMAT_CLASSES          REGKEY_SOFTWARE "\\Classes\\%1"
+#  define REGKEYFORMAT_ASSOCPATH        REGKEY_CLASSES  "\\" APPLICATION_ID ".AssocFile.%1"
+#  define REGKEY_REGISTEREDAPPLICATIONS REGKEY_SOFTWARE "\\RegisteredApplications"
+#  define REGKEY_APPLICATION            REGKEY_SOFTWARE "\\" APPLICATION_ID
+#  define REGKEY_APPLICATION_INAPP      REGKEY_CLASSES  "\\Applications\\" APPLICATION_ID ".exe"
+#endif
+
 
 #if QT_VERSION_MAJOR >= 5
 #  ifdef WIN64
@@ -26,47 +46,60 @@ FileAssocDialog::FileAssocDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_assocOfActions[ui->checkBoxJpeg] = "Jpeg";
+    m_assocOfActions["Jpeg"] = ui->checkBoxJpeg;
     m_assocs["Jpeg"] = AssocInfo{"Jpeg", tr("JPEG Image", "description of File format on Explorer(.jpeg)"), "qv_jpeg.ico", {".jpg",".jpeg"}};
 
-    m_assocOfActions[ui->checkBoxPng]  = "Png";
+    m_assocOfActions["Png"] = ui->checkBoxPng;
     m_assocs["Png"] = AssocInfo{"Png", tr("PNG File", "description of File format on Explorer(.png)"), "qv_png.ico", {".png"}};
 
-    m_assocOfActions[ui->checkBoxTga]  = "Tga";
+    m_assocOfActions["Tga"] = ui->checkBoxTga;
     m_assocs["Tga"] = AssocInfo{"Tga", tr("Truevision Graphics Adapter Format Image", "description of File format on Explorer(.tga)"), "qv_tga.ico", {".tga"}};
 
-    m_assocOfActions[ui->checkBoxApng] = "Apng";
+    m_assocOfActions["Apng"] = ui->checkBoxApng;
     m_assocs["Apng"] = AssocInfo{"Apng", tr("Animated PNG File", "description of File format on Explorer(.apng)"), "qv_apng.ico", {".apng"}};
 
-    m_assocOfActions[ui->checkBoxBmp]  = "Bitmap";
+    m_assocOfActions["Bitmap"] = ui->checkBoxBmp;
     m_assocs["Bitmap"] = AssocInfo{"Bitmap", tr("Bitmap File", "description of File format on Explorer(.bmp)"), "qv_bmp.ico", {".bmp"}};
 
-    m_assocOfActions[ui->checkBoxDds]  = "Dds";
+    m_assocOfActions["Dds"] = ui->checkBoxDds;
     m_assocs["Dds"] = AssocInfo{"Dds", tr("DirectDraw Surface Image", "description of File format on Explorer(.dds)"), "qv_dds.ico", {".dds"}};
 
-    m_assocOfActions[ui->checkBoxGif]  = "Gif";
+    m_assocOfActions["Gif"] = ui->checkBoxGif;
     m_assocs["Gif"] = AssocInfo{"Gif", tr("GIF Image", "description of File format on Explorer(.gif)"), "qv_gif.ico", {".gif"}};
 
-    m_assocOfActions[ui->checkBoxIcon] = "Icon";
+    m_assocOfActions["Icon"] = ui->checkBoxIcon;
     m_assocs["Icon"] = AssocInfo{"Icon", tr("Windows Icon File", "description of File format on Explorer(.ico)"), "", {".ico"}};
 
-    m_assocOfActions[ui->checkBoxTiff] = "Tiff";
+    m_assocOfActions["Tiff"] = ui->checkBoxTiff;
     m_assocs["Tiff"] = AssocInfo{"Tiff", tr("Tiff Image", "description of File format on Explorer(.tiff)"), "qv_tiff.ico", {".tif", ".tiff"}};
 
-    m_assocOfActions[ui->checkBoxWebp] = "WebP";
+    m_assocOfActions["WebP"] = ui->checkBoxWebp;
     m_assocs["WebP"] = AssocInfo{"WebP", tr("WebP Image", "description of File format on Explorer(.webp)"), "qv_webp.ico", {".webp"}};
 
-    m_assocOfActions[ui->checkBoxRawCanon] = "RawCanon";
+    m_assocOfActions["RawCanon"] = ui->checkBoxRawCanon;
     m_assocs["RawCanon"] = AssocInfo{"RawCanon", tr("Canon Raw Format", "description of File format on Explorer(.cr2)"), "qv_raw.ico", {".crw", ".cr2"}};
 
-    m_assocOfActions[ui->checkBoxRawDng]   = "RawDng";
+    m_assocOfActions["RawDng"] = ui->checkBoxRawDng;
     m_assocs["RawDng"] = AssocInfo{"RawDng", tr("Adobe Digital Negative Format", "description of File format on Explorer(.dng)"), "qv_raw.ico", {".dng"}};
 
-    m_assocOfActions[ui->checkBoxRawNicon] = "RawNicon";
+    m_assocOfActions["RawNicon"] = ui->checkBoxRawNicon;
     m_assocs["RawNicon"] = AssocInfo{"RawNicon", tr("Nicon Raw Format", "description of File format on Explorer(.nef)"), "qv_raw.ico", {".nef"}};
 
-    m_assocOfActions[ui->checkBoxRawSony]  = "RawSony";
+    m_assocOfActions["RawSony"] = ui->checkBoxRawSony;
     m_assocs["RawSony"] = AssocInfo{"RawSony", tr("Sony Raw Format", "description of File format on Explorer(.arw)"), "qv_raw.ico", {".arw"}};
+
+
+    {
+        // check on if assoiation exists for each extension
+        foreach(const QString &fmt, m_assocOfActions.keys()) {
+            QSettings settings(REGKEY_CLASSES, RegFormat);
+            settings.beginGroup(QString(REGKEYFORMAT_ASSOCFILE).arg(fmt));
+            if(!settings.allKeys().isEmpty())
+                m_assocOfActions[fmt]->setChecked(true);
+            settings.endGroup();
+        }
+    }
+
 }
 
 FileAssocDialog::~FileAssocDialog()
@@ -91,10 +124,10 @@ FileAssocDialog::~FileAssocDialog()
 QStringList FileAssocDialog::enumrateFormats()
 {
     QStringList result;
-    foreach(QWidget* w, m_assocOfActions.keys()) {
-        QCheckBox* c = dynamic_cast<QCheckBox*>(w);
+    foreach(const QString& fmt, m_assocOfActions.keys()) {
+        QCheckBox* c = m_assocOfActions[fmt];
         if(c && c->isChecked())
-            result << m_assocOfActions[w];
+            result << fmt;
     }
 
     return result;
@@ -102,8 +135,7 @@ QStringList FileAssocDialog::enumrateFormats()
 
 void FileAssocDialog::on_allOn_triggered()
 {
-    foreach(QWidget* w, m_assocOfActions.keys()) {
-        QCheckBox* c = dynamic_cast<QCheckBox*>(w);
+    foreach(QCheckBox* c, m_assocOfActions.values()) {
         if(c)
             c->setChecked(true);
     }
@@ -111,8 +143,7 @@ void FileAssocDialog::on_allOn_triggered()
 
 void FileAssocDialog::on_allOff_triggered()
 {
-    foreach(QWidget* w, m_assocOfActions.keys()) {
-        QCheckBox* c = dynamic_cast<QCheckBox*>(w);
+    foreach(QCheckBox* c, m_assocOfActions.values()) {
         if(c)
             c->setChecked(false);
     }
@@ -136,7 +167,7 @@ void FileAssocDialog::registEntries(QStringList formats)
         // assoiation for each extension
         foreach(const QString &fmt, formats) {
 //            qDebug() << QString(REGKEYFORMAT_ASSOCFILE).arg(fmt);
-            QSettings settings("HKEY_CLASSES_ROOT", RegFormat);
+            QSettings settings(REGKEY_CLASSES, RegFormat);
             settings.beginGroup(QString(REGKEYFORMAT_ASSOCFILE).arg(fmt));
             settings.setValue(".", m_assocs[fmt].Description);
             if(!m_assocs[fmt].IconName.isEmpty()) {
@@ -158,10 +189,10 @@ void FileAssocDialog::registEntries(QStringList formats)
     }
     {
         // QuickViewer Capabilities
-        QSettings settings(REGKEY_QUICKVIEWER, RegFormat);
+        QSettings settings(REGKEY_APPLICATION, RegFormat);
         settings.beginGroup("Capabilities");
         settings.setValue("ApplicationDescription", "QuickViewer for folders/archives");
-        settings.setValue("ApplicationName", "QuickViewer");
+        settings.setValue("ApplicationName", APPLICATION_ID);
         settings.beginGroup("FileAssociations");
         foreach(const QString &fmt, formats) {
             foreach(const QString &assoc, m_assocs[fmt].Extensions)
@@ -174,12 +205,12 @@ void FileAssocDialog::registEntries(QStringList formats)
     {
         // RegisteredApplications
         QSettings settings2(REGKEY_REGISTEREDAPPLICATIONS, RegFormat);
-        settings2.setValue(APPLICATION_ID, "Software\\QuickViewer\\Capabilities");
+        settings2.setValue(APPLICATION_ID, "Software\\" APPLICATION_ID "\\Capabilities");
         settings2.sync();
     }
     {
         // assoiation for application
-        QSettings settings(REGKEY_ROOT_QUICKVIEWER, RegFormat);
+        QSettings settings(REGKEY_APPLICATION_INAPP, RegFormat);
         settings.beginGroup("shell");
         settings.beginGroup("open");
         settings.setValue(".", tr("&View with QuickViewer", "Menu displayed when right clicking on file in Explorer"));
@@ -213,19 +244,19 @@ void FileAssocDialog::unregistEntries()
     }
     {
         // QuickViewer Capabilities
-        QSettings settings(REGKEY_QUICKVIEWER, RegFormat);
+        QSettings settings(REGKEY_APPLICATION, RegFormat);
         settings.clear();
         settings.sync();
     }
     {
         // RegisteredApplications
         QSettings settings(REGKEY_REGISTEREDAPPLICATIONS, RegFormat);
-        settings.remove("QuickViewer");
+        settings.remove(APPLICATION_ID);
         settings.sync();
     }
     {
         // assoiation for application
-        QSettings settings(REGKEY_ROOT_QUICKVIEWER, RegFormat);
+        QSettings settings(REGKEY_APPLICATION_INAPP, RegFormat);
         settings.clear();
         settings.sync();
     }
@@ -233,7 +264,7 @@ void FileAssocDialog::unregistEntries()
 
 QString FileAssocDialog::getExecuteApplication()
 {
-    return QString("\"%1\\QuickViewer.exe\" \"%2\"")
+    return QString("\"%1\\" APPLICATION_ID ".exe\" \"%2\"")
             .arg(QDir::toNativeSeparators(qApp->applicationDirPath()))
             .arg("%1");
 }

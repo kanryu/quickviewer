@@ -19,6 +19,10 @@
 #include "fileloader.h"
 #include "qinnerframe.h"
 
+#ifdef Q_OS_WIN
+#include "fileassocdialog.h"
+#endif
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -662,7 +666,18 @@ void MainWindow::onLanguageSelector_languageChanged(QString language)
 
 void MainWindow::onActionRegistAssocs_triggered()
 {
-    QProcess::startDetached("AssociateFilesWithQuickViewer",
+#ifdef Q_OS_WIN
+    FileAssocDialog dialog(this);
+    int result = dialog.exec();
+    if(result == QDialog::Rejected) {
+    } else {
+    }
+#endif
+}
+
+void MainWindow::onActionRegistAssocsUAC_triggered()
+{
+    QProcess::startDetached(qApp->getApplicationFilePath("AssociateFilesWithQuickViewer.exe"),
                             QStringList(),
                             QDir::toNativeSeparators(qApp->applicationDirPath()));
 }
