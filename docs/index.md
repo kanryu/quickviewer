@@ -123,6 +123,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.happycgi.com/16255](http://www.happycgi.com/16255)
 - **PCWorld** (in Hungarian)
     - [https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html](https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html)
+- **dobre programy** (in Polish)
+    - [https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html](https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html)
 
 Thanks for reviewers! :)
 
