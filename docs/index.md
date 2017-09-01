@@ -35,6 +35,8 @@ You can browse images with much smoother response than ever before.
    - etc..
  - Can make/view/search catalog from thousands of your digital books
  - Can search books from auto generated tags
+ - Multilingual support(English/Spanish/Simplified Chinese/Japanese/Greek)
+
 
 ## How to use
 
@@ -46,7 +48,7 @@ You can browse images with much smoother response than ever before.
 
 The latest version is **release_version**.
 
-You can download from **[Release Builded Binary](https://github.com/kanryu/quickviewer/releases)** (Windows x86/x64)
+You can download from **[Release Builded Binary](https://github.com/kanryu/quickviewer/releases)** (Windows x86/x64, Linux AppImage x64)
 
 You can also clone the latest source code from **[this repository.](https://github.com/kanryu/quickviewer)**
 
