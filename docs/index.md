@@ -35,6 +35,8 @@ You can browse images with much smoother response than ever before.
    - etc..
  - Can make/view/search catalog from thousands of your digital books
  - Can search books from auto generated tags
+ - Language support(English/Spanish/Simplified Chinese/Japanese/Greek)
+
 
 ## How to use
 
