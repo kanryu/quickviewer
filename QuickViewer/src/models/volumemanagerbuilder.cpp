@@ -20,11 +20,12 @@ VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path,
     }
     QString lower = path.toLower();
     if(lower.endsWith(".zip") || lower.endsWith(".cbz")) {
-#ifdef Q_OS_WIN
+//#ifdef Q_OS_WIN
+//        return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);
+//#else
+//        return new VolumeManager(parent, new FileLoaderZipArchive(parent, path), pageManager);
+//#endif
         return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);
-#else
-        return new VolumeManager(parent, new FileLoaderZipArchive(parent, path), pageManager);
-#endif
     }
     if(lower.endsWith(".7z")) {
         return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);

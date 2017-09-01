@@ -3,6 +3,8 @@
 using namespace NWindows;
 using namespace NFile;
 
+#ifdef QT7Z_STATIC_LINK
+
 #define NAMESPACE_FORCE_LINK(CODEC) \
     namespace N##CODEC { \
         extern bool g_forceLink; \
@@ -70,12 +72,16 @@ struct ForceLinkCodecs
 __declspec(selectany)ForceLinkCodecs forceLink;
 #else
 ForceLinkCodecs forceLink;
+#endif
+
+#endif // QT7Z_STATIC_LINK
+
+#ifndef Q_OS_WIN
 extern "C"
 {
 extern int global_use_utf16_conversion;
 }
 #endif
-
 
 static HRESULT GetUInt64Value(IInArchive *archive, UInt32 index, PROPID propID, CListUInt64Def &value)
 {
@@ -283,12 +289,43 @@ Qt7zPackagePrivate::Qt7zPackagePrivate(Qt7zPackage *q,
     init();
 }
 
+Qt7zPackagePrivate::~Qt7zPackagePrivate()
+{
+//    m_codecs.reset(nullptr);
+}
+
+
+static CCodecs* s_codecs;
+
+static CCodecs* getMyCodecs()
+{
+    if(!s_codecs) {
+        s_codecs = new CCodecs;
+#ifndef Q_OS_WIN
+        QString dirpath = qApp->applicationDirPath() + "/../lib/";
+        qputenv("P7ZIP_HOME_DIR",  dirpath.toUtf8());
+#endif
+        try {
+            if (s_codecs->Load() != S_OK) {
+                qWarning() << "Qt7z: Failed to load codecs";
+            }
+        } catch(...) {
+            qWarning() << "Qt7z: Failed to load codecs()";
+        }
+    }
+    return s_codecs;
+}
+
+
+
 void Qt7zPackagePrivate::init()
 {
-    m_codecs.reset(new CCodecs);
-    if (m_codecs->Load() != S_OK) {
-        qWarning() << "Qt7z: Failed to load codecs";
-    }
+//    m_codecs.reset(getMyCodecs());
+    m_codecs = getMyCodecs();
+//    m_codecs.reset(new CCodecs);
+//    if (m_codecs.data()->Load() != S_OK) {
+//        qWarning() << "Qt7z: Failed to load codecs";
+//    }
 }
 
 void Qt7zPackagePrivate::reset()
@@ -337,7 +374,8 @@ bool Qt7zPackage::open()
 
     COpenOptions options;
     options.props = &props;
-    options.codecs = m_p->m_codecs.data();
+//    options.codecs = m_p->m_codecs.data();
+    options.codecs = m_p->m_codecs;
     options.types = &types;
     options.excludedFormats = &excludedFormats;
     options.stdInMode = false;

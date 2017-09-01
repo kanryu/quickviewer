@@ -121,6 +121,7 @@ class Qt7zPackagePrivate
 public:
     Qt7zPackagePrivate(Qt7zPackage *q);
     Qt7zPackagePrivate(Qt7zPackage *q, const QString &packagePath);
+    ~Qt7zPackagePrivate();
 
     Qt7zPackage::Client *m_client;
     Qt7zPackage *m_q;
@@ -135,7 +136,8 @@ private:
     QStringList m_fileNameList;
     QHash<QString, UInt32> m_fileNameToIndex;
 
-    QScopedPointer<CCodecs> m_codecs;
+//    QScopedPointer<CCodecs> m_codecs;
+    CCodecs* m_codecs;
     CArchiveLink m_arcLink;
 };
 

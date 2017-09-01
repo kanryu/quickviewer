@@ -311,7 +311,7 @@ linux : !CONFIG(debug, debug|release) {
     install_target.files = $${DESTDIR}/QuickViewer
     install_target.path = $${MY_DEFAULT_INSTALL}/usr/bin
 
-    install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1
+    install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1 $${DESTDIR}/../lib/lib7z.so
     install_libs.path = $${MY_DEFAULT_INSTALL}/usr/lib
 
     install_desktop.files = $${PWD}/QuickViewer.desktop $${PWD}/../docs/quickviewer.png
@@ -347,7 +347,7 @@ linux : !CONFIG(debug, debug|release) {
 
     install_appimage.path = $${MY_DEFAULT_INSTALL}/..
     install_appimage.files = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
-    install_appimage.commands = VERSION=$${VERSION} linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -appimage
+    install_appimage.commands = (cd ../.. ; VERSION=$${VERSION} linuxdeployqt $${APPDIR}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -appimage)
     install_appimage.depends = install_install_deploy_files install_install_translations install_install_assoc_icons install_install_db
 
     INSTALLS += install_target install_libs install_desktop install_deploy_files install_translations install_assoc_icons install_appimage

@@ -282,7 +282,7 @@ void QVApplication::loadSettings()
     m_showSubfolders = m_settings.value("ShowSubfolders", false).toBool();
     m_slideShowWait = m_settings.value("SlideShowWait", 5000).toInt();
     m_maxTextureSize = m_settings.value("MaxTextureSize", 4096).toInt();
-#ifdef Q_OS_WIN64
+#ifdef Q_PROCESSOR_X86_64
     m_maxVolumesCache = m_settings.value("MaxVolumesCache", 5).toInt();
     m_maxImagesCache = m_settings.value("MaxImagesCache", 22).toInt();
 #else
