@@ -47,7 +47,7 @@ fulltitle: QuickViewer オフィシャルページ
 
 最新版は **release_version** です。
 
-[ビルド済みリリース版](https://github.com/kanryu/quickviewer/releases) からダウンロードしてください。(Windows x86/x64)
+[ビルド済みリリース版](https://github.com/kanryu/quickviewer/releases) からダウンロードしてください。(Windows x86/x64, Linux AppImage x64)
 
 ソースコードについては [リポジトリ](https://github.com/kanryu/quickviewer) から最新のソースコードをcloneして入手してください。
 
