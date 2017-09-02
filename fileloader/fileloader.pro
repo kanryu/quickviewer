@@ -57,6 +57,6 @@ unix {
     HEADERS += $$PWD/fileloaderziparchive.h
     DEFINES += QUAZIP_STATIC
     INCLUDEPATH += $$PWD/../quazip/quazip/quazip $$PWD/../zlib/zlib
-    LIBS += -lquazip -lzlib
+#    LIBS += -lquazip -lzlib
 }
 
