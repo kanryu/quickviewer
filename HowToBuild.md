@@ -6,12 +6,14 @@ With GPLv 3, you have copied this source code and the right to build it yourself
 
 If you have something you do not recognize or are aware of when building, please send me a email or post to a issue of the project.
 
-## Set Up Qt SDK
+## 1. Setup
+
+### Set Up Qt SDK
 You should install Qt SDK on your pc.
 
 https://www.qt.io/download-open-source/
 
-## Set up the source
+### Set up the source
 
 Clone the repo and submodules
 
@@ -24,7 +26,9 @@ $ git submodule init
 $ git submodule update
 ```
 
-## Make a project to build
+## 2. Make a project to build
+
+For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
 
 ### for QtCreator
 
@@ -52,7 +56,6 @@ A Makefile for the compiler will be generated to build QuickViewer. All you have
 #### MinGW
 ```
 $ mingw32-make
-$ cd QuickViewer
 $ mingw32-make install
 (created QuickViewer distribution)
 ```
@@ -64,7 +67,6 @@ You need nmake instead of MinGW make. Of course there is a distinction x86 / x64
 ```
 $ [amd64]/vsvars64.bat
 $ nmake
-$ cd QuickViewer
 $ nmake install
 (created QuickViewer distribution)
 ```
@@ -90,7 +92,7 @@ $ [QTSDK]/bin/qmake  -tp vc ..\quickviewer\QVProject.pro -recursive QMAKE_INCDIR
 If you debug the x64 version of QuickViewer, you may encounter an error that QtCored.dll is missing.
 In that case, dropping the built QuickViewer.exe onto [QtSDK]/bin/windeployqt.exe copies the required DLLs.
 
-## Build directory structure
+## 3. Directory structure at build time
 
 You can find the directories in the build directry named e.g. *'build-QVproject-Desktop_Qt_5_7_1_MSVC2015_64bit-Debug'* after building completed. (VisualStudio won't make [build])
 
@@ -111,13 +113,41 @@ $ ln -s ../../quickviewer/QuickViewer/shaders shaders
 $ ln -s ../../quickviewer/QuickViewer/translations translations
 ```
 
-**database** is a SQLite database which contains Catalogs and thumbnails.
+## 4. Directory structure at runtime
 
-**shaders** has Fragment Shaders for image resizing.
+### for Windows
 
-**translations** has multi-language qm files.
+- **[database]**
+    - SQLite database which contains Catalogs and thumbnails.
+- **[shaders]**
+    - Fragment Shaders for image resizing.(obsolete)
+- **[translations]**
+    - multi-language qm files.
+- **QuickViewer.exe**
+    - Application main
+- **AssociateFilesWithQuickViewer.exe**
+    - Set the association of image format with UAC
+- **quickviewer.ini**
+    - Main configuration file. Includes keyboard and mouse settings
+- **progress.ini*
+    - Record the last displayed image in volume
 
-## Selection of rendering method
+### for Linux (AppImage)
+
+- **[QuickViewer-XXX-AppDir]**
+    - Base directory making up AppImage
+- **[AppDir/usr/bin]**
+    - Destination of executable installation
+- **[AppDir/usr/lib]**
+    - Destination of shared libraries installation
+- **[AppDir/translations]**
+    - Destination of multi-language qm files, and languages.ini
+- **[AppDir/QuickViewer.desktop]**
+    - open desktop configulation
+
+**[AppDir/usr/bin/qt.conf]** is currently not used.
+
+## 5. Selection of rendering method
 
 QuickViewer renders images mainly in three ways.
 
