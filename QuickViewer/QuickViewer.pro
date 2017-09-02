@@ -18,7 +18,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 0.9.4
+VERSION = 0.9.5
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -303,7 +303,7 @@ win32 : !CONFIG(debug, debug|release) {
 
 }
 
-# win32 depoying, please add 'jom install' into build setting on qt-creator
+# linuxdeployqt is required.
 linux : !CONFIG(debug, debug|release) {
     APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
     MY_DEFAULT_INSTALL = ../../$${APPDIR}
