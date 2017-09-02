@@ -28,7 +28,7 @@ https://kanryu.github.io/quickviewer/
 
 ## Download
 
-[binary distributions](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64)
+[binary distributions](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64, Linux AppImage x64)
 
 ## Screenshots
 
