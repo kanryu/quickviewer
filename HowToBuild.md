@@ -138,6 +138,7 @@ Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeploy
 
 - **[QuickViewer-XXX-AppDir]**
     - Base directory making up AppImage
+    - It is extracted on /tmp at runtime
 - **[AppDir/usr/bin]**
     - Destination of executable installation
 - **[AppDir/usr/lib]**
@@ -146,6 +147,10 @@ Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeploy
     - Destination of multi-language qm files, and languages.ini
 - **AppDir/QuickViewer.desktop**
     - open desktop configulation
+- **$HOME/.quickviewer.ini**
+    - Main configuration file. Includes keyboard and mouse settings
+- **$HOME/.quickviewer-progress.ini**
+    - Record the last displayed image in volume
 
 **AppDir/usr/bin/qt.conf** is currently not used.
 
