@@ -28,7 +28,7 @@ $ git submodule update
 
 ## 2. Make a project to build
 
-For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
+Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
 
 ### for QtCreator
 
@@ -126,13 +126,15 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
 - **QuickViewer.exe**
     - Application main
 - **AssociateFilesWithQuickViewer.exe**
-    - Set the association of image format with UAC
+    - Set the association of image formats with UAC
 - **quickviewer.ini**
     - Main configuration file. Includes keyboard and mouse settings
-- **progress.ini*
+- **progress.ini**
     - Record the last displayed image in volume
 
 ### for Linux (AppImage)
+
+Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
 
 - **[QuickViewer-XXX-AppDir]**
     - Base directory making up AppImage
@@ -142,10 +144,10 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
     - Destination of shared libraries installation
 - **[AppDir/translations]**
     - Destination of multi-language qm files, and languages.ini
-- **[AppDir/QuickViewer.desktop]**
+- **AppDir/QuickViewer.desktop**
     - open desktop configulation
 
-**[AppDir/usr/bin/qt.conf]** is currently not used.
+**AppDir/usr/bin/qt.conf** is currently not used.
 
 ## 5. Selection of rendering method
 
