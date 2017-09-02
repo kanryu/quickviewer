@@ -1,5 +1,52 @@
 # CHANGELOG
 
+## v0.9.5 (Sun Sep 3 03:10:25 2017 +0900) [7f89ffc](https://github.com/kanryu/quickviewer/commit/7f89ffc76a94e39cc6af1646e412e832edd54822)
+
+improve behavior of run by file association, bugfixed
+- Enable QtSDK standard text language resource
+- Turn on checking if associations are defined in the registry
+- support for file association for current user only
+- bugfixed: Opening an image file in association when multiple activation is prohibited causes the z-order of the window to be inappropriate
+- bugfixed: When multiple image activation is prohibited, even when image file is opened more than once by association, it does not show  only 1-page display
+- Change zip extraction to use 7zip (for linux)
+- validate desktop configulation(on linux)
+- issue on #31
+
+- other commits
+    - Update HowToBuild.md (Sun Sep 3 00:34:31 2017 +0900) [640336e](https://github.com/kanryu/quickviewer/commit/640336e8b219020b2feeb76fb9020a1994fd941e)
+    - Update HowToBuild.md (Sat Sep 2 23:32:35 2017 +0900) [17f022d](https://github.com/kanryu/quickviewer/commit/17f022de84efb2bb3be0f1de915c61235adce711)
+    - Update HowToBuild.md (Sat Sep 2 23:24:56 2017 +0900) [b73cef2](https://github.com/kanryu/quickviewer/commit/b73cef223b3da416bcc79739d654ad36017007eb)
+    - Update README.md (Sat Sep 2 22:39:47 2017 +0900) [7fbf18d](https://github.com/kanryu/quickviewer/commit/7fbf18d031372324480b9078b562fe364c193201)
+    - validate desktop file (Sat Sep 2 21:09:15 2017 +0900) [6ae1281](https://github.com/kanryu/quickviewer/commit/6ae1281e53f4064886b2fe388608ee3ec48e396d)
+    -  (Sat Sep 2 21:09:15 2017 +0900) [6ae1281](https://github.com/kanryu/quickviewer/commit/6ae1281e53f4064886b2fe388608ee3ec48e396d)
+    -  issue on #31 (Sat Sep 2 21:09:15 2017 +0900) [6ae1281](https://github.com/kanryu/quickviewer/commit/6ae1281e53f4064886b2fe388608ee3ec48e396d)
+    -  Opening an image file in association when multiple activation is prohibited causes the z-order of the window to be inappropriate (Sat Sep 2 16:05:20 2017 +0900) [f737a61](https://github.com/kanryu/quickviewer/commit/f737a61b0dafe4c54af954a522ff60538bb8f570)
+    -  When multiple image activation is prohibited, even when image file is opened more than once by association, it does not show  only 1-page display (Sat Sep 2 16:05:20 2017 +0900) [f737a61](https://github.com/kanryu/quickviewer/commit/f737a61b0dafe4c54af954a522ff60538bb8f570)
+    - Change zip extraction to use 7zip (for linux) (Sat Sep 2 05:55:17 2017 +0900) [befd5f8](https://github.com/kanryu/quickviewer/commit/befd5f8c9d41dcabf1c08bb97a4a8c2efb3c9af9)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Sep 2 01:47:27 2017 +0900) [48d4e22](https://github.com/kanryu/quickviewer/commit/48d4e22518e3f3d3db5de419d2078d95ed1f437c)
+    -  Turn on checking if associations are defined in the registry (Sat Sep 2 01:47:09 2017 +0900) [064f01b](https://github.com/kanryu/quickviewer/commit/064f01b309ca2c900cea87d8eb390d3f93c2e76c)
+    -  Supports current user only registry settings (Sat Sep 2 01:47:09 2017 +0900) [064f01b](https://github.com/kanryu/quickviewer/commit/064f01b309ca2c900cea87d8eb390d3f93c2e76c)
+    - Update index-ja.md (Fri Sep 1 17:27:44 2017 +0900) [c27423b](https://github.com/kanryu/quickviewer/commit/c27423b9e3c59dbc8aa447d4c33c8eff6a614ac4)
+    - Update index.md (Fri Sep 1 17:27:13 2017 +0900) [9013291](https://github.com/kanryu/quickviewer/commit/9013291563e508fc2fc0301e9c2268890f647ef9)
+    - Update index.md (Fri Sep 1 17:23:02 2017 +0900) [b5e0e23](https://github.com/kanryu/quickviewer/commit/b5e0e232e4d16756aff6279829e54debb40dfa5f)
+    - Update index.md (Fri Sep 1 17:22:22 2017 +0900) [643468e](https://github.com/kanryu/quickviewer/commit/643468ed19ace780ce159fc47f19d2e79c715fd9)
+    - Update index.md (Fri Sep 1 13:23:14 2017 +0900) [3c9f6c3](https://github.com/kanryu/quickviewer/commit/3c9f6c3850bc0d5bffd3e45d949702bb56ee59ec)
+    - support building as portable AppImage in Linux (Thu Aug 31 17:04:36 2017 +0900) [7e7726f](https://github.com/kanryu/quickviewer/commit/7e7726f83502ea98ab4efbe32ead1226c1b900c8)
+    - Revert "remove old submodules" (Thu Aug 31 14:49:57 2017 +0900) [29c5f30](https://github.com/kanryu/quickviewer/commit/29c5f30272fb17480ffcdfce590d15482eebe685)
+    -  (Thu Aug 31 14:49:57 2017 +0900) [29c5f30](https://github.com/kanryu/quickviewer/commit/29c5f30272fb17480ffcdfce590d15482eebe685)
+    - This reverts commit 43512071b21a55f5fd93a1837f89eb6f51a0280e. (Thu Aug 31 14:49:57 2017 +0900) [29c5f30](https://github.com/kanryu/quickviewer/commit/29c5f30272fb17480ffcdfce590d15482eebe685)
+    - The file path of each resource is controlled by qt.conf. Switch specifications because it is different for Windows and Linux. When qt.conf is applied, it must be deployed and it is not suitable for debugging, so set it for release only. (Thu Aug 31 01:19:49 2017 +0900) [531df13](https://github.com/kanryu/quickviewer/commit/531df134c1eb7bcbb2a6d2003ea6566e25e3be29)
+    - Enable QtSDK standard text language resource (Wed Aug 30 15:10:27 2017 +0900) [ec03065](https://github.com/kanryu/quickviewer/commit/ec030658491278d2bfb8d5d20a1ccf2519abbbd8)
+    - Update HowToBuild.md (Wed Aug 30 00:41:42 2017 +0900) [76d712b](https://github.com/kanryu/quickviewer/commit/76d712bc86491c01fc134b0122895e2aa4205612)
+    - remove old submodules (Tue Aug 29 23:03:36 2017 +0900) [4351207](https://github.com/kanryu/quickviewer/commit/43512071b21a55f5fd93a1837f89eb6f51a0280e)
+    - build check again in windows (Tue Aug 29 23:03:00 2017 +0900) [75e8a1f](https://github.com/kanryu/quickviewer/commit/75e8a1f89bcc693c86fe4946b273894b4aef6654)
+    - use qinnerframe in unix OSs (Tue Aug 29 22:09:18 2017 +0900) [def7f4f](https://github.com/kanryu/quickviewer/commit/def7f4f0057f91698d874da19d340b30991f9613)
+    - support for building new Qt7z in unix OSs (Tue Aug 29 21:31:21 2017 +0900) [3d5af22](https://github.com/kanryu/quickviewer/commit/3d5af2207841edb7e4ba47e3ec8e3867058d00cd)
+    -  checked in kubuntu-17.04 (Tue Aug 29 21:31:21 2017 +0900) [3d5af22](https://github.com/kanryu/quickviewer/commit/3d5af2207841edb7e4ba47e3ec8e3867058d00cd)
+    - p7zip (Tue Aug 29 18:10:52 2017 +0900) [b348557](https://github.com/kanryu/quickviewer/commit/b348557232d9388b071dc6088337ec4cf3604195)
+    - Update index.md (Mon Aug 28 22:16:33 2017 +0900) [c8aa307](https://github.com/kanryu/quickviewer/commit/c8aa30781643586b20fad26b7b8ac674bab66101)
+    - changelog (Mon Aug 28 21:54:35 2017 +0900) [fdd1708](https://github.com/kanryu/quickviewer/commit/fdd1708455687090fd9878f504c4d8e23220e78d)
+
 ## v0.9.4 (Mon Aug 28 21:40:31 2017 +0900) [fab2c8e](https://github.com/kanryu/quickviewer/commit/fab2c8ee10c6a4819351d188deff18e130a68831)
 
 Add Greek translation, abolished a menu, support for zip with Deflate64
