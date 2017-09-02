@@ -56,8 +56,8 @@ void MainWindowForWindows::setWindowTop()
     auto hwnd = reinterpret_cast<HWND>(winId());
     if(!hwnd) return;
     ::ShowWindow(hwnd,SW_RESTORE);
-    ::SwitchToThisWindow(hwnd, false);
-//    ::SetForegroundWindow(hwnd);
+//    ::SwitchToThisWindow(hwnd, false);
+    ::SetForegroundWindow(hwnd);
     ::SetWindowPos(hwnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
 }
 

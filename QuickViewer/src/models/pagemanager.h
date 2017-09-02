@@ -126,6 +126,7 @@ private:
     int m_currentPage;
 
     bool m_wideImage;
+    bool m_prohibit2Pages;
     QVector<ImageContent> m_pages;
     TimeOrderdCacheFuturePtr<QString, VolumeManager> m_volumes;
     QStringList m_volumenames;

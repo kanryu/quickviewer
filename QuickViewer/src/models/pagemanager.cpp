@@ -10,6 +10,7 @@ PageManager::PageManager(QObject* parent)
     , m_wideImage(false)
     , m_fileVolume(nullptr)
     , m_volumes(qApp->MaxVolumesCache())
+    , m_prohibit2Pages(false)
 //    , m_builderForAssoc("", this)
 {
 
@@ -46,8 +47,12 @@ bool PageManager::loadVolumeWithFile(QString path, QStringList images)
     QDir dir(qpath);
     dir.cdUp();
     QString pathbase = dir.canonicalPath();
-    if(m_volumes.contains(pathbase))
-        return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
+    if(m_volumes.contains(pathbase)) {
+        m_prohibit2Pages = true;
+        bool result = loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
+        m_prohibit2Pages = false;
+        return result;
+    }
 
     VolumeManagerBuilder builder(qpath, this, images);
     VolumeManager* newer = builder.buildForAssoc();
@@ -342,7 +347,7 @@ void PageManager::reloadCurrentPage(bool )
     addNewPage(ic0, true);
     m_wideImage = ic0.wideImage();
     if(!(m_currentPage==0 && qApp->FirstImageAsOnePageInDualView()) && canDualView()) {
-        if(m_fileVolume->pageCount() < m_fileVolume->size()-1) {
+        if(!m_prohibit2Pages && m_fileVolume->pageCount() < m_fileVolume->size()-1) {
             const ImageContent ic1 = m_fileVolume->getIndexedImageContent(m_currentPage+1);
             if(!qApp->WideImageAsOnePageInDualView() || (!ic0.wideImage() && !ic1.wideImage())) {
                 m_fileVolume->nextPage();

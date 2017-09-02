@@ -51,7 +51,8 @@ FORMS += \
         fileassocdialog.ui
 
 RC_ICONS = app_icon2.ico
-!CONFIG(debug, debug|release):!mingw {
+#!CONFIG(debug, debug|release):!mingw {
+!mingw {
     CONFIG += embed_manifest_exe
     QMAKE_LFLAGS +=  /MANIFESTUAC:$$quote(\"level=\'requireAdministrator\' uiAccess=\'false\'\")
 }
