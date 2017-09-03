@@ -24,7 +24,7 @@ https://kanryu.github.io/quickviewer/
    - Ricoh(dng)
    - etc..
  - Can make/view/search catalog from thousands of your digital books
-
+ - Multilingual support(English/Spanish/Simplified Chinese/Japanese/Greek)
 
 ## Download
 
