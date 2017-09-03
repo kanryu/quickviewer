@@ -13,7 +13,6 @@ QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 
 win32 {
     SUBDIRS += AssociateFilesWithQuickViewer
-    QuickViewer.depends += AssociateFilesWithQuickViewer
 }
 
 unix {

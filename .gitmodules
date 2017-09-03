@@ -19,3 +19,6 @@
 [submodule "QuickViewer/src/qlanguageselector"]
 	path = QuickViewer/src/qlanguageselector
 	url = https://github.com/kanryu/qlanguageselector
+[submodule "QuickViewer/src/qnamedpipe"]
+	path = QuickViewer/src/qnamedpipe
+	url = https://github.com/kanryu/qnamedpipe

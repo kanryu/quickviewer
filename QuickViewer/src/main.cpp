@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 #endif
         ThumbnailManager manager(&w, app.CatalogDatabasePath());
         w.setThumbnailManager(&manager);
-        w.connect(&pipe, &QNamedPipe::received, [&](QByteArray bytes) {
+        w.connect(&pipe, &QNamedPipe::received, &w, [&](QByteArray bytes) {
             if(bytes.size() == 1) {
                 w.on_windowTop();
             }

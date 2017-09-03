@@ -59,8 +59,8 @@ INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
-INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview ./src/qlanguageselector
-INCLUDEPATH += src/qfullscreenframe
+INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
+INCLUDEPATH += src/qfullscreenframe ./src/qlanguageselector ./src/qnamedpipe
 
 LIBDIR = ../lib
 
@@ -111,10 +111,10 @@ SOURCES += \
     src/widgets/pageslider.cpp \
     src/widgets/shortcutbutton.cpp \
     src/qlanguageselector/qlanguageselector.cpp \
-    src/models/qnamedpipe.cpp \
+    src/qnamedpipe/qnamedpipe.cpp \
+    src/qfullscreenframe/qinnerframe.cpp \
     src/models/qvmovie.cpp \
     src/models/qmousesequence.cpp \
-    src/qfullscreenframe/qinnerframe.cpp \
     src/mouseconfigdialog.cpp \
     src/models/volumemanager.cpp \
     src/models/volumemanagerbuilder.cpp \
@@ -149,10 +149,10 @@ HEADERS  += \
     src/widgets/pageslider.h \
     src/widgets/shortcutbutton.h \
     src/qlanguageselector/qlanguageselector.h \
-    src/models/qnamedpipe.h \
+    src/qnamedpipe/qnamedpipe.h \
+    src/qfullscreenframe/qinnerframe.h \
     src/models/qvmovie.h \
     src/models/qmousesequence.h \
-    src/qfullscreenframe/qinnerframe.h \
     src/mouseconfigdialog.h \
     src/models/volumemanager.h \
     src/models/volumemanagerbuilder.h \
