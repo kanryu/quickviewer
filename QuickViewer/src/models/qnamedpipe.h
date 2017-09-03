@@ -15,10 +15,10 @@ class QNamedPipePrivate;
  * It can receive binary messages from other processes.
  *
  * Messages are sent unilaterally from the client,
- * and the server will call parseCommand() without any reply.
+ * and the server will emit received(bytes) without any reply.
  *
  * In Microsoft Windows it is implemented with NamedPipe.
- * On Unix it will be implemented by pipe file created on / tmp.
+ * On Unix it is implemented by named pipe created on /tmp.
  */
 class QNamedPipe : public QObject
 {
@@ -33,10 +33,10 @@ public:
     explicit QNamedPipe(QString name, bool valid, QObject *parent = nullptr);
     ~QNamedPipe();
     /**
-     * @brief sendMessage is a method for sending bytes to the server side as a client
-     * @param bytes
+     * @brief send
+     * for sending bytes to the server side as a client
      */
-    void sendMessage(QByteArray bytes);
+    void send(QByteArray bytes);
     /**
      * @brief isServerMode
      * @return if the instanse is a server
@@ -54,25 +54,18 @@ public:
      */
     bool isValid();
     /**
-     * @brief parseCommand
-     * @param bytes
-     * parseCommand interprets the message sent from the client and emits the appropriate SINGAL.
-     * You may inherit and overwrite it
+     * @brief generatePipePath
+     * Returns the actual full path of the named pipe depending on the OS
      */
-    virtual void parseCommand(QByteArray bytes);
+    virtual QString generatePipePath(QString name);
 
 signals:
     /**
-     * @brief open
-     * SIGNAL to open the file specified by path.
-     * The message to be sent is simply the full path of the UTF-8 encoded file.
+     * @brief received
+     * SIGNAL which received a byte sequence from pipe.
+     * "0" is reserved(for dispose)
      */
-    void open(QString path);
-    /**
-     * @brief beetUp
-     * SIGNAL indicating that the application window should be active.
-     */
-    void beetUp();
+    void received(QByteArray bytes);
 
 private:
     QNamedPipePrivate* d;

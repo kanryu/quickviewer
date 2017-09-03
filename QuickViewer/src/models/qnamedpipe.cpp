@@ -1,10 +1,12 @@
 #include "qnamedpipe.h"
 #include <QtConcurrent>
 
+#ifndef PIPE_BUFFER_LENGTH
+#  define PIPE_BUFFER_LENGTH 2048
+#endif
+
 #ifdef Q_OS_WIN
 #include <Windows.h>
-
-#define PIPE_BUFFER_LENGTH 2048
 
 class QNamedPipePrivate
 {
@@ -16,9 +18,7 @@ public:
         , m_serverMode(false)
         , m_willBeClose(false)
     {
-        QString pipeBase = "\\\\.\\pipe\\";
-        QString pipepath = pipeBase + path;
-        std::wstring p = pipepath.toStdWString();
+        std::wstring p = path.toStdWString();
         m_handlepipe = ::CreateNamedPipeW(
                     p.data(),
                     PIPE_ACCESS_DUPLEX | FILE_FLAG_OVERLAPPED,
@@ -89,6 +89,7 @@ public:
         } while(1);
 
     }
+    bool isValid() { m_handlepipe != nullptr; }
 
     HANDLE m_handlepipe;
     HANDLE m_event;
@@ -104,22 +105,93 @@ QNamedPipe::QNamedPipe(QString pipepath, bool valid, QObject *parent)
 }
 #else
 
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+
 class QNamedPipePrivate
 {
 public:
-    QNamedPipePrivate();
-    void sendMessage(QByteArray bytes) {}
-    void waitAsync() {}
+    QNamedPipePrivate(QNamedPipe* parent, QString path)
+        : m_fd(0)
+        , m_parent(parent)
+        , m_serverMode(false)
+        , m_willBeClose(false)
+        , m_valid(true)
+    {
+        m_pipepath = path.toUtf8();
+        if(::mkfifo(m_pipepath.data(), S_IRWXU) != 0) {
+            m_valid = false;
+            if((m_fd = ::open(m_pipepath.data(), O_RDWR|O_NONBLOCK)) > 0)
+               m_valid = true;
+        } else if((m_fd = ::open(m_pipepath.data(), O_RDONLY|O_NONBLOCK)) > 0) {
+            m_serverMode = true;
+        }
+    }
+    ~QNamedPipePrivate()
+    {
+        dispose();
+    }
 
-    void* m_handlepipe;
-    bool m_serverMode;
+    bool isValid() { return m_fd > 0; }
+    void sendMessage(QByteArray bytes)
+    {
+        if(!m_serverMode) {
+            if(::write(m_fd, bytes.data(), bytes.length()) < 0)
+                qDebug() << "write() error";
+        } else {
+            int fd = ::open(m_pipepath.data(), O_WRONLY);
+            if(!::write(fd, bytes.data(), bytes.length()))
+                qDebug() << "write() error";
+            ::close(fd);
+        }
+    }
+
+    void waitAsync()
+    {
+        for(;;) {
+            QByteArray bytes(PIPE_BUFFER_LENGTH, 0);
+            int fd = ::open(m_pipepath.data(), O_RDONLY); // will be locked
+            m_mutex.lock();
+            size_t length = ::read(fd, bytes.data(), bytes.size());
+            ::close(fd);
+            if(length > 0) {
+                bytes.resize(length);
+                if(length < 3 && bytes[0] == '0')
+                    break;
+                emit m_parent->received(bytes);
+            }
+            m_mutex.unlock();
+        }
+        m_mutex.unlock();
+    }
+    void dispose()
+    {
+        m_willBeClose = true;
+        if(!m_serverMode) {
+            ::close(m_fd);
+        } else {
+            sendMessage("0");
+            m_mutex.lock();
+            m_mutex.unlock();
+            ::close(m_fd);
+            m_fd = 0;
+            ::unlink(m_pipepath.data());
+        }
+    }
+
+    int  m_fd;
+    QMutex m_mutex;
+    QByteArray m_pipepath;
     QNamedPipe* m_parent;
+    bool m_serverMode;
     bool m_willBeClose;
+    bool m_valid;
 };
 
-QNamedPipe::QNamedPipe(QString pipepath, bool valid, QObject *parent)
+QNamedPipe::QNamedPipe(QString name, bool valid, QObject *parent)
     : QObject(parent)
-    , d(nullptr)
+    , d(valid ? new QNamedPipePrivate(this, generatePipePath(name)) : nullptr)
 {
 
 }
@@ -132,7 +204,7 @@ QNamedPipe::~QNamedPipe()
         delete d;
 }
 
-void QNamedPipe::sendMessage(QByteArray bytes)
+void QNamedPipe::send(QByteArray bytes)
 {
     if(d)
         d->sendMessage(bytes);
@@ -151,17 +223,14 @@ void QNamedPipe::waitAsync()
 
 bool QNamedPipe::isValid()
 {
-    return !d || d->m_handlepipe != nullptr;
+    return !d || d->isValid();
 }
 
-void QNamedPipe::parseCommand(QByteArray bytes)
+QString QNamedPipe::generatePipePath(QString name)
 {
-    if(bytes.size() == 1) {
-        emit beetUp();
-    }
-    else if(bytes.size() > 0) {
-        auto string = QString::fromUtf8(bytes);
-        emit open(string);
-    }
-
+#ifdef Q_OS_WIN
+    return QString("\\\\.\\pipe\\%1-%2").arg(QString(qgetenv("USERNAME"))).arg(name);
+#else
+    return QString("/tmp/.%1-%2.fifo").arg(QString(qgetenv("USER"))).arg(name);
+#endif
 }

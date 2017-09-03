@@ -30,28 +30,37 @@ int main(int argc, char *argv[])
     QVApplication app(argc, argv);
 
     app.myInstallTranslator();
-
-    QNamedPipe pipe(app.applicationName(), qApp->ProhibitMultipleRunning());
-    if(!pipe.isServerMode()) {
-        qDebug() << app.arguments();
-        if(app.arguments().length() > 1) {
-            pipe.sendMessage(app.arguments()[1].toUtf8());
-        } else
-            pipe.sendMessage("0");
-        return 0;
-    }
-    pipe.waitAsync();
+    int result = 0;
+    {
+        QNamedPipe pipe(app.applicationName(), qApp->ProhibitMultipleRunning());
+        if(!pipe.isServerMode()) {
+            qDebug() << app.arguments();
+            if(app.arguments().length() > 1) {
+                pipe.send(app.arguments()[1].toUtf8());
+            } else
+                pipe.send("b");
+            return 0;
+        }
+        pipe.waitAsync();
 
 #ifdef Q_OS_WIN
-    MainWindowForWindows w;
+        MainWindowForWindows w;
 #else
-    MainWindow w;
+        MainWindow w;
 #endif
-    ThumbnailManager manager(&w, app.CatalogDatabasePath());
-    w.setThumbnailManager(&manager);
-    w.connect(&pipe, SIGNAL(open(QString)), &w, SLOT(onCatalogWindow_openVolume(QString)));
-    w.connect(&pipe, SIGNAL(beetUp()), &w, SLOT(on_windowTop()));
-    w.show();
-
-    return app.exec();
+        ThumbnailManager manager(&w, app.CatalogDatabasePath());
+        w.setThumbnailManager(&manager);
+        w.connect(&pipe, &QNamedPipe::received, [&](QByteArray bytes) {
+            if(bytes.size() == 1) {
+                w.on_windowTop();
+            }
+            else if(bytes.size() > 0) {
+                auto string = QString::fromUtf8(bytes);
+                w.onCatalogWindow_openVolume(string);
+            }
+        });
+        w.show();
+        result = app.exec();
+    }
+    return result;
 }
