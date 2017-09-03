@@ -52,7 +52,7 @@ bool File::Open(const wchar *Name,uint Mode)
   uint Access=WriteMode ? GENERIC_WRITE:GENERIC_READ;
   if (UpdateMode)
     Access|=GENERIC_WRITE;
-  uint ShareMode=(Mode & FMF_OPENEXCLUSIVE) ? 0 : FILE_SHARE_READ;
+  uint ShareMode=(Mode & FMF_OPENEXCLUSIVE) ? 0 : FILE_SHARE_DELETE | FILE_SHARE_READ;
   if (OpenShared)
     ShareMode|=FILE_SHARE_WRITE;
   uint Flags=NoSequentialRead ? 0:FILE_FLAG_SEQUENTIAL_SCAN;

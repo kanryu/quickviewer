@@ -1,0 +1,13 @@
+diff --git a/Qt7z/Qt7z/7zip/CPP/Windows/FileIO.cpp b/Qt7z/Qt7z/7zip/CPP/Windows/FileIO.cpp
+index 56e6ca4..79c1988 100644
+--- a/Qt7z/Qt7z/7zip/CPP/Windows/FileIO.cpp
++++ b/Qt7z/Qt7z/7zip/CPP/Windows/FileIO.cpp
+@@ -316,7 +316,7 @@ bool CInFile::Open(CFSTR fileName, DWORD shareMode, DWORD creationDisposition, D
+ }
+ 
+ bool CInFile::OpenShared(CFSTR fileName, bool shareForWrite)
+-{ return Open(fileName, FILE_SHARE_READ | (shareForWrite ? FILE_SHARE_WRITE : 0), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL); }
++{ return Open(fileName, FILE_SHARE_DELETE | FILE_SHARE_READ | (shareForWrite ? FILE_SHARE_WRITE : 0), OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL); }
+ 
+ bool CInFile::Open(CFSTR fileName)
+   { return OpenShared(fileName, false); }
