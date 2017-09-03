@@ -127,6 +127,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html](https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html)
 - **dobre programy** (in Polish)
     - [https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html](https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html)
+- **PCMag Greece** (in Greek)
+    - [http://gr.pcmag.com/free-apps/28062/news/e-dorean-epharmoge-tes-emeras-quickviewer](http://gr.pcmag.com/free-apps/28062/news/e-dorean-epharmoge-tes-emeras-quickviewer)
 
 Thanks for reviewers! :)
 
