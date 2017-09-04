@@ -144,10 +144,12 @@ Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeploy
     - Destination of multi-language qm files, and languages.ini
 - **AppDir/QuickViewer.desktop**
     - open desktop configulation
-- **$HOME/.quickviewer.ini**
+- **$HOME/.quickviewer/quickviewer.ini**
     - Main configuration file. Includes keyboard and mouse settings
-- **$HOME/.quickviewer-progress.ini**
+- **$HOME/.quickviewer/progress.ini**
     - Record the last displayed image in volume
+- **$HOME/.quickviewer/thumbnail.sqlite3.db**
+    - SQLite database which contains Catalogs and thumbnails.
 
 **AppDir/usr/bin/qt.conf** is currently not used.
 
