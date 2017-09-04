@@ -28,7 +28,7 @@ $ git submodule update
 
 ## 2. Make a project to build
 
-Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
+Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) and [appimagetool](https://github.com/AppImage/AppImageKit) are required.
 
 ### for QtCreator
 
@@ -131,7 +131,7 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
 
 ### for Linux (AppImage)
 
-Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
+Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) and [appimagetool](https://github.com/AppImage/AppImageKit) are required.
 
 - **[QuickViewer-XXX-AppDir]**
     - Base directory making up AppImage
