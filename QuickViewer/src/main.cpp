@@ -48,7 +48,8 @@ int main(int argc, char *argv[])
 #else
         MainWindow w;
 #endif
-        ThumbnailManager manager(&w, app.CatalogDatabasePath());
+        QString dbpath = app.CatalogDatabasePath();
+        ThumbnailManager manager(&w, dbpath);
         w.setThumbnailManager(&manager);
         w.connect(&pipe, &QNamedPipe::received, &w, [&](QByteArray bytes) {
             if(bytes.size() == 1) {

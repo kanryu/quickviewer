@@ -10,8 +10,8 @@
 #define APP_INI "quickviewer.ini"
 #define PROGRESS_INI "progress.ini"
 #else
-#define APP_INI ".quickviewer.ini"
-#define PROGRESS_INI ".quickviewer-progress.ini"
+#define APP_INI ".quickviewer/quickviewer.ini"
+#define PROGRESS_INI ".quickviewer/progress.ini"
 #endif
 #define TURBO_JPEG_FMT "turbojpeg"
 

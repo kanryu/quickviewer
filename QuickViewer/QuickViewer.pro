@@ -308,6 +308,7 @@ win32 : !CONFIG(debug, debug|release) {
 # linuxdeployqt is required.
 linux : !CONFIG(debug, debug|release) {
     APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
+    APPIMAGE = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
     MY_DEFAULT_INSTALL = ../../$${APPDIR}
 
     install_target.files = $${DESTDIR}/QuickViewer
@@ -320,9 +321,14 @@ linux : !CONFIG(debug, debug|release) {
     install_desktop.path = $${MY_DEFAULT_INSTALL}
 
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
-    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
-    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs
+    install_deploy_files.files = $${PWD}/../README.md $${PWD}/AppRun
+    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs ; rm $${MY_DEFAULT_INSTALL}/AppRun
     install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
+
+    install_apprun.path = $${MY_DEFAULT_INSTALL}
+    install_apprun.files = $${PWD}/../LICENSE
+    install_apprun.commands = chmod 755 $${MY_DEFAULT_INSTALL}/AppRun
+    install_apprun.depends = install_install_deploy_files
 
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
     install_translations.files = \
@@ -348,11 +354,11 @@ linux : !CONFIG(debug, debug|release) {
         ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
 
     install_appimage.path = $${MY_DEFAULT_INSTALL}/..
-    install_appimage.files = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
-    install_appimage.commands = (cd ../.. ; VERSION=$${VERSION} linuxdeployqt $${APPDIR}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -appimage)
+    install_appimage.files = $${APPIMAGE}
+    install_appimage.commands = appimagetool $${MY_DEFAULT_INSTALL} $${MY_DEFAULT_INSTALL}/../$${APPIMAGE}
     install_appimage.depends = install_install_deploy_files install_install_translations install_install_assoc_icons install_install_db
 
-    INSTALLS += install_target install_libs install_desktop install_deploy_files install_translations install_assoc_icons install_appimage
+    INSTALLS += install_target install_libs install_desktop install_deploy_files install_apprun install_translations install_assoc_icons install_appimage
 
     install_shaders.path = $${MY_DEFAULT_INSTALL}/shared/shaders
     install_shaders.files = $$SHADERS

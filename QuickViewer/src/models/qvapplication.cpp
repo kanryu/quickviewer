@@ -48,6 +48,15 @@ QString QVApplication::getUserHomeFilePath(QString subFilePath)
     return QDir::toNativeSeparators(QString("%1/%2").arg(QString(qgetenv("HOME"))).arg(subFilePath));
 }
 
+QString QVApplication::CatalogDatabasePath()
+{
+#ifdef Q_OS_WIN
+    return getApplicationFilePath(m_catalogDatabasePath);
+#else
+    return m_catalogDatabasePath;
+#endif
+}
+
 void QVApplication::myInstallTranslator()
 {
     m_languageSelector.resetTranslator(UiLanguage());
@@ -333,7 +342,7 @@ void QVApplication::loadSettings()
 #ifdef Q_OS_WIN
     m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
 #else
-    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "../../var/database/thumbnail.sqlite3.db").toString();
+    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", getUserHomeFilePath(".quickviewer/thumbnail.sqlite3.db")).toString();
 #endif
     m_maxSearchByCharChanged = m_settings.value("MaxSearchByCharChanged", 10000).toInt();
     m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();

@@ -104,7 +104,7 @@ ThumbnailManager::ThumbnailManager(QObject* parent, QString dbpath)
     m_db.setDatabaseName(dbpath);
     if (!m_db.open())
     {
-       qDebug() << "Error: connection with database fail";
+       qDebug() << "Error: connection with database fail" << dbpath;
     }
     else
     {

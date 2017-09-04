@@ -202,7 +202,7 @@ public:
     // Catalog
     qvEnums::CatalogViewMode CatalogViewModeSetting() { return m_catalogViewModeSetting; }
     void setCatalogViewModeSetting (qvEnums::CatalogViewMode catalogViewModeSetting) { m_catalogViewModeSetting = catalogViewModeSetting; }
-    QString CatalogDatabasePath() { return getApplicationFilePath(m_catalogDatabasePath); }
+    QString CatalogDatabasePath();
     void setCatalogDatabasePath (QString catalogDatabasePath) { m_catalogDatabasePath = catalogDatabasePath; }
     int MaxSearchByCharChanged() { return m_maxSearchByCharChanged; }
     void setMaxSearchByCharChanged (int maxSearchByCharChanged) { m_maxSearchByCharChanged = maxSearchByCharChanged; }
