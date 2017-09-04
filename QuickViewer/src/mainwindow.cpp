@@ -143,6 +143,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
     case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
     case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
+    default: break;
     }
 
     ui->graphicsView->installEventFilter(this);

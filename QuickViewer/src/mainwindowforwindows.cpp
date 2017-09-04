@@ -157,6 +157,8 @@ bool MainWindowForWindows::eventFilter(QObject *obj, QEvent *event)
 //            return true;
 //        }
         return QObject::eventFilter(obj, event);
+    default:
+        break;
     }
     return MainWindow::eventFilter(obj, event);
 }

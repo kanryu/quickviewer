@@ -6,13 +6,13 @@
 ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
     , m_renderer(Native)
-    , m_pageManager(nullptr)
     , m_hoverState(Qt::AnchorHorizontalCenter)
-//    , m_currentPage(0)
-    , m_wideImage(false)
-    , m_skipResizeEvent(false)
+    , m_pageManager(nullptr)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
+    , m_isMouseDown(false)
+    , m_wideImage(false)
+    , m_skipResizeEvent(false)
     , m_isFullScreen(false)
     , m_scrollMode(false)
 {
@@ -109,7 +109,7 @@ void ImageView::resetBackgroundColor()
 }
 
 
-void ImageView::on_volumeChanged_triggered(QString path)
+void ImageView::on_volumeChanged_triggered(QString )
 {
     m_pageRotations = QVector<int>(m_pageManager->size());
 }
@@ -147,7 +147,7 @@ void ImageView::on_clearImages_triggered()
     horizontalScrollBar()->setValue(0);
     verticalScrollBar()->setValue(0);
 }
-static int paintCnt=0;
+//static int paintCnt=0;
 void ImageView::readyForPaint() {
 //    qDebug() << "readyForPaint " << paintCnt++;
     if(qApp->Effect() > qvEnums::UsingFixedShader)

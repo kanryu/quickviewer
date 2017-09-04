@@ -45,15 +45,16 @@ public:
 
     ImageContent(){}
     ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info)
-        : Image(image), Path(path), BaseSize(size), ImportSize(image.size()), Info(info) {}
+        : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info) {}
     ImageContent(const ImageContent& rhs)
         : Image(rhs.Image)
         , ResizedImage(rhs.ResizedImage)
         , Movie(rhs.Movie)
-        , Path(rhs.Path)
         , BaseSize(rhs.BaseSize)
         , ImportSize(rhs.ImportSize)
-        , Info(rhs.Info) {}
+        , Path(rhs.Path)
+        , Info(rhs.Info)
+    {}
     inline ImageContent& operator=(const ImageContent &rhs)
     {
         Image = rhs.Image;

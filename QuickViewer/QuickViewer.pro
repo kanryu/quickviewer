@@ -76,7 +76,7 @@ win32 {
             QMAKE_LFLAGS += /LARGEADDRESSAWARE
         }
     }
-    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32
+    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32 -luuid
 }
 unix {
     DEFINES += _UNIX
@@ -161,6 +161,8 @@ win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer
     SOURCES += src/mainwindowforwindows.cpp ../AssociateFilesWithQuickViewer/fileassocdialog.cpp
     HEADERS += src/mainwindowforwindows.h ../AssociateFilesWithQuickViewer/fileassocdialog.h
+    *g++*: DEFINES += NTDDI_VERSION=NTDDI_VISTA
+
 }
 
 

@@ -8,9 +8,10 @@ PageManager::PageManager(QObject* parent)
     : QObject(parent)
     , m_currentPage(0)
     , m_wideImage(false)
-    , m_fileVolume(nullptr)
-    , m_volumes(qApp->MaxVolumesCache())
     , m_prohibit2Pages(false)
+    , m_volumes(qApp->MaxVolumesCache())
+    , m_fileVolume(nullptr)
+    , m_imaveView(nullptr)
 //    , m_builderForAssoc("", this)
 {
 

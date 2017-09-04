@@ -10,10 +10,10 @@
 FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *)
     : QWidget(parent)
     , ui(new Ui::FolderWindow)
-    , m_itemModel(this)
-    , m_itemDelegate(parent, this)
     , m_sortModeMenu(nullptr)
     , m_itemContextMenu(nullptr)
+    , m_itemModel(this)
+    , m_itemDelegate(parent, this)
 {
     ui->setupUi(this);
 
@@ -66,6 +66,8 @@ bool FolderWindow::eventFilter(QObject *obj, QEvent *event)
 //    QMouseEvent *mouseEvent = NULL;
     QContextMenuEvent *contextEvent = nullptr;
     switch (event->type()) {
+    default:
+        break;
     case QEvent::ContextMenu:
         contextEvent = dynamic_cast<QContextMenuEvent*>(event);
         QPoint inner = ui->folderView->mapFromGlobal(QCursor::pos());
@@ -220,7 +222,7 @@ void FolderWindow::resetSortMode()
                                 : ui->actionOrderByUpdatedAt->text());
 }
 
-void FolderWindow::resetPathLabel(int maxWidth)
+void FolderWindow::resetPathLabel(int )
 {
 //    QFontMetrics fontMetrics(ui->pathLabel->font());
 //    QString pathLabelTxt = fontMetrics.elidedText(

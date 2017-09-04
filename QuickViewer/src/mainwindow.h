@@ -19,10 +19,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    virtual bool moveToTrush(QString path) {return false;}
+    virtual bool moveToTrush(QString ) {return false;}
     virtual bool setStayOnTop(bool ) {return false;}
     virtual void setWindowTop() {}
-    virtual void setMailAttachment(QString path) {}
+    virtual void setMailAttachment(QString ) {}
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
     void resetShortcutKeys();

@@ -12,11 +12,11 @@ static ImageContent pathThrough(ImageContent ic) { return ic; }
 VolumeManager::VolumeManager(QObject *parent, IFileLoader* loader, PageManager* pageManager)
     : QObject(parent)
     , m_cnt(0)
+    , m_imageCache(qApp->MaxImagesCache())
     , m_loader(loader)
     , m_cacheMode(CacheMode::Normal)
     , m_pageManager(pageManager)
     , m_enumerated(false)
-    , m_imageCache(qApp->MaxImagesCache())
     , m_openedWithSpecifiedImageFile(false)
 {
     m_volumePath = m_loader->volumePath();
@@ -107,6 +107,8 @@ void VolumeManager::on_ready()
             m_imageCache.insert(cnt, QtConcurrent::run(pathThrough, ic));
         }
         return;
+    default:
+        break;
     }
     foreach (const int of, offsets) {
         int cnt = m_cnt+of;

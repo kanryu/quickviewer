@@ -130,7 +130,6 @@ private:
 
     SavedPoint m_ptLeftTop;
     QGraphicsScene* m_scene;
-    bool m_isMouseDown;
     Qt::AnchorPoint m_hoverState;
     /**
      * @brief for manual ZoomIn or ZoomOut
@@ -139,13 +138,14 @@ private:
     QVector<int> m_pageRotations;
     int viewSizeIdx;
     QFont m_font;
-    bool m_wideImage;
-    bool m_skipResizeEvent;
 
     PageManager* m_pageManager;
     ShaderManager m_effectManager;
     QTimer* m_slideshowTimer;
 
+    bool m_isMouseDown;
+    bool m_wideImage;
+    bool m_skipResizeEvent;
     bool m_isFullScreen;
     bool m_scrollMode;
 };

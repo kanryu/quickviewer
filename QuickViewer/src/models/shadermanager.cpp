@@ -92,8 +92,8 @@ void LanczosShaderEffect::createOffsets(int count, float width, Qt::Orientation 
 /// \param parent
 ShaderManager::ShaderManager(QObject *parent)
     : QObject(parent)
-    , pageCnt(0)
     , m_oldEffect(qvEnums::Bilinear)
+    , pageCnt(0)
 {
 #ifndef QV_WITHOUT_OPENGL
     loadShader(m_bicubic, qApp->BicubicShaderPath());
@@ -122,6 +122,7 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &, QSi
         return;
     qvEnums::ShaderEffect effect = qApp->Effect();
     switch(effect) {
+    default: break;
     case qvEnums::CpuBicubic:
     case qvEnums::Bilinear:
     case qvEnums::BilinearAndCpuBicubic:

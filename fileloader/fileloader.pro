@@ -15,12 +15,14 @@ win32-msvc* {
 }
 
 *g++* {
+    win32: CONFIG += staticlib
     QMAKE_LFLAGS += -Wl,-rpath,../lib
     QMAKE_CXXFLAGS += -std=c++11
+    DEFINES += NTDDI_VERSION=NTDDI_VISTA
 }
 
 win32 {
-    LIBS += -luser32 -ladvapi32 -lShlwapi
+    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32
 }
 unix {
     DEFINES += _UNIX

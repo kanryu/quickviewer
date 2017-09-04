@@ -11,18 +11,16 @@
 
 QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
+    , m_mainThread(QThread::currentThread())
+    , m_maxTextureSize(4096)
+    , m_effect(qvEnums::Bilinear)
+    , m_translator(nullptr)
 #ifdef Q_OS_WIN
     , m_settings(getApplicationFilePath(APP_INI), QSettings::IniFormat, this)
 #else
     , m_settings(getUserHomeFilePath(APP_INI), QSettings::IniFormat, this)
 #endif
-
-    , m_effect(qvEnums::Bilinear)
-    , m_glInitialized(false)
-    , m_maxTextureSize(4096)
     , m_bookshelfManager(nullptr)
-    , m_mainThread(QThread::currentThread())
-    , m_translator(nullptr)
 //    , m_languageSelector("quickviewer_", "translations/")
     // ATTENTION:
     // default 'QLibraryInfo::location(TranslationsPath)' is "[QTDIR]/translations"

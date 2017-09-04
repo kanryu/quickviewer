@@ -3,8 +3,8 @@
 
 VolumeItemModel::VolumeItemModel(QObject* parent)
     : QAbstractItemModel(parent)
-    , m_catalogViewMode(qvEnums::Icon)
     , m_volumeSearch(nullptr)
+    , m_catalogViewMode(qvEnums::Icon)
 {
 
 }

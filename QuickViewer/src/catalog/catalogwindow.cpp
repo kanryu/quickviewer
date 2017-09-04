@@ -228,7 +228,7 @@ void CatalogWindow::dropEvent(QDropEvent *e)
     resetVolumes();
 }
 
-void CatalogWindow::on_treeItemChanged(QString path)
+void CatalogWindow::on_treeItemChanged(QString)
 {
     //ui->pathCombo->setCurrentText(QDir::toNativeSeparators(path));
 }
