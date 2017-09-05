@@ -6,7 +6,7 @@ if [ ! -d $QVDIR ] ; then
   mkdir $QVDIR
 fi
 if [ ! -e $QVDIR/thumbnail.sqlite3.db ] ; then
-  cp var/database/thumbnail.sqlite3.db $QVDIR
+  cp $APPDIR/var/database/thumbnail.sqlite3.db $QVDIR
 fi
 
 #printenv

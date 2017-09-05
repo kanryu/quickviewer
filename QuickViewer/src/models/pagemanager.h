@@ -16,7 +16,7 @@ public:
 
     // Volumes
     bool loadVolume(QString path, bool coverOnly=false);
-    bool loadVolumeWithFile(QString path, QStringList images=QStringList());
+    bool loadVolumeWithFile(QString path, bool prohibitProhibit2Page=false);
     void nextVolume();
     void prevVolume();
 

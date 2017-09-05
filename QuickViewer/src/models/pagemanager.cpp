@@ -42,20 +42,20 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
     return true;
 }
 
-bool PageManager::loadVolumeWithFile(QString path, QStringList images)
+bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
 {
     QString qpath = QDir::fromNativeSeparators(path);
     QDir dir(qpath);
     dir.cdUp();
     QString pathbase = dir.canonicalPath();
-    if(m_volumes.contains(pathbase)) {
-        m_prohibit2Pages = true;
+    if(m_volumes.contains(pathbase) || (prohibitProhibit2Page && qApp->DualView())) {
+        m_prohibit2Pages = !prohibitProhibit2Page;
         bool result = loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
         m_prohibit2Pages = false;
         return result;
     }
 
-    VolumeManagerBuilder builder(qpath, this, images);
+    VolumeManagerBuilder builder(qpath, this);
     VolumeManager* newer = builder.buildForAssoc();
     if(!newer) {
 //        return false;

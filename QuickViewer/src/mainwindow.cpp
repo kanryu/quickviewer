@@ -181,9 +181,9 @@ MainWindow::MainWindow(QWidget *parent)
         return;
     }
     // auto restore
-    if(qApp->AutoLoaded() && qApp->Bookmarks().size() > 0) {
-        QString bookmark = qApp->Bookmarks().takeFirst();
-        loadVolume(bookmark);
+    if(qApp->AutoLoaded() && !qApp->LastViewPath().isEmpty()) {
+        QString bookmark = qApp->LastViewPath();
+        loadVolume(bookmark, true);
         makeBookmarkMenu();
     }
 }
@@ -193,7 +193,7 @@ MainWindow::~MainWindow()
 {
     if(qApp->AutoLoaded() && m_pageManager.currentPageCount() > 0) {
         QString path = QDir::fromNativeSeparators(m_pageManager.currentPagePath());
-        qApp->addBookMark(path, true);
+        qApp->setLastViewPath(path);
     }
     delete ui;
     m_pageManager.dispose();
@@ -356,11 +356,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     return QObject::eventFilter(obj, event);
 }
 
-void MainWindow::loadVolume(QString path)
+void MainWindow::loadVolume(QString path, bool prohibitProhibit2Page)
 {
     QStringList seps = path.split("::");
     if(!IFileLoader::isArchiveFile(seps[0]) && IFileLoader::isImageFile(path)) {
-        m_pageManager.loadVolumeWithFile(path);
+        m_pageManager.loadVolumeWithFile(path, prohibitProhibit2Page);
         return;
     }
     if(m_pageManager.loadVolume(path)) {

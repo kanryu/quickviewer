@@ -22,10 +22,11 @@ QStringList FileLoaderRarArchive::contents()
 void FileLoaderRarArchive::initialize()
 {
     foreach(const QString& name, d->fileNameList()) {
-        if(IFileLoader::isImageFile(name)) {
-            m_imageFileList.append(name);
-        } else if(IFileLoader::isArchiveFile(name)) {
-            m_subArchiveList.append(name);
+        QString filename = QDir::toNativeSeparators(name);
+        if(IFileLoader::isImageFile(filename)) {
+            m_imageFileList.append(filename);
+        } else if(IFileLoader::isArchiveFile(filename)) {
+            m_subArchiveList.append(filename);
         }
     }
     IFileLoader::sortFiles(m_imageFileList);

@@ -167,7 +167,8 @@ public:
     void setAutoLoaded (bool autoLoaded) { m_autoLoaded = autoLoaded; }
     bool ProhibitMultipleRunning() { return m_prohibitMultipleRunning; }
     void setProhibitMultipleRunning (bool prohibitMultipleRunning) { m_prohibitMultipleRunning = prohibitMultipleRunning; }
-
+    QString LastViewPath() { return m_lastViewPath; }
+    void setLastViewPath (QString lastViewPath) { m_lastViewPath = lastViewPath; }
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
@@ -409,6 +410,7 @@ private:
     QStringList m_bookmarks;
     int m_maxBookmarkCount;
     bool m_prohibitMultipleRunning;
+    QString m_lastViewPath;
 
     // Folder
     QString m_homeFolderPath;

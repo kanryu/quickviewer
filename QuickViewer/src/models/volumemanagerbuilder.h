@@ -13,7 +13,7 @@ public:
     QStringList Filenames;
     ImageContent Ic;
 
-    VolumeManagerBuilder(QString path, PageManager* pageManager=nullptr, QStringList images=QStringList());
+    VolumeManagerBuilder(QString path, PageManager* pageManager=nullptr);
 
     /**
      * @brief build

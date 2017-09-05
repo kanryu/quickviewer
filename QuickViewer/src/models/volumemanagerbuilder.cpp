@@ -44,10 +44,9 @@ VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path,
     return nullptr;
 }
 
-VolumeManagerBuilder::VolumeManagerBuilder(QString path, PageManager *pageManager, QStringList images)
+VolumeManagerBuilder::VolumeManagerBuilder(QString path, PageManager *pageManager)
     : QObject(pageManager)
     , Path(path)
-    , Filenames(images)
     , m_pageManager(pageManager)
     , m_volumeManager(nullptr)
 {

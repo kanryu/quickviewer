@@ -34,12 +34,13 @@ void FileLoader7zArchive::initialize()
 {
     foreach(const Qt7zFileInfo& info, d->m_reader.fileInfoList()) {
         if(!info.isDir) {
-            if(IFileLoader::isImageFile(info.fileName)) {
-                m_imageFileList.append(info.fileName);
-                d->m_fileinfomap[info.fileName] = info;
-            } else if(IFileLoader::isArchiveFile(info.fileName)) {
-                m_subArchiveList.append(info.fileName);
-                d->m_fileinfomap[info.fileName] = info;
+            QString filename = QDir::toNativeSeparators(info.fileName);
+            if(IFileLoader::isImageFile(filename)) {
+                m_imageFileList.append(filename);
+                d->m_fileinfomap[filename] = info;
+            } else if(IFileLoader::isArchiveFile(filename)) {
+                m_subArchiveList.append(filename);
+                d->m_fileinfomap[filename] = info;
             }
         }
     }
@@ -57,7 +58,7 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
 
         QBuffer iobuffer(&bytes);
         iobuffer.open(QIODevice::WriteOnly);
-        d->m_reader.extractFile(name, &iobuffer);
+        d->m_reader.extractFile(info.fileName, &iobuffer);
     }
     mutex.unlock();
     return bytes;

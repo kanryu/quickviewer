@@ -25,6 +25,7 @@ public:
     virtual void setMailAttachment(QString ) {}
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
+    void loadVolume(QString path, bool prohibitProhibit2Page=false);
     void resetShortcutKeys();
     void keyPressEvent(QKeyEvent *event);
     void makeHistoryMenu();
@@ -60,7 +61,6 @@ signals:
 
 public slots:
     // File
-    void loadVolume(QString path);
     void onActionAutoLoaded_triggered(bool autoreload);
     void onActionClearHistory_triggered();
     void onMenuHistory_triggered(QAction *action);
