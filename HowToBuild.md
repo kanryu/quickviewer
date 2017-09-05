@@ -28,7 +28,7 @@ $ git submodule update
 
 ## 2. Make a project to build
 
-Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
+Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) and [appimagetool](https://github.com/AppImage/AppImageKit) are required.
 
 ### for QtCreator
 
@@ -131,7 +131,7 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
 
 ### for Linux (AppImage)
 
-Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) is required.
+Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeployqt) and [appimagetool](https://github.com/AppImage/AppImageKit) are required.
 
 - **[QuickViewer-XXX-AppDir]**
     - Base directory making up AppImage
@@ -144,10 +144,12 @@ Note: For Linux builds, [linuxdeployqt](https://github.com/probonopd/linuxdeploy
     - Destination of multi-language qm files, and languages.ini
 - **AppDir/QuickViewer.desktop**
     - open desktop configulation
-- **$HOME/.quickviewer.ini**
+- **$HOME/.quickviewer/quickviewer.ini**
     - Main configuration file. Includes keyboard and mouse settings
-- **$HOME/.quickviewer-progress.ini**
+- **$HOME/.quickviewer/progress.ini**
     - Record the last displayed image in volume
+- **$HOME/.quickviewer/thumbnail.sqlite3.db**
+    - SQLite database which contains Catalogs and thumbnails.
 
 **AppDir/usr/bin/qt.conf** is currently not used.
 
