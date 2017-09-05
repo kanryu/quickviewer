@@ -95,7 +95,7 @@ void VolumeManager::on_ready()
             offsets.removeLast();
         break;
     case CacheMode::CreateThumbnail:
-        m_currentCacheSync = futureLoadImageFromFileVolume(this, 0, QSize());
+        m_currentCacheSync = futureLoadImageFromFileVolume(this, m_filelist[0], QSize());
         return;
     case CacheMode::CoverOnly:
         offsets = {0, 1};
