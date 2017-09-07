@@ -81,6 +81,7 @@ win32 {
 unix {
     DEFINES += _UNIX
     QMAKE_LFLAGS += -Wl,-rpath,../lib
+    GCC_MAJOR = 6
 }
 
 
@@ -331,6 +332,7 @@ linux : !CONFIG(debug, debug|release) {
     install_apprun.depends = install_install_deploy_files
 
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
+    install_translations.commands = ldd $${MY_DEFAULT_INSTALL}/usr/bin/QuickViewer | awk \'\$$1==\"libstdc++.so.$${GCC_MAJOR}\" {print \$$3}\' | xargs cp -t $${MY_DEFAULT_INSTALL}/usr/lib
     install_translations.files = \
         $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \
