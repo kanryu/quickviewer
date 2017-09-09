@@ -1,4 +1,4 @@
-# Contributed for multilingual
+# Contribution for multilingual
 
 Unless otherwise noted, QuickViewer Developer Team has created it.
 
@@ -14,8 +14,16 @@ The file whose author name is specified is the copyrighted work of the author, b
 
 ## How to translate
 
+### Get translation tool
 
-1. Get a Qt SDK from there. https://www.qt.io/download-open-source/ or https://goo.gl/3TZjmW
+Get a Qt SDK from there. 
+
+- https://www.qt.io/download-open-source/ (official)
+- https://goo.gl/3TZjmW (in Windows)
+- *apt install qt4-linguist-tools* (in Ubuntu Linux)
+
+### Procedure of work
+
 1. clone the repository into local. https://github.com/kanryu/quickviewer
 1. rename 'QuickViewer/translations/quickviewer_es.ts' to yours (e.g. quickviewer_de.ts as German)
 1. Open 'quickviewer_de.ts' with Qt Linguist
