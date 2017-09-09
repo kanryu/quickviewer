@@ -22,3 +22,9 @@
 [submodule "QuickViewer/src/qnamedpipe"]
 	path = QuickViewer/src/qnamedpipe
 	url = https://github.com/kanryu/qnamedpipe
+[submodule "libexpat/libexpat"]
+	path = libexpat/libexpat
+	url = https://github.com/libexpat/libexpat
+[submodule "exiv2/exiv2"]
+	path = exiv2/exiv2
+	url = https://github.com/Exiv2/exiv2

@@ -10,5 +10,6 @@ The file whose author name is specified is the copyrighted work of the author, b
 
 - qt_el.qm
     - It is part of the Qt SDK, but since it is not included in the current SDK, it is included in this source tree.
+    - http://code.qt.io/cgit/qt/qttranslations.git/commit/?id=44647ef2cd1908279f4a1142b7cbe43caede544d
 
 

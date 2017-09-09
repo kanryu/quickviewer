@@ -758,7 +758,7 @@
     </message>
     <message>
         <source>If you press the OK button you will write a registry. Cancel if unnecessary.</source>
-        <translation type="unfinished">OKボタンを押すとレジストリが書き込まれます。不要な場合はキャンセルしてください。</translation>
+        <translation>OKボタンを押すとレジストリが書き込まれます。不要な場合はキャンセルしてください。</translation>
     </message>
 </context>
 <context>
@@ -1199,7 +1199,7 @@
     <message>
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Command</translation>
     </message>
 </context>
 <context>
@@ -2090,7 +2090,7 @@
     <message>
         <source>Image Associations (only you)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
-        <translation type="unfinished">画像の関連付け (あなたのみ)</translation>
+        <translation>画像の関連付け (あなたのみ)</translation>
     </message>
 </context>
 <context>
