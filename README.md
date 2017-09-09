@@ -1,8 +1,7 @@
 QuickViewer
 ===========
 
-A image viewer application for folders/archives, it can show images very fast
-
+A image/comic viewer application for Windows and Linux, it can show images very fast
 
 ## Project Website(in English / Japanese)
 
