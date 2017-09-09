@@ -35,7 +35,7 @@ qm=quickviewer_de.qm
 
 
 
-You can send it to us as an email attachment or you can send it with the usual GitHub pull request procedure.
+You can send 'quickviewer_de.ts' to us as an email attachment or you can send it with the usual GitHub pull request procedure.
 
 
 
