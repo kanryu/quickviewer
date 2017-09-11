@@ -25,6 +25,8 @@ signals:
 private:
     Ui::ExifDialog *ui;
     QString generateFlash(char flash);
+    QString generateFlashMode(unsigned short mode);
+    QString generateFlashReturnedLight(unsigned short light);
     QString generateOrientation(unsigned short orient);
 };
 

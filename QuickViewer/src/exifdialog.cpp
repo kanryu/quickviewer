@@ -19,6 +19,9 @@ QString ExifDialog::generateFlash(char flash)
 {
     QString notflash = tr("Flash did not fire", "JPEG EXIF Flash setting value (0x0)");
     switch(flash) {
+    default:break;
+//    case 0x0: return notflash;
+//    case 0x1: return tr("Flash fired", "JPEG EXIF Flash setting value (0x1)");
     case 0x0000: return notflash;
     case 0x0001: return tr("Flash fired", "JPEG EXIF Flash setting value (0x1)");
     case 0x0005: return tr("Strobe return light not detected", "JPEG EXIF Flash setting value (0x5)");
@@ -41,6 +44,32 @@ QString ExifDialog::generateFlash(char flash)
     case 0x0059: return tr("Flash fired, auto mode, red-eye reduction mode", "JPEG EXIF Flash setting value (0x59)");
     case 0x005D: return tr("Flash fired, auto mode, return light not detected, red-eye reduction mode", "JPEG EXIF Flash setting value (0x5D)");
     case 0x005F: return tr("Flash fired, auto mode, return light detected, red-eye reduction mode", "JPEG EXIF Flash setting value (0x5F)");
+    }
+    return notflash;
+}
+
+QString ExifDialog::generateFlashMode(unsigned short mode)
+{
+    QString notflash = tr("unknown");
+    switch(mode) {
+    default:break;
+    case 0x0: return notflash;
+    case 0x1: return tr("Compulsory flash mode", "JPEG EXIF Flash setting value with (0x8)");
+    case 0x2: return tr("Compulsory flash suppression", "JPEG EXIF Flash setting value with (0x9)");
+    case 0x3: return tr("Automatic mode", "JPEG EXIF Flash setting value with (0xa)");
+    }
+    return notflash;
+}
+
+QString ExifDialog::generateFlashReturnedLight(unsigned short light)
+{
+    QString notflash = tr("No strobe return detection function", "JPEG EXIF Flash setting value without (0x6)");
+    switch(light) {
+    default:break;
+    case 0x0: return notflash;
+    case 0x1: return tr("Reserved", "JPEG EXIF Flash setting value with (0x2)");
+    case 0x2: return tr("Strobe return light not detected", "JPEG EXIF Flash setting value with (0x4)");
+    case 0x3: return tr("Strobe return light detected", "JPEG EXIF Flash setting value with (0x6)");
     }
     return notflash;
 }
@@ -92,7 +121,7 @@ void ExifDialog::setExif(const easyexif::EXIFInfo& info)
     tags << linefmt.arg(tr("SubjectDistance")).arg(info.SubjectDistance);
     tags << linefmt.arg(tr("FocalLength")).arg(info.FocalLength);
     tags << linefmt.arg(tr("FocalLengthIn35mm")).arg(info.FocalLengthIn35mm);
-    tags << linefmt.arg(tr("Flash")).arg(generateFlash(info.Flash));
+    tags << linefmt.arg(tr("Flash")).arg(generateFlash(info.Flash | (info.FlashMode<<3) | (info.FlashReturnedLight<<1)));
     tags << linefmt.arg(tr("MeteringMode")).arg(info.MeteringMode);
     tags << linefmt.arg(tr("ImageDescription")).arg(QString::fromStdString(info.ImageDescription));
     tags << linefmt.arg(tr("Copyright")).arg(QString::fromStdString(info.Copyright));
