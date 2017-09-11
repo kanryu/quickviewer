@@ -699,7 +699,7 @@ void MainWindow::onMenuHistory_triggered(QAction *action)
     loadVolume(action->text().mid(4));
 }
 
-#define EXIF_DIALOG_WIDTH 250
+#define EXIF_DIALOG_WIDTH 280
 
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
