@@ -60,7 +60,8 @@ INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
 INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
-INCLUDEPATH += src/qfullscreenframe ./src/qlanguageselector ./src/qnamedpipe
+INCLUDEPATH += ./src/qfullscreenframe ./src/qlanguageselector ./src/qnamedpipe ./src/qactionmanager
+
 
 LIBDIR = ../lib
 
@@ -96,7 +97,6 @@ SOURCES += \
     src/folderview/foldertreeview.cpp \
     src/folderview/folderwindow.cpp \
     src/imageview.cpp \
-    src/keyconfigdialog.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/models/bookprogressmanager.cpp \
@@ -115,11 +115,12 @@ SOURCES += \
     src/qnamedpipe/qnamedpipe.cpp \
     src/qfullscreenframe/qinnerframe.cpp \
     src/models/qvmovie.cpp \
-    src/models/qmousesequence.cpp \
-    src/mouseconfigdialog.cpp \
     src/models/volumemanager.cpp \
     src/models/volumemanagerbuilder.cpp \
-    src/models/qactionmanager.cpp
+    src/qactionmanager/keyconfigdialog.cpp \
+    src/qactionmanager/mouseconfigdialog.cpp \
+    src/qactionmanager/qactionmanager.cpp \
+    src/qactionmanager/qmousesequence.cpp \
 
 
 HEADERS  += \
@@ -134,7 +135,6 @@ HEADERS  += \
     src/folderview/foldertreeview.h \
     src/folderview/folderwindow.h \
     src/imageview.h \
-    src/keyconfigdialog.h \
     src/mainwindow.h \
     src/models/bookprogressmanager.h \
     src/models/pagecontent.h \
@@ -154,11 +154,12 @@ HEADERS  += \
     src/qnamedpipe/qnamedpipe.h \
     src/qfullscreenframe/qinnerframe.h \
     src/models/qvmovie.h \
-    src/models/qmousesequence.h \
-    src/mouseconfigdialog.h \
     src/models/volumemanager.h \
     src/models/volumemanagerbuilder.h \
-    src/models/qactionmanager.h
+    src/qactionmanager/keyconfigdialog.h \
+    src/qactionmanager/mouseconfigdialog.h \
+    src/qactionmanager/qactionmanager.h \
+    src/qactionmanager/qmousesequence.h \
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer
@@ -177,7 +178,7 @@ precompile_header:!isEmpty(PRECOMPILED_HEADER) {
 FORMS    += \
     src/mainwindow.ui \
     src/exifdialog.ui \
-    src/keyconfigdialog.ui \
+    src/qactionmanager/keyconfigdialog.ui \
     src/catalog/cataloglist.ui \
     src/catalog/catalogwindow.ui \
     src/catalog/createdb.ui \
