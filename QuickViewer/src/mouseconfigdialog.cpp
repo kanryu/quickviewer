@@ -1,9 +1,11 @@
 #include "mouseconfigdialog.h"
 #include "ui_keyconfigdialog.h"
 
-MouseConfigDialog::MouseConfigDialog(QWidget *parent)
+
+MouseConfigDialog::MouseConfigDialog(MouseConfigDialog::MouseActionManager &mouseActions, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::KeyConfigDialog)
+    , m_mouseActions(mouseActions)
     , m_keyCapturing(false)
     , m_ignoreEdited(false)
 {
@@ -25,6 +27,7 @@ MouseConfigDialog::MouseConfigDialog(QWidget *parent)
 
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(onStandardButton_clicked(QAbstractButton*)));
     connect(ui->treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(onTreeWidget_currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
     connect(ui->resetButton, SIGNAL(clicked()), this, SLOT(onResetButton_clicked()));
     connect(ui->addSequenceButton, SIGNAL(clicked()), this, SLOT(onAddSequenceButton_clicked()));
@@ -48,9 +51,14 @@ MouseConfigDialog::MouseConfigDialog(QWidget *parent)
     header->setText(1, tr("Description", "Title of the column that displays the meaning of the action to be registered with the mouse sequence"));
     header->setText(2, tr("Current Mouse Sequence", "Title of the column of the content of the mouse sequence registered for Action"));
 
-    //QVApplication* app = qApp;
-    QMap<QString, QAction*>& actions = qApp->ActionMapByName();
-    QMap<QString, QMouseSequence>& mouseconfigs = qApp->MouseConfigMap();
+    resetView();
+}
+
+void MouseConfigDialog::resetView()
+{
+    ui->treeWidget->clear();
+    QMap<QString, QAction*>& actions = m_mouseActions.actions();
+    QMap<QString, QMouseSequence>& mouseconfigs = m_mouseActions.keyMaps();
     foreach(const QString& key, actions.keys()) {
         QAction* action = actions[key];
         if(!action) continue;
@@ -77,12 +85,6 @@ void MouseConfigDialog::setEditTextWithoutSignal(QString text)
     m_ignoreEdited = false;
 }
 
-void MouseConfigDialog::revertMouseChanges()
-{
-    qApp->revertMouseMap(m_prevKeyConfigs);
-
-}
-
 void MouseConfigDialog::onTreeWidget_currentItemChanged(QTreeWidgetItem *item, QTreeWidgetItem *)
 {
     if(item) {
@@ -98,17 +100,9 @@ void MouseConfigDialog::onTreeWidget_currentItemChanged(QTreeWidgetItem *item, Q
 
 void MouseConfigDialog::onRecordButton_keySequenceChanged(QMouseSequence key)
 {
-    //qDebug() << "on_keySequence_changed:" << key;
-    if(!m_prevKeyConfigs.contains(m_actionName))
-        m_prevKeyConfigs[m_actionName] = qApp->getMouseSequence(m_actionName);
-
     QString shortcutText = key.toString();
     setEditTextWithoutSignal(shortcutText);
-//    if(!keySequenceIsValid(key)) {
-//        ui->warningLabel->setText(tr("Invalid key sequence.", "Message when rejecting input contents of inappropriate mouse sequence"));
-//        return;
-//    }
-    if(!shortcutText.isEmpty() && markCollisions(key)) {
+    if(!shortcutText.isEmpty() && m_mouseActions.markCollisions(m_actionName, key)) {
         ui->warningLabel->setText(tr("Mouse sequence has potential conflicts.", "Text to be displayed when the entered mouse sequence conflicts with another mouse sequence"));
         return;
     }
@@ -118,7 +112,7 @@ void MouseConfigDialog::onRecordButton_keySequenceChanged(QMouseSequence key)
 
     QTreeWidgetItem *current = ui->treeWidget->currentItem();
     current->setText(2, shortcutText);
-    qApp->setMouseSequence(m_actionName, key);
+    m_mouseActions.updateKey(m_actionName, key);
 }
 
 void MouseConfigDialog::onAddSequenceButton_clicked()
@@ -149,11 +143,11 @@ void MouseConfigDialog::onAddSequenceButton_clicked()
 
 void MouseConfigDialog::onResetButton_clicked()
 {
-    QMouseSequence key = qApp->getMouseSequenceDefault(m_actionName);
+    QMouseSequence key = m_mouseActions.getKeyDefault(m_actionName);
 //    QString shortcutText = keySequenceToEditString(key);
     QString shortcutText = key.toString();
     setEditTextWithoutSignal(shortcutText);
-    if(markCollisions(key)) {
+    if(m_mouseActions.markCollisions(m_actionName, key)) {
         ui->warningLabel->setText(tr("Mouse sequence has potential conflicts.", "Text to be displayed when the entered mouse sequence conflicts with another mouse sequence"));
         return;
     }
@@ -161,7 +155,7 @@ void MouseConfigDialog::onResetButton_clicked()
 
     QTreeWidgetItem *current = ui->treeWidget->currentItem();
     current->setText(2, shortcutText);
-    qApp->setMouseSequence(m_actionName, key);
+    m_mouseActions.updateKey(m_actionName, key);
 }
 
 void MouseConfigDialog::onShortcutEdit_textChanged(QString text)
@@ -188,6 +182,16 @@ void MouseConfigDialog::onCheckBox_toggled()
     ui->addSequenceButton->setEnabled(enabled);
 }
 
+void MouseConfigDialog::onStandardButton_clicked(QAbstractButton *button)
+{
+    switch(ui->buttonBox->standardButton(button)) {
+    case QDialogButtonBox::RestoreDefaults:
+        m_mouseActions.resetByDefault();
+        resetView();
+        break;
+    }
+}
+
 void MouseConfigDialog::resetMouseCheckBox()
 {
     ui->checkBoxCtrl->setChecked(false);
@@ -202,16 +206,4 @@ void MouseConfigDialog::resetMouseCheckBox()
     ui->checkBoxBackward->setChecked(false);
 
     ui->radioButtonNone->setChecked(true);
-}
-
-bool MouseConfigDialog::markCollisions(QMouseSequence key)
-{
-    auto keymap = qApp->MouseConfigMapReverse();
-    for(int i = 0; i < key.Values().count(); i++) {
-        QMouseValue k(key.Values()[i]);
-        if(keymap.contains(k) && keymap[k] != m_actionName) {
-            return true;
-        }
-    }
-    return false;
 }

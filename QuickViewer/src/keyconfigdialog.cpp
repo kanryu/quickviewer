@@ -162,9 +162,10 @@ void ShortcutButton::handleToggleChange(bool toogleState)
 }
 
 
-KeyConfigDialog::KeyConfigDialog(QWidget *parent)
+KeyConfigDialog::KeyConfigDialog(KeyConfigDialog::KeyActionManager &keyActions, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::KeyConfigDialog)
+    , m_keyActions(keyActions)
     , m_keyCapturing(false)
     , m_ignoreEdited(false)
 {
@@ -173,6 +174,7 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
     ui->addSequenceButton->setVisible(false);
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(onStandardButton_clicked(QAbstractButton*)));
     connect(ui->treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(onTreeWidget_currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
     connect(ui->resetButton, SIGNAL(clicked()), this, SLOT(onResetButton_clicked()));
     connect(ui->shortcutEdit, SIGNAL(textChanged(QString)), this, SLOT(onShortcutEdit_textChanged(QString)));
@@ -186,9 +188,15 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
     header->setText(1, tr("Description", "Title of the column that displays the meaning of the action to be registered with the shortcut key"));
     header->setText(2, tr("CurrentShortcut", "Title of the column of the content of the shortcut key registered for Action"));
 
-    //QVApplication* app = qApp;
-    QMap<QString, QAction*>& actions = qApp->ActionMapByName();
-    QMap<QString, QKeySequence>& keyconfigs = qApp->KeyConfigMap();
+    resetView();
+}
+
+
+void KeyConfigDialog::resetView()
+{
+    ui->treeWidget->clear();
+    QMap<QString, QAction*>& actions = m_keyActions.actions();
+    QMap<QString, QKeySequence>& keyconfigs = m_keyActions.keyMaps();
     foreach(const QString& key, actions.keys()) {
         QAction* action = actions[key];
         if(!action) continue;
@@ -200,9 +208,8 @@ KeyConfigDialog::KeyConfigDialog(QWidget *parent)
 //        item->setSizeHint(1, QSize(240, 20));
         ui->treeWidget->addTopLevelItem(item);
     }
-
-
 }
+
 KeyConfigDialog::~KeyConfigDialog()
 {
     delete ui;
@@ -221,11 +228,6 @@ void KeyConfigDialog::setEditTextWithoutSignal(QString text)
     m_ignoreEdited = false;
 }
 
-void KeyConfigDialog::revertKeyChanges()
-{
-    qApp->revertKeyMap(m_prevKeyConfigs);
-}
-
 void KeyConfigDialog::onTreeWidget_currentItemChanged(QTreeWidgetItem *item, QTreeWidgetItem *)
 {
     //qDebug() << "on_currentCommandChanged: " << (item ? item->text(0):"nullptr") << (previous ? previous->text(0) :"nullptr");
@@ -238,17 +240,13 @@ void KeyConfigDialog::onTreeWidget_currentItemChanged(QTreeWidgetItem *item, QTr
 
 void KeyConfigDialog::onRecordButton_keySequenceChanged(QKeySequence key)
 {
-    //qDebug() << "on_keySequence_changed:" << key;
-    if(!m_prevKeyConfigs.contains(m_actionName))
-        m_prevKeyConfigs[m_actionName] = qApp->getKey(m_actionName);
-
     QString shortcutText = keySequenceToEditString(key);
     setEditTextWithoutSignal(shortcutText);
     if(!keySequenceIsValid(key)) {
         ui->warningLabel->setText(tr("Invalid key sequence.", "Message when rejecting input contents of inappropriate shortcut key"));
         return;
     }
-    if(markCollisions(key)) {
+    if(m_keyActions.markCollisions(m_actionName, key)) {
         ui->warningLabel->setText(tr("Key sequence has potential conflicts.", "Text to be displayed when the entered shortcut key conflicts with another shortcut key"));
         return;
     }
@@ -257,16 +255,16 @@ void KeyConfigDialog::onRecordButton_keySequenceChanged(QKeySequence key)
 
     QTreeWidgetItem *current = ui->treeWidget->currentItem();
     current->setText(2, shortcutText);
-    qApp->setKeySequence(m_actionName, key);
+    m_keyActions.updateKey(m_actionName, key);
 
 }
 
 void KeyConfigDialog::onResetButton_clicked()
 {
-    QKeySequence key = qApp->getKeyDefault(m_actionName);
+    QKeySequence key = m_keyActions.getKeyDefault(m_actionName);
     QString shortcutText = keySequenceToEditString(key);
     setEditTextWithoutSignal(shortcutText);
-    if(markCollisions(key)) {
+    if(m_keyActions.markCollisions(m_actionName, key)) {
         ui->warningLabel->setText(tr("Key sequence has potential conflicts.", "Text to be displayed when the entered shortcut key conflicts with another shortcut key"));
         return;
     }
@@ -274,7 +272,7 @@ void KeyConfigDialog::onResetButton_clicked()
 
     QTreeWidgetItem *current = ui->treeWidget->currentItem();
     current->setText(2, shortcutText);
-    qApp->setKeySequence(m_actionName, key);
+    m_keyActions.updateKey(m_actionName, key);
 }
 
 void KeyConfigDialog::onShortcutEdit_textChanged(QString text)
@@ -289,14 +287,12 @@ void KeyConfigDialog::onShortcutEdit_textChanged(QString text)
     }
 }
 
-bool KeyConfigDialog::markCollisions(QKeySequence key)
+void KeyConfigDialog::onStandardButton_clicked(QAbstractButton *button)
 {
-    QMap<QKeySequence, QString>& keymap = qApp->KeyConfigMapReverse();
-    for(int i = 0; i < key.count(); i++) {
-        QKeySequence k(key[i]);
-        if(keymap.contains(k) && keymap[k] != m_actionName) {
-            return true;
-        }
+    switch(ui->buttonBox->standardButton(button)) {
+    case QDialogButtonBox::RestoreDefaults:
+        m_keyActions.resetByDefault();
+        resetView();
+        break;
     }
-    return false;
 }

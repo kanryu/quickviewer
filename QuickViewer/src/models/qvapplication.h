@@ -9,6 +9,7 @@
 #include "bookprogressmanager.h"
 #include "qlanguageselector.h"
 #include "qmousesequence.h"
+#include "qactionmanager.h"
 
 #if defined(qApp)
 #undef qApp
@@ -85,7 +86,6 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool IconLongText READ IconLongText WRITE setIconLongText)
 
     // Key Config
-    Q_PROPERTY(QMap<QString, QKeySequence> KeyConfigMap READ KeyConfigMap)
 
     // Shaders
     Q_PROPERTY(qvEnums::ShaderEffect Effect READ Effect WRITE setEffect)
@@ -97,6 +97,8 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool ConfirmDeletePage READ ConfirmDeletePage WRITE setConfirmDeletePage)
 
 public:
+    typedef QActionManager<QKeySequence, QKeySequence, QAction*> KeyActionManager;
+    typedef QActionManager<QMouseSequence, QMouseValue, QAction*> MouseActionManager;
     explicit QVApplication(int &argc, char **argv);
     QString getApplicationFilePath(QString subFilePath);
     QString getUserHomeFilePath(QString subFilePath);
@@ -234,120 +236,12 @@ public:
     void setConfirmDeletePage(bool confirmDeletePage) { m_confirmDeletePage = confirmDeletePage; }
 
     // Key Config
-    QMap<QString, QAction*>& ActionMapByName() { return m_actionsByName; }
+    KeyActionManager& keyActions() { return m_keyActions; }
+    MouseActionManager& mouseActions() { return m_mouseActions; }
 
     void registDefaultKeyMap();
-    QMap<QString, QKeySequence>& KeyConfigMap() { return m_keyConfigs; }
-    QKeySequence getKey (const QString& actionName) { return m_keyConfigs.contains(actionName) ? m_keyConfigs[actionName] : QKeySequence(); }
-    QKeySequence getKeyDefault (const QString& actionName) { return m_keyConfigDefaults.contains(actionName) ? m_keyConfigDefaults[actionName] : QKeySequence(); }
-    QMap<QKeySequence, QString>& KeyConfigMapReverse() { return m_keyConfigsReverse; }
-
-    QAction* getActionFromKey(const QKeySequence seq) {
-        if(!m_keyConfigsReverse.contains(seq))
-            return nullptr;
-        QString name = m_keyConfigsReverse[seq];
-        return m_actionsByName[name];
-    }
-    void setKeySequence(const QString& actionName, const QKeySequence seq) {
-        if(!m_actionsByName.contains(actionName))
-            return;
-        QKeySequence old = m_keyConfigs[actionName];
-        for(int i = 0; i < old.count(); i++) {
-            m_keyConfigsReverse.remove(QKeySequence(old[i]));
-        }
-        m_keyConfigs[actionName] = seq;
-        for(int i = 0; i < seq.count(); i++) {
-            m_keyConfigsReverse[seq[i]] = actionName;
-        }
-    }
-
-    void revertKeyMap(QMap<QString, QKeySequence> revertMap) {
-        foreach(const QString& action, revertMap.keys()) {
-            m_keyConfigs[action] = revertMap[action];
-        }
-        m_keyConfigsReverse.clear();
-        foreach(const QString& action, m_keyConfigs.keys()) {
-            QKeySequence seq = m_keyConfigs[action];
-            for(int i = 0; i < seq.count(); i++) {
-                m_keyConfigsReverse[seq[i]] = action;
-            }
-        }
-    }
-//    QString getKeySequenceSerialized(const QString& actionName) {
-//        if(!m_keyConfigs.contains(actionName))
-//            return "";
-//        QKeySequence seq = m_keyConfigs[actionName];
-//        return seq.toString();
-//    }
-//    bool checkConflict(const QString& actionName, const QKeySequence seq) {
-//        if(!m_actionsByName.contains(actionName))
-//            return false;
-//        foreach(const QString& action, m_keyConfigs.keys()) {
-//            if(action == actionName)
-//                continue;
-//            QKeySequence current = m_keyConfigs[action];
-//            if(seq.matches(current) >= QKeySequence::PartialMatch)
-//                return false;
-//        }
-//        return true;
-//    }
     void registDefaultMouseMap();
-    QMap<QString, QMouseSequence>& MouseConfigMap() { return m_mouseConfigs; }
-    QMouseSequence getMouseSequence (const QString& actionName) { return m_mouseConfigs.contains(actionName) ? m_mouseConfigs[actionName] : QMouseSequence(); }
-    QMouseSequence getMouseSequenceDefault (const QString& actionName) { return m_mouseConfigDefaults.contains(actionName) ? m_mouseConfigDefaults[actionName] : QMouseSequence(); }
-    QMap<QMouseValue, QString>& MouseConfigMapReverse() { return m_mouseConfigsReverse; }
-
-    QAction* getActionFromMouse(const QMouseValue& seq) {
-        if(!m_mouseConfigsReverse.contains(seq))
-            return nullptr;
-        QString name = m_mouseConfigsReverse[seq];
-        return m_actionsByName[name];
-    }
-    void setMouseSequence(const QString& actionName, const QMouseSequence seq) {
-        if(!m_actionsByName.contains(actionName))
-            return;
-        QMouseSequence old = m_mouseConfigs[actionName];
-        for(int i = 0; i < old.Values().count(); i++) {
-            m_mouseConfigsReverse.remove(old.Values()[i]);
-        }
-        m_mouseConfigs[actionName] = seq;
-        for(int i = 0; i < seq.Values().count(); i++) {
-            m_mouseConfigsReverse[seq.Values()[i]] = actionName;
-        }
-    }
-
-    void revertMouseMap(QMap<QString, QMouseSequence> revertMap) {
-        foreach(const QString& action, revertMap.keys()) {
-            m_mouseConfigs[action] = revertMap[action];
-        }
-        m_mouseConfigsReverse.clear();
-        foreach(const QString& action, m_mouseConfigs.keys()) {
-            QMouseSequence seq = m_mouseConfigs[action];
-            for(int i = 0; i < seq.Values().count(); i++) {
-                m_mouseConfigsReverse[seq.Values()[i]] = action;
-            }
-        }
-    }
-
     void registActions(Ui::MainWindow* ui);
-    /**
-     * @brief registAction
-     * @param actionName
-     * @param action
-     * Register action into QMap. A shortcut key is assigned to each action,
-     *  and it becomes editable on KeyConfigDialog.
-     */
-    void registAction(const QString& actionName, QAction* action) {
-        m_actionsByName[actionName] = action;
-        QKeySequence seq = m_keyConfigs[actionName];
-        for(int i = 0; i < seq.count(); i++) {
-            m_keyConfigsReverse[seq[i]] = actionName;
-        }
-        QMouseSequence seq2 = m_mouseConfigs[actionName];
-        for(int i = 0; i < seq2.Values().count(); i++) {
-            m_mouseConfigsReverse[seq2.Values()[i]] = actionName;
-        }
-    }
 
     /**
      * @brief load settings from "quickviewer.ini"
@@ -430,15 +324,8 @@ private:
     bool m_iconLongText;
 
     // KeyConfig
-    QMap<QString, QAction*> m_actionsByName;
-
-    QMap<QString, QKeySequence> m_keyConfigs;
-    QMap<QString, QKeySequence> m_keyConfigDefaults;
-    QMap<QKeySequence, QString> m_keyConfigsReverse;
-
-    QMap<QString, QMouseSequence> m_mouseConfigs;
-    QMap<QString, QMouseSequence> m_mouseConfigDefaults;
-    QMap<QMouseValue, QString> m_mouseConfigsReverse;
+    QActionManager<QKeySequence, QKeySequence, QAction*> m_keyActions;
+    QActionManager<QMouseSequence, QMouseValue, QAction*> m_mouseActions;
 
 
     // Shader Effect

@@ -4,43 +4,42 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "models/qvapplication.h"
+#include "qactionmanager.h"
 
 namespace Ui {
 class KeyConfigDialog;
 }
 
-
-
 class KeyConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit KeyConfigDialog(QWidget *parent);
+    typedef QActionManager<QKeySequence, QKeySequence, QAction*> KeyActionManager;
+
+    explicit KeyConfigDialog(KeyActionManager& keyActions, QWidget *parent);
     ~KeyConfigDialog();
 
     bool eventFilter(QObject *obj, QEvent *event);
     void setEditTextWithoutSignal(QString text);
-    void revertKeyChanges();
+    void resetView();
+    KeyActionManager& keyActions() { return m_keyActions; }
 
 signals:
 
 public slots:
-//    void on_keySequenceItemSelected(QTree)
     void onTreeWidget_currentItemChanged(QTreeWidgetItem* item, QTreeWidgetItem * previous);
     void onRecordButton_keySequenceChanged(QKeySequence key);
     void onResetButton_clicked();
     void onShortcutEdit_textChanged(QString text);
+    void onStandardButton_clicked(QAbstractButton *button);
 
 
 private:
     Ui::KeyConfigDialog *ui;
-    bool m_keyCapturing;
     QString m_actionName;
-    QMap<QString, QKeySequence> m_prevKeyConfigs;
+    KeyActionManager m_keyActions;
     bool m_ignoreEdited;
-
-    bool markCollisions(QKeySequence key);
+    bool m_keyCapturing;
 };
 
 

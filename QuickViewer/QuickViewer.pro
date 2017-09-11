@@ -119,6 +119,7 @@ SOURCES += \
     src/mouseconfigdialog.cpp \
     src/models/volumemanager.cpp \
     src/models/volumemanagerbuilder.cpp \
+    src/models/qactionmanager.cpp
 
 
 HEADERS  += \
@@ -157,6 +158,7 @@ HEADERS  += \
     src/mouseconfigdialog.h \
     src/models/volumemanager.h \
     src/models/volumemanagerbuilder.h \
+    src/models/qactionmanager.h
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer

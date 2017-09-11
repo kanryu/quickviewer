@@ -103,6 +103,8 @@ public:
     {
         return m_seq < rhs.m_seq;
     }
+    inline QString operator[](const int idx) { return m_values[idx].toString(); }
+    inline int count() const { return m_values.count(); }
 
 private:
     QString m_seq;

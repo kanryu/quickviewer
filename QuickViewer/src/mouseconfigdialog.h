@@ -4,7 +4,8 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "models/qvapplication.h"
+#include "qactionmanager.h"
+#include "qmousesequence.h"
 
 namespace Ui {
 class KeyConfigDialog;
@@ -15,12 +16,16 @@ class MouseConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
-    MouseConfigDialog(QWidget *parent);
+    typedef QActionManager<QMouseSequence, QMouseValue, QAction*> MouseActionManager;
+
+    MouseConfigDialog(MouseActionManager& mouseActions, QWidget *parent);
     ~MouseConfigDialog();
 
     void setEditTextWithoutSignal(QString text);
-    void revertMouseChanges();
+//    void revertMouseChanges();
     void resetMouseCheckBox();
+    void resetView();
+    MouseActionManager& mouseActions() { return m_mouseActions; }
 
 public slots:
     void onTreeWidget_currentItemChanged(QTreeWidgetItem* item, QTreeWidgetItem * previous);
@@ -29,15 +34,15 @@ public slots:
     void onResetButton_clicked();
     void onShortcutEdit_textChanged(QString text);
     void onCheckBox_toggled();
+    void onStandardButton_clicked(QAbstractButton *button);
 
 private:
     Ui::KeyConfigDialog *ui;
     bool m_keyCapturing;
     QString m_actionName;
-    QMap<QString, QMouseSequence> m_prevKeyConfigs;
+//    QMap<QString, QMouseSequence> m_prevKeyConfigs;
+    MouseActionManager m_mouseActions;
     bool m_ignoreEdited;
-
-    bool markCollisions(QMouseSequence key);
 };
 
 #endif // MOUSECONFIGDIALOG_H

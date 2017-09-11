@@ -202,10 +202,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::resetShortcutKeys()
 {
-    QMap<QString, QAction*>& actions = qApp->ActionMapByName();
+    QMap<QString, QAction*>& actions = qApp->keyActions().actions();
     foreach(const QString& name, actions.keys()) {
         auto a = actions[name];
-        auto seq = qApp->getKey(name);
+        auto seq = qApp->keyActions().getKey(name);
         a->setShortcut(seq);
     }
 }
@@ -234,7 +234,7 @@ void MainWindow::wheelEvent(QWheelEvent *e)
 {
     int delta = e->delta() < 0 ? -Q_MOUSE_DELTA : e->delta() > 0 ? Q_MOUSE_DELTA : 0;
     QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), e->buttons(), delta);
-    QAction* action = qApp->getActionFromMouse(mv);
+    QAction* action = qApp->mouseActions().getActionByKey(mv);
     if(e->buttons() & Qt::RightButton)
         needContextMenu = false;
     if(action == ui->actionZoomIn || action == ui->actionZoomOut) {
@@ -316,7 +316,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             // If isScrollMode () is enabled, priority is given to screen drag scroll
             if(mv.Key == "+::LeftButton" && ui->graphicsView->isScrollMode())
                 break;
-            QAction* action = qApp->getActionFromMouse(mv);
+            QAction* action = qApp->mouseActions().getActionByKey(mv);
             if(action) {
                 action->trigger();
                 return true;
@@ -329,7 +329,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 //            QContextMenuEvent *contextMenuEvent = dynamic_cast<QContextMenuEvent*>(event);
 //            qDebug() << contextMenuEvent;
             QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), Qt::RightButton, 0);
-            QAction* action = qApp->getActionFromMouse(mv);
+            QAction* action = qApp->mouseActions().getActionByKey(mv);
             if(action && needContextMenu) {
                 action->trigger();
                 needContextMenu = false;
@@ -420,7 +420,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(this->focusWidget() != ui->graphicsView)
         return;
 
-    QAction* action = qApp->getActionFromKey(seq);
+    QAction* action = qApp->keyActions().getActionByKey(seq);
     if(action) {
         action->trigger();
         event->accept();
@@ -1002,21 +1002,20 @@ void MainWindow::onActionShowMenuBar_triggered(bool showMenuBar)
 
 void MainWindow::onActionOpenKeyConfig_triggered()
 {
-    KeyConfigDialog dialog(this);
+    KeyConfigDialog dialog(qApp->keyActions(), this);
     int result = dialog.exec();
-    if(result == QDialog::Rejected) {
-        dialog.revertKeyChanges();
-    } else {
+    if(result == QDialog::Accepted) {
+        qApp->keyActions() = dialog.keyActions();
         resetShortcutKeys();
     }
 }
 
 void MainWindow::onActionOpenMouseConfig_triggered()
 {
-    MouseConfigDialog dialog(this);
+    MouseConfigDialog dialog(qApp->mouseActions(), this);
     int result = dialog.exec();
-    if(result == QDialog::Rejected) {
-        dialog.revertMouseChanges();
+    if(result == QDialog::Accepted) {
+        qApp->mouseActions() = dialog.mouseActions();
     }
 }
 

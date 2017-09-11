@@ -69,151 +69,151 @@ void QVApplication::myInstallTranslator()
 void QVApplication::registDefaultKeyMap()
 {
     // Default key configs
-    m_keyConfigDefaults["actionExitApplicationOrFullscreen"] = QKeySequence("Esc");
-    m_keyConfigDefaults["actionNextPage"] = QKeySequence("L, Right, Space");
-    m_keyConfigDefaults["actionPrevPage"] = QKeySequence("H, Left, Backspace");
-    m_keyConfigDefaults["actionFastForward"] = QKeySequence("Shift+L, Num+3");
-    m_keyConfigDefaults["actionFastBackward"] = QKeySequence("Shift+H, Num+1");
-    m_keyConfigDefaults["actionLastPage"] = QKeySequence("Ctrl+L, End");
-    m_keyConfigDefaults["actionFirstPage"] = QKeySequence("Ctrl+H, Home");
-    m_keyConfigDefaults["actionNextVolume"] = QKeySequence("Ctrl+J, PgDown");
-    m_keyConfigDefaults["actionPrevVolume"] = QKeySequence("Ctrl+K, PgUp");
-
-    m_keyConfigDefaults["actionZoomIn"] = QKeySequence("K, Num++");
-    m_keyConfigDefaults["actionZoomOut"] = QKeySequence("J, Num+-");
-
-    m_keyConfigDefaults["actionRenameImageFile"] = QKeySequence("F2");
-    m_keyConfigDefaults["actionShowFolder"] = QKeySequence("F4");
-    m_keyConfigDefaults["actionShowCatalog"] = QKeySequence("Ctrl+/, F6");
-    m_keyConfigDefaults["actionSlideShow"] = QKeySequence("F7");
-    m_keyConfigDefaults["actionStayOnTop"] = QKeySequence("F8");
-    m_keyConfigDefaults["actionShowMenuBar"] = QKeySequence("F9");
-    m_keyConfigDefaults["actionDualView"] = QKeySequence("Y, F10");
-    m_keyConfigDefaults["actionFullscreen"] = QKeySequence("F11");
-    m_keyConfigDefaults["actionFitting"] = QKeySequence("M, F12, Num+*");
-
-    m_keyConfigDefaults["actionRotate"] = QKeySequence("R");
-    m_keyConfigDefaults["actionRecyclePage"] = QKeySequence("Del");
-    m_keyConfigDefaults["actionDeletePage"] = QKeySequence("Shift+Del");
-
-    m_keyConfigDefaults["actionCopyPage"] = QKeySequence("Ctrl+C");
-    m_keyConfigDefaults["actionCopyFile"] = QKeySequence("Ctrl+Shift+C");
-
-    m_keyConfigDefaults["actionLoadBookmark"] = QKeySequence("Q");
-    m_keyConfigDefaults["actionSaveBookmark"] = QKeySequence("W");
-
-    m_keyConfigDefaults["actionMaximizeOrNormal"] = QKeySequence("Return, Num+Enter");
-
-    m_keyConfigs = m_keyConfigDefaults;
-    m_keyConfigs.detach();
+    m_keyActions.addDefaultKey("actionExitApplicationOrFullscreen", QKeySequence("Esc"));
+    m_keyActions.addDefaultKey("actionNextPage", QKeySequence("L, Right, Space"));
+    m_keyActions.addDefaultKey("actionPrevPage", QKeySequence("H, Left, Backspace"));
+    m_keyActions.addDefaultKey("actionFastForward", QKeySequence("Shift+L, Num+3"));
+    m_keyActions.addDefaultKey("actionFastBackward", QKeySequence("Shift+H, Num+1"));
+    m_keyActions.addDefaultKey("actionLastPage", QKeySequence("Ctrl+L, End"));
+    m_keyActions.addDefaultKey("actionFirstPage", QKeySequence("Ctrl+H, Home"));
+    m_keyActions.addDefaultKey("actionNextVolume", QKeySequence("Ctrl+J, PgDown"));
+    m_keyActions.addDefaultKey("actionPrevVolume", QKeySequence("Ctrl+K, PgUp"));
+    m_keyActions.addDefaultKey("actionZoomIn", QKeySequence("K, Num++"));
+    m_keyActions.addDefaultKey("actionZoomOut", QKeySequence("J, Num+-"));
+    m_keyActions.addDefaultKey("actionRenameImageFile", QKeySequence("F2"));
+    m_keyActions.addDefaultKey("actionShowFolder", QKeySequence("F4"));
+    m_keyActions.addDefaultKey("actionShowCatalog", QKeySequence("Ctrl+/, F6"));
+    m_keyActions.addDefaultKey("actionSlideShow", QKeySequence("F7"));
+    m_keyActions.addDefaultKey("actionStayOnTop", QKeySequence("F8"));
+    m_keyActions.addDefaultKey("actionShowMenuBar", QKeySequence("F9"));
+    m_keyActions.addDefaultKey("actionDualView", QKeySequence("Y, F10"));
+    m_keyActions.addDefaultKey("actionFullscreen", QKeySequence("F11"));
+    m_keyActions.addDefaultKey("actionFitting", QKeySequence("M, F12, Num+*"));
+    m_keyActions.addDefaultKey("actionRotate", QKeySequence("R"));
+    m_keyActions.addDefaultKey("actionRecyclePage", QKeySequence("Del"));
+    m_keyActions.addDefaultKey("actionDeletePage", QKeySequence("Shift+Del"));
+    m_keyActions.addDefaultKey("actionCopyPage", QKeySequence("Ctrl+C"));
+    m_keyActions.addDefaultKey("actionCopyFile", QKeySequence("Ctrl+Shift+C"));
+    m_keyActions.addDefaultKey("actionLoadBookmark", QKeySequence("Q"));
+    m_keyActions.addDefaultKey("actionSaveBookmark", QKeySequence("W"));
+    m_keyActions.addDefaultKey("actionMaximizeOrNormal", QKeySequence("Return, Num+Enter"));
 }
 
 void QVApplication::registDefaultMouseMap()
 {
     // Default mouse configs
-//    m_mouseConfigDefaults["actionNextPage"] = QMouseSequence("+::WheelDown, +::ForwardButton, +::LeftButton");
-//    m_mouseConfigDefaults["actionPrevPage"] = QMouseSequence("+::WheelUp, +::BackButton, +::RightButton");
-//    m_mouseConfigDefaults["actionContextMenu"] = QMouseSequence("+::LeftButton+RightButton");
-
-    m_mouseConfigDefaults["actionNextPage"] = QMouseSequence("+::WheelDown, +::ForwardButton");
-    m_mouseConfigDefaults["actionPrevPage"] = QMouseSequence("+::WheelUp, +::BackButton");
-    m_mouseConfigDefaults["actionContextMenu"] = QMouseSequence("+::RightButton");
-
-    m_mouseConfigDefaults["actionFitting"] = QMouseSequence("+::RightButton+MiddleButton, Ctrl+::MiddleButton");
-    m_mouseConfigDefaults["actionZoomIn"]  = QMouseSequence("+::RightButton+WheelUp, Ctrl+::WheelUp");
-    m_mouseConfigDefaults["actionZoomOut"] = QMouseSequence("+::RightButton+WheelDown, Ctrl+::WheelDown");
-    m_mouseConfigDefaults["actionFullscreen"] = QMouseSequence("+::MiddleButton");
-
-
-    m_mouseConfigs = m_mouseConfigDefaults;
-    m_mouseConfigs.detach();
+    m_mouseActions.addDefaultKey("actionNextPage", QMouseSequence("+::WheelDown, +::ForwardButton"));
+    m_mouseActions.addDefaultKey("actionPrevPage", QMouseSequence("+::WheelUp, +::BackButton"));
+    m_mouseActions.addDefaultKey("actionContextMenu", QMouseSequence("+::RightButton"));
+    m_mouseActions.addDefaultKey("actionFitting", QMouseSequence("+::RightButton+MiddleButton, Ctrl+::MiddleButton"));
+    m_mouseActions.addDefaultKey("actionZoomIn", QMouseSequence("+::RightButton+WheelUp, Ctrl+::WheelUp"));
+    m_mouseActions.addDefaultKey("actionZoomOut", QMouseSequence("+::RightButton+WheelDown, Ctrl+::WheelDown"));
+    m_mouseActions.addDefaultKey("actionFullscreen", QMouseSequence("+::MiddleButton"));
 }
 
 void QVApplication::registActions(Ui::MainWindow *ui)
 {
     // File
-    registAction("actionOpenFolder", ui->actionOpenFolder);
-    registAction("actionClearHistory", ui->actionClearHistory);
-    registAction("actionAutoLoaded", ui->actionAutoLoaded);
-    registAction("actionExit", ui->actionExit);
+    QString groupName = tr("File", "File Action Group");
+    m_keyActions.registAction("actionOpenFolder", ui->actionOpenFolder, groupName);
+    m_keyActions.registAction("actionClearHistory", ui->actionClearHistory, groupName);
+    m_keyActions.registAction("actionAutoLoaded", ui->actionAutoLoaded, groupName);
+    m_keyActions.registAction("actionExit", ui->actionExit, groupName);
+
 
     // Bookmark
-    registAction("actionClearBookmarks", ui->actionClearBookmarks);
-    registAction("actionLoadBookmark", ui->actionLoadBookmark);
-    registAction("actionSaveBookmark", ui->actionSaveBookmark);
+    groupName = tr("Bookmark", "Bookmark Action Group");
+    m_keyActions.registAction("actionClearBookmarks", ui->actionClearBookmarks, groupName);
+    m_keyActions.registAction("actionLoadBookmark", ui->actionLoadBookmark, groupName);
+    m_keyActions.registAction("actionSaveBookmark", ui->actionSaveBookmark, groupName);
 
     // Navigation
-    registAction("actionNextPage", ui->actionNextPage);
-    registAction("actionPrevPage", ui->actionPrevPage);
-    registAction("actionFastForward", ui->actionFastForward);
-    registAction("actionFastBackward", ui->actionFastBackward);
-    registAction("actionLastPage", ui->actionLastPage);
-    registAction("actionFirstPage", ui->actionFirstPage);
-    registAction("actionNextVolume", ui->actionNextVolume);
-    registAction("actionPrevVolume", ui->actionPrevVolume);
-    registAction("actionNextOnePage", ui->actionNextOnePage);
-    registAction("actionPrevOnePage", ui->actionPrevOnePage);
-    registAction("actionSlideShow", ui->actionSlideShow);
+    groupName = tr("Bookmark", "Bookmark Action Group");
+    m_keyActions.registAction("actionNextPage", ui->actionNextPage, groupName);
+    m_keyActions.registAction("actionPrevPage", ui->actionPrevPage, groupName);
+    m_keyActions.registAction("actionFastForward", ui->actionFastForward, groupName);
+    m_keyActions.registAction("actionFastBackward", ui->actionFastBackward, groupName);
+    m_keyActions.registAction("actionLastPage", ui->actionLastPage, groupName);
+    m_keyActions.registAction("actionFirstPage", ui->actionFirstPage, groupName);
+    m_keyActions.registAction("actionNextVolume", ui->actionNextVolume, groupName);
+    m_keyActions.registAction("actionPrevVolume", ui->actionPrevVolume, groupName);
+    m_keyActions.registAction("actionNextOnePage", ui->actionNextOnePage, groupName);
+    m_keyActions.registAction("actionPrevOnePage", ui->actionPrevOnePage, groupName);
+    m_keyActions.registAction("actionSlideShow", ui->actionSlideShow, groupName);
 
     // Folder
-    registAction("actionShowFolder", ui->actionShowFolder);
+    groupName = tr("Folder", "Folder Action Group");
+    m_keyActions.registAction("actionShowFolder", ui->actionShowFolder, groupName);
 
     // Catalog
-    registAction("actionShowCatalog", ui->actionShowCatalog);
-    registAction("actionSearchTitleWithOptions", ui->actionSearchTitleWithOptions);
-    registAction("actionCatalogTitleWithoutOptions", ui->actionCatalogTitleWithoutOptions);
-    registAction("actionCatalogIconLongText", ui->actionCatalogIconLongText);
+    groupName = tr("Catalog", "Catalog Action Group");
+    m_keyActions.registAction("actionShowCatalog", ui->actionShowCatalog, groupName);
+    m_keyActions.registAction("actionSearchTitleWithOptions", ui->actionSearchTitleWithOptions, groupName);
+    m_keyActions.registAction("actionCatalogTitleWithoutOptions", ui->actionCatalogTitleWithoutOptions, groupName);
+    m_keyActions.registAction("actionCatalogIconLongText", ui->actionCatalogIconLongText, groupName);
 
     // View
-    registAction("actionRotate", ui->actionRotate);
-    registAction("actionFitting", ui->actionFitting);
-    registAction("actionZoomIn", ui->actionZoomIn);
-    registAction("actionZoomOut", ui->actionZoomOut);
-    registAction("actionDontEnlargeSmallImagesOnFitting", ui->actionDontEnlargeSmallImagesOnFitting);
+    groupName = tr("View", "View Action Group");
+    m_keyActions.registAction("actionRotate", ui->actionRotate, groupName);
+    m_keyActions.registAction("actionFitting", ui->actionFitting, groupName);
+    m_keyActions.registAction("actionZoomIn", ui->actionZoomIn, groupName);
+    m_keyActions.registAction("actionZoomOut", ui->actionZoomOut, groupName);
+    m_keyActions.registAction("actionDontEnlargeSmallImagesOnFitting", ui->actionDontEnlargeSmallImagesOnFitting, groupName);
 
-    registAction("actionDualView", ui->actionDualView);
-    registAction("actionRightSideBook", ui->actionRightSideBook);
-    registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView);
-    registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView);
+    m_keyActions.registAction("actionDualView", ui->actionDualView, groupName);
+    m_keyActions.registAction("actionRightSideBook", ui->actionRightSideBook, groupName);
+    m_keyActions.registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView, groupName);
+    m_keyActions.registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView, groupName);
 
-    registAction("actionRestoreWindowState", ui->actionRestoreWindowState);
-    registAction("actionFullscreen", ui->actionFullscreen);
-    registAction("actionStayOnTop", ui->actionStayOnTop);
-
-    registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen);
-    registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal);
+    // WindowState
+    groupName = tr("WindowState", "WindowState Action Group");
+    m_keyActions.registAction("actionRestoreWindowState", ui->actionRestoreWindowState, groupName);
+    m_keyActions.registAction("actionFullscreen", ui->actionFullscreen, groupName);
+    m_keyActions.registAction("actionStayOnTop", ui->actionStayOnTop, groupName);
+    m_keyActions.registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen, groupName);
+    m_keyActions.registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal, groupName);
 
     // Toolbar
-    registAction("actionShowToolBar", ui->actionShowToolBar);
-    registAction("actionShowStatusBar", ui->actionShowStatusBar);
-    registAction("actionShowPageBar", ui->actionShowPageBar);
-    registAction("actionShowMenuBar", ui->actionShowMenuBar);
+    groupName = tr("Toolbar", "Toolbar Action Group");
+    m_keyActions.registAction("actionShowToolBar", ui->actionShowToolBar, groupName);
+    m_keyActions.registAction("actionShowStatusBar", ui->actionShowStatusBar, groupName);
+    m_keyActions.registAction("actionShowPageBar", ui->actionShowPageBar, groupName);
+    m_keyActions.registAction("actionShowMenuBar", ui->actionShowMenuBar, groupName);
 
     // ContextMenu
-    registAction("actionContextMenu", ui->actionContextMenu);
-    registAction("actionOpenFiler", ui->actionOpenFiler);
-    registAction("actionOpenExif", ui->actionOpenExif);
-    registAction("actionCopyPage", ui->actionCopyPage);
-    registAction("actionCopyFile", ui->actionCopyFile);
-    registAction("actionRecyclePage", ui->actionRecyclePage);
-    registAction("actionDeletePage", ui->actionDeletePage);
-    registAction("actionMailAttachment", ui->actionMailAttachment);
-    registAction("actionRenameImageFile", ui->actionRenameImageFile);
+    groupName = tr("ContextMenu", "ContextMenu Action Group");
+    m_keyActions.registAction("actionContextMenu", ui->actionContextMenu, groupName);
+    m_keyActions.registAction("actionOpenFiler", ui->actionOpenFiler, groupName);
+    m_keyActions.registAction("actionOpenExif", ui->actionOpenExif, groupName);
+    m_keyActions.registAction("actionCopyPage", ui->actionCopyPage, groupName);
+    m_keyActions.registAction("actionCopyFile", ui->actionCopyFile, groupName);
+    m_keyActions.registAction("actionRecyclePage", ui->actionRecyclePage, groupName);
+    m_keyActions.registAction("actionDeletePage", ui->actionDeletePage, groupName);
+    m_keyActions.registAction("actionMailAttachment", ui->actionMailAttachment, groupName);
+    m_keyActions.registAction("actionRenameImageFile", ui->actionRenameImageFile, groupName);
+    m_keyActions.registAction("actionShowToolBar", ui->actionShowToolBar, groupName);
+    m_keyActions.registAction("actionShowToolBar", ui->actionShowToolBar, groupName);
+    m_keyActions.registAction("actionShowToolBar", ui->actionShowToolBar, groupName);
 
     // Shader
-    registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor);
-    registAction("actionShaderBilinear", ui->actionShaderBilinear);
-    registAction("actionShaderBicubic", ui->actionShaderBicubic);
-    registAction("actionShaderLanczos", ui->actionShaderLanczos);
-    registAction("actionShaderBilinearBeforeCpuBicubic", ui->actionShaderBilinearBeforeCpuBicubic);
-    registAction("actionShaderCpuBicubic", ui->actionShaderCpuBicubic);
+    groupName = tr("Shader", "Shader Action Group");
+    m_keyActions.registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor, groupName);
+    m_keyActions.registAction("actionShaderBilinear", ui->actionShaderBilinear, groupName);
+    m_keyActions.registAction("actionShaderBicubic", ui->actionShaderBicubic, groupName);
+    m_keyActions.registAction("actionShaderLanczos", ui->actionShaderLanczos, groupName);
+    m_keyActions.registAction("actionShaderBilinearBeforeCpuBicubic", ui->actionShaderBilinearBeforeCpuBicubic, groupName);
+    m_keyActions.registAction("actionShaderCpuBicubic", ui->actionShaderCpuBicubic, groupName);
 
     // Help
-    registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig);
-    registAction("actionOpenOptionsDialog", ui->actionOpenOptionsDialog);
-    registAction("actionCheckVersion", ui->actionCheckVersion);
-    registAction("actionProjectWeb", ui->actionProjectWeb);
-    registAction("actionAppVersion", ui->actionAppVersion);
+    groupName = tr("Help", "Help Action Group");
+    m_keyActions.registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig, groupName);
+    m_keyActions.registAction("actionOpenOptionsDialog", ui->actionOpenOptionsDialog, groupName);
+    m_keyActions.registAction("actionCheckVersion", ui->actionCheckVersion, groupName);
+    m_keyActions.registAction("actionCheckVersion", ui->actionCheckVersion, groupName);
+    m_keyActions.registAction("actionProjectWeb", ui->actionProjectWeb, groupName);
+    m_keyActions.registAction("actionAppVersion", ui->actionAppVersion, groupName);
+
+    m_mouseActions.actions() = m_keyActions.actions();
 }
 
 void QVApplication::addHistory(QString path)
@@ -356,14 +356,14 @@ void QVApplication::loadSettings()
     m_settings.beginGroup("KeyConfig");
     foreach(const QString& action, m_settings.childKeys()) {
         QString str = m_settings.value(action, "").toString();
-        m_keyConfigs[action] = QKeySequence(str);
+        m_keyActions.updateKey(action,  QKeySequence(str), true);
     }
     m_settings.endGroup();
 
     m_settings.beginGroup("MouseConfig");
     foreach(const QString& action, m_settings.childKeys()) {
         QString str = m_settings.value(action, "").toString();
-        m_mouseConfigs[action] = QMouseSequence(str);
+        m_mouseActions.updateKey(action, QMouseSequence(str), true);
     }
     m_settings.endGroup();
 
@@ -457,15 +457,15 @@ void QVApplication::saveSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
-    foreach(const QString& action, m_keyConfigs.keys()) {
-        QKeySequence seqs = m_keyConfigs[action];
+    foreach(const QString& action, m_keyActions.keyMaps().keys()) {
+        QKeySequence seqs = m_keyActions.keyMaps()[action];
         m_settings.setValue(action, seqs.toString());
     }
     m_settings.endGroup();
 
     m_settings.beginGroup("MouseConfig");
-    foreach(const QString& action, m_mouseConfigs.keys()) {
-        QMouseSequence seqs = m_mouseConfigs[action];
+    foreach(const QString& action, m_mouseActions.keyMaps().keys()) {
+        QMouseSequence seqs = m_mouseActions.keyMaps()[action];
         m_settings.setValue(action, seqs.toString());
     }
     m_settings.endGroup();
