@@ -203,11 +203,20 @@ MainWindow::~MainWindow()
 void MainWindow::resetShortcutKeys()
 {
     QMap<QString, QAction*>& actions = qApp->keyActions().actions();
+    QMap<QString, QKeySequence> & seqMap = qApp->keyActions().keyMaps();
     foreach(const QString& name, actions.keys()) {
         auto a = actions[name];
-        auto seq = qApp->keyActions().getKey(name);
-        a->setShortcut(seq);
+        QKeySequence seq = seqMap[name];
+//        a->setShortcut(seq);
+
+        QList<QKeySequence> seqlist;
+        for(int i = 0; i < seq.count(); i++) {
+            seqlist << QKeySequence(seq[i]);
+        }
+        a->setShortcuts(seqlist);
+        a->setShortcutContext(Qt::ApplicationShortcut);
     }
+    grabKeyboard();
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
@@ -416,6 +425,7 @@ const static QKeySequence seqEnter("Num+Enter");
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     QKeySequence seq(event->key() | event->modifiers());
+    qDebug() << seq.toString();
 
     if(this->focusWidget() != ui->graphicsView)
         return;
