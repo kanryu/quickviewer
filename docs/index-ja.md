@@ -30,7 +30,7 @@ fulltitle: QuickViewer オフィシャルページ
     - Canon(crw, cr2)
     - Nicon(nef)
     - Sony(arw)
-    - Ricoh(dng)
+    - Ricoh, Pentax(dng)
     - などなど
  - あなたの何千冊ものデジタルブック、マンガを『カタログ』として登録でき、軽快に一覧表示、検索できます
  - カタログの本は自動生成されたタグでも検索できます
