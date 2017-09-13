@@ -31,7 +31,7 @@ You can browse images with much smoother response than ever before.
    - Canon (crw, cr2)
    - Nicon (nef)
    - Sony (arw)
-   - Ricoh (dng)
+   - Ricoh, Pentax (dng)
    - etc..
  - Can make/view/search catalog from thousands of your digital books
  - Can search books from auto generated tags
