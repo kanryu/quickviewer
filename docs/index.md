@@ -48,7 +48,7 @@ You can browse images with much smoother response than ever before.
 
 The latest version is **release_version**.
 
-You can download from **[Release Builded Binary](https://github.com/kanryu/quickviewer/releases)** (Windows x86/x64, Linux AppImage x64)
+You can download **[Release Builded](https://github.com/kanryu/quickviewer/releases)** on the page. (Windows x86/x64, Linux AppImage x64)
 
 You can also clone the latest source code from **[this repository.](https://github.com/kanryu/quickviewer)**
 
@@ -131,6 +131,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html](https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html)
 - **PCMag Greece** (in Greek)
     - [http://gr.pcmag.com/free-apps/28062/news/e-dorean-epharmoge-tes-emeras-quickviewer](http://gr.pcmag.com/free-apps/28062/news/e-dorean-epharmoge-tes-emeras-quickviewer)
+- **geogeo.gr** (in Greek)
+    - [https://www.geogeo.gr/index.php?topic=1787.0](https://www.geogeo.gr/index.php?topic=1787.0)
 
 Thanks for reviewers! :)
 
