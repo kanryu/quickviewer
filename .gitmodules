@@ -28,3 +28,6 @@
 [submodule "QuickViewer/src/qactionmanager"]
 	path = QuickViewer/src/qactionmanager
 	url = https://github.com/kanryu/qactionmanager
+[submodule "exiv2/exiv2"]
+	path = exiv2/exiv2
+	url = https://github.com/Exiv2/exiv2

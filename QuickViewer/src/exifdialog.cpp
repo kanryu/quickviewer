@@ -3,6 +3,31 @@
 #include "exifdialog.h"
 #include "ui_exifdialog.h"
 
+struct ImageMetaContents
+{
+    QStringList stringsRichText;
+    QStringList stringsClipBoard;
+
+    template<typename ValueType>
+    void addContent(QString key, ValueType value) {
+        const QString richfmt = "<tr><th>%1</th><td>%2</td></tr>";
+        const QString clipfmt = "%1\t%2";
+        stringsRichText << richfmt.arg(key).arg(value);
+        stringsClipBoard << clipfmt.arg(key).arg(value);
+    }
+    QString getRichText() {
+        QString text = QString("<style>th {text-align: right;padding-right: 10px;} </style><table>%1</table>").arg(stringsRichText.join(""));
+        return text;
+    }
+    QString getClipBoard() {
+        QString clip = stringsClipBoard.join(LINEFEED);
+        return clip;
+    }
+};
+
+
+
+
 ExifDialog::ExifDialog(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ExifDialog)
@@ -48,31 +73,31 @@ QString ExifDialog::generateFlash(char flash)
     return notflash;
 }
 
-QString ExifDialog::generateFlashMode(unsigned short mode)
-{
-    QString notflash = tr("unknown");
-    switch(mode) {
-    default:break;
-    case 0x0: return notflash;
-    case 0x1: return tr("Compulsory flash mode", "JPEG EXIF Flash setting value with (0x8)");
-    case 0x2: return tr("Compulsory flash suppression", "JPEG EXIF Flash setting value with (0x9)");
-    case 0x3: return tr("Automatic mode", "JPEG EXIF Flash setting value with (0xa)");
-    }
-    return notflash;
-}
+//QString ExifDialog::generateFlashMode(unsigned short mode)
+//{
+//    QString notflash = tr("unknown");
+//    switch(mode) {
+//    default:break;
+//    case 0x0: return notflash;
+//    case 0x1: return tr("Compulsory flash mode", "JPEG EXIF Flash setting value with (0x8)");
+//    case 0x2: return tr("Compulsory flash suppression", "JPEG EXIF Flash setting value with (0x9)");
+//    case 0x3: return tr("Automatic mode", "JPEG EXIF Flash setting value with (0xa)");
+//    }
+//    return notflash;
+//}
 
-QString ExifDialog::generateFlashReturnedLight(unsigned short light)
-{
-    QString notflash = tr("No strobe return detection function", "JPEG EXIF Flash setting value without (0x6)");
-    switch(light) {
-    default:break;
-    case 0x0: return notflash;
-    case 0x1: return tr("Reserved", "JPEG EXIF Flash setting value with (0x2)");
-    case 0x2: return tr("Strobe return light not detected", "JPEG EXIF Flash setting value with (0x4)");
-    case 0x3: return tr("Strobe return light detected", "JPEG EXIF Flash setting value with (0x6)");
-    }
-    return notflash;
-}
+//QString ExifDialog::generateFlashReturnedLight(unsigned short light)
+//{
+//    QString notflash = tr("No strobe return detection function", "JPEG EXIF Flash setting value without (0x6)");
+//    switch(light) {
+//    default:break;
+//    case 0x0: return notflash;
+//    case 0x1: return tr("Reserved", "JPEG EXIF Flash setting value with (0x2)");
+//    case 0x2: return tr("Strobe return light not detected", "JPEG EXIF Flash setting value with (0x4)");
+//    case 0x3: return tr("Strobe return light detected", "JPEG EXIF Flash setting value with (0x6)");
+//    }
+//    return notflash;
+//}
 
 QString ExifDialog::generateOrientation(unsigned short orient)
 {
@@ -92,49 +117,55 @@ QString ExifDialog::generateOrientation(unsigned short orient)
 }
 
 
-void ExifDialog::setExif(const easyexif::EXIFInfo& info)
+void ExifDialog::setExif(const ImageContent& content)
 {
+    const easyexif::EXIFInfo& info = content.Info;
     if(!info.ImageWidth) {
         ui->textEdit->setText(tr("Exif is not included.", "Text to display if EXIF is not included in JPEG"));
         return;
     }
-    QStringList tags;
-    QString linefmt = "<tr><th>%1</th><td>%2</td></tr>";
+    ImageMetaContents meta;
+    meta.addContent(tr("Filename"), content.Path);
+    meta.addContent(tr("Pixels"), QString("%L1").arg(content.BaseSize.width()*content.BaseSize.height()));
+    meta.addContent(tr("ImageWidth"), info.ImageWidth);
+    meta.addContent(tr("ImageHeight"), info.ImageHeight);
+    meta.addContent(tr("Make"), QString::fromStdString(info.Make));
+    meta.addContent(tr("Model"), QString::fromStdString(info.Model));
+    meta.addContent(tr("Orientation of camera"), generateOrientation(info.Orientation));
 
-    tags << linefmt.arg(tr("ImageWidth")).arg(info.ImageWidth);
-    tags << linefmt.arg(tr("ImageHeight")).arg(info.ImageHeight);
-    tags << linefmt.arg(tr("Make")).arg(QString::fromStdString(info.Make));
-    tags << linefmt.arg(tr("Model")).arg(QString::fromStdString(info.Model));
-    tags << linefmt.arg(tr("Orientation of camera")).arg(generateOrientation(info.Orientation));
+    meta.addContent(tr("BitsPerSample"), info.BitsPerSample);
+    meta.addContent(tr("Software"), QString::fromStdString(info.Software));
+    meta.addContent(tr("DateTime"), QString::fromStdString(info.DateTime));
+    meta.addContent(tr("DateTimeOriginal"), QString::fromStdString(info.DateTimeOriginal));
+    meta.addContent(tr("DateTimeDigitized"), QString::fromStdString(info.DateTimeDigitized));
+    meta.addContent(tr("SubSecTimeOriginal"), QString::fromStdString(info.SubSecTimeOriginal));
+    meta.addContent(tr("ExposureTime"), info.ExposureTime);
+    meta.addContent(tr("FNumber"), info.FNumber);
+    meta.addContent(tr("ISOSpeedRatings"), info.ISOSpeedRatings);
+    meta.addContent(tr("ShutterSpeedValue"), info.ShutterSpeedValue);
+    meta.addContent(tr("ExposureBiasValue"), info.ExposureBiasValue);
+    meta.addContent(tr("SubjectDistance"), info.SubjectDistance);
+    meta.addContent(tr("FocalLength"), info.FocalLength);
+    meta.addContent(tr("FocalLengthIn35mm"), info.FocalLengthIn35mm);
+    meta.addContent(tr("Flash"), generateFlash(info.Flash | (info.FlashMode<<3) | (info.FlashReturnedLight<<1)));
+    meta.addContent(tr("MeteringMode"), info.MeteringMode);
+    meta.addContent(tr("ImageDescription"), QString::fromStdString(info.ImageDescription));
+    meta.addContent(tr("Copyright"), QString::fromStdString(info.Copyright));
 
-    tags << linefmt.arg(tr("BitsPerSample")).arg(info.BitsPerSample);
-    tags << linefmt.arg(tr("Software")).arg(QString::fromStdString(info.Software));
-    tags << linefmt.arg(tr("DateTime")).arg(QString::fromStdString(info.DateTime));
-    tags << linefmt.arg(tr("DateTimeOriginal")).arg(QString::fromStdString(info.DateTimeOriginal));
-    tags << linefmt.arg(tr("DateTimeDigitized")).arg(QString::fromStdString(info.DateTimeDigitized));
-    tags << linefmt.arg(tr("SubSecTimeOriginal")).arg(QString::fromStdString(info.SubSecTimeOriginal));
-    tags << linefmt.arg(tr("ExposureTime")).arg(info.ExposureTime);
-    tags << linefmt.arg(tr("FNumber")).arg(info.FNumber);
-    tags << linefmt.arg(tr("ISOSpeedRatings")).arg(info.ISOSpeedRatings);
-    tags << linefmt.arg(tr("ShutterSpeedValue")).arg(info.ShutterSpeedValue);
-    tags << linefmt.arg(tr("ExposureBiasValue")).arg(info.ExposureBiasValue);
-    tags << linefmt.arg(tr("SubjectDistance")).arg(info.SubjectDistance);
-    tags << linefmt.arg(tr("FocalLength")).arg(info.FocalLength);
-    tags << linefmt.arg(tr("FocalLengthIn35mm")).arg(info.FocalLengthIn35mm);
-    tags << linefmt.arg(tr("Flash")).arg(generateFlash(info.Flash | (info.FlashMode<<3) | (info.FlashReturnedLight<<1)));
-    tags << linefmt.arg(tr("MeteringMode")).arg(info.MeteringMode);
-    tags << linefmt.arg(tr("ImageDescription")).arg(QString::fromStdString(info.ImageDescription));
-    tags << linefmt.arg(tr("Copyright")).arg(QString::fromStdString(info.Copyright));
-
-    QString text = QString("<style>th {text-align: right;padding-right: 10px;} </style><table>%1</table>").arg(tags.join(""));
-
+    m_exif = meta.getClipBoard();
     ui->textEdit->setAcceptRichText(true);
-    ui->textEdit->setText(text);
+    ui->textEdit->setText(meta.getRichText());
 }
 
 void ExifDialog::closeEvent(QCloseEvent *e)
 {
     QWidget::closeEvent(e);
     emit closed();
+}
+
+void ExifDialog::onBtnClipbard_clicked()
+{
+    QClipboard* clipboard = QApplication::clipboard();
+    clipboard->setText(m_exif);
 }
 

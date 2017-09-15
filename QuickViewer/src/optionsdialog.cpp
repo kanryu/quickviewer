@@ -7,7 +7,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     , ui(new Ui::OptionsDialog)
 {
     ui->setupUi(this);
-
+#ifndef Q_OS_WIN
+    ui->checkBoxUseDirect2D->setVisible(false);
+#endif
     m_slideShowWait = qApp->SlideShowWait();
     m_maxVolumesCache = qApp->MaxVolumesCache();
     m_backgroundColor = qApp->BackgroundColor();
@@ -19,6 +21,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->spinImages->setValue(qApp->MaxImagesCache());
     ui->spinMaxTextureSize->setValue(qApp->MaxTextureSize());
     ui->checkBoxCheckeredPattern->setChecked(m_useCheckeredPattern);
+    ui->checkBoxUseFastDctForJPEG->setChecked(qApp->UseFastDCTForJPEG());
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
     ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
 
@@ -41,6 +44,7 @@ void OptionsDialog::reflectResults()
     qApp->setBackgroundColor(m_backgroundColor);
     qApp->setBackgroundColor2(m_backgroundColor2);
     qApp->setUseCheckeredPattern(m_useCheckeredPattern);
+    qApp->setUseFastDCTForJPEG(ui->checkBoxUseFastDctForJPEG->isChecked());
     qApp->setProhibitMultipleRunning(ui->checkBoxProhibitMultipleRunning->isChecked());
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
 }

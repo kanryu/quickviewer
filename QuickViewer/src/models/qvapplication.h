@@ -130,6 +130,8 @@ public:
     void setUseDirect2D(bool useDirect2D) { m_useDirect2D = useDirect2D; }
     int MaxTextureSize() { return m_maxTextureSize; }
     void setMaxTextureSize(int maxTextureSize) { m_maxTextureSize = maxTextureSize; }
+    bool UseFastDCTForJPEG() { return m_useFastDCTForJPEG; }
+    void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
 
 
     // DualView
@@ -284,6 +286,7 @@ private:
     bool m_showFullscreenSignage;
 //    bool m_showFullscreenTitleBar;
     bool m_useDirect2D;
+    bool m_useFastDCTForJPEG;
 
     // ToolBars
     bool m_showToolBar;

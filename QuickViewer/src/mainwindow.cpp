@@ -611,8 +611,7 @@ void MainWindow::onPageManager_pageChanged()
         setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
 
     if(m_exifDialog && m_pageManager.currentPageCount() > 0) {
-        const easyexif::EXIFInfo& info = m_pageManager.currentPageContent()[0].Info;
-        m_exifDialog->setExif(info);
+        m_exifDialog->setExif(m_pageManager.currentPageContent()[0]);
     }
 }
 
@@ -862,7 +861,7 @@ void MainWindow::onActionOpenExif_triggered()
         onFolderWindow_closed();
 
     m_exifDialog = new ExifDialog();
-    m_exifDialog->setExif(info);
+    m_exifDialog->setExif(m_pageManager.currentPageContent()[0]);
     connect(m_exifDialog, SIGNAL(closed()), this, SLOT(onExifDialog_closed()));
 
     ui->catalogSplitter->insertWidget(1, m_exifDialog);

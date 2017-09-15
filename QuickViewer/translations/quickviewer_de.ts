@@ -141,303 +141,319 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="20"/>
+        <location filename="../src/exifdialog.ui" line="38"/>
+        <source>Copy to clipboard</source>
+        <extracomment>Text of button to copy meta information to clipboard</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/exifdialog.cpp" line="45"/>
         <source>Flash did not fire</source>
         <comment>JPEG EXIF Flash setting value (0x0)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="23"/>
+        <location filename="../src/exifdialog.cpp" line="51"/>
         <source>Flash fired</source>
         <comment>JPEG EXIF Flash setting value (0x1)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="24"/>
+        <location filename="../src/exifdialog.cpp" line="52"/>
         <source>Strobe return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x5)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="25"/>
+        <location filename="../src/exifdialog.cpp" line="53"/>
         <source>Strobe return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x7)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="26"/>
+        <location filename="../src/exifdialog.cpp" line="54"/>
         <source>Flash fired, compulsory flash mode</source>
         <comment>JPEG EXIF Flash setting value (0x9)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="27"/>
+        <location filename="../src/exifdialog.cpp" line="55"/>
         <source>Flash fired, compulsory flash mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0xD)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="28"/>
+        <location filename="../src/exifdialog.cpp" line="56"/>
         <source>Flash fired, compulsory flash mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0xF)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="29"/>
+        <location filename="../src/exifdialog.cpp" line="57"/>
         <source>Flash did not fire, compulsory flash mode</source>
         <comment>JPEG EXIF Flash setting value (0x10)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="30"/>
+        <location filename="../src/exifdialog.cpp" line="58"/>
         <source>Flash did not fire, auto mode</source>
         <comment>JPEG EXIF Flash setting value (0x18)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="31"/>
+        <location filename="../src/exifdialog.cpp" line="59"/>
         <source>Flash fired, auto mode</source>
         <comment>JPEG EXIF Flash setting value (0x19)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="32"/>
+        <location filename="../src/exifdialog.cpp" line="60"/>
         <source>Flash fired, auto mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x1D)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="33"/>
+        <location filename="../src/exifdialog.cpp" line="61"/>
         <source>Flash fired, auto mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x1F)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="34"/>
+        <location filename="../src/exifdialog.cpp" line="62"/>
         <source>No flash function</source>
         <comment>JPEG EXIF Flash setting value (0x20)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="35"/>
+        <location filename="../src/exifdialog.cpp" line="63"/>
         <source>Flash fired, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x41)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="36"/>
+        <location filename="../src/exifdialog.cpp" line="64"/>
         <source>Flash fired, red-eye reduction mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x45)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="37"/>
+        <location filename="../src/exifdialog.cpp" line="65"/>
         <source>Flash fired, red-eye reduction mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x47)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="38"/>
+        <location filename="../src/exifdialog.cpp" line="66"/>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x49)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="39"/>
+        <location filename="../src/exifdialog.cpp" line="67"/>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x4D)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="40"/>
+        <location filename="../src/exifdialog.cpp" line="68"/>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x4F)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="41"/>
+        <location filename="../src/exifdialog.cpp" line="69"/>
         <source>Flash fired, auto mode, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x59)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="42"/>
+        <location filename="../src/exifdialog.cpp" line="70"/>
         <source>Flash fired, auto mode, return light not detected, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x5D)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="43"/>
+        <location filename="../src/exifdialog.cpp" line="71"/>
         <source>Flash fired, auto mode, return light detected, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x5F)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="50"/>
+        <location filename="../src/exifdialog.cpp" line="104"/>
         <source>Horizontal (normal)</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(0 or 1)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="54"/>
+        <location filename="../src/exifdialog.cpp" line="108"/>
         <source>Mirror horizontal</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(2)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="55"/>
+        <location filename="../src/exifdialog.cpp" line="109"/>
         <source>Rotate 180</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(3)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="56"/>
+        <location filename="../src/exifdialog.cpp" line="110"/>
         <source>Mirror vertical</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(4)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="57"/>
+        <location filename="../src/exifdialog.cpp" line="111"/>
         <source>Mirror horizontal and rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(5)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="58"/>
+        <location filename="../src/exifdialog.cpp" line="112"/>
         <source>Rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(6)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="59"/>
+        <location filename="../src/exifdialog.cpp" line="113"/>
         <source>Mirror horizontal and rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(7)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="60"/>
+        <location filename="../src/exifdialog.cpp" line="114"/>
         <source>Rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(8)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="69"/>
+        <location filename="../src/exifdialog.cpp" line="124"/>
         <source>Exif is not included.</source>
         <comment>Text to display if EXIF is not included in JPEG</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="75"/>
+        <location filename="../src/exifdialog.cpp" line="128"/>
+        <source>Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/exifdialog.cpp" line="129"/>
+        <source>Pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/exifdialog.cpp" line="130"/>
         <source>ImageWidth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="76"/>
+        <location filename="../src/exifdialog.cpp" line="131"/>
         <source>ImageHeight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="77"/>
+        <location filename="../src/exifdialog.cpp" line="132"/>
         <source>Make</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="78"/>
+        <location filename="../src/exifdialog.cpp" line="133"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="79"/>
+        <location filename="../src/exifdialog.cpp" line="134"/>
         <source>Orientation of camera</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="81"/>
+        <location filename="../src/exifdialog.cpp" line="136"/>
         <source>BitsPerSample</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="82"/>
+        <location filename="../src/exifdialog.cpp" line="137"/>
         <source>Software</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="83"/>
+        <location filename="../src/exifdialog.cpp" line="138"/>
         <source>DateTime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="84"/>
+        <location filename="../src/exifdialog.cpp" line="139"/>
         <source>DateTimeOriginal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="85"/>
+        <location filename="../src/exifdialog.cpp" line="140"/>
         <source>DateTimeDigitized</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="86"/>
+        <location filename="../src/exifdialog.cpp" line="141"/>
         <source>SubSecTimeOriginal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="87"/>
+        <location filename="../src/exifdialog.cpp" line="142"/>
         <source>ExposureTime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="88"/>
+        <location filename="../src/exifdialog.cpp" line="143"/>
         <source>FNumber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="89"/>
+        <location filename="../src/exifdialog.cpp" line="144"/>
         <source>ISOSpeedRatings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="90"/>
+        <location filename="../src/exifdialog.cpp" line="145"/>
         <source>ShutterSpeedValue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="91"/>
+        <location filename="../src/exifdialog.cpp" line="146"/>
         <source>ExposureBiasValue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="92"/>
+        <location filename="../src/exifdialog.cpp" line="147"/>
         <source>SubjectDistance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="93"/>
+        <location filename="../src/exifdialog.cpp" line="148"/>
         <source>FocalLength</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="94"/>
+        <location filename="../src/exifdialog.cpp" line="149"/>
         <source>FocalLengthIn35mm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="95"/>
+        <location filename="../src/exifdialog.cpp" line="150"/>
         <source>Flash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="96"/>
+        <location filename="../src/exifdialog.cpp" line="151"/>
         <source>MeteringMode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="97"/>
+        <location filename="../src/exifdialog.cpp" line="152"/>
         <source>ImageDescription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/exifdialog.cpp" line="98"/>
+        <location filename="../src/exifdialog.cpp" line="153"/>
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
@@ -760,149 +776,149 @@
 <context>
     <name>KeyConfigDialog</name>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="14"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="14"/>
         <source>KeyConfig</source>
         <extracomment>Title of the dialog to customize the shortcut keys</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="71"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="71"/>
         <source>Shortcut</source>
         <extracomment>Title of the frame in which the shortcut changing function is arranged</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="98"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="98"/>
         <source>Key Sequence:</source>
         <extracomment>Title of LineEdit label to which shortcut key is input</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="120"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="120"/>
         <source>Enter key sequence as text</source>
         <extracomment>Enter shortcut keys Gray text to display before inputting LineEdit</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="136"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="136"/>
         <source>Record</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="146"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="146"/>
         <source>Add Sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="153"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="153"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="216"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="216"/>
         <source>Option Keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="222"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="222"/>
         <source>Ctrl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="229"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="229"/>
         <source>Shift</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="236"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="236"/>
         <source>Alt</source>
         <extracomment>maybe &apos;Option&apos; in OSX</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="243"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="243"/>
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="253"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="253"/>
         <source>Mouse Buttons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="259"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="259"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="266"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="266"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="273"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="273"/>
         <source>Wheel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="280"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="280"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="287"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="287"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="300"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="300"/>
         <source>Wheel Scrolling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="306"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="306"/>
         <source>Scroll Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="313"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="313"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.ui" line="323"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.ui" line="323"/>
         <source>Scroll Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="185"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="187"/>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="186"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="188"/>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="187"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="189"/>
         <source>CurrentShortcut</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="248"/>
-        <location filename="../src/keyconfigdialog.cpp" line="285"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="246"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="283"/>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="252"/>
-        <location filename="../src/keyconfigdialog.cpp" line="270"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="250"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="268"/>
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
         <translation type="unfinished"></translation>
@@ -943,7 +959,7 @@
     <message>
         <location filename="../src/mainwindow.ui" line="282"/>
         <location filename="../src/mainwindow.ui" line="783"/>
-        <location filename="../src/mainwindow.cpp" line="665"/>
+        <location filename="../src/mainwindow.cpp" line="674"/>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
         <translation type="unfinished"></translation>
@@ -1439,55 +1455,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="370"/>
+        <location filename="../src/mainwindow.cpp" line="379"/>
         <source>Image file not found. Can&apos;t be opened</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="641"/>
+        <location filename="../src/mainwindow.cpp" line="650"/>
         <source>Image file was not found. Can&apos;t be opened.</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="946"/>
+        <location filename="../src/mainwindow.cpp" line="955"/>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="947"/>
+        <location filename="../src/mainwindow.cpp" line="956"/>
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1114"/>
+        <location filename="../src/mainwindow.cpp" line="1122"/>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1119"/>
+        <location filename="../src/mainwindow.cpp" line="1127"/>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1154"/>
+        <location filename="../src/mainwindow.cpp" line="1162"/>
         <source>Confirmation</source>
         <comment>Confirm deleting image file on MessageBox title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1159"/>
+        <location filename="../src/mainwindow.cpp" line="1167"/>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm deleting image file on Message Box body</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1267"/>
+        <location filename="../src/mainwindow.cpp" line="1275"/>
         <source>Bookmark Saved.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1625,56 +1641,56 @@
 <context>
     <name>MouseConfigDialog</name>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="13"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="15"/>
         <source>Mouse Config</source>
         <comment>Title of the dialog to customize the mouse sequences</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="14"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="16"/>
         <source>Mouse Sequence:</source>
         <comment>Title of LineEdit label to which mouse sequence is input</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="15"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="17"/>
         <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
         <comment>Placeholder text urging the mouse input setting procedure</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="21"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="23"/>
         <source>Command</source>
         <comment>caption of Command key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="22"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="24"/>
         <source>Option</source>
         <comment>caption of Option key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="47"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="50"/>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="48"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="51"/>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="49"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="52"/>
         <source>Current Mouse Sequence</source>
         <comment>Title of the column of the content of the mouse sequence registered for Action</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mouseconfigdialog.cpp" line="112"/>
-        <location filename="../src/mouseconfigdialog.cpp" line="157"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="106"/>
+        <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="151"/>
         <source>Mouse sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
         <translation type="unfinished"></translation>
@@ -1752,24 +1768,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.ui" line="179"/>
+        <source>Speed up JPEG loading in exchange for quality of display.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.ui" line="182"/>
+        <source>Use fast DCT for loading JPEG</source>
+        <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.ui" line="192"/>
         <source>BackgroundPattern</source>
         <extracomment>Title of frame to change background color or pattern</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="203"/>
+        <location filename="../src/optionsdialog.ui" line="213"/>
         <source>BackgroundColor1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="229"/>
+        <location filename="../src/optionsdialog.ui" line="239"/>
         <source>Use checkered pattern</source>
         <extracomment>Function to make the background of the application a pattern of chessboard</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="236"/>
+        <location filename="../src/optionsdialog.ui" line="246"/>
         <source>BackgroundColor2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1780,6 +1807,70 @@
         <location filename="../src/models/pagecontent.cpp" line="44"/>
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QVApplication</name>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="117"/>
+        <source>File</source>
+        <comment>File Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="125"/>
+        <location filename="../src/models/qvapplication.cpp" line="131"/>
+        <source>Bookmark</source>
+        <comment>Bookmark Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="145"/>
+        <source>Folder</source>
+        <comment>Folder Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="149"/>
+        <source>Catalog</source>
+        <comment>Catalog Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="156"/>
+        <source>View</source>
+        <comment>View Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="169"/>
+        <source>WindowState</source>
+        <comment>WindowState Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="177"/>
+        <source>Toolbar</source>
+        <comment>Toolbar Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="184"/>
+        <source>ContextMenu</source>
+        <comment>ContextMenu Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="199"/>
+        <source>Shader</source>
+        <comment>Shader Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/models/qvapplication.cpp" line="208"/>
+        <source>Help</source>
+        <comment>Help Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1812,19 +1903,19 @@
 <context>
     <name>ShortcutButton</name>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="69"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="69"/>
         <source>Click and enter a new shortcut key.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="71"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="71"/>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/keyconfigdialog.cpp" line="72"/>
+        <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="72"/>
         <source>Record</source>
         <comment>Button for starting entering the shortcut key</comment>
         <translation type="unfinished"></translation>

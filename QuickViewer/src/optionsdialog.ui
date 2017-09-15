@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>468</width>
-    <height>341</height>
+    <width>453</width>
+    <height>363</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -156,20 +156,30 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="5" column="0">
        <widget class="QCheckBox" name="checkBoxProhibitMultipleRunning">
         <property name="text">
          <string>Prohibit multiple running (Restart is required)</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="6" column="0">
        <widget class="QCheckBox" name="checkBoxUseDirect2D">
         <property name="toolTip">
          <string>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</string>
         </property>
         <property name="text">
          <string extracomment="Normally it is drawing with Windows GDI, but switching to drawing by Direct2D. QPA is loaded at startup.">Rendering with Direct2D (Restart is required)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBoxUseFastDctForJPEG">
+        <property name="toolTip">
+         <string>Speed up JPEG loading in exchange for quality of display.</string>
+        </property>
+        <property name="text">
+         <string extracomment="Option to use TJFLAG_FASTDCT on libjpeg-turbo">Use fast DCT for loading JPEG</string>
         </property>
        </widget>
       </item>

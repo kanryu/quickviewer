@@ -9,9 +9,11 @@
 #ifdef Q_OS_WIN
 #define APP_INI "quickviewer.ini"
 #define PROGRESS_INI "progress.ini"
+#define LINEFEED "\r\n"
 #else
 #define APP_INI ".quickviewer/quickviewer.ini"
 #define PROGRESS_INI ".quickviewer/progress.ini"
+#define LINEFEED "\n"
 #endif
 #define TURBO_JPEG_FMT "turbojpeg"
 

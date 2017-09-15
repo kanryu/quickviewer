@@ -276,6 +276,8 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         // qrawspeed plugin can also load rescaled raw images(using built in thumbnail),
         // but usualy thumbnails are too small, so we don't use
         if(reader.format() == TURBO_JPEG_FMT) {
+            if(!qApp->UseFastDCTForJPEG())
+                reader.setQuality(0);
             while(loadingSize.width() > maxTextureSize || loadingSize.height() > maxTextureSize)
                 loadingSize = QSize((loadingSize.width()+1) >> 1,(loadingSize.height()+1) >> 1);
             reader.setScaledSize(loadingSize);

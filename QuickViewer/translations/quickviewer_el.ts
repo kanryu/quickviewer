@@ -383,6 +383,19 @@
         <source>Copyright</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Copy to clipboard</source>
+        <extracomment>Text of button to copy meta information to clipboard</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FileAssocDialog</name>
@@ -1614,6 +1627,15 @@
         <extracomment>Title of frame to change background color or pattern</extracomment>
         <translation>Μοτίβο φόντου</translation>
     </message>
+    <message>
+        <source>Speed up JPEG loading in exchange for quality of display.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use fast DCT for loading JPEG</source>
+        <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>
@@ -1625,6 +1647,59 @@
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation type="unfinished">ΔΕΝ ΥΠΑΡΧΕΙ ΑΡΧΕΙΟ ΕΙΚΟΝΑΣ</translation>
+    </message>
+</context>
+<context>
+    <name>QVApplication</name>
+    <message>
+        <source>File</source>
+        <comment>File Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bookmark</source>
+        <comment>Bookmark Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Folder</source>
+        <comment>Folder Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Catalog</source>
+        <comment>Catalog Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View</source>
+        <comment>View Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WindowState</source>
+        <comment>WindowState Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toolbar</source>
+        <comment>Toolbar Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ContextMenu</source>
+        <comment>ContextMenu Action Group</comment>
+        <translation type="unfinished">Μενού περιβάλλοντος</translation>
+    </message>
+    <message>
+        <source>Shader</source>
+        <comment>Shader Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <comment>Help Action Group</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

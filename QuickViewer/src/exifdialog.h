@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "exif.h"
+#include "pagecontent.h"
 
 namespace Ui {
 class ExifDialog;
@@ -16,17 +17,21 @@ public:
     explicit ExifDialog(QWidget *parent = 0);
     ~ExifDialog();
 
-    void setExif(const easyexif::EXIFInfo& info);
+    void setExif(const ImageContent& content);
     void closeEvent(QCloseEvent *event) override;
 
 signals:
     void closed();
 
+public slots:
+    void onBtnClipbard_clicked();
+
 private:
     Ui::ExifDialog *ui;
+    QString m_exif;
     QString generateFlash(char flash);
-    QString generateFlashMode(unsigned short mode);
-    QString generateFlashReturnedLight(unsigned short light);
+//    QString generateFlashMode(unsigned short mode);
+//    QString generateFlashReturnedLight(unsigned short light);
     QString generateOrientation(unsigned short orient);
 };
 

@@ -460,6 +460,19 @@
         <source>Orientation of camera</source>
         <translation>カメラの向き</translation>
     </message>
+    <message>
+        <source>Copy to clipboard</source>
+        <extracomment>Text of button to copy meta information to clipboard</extracomment>
+        <translation>クリップボードにコピー</translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation>ファイル名</translation>
+    </message>
+    <message>
+        <source>Pixels</source>
+        <translation>ピクセル数</translation>
+    </message>
 </context>
 <context>
     <name>FileAssocDialog</name>
@@ -2471,6 +2484,15 @@
         <extracomment>Normally it is drawing with Windows GDI, but switching to drawing by Direct2D. QPA is loaded at startup.</extracomment>
         <translation>Direct2Dで描画する (再起動後有効)</translation>
     </message>
+    <message>
+        <source>Speed up JPEG loading in exchange for quality of display.</source>
+        <translation>オンの場合、JPEGの読み込みが高速になる代わりに品質がやや低下します。</translation>
+    </message>
+    <message>
+        <source>Use fast DCT for loading JPEG</source>
+        <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
+        <translation>JPEG読み込み時に高速なDCT展開を行う(やや粗い)</translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>
@@ -2487,6 +2509,59 @@
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>画像以外のファイルです</translation>
+    </message>
+</context>
+<context>
+    <name>QVApplication</name>
+    <message>
+        <source>File</source>
+        <comment>File Action Group</comment>
+        <translation>ファイル</translation>
+    </message>
+    <message>
+        <source>Bookmark</source>
+        <comment>Bookmark Action Group</comment>
+        <translation>ブックマーク</translation>
+    </message>
+    <message>
+        <source>Folder</source>
+        <comment>Folder Action Group</comment>
+        <translation>フォルダ</translation>
+    </message>
+    <message>
+        <source>Catalog</source>
+        <comment>Catalog Action Group</comment>
+        <translation>カタログ</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <comment>View Action Group</comment>
+        <translation>表示</translation>
+    </message>
+    <message>
+        <source>WindowState</source>
+        <comment>WindowState Action Group</comment>
+        <translation>ウィンドウの状態</translation>
+    </message>
+    <message>
+        <source>Toolbar</source>
+        <comment>Toolbar Action Group</comment>
+        <translation>ツールバー</translation>
+    </message>
+    <message>
+        <source>ContextMenu</source>
+        <comment>ContextMenu Action Group</comment>
+        <translation>コンテキストメニュー</translation>
+    </message>
+    <message>
+        <source>Shader</source>
+        <comment>Shader Action Group</comment>
+        <translation>シェーダー</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <comment>Help Action Group</comment>
+        <translation>ヘルプ</translation>
     </message>
 </context>
 <context>

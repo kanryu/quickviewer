@@ -303,6 +303,7 @@ void QVApplication::loadSettings()
     m_showFullscreenSignage  = m_settings.value("ShowFullscreenSignage", true).toBool();
 //    m_showFullscreenTitleBar = m_settings.value("ShowFullscreenTitleBar", true).toBool();
     m_useDirect2D = m_settings.value("UseDirect2D", false).toBool();
+    m_useFastDCTForJPEG = m_settings.value("UseFastDCTForJPEG", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -412,6 +413,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowFullscreenSignage", m_showFullscreenSignage);
 //    m_settings.setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
     m_settings.setValue("UseDirect2D", m_useDirect2D);
+    m_settings.setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
