@@ -236,7 +236,7 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 }
 
 
-static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteArray bytes, QString aformat)
+static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteArray bytes, QString aformat, uint loopcount)
 {
     for(;;) {
         int maxTextureSize = qApp->MaxTextureSize();
@@ -380,7 +380,9 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         }
         return ic;
     }
-    return loadWithSpecifiedFormat(path, pageSize, bytes, aformat);
+    if(!loopcount)
+        return ImageContent(path);
+    return loadWithSpecifiedFormat(path, pageSize, bytes, aformat, loopcount-1);
 }
 
 
@@ -402,7 +404,7 @@ static ImageContent futureLoadImageFromFileVolumeImpl(VolumeManager* volume, QSt
 //        bool lodepng_exist = IFileLoader::isImageFile("lodepng");
 //        aformat = lodepng_exist ? "lodepng" : "png";
 //    }
-    return loadWithSpecifiedFormat(path, pageSize, bytes, aformat);
+    return loadWithSpecifiedFormat(path, pageSize, bytes, aformat, 5);
 }
 
 ImageContent VolumeManager::futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize)

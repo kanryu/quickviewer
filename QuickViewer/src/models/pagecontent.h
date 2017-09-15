@@ -44,6 +44,7 @@ public:
     easyexif::EXIFInfo Info;
 
     ImageContent(){}
+    ImageContent(QString path):Path(path){}
     ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info)
         : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info) {}
     ImageContent(const ImageContent& rhs)
