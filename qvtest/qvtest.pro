@@ -30,7 +30,7 @@ SOURCES += \
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 win32 {
-    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32
+    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32 -lshell32
 }
 unix {
     DEFINES += _UNIX
