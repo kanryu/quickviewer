@@ -132,6 +132,8 @@ public:
     void setMaxTextureSize(int maxTextureSize) { m_maxTextureSize = maxTextureSize; }
     bool UseFastDCTForJPEG() { return m_useFastDCTForJPEG; }
     void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
+    bool ShowFullpathOfVolume() { return m_showFullpathOfVolume; }
+    void setShowFullpathOfVolume(bool showFullpathOfVolume) { m_showFullpathOfVolume = showFullpathOfVolume; }
 
 
     // DualView
@@ -168,11 +170,13 @@ public:
 
     // File
     bool AutoLoaded() { return m_autoLoaded; }
-    void setAutoLoaded (bool autoLoaded) { m_autoLoaded = autoLoaded; }
+    void setAutoLoaded(bool autoLoaded) { m_autoLoaded = autoLoaded; }
     bool ProhibitMultipleRunning() { return m_prohibitMultipleRunning; }
     void setProhibitMultipleRunning (bool prohibitMultipleRunning) { m_prohibitMultipleRunning = prohibitMultipleRunning; }
     QString LastViewPath() { return m_lastViewPath; }
     void setLastViewPath (QString lastViewPath) { m_lastViewPath = lastViewPath; }
+    bool SavingHistory() { return m_savingHistory; }
+    void setSavingHistory(bool savingHistory) { m_savingHistory = savingHistory; }
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
@@ -308,6 +312,8 @@ private:
     int m_maxBookmarkCount;
     bool m_prohibitMultipleRunning;
     QString m_lastViewPath;
+    bool m_savingHistory;
+    bool m_showFullpathOfVolume;
 
     // Folder
     QString m_homeFolderPath;

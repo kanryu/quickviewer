@@ -221,6 +221,7 @@
     <addaction name="menuHistory"/>
     <addaction name="actionClearHistory"/>
     <addaction name="actionAutoLoaded"/>
+    <addaction name="actionSavingHistory"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -250,6 +251,7 @@
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
     <addaction name="actionShowFullscreenSignage"/>
+    <addaction name="actionShowFullpathOfVolume"/>
     <addaction name="actionStayOnTop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -1018,6 +1020,22 @@
   <action name="actionRegistAssocs">
    <property name="text">
     <string extracomment="Ability to associate QuickViewer and image files on Explorer (Host Global)">Image Associations (only you)</string>
+   </property>
+  </action>
+  <action name="actionSavingHistory">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag for prohibiting update of history">Don't update history</string>
+   </property>
+  </action>
+  <action name="actionShowFullpathOfVolume">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag to display by switching the full path or volume name of the volume to the title bar">Show full path of the volume</string>
    </property>
   </action>
  </widget>
@@ -2298,6 +2316,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowFullpathOfVolume</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onShowFullpathOfVolume_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSavingHistory</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onSavingHistory_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2364,5 +2414,7 @@
   <slot>onActionRecyclePage_triggered()</slot>
   <slot>onActionSuppressKeyRepeat_triggered(bool)</slot>
   <slot>onActionRegistAssocs_triggered()</slot>
+  <slot>onSavingHistory_triggered(bool)</slot>
+  <slot>onShowFullpathOfVolume_triggered(bool)</slot>
  </slots>
 </ui>

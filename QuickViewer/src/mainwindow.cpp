@@ -70,6 +70,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionShowSubfolders->setChecked(qApp->ShowSubfolders());
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
+    ui->actionShowFullpathOfVolume->setChecked(qApp->ShowFullpathOfVolume());
+    ui->actionSavingHistory->setChecked(qApp->SavingHistory());
 
     ui->actionDontEnlargeSmallImagesOnFitting->setChecked(qApp->DontEnlargeSmallImagesOnFitting());
     ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
@@ -445,6 +447,17 @@ void MainWindow::onActionExit_triggered()
     QCoreApplication::quit();
 }
 
+void MainWindow::onSavingHistory_triggered(bool enable)
+{
+    qApp->setSavingHistory(enable);
+}
+
+void MainWindow::onShowFullpathOfVolume_triggered(bool enable)
+{
+    qApp->setShowFullpathOfVolume(enable);
+    resetVolumeCaption();
+}
+
 void MainWindow::onActionClearHistory_triggered()
 {
     qApp->clearHistory();
@@ -621,13 +634,12 @@ void MainWindow::onPageManager_volumeChanged(QString path)
         on_pageNolongerNeeded_triggered();
         return;
     }
-    qApp->addHistory(path);
+    if(qApp->SavingHistory())
+        qApp->addHistory(path);
     if(!isFullScreen() && qApp->ShowSliderBar())
         ui->pageFrame->show();
 
-    m_volumeCaption = QString("%1 - %2")
-            .arg(path).arg(qApp->applicationName());
-    setWindowTitle(m_volumeCaption);
+    resetVolumeCaption();
     makeHistoryMenu();
 
 }
@@ -846,6 +858,18 @@ bool MainWindow::isFolderSearching()
     if(!m_folderWindow || !m_folderWindow->parent())
         return false;
     return true;
+}
+
+void MainWindow::resetVolumeCaption()
+{
+    QString path = m_pageManager.volumePath();
+    if(!qApp->ShowFullpathOfVolume()) {
+        QFileInfo info(path);
+        path = info.fileName();
+    }
+    m_volumeCaption = QString("%1 - %2")
+            .arg(path).arg(qApp->applicationName());
+    setWindowTitle(m_volumeCaption);
 }
 
 void MainWindow::onActionOpenExif_triggered()
