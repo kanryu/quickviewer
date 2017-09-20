@@ -219,6 +219,7 @@ void MainWindow::resetShortcutKeys()
         a->setShortcuts(seqlist);
 //        a->setShortcutContext(Qt::ApplicationShortcut);
     }
+    onScrollModeChanged(ui->graphicsView->isScrollMode());
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
@@ -269,7 +270,7 @@ void MainWindow::wheelEvent(QWheelEvent *e)
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     QKeySequence seq(event->key() | event->modifiers());
-    qDebug() << seq.toString();
+//    qDebug() << seq.toString();
 
     if(this->focusWidget() != ui->graphicsView)
         return;
@@ -311,11 +312,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     //QDragEnterEvent  *dragEnterEvent = NULL;//event data, if this is a keystroke event
     //QDropEvent *dropEvent = NULL;//event data, if this is a keystroke event
 
-    if(obj == ui->graphicsView) {
-        qDebug() << "graphicsView <= " << event->type();
-    } else {
-        qDebug() << obj << " <= " << event->type();
-    }
+//    if(obj == ui->graphicsView) {
+//        qDebug() << "graphicsView <= " << event->type();
+//    } else {
+//        qDebug() << obj << " <= " << event->type();
+//    }
 
     switch (event->type()) {
     case QEvent::ShortcutOverride:
