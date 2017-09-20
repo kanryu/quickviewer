@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## v0.9.8 (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+
+improve behavior for tool windows and scroll bars, add 2 menus, 2 bugfixed
+
+- improve behavior
+- tool windows such as Catalog/Folder Window
+- If scroll bars are required only for width or height of an image, only the scroll bars that are required are displayed.
+- can Scroll images with cursor keys when to show scrollbars
+- add 'Don't update history'
+- add 'Show full path of the volume'
+- bugfixed: The left end was not displayed when the image is larger than the screen
+- bugfixed: prevent to crash on incorrect file
+
+- other commits
+    - remove shortcutbutton (Wed Sep 20 10:22:43 2017 +0900) [8b6ff79](https://github.com/kanryu/quickviewer/commit/8b6ff79e125f9aa9df47ced57723fa3ad4672648)
+    -  can Scroll images with cursor keys when to show scrollbars (Wed Sep 20 09:32:52 2017 +0900) [447c089](https://github.com/kanryu/quickviewer/commit/447c089dd8b3774fcb29fd76f53f65bc3e642ab1)
+    -  bugfixed: The left end was not displayed when the image is larger than the screen (Wed Sep 20 09:32:52 2017 +0900) [447c089](https://github.com/kanryu/quickviewer/commit/447c089dd8b3774fcb29fd76f53f65bc3e642ab1)
+    -  add 'Don't update history' (Wed Sep 20 05:25:42 2017 +0900) [b55d474](https://github.com/kanryu/quickviewer/commit/b55d474995f33d8194880a9d260527aaf019d1b5)
+    -  add 'Show full path of the volume' (Wed Sep 20 05:25:42 2017 +0900) [b55d474](https://github.com/kanryu/quickviewer/commit/b55d474995f33d8194880a9d260527aaf019d1b5)
+    - If scroll bars are required only for width or height of an image, only the scroll bars that are required are displayed. (Wed Sep 20 03:38:41 2017 +0900) [1bb1ee5](https://github.com/kanryu/quickviewer/commit/1bb1ee5ec094ad748fddfecc0bc78ea880e1c20f)
+    - prevent to crash on incorrect file (Sat Sep 16 02:20:56 2017 +0900) [3782ad7](https://github.com/kanryu/quickviewer/commit/3782ad7e31fa9e5755e9fbb5b8e9c097436f27b6)
+    - changelog (Fri Sep 15 17:44:32 2017 +0900) [316f33e](https://github.com/kanryu/quickviewer/commit/316f33ec921d4210514b0e787ebd21cf1ac500c3)
+
 ## v0.9.7 (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
 
 improved loading JPEG, Exif display, bugfixed
