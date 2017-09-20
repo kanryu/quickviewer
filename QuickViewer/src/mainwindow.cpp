@@ -71,12 +71,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
     ui->actionShowFullpathOfVolume->setChecked(qApp->ShowFullpathOfVolume());
-    ui->actionSavingHistory->setChecked(qApp->SavingHistory());
+    ui->actionSavingHistory->setChecked(qApp->DontSavingHistory());
 
     ui->actionDontEnlargeSmallImagesOnFitting->setChecked(qApp->DontEnlargeSmallImagesOnFitting());
     ui->actionRestoreWindowState->setChecked(qApp->RestoreWindowState());
     ui->actionBeginAsFullscreen->setChecked(qApp->BeginAsFullscreen());
     ui->actionShowFullscreenSignage->setChecked(qApp->ShowFullscreenSignage());
+    ui->actionShowPanelSeparateWindow->setChecked(qApp->ShowPanelSeparateWindow());
 //    ui->actionShowFullscreenTitleBar->setChecked(qApp->ShowFullscreenTitleBar());
 
     // Languages
@@ -462,7 +463,7 @@ void MainWindow::onActionExit_triggered()
 
 void MainWindow::onSavingHistory_triggered(bool enable)
 {
-    qApp->setSavingHistory(enable);
+    qApp->setDontSavingHistory(enable);
 }
 
 void MainWindow::onShowFullpathOfVolume_triggered(bool enable)
@@ -570,6 +571,82 @@ void MainWindow::resetShortCut(const QString name, const QString shortcuttext, b
     a->setShortcuts(seqlist);
 }
 
+void MainWindow::createCatalogWindow(bool docked)
+{
+    if(m_catalogWindow)
+        onCatalogWindow_closed();
+    if(docked) {
+        if(m_folderWindow && m_folderWindow->parent())
+            onFolderWindow_closed();
+        if(m_exifDialog && m_exifDialog->parent())
+            onExifDialog_closed();
+        m_catalogWindow = new CatalogWindow(nullptr, ui);
+        m_catalogWindow->setThumbnailManager(m_thumbManager);
+        connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
+        connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
+        ui->catalogSplitter->insertWidget(0, m_catalogWindow);
+        auto sizes = ui->catalogSplitter->sizes();
+        int sum = sizes[0]+sizes[1];
+        sizes[0] = 200;
+        sizes[1] = sum-sizes[0];
+        ui->catalogSplitter->setSizes(sizes);
+        m_catalogWindow->setAsInnerWidget();
+    } else {
+        m_catalogWindow = new CatalogWindow(nullptr, ui);
+        m_catalogWindow->setThumbnailManager(m_thumbManager);
+        connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
+        connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
+        m_catalogWindow->setAsToplevelWindow();
+        QRect self = geometry();
+        m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+        m_catalogWindow->show();
+    }
+}
+
+void MainWindow::createFolderWindow(bool docked)
+{
+    QString oldpath;
+    if(m_folderWindow) {
+        oldpath = m_folderWindow->currentPath();
+        onFolderWindow_closed();
+    }
+    if(oldpath.isEmpty()) {
+        oldpath = m_pageManager.volumePath();
+        if(oldpath.isEmpty())
+            oldpath = qApp->HomeFolderPath();
+    }
+    if(docked) {
+        if(m_catalogWindow && m_catalogWindow->parent())
+            onCatalogWindow_closed();
+        if(m_exifDialog && m_exifDialog->parent())
+            onExifDialog_closed();
+        m_folderWindow = new FolderWindow(nullptr, ui);
+        m_folderWindow->setFolderPath(oldpath, false);
+        connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
+        connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
+        connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
+        ui->catalogSplitter->insertWidget(0, m_folderWindow);
+        auto sizes = ui->catalogSplitter->sizes();
+        int sum = sizes[0]+sizes[1];
+        sizes[0] = 200;
+        sizes[1] = sum-sizes[0];
+        ui->catalogSplitter->setSizes(sizes);
+        m_folderWindow->setAsInnerWidget();
+        return;
+    } else {
+        // close child widget, and recreate as independent window
+        m_folderWindow = new FolderWindow(nullptr, ui);
+        QRect self = geometry();
+        m_folderWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+        m_folderWindow->setAsToplevelWindow();
+        m_folderWindow->setFolderPath(oldpath, false);
+        connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
+        connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
+        connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
+        m_folderWindow->show();
+    }
+}
+
 void MainWindow::onActionFullscreen_triggered()
 {
     qDebug() << "on_fullscreen_triggered";
@@ -674,7 +751,7 @@ void MainWindow::onPageManager_volumeChanged(QString path)
         on_pageNolongerNeeded_triggered();
         return;
     }
-    if(qApp->SavingHistory())
+    if(!qApp->DontSavingHistory())
         qApp->addHistory(path);
     if(!isFullScreen() && qApp->ShowSliderBar())
         ui->pageFrame->show();
@@ -777,42 +854,10 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 void MainWindow::onActionShowFolder_triggered()
 {
     if(m_folderWindow) {
-        bool isChild = m_folderWindow->parent();
-        QString oldpath = m_folderWindow->currentPath();
         onFolderWindow_closed();
-        if(isChild) {
-            // close child widget, and recreate as independent window
-            m_folderWindow = new FolderWindow(nullptr, ui);
-            QRect self = geometry();
-            m_folderWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
-            m_folderWindow->setAsToplevelWindow();
-            m_folderWindow->setFolderPath(oldpath, false);
-            connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
-            connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
-            connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
-            m_folderWindow->show();
-        }
         return;
     }
-    if(m_catalogWindow && m_catalogWindow->parent())
-        onCatalogWindow_closed();
-    if(m_exifDialog && m_exifDialog->parent())
-        onExifDialog_closed();
-    m_folderWindow = new FolderWindow(nullptr, ui);
-    QString path = m_pageManager.volumePath();
-    if(path.isEmpty())
-        path = qApp->HomeFolderPath();
-    m_folderWindow->setFolderPath(path, false);
-    connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
-    connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
-    connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
-    ui->catalogSplitter->insertWidget(0, m_folderWindow);
-    auto sizes = ui->catalogSplitter->sizes();
-    int sum = sizes[0]+sizes[1];
-    sizes[0] = 200;
-    sizes[1] = sum-sizes[0];
-    ui->catalogSplitter->setSizes(sizes);
-    m_folderWindow->setAsInnerWidget();
+    createFolderWindow(!qApp->ShowPanelSeparateWindow());
 }
 
 void MainWindow::onFolderWindow_closed()
@@ -845,37 +890,10 @@ void MainWindow::onActionShowReadProgress_triggered(bool enabled)
 void MainWindow::onActionShowCatalog_triggered()
 {
     if(m_catalogWindow) {
-        bool isChild = m_catalogWindow->parent();
         onCatalogWindow_closed();
-        if(isChild) {
-            m_catalogWindow = new CatalogWindow(nullptr, ui);
-            m_catalogWindow->setThumbnailManager(m_thumbManager);
-            connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
-            connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
-            m_catalogWindow->setAsToplevelWindow();
-            QRect self = geometry();
-            m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
-            m_catalogWindow->show();
-        }
         return;
     }
-    if(m_folderWindow && m_folderWindow->parent())
-        onFolderWindow_closed();
-    if(m_exifDialog && m_exifDialog->parent())
-        onExifDialog_closed();
-    m_catalogWindow = new CatalogWindow(nullptr, ui);
-    m_catalogWindow->setThumbnailManager(m_thumbManager);
-    connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
-    connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
-    ui->catalogSplitter->insertWidget(0, m_catalogWindow);
-    auto sizes = ui->catalogSplitter->sizes();
-    int sum = sizes[0]+sizes[1];
-    sizes[0] = 200;
-    sizes[1] = sum-sizes[0];
-    ui->catalogSplitter->setSizes(sizes);
-    m_catalogWindow->setAsInnerWidget();
-//    m_catalogWindow->resize(180, m_catalogWindow->height());
-//    m_catalogWindow->show();
+    createCatalogWindow(!qApp->ShowPanelSeparateWindow());
 }
 
 void MainWindow::onCatalogWindow_closed()
@@ -1116,6 +1134,15 @@ void MainWindow::onActionBeginAsFullscreen_triggered(bool enable)
 void MainWindow::onActionShowFullscreenSignage_triggered(bool enable)
 {
     qApp->setShowFullscreenSignage(enable);
+}
+
+void MainWindow::onActionShowPanelSeparateWindow_triggered(bool enable)
+{
+    qApp->setShowPanelSeparateWindow(enable);
+    if(m_folderWindow)
+        createFolderWindow(!qApp->ShowPanelSeparateWindow());
+    if(m_catalogWindow)
+        createCatalogWindow(!qApp->ShowPanelSeparateWindow());
 }
 
 //void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)

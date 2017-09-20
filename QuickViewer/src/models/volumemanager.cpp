@@ -290,7 +290,8 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
                 tmp = reader.read();
                 if(!tmp.isNull()) break;
                 qDebug() << "[0]" << path << tmp << count;
-                if(count >= 100) return ImageContent();
+                if(count >= 100 || aformat.startsWith("tif")) return ImageContent(path);
+//                if(count >= 100) return ImageContent(path);
                 QThread::currentThread()->usleep(40000);
             }
             src = QZimg::toPackedImage(tmp);

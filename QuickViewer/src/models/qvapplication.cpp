@@ -305,6 +305,7 @@ void QVApplication::loadSettings()
     m_useDirect2D = m_settings.value("UseDirect2D", false).toBool();
     m_useFastDCTForJPEG = m_settings.value("UseFastDCTForJPEG", true).toBool();
     m_showFullpathOfVolume  = m_settings.value("ShowFullpathOfVolume", true).toBool();
+    m_showPanelSeparateWindow  = m_settings.value("ShowPanelSeparateWindow", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -322,7 +323,7 @@ void QVApplication::loadSettings()
     m_maxBookmarkCount = m_settings.value("MaxBookmarkCount", 20).toInt();
     m_prohibitMultipleRunning  = m_settings.value("ProhibitMultipleRunning", false).toBool();
     m_lastViewPath = m_settings.value("LastViewPath", "").toString();
-    m_savingHistory  = m_settings.value("SavingHistory", true).toBool();
+    m_dontSavingHistory  = m_settings.value("DontSavingHistory", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");
@@ -417,6 +418,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("UseDirect2D", m_useDirect2D);
     m_settings.setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);
     m_settings.setValue("ShowFullpathOfVolume", m_showFullpathOfVolume);
+    m_settings.setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -434,7 +436,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
     m_settings.setValue("ProhibitMultipleRunning", m_prohibitMultipleRunning);
     m_settings.setValue("LastViewPath", m_lastViewPath);
-    m_settings.setValue("SavingHistory", m_savingHistory);
+    m_settings.setValue("DontSavingHistory", m_dontSavingHistory);
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");

@@ -251,7 +251,9 @@
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
     <addaction name="actionShowFullscreenSignage"/>
+    <addaction name="separator"/>
     <addaction name="actionShowFullpathOfVolume"/>
+    <addaction name="actionShowPanelSeparateWindow"/>
     <addaction name="actionStayOnTop"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -406,6 +408,7 @@
    <addaction name="actionFitting"/>
    <addaction name="actionDualView"/>
    <addaction name="separator"/>
+   <addaction name="actionShowPanelSeparateWindow"/>
    <addaction name="actionStayOnTop"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -1036,6 +1039,18 @@
    </property>
    <property name="text">
     <string extracomment="Flag to display by switching the full path or volume name of the volume to the title bar">Show full path of the volume</string>
+   </property>
+  </action>
+  <action name="actionShowPanelSeparateWindow">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/child_separate</normaloff>:/icons/child_separate</iconset>
+   </property>
+   <property name="text">
+    <string extracomment="Flag separating the catalog and folder windows into independent windows">Undock into separate window</string>
    </property>
   </action>
  </widget>
@@ -2348,6 +2363,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowPanelSeparateWindow</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionShowPanelSeparateWindow_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2416,5 +2447,6 @@
   <slot>onActionRegistAssocs_triggered()</slot>
   <slot>onSavingHistory_triggered(bool)</slot>
   <slot>onShowFullpathOfVolume_triggered(bool)</slot>
+  <slot>onActionShowPanelSeparateWindow_triggered(bool)</slot>
  </slots>
 </ui>

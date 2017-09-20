@@ -134,6 +134,8 @@ public:
     void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
     bool ShowFullpathOfVolume() { return m_showFullpathOfVolume; }
     void setShowFullpathOfVolume(bool showFullpathOfVolume) { m_showFullpathOfVolume = showFullpathOfVolume; }
+    bool ShowPanelSeparateWindow() { return m_showPanelSeparateWindow; }
+    void setShowPanelSeparateWindow(bool showPanelSeparateWindow) { m_showPanelSeparateWindow = showPanelSeparateWindow; }
 
 
     // DualView
@@ -175,8 +177,8 @@ public:
     void setProhibitMultipleRunning (bool prohibitMultipleRunning) { m_prohibitMultipleRunning = prohibitMultipleRunning; }
     QString LastViewPath() { return m_lastViewPath; }
     void setLastViewPath (QString lastViewPath) { m_lastViewPath = lastViewPath; }
-    bool SavingHistory() { return m_savingHistory; }
-    void setSavingHistory(bool savingHistory) { m_savingHistory = savingHistory; }
+    bool DontSavingHistory() { return m_dontSavingHistory; }
+    void setDontSavingHistory(bool savingHistory) { m_dontSavingHistory = savingHistory; }
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
@@ -291,6 +293,7 @@ private:
 //    bool m_showFullscreenTitleBar;
     bool m_useDirect2D;
     bool m_useFastDCTForJPEG;
+    bool m_showPanelSeparateWindow;
 
     // ToolBars
     bool m_showToolBar;
@@ -312,7 +315,7 @@ private:
     int m_maxBookmarkCount;
     bool m_prohibitMultipleRunning;
     QString m_lastViewPath;
-    bool m_savingHistory;
+    bool m_dontSavingHistory;
     bool m_showFullpathOfVolume;
 
     // Folder

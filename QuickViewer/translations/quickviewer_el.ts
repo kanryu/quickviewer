@@ -1330,6 +1330,21 @@
         <comment>Confirm deleting image file on Message Box body</comment>
         <translation type="unfinished">Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
     </message>
+    <message>
+        <source>Don&apos;t update history</source>
+        <extracomment>Flag for prohibiting update of history</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show full path of the volume</source>
+        <extracomment>Flag to display by switching the full path or volume name of the volume to the title bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Undock into separate window</source>
+        <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

@@ -51,6 +51,7 @@
         <file alias="folder_view_list_red">icons/folder_view_list_red.png</file>
         <file alias="catalog_icon">icons/catalog.png</file>
         <file alias="subfolders_icon">icons/subfolders.png</file>
+        <file alias="child_separate">icons/child_separate.png</file>
     </qresource>
     <qresource prefix="/icons/24">
         <file alias="arrow_left_icon_24">icons/24/arrow-pointing-to-left.png</file>

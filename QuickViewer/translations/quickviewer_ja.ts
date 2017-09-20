@@ -2105,6 +2105,21 @@
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
         <translation>画像の関連付け (あなたのみ)</translation>
     </message>
+    <message>
+        <source>Don&apos;t update history</source>
+        <extracomment>Flag for prohibiting update of history</extracomment>
+        <translation>履歴を更新しない</translation>
+    </message>
+    <message>
+        <source>Show full path of the volume</source>
+        <extracomment>Flag to display by switching the full path or volume name of the volume to the title bar</extracomment>
+        <translation>ボリュームのフルパスを表示する</translation>
+    </message>
+    <message>
+        <source>Undock into separate window</source>
+        <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
+        <translation>ツールウィンドウをアプリのウィンドウから分離する</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

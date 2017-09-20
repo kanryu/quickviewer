@@ -18,7 +18,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 0.9.7
+VERSION = 0.9.8
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -110,7 +110,6 @@ SOURCES += \
     src/renamedialog.cpp \
     src/widgets/flowlayout.cpp \
     src/widgets/pageslider.cpp \
-    src/widgets/shortcutbutton.cpp \
     src/qlanguageselector/qlanguageselector.cpp \
     src/qnamedpipe/qnamedpipe.cpp \
     src/qfullscreenframe/qinnerframe.cpp \
@@ -120,7 +119,8 @@ SOURCES += \
     src/qactionmanager/keyconfigdialog.cpp \
     src/qactionmanager/mouseconfigdialog.cpp \
     src/qactionmanager/qactionmanager.cpp \
-    src/qactionmanager/qmousesequence.cpp
+    src/qactionmanager/qmousesequence.cpp \
+    src/qactionmanager/shortcutbutton.cpp \
 
 
 HEADERS  += \
@@ -149,7 +149,6 @@ HEADERS  += \
     src/stdafx.h \
     src/widgets/flowlayout.h \
     src/widgets/pageslider.h \
-    src/widgets/shortcutbutton.h \
     src/qlanguageselector/qlanguageselector.h \
     src/qnamedpipe/qnamedpipe.h \
     src/qfullscreenframe/qinnerframe.h \
@@ -159,7 +158,8 @@ HEADERS  += \
     src/qactionmanager/keyconfigdialog.h \
     src/qactionmanager/mouseconfigdialog.h \
     src/qactionmanager/qactionmanager.h \
-    src/qactionmanager/qmousesequence.h
+    src/qactionmanager/qmousesequence.h \
+    src/qactionmanager/shortcutbutton.h \
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer

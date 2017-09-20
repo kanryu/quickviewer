@@ -45,6 +45,8 @@ public:
     bool isFolderSearching();
     void resetVolumeCaption();
     void resetShortCut(const QString name, const QString shortcuttext, bool removed);
+    void createCatalogWindow(bool docked);
+    void createFolderWindow(bool docked);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e) override;
@@ -107,6 +109,7 @@ public slots:
     void onActionBeginAsFullscreen_triggered(bool enable);
     void onActionShowFullscreenSignage_triggered(bool enable);
 //    void onActionShowFullscreenTitleBar_triggered(bool enable);
+    void onActionShowPanelSeparateWindow_triggered(bool enable);
     void on_windowTop();
 
     // SlideShow
