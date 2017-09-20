@@ -46,7 +46,8 @@ void FileLoaderTest::testCase1_deflate_mbcs()
     Q_ASSERT(files.length() == 1);
     Q_ASSERT(QDir::fromNativeSeparators(files[0]) == "サンプルフォルダ/test.bmp");
 
-    QByteArray bytes = seven.getFile(files[0], QMutex());
+    QMutex mutex;
+    QByteArray bytes = seven.getFile(files[0], mutex);
     Q_ASSERT(bytes.length() == 1080054);
     QImage image = QImage::fromData(bytes, "bmp");
     Q_ASSERT(image.width() == 600);
@@ -62,7 +63,8 @@ void FileLoaderTest::testCase2_deflate_utf8()
     Q_ASSERT(files.length() == 1);
     Q_ASSERT(QDir::fromNativeSeparators(files[0]) == "サンプルフォルダ/test.bmp");
 
-    QByteArray bytes = seven.getFile(files[0], QMutex());
+    QMutex mutex;
+    QByteArray bytes = seven.getFile(files[0], mutex);
     Q_ASSERT(bytes.length() == 1080054);
     QImage image = QImage::fromData(bytes, "bmp");
     Q_ASSERT(image.width() == 600);
@@ -78,7 +80,8 @@ void FileLoaderTest::testCase3_deflate64_mbcs()
     Q_ASSERT(files.length() == 1);
     Q_ASSERT(QDir::fromNativeSeparators(files[0]) == "サンプルフォルダ/test.bmp");
 
-    QByteArray bytes = seven.getFile(files[0], QMutex());
+    QMutex mutex;
+    QByteArray bytes = seven.getFile(files[0], mutex);
     Q_ASSERT(bytes.length() == 1080054);
     QImage image = QImage::fromData(bytes, "bmp");
     Q_ASSERT(image.width() == 600);
@@ -94,7 +97,8 @@ void FileLoaderTest::testCase4_deflate64_utf8()
     Q_ASSERT(files.length() == 1);
     Q_ASSERT(QDir::fromNativeSeparators(files[0]) == "サンプルフォルダ/test.bmp");
 
-    QByteArray bytes = seven.getFile(files[0], QMutex());
+    QMutex mutex;
+    QByteArray bytes = seven.getFile(files[0], mutex);
     Q_ASSERT(bytes.length() == 1080054);
     QImage image = QImage::fromData(bytes, "bmp");
     Q_ASSERT(image.width() == 600);

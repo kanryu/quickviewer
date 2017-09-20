@@ -2,6 +2,7 @@
 
 #include "exifdialog.h"
 #include "ui_exifdialog.h"
+#include "qv_init.h"
 
 struct ImageMetaContents
 {

@@ -36,6 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+#ifndef Q_OS_WIN
+    ui->actionRegistAssocsUAC->setVisible(false);
+    ui->actionRegistAssocs->setVisible(false);
+#endif
+
     auto fullscreenButton = new QToolButton(this);
     fullscreenButton->setToolTip(tr("&Fullscreen"));
     fullscreenButton->setCheckable(true);
