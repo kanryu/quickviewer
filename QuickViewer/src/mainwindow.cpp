@@ -158,6 +158,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(onPageManager_pageChanged()));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(onPageManager_volumeChanged(QString)));
+    connect(ui->graphicsView, SIGNAL(scrollModeChanged(bool)), this, SLOT(onScrollModeChanged(bool)));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
@@ -216,9 +217,8 @@ void MainWindow::resetShortcutKeys()
             seqlist << QKeySequence(seq[i]);
         }
         a->setShortcuts(seqlist);
-        a->setShortcutContext(Qt::ApplicationShortcut);
+//        a->setShortcutContext(Qt::ApplicationShortcut);
     }
-    grabKeyboard();
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *e)
@@ -263,6 +263,38 @@ void MainWindow::wheelEvent(QWheelEvent *e)
     QMainWindow::wheelEvent(e);
 }
 
+/**
+ * @brief Support for Customized Shortcut Keys
+ */
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    QKeySequence seq(event->key() | event->modifiers());
+    qDebug() << seq.toString();
+
+    if(this->focusWidget() != ui->graphicsView)
+        return;
+    if(ui->graphicsView->isScrollMode()) {
+        if(QString("Left, Right, Up, Down").contains(seq.toString())) {
+            if(seq.toString()=="Left")
+                ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()-300);
+            if(seq.toString()=="Right")
+                ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()+300);
+            if(seq.toString()=="Up")
+                ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()-300);
+            if(seq.toString()=="Down")
+                ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()+300);
+            return;
+        }
+    }
+
+    QAction* action = qApp->keyActions().getActionByKey(seq);
+    if(action) {
+        action->trigger();
+        event->accept();
+        return;
+    }
+}
+
 void MainWindow::closeEvent(QCloseEvent *)
 {
     onCatalogWindow_closed();
@@ -279,13 +311,15 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     //QDragEnterEvent  *dragEnterEvent = NULL;//event data, if this is a keystroke event
     //QDropEvent *dropEvent = NULL;//event data, if this is a keystroke event
 
-//    if(obj == ui->graphicsView) {
-//        qDebug() << "graphicsView <= " << event->type();
-//    } else {
-//        qDebug() << obj << " <= " << event->type();
-//    }
+    if(obj == ui->graphicsView) {
+        qDebug() << "graphicsView <= " << event->type();
+    } else {
+        qDebug() << obj << " <= " << event->type();
+    }
 
     switch (event->type()) {
+    case QEvent::ShortcutOverride:
+        return true;
     case QEvent::KeyPress:
         if(obj == ui->graphicsView) {
             keyEvent = dynamic_cast<QKeyEvent*>(event);
@@ -419,28 +453,6 @@ void MainWindow::setThumbnailManager(ThumbnailManager *manager)
     m_thumbManager = manager;
 }
 
-const static QKeySequence seqReturn("Return");
-const static QKeySequence seqEnter("Num+Enter");
-/**
- * @brief Support for Customized Shortcut Keys
- */
-void MainWindow::keyPressEvent(QKeyEvent *event)
-{
-    QKeySequence seq(event->key() | event->modifiers());
-    qDebug() << seq.toString();
-
-    if(this->focusWidget() != ui->graphicsView)
-        return;
-
-    QAction* action = qApp->keyActions().getActionByKey(seq);
-    if(action) {
-        action->trigger();
-        event->accept();
-        return;
-    }
-}
-
-
 void MainWindow::onActionExit_triggered()
 {
     QApplication::quit();
@@ -528,6 +540,33 @@ void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
 //        ui->pageFrame->hide();
     }
     ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::onScrollModeChanged(bool scrolled)
+{
+    QStringList cusors = {"Left", "Right", "Up", "Down"};
+    // enable/disable cursor key shortcuts
+    foreach(const QString& c, cusors) {
+        QString name = qApp->keyActions().getNameByValue(c);
+        if(!name.isEmpty())
+            resetShortCut(name, c, scrolled);
+    }
+}
+
+void MainWindow::resetShortCut(const QString name, const QString shortcuttext, bool removed)
+{
+    QMap<QString, QAction*>& actions = qApp->keyActions().actions();
+    QMap<QString, QKeySequence> & seqMap = qApp->keyActions().keyMaps();
+    auto a = actions[name];
+    QKeySequence seq = seqMap[name];
+
+    QList<QKeySequence> seqlist;
+    for(int i = 0; i < seq.count(); i++) {
+        seqlist << QKeySequence(seq[i]);
+    }
+    if(removed)
+        seqlist.removeOne(QKeySequence(shortcuttext));
+    a->setShortcuts(seqlist);
 }
 
 void MainWindow::onActionFullscreen_triggered()

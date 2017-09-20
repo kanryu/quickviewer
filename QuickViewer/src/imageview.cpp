@@ -186,9 +186,10 @@ void ImageView::readyForPaint() {
 void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
 {
     // if Size of Image overs Size of View, use Image's size
-    m_scrollMode = scrolled && (size().width() < sceneRect.width() || size().height() < sceneRect.height());
-    if(m_scrollMode) {
-        scene()->setSceneRect(QRect(QPoint(), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
+    bool newMode = scrolled && (size().width() < sceneRect.width() || size().height() < sceneRect.height());
+    if(newMode) {
+        int width = qMax(size().width(), sceneRect.width());
+        scene()->setSceneRect(QRect(QPoint((size().width()-width)/2, 0), QSize(width, qMax(size().height(), sceneRect.height()))));
         // Since Qt :: ScrollBarAsNeeded does not work correctly, judge the display state on its own and switch.
         setHorizontalScrollBarPolicy( size().width() < sceneRect.width()+verticalScrollBar()->width() ? Qt::ScrollBarAsNeeded : Qt::ScrollBarAlwaysOff );
         setVerticalScrollBarPolicy( size().height() < sceneRect.height()+horizontalScrollBar()->height() ? Qt::ScrollBarAsNeeded : Qt::ScrollBarAlwaysOff );
@@ -197,6 +198,8 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
         scene()->setSceneRect(QRect(QPoint(), size()));
         setDragMode(QGraphicsView::NoDrag);
     }
+    if(m_scrollMode != newMode)
+        emit scrollModeChanged(m_scrollMode = newMode);
 }
 
 //void ImageView::paintEvent(QPaintEvent *event)

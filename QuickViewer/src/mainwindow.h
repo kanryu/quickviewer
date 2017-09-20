@@ -27,7 +27,6 @@ public:
 
     void loadVolume(QString path, bool prohibitProhibit2Page=false);
     void resetShortcutKeys();
-    void keyPressEvent(QKeyEvent *event);
     void makeHistoryMenu();
     void resetVolume(VolumeManager* newer);
     void uncheckAllShaderMenus() {
@@ -45,12 +44,14 @@ public:
     bool isCatalogSearching();
     bool isFolderSearching();
     void resetVolumeCaption();
+    void resetShortCut(const QString name, const QString shortcuttext, bool removed);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e) override;
     void dropEvent(QDropEvent *e) override;
 //    void paintEvent( QPaintEvent *event ) override;
     void wheelEvent(QWheelEvent *e) override;
+    void keyPressEvent(QKeyEvent *event);
 //    void contextMenuEvent(QContextMenuEvent *e) override;
 //    void mousePressEvent(QMouseEvent *e) override;
     void closeEvent(QCloseEvent *e) override;
@@ -157,6 +158,7 @@ public slots:
 
     // Others
     virtual void onGraphicsView_anchorHovered(Qt::AnchorPoint anchor);
+    void onScrollModeChanged(bool scrolled);
 
 private slots:
     void onGraphicsView_fittingChanged(bool fitting);

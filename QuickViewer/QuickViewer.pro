@@ -120,7 +120,7 @@ SOURCES += \
     src/qactionmanager/keyconfigdialog.cpp \
     src/qactionmanager/mouseconfigdialog.cpp \
     src/qactionmanager/qactionmanager.cpp \
-    src/qactionmanager/qmousesequence.cpp \
+    src/qactionmanager/qmousesequence.cpp
 
 
 HEADERS  += \
@@ -159,7 +159,7 @@ HEADERS  += \
     src/qactionmanager/keyconfigdialog.h \
     src/qactionmanager/mouseconfigdialog.h \
     src/qactionmanager/qactionmanager.h \
-    src/qactionmanager/qmousesequence.h \
+    src/qactionmanager/qmousesequence.h
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer

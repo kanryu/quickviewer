@@ -69,6 +69,7 @@ signals:
 //    void pageChanged() const;
 
     void fittingChanged(bool fitting) const;
+    void scrollModeChanged(bool scrolling) const;
 
 protected:
 //    void paintEvent( QPaintEvent *event );
