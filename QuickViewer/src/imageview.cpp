@@ -323,7 +323,8 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
     QGraphicsView::mouseMoveEvent(e);
 //    qDebug() << e;
     int NOT_HOVER_AREA = width() / 3;
-    if(e->pos().x() < HOVER_BORDER && e->pos().y() < height()-HOVER_BORDER) {
+	int hover_border = qApp->LargeToolbarIcons() ? 3 * HOVER_BORDER : HOVER_BORDER;
+    if(e->pos().x() < hover_border && e->pos().y() < height()- hover_border) {
         if(m_hoverState != Qt::AnchorLeft)
             emit anchorHovered(Qt::AnchorLeft);
         m_hoverState = Qt::AnchorLeft;
@@ -331,7 +332,7 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
         setCursor(QCursor(Qt::PointingHandCursor));
         return;
     }
-    if(e->pos().x() > width()-HOVER_BORDER) {
+    if(e->pos().x() > width()- hover_border) {
         if(m_hoverState != Qt::AnchorRight)
             emit anchorHovered(Qt::AnchorRight);
         m_hoverState = Qt::AnchorRight;
@@ -342,13 +343,13 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
     }
     setCursor(QCursor(Qt::ArrowCursor));
 //    QApplication::setOverrideCursor(Qt::ArrowCursor);
-    if(e->pos().y() < HOVER_BORDER) {
+    if(e->pos().y() < hover_border) {
         if(m_hoverState != Qt::AnchorTop)
            emit anchorHovered(Qt::AnchorTop);
         m_hoverState = Qt::AnchorTop;
         return;
     }
-    if(e->pos().y() > height()-HOVER_BORDER && e->pos().x() > NOT_HOVER_AREA) {
+    if(e->pos().y() > height()- hover_border && e->pos().x() > NOT_HOVER_AREA) {
         if(m_hoverState != Qt::AnchorBottom)
            emit anchorHovered(Qt::AnchorBottom);
         m_hoverState = Qt::AnchorBottom;

@@ -532,7 +532,7 @@ void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
         innerFrame->showWithoutTitleBar();
     }
     if(anchor == Qt::AnchorBottom && (showPageBar || fullscreen)) {
-        QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView, Qt::AnchorBottom);
+        QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView, Qt::AnchorBottom, qApp->LargeToolbarIcons() ? 60 : 30);
         connect(innerFrame, &QInnerFrame::init, this, [&]{
             innerFrame->layout()->addWidget(ui->pageFrame);
             ui->pageFrame->show();
