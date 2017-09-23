@@ -136,6 +136,8 @@ public:
     void setShowFullpathOfVolume(bool showFullpathOfVolume) { m_showFullpathOfVolume = showFullpathOfVolume; }
     bool ShowPanelSeparateWindow() { return m_showPanelSeparateWindow; }
     void setShowPanelSeparateWindow(bool showPanelSeparateWindow) { m_showPanelSeparateWindow = showPanelSeparateWindow; }
+    bool LargeToolbarIcons() { return m_largeToolbarIcons; }
+    void setLargeToolbarIcons(bool largeToolbarIcons) { m_largeToolbarIcons = largeToolbarIcons; }
 
 
     // DualView
@@ -294,6 +296,7 @@ private:
     bool m_useDirect2D;
     bool m_useFastDCTForJPEG;
     bool m_showPanelSeparateWindow;
+    bool m_largeToolbarIcons;
 
     // ToolBars
     bool m_showToolBar;

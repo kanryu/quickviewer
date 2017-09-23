@@ -35,14 +35,15 @@ MainWindow::MainWindow(QWidget *parent)
     , m_exifDialog(nullptr)
 {
     ui->setupUi(this);
+    m_menubarFontSize = ui->menuBar->font().pointSize();
 
-    auto fullscreenButton = new QToolButton(this);
-    fullscreenButton->setToolTip(tr("&Fullscreen"));
-    fullscreenButton->setCheckable(true);
-    fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
-    connect(fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
-    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), fullscreenButton, SLOT(setChecked(bool)));
-    ui->menuBar->setCornerWidget(fullscreenButton);
+    m_fullscreenButton = new QToolButton(this);
+    m_fullscreenButton->setToolTip(tr("&Fullscreen"));
+    m_fullscreenButton->setCheckable(true);
+    m_fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
+    connect(m_fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
+    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), m_fullscreenButton, SLOT(setChecked(bool)));
+    ui->menuBar->setCornerWidget(m_fullscreenButton);
 
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
@@ -50,6 +51,10 @@ MainWindow::MainWindow(QWidget *parent)
     // Mapping to Key-Action Table and Key Config Dialog
     qApp->registActions(ui);
     resetShortcutKeys();
+
+    // Context menus(independent from menuBar)
+    ui->menuBar->removeAction(ui->menuContextMenu->menuAction());
+    m_contextMenu = ui->menuContextMenu;
 
     // setup checkable menus
     ui->actionFitting->setChecked(qApp->Fitting());
@@ -60,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionStayOnTop->setChecked(qApp->StayOnTop());
     ui->actionStayOnTop->triggered(qApp->StayOnTop());
+
+    ui->actionLargeToolbarIcons->setChecked(qApp->LargeToolbarIcons());
+    ui->actionLargeToolbarIcons->triggered(qApp->LargeToolbarIcons());
 
     ui->graphicsView->on_rightSideBook_triggered(qApp->RightSideBook());
     ui->actionRightSideBook->setChecked(qApp->RightSideBook());
@@ -152,10 +160,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->installEventFilter(this);
     ui->mainToolBar->installEventFilter(this);
     ui->pageFrame->installEventFilter(this);
-
-    // Context menus(independent from menuBar)
-    ui->menuBar->removeAction(ui->menuContextMenu->menuAction());
-    m_contextMenu = ui->menuContextMenu;
 
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(onPageManager_pageChanged()));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(onPageManager_volumeChanged(QString)));
@@ -1143,6 +1147,33 @@ void MainWindow::onActionShowPanelSeparateWindow_triggered(bool enable)
         createFolderWindow(!qApp->ShowPanelSeparateWindow());
     if(m_catalogWindow)
         createCatalogWindow(!qApp->ShowPanelSeparateWindow());
+}
+
+template<typename MenuTypePtr>
+static void setMenuAndSubmenuFont(MenuTypePtr parent, QFont font)
+{
+    parent->setFont(font);
+    foreach(QObject* obj , parent->children()) {
+        QMenu* menu = dynamic_cast<QMenu*>(obj);
+        if(menu)
+            setMenuAndSubmenuFont(menu, font);
+    }
+}
+
+
+void MainWindow::onActionLargeToolbarIcons_triggered(bool enable)
+{
+    qApp->setLargeToolbarIcons(enable);
+    ui->mainToolBar->setIconSize(
+        enable ? QSize(qvEnums::LargeIcon, qvEnums::LargeIcon)
+               : QSize(qvEnums::NormalIcon, qvEnums::NormalIcon));
+    int fontsize = enable ? (int)(1.5*m_menubarFontSize) : m_menubarFontSize;
+    m_fullscreenButton->setIconSize(QSize(2*fontsize, 2*fontsize));
+    QFont font = ui->menuBar->font();
+    font.setPointSize(fontsize);
+
+    setMenuAndSubmenuFont(ui->menuBar, font);
+    setMenuAndSubmenuFont(m_contextMenu, font);
 }
 
 //void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)

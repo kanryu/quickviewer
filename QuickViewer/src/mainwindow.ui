@@ -229,19 +229,9 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="actionRotate"/>
-    <addaction name="actionZoomIn"/>
-    <addaction name="actionZoomOut"/>
-    <addaction name="actionFitting"/>
-    <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
-    <addaction name="separator"/>
-    <addaction name="actionDualView"/>
-    <addaction name="actionRightSideBook"/>
-    <addaction name="actionWideImageAsOneView"/>
-    <addaction name="actionFirstImageAsOneView"/>
+    <addaction name="actionLargeToolbarIcons"/>
     <addaction name="separator"/>
     <addaction name="actionShowMenuBar"/>
-    <addaction name="separator"/>
     <addaction name="actionShowToolBar"/>
     <addaction name="actionShowPageBar"/>
     <addaction name="actionShowStatusBar"/>
@@ -323,8 +313,27 @@
     <property name="title">
      <string>ContextMenu</string>
     </property>
+    <widget class="QMenu" name="menu_Shader">
+     <property name="title">
+      <string>&amp;Shader</string>
+     </property>
+     <addaction name="actionShaderBilinear"/>
+     <addaction name="actionShaderBicubic"/>
+     <addaction name="actionShaderLanczos"/>
+     <addaction name="actionShaderNearestNeighbor"/>
+     <addaction name="separator"/>
+     <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
+     <addaction name="actionShaderCpuBicubic"/>
+    </widget>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string/>
+     </property>
+    </widget>
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
+    <addaction name="separator"/>
+    <addaction name="menu_Shader"/>
     <addaction name="separator"/>
     <addaction name="actionCopyPage"/>
     <addaction name="actionCopyFile"/>
@@ -366,10 +375,26 @@
     <addaction name="actionShowSubfolders"/>
     <addaction name="actionConfirmDeletePage"/>
    </widget>
+   <widget class="QMenu" name="menu_Image">
+    <property name="title">
+     <string>&amp;Image</string>
+    </property>
+    <addaction name="actionRotate"/>
+    <addaction name="actionZoomIn"/>
+    <addaction name="actionZoomOut"/>
+    <addaction name="actionFitting"/>
+    <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
+    <addaction name="separator"/>
+    <addaction name="actionDualView"/>
+    <addaction name="actionRightSideBook"/>
+    <addaction name="actionWideImageAsOneView"/>
+    <addaction name="actionFirstImageAsOneView"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuNavigation"/>
    <addaction name="menu_Folder"/>
    <addaction name="menu_Catalog"/>
+   <addaction name="menu_Image"/>
    <addaction name="menuView"/>
    <addaction name="menuShader"/>
    <addaction name="menuHelp"/>
@@ -1051,6 +1076,14 @@
    </property>
    <property name="text">
     <string extracomment="Flag separating the catalog and folder windows into independent windows">Undock into separate window</string>
+   </property>
+  </action>
+  <action name="actionLargeToolbarIcons">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Large menubar arnd toolbar</string>
    </property>
   </action>
  </widget>
@@ -2379,6 +2412,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionLargeToolbarIcons</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionLargeToolbarIcons_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2448,5 +2497,6 @@
   <slot>onSavingHistory_triggered(bool)</slot>
   <slot>onShowFullpathOfVolume_triggered(bool)</slot>
   <slot>onActionShowPanelSeparateWindow_triggered(bool)</slot>
+  <slot>onActionLargeToolbarIcons_triggered(bool)</slot>
  </slots>
 </ui>

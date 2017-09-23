@@ -110,6 +110,7 @@ public slots:
     void onActionShowFullscreenSignage_triggered(bool enable);
 //    void onActionShowFullscreenTitleBar_triggered(bool enable);
     void onActionShowPanelSeparateWindow_triggered(bool enable);
+    void onActionLargeToolbarIcons_triggered(bool enable);
     void on_windowTop();
 
     // SlideShow
@@ -187,6 +188,8 @@ protected:
     FolderWindow* m_folderWindow;
     CatalogWindow* m_catalogWindow;
     ExifDialog* m_exifDialog;
+    QToolButton* m_fullscreenButton;
+    uint m_menubarFontSize;
 };
 
 
