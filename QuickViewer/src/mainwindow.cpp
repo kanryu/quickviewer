@@ -37,13 +37,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     m_menubarFontSize = ui->menuBar->font().pointSize();
 
-    m_fullscreenButton = new QToolButton(this);
-    m_fullscreenButton->setToolTip(tr("&Fullscreen"));
-    m_fullscreenButton->setCheckable(true);
-    m_fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
-    connect(m_fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
-    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), m_fullscreenButton, SLOT(setChecked(bool)));
-    ui->menuBar->setCornerWidget(m_fullscreenButton);
+#ifndef Q_OS_WIN
+    ui->actionRegistAssocsUAC->setVisible(false);
+    ui->actionRegistAssocs->setVisible(false);
+#endif
+
+    auto fullscreenButton = new QToolButton(this);
+    fullscreenButton->setToolTip(tr("&Fullscreen"));
+    fullscreenButton->setCheckable(true);
+    fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
+    connect(fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
+    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), fullscreenButton, SLOT(setChecked(bool)));
+    ui->menuBar->setCornerWidget(fullscreenButton);
 
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
