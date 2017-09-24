@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>385</height>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -187,6 +187,13 @@
        <widget class="QCheckBox" name="checkBoxHidePageBarParmanently">
         <property name="text">
          <string extracomment="Flag to suppress the automatic display of the page bar">Hide page bar permanently</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QCheckBox" name="checkBoxHideScrollBarInFullscreen">
+        <property name="text">
+         <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide scroll bars in full screen</string>
         </property>
        </widget>
       </item>

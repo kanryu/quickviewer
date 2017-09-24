@@ -140,7 +140,8 @@ public:
     void setLargeToolbarIcons(bool largeToolbarIcons) { m_largeToolbarIcons = largeToolbarIcons; }
     bool HidePageBarParmanently() { return m_hidePageBarParmanently; }
     void setHidePageBarParmanently(bool hidePageBarParmanently) { m_hidePageBarParmanently = hidePageBarParmanently; }
-
+    bool HideScrollBarInFullscreen() { return m_hideScrollBarInFullscreen; }
+    void setHideScrollBarInFullscreen(bool hideScrollBarInFullscreen) { m_hideScrollBarInFullscreen = hideScrollBarInFullscreen; }
 
     // DualView
     bool DualView() { return m_dualView; }
@@ -300,6 +301,7 @@ private:
     bool m_showPanelSeparateWindow;
     bool m_largeToolbarIcons;
     bool m_hidePageBarParmanently;
+    bool m_hideScrollBarInFullscreen;
 
     // ToolBars
     bool m_showToolBar;

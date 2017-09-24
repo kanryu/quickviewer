@@ -308,6 +308,7 @@ void QVApplication::loadSettings()
     m_showPanelSeparateWindow  = m_settings.value("ShowPanelSeparateWindow", false).toBool();
     m_largeToolbarIcons  = m_settings.value("LargeToolbarIcons", false).toBool();
     m_hidePageBarParmanently  = m_settings.value("HidePageBarParmanently", false).toBool();
+    m_hideScrollBarInFullscreen  = m_settings.value("HideScrollBarInFullscreen", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -423,6 +424,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
     m_settings.setValue("LargeToolbarIcons", m_largeToolbarIcons);
     m_settings.setValue("HidePageBarParmanently", m_hidePageBarParmanently);
+    m_settings.setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
