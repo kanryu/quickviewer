@@ -1,13 +1,19 @@
 # CHANGELOG
 
 - other commits
-    - Supports touch panel input, enlarge menubar/toolbar, hide bars, bugfixed (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
-    -  (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
-    -  Supports touch panel input (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
-    -  add function to enlarge display of main menu and tool bar (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
-    -  Hide scroll bars in full screen mode (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
-    -  Hide page bar permanently (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
-    -  bugfixed: The left end was not displayed when the image is larger than the screen (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    - changelog (Mon Sep 25 06:35:25 2017 +0900) [b8c263f](https://github.com/kanryu/quickviewer/commit/b8c263f16c0f9bc8047cb86d50254bba753bcac9)
+
+## v0.9.9 (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+
+Supports touch panel input, enlarge menubar/toolbar, hide bars, bugfixed
+
+- Supports touch panel input
+- add function to enlarge display of main menu and tool bar
+- Hide scroll bars in full screen mode
+- Hide page bar permanently
+- bugfixed: The left end was not displayed when the image is larger than the screen
+
+- other commits
     - behavior of touch paging (Mon Sep 25 05:36:11 2017 +0900) [526c6ce](https://github.com/kanryu/quickviewer/commit/526c6cee77a8d2aac3180a683206cd47f383b181)
     -  Hide scroll bars in full screen mode (Mon Sep 25 05:14:16 2017 +0900) [16faa44](https://github.com/kanryu/quickviewer/commit/16faa44d330ff80b410038255729249ed9328007)
     -  bugfixed: The left end was not displayed when the image is larger than the screen (Mon Sep 25 05:14:16 2017 +0900) [16faa44](https://github.com/kanryu/quickviewer/commit/16faa44d330ff80b410038255729249ed9328007)
