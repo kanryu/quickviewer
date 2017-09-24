@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>453</width>
-    <height>363</height>
+    <width>461</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,7 +39,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
+     <layout class="QFormLayout" name="formLayout_2">
       <item row="0" column="0">
        <widget class="QLabel" name="label_4">
         <property name="sizePolicy">
@@ -156,6 +156,16 @@
         </property>
        </widget>
       </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBoxUseFastDctForJPEG">
+        <property name="toolTip">
+         <string>Speed up JPEG loading in exchange for quality of display.</string>
+        </property>
+        <property name="text">
+         <string extracomment="Option to use TJFLAG_FASTDCT on libjpeg-turbo">Use fast DCT for loading JPEG</string>
+        </property>
+       </widget>
+      </item>
       <item row="5" column="0">
        <widget class="QCheckBox" name="checkBoxProhibitMultipleRunning">
         <property name="text">
@@ -173,13 +183,10 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QCheckBox" name="checkBoxUseFastDctForJPEG">
-        <property name="toolTip">
-         <string>Speed up JPEG loading in exchange for quality of display.</string>
-        </property>
+      <item row="7" column="0">
+       <widget class="QCheckBox" name="checkBoxHidePageBarParmanently">
         <property name="text">
-         <string extracomment="Option to use TJFLAG_FASTDCT on libjpeg-turbo">Use fast DCT for loading JPEG</string>
+         <string extracomment="Flag to suppress the automatic display of the page bar">Hide page bar permanently</string>
         </property>
        </widget>
       </item>

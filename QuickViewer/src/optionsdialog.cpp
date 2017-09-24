@@ -24,6 +24,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->checkBoxUseFastDctForJPEG->setChecked(qApp->UseFastDCTForJPEG());
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
     ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
+    ui->checkBoxHidePageBarParmanently->setChecked(qApp->HidePageBarParmanently());
 
     resetColorButton(ui->btnColorSelect, m_backgroundColor);
     resetColorButton(ui->btnColorSelect2, m_backgroundColor2);
@@ -47,6 +48,7 @@ void OptionsDialog::reflectResults()
     qApp->setUseFastDCTForJPEG(ui->checkBoxUseFastDctForJPEG->isChecked());
     qApp->setProhibitMultipleRunning(ui->checkBoxProhibitMultipleRunning->isChecked());
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
+    qApp->setHidePageBarParmanently(ui->checkBoxHidePageBarParmanently->isChecked());
 }
 
 void OptionsDialog::resetColorButton(QPushButton* btn, QColor color)

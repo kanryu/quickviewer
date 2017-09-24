@@ -105,13 +105,21 @@ public:
 
     void myInstallTranslator();
 
-    // View
+    // Image
     int SlideShowWait() { return m_slideShowWait; }
     void setSlideShowWait (int slideShowWait) { m_slideShowWait = slideShowWait; }
     int MaxVolumesCache() { return m_maxVolumesCache; }
     void setMaxVolumesCache (int maxVolumesCache) { m_maxVolumesCache = maxVolumesCache; }
     int MaxImagesCache() { return m_maxImagesCache; }
     void setMaxImagesCache (int maxImagesCache) { m_maxImagesCache = maxImagesCache; }
+    bool DontEnlargeSmallImagesOnFitting() { return m_dontEnlargeSmallImagesOnFitting; }
+    void setDontEnlargeSmallImagesOnFitting (bool dontEnlargeSmallImagesOnFitting) { m_dontEnlargeSmallImagesOnFitting = dontEnlargeSmallImagesOnFitting; }
+    int MaxTextureSize() { return m_maxTextureSize; }
+    void setMaxTextureSize(int maxTextureSize) { m_maxTextureSize = maxTextureSize; }
+    bool UseFastDCTForJPEG() { return m_useFastDCTForJPEG; }
+    void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
+
+    // View
     bool Fitting() { return m_fitting; }
     void setFitting (bool fitting) { m_fitting = fitting; }
     QColor BackgroundColor() { return m_backgroundColor; }
@@ -120,24 +128,18 @@ public:
     void setBackgroundColor2 (QColor backgroundColor) { m_backgroundColor2 = backgroundColor; }
     bool UseCheckeredPattern() { return m_useCheckeredPattern; }
     void setUseCheckeredPattern (bool useCheckeredPattern) { m_useCheckeredPattern = useCheckeredPattern; }
-    bool DontEnlargeSmallImagesOnFitting() { return m_dontEnlargeSmallImagesOnFitting; }
-    void setDontEnlargeSmallImagesOnFitting (bool dontEnlargeSmallImagesOnFitting) { m_dontEnlargeSmallImagesOnFitting = dontEnlargeSmallImagesOnFitting; }
     bool ShowFullscreenSignage() { return m_showFullscreenSignage; }
     void setShowFullscreenSignage (bool showFullscreenSignage) { m_showFullscreenSignage = showFullscreenSignage; }
-//    bool ShowFullscreenTitleBar() { return m_showFullscreenTitleBar; }
-//    void setShowFullscreenTitleBar (bool showFullscreenTitleBar) { m_showFullscreenTitleBar = showFullscreenTitleBar; }
     bool UseDirect2D() { return m_useDirect2D; }
     void setUseDirect2D(bool useDirect2D) { m_useDirect2D = useDirect2D; }
-    int MaxTextureSize() { return m_maxTextureSize; }
-    void setMaxTextureSize(int maxTextureSize) { m_maxTextureSize = maxTextureSize; }
-    bool UseFastDCTForJPEG() { return m_useFastDCTForJPEG; }
-    void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
     bool ShowFullpathOfVolume() { return m_showFullpathOfVolume; }
     void setShowFullpathOfVolume(bool showFullpathOfVolume) { m_showFullpathOfVolume = showFullpathOfVolume; }
     bool ShowPanelSeparateWindow() { return m_showPanelSeparateWindow; }
     void setShowPanelSeparateWindow(bool showPanelSeparateWindow) { m_showPanelSeparateWindow = showPanelSeparateWindow; }
     bool LargeToolbarIcons() { return m_largeToolbarIcons; }
     void setLargeToolbarIcons(bool largeToolbarIcons) { m_largeToolbarIcons = largeToolbarIcons; }
+    bool HidePageBarParmanently() { return m_hidePageBarParmanently; }
+    void setHidePageBarParmanently(bool hidePageBarParmanently) { m_hidePageBarParmanently = hidePageBarParmanently; }
 
 
     // DualView
@@ -297,6 +299,7 @@ private:
     bool m_useFastDCTForJPEG;
     bool m_showPanelSeparateWindow;
     bool m_largeToolbarIcons;
+    bool m_hidePageBarParmanently;
 
     // ToolBars
     bool m_showToolBar;

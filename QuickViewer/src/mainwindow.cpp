@@ -542,7 +542,7 @@ void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
         });
         innerFrame->showWithoutTitleBar();
     }
-    if(anchor == Qt::AnchorBottom && (showPageBar || fullscreen)) {
+    if(anchor == Qt::AnchorBottom && !qApp->HidePageBarParmanently() && (showPageBar || fullscreen)) {
         QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView, Qt::AnchorBottom, qApp->LargeToolbarIcons() ? 60 : 30);
         connect(innerFrame, &QInnerFrame::init, this, [&]{
             innerFrame->layout()->addWidget(ui->pageFrame);
@@ -871,10 +871,10 @@ void MainWindow::resizeEvent(QResizeEvent *e)
     QMainWindow::resizeEvent(e);
 }
 
-int touchCount = -1;
-QTouchEvent::TouchPoint touchBegin;
-QTouchEvent::TouchPoint touchEnd;
-bool touchFirst = false;
+static int touchCount = -1;
+static QTouchEvent::TouchPoint touchBegin;
+static QTouchEvent::TouchPoint touchEnd;
+static bool touchFirst = false;
 
 void MainWindow::touchEvent(QTouchEvent * e)
 {

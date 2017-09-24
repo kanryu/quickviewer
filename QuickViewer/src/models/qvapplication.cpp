@@ -307,6 +307,7 @@ void QVApplication::loadSettings()
     m_showFullpathOfVolume  = m_settings.value("ShowFullpathOfVolume", true).toBool();
     m_showPanelSeparateWindow  = m_settings.value("ShowPanelSeparateWindow", false).toBool();
     m_largeToolbarIcons  = m_settings.value("LargeToolbarIcons", false).toBool();
+    m_hidePageBarParmanently  = m_settings.value("HidePageBarParmanently", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -421,6 +422,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ShowFullpathOfVolume", m_showFullpathOfVolume);
     m_settings.setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
     m_settings.setValue("LargeToolbarIcons", m_largeToolbarIcons);
+    m_settings.setValue("HidePageBarParmanently", m_hidePageBarParmanently);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
