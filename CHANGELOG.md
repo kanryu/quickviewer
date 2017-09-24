@@ -1,5 +1,28 @@
 # CHANGELOG
 
+- other commits
+    - Supports touch panel input, enlarge menubar/toolbar, hide bars, bugfixed (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  Supports touch panel input (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  add function to enlarge display of main menu and tool bar (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  Hide scroll bars in full screen mode (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  Hide page bar permanently (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  bugfixed: The left end was not displayed when the image is larger than the screen (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    - behavior of touch paging (Mon Sep 25 05:36:11 2017 +0900) [526c6ce](https://github.com/kanryu/quickviewer/commit/526c6cee77a8d2aac3180a683206cd47f383b181)
+    -  Hide scroll bars in full screen mode (Mon Sep 25 05:14:16 2017 +0900) [16faa44](https://github.com/kanryu/quickviewer/commit/16faa44d330ff80b410038255729249ed9328007)
+    -  bugfixed: The left end was not displayed when the image is larger than the screen (Mon Sep 25 05:14:16 2017 +0900) [16faa44](https://github.com/kanryu/quickviewer/commit/16faa44d330ff80b410038255729249ed9328007)
+    - Hide page bar permanently (Mon Sep 25 04:52:30 2017 +0900) [8c7af04](https://github.com/kanryu/quickviewer/commit/8c7af04b8902f45116ec4a6f34fbbc74889d240c)
+    - Supports touch panel input (Mon Sep 25 04:26:18 2017 +0900) [d342039](https://github.com/kanryu/quickviewer/commit/d34203944946a3543b195fa962faf589b45860fa)
+    - support to change range of show innerframes (Sun Sep 24 03:16:51 2017 +0900) [fab699e](https://github.com/kanryu/quickviewer/commit/fab699e8ee86140d0363809f035010b9ebf7206d)
+    - merged (Sun Sep 24 02:16:36 2017 +0900) [c01ad6e](https://github.com/kanryu/quickviewer/commit/c01ad6ef2e06a8f278fb242875532768935eb2ee)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sun Sep 24 00:01:03 2017 +0900) [d170b06](https://github.com/kanryu/quickviewer/commit/d170b06bf27c59beb6772329ebca82e446710e3d)
+    -  (Sun Sep 24 00:01:03 2017 +0900) [d170b06](https://github.com/kanryu/quickviewer/commit/d170b06bf27c59beb6772329ebca82e446710e3d)
+    - # Conflicts: (Sun Sep 24 00:01:03 2017 +0900) [d170b06](https://github.com/kanryu/quickviewer/commit/d170b06bf27c59beb6772329ebca82e446710e3d)
+    - #       QuickViewer/src/mainwindow.cpp (Sun Sep 24 00:01:03 2017 +0900) [d170b06](https://github.com/kanryu/quickviewer/commit/d170b06bf27c59beb6772329ebca82e446710e3d)
+    - add function to enlarge display of main menu and tool bar (Sat Sep 23 23:58:06 2017 +0900) [c2b1471](https://github.com/kanryu/quickviewer/commit/c2b1471698d2c290ef4b2752738d098b753b6cfe)
+    - checked on Ubuntu Linux-14.04.5 (Wed Sep 20 23:41:38 2017 +0900) [fd9dbf2](https://github.com/kanryu/quickviewer/commit/fd9dbf2bdf1c0529f9c8e5e6a578d020b6003b4f)
+    - changelog (Wed Sep 20 22:51:45 2017 +0900) [a40f68f](https://github.com/kanryu/quickviewer/commit/a40f68fb7991ffb8aff8ee61429be3ba41a8352f)
+
 ## v0.9.8 (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
 
 improve behavior for tool windows and scroll bars, add 2 menus, 2 bugfixed
