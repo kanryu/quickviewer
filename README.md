@@ -87,10 +87,12 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |             | Keyboard | Space Key | |
 |             | Mouse Wheel | Downward scrolling | |
 |             | Mouse    | Forward Button   | |
+|             | Touch Panel | Swipe left | at the bottom of the screen |
 | Prev Page   | Keyboard | Left Key(←) | |
 |             | Keyboard | BackSpace Key | |
 |             | Mouse Wheel | Upward scrolling | |
 |             | Mouse    | Back Button | |
+|             | Touch Panel | Swipe right | at the bottom of the screen |
 | First Page  | Keyboard | Home Key | |
 | Last Page   | Keyboard | End Key | |
 | Next Volume | Keyboard | Page Down Key | open a folder/archive of neighbor |
@@ -98,6 +100,7 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Fullscreen  | Keyboard | F11 Key | |
 |             | Mouse    | Wheel Clicked | as Center Button |
 |             | Keyboard | ESC Key | Fullscreen mode only |
+|             | Touch Panel | Swipe up with two fingers | |
 | Exit App    | Keyboard | ESC Key | not Fullscreen mode only |
 | Scale Up    | Keyboard | Ten keys(+) | do nothing with Fitting |
 | Scale Down  | Keyboard | Ten keys(-) | do nothing with Fitting |
@@ -105,6 +108,9 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |             | Keyboard | Ten keys(-) | |
 |             | Mouse  | Right Button + Wheel Clicked | |
 |             | Mouse  | Ctrl + Wheel Clicked | |
+| Image to trash box   | Keyboard | Delete Key | Move the Image of current page to trash box |
+| Rename Image | Keyboard | F2 Key |  |
+| Copy Image   | Keyboard | Ctrl+C Key | Copy Image of current page |
 | Zoom in     | Mouse Wheel | Right Button + Upward scrolling | |
 |             | Mouse Wheel | Ctrl + Upward scrolling | |
 | Zoom out    | Mouse Wheel | Right Button + Downward scrolling | |
