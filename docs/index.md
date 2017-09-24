@@ -262,10 +262,12 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |             | Keyboard | Space Key | |
 |             | Mouse Wheel | Downward scrolling | |
 |             | Mouse    | Forward Button   | |
+|             | Touch Panel | Swipe left | at the bottom of the screen |
 | Prev Page   | Keyboard | Left Key(←) | |
 |             | Keyboard | BackSpace Key | |
 |             | Mouse Wheel | Upward scrolling | |
 |             | Mouse    | Back Button | |
+|             | Touch Panel | Swipe right | at the bottom of the screen |
 | First Page  | Keyboard | Home Key | |
 | Last Page   | Keyboard | End Key | |
 | Next Volume | Keyboard | Page Down Key | open a folder/archive of neighbor |
@@ -273,6 +275,7 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Fullscreen  | Keyboard | F11 Key | |
 |             | Mouse    | Wheel Clicked | as Center Button |
 |             | Keyboard | ESC Key | Fullscreen mode only |
+|             | Touch Panel | Swipe up with two fingers | |
 | Exit App    | Keyboard | ESC Key | not Fullscreen mode only |
 | Scale Up    | Keyboard | Ten keys(+) | do nothing with Fitting |
 | Scale Down  | Keyboard | Ten keys(-) | do nothing with Fitting |
