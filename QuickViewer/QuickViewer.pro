@@ -18,7 +18,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 0.9.8
+VERSION = 0.9.9
 
 TARGET = QuickViewer
 TEMPLATE = app

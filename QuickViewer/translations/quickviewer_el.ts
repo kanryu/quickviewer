@@ -1345,6 +1345,22 @@
         <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Large menubar arnd toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turn over the page on the left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turn over the page on the right</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1649,6 +1665,16 @@
     <message>
         <source>Use fast DCT for loading JPEG</source>
         <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide page bar permanently</source>
+        <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide scroll bars in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

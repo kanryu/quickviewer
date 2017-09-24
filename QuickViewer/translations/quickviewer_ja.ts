@@ -2120,6 +2120,22 @@
         <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
         <translation>ツールウィンドウをアプリのウィンドウから分離する</translation>
     </message>
+    <message>
+        <source>&amp;Image</source>
+        <translation>画像(&amp;I)</translation>
+    </message>
+    <message>
+        <source>Large menubar arnd toolbar</source>
+        <translation>メニューバーとツールバーを大きくする</translation>
+    </message>
+    <message>
+        <source>Turn over the page on the left</source>
+        <translation>左側のページをめくる</translation>
+    </message>
+    <message>
+        <source>Turn over the page on the right</source>
+        <translation>右側のページをめくる</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -2507,6 +2523,16 @@
         <source>Use fast DCT for loading JPEG</source>
         <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
         <translation>JPEG読み込み時に高速なDCT展開を行う(やや粗い)</translation>
+    </message>
+    <message>
+        <source>Hide page bar permanently</source>
+        <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
+        <translation>ページバーを自動表示させない</translation>
+    </message>
+    <message>
+        <source>Hide scroll bars in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation>フルスクリーン時にスクロールバーを表示しない</translation>
     </message>
 </context>
 <context>
