@@ -325,11 +325,6 @@
      <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
      <addaction name="actionShaderCpuBicubic"/>
     </widget>
-    <widget class="QMenu" name="menu">
-     <property name="title">
-      <string/>
-     </property>
-    </widget>
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
     <addaction name="separator"/>
@@ -1084,6 +1079,16 @@
    </property>
    <property name="text">
     <string>Large menubar arnd toolbar</string>
+   </property>
+  </action>
+  <action name="actionTurnPageOnLeft">
+   <property name="text">
+    <string>Turn over the page on the left</string>
+   </property>
+  </action>
+  <action name="actionTurnPageOnRight">
+   <property name="text">
+    <string>Turn over the page on the right</string>
    </property>
   </action>
  </widget>
@@ -2428,6 +2433,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionTurnPageOnLeft</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionTurnPageOnLeft_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionTurnPageOnRight</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionTurnPageOnRight_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2498,5 +2535,7 @@
   <slot>onShowFullpathOfVolume_triggered(bool)</slot>
   <slot>onActionShowPanelSeparateWindow_triggered(bool)</slot>
   <slot>onActionLargeToolbarIcons_triggered(bool)</slot>
+  <slot>onActionTurnPageOnLeft_triggered()</slot>
+  <slot>onActionTurnPageOnRight_triggered()</slot>
  </slots>
 </ui>

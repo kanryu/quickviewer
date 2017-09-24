@@ -356,17 +356,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             // tap left/right of window
             if(mouseEvent->button() == Qt::LeftButton) {
                 if(ui->graphicsView->hoverState() == Qt::AnchorLeft) {
-                    if(qApp->RightSideBook())
-                        ui->actionNextPage->trigger();
-                    else
-                        ui->actionPrevPage->trigger();
+                    ui->actionTurnPageOnLeft->triggered();
                     return true;
                 }
                 if(ui->graphicsView->hoverState() == Qt::AnchorRight) {
-                    if(qApp->RightSideBook())
-                        ui->actionPrevPage->trigger();
-                    else
-                        ui->actionNextPage->trigger();
+                    ui->actionTurnPageOnRight->triggered();
                     return true;
                 }
             }
@@ -899,10 +893,10 @@ void MainWindow::touchEvent(QTouchEvent * e)
 		bool bottomSliding = 1.0*ui->graphicsView->height() / touchEnd.pos().y() < 1.5;
 		if (touchCount == 1 && bottomSliding) {
 			if (ofsX > 30) {
-				ui->actionNextPage->trigger();
+                ui->actionTurnPageOnLeft->trigger();
 			}
 			else if (ofsX < -30) {
-				ui->actionPrevPage->trigger();
+                ui->actionTurnPageOnRight->trigger();
 			}
 		}
 		if (touchCount == 2) {
@@ -1109,6 +1103,22 @@ void MainWindow::onActionCatalogIconLongText_triggered(bool enable)
     qApp->setIconLongText(enable);
     if(m_catalogWindow)
         m_catalogWindow->resetViewMode();
+}
+
+void MainWindow::onActionTurnPageOnLeft_triggered()
+{
+    if(qApp->RightSideBook())
+        ui->actionNextPage->trigger();
+    else
+        ui->actionPrevPage->trigger();
+}
+
+void MainWindow::onActionTurnPageOnRight_triggered()
+{
+    if(qApp->RightSideBook())
+        ui->actionPrevPage->trigger();
+    else
+        ui->actionNextPage->trigger();
 }
 
 void MainWindow::onActionOpenfolder_triggered()

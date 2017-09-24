@@ -92,6 +92,10 @@ public slots:
     void onActionShowTagBar_triggered(bool enable);
     void onActionCatalogIconLongText_triggered(bool enable);
 
+    // Navigation
+    void onActionTurnPageOnLeft_triggered();
+    void onActionTurnPageOnRight_triggered();
+
     // Exif
     void onActionOpenExif_triggered();
     void onExifDialog_closed();

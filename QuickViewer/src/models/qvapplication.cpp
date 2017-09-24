@@ -131,6 +131,8 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     groupName = tr("Bookmark", "Bookmark Action Group");
     m_keyActions.registAction("actionNextPage", ui->actionNextPage, groupName);
     m_keyActions.registAction("actionPrevPage", ui->actionPrevPage, groupName);
+    m_keyActions.registAction("actionTurnPageOnLeft", ui->actionTurnPageOnLeft, groupName);
+    m_keyActions.registAction("actionTurnPageOnRight", ui->actionTurnPageOnRight, groupName);
     m_keyActions.registAction("actionFastForward", ui->actionFastForward, groupName);
     m_keyActions.registAction("actionFastBackward", ui->actionFastBackward, groupName);
     m_keyActions.registAction("actionLastPage", ui->actionLastPage, groupName);
@@ -164,6 +166,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionRightSideBook", ui->actionRightSideBook, groupName);
     m_keyActions.registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView, groupName);
     m_keyActions.registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView, groupName);
+    m_keyActions.registAction("actionLargeToolbarIcons", ui->actionLargeToolbarIcons, groupName);
 
     // WindowState
     groupName = tr("WindowState", "WindowState Action Group");
