@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     m_menubarFontSize = ui->menuBar->font().pointSize();
+	m_pageSliderHeight = ui->pageSlider->height();
 
 #ifndef Q_OS_WIN
     ui->actionRegistAssocsUAC->setVisible(false);
@@ -331,7 +332,17 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
     switch (event->type()) {
     case QEvent::ShortcutOverride:
         return true;
-    case QEvent::KeyPress:
+	case QEvent::TouchBegin:
+	case QEvent::TouchUpdate:
+	case QEvent::TouchEnd: {
+		auto touchEv = dynamic_cast<QTouchEvent*>(event);
+		if (touchEv) {
+			touchEvent(touchEv);
+			return true;
+		}
+		break;
+	}
+	case QEvent::KeyPress:
         if(obj == ui->graphicsView) {
             keyEvent = dynamic_cast<QKeyEvent*>(event);
             this->keyPressEvent(keyEvent);
@@ -860,6 +871,65 @@ void MainWindow::resizeEvent(QResizeEvent *e)
     QMainWindow::resizeEvent(e);
 }
 
+int touchCount = -1;
+QTouchEvent::TouchPoint touchBegin;
+QTouchEvent::TouchPoint touchEnd;
+bool touchFirst = false;
+
+void MainWindow::touchEvent(QTouchEvent * e)
+{
+	qDebug() << "type:" << e->type() << "count:" << e->touchPoints().count();
+	switch (e->type()) {
+	case QEvent::TouchBegin:
+		touchFirst = true;
+		break;
+	case QEvent::TouchUpdate:
+		if (touchFirst) {
+			touchCount = e->touchPoints().count();
+			touchBegin = e->touchPoints().first();
+			touchFirst = false;
+		} else {
+			touchEnd = e->touchPoints().first();
+		}
+		break;
+	case QEvent::TouchEnd:
+		int ofsX = touchEnd.pos().x() - touchBegin.pos().x();
+		int ofsY = touchEnd.pos().y() - touchBegin.pos().y();
+		// React only at the bottom 1/3 of the screen
+		bool bottomSliding = 1.0*ui->graphicsView->height() / touchEnd.pos().y() < 1.5;
+		if (touchCount == 1 && bottomSliding) {
+			if (ofsX > 30) {
+				ui->actionNextPage->trigger();
+			}
+			else if (ofsX < -30) {
+				ui->actionPrevPage->trigger();
+			}
+		}
+		if (touchCount == 2) {
+			if (ofsY < -30) {
+				ui->actionFullscreen->trigger();
+			}
+			else if (ofsX > 30 && bottomSliding) {
+				ui->actionNextOnePage->trigger();
+			}
+			else if (ofsX < -30 && bottomSliding) {
+				ui->actionPrevOnePage->trigger();
+			}
+		}
+		touchCount = -1;
+		break;
+	}
+	//if (e->touchPoints().count() == 2) {
+	//	const QTouchEvent::TouchPoint &touchPoint1 = e->touchPoints().first();
+	//	const QTouchEvent::TouchPoint &touchPoint2 = e->touchPoints().last();
+
+	//	QLineF line1(touchPoint1.lastScenePos(), touchPoint2.lastScenePos());
+	//	QLineF line2(touchPoint1.scenePos(), touchPoint2.scenePos());
+
+	//	setTransform(QTransform().rotate(line2.angleTo(line1)), true);
+	//}
+}
+
 void MainWindow::onActionShowFolder_triggered()
 {
     if(m_folderWindow) {
@@ -1170,7 +1240,7 @@ void MainWindow::onActionLargeToolbarIcons_triggered(bool enable)
 {
     qApp->setLargeToolbarIcons(enable);
     ui->mainToolBar->setIconSize(
-        enable ? QSize(qvEnums::LargeIcon, qvEnums::LargeIcon)
+        enable ? QSize(qvEnums::Large2Icon, qvEnums::Large2Icon)
                : QSize(qvEnums::NormalIcon, qvEnums::NormalIcon));
     int fontsize = enable ? (int)(1.5*m_menubarFontSize) : m_menubarFontSize;
     m_fullscreenButton->setIconSize(QSize(2*fontsize, 2*fontsize));
@@ -1179,6 +1249,19 @@ void MainWindow::onActionLargeToolbarIcons_triggered(bool enable)
 
     setMenuAndSubmenuFont(ui->menuBar, font);
     setMenuAndSubmenuFont(m_contextMenu, font);
+	ui->pageLabel->setFont(font);
+	ui->pageLabel->setMinimumWidth(fontsize * 10);
+	if (enable) {
+//		int sliderHeight = (int)(1.5*m_pageSliderHeight);
+		ui->pageSlider->setMinimumHeight(m_pageSliderHeight);
+		if (ui->pageFrame->isVisible()) {
+			ui->pageFrame->setVisible(false);
+			ui->pageFrame->setVisible(true);
+		}
+	}
+	else {
+		ui->pageSlider->setMinimumHeight(0);
+	}
 }
 
 //void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)
@@ -1424,4 +1507,3 @@ void MainWindow::onMenuLoadBookmark_triggered(QAction *action)
     QString path = action->data().toString();
     m_pageManager.loadVolume(QDir::toNativeSeparators(path));
 }
-

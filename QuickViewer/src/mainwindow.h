@@ -59,6 +59,7 @@ protected:
     void closeEvent(QCloseEvent *e) override;
     void resizeEvent(QResizeEvent *e) override;
     void on_pageNolongerNeeded_triggered();
+	void touchEvent(QTouchEvent* e);
 
 signals:
     void changingFullscreen(bool);
@@ -190,6 +191,7 @@ protected:
     ExifDialog* m_exifDialog;
     QToolButton* m_fullscreenButton;
     uint m_menubarFontSize;
+	uint m_pageSliderHeight;
 };
 
 

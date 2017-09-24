@@ -35,6 +35,7 @@ ImageView::ImageView(QWidget *parent)
 
     setMouseTracking(true);
     resetBackgroundColor();
+	setAttribute(Qt::WA_AcceptTouchEvents);
 
 }
 

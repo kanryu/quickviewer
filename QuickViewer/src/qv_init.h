@@ -59,9 +59,10 @@ public:
     Q_ENUM(FolderViewSort)
 
     enum ToolbarIconSize {
-        LargeIcon = 32,
-        NormalIcon = 24,
-    };
+		NormalIcon = 24,
+		LargeIcon = 32,
+		Large2Icon = 40,
+	};
     Q_ENUM(ToolbarIconSize)
 };
 
