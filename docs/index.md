@@ -115,6 +115,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.sarzamindownload.com/9899/](http://www.sarzamindownload.com/9899/)
 - **Мир Софта** (in Russian)
     - [https://mirsofta.ru/soft/QuickViewer.html](https://mirsofta.ru/soft/QuickViewer.html)
+- **zoomexe** (in Russian)
+    - [http://zoomexe.net/grafics/prosmotr/3566-quickviewer.html](http://zoomexe.net/grafics/prosmotr/3566-quickviewer.html)
 - **Quergedacht 3.0** (in German)
     - [http://quergedacht20.square7.ch/?p=19951](http://quergedacht20.square7.ch/?p=19951)
 - **CHIP.DE** (in German)
