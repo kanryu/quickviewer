@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="el_GR">
+<TS version="2.0" language="el_GR">
 <context>
     <name>CatalogWindow</name>
     <message>
@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>Drop picture folder here and create a catalog.</source>
-        <translation type="vanished">Αφήστε εδώ φάκελο εικόνων και δημιουργήστε έναν κατάλογο.</translation>
+        <translation>Αφήστε εδώ φάκελο εικόνων και δημιουργήστε έναν κατάλογο.</translation>
     </message>
     <message>
         <source>CatalogManagement</source>
@@ -48,10 +48,6 @@
         <translation>Αλλαγή μορφής προβολής</translation>
     </message>
     <message>
-        <source>Field the search term and press enter key to search by the title.</source>
-        <translation type="vanished">Εισάγετε λέξεις αναζήτησης και πατήστε Enter για αναζήτηση βάσει τίτλου.</translation>
-    </message>
-    <message>
         <source>&amp;CloseWindow</source>
         <translation>&amp;Κλείσιμο παραθύρου</translation>
     </message>
@@ -61,15 +57,11 @@
     </message>
     <message>
         <source>(%1/%2) volume display.</source>
-        <translation type="vanished">(%1/%2) τόμοι εμφανίστηκαν.</translation>
+        <translation>(%1/%2) τόμοι εμφανίστηκαν.</translation>
     </message>
     <message>
         <source>DisplaySide-By-Side</source>
         <translation>Εμφάνιση από πλευρά σε πλευρά</translation>
-    </message>
-    <message>
-        <source>Remove (Options) from Book Title</source>
-        <translation type="vanished">Αφαίρεση (Επιλογές) από Τίτλο βιβλίου</translation>
     </message>
     <message>
         <source>Remove (Options) from book title when searching</source>
@@ -79,22 +71,22 @@
     <message>
         <source>Remove (Options) from book title</source>
         <extracomment>Ability to remove and display (parenthesized) text from Volume title in the catalog</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Αφαίρεση (Επιλογές) από Τίτλο βιβλίου</translation>
     </message>
     <message>
         <source>Field the search term and press enter key to search by the title.</source>
         <comment>Gray text that prompts a keyword search of Volume</comment>
-        <translation type="unfinished">Εισάγετε λέξεις αναζήτησης και πατήστε Enter για αναζήτηση βάσει τίτλου.</translation>
+        <translation>Εισάγετε λέξεις αναζήτησης και πατήστε Enter για αναζήτηση βάσει τίτλου.</translation>
     </message>
     <message>
         <source>Drop picture folder here and create a catalog.</source>
         <comment>Status bar text briefly explaining how to use CatalogWindow</comment>
-        <translation type="unfinished">Αφήστε εδώ φάκελο εικόνων και δημιουργήστε έναν κατάλογο.</translation>
+        <translation>Αφήστε εδώ έναν φάκελο εικόνων και δημιουργήστε έναν κατάλογο.</translation>
     </message>
     <message>
         <source>(%1/%2) volume display.</source>
         <comment>Text of the status bar showing [the number of hits]/[total number] of Volume</comment>
-        <translation type="unfinished">(%1/%2) τόμοι εμφανίστηκαν.</translation>
+        <translation>(%1/%2) τόμοι εμφανίστηκαν.</translation>
     </message>
 </context>
 <context>
@@ -105,7 +97,7 @@
     </message>
     <message>
         <source>Please select a folder containing Images or Archives</source>
-        <translation type="vanished">Επιλέξτε έναν φάκελο που περιέχει εικόνες ή αρχειοθήκες</translation>
+        <translation>Επιλέξτε έναν φάκελο που περιέχει εικόνες ή αρχειοθήκες</translation>
     </message>
     <message>
         <source>&amp;SelectFolder</source>
@@ -123,7 +115,7 @@
     <message>
         <source>Please select a folder containing Images or Archives</source>
         <comment>Caption of FolderSelectDialog urging selection of folders containing Images and Archives</comment>
-        <translation type="unfinished">Επιλέξτε έναν φάκελο που περιέχει εικόνες ή αρχειοθήκες</translation>
+        <translation>Επιλέξτε έναν φάκελο που περιέχει εικόνες ή αρχειοθήκες</translation>
     </message>
 </context>
 <context>
@@ -175,7 +167,7 @@
     </message>
     <message>
         <source>Exif is not included.</source>
-        <translation type="vanished">Δεν περιέχονται EXIF.</translation>
+        <translation>Δεν περιέχονται EXIF.</translation>
     </message>
     <message>
         <source>Orientation of camera</source>
@@ -282,119 +274,123 @@
     <message>
         <source>Strobe return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x5)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Δεν ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Strobe return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x7)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aνιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode</source>
         <comment>JPEG EXIF Flash setting value (0x9)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αναγκαστική λειτουργία φλας</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0xD)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αναγκαστική λειτουργία φλας. Δεν ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0xF)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αναγκαστική λειτουργία φλας. Ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash did not fire, compulsory flash mode</source>
         <comment>JPEG EXIF Flash setting value (0x10)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας δεν άναψε σε αναγκαστική λειτουργία φλας</translation>
     </message>
     <message>
         <source>Flash did not fire, auto mode</source>
         <comment>JPEG EXIF Flash setting value (0x18)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας δεν άναψε σε αυτόματη λειτουργία</translation>
     </message>
     <message>
         <source>Flash fired, auto mode</source>
         <comment>JPEG EXIF Flash setting value (0x19)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αυτόματη λειτουργία</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x1D)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αυτόματη λειτουργία. Δεν ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x1F)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αυτόματη λειτουργία. Ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x41)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε λειτουργία μείωσης κόκκινων ματιών</translation>
     </message>
     <message>
         <source>Flash fired, red-eye reduction mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x45)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε λειτουργία μείωσης κόκκινων ματιών. Δεν ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, red-eye reduction mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x47)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε λειτουργία μείωσης κόκκινων ματιών. Ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x49)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αναγκαστική λειτουργία φλας και μείωσης κόκκινων ματιών</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x4D)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αναγκαστική λειτουργία φλας και μείωσης κόκκινων ματιών. Δεν ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x4F)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αναγκαστική λειτουργία φλας και μείωσης κόκκινων ματιών. Ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x59)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αυτόματη λειτουργία και μείωση κόκκινων ματιών</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, return light not detected, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x5D)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αυτόματη λειτουργία και μείωση κόκκινων ματιών. Δεν ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, return light detected, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x5F)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Το φλας άναψε σε αυτόματη λειτουργία και μείωση κόκκινων ματιών. Ανιχνεύθηκε επιστροφή φωτός</translation>
     </message>
     <message>
         <source>Exif is not included.</source>
         <comment>Text to display if EXIF is not included in JPEG</comment>
-        <translation type="unfinished">Δεν περιέχονται EXIF.</translation>
+        <translation>Δεν περιέχονται EXIF.</translation>
     </message>
     <message>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Copy to clipboard</source>
         <extracomment>Text of button to copy meta information to clipboard</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Αντιγραφή στο πρόχειρο</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Κλείσιμο</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Όνομα αρχείου</translation>
     </message>
     <message>
         <source>Pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>Πίξελ</translation>
     </message>
 </context>
 <context>
@@ -419,15 +415,15 @@
     </message>
     <message>
         <source>DirectDraw Surface Image</source>
-        <translation type="vanished">Εικόνα DirectDraw Surface</translation>
+        <translation>Εικόνα DirectDraw Surface</translation>
     </message>
     <message>
         <source>WebP Image</source>
-        <translation type="vanished">Εικόνα WebP</translation>
+        <translation>Εικόνα WebP</translation>
     </message>
     <message>
         <source>PNG File</source>
-        <translation type="vanished">Αρχείο PNG</translation>
+        <translation>Αρχείο PNG</translation>
     </message>
     <message>
         <source>Nicon Raw Format</source>
@@ -459,7 +455,7 @@
     </message>
     <message>
         <source>Windows Icon File</source>
-        <translation type="vanished">Αρχείο εικονιδίου των Windows</translation>
+        <translation>Αρχείο εικονιδίου των Windows</translation>
     </message>
     <message>
         <source>JPEG Image (*.jpg, *.jpeg)</source>
@@ -492,19 +488,19 @@
     </message>
     <message>
         <source>Tiff Image</source>
-        <translation type="vanished">Εικόνα Tiff</translation>
+        <translation>Εικόνα Tiff</translation>
     </message>
     <message>
         <source>GIF Image</source>
-        <translation type="vanished">Εικόνα GIF</translation>
+        <translation>Εικόνα GIF</translation>
     </message>
     <message>
         <source>Bitmap File</source>
-        <translation type="vanished">Αρχείο Bitmap</translation>
+        <translation>Αρχείο Bitmap</translation>
     </message>
     <message>
         <source>JPEG Image</source>
-        <translation type="vanished">Εικόνα JPEG</translation>
+        <translation>Εικόνα JPEG</translation>
     </message>
     <message>
         <source>Sony Raw Format (*.arw)</source>
@@ -517,7 +513,7 @@
     </message>
     <message>
         <source>Animated PNG File</source>
-        <translation type="vanished">Αρχεία κινούμενου PNG</translation>
+        <translation>Αρχεία κινούμενου PNG</translation>
     </message>
     <message>
         <source>Truevision Graphics Adapter Format (*.tga)</source>
@@ -546,47 +542,47 @@
     <message>
         <source>JPEG Image</source>
         <comment>description of File format on Explorer(.jpeg)</comment>
-        <translation type="unfinished">Εικόνα JPEG</translation>
+        <translation>Εικόνα JPEG</translation>
     </message>
     <message>
         <source>PNG File</source>
         <comment>description of File format on Explorer(.png)</comment>
-        <translation type="unfinished">Αρχείο PNG</translation>
+        <translation>Αρχείο PNG</translation>
     </message>
     <message>
         <source>Animated PNG File</source>
         <comment>description of File format on Explorer(.apng)</comment>
-        <translation type="unfinished">Αρχεία κινούμενου PNG</translation>
+        <translation>Αρχεία κινούμενου PNG</translation>
     </message>
     <message>
         <source>Bitmap File</source>
         <comment>description of File format on Explorer(.bmp)</comment>
-        <translation type="unfinished">Αρχείο Bitmap</translation>
+        <translation>Αρχείο Bitmap</translation>
     </message>
     <message>
         <source>DirectDraw Surface Image</source>
         <comment>description of File format on Explorer(.dds)</comment>
-        <translation type="unfinished">Εικόνα DirectDraw Surface</translation>
+        <translation>Εικόνα DirectDraw Surface</translation>
     </message>
     <message>
         <source>GIF Image</source>
         <comment>description of File format on Explorer(.gif)</comment>
-        <translation type="unfinished">Εικόνα GIF</translation>
+        <translation>Εικόνα GIF</translation>
     </message>
     <message>
         <source>Windows Icon File</source>
         <comment>description of File format on Explorer(.ico)</comment>
-        <translation type="unfinished">Αρχείο εικονιδίου των Windows</translation>
+        <translation>Αρχείο εικονιδίου των Windows</translation>
     </message>
     <message>
         <source>Tiff Image</source>
         <comment>description of File format on Explorer(.tiff)</comment>
-        <translation type="unfinished">Εικόνα Tiff</translation>
+        <translation>Εικόνα Tiff</translation>
     </message>
     <message>
         <source>WebP Image</source>
         <comment>description of File format on Explorer(.webp)</comment>
-        <translation type="unfinished">Εικόνα WebP</translation>
+        <translation>Εικόνα WebP</translation>
     </message>
 </context>
 <context>
@@ -598,12 +594,12 @@
     </message>
     <message>
         <source>ModifiedTime</source>
-        <translation type="vanished">Χρόνος τροποποίησης</translation>
+        <translation>Χρόνος τροποποίησης</translation>
     </message>
     <message>
         <source>UpDate</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
-        <translation type="unfinished">Τροποποίηση</translation>
+        <translation>Τροποποίηση</translation>
     </message>
 </context>
 <context>
@@ -634,7 +630,7 @@
     </message>
     <message>
         <source>Not found any Folders or Archives</source>
-        <translation type="vanished">Δεν βρέθηκαν φάκελοι ή αρχειοθήκες</translation>
+        <translation>Δεν βρέθηκαν φάκελοι ή αρχειοθήκες</translation>
     </message>
     <message>
         <source>Move to Home Folder</source>
@@ -691,7 +687,7 @@
     <message>
         <source>Not found any Folders or Archives</source>
         <comment>Display when there is no display item in Folder Window</comment>
-        <translation type="unfinished">Δεν βρέθηκαν φάκελοι ή αρχειοθήκες</translation>
+        <translation>Δεν βρέθηκαν φάκελοι ή αρχειοθήκες</translation>
     </message>
 </context>
 <context>
@@ -749,7 +745,7 @@
     </message>
     <message>
         <source>Motions</source>
-        <translation type="vanished">Δράσεις</translation>
+        <translation>Δράσεις</translation>
     </message>
     <message>
         <source>Wheel Scrolling</source>
@@ -765,7 +761,7 @@
     </message>
     <message>
         <source>CurrentShortcut</source>
-        <translation type="vanished">Τρέχουσα συντόμευση</translation>
+        <translation>Τρέχουσα συντόμευση</translation>
     </message>
     <message>
         <source>Add Sequence</source>
@@ -773,7 +769,7 @@
     </message>
     <message>
         <source>Description</source>
-        <translation type="vanished">Περιγραφή</translation>
+        <translation>Περιγραφή</translation>
     </message>
     <message>
         <source>Scroll Up</source>
@@ -810,22 +806,22 @@
     <message>
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Εντολή</translation>
     </message>
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="unfinished">Δράσεις</translation>
+        <translation>Δράσεις</translation>
     </message>
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="unfinished">Περιγραφή</translation>
+        <translation>Περιγραφή</translation>
     </message>
     <message>
         <source>CurrentShortcut</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="unfinished">Τρέχουσα συντόμευση</translation>
+        <translation>Τρέχουσα συντόμευση</translation>
     </message>
 </context>
 <context>
@@ -858,7 +854,7 @@
     </message>
     <message>
         <source>Please select the image or archive</source>
-        <translation type="vanished">Παρακαλώ επιλέξτε μια εικόνα ή αρχειοθήκη</translation>
+        <translation>Παρακαλώ επιλέξτε μια εικόνα ή αρχειοθήκη</translation>
     </message>
     <message>
         <source>Prev o&amp;ne page only</source>
@@ -1010,7 +1006,7 @@
     <message>
         <source>&amp;Always display one landscape image even in 2 page display</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation>Εμφανίζει πάντα μια &amp;οριζόντια εικόνα ακόμα και σε προβολή 2 σελίδων</translation>
+        <translation>Εμφάνιση πάντα μιας &amp;οριζόντιας εικόνας ακόμα και σε προβολή 2 σελίδων</translation>
     </message>
     <message>
         <source>Show how far you read</source>
@@ -1161,7 +1157,7 @@
     </message>
     <message>
         <source>Any folder or archive is not loaded.</source>
-        <translation type="vanished">Δεν έχει φορτωθεί κάποιος φάκελος ή αρχείο.</translation>
+        <translation>Δεν έχει φορτωθεί κάποιος φάκελος ή αρχείο.</translation>
     </message>
     <message>
         <source>Exif &amp;Information</source>
@@ -1253,11 +1249,11 @@
     </message>
     <message>
         <source>Image file not found. Can&apos;t be opened</source>
-        <translation type="vanished">Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας</translation>
     </message>
     <message>
         <source>Image file was not found. Can&apos;t be opened.</source>
-        <translation type="vanished">Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας.</translation>
     </message>
     <message>
         <source>&amp;History</source>
@@ -1275,11 +1271,11 @@
     </message>
     <message>
         <source>Are you sure you want to delete this image?</source>
-        <translation type="vanished">Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
+        <translation>Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
     </message>
     <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
-        <translation type="vanished">Είστε βέβαιος ότι θέλετε να μετακινήσετε την εικόνα στον κάδο ανακύκλωσης;</translation>
+        <translation>Είστε βέβαιος ότι θέλετε να μετακινήσετε την εικόνα στον κάδο ανακύκλωσης;</translation>
     </message>
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
@@ -1303,63 +1299,63 @@
     <message>
         <source>Any folder or archive is not loaded.</source>
         <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
-        <translation type="unfinished">Δεν έχει φορτωθεί κάποιος φάκελος ή αρχείο.</translation>
+        <translation>Δεν έχει φορτωθεί κάποιος φάκελος ή αρχείο.</translation>
     </message>
     <message>
         <source>Image file not found. Can&apos;t be opened</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation type="unfinished">Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας</translation>
     </message>
     <message>
         <source>Image file was not found. Can&apos;t be opened.</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation type="unfinished">Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας.</translation>
     </message>
     <message>
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
-        <translation type="unfinished">Παρακαλώ επιλέξτε μια εικόνα ή αρχειοθήκη</translation>
+        <translation>Παρακαλώ επιλέξτε μια εικόνα ή αρχειοθήκη</translation>
     </message>
     <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="unfinished">Είστε βέβαιος ότι θέλετε να μετακινήσετε την εικόνα στον κάδο ανακύκλωσης;</translation>
+        <translation>Είστε βέβαιος ότι θέλετε να μετακινήσετε την εικόνα στον κάδο ανακύκλωσης;</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm deleting image file on Message Box body</comment>
-        <translation type="unfinished">Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
+        <translation>Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
     </message>
     <message>
         <source>Don&apos;t update history</source>
         <extracomment>Flag for prohibiting update of history</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Να μην ενημερώνεται το ιστορικό</translation>
     </message>
     <message>
         <source>Show full path of the volume</source>
         <extracomment>Flag to display by switching the full path or volume name of the volume to the title bar</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση πλήρους διαδρομής τόμου</translation>
     </message>
     <message>
         <source>Undock into separate window</source>
         <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Αποσύνδεση σε ξεχωριστό παράθυρο</translation>
     </message>
     <message>
         <source>&amp;Image</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Εικόνα</translation>
     </message>
     <message>
         <source>Large menubar arnd toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Μεγάλες γραμμές μενού και εργαλείων</translation>
     </message>
     <message>
         <source>Turn over the page on the left</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιστροφή σελίδας αριστερόστροφα</translation>
     </message>
     <message>
         <source>Turn over the page on the right</source>
-        <translation type="unfinished"></translation>
+        <translation>Περιστροφή σελίδας δεξιόστροφα</translation>
     </message>
 </context>
 <context>
@@ -1374,7 +1370,7 @@
     <name>ManageDatabaseDialog</name>
     <message>
         <source>Name</source>
-        <translation type="vanished">Όνομα</translation>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1383,7 +1379,7 @@
     </message>
     <message>
         <source>approach to</source>
-        <translation type="vanished">προσέγγιση σε</translation>
+        <translation>προσέγγιση σε</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -1396,7 +1392,7 @@
     </message>
     <message>
         <source>Edit Catalog</source>
-        <translation type="vanished">Επεξεργασία ενός καταλόγου</translation>
+        <translation>Επεξεργασία ενός καταλόγου</translation>
     </message>
     <message>
         <source>DeleteAll</source>
@@ -1404,7 +1400,7 @@
     </message>
     <message>
         <source>Creating Catalog is Completed</source>
-        <translation type="vanished">Η δημιουργία καταλόγου ολοκληρώθηκε</translation>
+        <translation>Η δημιουργία καταλόγου ολοκληρώθηκε</translation>
     </message>
     <message>
         <source>Start Work</source>
@@ -1433,7 +1429,7 @@
     </message>
     <message>
         <source>CreationTime</source>
-        <translation type="vanished">Χρόνος δημιουργίας</translation>
+        <translation>Χρόνος δημιουργίας</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -1447,7 +1443,7 @@
     </message>
     <message>
         <source>Creationing Catalog is Cancelled</source>
-        <translation type="vanished">Η δημιουργία καταλόγου ακυρώθηκε</translation>
+        <translation>Η δημιουργία καταλόγου ακυρώθηκε</translation>
     </message>
     <message>
         <source>UpdateDatabase</source>
@@ -1467,116 +1463,116 @@
     <message>
         <source>Name</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished">Όνομα</translation>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <source>CreationTime</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="unfinished">Χρόνος δημιουργίας</translation>
+        <translation>Χρόνος δημιουργίας</translation>
     </message>
     <message>
         <source>approach to</source>
         <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
-        <translation type="unfinished">προσέγγιση σε</translation>
+        <translation>προσέγγιση σε</translation>
     </message>
     <message>
         <source>Edit Catalog</source>
         <comment>Button for editing contents of already created catalog</comment>
-        <translation type="unfinished">Επεξεργασία ενός καταλόγου</translation>
+        <translation>Επεξεργασία ενός καταλόγου</translation>
     </message>
     <message>
         <source>Creating Catalog is Completed</source>
         <comment>Body of message box when catalog generation finished successfully</comment>
-        <translation type="unfinished">Η δημιουργία καταλόγου ολοκληρώθηκε</translation>
+        <translation>Η δημιουργία καταλόγου ολοκληρώθηκε</translation>
     </message>
     <message>
         <source>Creationing Catalog is Cancelled</source>
         <comment>Body of message box when catalog generation is canceled</comment>
-        <translation type="unfinished">Η δημιουργία καταλόγου ακυρώθηκε</translation>
+        <translation>Η δημιουργία καταλόγου ακυρώθηκε</translation>
     </message>
 </context>
 <context>
     <name>MouseConfigDialog</name>
     <message>
         <source>Mouse sequence has potential conflicts.</source>
-        <translation type="vanished">Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
+        <translation>Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
     </message>
     <message>
         <source>Mouse Config</source>
-        <translation type="vanished">Διαμόρφωση ποντικιού</translation>
+        <translation>Διαμόρφωση ποντικιού</translation>
     </message>
     <message>
         <source>Current Mouse Sequence</source>
-        <translation type="vanished">Τρέχουσα ακολουθία ποντικιού</translation>
+        <translation>Τρέχουσα ακολουθία ποντικιού</translation>
     </message>
     <message>
         <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
-        <translation type="vanished">Επιλέξτε συνδυασμό από τα παρακάτω πλαίσια και πατήστε «Προσθήκη ακολουθίας»</translation>
+        <translation>Επιλέξτε συνδυασμό από τα παρακάτω πλαίσια και πατήστε «Προσθήκη ακολουθίας»</translation>
     </message>
     <message>
         <source>Mouse Sequence:</source>
-        <translation type="vanished">Ακολουθία ποντικιού:</translation>
+        <translation>Ακολουθία ποντικιού:</translation>
     </message>
     <message>
         <source>Motions</source>
-        <translation type="vanished">Δράσεις</translation>
+        <translation>Δράσεις</translation>
     </message>
     <message>
         <source>Option</source>
-        <translation type="vanished">Επιλογή</translation>
+        <translation>Επιλογή</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="vanished">Περιγραφή</translation>
+        <translation>Περιγραφή</translation>
     </message>
     <message>
         <source>Command</source>
-        <translation type="vanished">Εντολή</translation>
+        <translation>Εντολή</translation>
     </message>
     <message>
         <source>Mouse Config</source>
         <comment>Title of the dialog to customize the mouse sequences</comment>
-        <translation type="unfinished">Διαμόρφωση ποντικιού</translation>
+        <translation>Διαμόρφωση ποντικιού</translation>
     </message>
     <message>
         <source>Mouse Sequence:</source>
         <comment>Title of LineEdit label to which mouse sequence is input</comment>
-        <translation type="unfinished">Ακολουθία ποντικιού:</translation>
+        <translation>Ακολουθία ποντικιού:</translation>
     </message>
     <message>
         <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
         <comment>Placeholder text urging the mouse input setting procedure</comment>
-        <translation type="unfinished">Επιλέξτε συνδυασμό από τα παρακάτω πλαίσια και πατήστε «Προσθήκη ακολουθίας»</translation>
+        <translation>Επιλέξτε συνδυασμό από τα παρακάτω πλαίσια και πατήστε «Προσθήκη ακολουθίας»</translation>
     </message>
     <message>
         <source>Command</source>
         <comment>caption of Command key</comment>
-        <translation type="unfinished">Εντολή</translation>
+        <translation>Εντολή</translation>
     </message>
     <message>
         <source>Option</source>
         <comment>caption of Option key</comment>
-        <translation type="unfinished">Επιλογή</translation>
+        <translation>Επιλογή</translation>
     </message>
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation type="unfinished">Δράσεις</translation>
+        <translation>Δράσεις</translation>
     </message>
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
-        <translation type="unfinished">Περιγραφή</translation>
+        <translation>Περιγραφή</translation>
     </message>
     <message>
         <source>Current Mouse Sequence</source>
         <comment>Title of the column of the content of the mouse sequence registered for Action</comment>
-        <translation type="unfinished">Τρέχουσα ακολουθία ποντικιού</translation>
+        <translation>Τρέχουσα ακολουθία ποντικιού</translation>
     </message>
     <message>
         <source>Mouse sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
-        <translation type="unfinished">Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
+        <translation>Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
     </message>
 </context>
 <context>
@@ -1660,34 +1656,30 @@
     </message>
     <message>
         <source>Speed up JPEG loading in exchange for quality of display.</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιταχύνει τη φόρτωση JPEG σε βάρος της ποιότητας προβολής.</translation>
     </message>
     <message>
         <source>Use fast DCT for loading JPEG</source>
         <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση ταχείας DCT για φόρτωση JPEG</translation>
     </message>
     <message>
         <source>Hide page bar permanently</source>
         <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Απόκρυψη γραμμής σελίδας μόνιμα</translation>
     </message>
     <message>
         <source>Hide scroll bars in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Απόκρυψη γραμμών κύλισης σε πλήρη οθόνη</translation>
     </message>
 </context>
 <context>
     <name>PageContent</name>
     <message>
         <source>NOT IMAGE FILE</source>
-        <translation type="vanished">ΔΕΝ ΥΠΑΡΧΕΙ ΑΡΧΕΙΟ ΕΙΚΟΝΑΣ</translation>
-    </message>
-    <message>
-        <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
-        <translation type="unfinished">ΔΕΝ ΥΠΑΡΧΕΙ ΑΡΧΕΙΟ ΕΙΚΟΝΑΣ</translation>
+        <translation>ΔΕΝ ΥΠΑΡΧΕΙ ΑΡΧΕΙΟ ΕΙΚΟΝΑΣ</translation>
     </message>
 </context>
 <context>
@@ -1695,59 +1687,59 @@
     <message>
         <source>File</source>
         <comment>File Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο</translation>
     </message>
     <message>
         <source>Bookmark</source>
         <comment>Bookmark Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Σελιδοδείκτης</translation>
     </message>
     <message>
         <source>Folder</source>
         <comment>Folder Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Φάκελος</translation>
     </message>
     <message>
         <source>Catalog</source>
         <comment>Catalog Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Κατάλογος</translation>
     </message>
     <message>
         <source>View</source>
         <comment>View Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Προβολή</translation>
     </message>
     <message>
         <source>WindowState</source>
         <comment>WindowState Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Κατάσταση παραθύρου</translation>
     </message>
     <message>
         <source>Toolbar</source>
         <comment>Toolbar Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Εργαλειοθήκη</translation>
     </message>
     <message>
         <source>ContextMenu</source>
         <comment>ContextMenu Action Group</comment>
-        <translation type="unfinished">Μενού περιβάλλοντος</translation>
+        <translation>Μενού περιβάλλοντος</translation>
     </message>
     <message>
         <source>Shader</source>
         <comment>Shader Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Σκίαση</translation>
     </message>
     <message>
         <source>Help</source>
         <comment>Help Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>Βοήθεια</translation>
     </message>
 </context>
 <context>
     <name>RenameDialog</name>
     <message>
         <source>Filename is required.</source>
-        <translation type="vanished">Απαιτείται όνομα αρχείου.</translation>
+        <translation>Απαιτείται όνομα αρχείου.</translation>
     </message>
     <message>
         <source>RenameDialog</source>
@@ -1760,17 +1752,17 @@
     </message>
     <message>
         <source>Rename failed. Same filename might be already existed?</source>
-        <translation type="vanished">Η μετονομασία απέτυχε. Ίσως το όνομα αρχείου να υπάρχει ήδη.</translation>
+        <translation>Η μετονομασία απέτυχε. Ίσως το όνομα αρχείου να υπάρχει ήδη.</translation>
     </message>
     <message>
         <source>Filename is required.</source>
         <comment>An error message to be displayed when the file name is set to the empty character in the file name change dialog</comment>
-        <translation type="unfinished">Απαιτείται όνομα αρχείου.</translation>
+        <translation>Απαιτείται όνομα αρχείου.</translation>
     </message>
     <message>
         <source>Rename failed. Same filename might be already existed?</source>
         <comment>Error message to display when file name change fails</comment>
-        <translation type="unfinished">Η μετονομασία απέτυχε. Ίσως το όνομα αρχείου να υπάρχει ήδη.</translation>
+        <translation>Η μετονομασία απέτυχε. Ίσως το όνομα αρχείου να υπάρχει ήδη.</translation>
     </message>
 </context>
 <context>
@@ -1787,12 +1779,8 @@
     </message>
     <message>
         <source>Click and enter a new shortcut key.</source>
-        <translation type="vanished">Κάντε κλικ και εισάγετε ένα νέο πλήκτρο συντόμευσης.</translation>
-    </message>
-    <message>
-        <source>Click and enter a new shortcut key.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation type="unfinished">Κάντε κλικ και εισάγετε ένα νέο πλήκτρο συντόμευσης.</translation>
+        <translation>Κάντε κλικ και εισάγετε ένα νέο πλήκτρο συντόμευσης.</translation>
     </message>
 </context>
 </TS>
