@@ -42,10 +42,11 @@ public:
      * @brief Info is Exif Information of the image(JPEG only)
      */
     easyexif::EXIFInfo Info;
+    size_t FileLength;
 
-    ImageContent(){}
-    ImageContent(QString path):Path(path){}
-    ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info)
+    ImageContent():FileLength(0){}
+    ImageContent(QString path, size_t length):Path(path),FileLength(length){}
+    ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info, size_t length)
         : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info) {}
     ImageContent(const ImageContent& rhs)
         : Image(rhs.Image)
@@ -55,6 +56,7 @@ public:
         , ImportSize(rhs.ImportSize)
         , Path(rhs.Path)
         , Info(rhs.Info)
+        , FileLength(rhs.FileLength)
     {}
     inline ImageContent& operator=(const ImageContent &rhs)
     {
@@ -65,6 +67,7 @@ public:
         BaseSize = rhs.BaseSize;
         ImportSize = rhs.ImportSize;
         Info = rhs.Info;
+        FileLength = rhs.FileLength;
         return *this;
     }
     bool wideImage() const {return BaseSize.width() > BaseSize.height(); }
@@ -102,6 +105,7 @@ public:
     QString Text;
     QGraphicsTextItem* GText;
     QGraphicsRectItem* GTextSurface;
+    qreal DrawScale;
 
     enum Fitting {
         FitCenter,

@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     m_menubarFontSize = ui->menuBar->font().pointSize();
 	m_pageSliderHeight = ui->pageSlider->height();
+    m_imageString.initialize(&m_pageManager, ui->graphicsView);
 
 #ifndef Q_OS_WIN
     ui->actionRegistAssocsUAC->setVisible(false);
@@ -744,7 +745,8 @@ void MainWindow::onPageManager_pageChanged()
     m_sliderChanging = false;
 
     // StatusBar
-    m_pageCaption = m_pageManager.currentPageStatusAsString();
+//    m_pageCaption = m_pageManager.currentPageStatusAsString();
+    m_pageCaption = m_imageString.getStatusBarText();
 
     // Elide text(Otherwise the width of the main window will be forcibly changed)
     QFontMetrics fontMetrics(ui->statusLabel->font());

@@ -142,6 +142,10 @@ public:
     void setHidePageBarParmanently(bool hidePageBarParmanently) { m_hidePageBarParmanently = hidePageBarParmanently; }
     bool HideScrollBarInFullscreen() { return m_hideScrollBarInFullscreen; }
     void setHideScrollBarInFullscreen(bool hideScrollBarInFullscreen) { m_hideScrollBarInFullscreen = hideScrollBarInFullscreen; }
+    QString TitleTextFormat() { return m_titleTextFormat; }
+    void setTitleTextFormat(QString titleTextFormat) { m_titleTextFormat = titleTextFormat; }
+    QString StatusTextFormat() { return m_statusTextFormat; }
+    void setStatusTextFormat(QString statusTextFormat) { m_statusTextFormat = statusTextFormat; }
 
     // DualView
     bool DualView() { return m_dualView; }
@@ -302,6 +306,8 @@ private:
     bool m_largeToolbarIcons;
     bool m_hidePageBarParmanently;
     bool m_hideScrollBarInFullscreen;
+    QString m_titleTextFormat;
+    QString m_statusTextFormat;
 
     // ToolBars
     bool m_showToolBar;

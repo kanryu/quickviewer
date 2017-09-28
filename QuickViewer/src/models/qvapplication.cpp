@@ -312,6 +312,8 @@ void QVApplication::loadSettings()
     m_largeToolbarIcons  = m_settings.value("LargeToolbarIcons", false).toBool();
     m_hidePageBarParmanently  = m_settings.value("HidePageBarParmanently", false).toBool();
     m_hideScrollBarInFullscreen  = m_settings.value("HideScrollBarInFullscreen", false).toBool();
+    m_titleTextFormat = m_settings.value("TitleTextFormat", "%V").toString();
+    m_statusTextFormat = m_settings.value("StatusTextFormat", "%p (%n)[%s(%m)] %f %2 | %p [%s(%m)] %f").toString();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -428,6 +430,8 @@ void QVApplication::saveSettings()
     m_settings.setValue("LargeToolbarIcons", m_largeToolbarIcons);
     m_settings.setValue("HidePageBarParmanently", m_hidePageBarParmanently);
     m_settings.setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
+    m_settings.setValue("TitleTextFormat", m_titleTextFormat);
+    m_settings.setValue("StatusTextFormat", m_statusTextFormat);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

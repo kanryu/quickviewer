@@ -60,6 +60,7 @@ public:
     void resetBackgroundColor();
     void setSceneRectMode(bool scrolled, const QRect& sceneRect);
     bool isScrollMode() { return m_scrollMode; }
+    const QVector<PageContent>* pages() const {return &m_pages; }
 
 signals:
     /**

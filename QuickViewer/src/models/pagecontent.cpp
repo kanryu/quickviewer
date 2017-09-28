@@ -71,6 +71,7 @@ PageContent::PageContent(const PageContent &rhs)
     , initialized(false)
     , GText(rhs.GText)
     , GTextSurface(rhs.GTextSurface)
+    , DrawScale(0)
 {
 
 }
@@ -84,6 +85,7 @@ PageContent &PageContent::operator=(const PageContent &rhs) {
     GText  = rhs.GText;
     GTextSurface  = rhs.GTextSurface;
     m_resizeGeneratingState = 0;
+    DrawScale = 0;
     return *this;
 }
 
@@ -109,7 +111,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     }
     QSize currentSize = CurrentSize(rotateOffset);
     QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
-    qreal scale = 1.0*newsize.width()/currentSize.width();
+    qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
     if(scale > 1.0 && qApp->DontEnlargeSmallImagesOnFitting())
         return setPageLayoutManual(viewport, fitting, 1.0, rotateOffset);
 
@@ -135,6 +137,7 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
     }
     QSize currentSize = CurrentSize(rotateOffset);
     QSize newsize = currentSize * scale;
+    DrawScale = scale;
 
     QPoint of = Offset(rotateOffset);
     of *= scale;

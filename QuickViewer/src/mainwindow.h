@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include "models/volumemanager.h"
 #include "imageview.h"
+#include "imagestring.h"
 
 namespace Ui {
 class MainWindow;
@@ -187,6 +188,7 @@ protected:
     QString m_pageCaption;
 
     PageManager m_pageManager;
+    ImageString m_imageString;
     QList<QAction*> m_shaderMenuGroup;
     QList<QAction*> m_languageMenuGroup;
     ThumbnailManager* m_thumbManager;

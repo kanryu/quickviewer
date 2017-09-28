@@ -121,6 +121,7 @@ SOURCES += \
     src/qactionmanager/qactionmanager.cpp \
     src/qactionmanager/qmousesequence.cpp \
     src/qactionmanager/shortcutbutton.cpp \
+    src/models/imagestring.cpp
 
 
 HEADERS  += \
@@ -160,6 +161,7 @@ HEADERS  += \
     src/qactionmanager/qactionmanager.h \
     src/qactionmanager/qmousesequence.h \
     src/qactionmanager/shortcutbutton.h \
+    src/models/imagestring.h
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer

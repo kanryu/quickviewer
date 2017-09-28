@@ -283,6 +283,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
             reader.setScaledSize(loadingSize);
         }
         QImage src;
+        ImageContent ic(path, bytes.length());
         {
             QImage tmp;
             // QImage processing sometimes fails
@@ -290,7 +291,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
                 tmp = reader.read();
                 if(!tmp.isNull()) break;
                 qDebug() << "[0]" << path << tmp << count;
-                if(count >= 100 || aformat.startsWith("tif")) return ImageContent(path);
+                if(count >= 100 || aformat.startsWith("tif")) return ic;
 //                if(count >= 100) return ImageContent(path);
                 QThread::currentThread()->usleep(40000);
             }
@@ -309,14 +310,12 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
 
 
     //    ImageContent ic(QPixmap::fromImage(src), path, baseSize, info);
-        ImageContent ic;
-        ic.Path = path;
         ic.BaseSize = baseSize;
         ic.Info = info;
         if(src.isNull())
             return ic;
         if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
-            ic = ImageContent(src, path, baseSize, info);;
+            ic = ImageContent(src, path, baseSize, info, bytes.length());
         } else {
             // resample for too big images
             QSize srcSizeReal = src.size();
@@ -382,7 +381,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         return ic;
     }
     if(!loopcount)
-        return ImageContent(path);
+        return ImageContent(path, bytes.length());
     return loadWithSpecifiedFormat(path, pageSize, bytes, aformat, loopcount-1);
 }
 
