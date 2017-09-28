@@ -131,6 +131,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://programstore.tistory.com/48](http://programstore.tistory.com/48)
 - **PCWorld** (in Hungarian)
     - [https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html](https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html)
+- **Komputer Swiat DOWNLOAD** (in Polish)
+    - [http://download.komputerswiat.pl/grafika-i-fotografia/przegladarki-graficzne/quickviewer](http://download.komputerswiat.pl/grafika-i-fotografia/przegladarki-graficzne/quickviewer)
 - **dobre programy** (in Polish)
     - [https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html](https://www.dobreprogramy.pl/QuickViewer,Program,Windows,82915.html)
 - **PCMag Greece** (in Greek)
