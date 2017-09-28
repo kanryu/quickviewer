@@ -100,6 +100,9 @@
           <property name="renderHints">
            <set>QPainter::Antialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
           </property>
+          <property name="viewportUpdateMode">
+           <enum>QGraphicsView::FullViewportUpdate</enum>
+          </property>
          </widget>
         </item>
         <item>

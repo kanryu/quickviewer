@@ -153,7 +153,8 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
 void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize)
 {
     checkInitialize();
-    QSize newsize2 = Ic.Info.Orientation==6 || Ic.Info.Orientation==8 ? QSize(newsize.height(), newsize.width()) : newsize;
+//    QSize newsize2 = Ic.Info.Orientation==6 || Ic.Info.Orientation==8 ? QSize(newsize.height(), newsize.width()) : newsize;
+    QSize newsize2 = (Rotate+rotateOffset) % 180 ? QSize(newsize.height(), newsize.width()) : newsize;
     if(Ic.Movie.isNull()) {
         // only CPU resizing
         if(qApp->Effect() < qvEnums::UsingFixedShader) {
