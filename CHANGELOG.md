@@ -1,6 +1,34 @@
 # CHANGELOG
 
+## v1.0.0, origin/master, origin/HEAD (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+
+support for changing text format, abolish a menu, 2 bugfixed
+
+- support for changing text format  of title bar and status bar
+- abolish 'Show full path of volume'
+- bugfixed: There were cases where redrawing was not performed normally when the image was reduced or rotated
+- bugfixed: Rotating the image by resizing by the CPU caused the wrong aspect ratio
+
 - other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Sep 29 08:38:45 2017 +0900) [1ab257f](https://github.com/kanryu/quickviewer/commit/1ab257f0dde52437b475c03c1fa09a9575c7d23c)
+    -  bugfixed: There were cases where redrawing was not performed normally when the image was reduced or rotated (Fri Sep 29 08:38:34 2017 +0900) [c42b9ba](https://github.com/kanryu/quickviewer/commit/c42b9ba84a2a5e7867a6bdd46e77f236483937e5)
+    -  bugfixed: Rotating the image by resizing by the CPU caused the wrong aspect ratio (Fri Sep 29 08:38:34 2017 +0900) [c42b9ba](https://github.com/kanryu/quickviewer/commit/c42b9ba84a2a5e7867a6bdd46e77f236483937e5)
+    - Update index.md (Fri Sep 29 02:14:06 2017 +0900) [a6f4ba5](https://github.com/kanryu/quickviewer/commit/a6f4ba5559a5ec2f5e09a02e7ca66a9701084c7c)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Thu Sep 28 21:30:07 2017 +0900) [878d6d6](https://github.com/kanryu/quickviewer/commit/878d6d6072f48f11163bb0fbd62ae0136894683c)
+    - add ImageString (Thu Sep 28 21:29:52 2017 +0900) [ac63b3f](https://github.com/kanryu/quickviewer/commit/ac63b3fb31e7ad28c77bfc67b0c2cba775af2a74)
+    - Update index.md (Tue Sep 26 08:29:59 2017 +0900) [920723c](https://github.com/kanryu/quickviewer/commit/920723c6528d89b1e7ae0b1c3c10c3f76107a252)
+    - update quickviewer_el (Mon Sep 25 18:04:18 2017 +0900) [daf13cc](https://github.com/kanryu/quickviewer/commit/daf13cc30249eec7e0f8398dc8bf421b9ba41b9e)
+    - Merge pull request #44 from geogeo-gr/patch-1 (Mon Sep 25 18:03:11 2017 +0900) [1eaa1cf](https://github.com/kanryu/quickviewer/commit/1eaa1cf89de7ae09d52632b6a21addf08c3daeab)
+    -  (Mon Sep 25 18:03:11 2017 +0900) [1eaa1cf](https://github.com/kanryu/quickviewer/commit/1eaa1cf89de7ae09d52632b6a21addf08c3daeab)
+    - Update quickviewer_el (Mon Sep 25 18:03:11 2017 +0900) [1eaa1cf](https://github.com/kanryu/quickviewer/commit/1eaa1cf89de7ae09d52632b6a21addf08c3daeab)
+    - Update quickviewer_el (Mon Sep 25 11:19:33 2017 +0300) [18930d3](https://github.com/kanryu/quickviewer/commit/18930d363cbda078f325d2f79e6a33c78fcc164f)
+    -  (Mon Sep 25 11:19:33 2017 +0300) [18930d3](https://github.com/kanryu/quickviewer/commit/18930d363cbda078f325d2f79e6a33c78fcc164f)
+    - Supports touch panel input, enlarge menubar/toolbar, hide bars (Mon Sep 25 11:19:33 2017 +0300) [18930d3](https://github.com/kanryu/quickviewer/commit/18930d363cbda078f325d2f79e6a33c78fcc164f)
+    - Update index-ja.md (Mon Sep 25 07:11:49 2017 +0900) [1f686d2](https://github.com/kanryu/quickviewer/commit/1f686d22c07278c12608b8d4b892804645efe511)
+    - Update index-ja.md (Mon Sep 25 07:00:09 2017 +0900) [1063288](https://github.com/kanryu/quickviewer/commit/1063288a835fc583d6a5e3b27f8b6c7352765454)
+    - Update README.md (Mon Sep 25 06:55:59 2017 +0900) [7a76d47](https://github.com/kanryu/quickviewer/commit/7a76d47652af30cd387a941cc4dd93eb833cb4b6)
+    - Update index.md (Mon Sep 25 06:55:16 2017 +0900) [0ac4d02](https://github.com/kanryu/quickviewer/commit/0ac4d0281ca9641d8e8645caaab34bc9d6942a2a)
+    - changelog (Mon Sep 25 06:36:43 2017 +0900) [2f0db41](https://github.com/kanryu/quickviewer/commit/2f0db412ab46ff1e515b97a85a5ba5dfd85684f3)
     - changelog (Mon Sep 25 06:35:25 2017 +0900) [b8c263f](https://github.com/kanryu/quickviewer/commit/b8c263f16c0f9bc8047cb86d50254bba753bcac9)
 
 ## v0.9.9 (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
