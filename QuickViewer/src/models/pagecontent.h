@@ -47,7 +47,7 @@ public:
     ImageContent():FileLength(0){}
     ImageContent(QString path, size_t length):Path(path),FileLength(length){}
     ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info, size_t length)
-        : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info) {}
+        : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info), FileLength(length) {}
     ImageContent(const ImageContent& rhs)
         : Image(rhs.Image)
         , ResizedImage(rhs.ResizedImage)

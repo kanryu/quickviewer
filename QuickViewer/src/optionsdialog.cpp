@@ -1,12 +1,57 @@
 #include "optionsdialog.h"
 #include "ui_optionsdialog.h"
 #include "qvapplication.h"
+#include "imageview.h"
+#include "pagemanager.h"
+
+class SamplePageContent : public PageContentProtocol, public PageManagerProtocol
+{
+public:
+    SamplePageContent()
+        : m_size(20)
+        , m_currentPage(10)
+        , m_volumePath("C:\\SampleBook")
+    {
+        m_pages = {PageContent(nullptr, nullptr,
+                        ImageContent(
+                            QImage(1000, 1200, QImage::Format_RGB32),
+                            "page11.jpg",
+                            QSize(1000,1200),
+                            easyexif::EXIFInfo(),
+                            1234567)),
+                   PageContent(nullptr, nullptr,
+                        ImageContent(
+                            QImage(1000, 1200, QImage::Format_RGB32),
+                            "page12.jpg",
+                            QSize(1000,1200),
+                            easyexif::EXIFInfo(),
+                            1234567))
+                  };
+        m_pages[0].DrawScale = 0.5;
+        m_pages[1].DrawScale = 0.5;
+    }
+    int size() { return m_size; }
+    int currentPage() { return m_currentPage; }
+    QString volumePath() { return m_volumePath; }
+    const QVector<PageContent>* pages() const { return &m_pages; }
+
+private:
+    int m_size;
+    int m_currentPage;
+    QString m_volumePath;
+    QVector<PageContent> m_pages;
+};
+
+static SamplePageContent *stSamplePageContent;
 
 OptionsDialog::OptionsDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::OptionsDialog)
 {
     ui->setupUi(this);
+    if(!stSamplePageContent)
+        stSamplePageContent = new SamplePageContent;
+    m_imageString.initialize(stSamplePageContent, stSamplePageContent);
 #ifndef Q_OS_WIN
     ui->checkBoxUseDirect2D->setVisible(false);
 #endif
@@ -30,6 +75,31 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     resetColorButton(ui->btnColorSelect, m_backgroundColor);
     resetColorButton(ui->btnColorSelect2, m_backgroundColor2);
     resetColorBox();
+
+    // Caption Formats
+    ui->labelFormatUsage->setText(m_imageString.getFormatUsage());
+    ui->lineEditWindowTitleUserStyle->setText(qApp->TitleTextFormat());
+    if(qApp->TitleTextFormat() == QV_WINDOWTITLE_FORMAT)
+        ui->radioButtonWindowTitleNormalStyle->setChecked(true);
+    else if(qApp->TitleTextFormat() == IRFANVIEW_WINDOWTITLE_FORMAT)
+        ui->radioButtonWindowTitleIrfanViewStyle->setChecked(true);
+    else
+        ui->radioButtonWindowTitleUserDefined->setChecked(true);
+    if(!ui->radioButtonWindowTitleUserDefined->isChecked())
+        ui->lineEditWindowTitleUserStyle->setEnabled(false);
+
+    ui->lineEditStatusBarUserStyle->setText(qApp->StatusTextFormat());
+    if(qApp->StatusTextFormat() == QV_STATUSBAR_FORMAT)
+        ui->radioButtonStatusBarNormalStyle->setChecked(true);
+    else if(qApp->StatusTextFormat() == IRFANVIEW_STATUSBAR_FORMAT)
+        ui->radioButtonStatusBarIrfanViewStyle->setChecked(true);
+    else
+        ui->radioButtonStatusBarUserDefined->setChecked(true);
+    if(!ui->radioButtonStatusBarUserDefined->isChecked())
+        ui->lineEditStatusBarUserStyle->setEnabled(false);
+
+    ui->labelStatusBarSample->setText(m_imageString.formatString("%p (%n)[%s] %f %2 | %p [%s] %f"));
+    ui->labelWindowTitleSample->setText(m_imageString.formatString("%V"));
 }
 
 OptionsDialog::~OptionsDialog()
@@ -51,6 +121,20 @@ void OptionsDialog::reflectResults()
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
     qApp->setHidePageBarParmanently(ui->checkBoxHidePageBarParmanently->isChecked());
     qApp->setHideScrollBarInFullscreen(ui->checkBoxHideScrollBarInFullscreen->isChecked());
+
+    if(ui->radioButtonWindowTitleNormalStyle->isChecked())
+        qApp->setTitleTextFormat(QV_WINDOWTITLE_FORMAT);
+    else if(ui->radioButtonWindowTitleIrfanViewStyle->isChecked())
+        qApp->setTitleTextFormat(IRFANVIEW_WINDOWTITLE_FORMAT);
+    else
+        qApp->setTitleTextFormat(ui->lineEditWindowTitleUserStyle->text());
+
+    if(ui->radioButtonStatusBarNormalStyle->isChecked())
+        qApp->setStatusTextFormat(QV_STATUSBAR_FORMAT);
+    else if(ui->radioButtonStatusBarIrfanViewStyle->isChecked())
+        qApp->setStatusTextFormat(IRFANVIEW_STATUSBAR_FORMAT);
+    else
+        qApp->setStatusTextFormat(ui->lineEditStatusBarUserStyle->text());
 }
 
 void OptionsDialog::resetColorButton(QPushButton* btn, QColor color)
@@ -87,6 +171,25 @@ void OptionsDialog::resetColorBox()
     ui->labelBgSample->setPixmap(pattern);
 }
 
+void OptionsDialog::resetWindowTitleSample()
+{
+    QString format;
+    format = ui->radioButtonWindowTitleNormalStyle->isChecked()    ? QV_WINDOWTITLE_FORMAT
+           : ui->radioButtonWindowTitleIrfanViewStyle->isChecked() ? IRFANVIEW_WINDOWTITLE_FORMAT
+           : ui->lineEditWindowTitleUserStyle->text();
+    ui->labelWindowTitleSample->setText(m_imageString.formatString(format));
+
+}
+
+void OptionsDialog::resetStatusbarSample()
+{
+    QString format;
+    format = ui->radioButtonStatusBarNormalStyle->isChecked()    ? QV_STATUSBAR_FORMAT
+           : ui->radioButtonStatusBarIrfanViewStyle->isChecked() ? IRFANVIEW_STATUSBAR_FORMAT
+           : ui->lineEditStatusBarUserStyle->text();
+    ui->labelStatusBarSample->setText(m_imageString.formatString(format));
+}
+
 void OptionsDialog::onBtnColorSelect_clicked()
 {
     QColorDialog dialog(this);
@@ -113,4 +216,26 @@ void OptionsDialog::onCheckBoxCheckeredPattern_clicked(bool enabled)
 {
     m_useCheckeredPattern = enabled;
     resetColorBox();
+}
+
+void OptionsDialog::onRadioButtonWindowTitle_triggered(bool)
+{
+    resetWindowTitleSample();
+    ui->lineEditWindowTitleUserStyle->setEnabled(ui->radioButtonWindowTitleUserDefined->isChecked());
+}
+
+void OptionsDialog::onRadioButtonStatusBar_triggered(bool)
+{
+    resetStatusbarSample();
+    ui->lineEditStatusBarUserStyle->setEnabled(ui->radioButtonStatusBarUserDefined->isChecked());
+}
+
+void OptionsDialog::onLineEditWindowTitleUserStyle_textEdited(QString text)
+{
+    resetWindowTitleSample();
+}
+
+void OptionsDialog::onLineEditStatusBarUserStyle_textEdited(QString text)
+{
+    resetStatusbarSample();
 }

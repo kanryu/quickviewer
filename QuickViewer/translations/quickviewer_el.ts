@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="el_GR">
+<TS version="2.1" language="el_GR">
 <context>
     <name>CatalogWindow</name>
     <message>
@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>Drop picture folder here and create a catalog.</source>
-        <translation>Αφήστε εδώ φάκελο εικόνων και δημιουργήστε έναν κατάλογο.</translation>
+        <translation type="vanished">Αφήστε εδώ φάκελο εικόνων και δημιουργήστε έναν κατάλογο.</translation>
     </message>
     <message>
         <source>CatalogManagement</source>
@@ -57,7 +57,7 @@
     </message>
     <message>
         <source>(%1/%2) volume display.</source>
-        <translation>(%1/%2) τόμοι εμφανίστηκαν.</translation>
+        <translation type="vanished">(%1/%2) τόμοι εμφανίστηκαν.</translation>
     </message>
     <message>
         <source>DisplaySide-By-Side</source>
@@ -97,7 +97,7 @@
     </message>
     <message>
         <source>Please select a folder containing Images or Archives</source>
-        <translation>Επιλέξτε έναν φάκελο που περιέχει εικόνες ή αρχειοθήκες</translation>
+        <translation type="vanished">Επιλέξτε έναν φάκελο που περιέχει εικόνες ή αρχειοθήκες</translation>
     </message>
     <message>
         <source>&amp;SelectFolder</source>
@@ -167,7 +167,7 @@
     </message>
     <message>
         <source>Exif is not included.</source>
-        <translation>Δεν περιέχονται EXIF.</translation>
+        <translation type="vanished">Δεν περιέχονται EXIF.</translation>
     </message>
     <message>
         <source>Orientation of camera</source>
@@ -382,7 +382,7 @@
     </message>
     <message>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation type="vanished">Κλείσιμο</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -415,15 +415,15 @@
     </message>
     <message>
         <source>DirectDraw Surface Image</source>
-        <translation>Εικόνα DirectDraw Surface</translation>
+        <translation type="vanished">Εικόνα DirectDraw Surface</translation>
     </message>
     <message>
         <source>WebP Image</source>
-        <translation>Εικόνα WebP</translation>
+        <translation type="vanished">Εικόνα WebP</translation>
     </message>
     <message>
         <source>PNG File</source>
-        <translation>Αρχείο PNG</translation>
+        <translation type="vanished">Αρχείο PNG</translation>
     </message>
     <message>
         <source>Nicon Raw Format</source>
@@ -455,7 +455,7 @@
     </message>
     <message>
         <source>Windows Icon File</source>
-        <translation>Αρχείο εικονιδίου των Windows</translation>
+        <translation type="vanished">Αρχείο εικονιδίου των Windows</translation>
     </message>
     <message>
         <source>JPEG Image (*.jpg, *.jpeg)</source>
@@ -488,19 +488,19 @@
     </message>
     <message>
         <source>Tiff Image</source>
-        <translation>Εικόνα Tiff</translation>
+        <translation type="vanished">Εικόνα Tiff</translation>
     </message>
     <message>
         <source>GIF Image</source>
-        <translation>Εικόνα GIF</translation>
+        <translation type="vanished">Εικόνα GIF</translation>
     </message>
     <message>
         <source>Bitmap File</source>
-        <translation>Αρχείο Bitmap</translation>
+        <translation type="vanished">Αρχείο Bitmap</translation>
     </message>
     <message>
         <source>JPEG Image</source>
-        <translation>Εικόνα JPEG</translation>
+        <translation type="vanished">Εικόνα JPEG</translation>
     </message>
     <message>
         <source>Sony Raw Format (*.arw)</source>
@@ -513,7 +513,7 @@
     </message>
     <message>
         <source>Animated PNG File</source>
-        <translation>Αρχεία κινούμενου PNG</translation>
+        <translation type="vanished">Αρχεία κινούμενου PNG</translation>
     </message>
     <message>
         <source>Truevision Graphics Adapter Format (*.tga)</source>
@@ -594,7 +594,7 @@
     </message>
     <message>
         <source>ModifiedTime</source>
-        <translation>Χρόνος τροποποίησης</translation>
+        <translation type="vanished">Χρόνος τροποποίησης</translation>
     </message>
     <message>
         <source>UpDate</source>
@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>Not found any Folders or Archives</source>
-        <translation>Δεν βρέθηκαν φάκελοι ή αρχειοθήκες</translation>
+        <translation type="vanished">Δεν βρέθηκαν φάκελοι ή αρχειοθήκες</translation>
     </message>
     <message>
         <source>Move to Home Folder</source>
@@ -691,6 +691,80 @@
     </message>
 </context>
 <context>
+    <name>ImageString</name>
+    <message>
+        <source>Volume name (only folder/archive name), e.g. &apos;Sample Book&apos;)</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume full path, e.g. &apos;C:/Users/qv/Desktop/Sample Book&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file name (only file name), e.g. &apos;page01.jpg&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file path in volume, e.g. &apos;subpath/page01.jpg&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image size, e.g. &apos;1920x1080&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display magnification of image, e.g. &apos;25%&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file size with usefull, e.g. &apos;63.23 KB&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file size as correct number of bytes, e.g. &apos;1,154,340 Bytes&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image bitmap size with useful, e.g. &apos;1.59 MB&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current page number of the volume e.g. &apos;33/100&apos; or &apos;33-34/100&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Second image format separator(when 2 page spread viewing is valid)</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%L1 Bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>KeyConfigDialog</name>
     <message>
         <source>Alt</source>
@@ -745,7 +819,7 @@
     </message>
     <message>
         <source>Motions</source>
-        <translation>Δράσεις</translation>
+        <translation type="vanished">Δράσεις</translation>
     </message>
     <message>
         <source>Wheel Scrolling</source>
@@ -761,7 +835,7 @@
     </message>
     <message>
         <source>CurrentShortcut</source>
-        <translation>Τρέχουσα συντόμευση</translation>
+        <translation type="vanished">Τρέχουσα συντόμευση</translation>
     </message>
     <message>
         <source>Add Sequence</source>
@@ -769,7 +843,7 @@
     </message>
     <message>
         <source>Description</source>
-        <translation>Περιγραφή</translation>
+        <translation type="vanished">Περιγραφή</translation>
     </message>
     <message>
         <source>Scroll Up</source>
@@ -854,7 +928,7 @@
     </message>
     <message>
         <source>Please select the image or archive</source>
-        <translation>Παρακαλώ επιλέξτε μια εικόνα ή αρχειοθήκη</translation>
+        <translation type="vanished">Παρακαλώ επιλέξτε μια εικόνα ή αρχειοθήκη</translation>
     </message>
     <message>
         <source>Prev o&amp;ne page only</source>
@@ -1157,7 +1231,7 @@
     </message>
     <message>
         <source>Any folder or archive is not loaded.</source>
-        <translation>Δεν έχει φορτωθεί κάποιος φάκελος ή αρχείο.</translation>
+        <translation type="vanished">Δεν έχει φορτωθεί κάποιος φάκελος ή αρχείο.</translation>
     </message>
     <message>
         <source>Exif &amp;Information</source>
@@ -1249,11 +1323,11 @@
     </message>
     <message>
         <source>Image file not found. Can&apos;t be opened</source>
-        <translation>Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας</translation>
+        <translation type="vanished">Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας</translation>
     </message>
     <message>
         <source>Image file was not found. Can&apos;t be opened.</source>
-        <translation>Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας.</translation>
+        <translation type="vanished">Δεν είναι δυνατό το άνοιγμα γιατί δεν βρέθηκε το αρχείο εικόνας.</translation>
     </message>
     <message>
         <source>&amp;History</source>
@@ -1271,11 +1345,11 @@
     </message>
     <message>
         <source>Are you sure you want to delete this image?</source>
-        <translation>Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
+        <translation type="vanished">Είστε βέβαιος ότι θέλετε τη διαγραφή αυτής της εικόνας;</translation>
     </message>
     <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
-        <translation>Είστε βέβαιος ότι θέλετε να μετακινήσετε την εικόνα στον κάδο ανακύκλωσης;</translation>
+        <translation type="vanished">Είστε βέβαιος ότι θέλετε να μετακινήσετε την εικόνα στον κάδο ανακύκλωσης;</translation>
     </message>
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
@@ -1370,7 +1444,7 @@
     <name>ManageDatabaseDialog</name>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation type="vanished">Όνομα</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1379,7 +1453,7 @@
     </message>
     <message>
         <source>approach to</source>
-        <translation>προσέγγιση σε</translation>
+        <translation type="vanished">προσέγγιση σε</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -1392,7 +1466,7 @@
     </message>
     <message>
         <source>Edit Catalog</source>
-        <translation>Επεξεργασία ενός καταλόγου</translation>
+        <translation type="vanished">Επεξεργασία ενός καταλόγου</translation>
     </message>
     <message>
         <source>DeleteAll</source>
@@ -1400,7 +1474,7 @@
     </message>
     <message>
         <source>Creating Catalog is Completed</source>
-        <translation>Η δημιουργία καταλόγου ολοκληρώθηκε</translation>
+        <translation type="vanished">Η δημιουργία καταλόγου ολοκληρώθηκε</translation>
     </message>
     <message>
         <source>Start Work</source>
@@ -1429,7 +1503,7 @@
     </message>
     <message>
         <source>CreationTime</source>
-        <translation>Χρόνος δημιουργίας</translation>
+        <translation type="vanished">Χρόνος δημιουργίας</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -1443,7 +1517,7 @@
     </message>
     <message>
         <source>Creationing Catalog is Cancelled</source>
-        <translation>Η δημιουργία καταλόγου ακυρώθηκε</translation>
+        <translation type="vanished">Η δημιουργία καταλόγου ακυρώθηκε</translation>
     </message>
     <message>
         <source>UpdateDatabase</source>
@@ -1495,39 +1569,39 @@
     <name>MouseConfigDialog</name>
     <message>
         <source>Mouse sequence has potential conflicts.</source>
-        <translation>Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
+        <translation type="vanished">Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
     </message>
     <message>
         <source>Mouse Config</source>
-        <translation>Διαμόρφωση ποντικιού</translation>
+        <translation type="vanished">Διαμόρφωση ποντικιού</translation>
     </message>
     <message>
         <source>Current Mouse Sequence</source>
-        <translation>Τρέχουσα ακολουθία ποντικιού</translation>
+        <translation type="vanished">Τρέχουσα ακολουθία ποντικιού</translation>
     </message>
     <message>
         <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
-        <translation>Επιλέξτε συνδυασμό από τα παρακάτω πλαίσια και πατήστε «Προσθήκη ακολουθίας»</translation>
+        <translation type="vanished">Επιλέξτε συνδυασμό από τα παρακάτω πλαίσια και πατήστε «Προσθήκη ακολουθίας»</translation>
     </message>
     <message>
         <source>Mouse Sequence:</source>
-        <translation>Ακολουθία ποντικιού:</translation>
+        <translation type="vanished">Ακολουθία ποντικιού:</translation>
     </message>
     <message>
         <source>Motions</source>
-        <translation>Δράσεις</translation>
+        <translation type="vanished">Δράσεις</translation>
     </message>
     <message>
         <source>Option</source>
-        <translation>Επιλογή</translation>
+        <translation type="vanished">Επιλογή</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Περιγραφή</translation>
+        <translation type="vanished">Περιγραφή</translation>
     </message>
     <message>
         <source>Command</source>
-        <translation>Εντολή</translation>
+        <translation type="vanished">Εντολή</translation>
     </message>
     <message>
         <source>Mouse Config</source>
@@ -1673,6 +1747,42 @@
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation>Απόκρυψη γραμμών κύλισης σε πλήρη οθόνη</translation>
     </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Window Title Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IrfanView style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Defined Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display Sample:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>StatusBar Caption Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format Usage</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>
@@ -1739,7 +1849,7 @@
     <name>RenameDialog</name>
     <message>
         <source>Filename is required.</source>
-        <translation>Απαιτείται όνομα αρχείου.</translation>
+        <translation type="vanished">Απαιτείται όνομα αρχείου.</translation>
     </message>
     <message>
         <source>RenameDialog</source>
@@ -1752,7 +1862,7 @@
     </message>
     <message>
         <source>Rename failed. Same filename might be already existed?</source>
-        <translation>Η μετονομασία απέτυχε. Ίσως το όνομα αρχείου να υπάρχει ήδη.</translation>
+        <translation type="vanished">Η μετονομασία απέτυχε. Ίσως το όνομα αρχείου να υπάρχει ήδη.</translation>
     </message>
     <message>
         <source>Filename is required.</source>

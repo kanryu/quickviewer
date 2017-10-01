@@ -923,6 +923,80 @@
     </message>
 </context>
 <context>
+    <name>ImageString</name>
+    <message>
+        <source>Volume name (only folder/archive name), e.g. &apos;Sample Book&apos;)</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>ボリューム名(フォルダ/アーカイブ名のみ)、 例: &apos;サンプル本&apos;</translation>
+    </message>
+    <message>
+        <source>Volume full path, e.g. &apos;C:/Users/qv/Desktop/Sample Book&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>ボリュームのフルパス、 例: &apos;C:/Users/qv/デスクトップ/サンプル本&apos;</translation>
+    </message>
+    <message>
+        <source>Image file name (only file name), e.g. &apos;page01.jpg&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像ファイル名(ファイル名のみ)、 例: &apos;page01.jpg&apos;</translation>
+    </message>
+    <message>
+        <source>Image file path in volume, e.g. &apos;subpath/page01.jpg&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像ファイルパス、 例: &apos;サブフォルダ/page01.jpg&apos;</translation>
+    </message>
+    <message>
+        <source>Image size, e.g. &apos;1920x1080&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像の大きさ、例: &apos;1920x1080&apos;</translation>
+    </message>
+    <message>
+        <source>Display magnification of image, e.g. &apos;25%&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像の表示倍率、例: &apos;25%&apos;</translation>
+    </message>
+    <message>
+        <source>Image file size with usefull, e.g. &apos;63.23 KB&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像ファイルの大きさを見やすく、例: &apos;63.23KB&apos;</translation>
+    </message>
+    <message>
+        <source>Image file size as correct number of bytes, e.g. &apos;1,154,340 Bytes&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像のファイルサイズをバイト単位で、例: &apos;1,154,340 バイト&apos;</translation>
+    </message>
+    <message>
+        <source>Image bitmap size with useful, e.g. &apos;1.59 MB&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>画像のビットマップとしての大きさ、例: &apos;1.59MB&apos;</translation>
+    </message>
+    <message>
+        <source>Current page number of the volume e.g. &apos;33/100&apos; or &apos;33-34/100&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>ボリューム内の現在のページ番号、例: &apos;33/100&apos; または &apos;33-34/100&apos;</translation>
+    </message>
+    <message>
+        <source>Second image format separator(when 2 page spread viewing is valid)</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation>2番目の画像の区切り(見開き表示が有効な場合)</translation>
+    </message>
+    <message>
+        <source>%1 Bytes</source>
+        <translation>%1 バイト</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%L1 Bytes</source>
+        <translation>%L1 バイト</translation>
+    </message>
+</context>
+<context>
     <name>ImageView</name>
     <message>
         <source>NOT IMAGE</source>
@@ -2533,6 +2607,42 @@
         <source>Hide scroll bars in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation>フルスクリーン時にスクロールバーを表示しない</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Caption Format</source>
+        <translation>キャプションの書式</translation>
+    </message>
+    <message>
+        <source>Window Title Format</source>
+        <translation>ウィンドウタイトルの書式</translation>
+    </message>
+    <message>
+        <source>Normal style</source>
+        <translation>通常の書式</translation>
+    </message>
+    <message>
+        <source>IrfanView style</source>
+        <translation>IrfanView風の書式</translation>
+    </message>
+    <message>
+        <source>User Defined Style</source>
+        <translation>ユーザー定義の書式</translation>
+    </message>
+    <message>
+        <source>Display Sample:</source>
+        <translation>表示サンプル:</translation>
+    </message>
+    <message>
+        <source>StatusBar Caption Format</source>
+        <translation>ステータスバーの書式</translation>
+    </message>
+    <message>
+        <source>Format Usage</source>
+        <translation>フォーマット書式の一覧</translation>
     </message>
 </context>
 <context>

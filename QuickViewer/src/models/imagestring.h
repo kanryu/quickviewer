@@ -3,8 +3,8 @@
 
 #include <QtCore>
 
-class ImageView;
-class PageManager;
+class PageContentProtocol;
+class PageManagerProtocol;
 
 /**
  * @brief The ImageString class
@@ -13,19 +13,23 @@ class PageManager;
  * These information are input as PageManager and PageContent,
  *  and are outputted as a model format character string dedicated to them.
  */
-class ImageString
+class ImageString : QObject
 {
+    Q_OBJECT
 public:
     ImageString();
-    void initialize(PageManager* pm, ImageView* view);
+    void initialize(PageManagerProtocol* pm, PageContentProtocol* view);
 
     QString getTitleBarText();
     QString getStatusBarText();
+    QString getFormatUsage();
     QString formatString(QString fmt);
 
 private:
-    PageManager* m_pageManager;
+    PageManagerProtocol* m_pageManager;
     const QVector<PageContent>* m_pages;
 };
+
+
 
 #endif // IMAGESTRING_H

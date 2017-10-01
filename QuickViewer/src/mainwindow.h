@@ -72,7 +72,6 @@ public slots:
     void onMenuHistory_triggered(QAction *action);
     void onActionExit_triggered();
     void onSavingHistory_triggered(bool enable);
-    void onShowFullpathOfVolume_triggered(bool enable);
 
     // Folder
     void onActionShowFolder_triggered();

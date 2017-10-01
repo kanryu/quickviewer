@@ -85,7 +85,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionShowSubfolders->setChecked(qApp->ShowSubfolders());
 
     ui->actionAutoLoaded->setChecked(qApp->AutoLoaded());
-    ui->actionShowFullpathOfVolume->setChecked(qApp->ShowFullpathOfVolume());
     ui->actionSavingHistory->setChecked(qApp->DontSavingHistory());
 
     ui->actionDontEnlargeSmallImagesOnFitting->setChecked(qApp->DontEnlargeSmallImagesOnFitting());
@@ -481,12 +480,6 @@ void MainWindow::onSavingHistory_triggered(bool enable)
     qApp->setDontSavingHistory(enable);
 }
 
-void MainWindow::onShowFullpathOfVolume_triggered(bool enable)
-{
-    qApp->setShowFullpathOfVolume(enable);
-    resetVolumeCaption();
-}
-
 void MainWindow::onActionClearHistory_triggered()
 {
     qApp->clearHistory();
@@ -752,6 +745,7 @@ void MainWindow::onPageManager_pageChanged()
     QFontMetrics fontMetrics(ui->statusLabel->font());
     QString statusLabelTxt = fontMetrics.elidedText(m_pageCaption, Qt::ElideMiddle, width()-100);
     ui->statusLabel->setText(statusLabelTxt);
+    resetVolumeCaption();
 
     if(!qApp->ShowStatusBar())
         setWindowTitle(QString("%1 - %2").arg(m_pageCaption).arg(qApp->applicationName()));
@@ -995,13 +989,7 @@ bool MainWindow::isFolderSearching()
 
 void MainWindow::resetVolumeCaption()
 {
-    QString path = m_pageManager.volumePath();
-    if(!qApp->ShowFullpathOfVolume()) {
-        QFileInfo info(path);
-        path = info.fileName();
-    }
-    m_volumeCaption = QString("%1 - %2")
-            .arg(path).arg(qApp->applicationName());
+    m_volumeCaption = m_imageString.getTitleBarText();
     setWindowTitle(m_volumeCaption);
 }
 
@@ -1209,6 +1197,7 @@ void MainWindow::onActionOpenOptionsDialog_triggered()
     bool checkered = qApp->UseCheckeredPattern();
     if(dialog.exec() == QDialog::Accepted) {
         dialog.reflectResults();
+        onPageManager_pageChanged();
         if(back != qApp->BackgroundColor()
            || back2 != qApp->BackgroundColor2()
            || checkered != qApp->UseCheckeredPattern()) {

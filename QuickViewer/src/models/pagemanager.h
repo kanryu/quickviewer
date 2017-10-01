@@ -8,7 +8,16 @@
 class VolumeManager;
 class ImageView;
 
-class PageManager : public QObject
+class PageManagerProtocol
+{
+public:
+    virtual int size()=0;
+    virtual int currentPage()=0;
+    virtual QString volumePath()=0;
+};
+
+
+class PageManager : public QObject, public PageManagerProtocol
 {
     Q_OBJECT
 public:
@@ -39,7 +48,7 @@ public:
 
     // Get String
     int currentPageCount() { return m_pages.size(); }
-    int currentPage() { return m_currentPage; }
+    int currentPage() override { return m_currentPage; }
     QVector<ImageContent>& currentPageContent() { return m_pages; }
     QString currentPagePath() {
         if(!m_fileVolume)
@@ -68,7 +77,7 @@ public:
     QString currentPageStatusAsString() const;
     QString pageSignage(int page) const;
 
-    QString volumePath(){ return m_fileVolume ? m_fileVolume->volumePath() : ""; }
+    QString volumePath() override { return m_fileVolume ? m_fileVolume->volumePath() : ""; }
     QString realVolumePath() { return m_fileVolume ? m_fileVolume->realVolumePath() : ""; }
     bool isArchive() {
         if(!m_fileVolume) return false;
@@ -79,7 +88,7 @@ public:
         return !m_fileVolume->isArchive();
     }
 
-    int size() { return m_fileVolume ? m_fileVolume->size() : 0; }
+    int size() override { return m_fileVolume ? m_fileVolume->size() : 0; }
     bool canDualView() const;
     void dispose() {
 //        if(m_fileVolume && m_volumes.empty()) {

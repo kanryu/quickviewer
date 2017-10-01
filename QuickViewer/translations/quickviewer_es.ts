@@ -881,6 +881,80 @@
     </message>
 </context>
 <context>
+    <name>ImageString</name>
+    <message>
+        <source>Volume name (only folder/archive name), e.g. &apos;Sample Book&apos;)</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume full path, e.g. &apos;C:/Users/qv/Desktop/Sample Book&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file name (only file name), e.g. &apos;page01.jpg&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file path in volume, e.g. &apos;subpath/page01.jpg&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image size, e.g. &apos;1920x1080&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display magnification of image, e.g. &apos;25%&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file size with usefull, e.g. &apos;63.23 KB&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image file size as correct number of bytes, e.g. &apos;1,154,340 Bytes&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image bitmap size with useful, e.g. &apos;1.59 MB&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current page number of the volume e.g. &apos;33/100&apos; or &apos;33-34/100&apos;</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Second image format separator(when 2 page spread viewing is valid)</source>
+        <comment>Format tag of text displayed in title bar and status bar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%L1 Bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>KeyConfigDialog</name>
     <message>
         <source>KeyConfig</source>
@@ -2234,6 +2308,42 @@
     <message>
         <source>Hide scroll bars in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caption Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Window Title Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Normal style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IrfanView style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Defined Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display Sample:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>StatusBar Caption Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Format Usage</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

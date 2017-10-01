@@ -132,8 +132,6 @@ public:
     void setShowFullscreenSignage (bool showFullscreenSignage) { m_showFullscreenSignage = showFullscreenSignage; }
     bool UseDirect2D() { return m_useDirect2D; }
     void setUseDirect2D(bool useDirect2D) { m_useDirect2D = useDirect2D; }
-    bool ShowFullpathOfVolume() { return m_showFullpathOfVolume; }
-    void setShowFullpathOfVolume(bool showFullpathOfVolume) { m_showFullpathOfVolume = showFullpathOfVolume; }
     bool ShowPanelSeparateWindow() { return m_showPanelSeparateWindow; }
     void setShowPanelSeparateWindow(bool showPanelSeparateWindow) { m_showPanelSeparateWindow = showPanelSeparateWindow; }
     bool LargeToolbarIcons() { return m_largeToolbarIcons; }
@@ -330,7 +328,6 @@ private:
     bool m_prohibitMultipleRunning;
     QString m_lastViewPath;
     bool m_dontSavingHistory;
-    bool m_showFullpathOfVolume;
 
     // Folder
     QString m_homeFolderPath;

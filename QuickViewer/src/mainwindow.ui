@@ -245,7 +245,6 @@
     <addaction name="actionFullscreen"/>
     <addaction name="actionShowFullscreenSignage"/>
     <addaction name="separator"/>
-    <addaction name="actionShowFullpathOfVolume"/>
     <addaction name="actionShowPanelSeparateWindow"/>
     <addaction name="actionStayOnTop"/>
    </widget>
@@ -1054,14 +1053,6 @@
    </property>
    <property name="text">
     <string extracomment="Flag for prohibiting update of history">Don't update history</string>
-   </property>
-  </action>
-  <action name="actionShowFullpathOfVolume">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string extracomment="Flag to display by switching the full path or volume name of the volume to the title bar">Show full path of the volume</string>
    </property>
   </action>
   <action name="actionShowPanelSeparateWindow">
@@ -2361,22 +2352,6 @@
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>onActionRegistAssocs_triggered()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>392</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionShowFullpathOfVolume</sender>
-   <signal>triggered(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onShowFullpathOfVolume_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

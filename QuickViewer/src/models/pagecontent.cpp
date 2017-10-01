@@ -71,7 +71,7 @@ PageContent::PageContent(const PageContent &rhs)
     , initialized(false)
     , GText(rhs.GText)
     , GTextSurface(rhs.GTextSurface)
-    , DrawScale(0)
+    , DrawScale(rhs.DrawScale)
 {
 
 }
@@ -85,7 +85,7 @@ PageContent &PageContent::operator=(const PageContent &rhs) {
     GText  = rhs.GText;
     GTextSurface  = rhs.GTextSurface;
     m_resizeGeneratingState = 0;
-    DrawScale = 0;
+    DrawScale = rhs.DrawScale;
     return *this;
 }
 
@@ -205,8 +205,10 @@ void PageContent::initializePage(bool resetResized)
         Scene->removeItem(GrItem);
         delete GrItem;
     }
-    GrItem = Scene->addPixmap(QPixmap::fromImage(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? Ic.Image : Ic.ResizedImage));
-    GrItem->setRotation(Rotate);
+    if(Scene) {
+        GrItem = Scene->addPixmap(QPixmap::fromImage(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? Ic.Image : Ic.ResizedImage));
+        GrItem->setRotation(Rotate);
+    }
     if(resetResized)
         Ic.ResizedImage = QImage();
     m_resizeGeneratingState = 0;
