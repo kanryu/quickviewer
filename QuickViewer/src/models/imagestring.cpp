@@ -1,6 +1,4 @@
 #include "imagestring.h"
-#include "pagecontent.h"
-#include "pagemanager.h"
 
 #include "qvapplication.h"
 

@@ -3,8 +3,8 @@
 
 #include <QtCore>
 
-class PageContentProtocol;
-class PageManagerProtocol;
+#include "pagecontent.h"
+#include "pagemanager.h"
 
 /**
  * @brief The ImageString class
@@ -27,7 +27,7 @@ public:
 
 private:
     PageManagerProtocol* m_pageManager;
-    const QVector<PageContent>* m_pages;
+    QVector<PageContent>* m_pages;
 };
 
 

@@ -34,13 +34,6 @@ private:
     QPoint m_ptSaved;
 };
 
-class PageContentProtocol
-{
-public:
-    virtual const QVector<PageContent>* pages() const=0;
-};
-
-
 /**
  * @brief The ImageView class
  * It provides to show 1 or 2 images once, using OpenGL.
@@ -67,7 +60,7 @@ public:
     void resetBackgroundColor();
     void setSceneRectMode(bool scrolled, const QRect& sceneRect);
     bool isScrollMode() { return m_scrollMode; }
-    const QVector<PageContent>* pages() const override {return &m_pages; }
+    QVector<PageContent>* pages() override {return &m_pages; }
 
 signals:
     /**

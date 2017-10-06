@@ -145,4 +145,12 @@ private:
     bool initialized;
 };
 
+
+class PageContentProtocol
+{
+public:
+    virtual QVector<PageContent>* pages()=0;
+};
+
+
 #endif // PAGECONTENT_H

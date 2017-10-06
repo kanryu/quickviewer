@@ -33,7 +33,7 @@ public:
     int size() { return m_size; }
     int currentPage() { return m_currentPage; }
     QString volumePath() { return m_volumePath; }
-    const QVector<PageContent>* pages() const { return &m_pages; }
+    QVector<PageContent>* pages() { return &m_pages; }
 
 private:
     int m_size;

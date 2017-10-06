@@ -11,4 +11,4 @@ fi
 
 #printenv
 
-$APPDIR/usr/bin/QuickViewer $*
+$APPDIR/usr/bin/QuickViewer "$@"
