@@ -1197,7 +1197,8 @@ void MainWindow::onActionOpenOptionsDialog_triggered()
     bool checkered = qApp->UseCheckeredPattern();
     if(dialog.exec() == QDialog::Accepted) {
         dialog.reflectResults();
-        onPageManager_pageChanged();
+        if(m_pageManager.size() > 0)
+            onPageManager_pageChanged();
         if(back != qApp->BackgroundColor()
            || back2 != qApp->BackgroundColor2()
            || checkered != qApp->UseCheckeredPattern()) {
