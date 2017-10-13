@@ -864,7 +864,11 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 static int touchCount = -1;
 static QTouchEvent::TouchPoint touchBegin;
 static QTouchEvent::TouchPoint touchEnd;
+//static QTouchEvent::TouchPoint touchPrev;
+static QPoint scrollBarBegin;
 static bool touchFirst = false;
+static bool rescaling = false;
+static int twoFingersCount = 0;
 
 void MainWindow::touchEvent(QTouchEvent * e)
 {
@@ -872,22 +876,66 @@ void MainWindow::touchEvent(QTouchEvent * e)
 	switch (e->type()) {
 	case QEvent::TouchBegin:
 		touchFirst = true;
+        rescaling = false;
 		break;
 	case QEvent::TouchUpdate:
 		if (touchFirst) {
-			touchCount = e->touchPoints().count();
-			touchBegin = e->touchPoints().first();
-			touchFirst = false;
+            touchCount = qMax(touchCount,e->touchPoints().count());
+            touchBegin = e->touchPoints().first();
+//            touchBegin = touchPrev = e->touchPoints().first();
+            touchFirst = false;
+            scrollBarBegin = QPoint(ui->graphicsView->horizontalScrollBar()->value(), ui->graphicsView->verticalScrollBar()->value());
+            if (touchCount == 2)
+                twoFingersCount++;
 		} else {
+//            touchPrev = touchEnd;
 			touchEnd = e->touchPoints().first();
-		}
+            qreal beginx = 1.0*touchBegin.pos().x() / ui->graphicsView->width();
+            qreal beginy = 1.0*touchBegin.pos().y() / ui->graphicsView->height();
+            // finger operations are effective only in the center of the screen
+            if(beginx < 0.25 || 0.75 < beginx || beginy < 0.25 || 0.75 < beginy )
+                break;
+            if (touchCount == 1) {
+//                ui->graphicsView->updateViewportOffset(
+//                    QPointF(
+//                        touchEnd.pos().x()-touchPrev.pos().x(),
+//                        touchEnd.pos().y()-touchPrev.pos().y()));
+
+//                ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()-touchEnd.pos().x()+touchPrev.pos().x());
+//                ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()-touchEnd.pos().y()+touchPrev.pos().y());
+
+                ui->graphicsView->horizontalScrollBar()->setValue(scrollBarBegin.x()-touchEnd.pos().x()+touchEnd.startPos().x());
+                ui->graphicsView->verticalScrollBar()->setValue(scrollBarBegin.y()-touchEnd.pos().y()+touchEnd.startPos().y());
+
+                break;
+            }
+            else if (touchCount > 2 || e->touchPoints().count() < 2) {
+                break;
+            }
+            // determine scale and rotate factor
+            const QTouchEvent::TouchPoint &touchPoint0 = e->touchPoints().first();
+            const QTouchEvent::TouchPoint &touchPoint1 = e->touchPoints().last();
+            if(!rescaling) {
+                // Do not process when two fingers move in parallel
+                QPointF move = (touchPoint0.pos()-touchPoint0.startPos())-(touchPoint1.pos()-touchPoint1.startPos());
+                rescaling = move.x()*move.x()+move.y()*move.y() > 1000;
+            }
+            if(rescaling) {
+                qreal currentScale =
+                        QLineF(touchPoint0.pos(), touchPoint1.pos()).length()
+                        / QLineF(touchPoint0.startPos(), touchPoint1.startPos()).length();
+                QLineF line0(touchPoint0.startPos(), touchPoint1.startPos());
+                QLineF line1(touchPoint0.scenePos(), touchPoint1.scenePos());
+                ui->graphicsView->updateViewportFactors(currentScale, line1.angleTo(line0));
+            }
+        }
 		break;
 	case QEvent::TouchEnd:
 		int ofsX = touchEnd.pos().x() - touchBegin.pos().x();
 		int ofsY = touchEnd.pos().y() - touchBegin.pos().y();
 		// React only at the bottom 1/3 of the screen
-		bool bottomSliding = 1.0*ui->graphicsView->height() / touchEnd.pos().y() < 1.5;
-		if (touchCount == 1 && bottomSliding) {
+        qreal endy = 1.0*touchEnd.pos().y() / ui->graphicsView->height();
+        if (touchCount == 1 && 0.75 < endy) {
 			if (ofsX > 30) {
                 ui->actionTurnPageOnLeft->trigger();
 			}
@@ -896,28 +944,29 @@ void MainWindow::touchEvent(QTouchEvent * e)
 			}
 		}
 		if (touchCount == 2) {
-			if (ofsY < -30) {
+            if(twoFingersCount >= 2) {
+                // Double tap with 2 fingers to cancel scale
+                ui->graphicsView->resetViewportFactors();
+                twoFingersCount = 0;
+            }
+            else if(rescaling) {
+                // Confirm scale with the last input content
+                ui->graphicsView->commitViewportFactors();
+                twoFingersCount = 0;
+            }
+            else if (ofsY < -30 && endy < 0.25) {
 				ui->actionFullscreen->trigger();
 			}
-			else if (ofsX > 30 && bottomSliding) {
+            else if (ofsX > 30 && 0.75 < endy) {
 				ui->actionNextOnePage->trigger();
 			}
-			else if (ofsX < -30 && bottomSliding) {
+            else if (ofsX < -30 && 0.75 < endy) {
 				ui->actionPrevOnePage->trigger();
 			}
 		}
 		touchCount = -1;
 		break;
 	}
-	//if (e->touchPoints().count() == 2) {
-	//	const QTouchEvent::TouchPoint &touchPoint1 = e->touchPoints().first();
-	//	const QTouchEvent::TouchPoint &touchPoint2 = e->touchPoints().last();
-
-	//	QLineF line1(touchPoint1.lastScenePos(), touchPoint2.lastScenePos());
-	//	QLineF line2(touchPoint1.scenePos(), touchPoint2.scenePos());
-
-	//	setTransform(QTransform().rotate(line2.angleTo(line1)), true);
-	//}
 }
 
 void MainWindow::onActionShowFolder_triggered()

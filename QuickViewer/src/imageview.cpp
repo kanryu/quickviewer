@@ -10,6 +10,8 @@ ImageView::ImageView(QWidget *parent)
     , m_pageManager(nullptr)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
+    , m_beginScaleFactor(1.0)
+    , m_beginRotateFactor(0.0)
     , m_isMouseDown(false)
     , m_wideImage(false)
     , m_skipResizeEvent(false)
@@ -200,6 +202,42 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
     }
     if(m_scrollMode != newMode)
         emit scrollModeChanged(m_scrollMode = newMode);
+}
+
+void ImageView::updateViewportOffset(QPointF moved)
+{
+    setTransform(
+        QTransform()
+                .scale(m_beginScaleFactor,m_beginScaleFactor)
+                .rotate(m_beginRotateFactor)
+                .translate(moved.x(), moved.y())
+    );
+}
+static qreal s_lastScale;
+static qreal s_lastRotate;
+
+void ImageView::updateViewportFactors(qreal currentScale, qreal currentRotate)
+{
+    s_lastScale = currentScale;
+    s_lastRotate = currentRotate;
+    setTransform(
+        QTransform()
+           .scale(m_beginScaleFactor*currentScale,m_beginScaleFactor*currentScale)
+           .rotate(m_beginRotateFactor+currentRotate)
+    );
+}
+
+void ImageView::commitViewportFactors()
+{
+    m_beginScaleFactor *= s_lastScale;
+    m_beginRotateFactor += s_lastRotate;
+}
+
+void ImageView::resetViewportFactors()
+{
+    m_beginScaleFactor = 1.0;
+    m_beginRotateFactor = 0.0;
+    setTransform(QTransform());
 }
 
 //void ImageView::paintEvent(QPaintEvent *event)

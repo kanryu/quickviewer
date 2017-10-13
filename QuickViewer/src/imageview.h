@@ -61,6 +61,10 @@ public:
     void setSceneRectMode(bool scrolled, const QRect& sceneRect);
     bool isScrollMode() { return m_scrollMode; }
     QVector<PageContent>* pages() override {return &m_pages; }
+    void updateViewportOffset(QPointF moved);
+    void updateViewportFactors(qreal currentScale, qreal currentRotate);
+    void commitViewportFactors();
+    void resetViewportFactors();
 
 signals:
     /**
@@ -144,6 +148,10 @@ private:
     PageManager* m_pageManager;
     ShaderManager m_effectManager;
     QTimer* m_slideshowTimer;
+
+    // rotate or scale with touchEvents
+    qreal m_beginScaleFactor;
+    qreal m_beginRotateFactor;
 
     bool m_isMouseDown;
     bool m_wideImage;
