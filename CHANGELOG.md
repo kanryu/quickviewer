@@ -1,6 +1,21 @@
 # CHANGELOG
 
-## v1.0.0, origin/master, origin/HEAD (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+## v1.0.1 (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
+
+pinch with touch panel, support for solid 7z, bugfixed
+
+- Addition of screen rescaling and rotation function with touch panel
+- Add to expand solid 7z archive to temporary directory
+- bugfixed: Closing the setting dialog with no image displayed aborted
+
+- other commits
+    - Addition of screen rescaling and rotation function with touch panel (Sat Oct 14 06:34:43 2017 +0900) [2fcf76d](https://github.com/kanryu/quickviewer/commit/2fcf76d4da46a39097ed0cab040ccf0be82f6c85)
+    - bugfixed: Closing the setting dialog with no image displayed aborted (Thu Oct 12 04:19:48 2017 +0900) [79a84cd](https://github.com/kanryu/quickviewer/commit/79a84cdb77165a84585f8c740be3f43c02789b59)
+    -  code checking for g++ (Sat Oct 7 06:26:59 2017 +0900) [4a773fb](https://github.com/kanryu/quickviewer/commit/4a773fbf7ec444b3f59476bb27d3e35a0b946137)
+    -  bugfixed: It cannot be opened when AppImage is passed a file containing spaces (Sat Oct 7 06:26:59 2017 +0900) [4a773fb](https://github.com/kanryu/quickviewer/commit/4a773fbf7ec444b3f59476bb27d3e35a0b946137)
+    - changelog (Sun Oct 1 16:38:14 2017 +0900) [cd0baf2](https://github.com/kanryu/quickviewer/commit/cd0baf290add60c84955b2aefa592dce07d37441)
+
+## v1.0.0 (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
 
 support for changing text format, abolish a menu, 2 bugfixed
 
