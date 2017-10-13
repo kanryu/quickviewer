@@ -2187,7 +2187,7 @@
     <message>
         <source>Show full path of the volume</source>
         <extracomment>Flag to display by switching the full path or volume name of the volume to the title bar</extracomment>
-        <translation>ボリュームのフルパスを表示する</translation>
+        <translation type="vanished">ボリュームのフルパスを表示する</translation>
     </message>
     <message>
         <source>Undock into separate window</source>
@@ -2643,6 +2643,15 @@
     <message>
         <source>Format Usage</source>
         <translation>フォーマット書式の一覧</translation>
+    </message>
+    <message>
+        <source>It takes time to develop all contents, but switching of images becomes faster.</source>
+        <translation>全ての内容物を展開するため時間がかかりますが、画像の切り替えは高速になります。</translation>
+    </message>
+    <message>
+        <source>Extract solid archives to temporary directory</source>
+        <extracomment>Flag to expand contents of solid compressed archive to temporary directory</extracomment>
+        <translation>ソリッド形式の圧縮ファイルを一時ディレクトリに展開する</translation>
     </message>
 </context>
 <context>

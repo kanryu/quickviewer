@@ -186,6 +186,8 @@ public:
     void setLastViewPath (QString lastViewPath) { m_lastViewPath = lastViewPath; }
     bool DontSavingHistory() { return m_dontSavingHistory; }
     void setDontSavingHistory(bool savingHistory) { m_dontSavingHistory = savingHistory; }
+    bool ExtractSolidArchiveToTemporaryDir() { return m_extractSolidArchiveToTemporaryDir; }
+    void setExtractSolidArchiveToTemporaryDir(bool extractSolidArchiveToTemporaryDir) { m_extractSolidArchiveToTemporaryDir = extractSolidArchiveToTemporaryDir; }
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
@@ -328,6 +330,7 @@ private:
     bool m_prohibitMultipleRunning;
     QString m_lastViewPath;
     bool m_dontSavingHistory;
+    bool m_extractSolidArchiveToTemporaryDir;
 
     // Folder
     QString m_homeFolderPath;

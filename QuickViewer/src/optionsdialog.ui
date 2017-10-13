@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>478</width>
-    <height>487</height>
+    <width>467</width>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="general">
       <attribute name="title">
@@ -177,13 +177,23 @@
            </widget>
           </item>
           <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxExtractSolidToTemporary">
+            <property name="toolTip">
+             <string>It takes time to develop all contents, but switching of images becomes faster.</string>
+            </property>
+            <property name="text">
+             <string extracomment="Flag to expand contents of solid compressed archive to temporary directory">Extract solid archives to temporary directory</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
            <widget class="QCheckBox" name="checkBoxProhibitMultipleRunning">
             <property name="text">
              <string>Prohibit multiple running (Restart is required)</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QCheckBox" name="checkBoxUseDirect2D">
             <property name="toolTip">
              <string>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</string>
@@ -193,14 +203,14 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QCheckBox" name="checkBoxHidePageBarParmanently">
             <property name="text">
              <string extracomment="Flag to suppress the automatic display of the page bar">Hide page bar permanently</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="9" column="0">
            <widget class="QCheckBox" name="checkBoxHideScrollBarInFullscreen">
             <property name="text">
              <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide scroll bars in full screen</string>

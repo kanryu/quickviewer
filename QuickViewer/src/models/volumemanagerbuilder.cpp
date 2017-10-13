@@ -25,10 +25,10 @@ VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path,
 //#else
 //        return new VolumeManager(parent, new FileLoaderZipArchive(parent, path), pageManager);
 //#endif
-        return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);
+        return new VolumeManager(parent, new FileLoader7zArchive(parent, path, qApp->ExtractSolidArchiveToTemporaryDir()), pageManager);
     }
     if(lower.endsWith(".7z")) {
-        return new VolumeManager(parent, new FileLoader7zArchive(parent, path), pageManager);
+        return new VolumeManager(parent, new FileLoader7zArchive(parent, path, qApp->ExtractSolidArchiveToTemporaryDir()), pageManager);
     }
     if(lower.endsWith(".rar") || lower.endsWith(".cbr")) {
         return new VolumeManager(parent, new FileLoaderRarArchive(parent, path), pageManager);

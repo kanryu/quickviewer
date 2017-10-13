@@ -1907,11 +1907,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show full path of the volume</source>
-        <extracomment>Flag to display by switching the full path or volume name of the volume to the title bar</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Undock into separate window</source>
         <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
         <translation type="unfinished"></translation>
@@ -2344,6 +2339,15 @@
     </message>
     <message>
         <source>Format Usage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It takes time to develop all contents, but switching of images becomes faster.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract solid archives to temporary directory</source>
+        <extracomment>Flag to expand contents of solid compressed archive to temporary directory</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

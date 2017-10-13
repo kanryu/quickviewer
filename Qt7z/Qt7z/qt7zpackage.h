@@ -1,9 +1,7 @@
 #ifndef QT7ZPACKAGE_H
 #define QT7ZPACKAGE_H
 
-#include <QBuffer>
-#include <QString>
-#include <QStringList>
+#include <QtCore>
 
 #include "qt7z_global.h"
 
@@ -39,12 +37,16 @@ public:
     void setClient(Client *client);
 
     bool extractFile(const QString &name, QIODevice *outStream);
+    bool extractToDir(const QString &dirpath);
+    bool temporary() { return m_tempDir != nullptr; }
 
 private:
     void reset();
 
     Qt7zPackagePrivate *m_p;
     bool m_solid;
+    bool m_extractSolidArchiveToDir;
+    QTemporaryDir *m_tempDir;
 };
 
 #endif // QT7ZPACKAGE_H

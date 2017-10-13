@@ -13,11 +13,13 @@ public:
      : m_reader(sevenzippath) {}
 };
 
-FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath)
+FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath, bool extractSolidArchiveToTemporaryDir)
     : IFileLoader(parent)
     , d(new FileLoader7zArchivePrivate(sevenzippath))
     , m_volumepath(sevenzippath)
     , m_valid(false)
+    , m_extractSolidArchiveToTemporaryDir(extractSolidArchiveToTemporaryDir)
+    , m_temp(nullptr)
 {
     if(!(m_valid = d->m_reader.open()))
         return;
@@ -29,6 +31,8 @@ QStringList FileLoader7zArchive::contents()
         initialize();
     return m_imageFileList;
 }
+
+static uint s_archiveCnt;
 
 void FileLoader7zArchive::initialize()
 {
@@ -46,6 +50,10 @@ void FileLoader7zArchive::initialize()
     }
     IFileLoader::sortFiles(m_imageFileList);
     IFileLoader::sortFiles(m_subArchiveList);
+    if(m_extractSolidArchiveToTemporaryDir && d->m_reader.isSolid()) {
+        QString tempdir = QString("%1/qv_%2").arg(QDir::tempPath()).arg(++s_archiveCnt, 3, 10, QLatin1Char('0'));
+        d->m_reader.extractToDir(QDir::toNativeSeparators(tempdir));
+    }
     m_valid = true;
 }
 

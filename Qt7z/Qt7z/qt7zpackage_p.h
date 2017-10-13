@@ -15,6 +15,7 @@
 #include "7zip/CPP/7zip/Common/RegisterCodec.h"
 #include "7zip/CPP/7zip/UI/Common/OpenArchive.h"
 #include "7zip/CPP/7zip/UI/Common/Extract.h"
+#include "7zip/CPP/7zip/UI/Common/ArchiveExtractCallback.h"
 #include "7zip/CPP/Windows/PropVariantConv.h"
 #else
 #include "p7zip/CPP/include_windows/windows.h"
@@ -28,6 +29,7 @@
 #include "p7zip/CPP/7zip/Common/RegisterCodec.h"
 #include "p7zip/CPP/7zip/UI/Common/OpenArchive.h"
 #include "p7zip/CPP/7zip/UI/Common/Extract.h"
+#include "p7zip/CPP/7zip/UI/Common/ArchiveExtractCallback.h"
 #include "p7zip/CPP/Windows/PropVariantConv.h"
 #endif
 
@@ -55,12 +57,7 @@ public:
 
     SequentialStreamAdapter(QIODevice *device, UInt32 index, ExtractCallback *callback)
         : CMyUnknownImp()
-        , m_device(device)
-        , m_index(index)
-        , m_callback(callback) {}
-
-    UInt32 m_index;
-    ExtractCallback* m_callback;
+        , m_device(device) {}
 
 private:
     QIODevice *m_device;
@@ -87,33 +84,44 @@ public:
     INTERFACE_IArchiveExtractCallback(;)
     STDMETHOD(CryptoGetTextPassword)(BSTR *password) override;
 
-    ExtractCallback(Qt7zPackagePrivate *qt7zprivate, const Qt7zFileInfo fileInfo, QIODevice *outStream);
+    ExtractCallback(Qt7zPackagePrivate *qt7zprivate);
+
 
     int opRes() const
     {
         return m_opRes;
     }
-    void WriteFileFinished(UInt32 index, QIODevice* device);
+    virtual void WriteFileFinished(UInt32 index, QIODevice* device);
 
-private:
+protected:
     Qt7zPackagePrivate *m_p;
     Qt7zPackage::Client *m_client;
     Qt7zFileInfo m_fileInfo;
-    QIODevice *m_outStream;
+    QIODevice *m_device;
+    UInt32 m_index;
     int m_opRes;
-    bool m_isCreateTemporary;
     int m_unpackFinished;
-
-#ifndef _7ZIP_ST
-    struct BufferCheck {
-        QBuffer* buffer;
-        bool finished;
-    };
-    QMutex m_mutex;
-    QMap<UInt32, BufferCheck> m_unpackCache;
-#endif
 };
 
+class ExtractFileCallback : public ExtractCallback
+{
+public:
+    ExtractFileCallback(Qt7zPackagePrivate *qt7zprivate, const Qt7zFileInfo fileInfo, QIODevice *outStream);
+    STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode);
+    void WriteFileFinished(UInt32 index, QIODevice* device);
+private:
+    QIODevice *m_outStream;
+};
+
+class ExtractArchiveCallback : public ExtractCallback
+{
+public:
+    ExtractArchiveCallback(Qt7zPackagePrivate *qt7zprivate, QString toDirPath);
+    STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode);
+    void WriteFileFinished(UInt32 index, QIODevice* device);
+private:
+    QString m_toDirPath;
+};
 
 class Qt7zPackagePrivate
 {
@@ -126,6 +134,7 @@ public:
     Qt7zPackage::Client *m_client;
     Qt7zPackage *m_q;
     QList<Qt7zFileInfo> m_fileInfoList;
+    QStringList m_fileNameList;
 
 private:
     void init();
@@ -133,7 +142,6 @@ private:
 
     QString m_packagePath;
     bool m_isOpen;
-    QStringList m_fileNameList;
     QHash<QString, UInt32> m_fileNameToIndex;
 
 //    QScopedPointer<CCodecs> m_codecs;

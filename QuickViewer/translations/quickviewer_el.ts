@@ -1408,7 +1408,7 @@
     <message>
         <source>Show full path of the volume</source>
         <extracomment>Flag to display by switching the full path or volume name of the volume to the title bar</extracomment>
-        <translation>Εμφάνιση πλήρους διαδρομής τόμου</translation>
+        <translation type="vanished">Εμφάνιση πλήρους διαδρομής τόμου</translation>
     </message>
     <message>
         <source>Undock into separate window</source>
@@ -1781,6 +1781,15 @@
     </message>
     <message>
         <source>Format Usage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It takes time to develop all contents, but switching of images becomes faster.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract solid archives to temporary directory</source>
+        <extracomment>Flag to expand contents of solid compressed archive to temporary directory</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -67,6 +67,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->spinMaxTextureSize->setValue(qApp->MaxTextureSize());
     ui->checkBoxCheckeredPattern->setChecked(m_useCheckeredPattern);
     ui->checkBoxUseFastDctForJPEG->setChecked(qApp->UseFastDCTForJPEG());
+    ui->checkBoxExtractSolidToTemporary->setChecked(qApp->ExtractSolidArchiveToTemporaryDir());
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
     ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
     ui->checkBoxHidePageBarParmanently->setChecked(qApp->HidePageBarParmanently());
@@ -117,6 +118,7 @@ void OptionsDialog::reflectResults()
     qApp->setBackgroundColor2(m_backgroundColor2);
     qApp->setUseCheckeredPattern(m_useCheckeredPattern);
     qApp->setUseFastDCTForJPEG(ui->checkBoxUseFastDctForJPEG->isChecked());
+    qApp->setExtractSolidArchiveToTemporaryDir(ui->checkBoxExtractSolidToTemporary->isChecked());
     qApp->setProhibitMultipleRunning(ui->checkBoxProhibitMultipleRunning->isChecked());
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
     qApp->setHidePageBarParmanently(ui->checkBoxHidePageBarParmanently->isChecked());

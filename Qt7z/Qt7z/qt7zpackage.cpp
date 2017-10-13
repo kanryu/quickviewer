@@ -103,7 +103,6 @@ HRESULT SequentialStreamAdapter::Write(const void *data, UInt32 size, UInt32 *pr
 
 HRESULT SequentialStreamAdapter::OutStreamFinish()
 {
-    m_callback->WriteFileFinished(m_index, m_device);
     return S_OK;
 }
 
@@ -139,16 +138,22 @@ HRESULT OpenCallback::Open_CryptoGetTextPassword(BSTR *password)
 }
 
 
-ExtractCallback::ExtractCallback(Qt7zPackagePrivate *qt7zprivate, const Qt7zFileInfo fileInfo, QIODevice *outStream) :
+ExtractCallback::ExtractCallback(Qt7zPackagePrivate *qt7zprivate) :
     m_p(qt7zprivate),
     m_client(qt7zprivate->m_client),
-    m_fileInfo(fileInfo),
-    m_outStream(outStream),
     m_opRes(NArchive::NExtract::NOperationResult::kOK),
-    m_isCreateTemporary(false),
     m_unpackFinished(-1)
 {
-    m_isCreateTemporary = m_p->m_q->isSolid();
+}
+
+HRESULT ExtractCallback::GetStream(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode)
+{
+    return S_OK;
+}
+
+void ExtractCallback::WriteFileFinished(UInt32 index, QIODevice *device)
+{
+    m_unpackFinished = (int)index;
 }
 
 HRESULT ExtractCallback::SetTotal(UInt64 total)
@@ -159,53 +164,6 @@ HRESULT ExtractCallback::SetTotal(UInt64 total)
 HRESULT ExtractCallback::SetCompleted(const UInt64 *completeValue)
 {
     return S_OK;
-}
-
-HRESULT ExtractCallback::GetStream(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode)
-{
-    if (askExtractMode != NArchive::NExtract::NAskMode::kExtract) {
-        *outStream = nullptr;
-        return S_OK;
-    }
-    QIODevice *device = m_outStream;
-#ifndef _7ZIP_ST
-    if(m_isCreateTemporary) {
-        Qt7zFileInfo& info = m_p->m_fileInfoList[index];
-        auto buffer = new QBuffer(new QByteArray(info.size, 0));
-        buffer->open(QIODevice::ReadWrite);
-
-        m_mutex.lock();
-        m_unpackCache[index] = BufferCheck{buffer, false};
-        m_mutex.unlock();
-
-        device = buffer;
-    }
-#endif
-
-    CMyComPtr<ISequentialOutStream> stream(new SequentialStreamAdapter(device, index, this));
-    *outStream = stream.Detach();
-    return S_OK;
-}
-
-void ExtractCallback::WriteFileFinished(UInt32 index, QIODevice *device)
-{
-    m_unpackFinished = (int)index;
-#ifndef _7ZIP_ST
-    if(m_isCreateTemporary) {
-        m_unpackCache[index].finished = true;
-
-        m_mutex.lock();
-        for(auto it = m_unpackCache.begin();it != m_unpackCache.end() && (*it).finished;it++) {
-            QBuffer* buffer = (*it).buffer;
-            buffer->seek(0);
-            m_outStream->seek(m_outStream->size());
-            m_outStream->write(buffer->readAll());
-            delete buffer;
-            it = m_unpackCache.erase(it);
-        }
-        m_mutex.unlock();
-    }
-#endif
 }
 
 HRESULT ExtractCallback::PrepareOperation(Int32 askExtractMode)
@@ -255,6 +213,7 @@ HRESULT ExtractCallback::SetOperationResult(Int32 opRes)
         qWarning() << "Qt7z: Extract operation result: Wrong password";
         break;
     }
+    WriteFileFinished(m_index, m_device);
 
     return S_OK;
 }
@@ -270,6 +229,72 @@ HRESULT ExtractCallback::CryptoGetTextPassword(BSTR *password)
     return S_OK;
 }
 
+ExtractFileCallback::ExtractFileCallback(Qt7zPackagePrivate *qt7zprivate, const Qt7zFileInfo fileInfo, QIODevice *outStream) :
+    ExtractCallback(qt7zprivate),
+    m_outStream(outStream)
+{
+    m_fileInfo = fileInfo;
+}
+
+HRESULT ExtractFileCallback::GetStream(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode)
+{
+    m_index = index;
+    if (askExtractMode != NArchive::NExtract::NAskMode::kExtract) {
+        *outStream = nullptr;
+        return S_OK;
+    }
+    m_device = m_outStream;
+    CMyComPtr<ISequentialOutStream> stream(new SequentialStreamAdapter(m_device, index, this));
+    *outStream = stream.Detach();
+    return S_OK;
+}
+
+void ExtractFileCallback::WriteFileFinished(UInt32 index, QIODevice *device)
+{
+    m_unpackFinished = (int)index;
+}
+
+ExtractArchiveCallback::ExtractArchiveCallback(Qt7zPackagePrivate *qt7zprivate, QString toDirPath) :
+    ExtractCallback(qt7zprivate),
+    m_toDirPath(toDirPath)
+{
+}
+
+
+HRESULT ExtractArchiveCallback::GetStream(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode)
+{
+    m_index = index;
+    *outStream = nullptr;
+    if (askExtractMode != NArchive::NExtract::NAskMode::kExtract) {
+        return S_OK;
+    }
+    QString subpath = QDir::fromNativeSeparators(m_p->m_fileNameList.at(index));
+    m_fileInfo = m_p->m_fileInfoList[index];
+    if(m_fileInfo.isDir) {
+        QDir parent(QDir::fromNativeSeparators(m_toDirPath));
+//        qDebug() << "parent:" << parent.path() << parent.exists();
+//        bool mkpathresult =
+                parent.mkdir(subpath);
+//        qDebug() << "mkpath:" << mkpathresult << QDir(parent.filePath(subpath)).exists();
+        m_device = nullptr;
+        return S_OK;
+    }
+    QString fullpath = QDir(m_toDirPath).filePath(subpath);
+    m_device = new QFile(fullpath);
+    bool opened = m_device->open(QIODevice::WriteOnly | QIODevice::Unbuffered);
+    CMyComPtr<ISequentialOutStream> stream(new SequentialStreamAdapter(m_device, index, this));
+    *outStream = stream.Detach();
+    return S_OK;
+}
+
+void ExtractArchiveCallback::WriteFileFinished(UInt32 index, QIODevice *device)
+{
+    m_unpackFinished = (int)index;
+    if(device) {
+        device->close();
+        delete device;
+    }
+}
 
 Qt7zPackagePrivate::Qt7zPackagePrivate(Qt7zPackage *q) :
     m_q(q) ,
@@ -342,8 +367,9 @@ Qt7zPackage::Qt7zPackage() :
 {
 }
 
-Qt7zPackage::Qt7zPackage(const QString &packagePath) :
-    m_p(new Qt7zPackagePrivate(this, packagePath))
+Qt7zPackage::Qt7zPackage(const QString &packagePath)
+  : m_p(new Qt7zPackagePrivate(this, packagePath))
+  , m_tempDir(nullptr)
 {
 }
 
@@ -352,6 +378,9 @@ Qt7zPackage::~Qt7zPackage()
     close();
     if (m_p) {
         delete m_p;
+    }
+    if(m_tempDir) {
+        delete m_tempDir;
     }
 }
 
@@ -536,6 +565,15 @@ bool Qt7zPackage::extractFile(const QString &name, QIODevice *outStream)
         }
     }
 
+    if (m_tempDir) {
+        const QString abso = m_tempDir->filePath(name);
+        QFile file(abso);
+        file.open(QIODevice::ReadOnly);
+        QByteArray bytes = file.readAll();
+        outStream->write(bytes);
+        return true;
+    }
+
     auto indexIt = m_p->m_fileNameToIndex.find(name);
     if (indexIt == m_p->m_fileNameToIndex.end()) {
         qWarning() << "Qt7z: Fail to find file" << name;
@@ -550,7 +588,7 @@ bool Qt7zPackage::extractFile(const QString &name, QIODevice *outStream)
     realIndices.Add(index);
     Int32 testMode = 0;
 
-    CMyComPtr<ExtractCallback> callback(new ExtractCallback(m_p, fileInfo, outStream));
+    CMyComPtr<ExtractFileCallback> callback(new ExtractFileCallback(m_p, fileInfo, outStream));
     HRESULT res = archive->Extract(&realIndices.Front(), realIndices.Size(), testMode, callback);
 
     if (res != S_OK) {
@@ -564,3 +602,17 @@ bool Qt7zPackage::extractFile(const QString &name, QIODevice *outStream)
 
     return true;
 }
+
+bool Qt7zPackage::extractToDir(const QString &dirpath)
+{
+    m_tempDir = new QTemporaryDir(dirpath);
+    m_tempDir->setAutoRemove(true);
+    qDebug() << "tempdir:" << m_tempDir->path();
+    const CArc &arc = m_p->m_arcLink.Arcs.Back();
+    IInArchive *archive = arc.Archive;
+    CMyComPtr< ExtractArchiveCallback > extractCallback = new ExtractArchiveCallback(m_p, m_tempDir->path());
+    HRESULT hr = archive->Extract(nullptr, uint(-1), false, extractCallback);
+
+    return hr==0;
+}
+

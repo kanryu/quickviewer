@@ -331,6 +331,7 @@ void QVApplication::loadSettings()
     m_prohibitMultipleRunning  = m_settings.value("ProhibitMultipleRunning", false).toBool();
     m_lastViewPath = m_settings.value("LastViewPath", "").toString();
     m_dontSavingHistory  = m_settings.value("DontSavingHistory", false).toBool();
+    m_extractSolidArchiveToTemporaryDir = m_settings.value("ExtractSolidArchiveToTemporaryDir", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");
@@ -448,6 +449,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("ProhibitMultipleRunning", m_prohibitMultipleRunning);
     m_settings.setValue("LastViewPath", m_lastViewPath);
     m_settings.setValue("DontSavingHistory", m_dontSavingHistory);
+    m_settings.setValue("ExtractSolidArchiveToTemporaryDir", m_extractSolidArchiveToTemporaryDir);
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");
