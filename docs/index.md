@@ -35,7 +35,8 @@ You can browse images with much smoother response than ever before.
    - etc..
  - Can make/view/search catalog from thousands of your digital books
  - Can search books from auto generated tags
- - Multilingual support(English/Spanish/Simplified Chinese/Japanese/Greek)
+ - Touch panel input (Page navigations/Zooming/Rotate/Change fullscreen)
+ - Multilingual support (English/Spanish/Simplified Chinese/Japanese/Greek)
 
 
 ## How to use
@@ -258,7 +259,7 @@ The Catalog can also be displayed with the main window.
 
 ## Screen operations
 
-You can do screen operations with the main menu, tool bar, mouse button, wheel, keyboard and so on.
+You can do screen operations with the main menu, tool bar, mouse button, wheel, keyboard, touch on the screen and so on.
 
 | Operation   | Device   | Input   | Remarks |
 |:------------|:---------|:--------|:--------|
@@ -279,10 +280,8 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Fullscreen  | Keyboard | F11 Key | |
 |             | Mouse    | Wheel Clicked | as Center Button |
 |             | Keyboard | ESC Key | Fullscreen mode only |
-|             | Touch Panel | Swipe up with two fingers | |
+|             | Touch Panel | Swipe up with two fingers | at the top of the screen |
 | Exit App    | Keyboard | ESC Key | not Fullscreen mode only |
-| Scale Up    | Keyboard | Ten keys(+) | do nothing with Fitting |
-| Scale Down  | Keyboard | Ten keys(-) | do nothing with Fitting |
 | Fitting     | Keyboard | F12 Key |  |
 |             | Keyboard | Ten keys(-) | |
 |             | Mouse  | Right Button + Wheel Clicked | |
@@ -290,10 +289,18 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 | Image to trash box   | Keyboard | Delete Key | Move the Image of current page to trash box |
 | Rename Image | Keyboard | F2 Key |  |
 | Copy Image   | Keyboard | Ctrl+C Key | Copy Image of current page |
-| Zoom in     | Mouse Wheel | Right Button + Upward scrolling | |
+| Zoom In     | Keyboard | Ten keys(+) | do nothing with Fitting |
+|             | Touch Panel | Pinch Spread | at the center of the screen |
+|             | Mouse Wheel | Right Button + Upward scrolling | |
 |             | Mouse Wheel | Ctrl + Upward scrolling | |
-| Zoom out    | Mouse Wheel | Right Button + Downward scrolling | |
+| Zoom Out    | Keyboard | Ten keys(-) | do nothing with Fitting |
+|             | Touch Panel | Pinch Closer | at the center of the screen |
+|             | Mouse Wheel | Right Button + Downward scrolling | |
 |             | Mouse Wheel | Ctrl + Downward scrolling | |
+| Page Rotate | Keyboard | R Key | |
+| Rotate      | Touch Panel | Place two fingers on the screen and then rotate them | at the center of the screen |
+| Zoom/Rotate cancel | Touch Panel | Double tap with two fingers | at the center of the screen |
+| Scroll under zooming | Touch Panel | Pan or Tilt | at the center of the screen |
 
 
 
