@@ -11,6 +11,7 @@ SUBDIRS = \
 
 fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
 QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
+qvtest.depends = fileloader
 
 win32 {
     SUBDIRS += AssociateFilesWithQuickViewer
