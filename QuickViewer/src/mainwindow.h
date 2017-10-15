@@ -22,7 +22,7 @@ public:
     ~MainWindow();
     virtual bool moveToTrush(QString ) {return false;}
     virtual bool setStayOnTop(bool ) {return false;}
-    virtual void setWindowTop(bool signalOnly) {}
+    virtual void setWindowTop(bool ) {}
     virtual void setMailAttachment(QString ) {}
     virtual bool eventFilter(QObject *obj, QEvent *event);
 

@@ -284,7 +284,7 @@ void MainWindow::wheelEvent(QWheelEvent *e)
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     QKeySequence seq(event->key() | event->modifiers());
-//    qDebug() << seq.toString();
+    qDebug() << seq.toString() << focusWidget();
 
     if(this->focusWidget() != ui->graphicsView)
         return;
@@ -560,7 +560,7 @@ void MainWindow::onScrollModeChanged(bool scrolled)
     QStringList cusors = {"Left", "Right", "Up", "Down"};
     // enable/disable cursor key shortcuts
     foreach(const QString& c, cusors) {
-        QString name = qApp->keyActions().getNameByValue(c);
+        QString name = qApp->keyActions().getNameByValue(QKeySequence(c));
         if(!name.isEmpty())
             resetShortCut(name, c, scrolled);
     }
