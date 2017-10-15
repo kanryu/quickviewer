@@ -415,8 +415,6 @@ void ImageView::on_dualView_triggered(bool viewdual)
 {
     qApp->setDualView(viewdual);
 
-    if(!viewdual && m_pageManager)
-        m_pageManager->prevPage();
     m_pageManager->reloadCurrentPage();
     readyForPaint();
 }
