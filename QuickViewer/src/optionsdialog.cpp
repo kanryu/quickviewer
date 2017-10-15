@@ -72,6 +72,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
     ui->checkBoxHidePageBarParmanently->setChecked(qApp->HidePageBarParmanently());
     ui->checkBoxHideScrollBarInFullscreen->setChecked(qApp->HideScrollBarInFullscreen());
+    ui->checkBoxTopWindowWhenRunWithAssoc->setChecked(qApp->TopWindowWhenRunWithAssoc());
+    ui->checkBoxTopWindowWhenDropped->setChecked(qApp->TopWindowWhenDropped());
 
     resetColorButton(ui->btnColorSelect, m_backgroundColor);
     resetColorButton(ui->btnColorSelect2, m_backgroundColor2);
@@ -123,6 +125,8 @@ void OptionsDialog::reflectResults()
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
     qApp->setHidePageBarParmanently(ui->checkBoxHidePageBarParmanently->isChecked());
     qApp->setHideScrollBarInFullscreen(ui->checkBoxHideScrollBarInFullscreen->isChecked());
+    qApp->setTopWindowWhenRunWithAssoc(ui->checkBoxTopWindowWhenRunWithAssoc->isChecked());
+    qApp->setTopWindowWhenDropped(ui->checkBoxTopWindowWhenDropped->isChecked());
 
     if(ui->radioButtonWindowTitleNormalStyle->isChecked())
         qApp->setTitleTextFormat(QV_WINDOWTITLE_FORMAT);

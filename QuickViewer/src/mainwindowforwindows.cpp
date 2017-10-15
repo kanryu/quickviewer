@@ -51,14 +51,26 @@ bool MainWindowForWindows::setStayOnTop(bool top)
     return true;
 }
 
-void MainWindowForWindows::setWindowTop()
+void MainWindowForWindows::setWindowTop(bool signalOnly)
 {
     auto hwnd = reinterpret_cast<HWND>(winId());
     if(!hwnd) return;
     ::ShowWindow(hwnd,SW_RESTORE);
 //    ::SwitchToThisWindow(hwnd, false);
+    int foregroundID;
+    if(!signalOnly) {
+        foregroundID = ::GetWindowThreadProcessId( ::GetForegroundWindow(), NULL);
+        ::AttachThreadInput( ::GetCurrentThreadId(), foregroundID, TRUE);
+    }
+
     ::SetForegroundWindow(hwnd);
+    ::SetActiveWindow(hwnd);
+    ::SetFocus(hwnd);
     ::SetWindowPos(hwnd, HWND_TOP, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
+
+    if(!signalOnly) {
+        ::AttachThreadInput( ::GetCurrentThreadId(), foregroundID, FALSE);
+    }
 }
 
 static LPSTR qStringToLPSTR(const QString& qString)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>467</width>
-    <height>468</height>
+    <width>458</width>
+    <height>512</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -214,6 +214,20 @@
            <widget class="QCheckBox" name="checkBoxHideScrollBarInFullscreen">
             <property name="text">
              <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide scroll bars in full screen</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxTopWindowWhenRunWithAssoc">
+            <property name="text">
+             <string comment="Check box to activate the window when activated by image association">Activate the window when launched with image association</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxTopWindowWhenDropped">
+            <property name="text">
+             <string comment="Check box to activate the window when an image dropped on">Activate the window when an image dropped on</string>
             </property>
            </widget>
           </item>
@@ -2189,6 +2203,9 @@
     </widget>
    </item>
   </layout>
+  <zorder>tabWidget</zorder>
+  <zorder>buttonBox</zorder>
+  <zorder>checkBoxExtractSolidToTemporary</zorder>
  </widget>
  <resources/>
  <connections>

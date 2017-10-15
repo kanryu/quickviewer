@@ -53,11 +53,11 @@ int main(int argc, char *argv[])
         w.setThumbnailManager(&manager);
         w.connect(&pipe, &QNamedPipe::received, &w, [&](QByteArray bytes) {
             if(bytes.size() == 1) {
-                w.on_windowTop();
+                w.setWindowTop(false);
             }
             else if(bytes.size() > 0) {
                 auto string = QString::fromUtf8(bytes);
-                w.onCatalogWindow_openVolume(string);
+                w.loadVolumeWithAssoc(string);
             }
         });
         w.show();

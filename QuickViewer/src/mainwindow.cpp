@@ -248,6 +248,8 @@ void MainWindow::dropEvent(QDropEvent *e)
         for (int i = 0; i < 1; i++) {
             QUrl url = urlList[i];
             loadVolume(QDir::toNativeSeparators(url.toLocalFile()));
+            if(qApp->TopWindowWhenDropped())
+                setWindowTop(false);
         }
     }
 }
@@ -1078,12 +1080,13 @@ void MainWindow::onExifDialog_closed()
 void MainWindow::onCatalogWindow_openVolume(QString path)
 {
     loadVolume(path);
-    setWindowTop();
+    setWindowTop(false);
 }
 
-void MainWindow::on_windowTop()
+void MainWindow::loadVolumeWithAssoc(QString path)
 {
-    setWindowTop();
+    loadVolume(path);
+    setWindowTop(!qApp->TopWindowWhenRunWithAssoc());
 }
 
 void MainWindow::onActionSearchTitleWithOptions_triggered(bool enable)

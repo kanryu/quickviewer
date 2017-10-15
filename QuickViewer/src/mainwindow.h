@@ -22,7 +22,7 @@ public:
     ~MainWindow();
     virtual bool moveToTrush(QString ) {return false;}
     virtual bool setStayOnTop(bool ) {return false;}
-    virtual void setWindowTop() {}
+    virtual void setWindowTop(bool signalOnly) {}
     virtual void setMailAttachment(QString ) {}
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
@@ -48,6 +48,7 @@ public:
     void resetShortCut(const QString name, const QString shortcuttext, bool removed);
     void createCatalogWindow(bool docked);
     void createFolderWindow(bool docked);
+    void loadVolumeWithAssoc(QString path);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e) override;
@@ -116,7 +117,6 @@ public slots:
 //    void onActionShowFullscreenTitleBar_triggered(bool enable);
     void onActionShowPanelSeparateWindow_triggered(bool enable);
     void onActionLargeToolbarIcons_triggered(bool enable);
-    void on_windowTop();
 
     // SlideShow
     void onActionSlideShow_triggered(bool enable);

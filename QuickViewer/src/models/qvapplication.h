@@ -144,6 +144,10 @@ public:
     void setTitleTextFormat(QString titleTextFormat) { m_titleTextFormat = titleTextFormat; }
     QString StatusTextFormat() { return m_statusTextFormat; }
     void setStatusTextFormat(QString statusTextFormat) { m_statusTextFormat = statusTextFormat; }
+    bool TopWindowWhenRunWithAssoc() { return m_topWindowWhenRunWithAssoc; }
+    void setTopWindowWhenRunWithAssoc(bool topWindowWhenRunWithAssoc) { m_topWindowWhenRunWithAssoc = topWindowWhenRunWithAssoc; }
+    bool TopWindowWhenDropped() { return m_topWindowWhenDropped; }
+    void setTopWindowWhenDropped(bool topWindowWhenDropped) { m_topWindowWhenDropped = topWindowWhenDropped; }
 
     // DualView
     bool DualView() { return m_dualView; }
@@ -306,6 +310,8 @@ private:
     bool m_largeToolbarIcons;
     bool m_hidePageBarParmanently;
     bool m_hideScrollBarInFullscreen;
+    bool m_topWindowWhenRunWithAssoc;
+    bool m_topWindowWhenDropped;
     QString m_titleTextFormat;
     QString m_statusTextFormat;
 

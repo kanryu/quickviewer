@@ -11,7 +11,7 @@ public:
     MainWindowForWindows(QWidget *parent = 0);
     virtual bool moveToTrush(QString path) override;
     virtual bool setStayOnTop(bool top) override;
-    virtual void setWindowTop() override;
+    virtual void setWindowTop(bool signalOnly) override;
     virtual void setMailAttachment(QString path) override;
     virtual bool eventFilter(QObject *obj, QEvent *event) override;
     bool nativeEvent(const QByteArray &eventType, void *message, long *result);

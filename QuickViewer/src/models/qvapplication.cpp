@@ -313,6 +313,8 @@ void QVApplication::loadSettings()
     m_hideScrollBarInFullscreen  = m_settings.value("HideScrollBarInFullscreen", true).toBool();
     m_titleTextFormat = m_settings.value("TitleTextFormat", QV_WINDOWTITLE_FORMAT).toString();
     m_statusTextFormat = m_settings.value("StatusTextFormat", QV_STATUSBAR_FORMAT).toString();
+    m_topWindowWhenRunWithAssoc = m_settings.value("TopWindowWhenRunWithAssoc", true).toBool();
+    m_topWindowWhenDropped = m_settings.value("TopWindowWhenDropped", true).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -431,6 +433,8 @@ void QVApplication::saveSettings()
     m_settings.setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
     m_settings.setValue("TitleTextFormat", m_titleTextFormat);
     m_settings.setValue("StatusTextFormat", m_statusTextFormat);
+    m_settings.setValue("TopWindowWhenRunWithAssoc", m_topWindowWhenRunWithAssoc);
+    m_settings.setValue("TopWindowWhenDropped", m_topWindowWhenDropped);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
