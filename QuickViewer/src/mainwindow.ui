@@ -386,6 +386,7 @@
     <addaction name="actionRightSideBook"/>
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
+    <addaction name="actionSeparatePagesWhenWideImage"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuNavigation"/>
@@ -1085,6 +1086,14 @@
     <string>Turn over the page on the right</string>
    </property>
   </action>
+  <action name="actionSeparatePagesWhenWideImage">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag to display images on the left and right sides with a portrait display">Divide wide image into 2 pages</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1119,6 +1128,7 @@
     <slot>on_rotatePage_triggered()</slot>
     <slot>on_showSubfolders_triggered(bool)</slot>
     <slot>on_dontEnlargeSmallImagesOnFitting(bool)</slot>
+    <slot>onActionSeparatePagesWhenWideImage_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2440,6 +2450,22 @@
     <hint type="destinationlabel">
      <x>392</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSeparatePagesWhenWideImage</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>onActionSeparatePagesWhenWideImage_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>

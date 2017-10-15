@@ -82,6 +82,17 @@ class PageContent : public QObject
 {
     Q_OBJECT
 public:
+    enum Fitting {
+        FitCenter,
+        FitLeft,
+        FitRight
+    };
+    enum SeparationState {
+        NoSeparated,
+        FirstSeparated,
+        SecondSeparated
+    };
+
     QGraphicsScene *Scene;
     ImageContent Ic;
     /**
@@ -106,12 +117,8 @@ public:
     QGraphicsTextItem* GText;
     QGraphicsRectItem* GTextSurface;
     qreal DrawScale;
+    SeparationState Separation;
 
-    enum Fitting {
-        FitCenter,
-        FitLeft,
-        FitRight
-    };
     PageContent(QObject* parent=nullptr);
     PageContent(QObject* parent, QGraphicsScene *s, ImageContent ic);
     PageContent(const PageContent& rhs);

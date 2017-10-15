@@ -985,11 +985,11 @@
     </message>
     <message>
         <source>%1 KB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%1 MB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%L1 Bytes</source>
@@ -2210,6 +2210,11 @@
         <source>Turn over the page on the right</source>
         <translation>右側のページをめくる</translation>
     </message>
+    <message>
+        <source>Divide wide image into 2 pages</source>
+        <extracomment>Flag to display images on the left and right sides with a portrait display</extracomment>
+        <translation>横長の画像を2ページに分割する(縦画面のみ)</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -2652,6 +2657,16 @@
         <source>Extract solid archives to temporary directory</source>
         <extracomment>Flag to expand contents of solid compressed archive to temporary directory</extracomment>
         <translation>ソリッド形式の圧縮ファイルを一時ディレクトリに展開する</translation>
+    </message>
+    <message>
+        <source>Activate the window when launched with image association</source>
+        <comment>Check box to activate the window when activated by image association</comment>
+        <translation>画像の関連付けで起動したときにウィンドウをアクティブにする</translation>
+    </message>
+    <message>
+        <source>Activate the window when an image dropped on</source>
+        <comment>Check box to activate the window when an image dropped on</comment>
+        <translation>画像をウィンドウにドロップしたときにアクティブにする</translation>
     </message>
 </context>
 <context>

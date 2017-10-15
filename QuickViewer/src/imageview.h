@@ -121,6 +121,7 @@ public slots:
     void on_wideImageAsOneView_triggered(bool wideImage);
     void on_firstImageAsOneView_triggered(bool firstImage);
     void on_dontEnlargeSmallImagesOnFitting(bool enable);
+    void onActionSeparatePagesWhenWideImage_triggered(bool enable);
 
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
@@ -158,6 +159,7 @@ private:
     bool m_skipResizeEvent;
     bool m_isFullScreen;
     bool m_scrollMode;
+    bool m_pageBacking;
 };
 
 

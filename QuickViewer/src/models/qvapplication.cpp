@@ -284,6 +284,7 @@ void QVApplication::loadSettings()
     m_rightSideBook = m_settings.value("RightSideBook", bRightSideBookDefault).toBool();
     m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", true).toBool();
     m_firstImageAsOnePageInDualView = m_settings.value("FirstImageAsOnePageInDualView", false).toBool();
+    m_separatePagesWhenWideImage = m_settings.value("SeparatePagesWhenWideImage", false).toBool();
 
     m_showToolBar = m_settings.value("ShowToolBar", true).toBool();
     m_showSliderBar = m_settings.value("ShowSliderBar", true).toBool();
@@ -406,6 +407,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("RightSideBook", m_rightSideBook);
     m_settings.setValue("WideImageAsOnePageInDualView", m_wideImageAsOnePageInDualView);
     m_settings.setValue("FirstImageAsOnePageInDualView", m_firstImageAsOnePageInDualView);
+    m_settings.setValue("SeparatePagesWhenWideImage", m_separatePagesWhenWideImage);
 
     m_settings.setValue("ShowToolBar", m_showToolBar);
     m_settings.setValue("ShowSliderBar", m_showSliderBar);

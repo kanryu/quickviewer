@@ -25,6 +25,7 @@ PageContent::PageContent(QObject* parent)
     , initialized(false)
     , GText(nullptr)
     , GTextSurface(nullptr)
+    , Separation(NoSeparated)
 {
 
 }
@@ -39,7 +40,9 @@ PageContent::PageContent(QObject* parent, QGraphicsScene *s, ImageContent ic)
     , initialized(false)
     , GText(nullptr)
     , GTextSurface(nullptr)
+    , Separation(Ic.wideImage() && qApp->SeparatePagesWhenWideImage() ? FirstSeparated : NoSeparated)
 {
+//    qDebug() << Ic.wideImage() << qApp->SeparatePagesWhenWideImage();
     if(!Ic.ImportSize.width()) {
         QGraphicsTextItem* gtext = s->addText(tr("NOT IMAGE FILE", "Error messages to be displayed on screen when image loading fails"));
         gtext->setDefaultTextColor(Qt::white);
@@ -72,6 +75,7 @@ PageContent::PageContent(const PageContent &rhs)
     , GText(rhs.GText)
     , GTextSurface(rhs.GTextSurface)
     , DrawScale(rhs.DrawScale)
+    , Separation(rhs.Separation)
 {
 
 }
@@ -86,6 +90,7 @@ PageContent &PageContent::operator=(const PageContent &rhs) {
     GTextSurface  = rhs.GTextSurface;
     m_resizeGeneratingState = 0;
     DrawScale = rhs.DrawScale;
+    Separation = rhs.Separation;
     return *this;
 }
 
@@ -110,6 +115,9 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
         return QRect(viewport.topLeft(), QSize(100, 100));
     }
     QSize currentSize = CurrentSize(rotateOffset);
+    bool goSeparate = viewport.height() > viewport.width() && Separation != NoSeparated;
+    if(goSeparate)
+        currentSize = QSize(currentSize.width()/2, currentSize.height());
     QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
     if(scale > 1.0 && qApp->DontEnlargeSmallImagesOnFitting())
@@ -126,7 +134,14 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
     }
 
-    applyResize(scale, rotateOffset, drawRect.topLeft(), newsize);
+    QPoint imagePos = drawRect.topLeft();
+    if(goSeparate
+        && (   (Separation == FirstSeparated && qApp->RightSideBook())
+            || (Separation == SecondSeparated && !qApp->RightSideBook()))) {
+        // Display only the right side of the image
+        imagePos = QPoint(imagePos.x()-newsize.width(), imagePos.y());
+    }
+    applyResize(scale, rotateOffset, imagePos, newsize);
     return drawRect;
 }
 
@@ -136,6 +151,9 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
         return QRect(viewport.topLeft(), QSize(100, 100));
     }
     QSize currentSize = CurrentSize(rotateOffset);
+    bool goSeparate = viewport.height() > viewport.width() && Separation != NoSeparated;
+    if(goSeparate)
+        currentSize = QSize(currentSize.width()/2, currentSize.height());
     QSize newsize = currentSize * scale;
     DrawScale = scale;
 
@@ -146,7 +164,14 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
     int offsetY = qMax(0, (viewport.height()-newsize.height())/2);
     QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y() + offsetY), newsize);
 
-    applyResize(scale, rotateOffset, drawRect.topLeft(), newsize);
+    QPoint imagePos = drawRect.topLeft();
+    if(goSeparate
+        && (   (Separation == FirstSeparated && qApp->RightSideBook())
+            || (Separation == SecondSeparated && !qApp->RightSideBook()))) {
+        // Display only the right side of the image
+        imagePos = QPoint(imagePos.x()-newsize.width(), imagePos.y());
+    }
+    applyResize(scale, rotateOffset, imagePos, newsize);
     return drawRect;
 }
 

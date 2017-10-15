@@ -160,6 +160,8 @@ public:
     void setWideImageAsOnePageInDualView (bool wideImageAsOnePageInDualView) { m_wideImageAsOnePageInDualView = wideImageAsOnePageInDualView; }
     bool FirstImageAsOnePageInDualView() { return m_firstImageAsOnePageInDualView; }
     void setFirstImageAsOnePageInDualView (bool firstImageAsOnePageInDualView) { m_firstImageAsOnePageInDualView = firstImageAsOnePageInDualView; }
+    bool SeparatePagesWhenWideImage() { return m_separatePagesWhenWideImage; }
+    void setSeparatePagesWhenWideImage(bool separatePagesWhenWideImage) { m_separatePagesWhenWideImage = separatePagesWhenWideImage; }
 
     // Show Bars
     bool ShowToolBar() { return m_showToolBar; }
@@ -312,6 +314,7 @@ private:
     bool m_hideScrollBarInFullscreen;
     bool m_topWindowWhenRunWithAssoc;
     bool m_topWindowWhenDropped;
+    bool m_separatePagesWhenWideImage;
     QString m_titleTextFormat;
     QString m_statusTextFormat;
 

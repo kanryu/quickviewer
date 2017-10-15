@@ -1431,6 +1431,11 @@
         <source>Turn over the page on the right</source>
         <translation>Περιστροφή σελίδας δεξιόστροφα</translation>
     </message>
+    <message>
+        <source>Divide wide image into 2 pages</source>
+        <extracomment>Flag to display images on the left and right sides with a portrait display</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1790,6 +1795,16 @@
     <message>
         <source>Extract solid archives to temporary directory</source>
         <extracomment>Flag to expand contents of solid compressed archive to temporary directory</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activate the window when launched with image association</source>
+        <comment>Check box to activate the window when activated by image association</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activate the window when an image dropped on</source>
+        <comment>Check box to activate the window when an image dropped on</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

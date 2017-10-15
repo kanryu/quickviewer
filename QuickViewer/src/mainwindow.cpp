@@ -81,6 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionWideImageAsOneView->setChecked(qApp->WideImageAsOnePageInDualView());
     ui->actionFirstImageAsOneView->setChecked(qApp->FirstImageAsOnePageInDualView());
+    ui->actionSeparatePagesWhenWideImage->setChecked(qApp->SeparatePagesWhenWideImage());
 
     ui->actionShowSubfolders->setChecked(qApp->ShowSubfolders());
 
@@ -1315,7 +1316,7 @@ void MainWindow::onActionLargeToolbarIcons_triggered(bool enable)
 	}
 	else {
 		ui->pageSlider->setMinimumHeight(0);
-	}
+    }
 }
 
 //void MainWindow::onActionShowFullscreenTitleBar_triggered(bool enable)

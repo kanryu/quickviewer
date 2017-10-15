@@ -17,6 +17,7 @@ ImageView::ImageView(QWidget *parent)
     , m_skipResizeEvent(false)
     , m_isFullScreen(false)
     , m_scrollMode(false)
+    , m_pageBacking(false)
 {
     viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeIdx = 6; // 100
@@ -124,6 +125,8 @@ bool ImageView::on_addImage_triggered(ImageContent ic, bool pageNext)
     QGraphicsScene *s = scene();
     QSize size = ic.Image.size();
     PageContent pgi(this, s, ic);
+    if(m_pageBacking && pgi.Separation == PageContent::FirstSeparated)
+        pgi.Separation = PageContent::SecondSeparated;
 
     if(pageNext) {
         m_pages.push_back(pgi);
@@ -159,6 +162,12 @@ void ImageView::readyForPaint() {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
         for(int i = 0; i < m_pages.size(); i++) {
+            if(qApp->SeparatePagesWhenWideImage() && m_pages[i].Ic.wideImage()) {
+                if(m_pages[i].Separation == PageContent::NoSeparated && viewport()->width() < viewport()->height())
+                    m_pages[i].Separation = PageContent::FirstSeparated;
+                if(m_pages[i].Separation != PageContent::NoSeparated && viewport()->width() > viewport()->height())
+                    m_pages[i].Separation = PageContent::NoSeparated;
+            }
             PageContent::Fitting fitting = PageContent::FitCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
             if(m_pages.size() == 2) {
@@ -259,6 +268,11 @@ void ImageView::resizeEvent(QResizeEvent *event)
 
 void ImageView::on_nextPage_triggered()
 {
+    if(qApp->SeparatePagesWhenWideImage() && m_pages[0].Separation == PageContent::FirstSeparated) {
+        m_pages[0].Separation = PageContent::SecondSeparated;
+        readyForPaint();
+        return;
+    }
     if(m_pageManager)
         m_pageManager->nextPage();
     if(isSlideShow())
@@ -267,10 +281,17 @@ void ImageView::on_nextPage_triggered()
 
 void ImageView::on_prevPage_triggered()
 {
+    if(qApp->SeparatePagesWhenWideImage() && m_pages[0].Separation == PageContent::SecondSeparated) {
+        m_pages[0].Separation = PageContent::FirstSeparated;
+        readyForPaint();
+        return;
+    }
+    m_pageBacking = true;
     if(m_pageManager)
         m_pageManager->prevPage();
     if(isSlideShow())
         toggleSlideShow();
+    m_pageBacking = false;
 }
 
 void ImageView::on_fastForwardPage_triggered()
@@ -481,6 +502,12 @@ void ImageView::on_firstImageAsOneView_triggered(bool firstImage)
 void ImageView::on_dontEnlargeSmallImagesOnFitting(bool enable)
 {
     qApp->setDontEnlargeSmallImagesOnFitting(enable);
+    readyForPaint();
+}
+
+void ImageView::onActionSeparatePagesWhenWideImage_triggered(bool enable)
+{
+    qApp->setSeparatePagesWhenWideImage(enable);
     readyForPaint();
 }
 
