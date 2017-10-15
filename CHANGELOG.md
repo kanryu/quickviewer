@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v1.0.2 (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
+
+- add 'Divide wide image into 2 pages'
+- Known bug:
+- Since the rotation of the tablet can not be detected, correct display can not be performed immediately after rotation.
+- You can solve by moving to the next page and returning to the original page
+
+- other commits
+    -  support to activate the window when run with file association (Sun Oct 15 14:10:49 2017 +0900) [edabc9c](https://github.com/kanryu/quickviewer/commit/edabc9c5a447def9de46e57b444de2663ee73054)
+    -  support to activate the window when image file dropped (Sun Oct 15 14:10:49 2017 +0900) [edabc9c](https://github.com/kanryu/quickviewer/commit/edabc9c5a447def9de46e57b444de2663ee73054)
+    - bugfixed: When switching '2 page spread', the page has changed (Sun Oct 15 13:14:10 2017 +0900) [403bf8d](https://github.com/kanryu/quickviewer/commit/403bf8d0b29b9bf4c4176ca332839b2d8ea6b19a)
+    - qvtest depends (Sun Oct 15 06:34:28 2017 +0900) [981667b](https://github.com/kanryu/quickviewer/commit/981667bc1e5bbf923d20eb549fd4c0f6892bfce7)
+    - Update index-ja.md (Sat Oct 14 18:22:56 2017 +0900) [5a9256e](https://github.com/kanryu/quickviewer/commit/5a9256e3604474da96ddb065f73b88d152d865f2)
+    - Update index-ja.md (Sat Oct 14 18:21:47 2017 +0900) [9e21985](https://github.com/kanryu/quickviewer/commit/9e21985a15352f19866609994cee6317872bb823)
+    - Update index.md (Sat Oct 14 18:11:52 2017 +0900) [5cbd239](https://github.com/kanryu/quickviewer/commit/5cbd239a20b13f87b01e909eacc9c4c29140d98f)
+    - changelog (Sat Oct 14 06:36:16 2017 +0900) [6238808](https://github.com/kanryu/quickviewer/commit/6238808bbf241e658c03c8bcd6d4b38abc58622b)
+
 ## v1.0.1 (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
 
 pinch with touch panel, support for solid 7z, bugfixed
