@@ -90,6 +90,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/](https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/)
 - **SOFT DOWNLOAD** (in Portuguese)
     - [http://www.softdownload.com.br/visualize-fotos-rapidamente-windows-quickviewer.html](http://www.softdownload.com.br/visualize-fotos-rapidamente-windows-quickviewer.html)
+- **libellules.ch** (in French)
+    - [http://www.libellules.ch/phpBB2/quickviewer-visionneuse-images-fonctionnalites-avancees-t45954.html](http://www.libellules.ch/phpBB2/quickviewer-visionneuse-images-fonctionnalites-avancees-t45954.html)
 - **CGWeb** (in French)
     - [http://cgweb.fr.nf/quickviewer-0-7-5-visionneuse-de-photos/](http://cgweb.fr.nf/quickviewer-0-7-5-visionneuse-de-photos/)
 - **jetelecharge** (in French)
