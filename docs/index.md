@@ -134,6 +134,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.happycgi.com/16255](http://www.happycgi.com/16255)
 - **프로그램 저장공간** (in Korean)
     - [http://programstore.tistory.com/48](http://programstore.tistory.com/48)
+- **SZOFTHUB.HU** (in Hungarian)
+    - [https://szofthub.hu/quickviewer/](https://szofthub.hu/quickviewer/)
 - **PCWorld** (in Hungarian)
     - [https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html](https://pcworld.hu/pcwlite/villamgyors-kepnezegetot-keresel-232629.html)
 - **Komputer Swiat DOWNLOAD** (in Polish)
