@@ -187,6 +187,7 @@ Thanks for reviewers! :)
     - Open the file with Exprorer
     - Show the Exif Information(for JPEG)
     - Auto rotation with Exif(for JPEG)
+    - Enlarge images with Loupe tool
 - Window View Setting
     - Fullscreen
     - Stay On Top
