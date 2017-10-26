@@ -1932,6 +1932,10 @@
         <extracomment>Flag to display images on the left and right sides with a portrait display</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Loupe Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -2411,16 +2415,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>WindowState</source>
-        <comment>WindowState Action Group</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Toolbar</source>
-        <comment>Toolbar Action Group</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>ContextMenu</source>
         <comment>ContextMenu Action Group</comment>
         <translation type="unfinished">contexto munú</translation>
@@ -2433,6 +2427,11 @@
     <message>
         <source>Help</source>
         <comment>Help Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <comment>Image Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

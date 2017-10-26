@@ -194,6 +194,7 @@ MainWindow::MainWindow(QWidget *parent)
     // when drop a folder/archive icon to this app
     if(qApp->arguments().length() >= 2) {
         loadVolume(qApp->arguments().last());
+        setWindowTop(!qApp->TopWindowWhenRunWithAssoc());
         return;
     }
     // auto restore

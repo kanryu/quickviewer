@@ -2215,6 +2215,10 @@
         <extracomment>Flag to display images on the left and right sides with a portrait display</extracomment>
         <translation>横長の画像を2ページに分割する(縦画面のみ)</translation>
     </message>
+    <message>
+        <source>Loupe Tool</source>
+        <translation>拡大ツール</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -2716,12 +2720,12 @@
     <message>
         <source>WindowState</source>
         <comment>WindowState Action Group</comment>
-        <translation>ウィンドウの状態</translation>
+        <translation type="vanished">ウィンドウの状態</translation>
     </message>
     <message>
         <source>Toolbar</source>
         <comment>Toolbar Action Group</comment>
-        <translation>ツールバー</translation>
+        <translation type="vanished">ツールバー</translation>
     </message>
     <message>
         <source>ContextMenu</source>
@@ -2737,6 +2741,11 @@
         <source>Help</source>
         <comment>Help Action Group</comment>
         <translation>ヘルプ</translation>
+    </message>
+    <message>
+        <source>Image</source>
+        <comment>Image Action Group</comment>
+        <translation>画像</translation>
     </message>
 </context>
 <context>

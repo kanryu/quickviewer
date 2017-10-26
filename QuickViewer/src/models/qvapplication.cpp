@@ -371,7 +371,6 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
-    m_keyActions.clear();
     foreach(const QString& action, m_settings.childKeys()) {
         if(action == "actionFullscreen")
             qDebug() << action;
@@ -381,7 +380,6 @@ void QVApplication::loadSettings()
     m_settings.endGroup();
 
     m_settings.beginGroup("MouseConfig");
-    m_mouseActions.clear();
     foreach(const QString& action, m_settings.childKeys()) {
         QString str = m_settings.value(action, "").toString();
         m_mouseActions.updateKey(action, QMouseSequence(str), true);
