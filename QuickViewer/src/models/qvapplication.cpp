@@ -154,8 +154,8 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionCatalogTitleWithoutOptions", ui->actionCatalogTitleWithoutOptions, groupName);
     m_keyActions.registAction("actionCatalogIconLongText", ui->actionCatalogIconLongText, groupName);
 
-    // View
-    groupName = tr("View", "View Action Group");
+    // Image
+    groupName = tr("Image", "Image Action Group");
     m_keyActions.registAction("actionRotate", ui->actionRotate, groupName);
     m_keyActions.registAction("actionFitting", ui->actionFitting, groupName);
     m_keyActions.registAction("actionZoomIn", ui->actionZoomIn, groupName);
@@ -166,22 +166,23 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionRightSideBook", ui->actionRightSideBook, groupName);
     m_keyActions.registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView, groupName);
     m_keyActions.registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView, groupName);
-    m_keyActions.registAction("actionLargeToolbarIcons", ui->actionLargeToolbarIcons, groupName);
+    m_keyActions.registAction("actionLoupeTool", ui->actionLoupeTool, groupName);
+    m_keyActions.registAction("actionSeparatePagesWhenWideImage", ui->actionSeparatePagesWhenWideImage, groupName);
 
-    // WindowState
-    groupName = tr("WindowState", "WindowState Action Group");
+    // View
+    groupName = tr("View", "View Action Group");
+    m_keyActions.registAction("actionLargeToolbarIcons", ui->actionLargeToolbarIcons, groupName);
+    m_keyActions.registAction("actionShowToolBar", ui->actionShowToolBar, groupName);
+    m_keyActions.registAction("actionShowStatusBar", ui->actionShowStatusBar, groupName);
+    m_keyActions.registAction("actionShowPageBar", ui->actionShowPageBar, groupName);
+    m_keyActions.registAction("actionShowMenuBar", ui->actionShowMenuBar, groupName);
+    m_keyActions.registAction("actionShowFullscreenSignage", ui->actionShowFullscreenSignage, groupName);
     m_keyActions.registAction("actionRestoreWindowState", ui->actionRestoreWindowState, groupName);
     m_keyActions.registAction("actionFullscreen", ui->actionFullscreen, groupName);
     m_keyActions.registAction("actionStayOnTop", ui->actionStayOnTop, groupName);
     m_keyActions.registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen, groupName);
     m_keyActions.registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal, groupName);
-
-    // Toolbar
-    groupName = tr("Toolbar", "Toolbar Action Group");
-    m_keyActions.registAction("actionShowToolBar", ui->actionShowToolBar, groupName);
-    m_keyActions.registAction("actionShowStatusBar", ui->actionShowStatusBar, groupName);
-    m_keyActions.registAction("actionShowPageBar", ui->actionShowPageBar, groupName);
-    m_keyActions.registAction("actionShowMenuBar", ui->actionShowMenuBar, groupName);
+    m_keyActions.registAction("actionShowPanelSeparateWindow", ui->actionShowPanelSeparateWindow, groupName);
 
     // ContextMenu
     groupName = tr("ContextMenu", "ContextMenu Action Group");
@@ -316,6 +317,7 @@ void QVApplication::loadSettings()
     m_statusTextFormat = m_settings.value("StatusTextFormat", QV_STATUSBAR_FORMAT).toString();
     m_topWindowWhenRunWithAssoc = m_settings.value("TopWindowWhenRunWithAssoc", true).toBool();
     m_topWindowWhenDropped = m_settings.value("TopWindowWhenDropped", true).toBool();
+    m_loupeTool = m_settings.value("LoupeTool", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -441,6 +443,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("StatusTextFormat", m_statusTextFormat);
     m_settings.setValue("TopWindowWhenRunWithAssoc", m_topWindowWhenRunWithAssoc);
     m_settings.setValue("TopWindowWhenDropped", m_topWindowWhenDropped);
+    m_settings.setValue("LoupeTool", m_loupeTool);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

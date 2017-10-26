@@ -131,7 +131,7 @@ public:
      * @brief setPageLayout set each image on the page
      * @param viewport: the image must be inscribed in the viewport area
      */
-    QRect setPageLayoutFitting(QRect viewport, Fitting fitting, int rotateOffset=0);
+    QRect setPageLayoutFitting(QRect viewport, Fitting fitting, qreal loupe, int rotateOffset=0);
     QRect setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0);
 
     void applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize);

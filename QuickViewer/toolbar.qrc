@@ -53,6 +53,8 @@
         <file alias="subfolders_icon">icons/subfolders.png</file>
         <file alias="child_separate">icons/child_separate.png</file>
         <file alias="help">icons/help.png</file>
+        <file alias="loupe">icons/loupe.png</file>
+        <file alias="loupe_cursor">icons/loupe_cursor.png</file>
     </qresource>
     <qresource prefix="/icons/24">
         <file alias="arrow_left_icon_24">icons/24/arrow-pointing-to-left.png</file>

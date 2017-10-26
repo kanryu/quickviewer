@@ -59,6 +59,7 @@ public:
     void setWillFullscreen(bool fullscreen) { m_isFullScreen = fullscreen; }
     void resetBackgroundColor();
     void setSceneRectMode(bool scrolled, const QRect& sceneRect);
+    void scrollOnLoupeMode();
     bool isScrollMode() { return m_scrollMode; }
     QVector<PageContent>* pages() override {return &m_pages; }
     void updateViewportOffset(QPointF moved);
@@ -80,14 +81,10 @@ protected:
 //    void paintEvent( QPaintEvent *event );
     void mouseMoveEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
-//    void mousePressEvent(QMouseEvent *event);
-//    void mouseReleaseEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 //    void paintEvent(QPaintEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
-//    void dragEnterEvent(QDragEnterEvent *event) { event->accept(); qDebug() << "ImageView::dragEnterEvent"; }
-//    void dropEvent( QDropEvent *e ) {qDebug() << "ImageView::dropEvent";}
-//    void dragMoveEvent( QDragMoveEvent *e ) {qDebug() << "ImageView::dragMoveEvent";}
-//    void dragLeaveEvent( QDragLeaveEvent * e ) {qDebug() << "ImageView::dragLeaveEvent";}
 
 public slots:
     void on_volumeChanged_triggered(QString path);
@@ -122,6 +119,7 @@ public slots:
     void on_firstImageAsOneView_triggered(bool firstImage);
     void on_dontEnlargeSmallImagesOnFitting(bool enable);
     void onActionSeparatePagesWhenWideImage_triggered(bool enable);
+    void onActionLoupe_triggered(bool enable);
 
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
@@ -153,6 +151,7 @@ private:
     // rotate or scale with touchEvents
     qreal m_beginScaleFactor;
     qreal m_beginRotateFactor;
+    qreal m_loupeFactor;
 
     bool m_isMouseDown;
     bool m_wideImage;
@@ -160,6 +159,7 @@ private:
     bool m_isFullScreen;
     bool m_scrollMode;
     bool m_pageBacking;
+    bool m_loupeEnable;
 };
 
 

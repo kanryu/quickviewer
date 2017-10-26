@@ -109,7 +109,7 @@ QSize PageContent::CurrentSize(int rotateOffset) {
     return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
 }
 
-QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fitting, int rotateOffset) {
+QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fitting, qreal loupe, int rotateOffset) {
     if(!Ic.ImportSize.width()) {
         applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
         return QRect(viewport.topLeft(), QSize(100, 100));
@@ -125,6 +125,9 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
 
     QPoint of = Offset(rotateOffset);
     of *= scale;
+    if(loupe > 1.0) {
+        return setPageLayoutManual(viewport, fitting, scale*loupe, rotateOffset);
+    }
 
     QRect drawRect;
     if(newsize.height() == viewport.height()) { // fitting on upper and bottom

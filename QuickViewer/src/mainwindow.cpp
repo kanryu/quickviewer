@@ -78,6 +78,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->on_rightSideBook_triggered(qApp->RightSideBook());
     ui->actionRightSideBook->setChecked(qApp->RightSideBook());
+    ui->actionLoupeTool->setChecked(qApp->LoupeTool());
 
     ui->actionWideImageAsOneView->setChecked(qApp->WideImageAsOnePageInDualView());
     ui->actionFirstImageAsOneView->setChecked(qApp->FirstImageAsOnePageInDualView());

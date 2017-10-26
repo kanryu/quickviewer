@@ -148,6 +148,8 @@ public:
     void setTopWindowWhenRunWithAssoc(bool topWindowWhenRunWithAssoc) { m_topWindowWhenRunWithAssoc = topWindowWhenRunWithAssoc; }
     bool TopWindowWhenDropped() { return m_topWindowWhenDropped; }
     void setTopWindowWhenDropped(bool topWindowWhenDropped) { m_topWindowWhenDropped = topWindowWhenDropped; }
+    bool LoupeTool() { return m_loupeTool; }
+    void setLoupeTool(bool loupeTool) { m_loupeTool = loupeTool; }
 
     // DualView
     bool DualView() { return m_dualView; }
@@ -315,6 +317,7 @@ private:
     bool m_topWindowWhenRunWithAssoc;
     bool m_topWindowWhenDropped;
     bool m_separatePagesWhenWideImage;
+    bool m_loupeTool;
     QString m_titleTextFormat;
     QString m_statusTextFormat;
 

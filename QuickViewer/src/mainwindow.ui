@@ -379,6 +379,7 @@
     <addaction name="actionRotate"/>
     <addaction name="actionZoomIn"/>
     <addaction name="actionZoomOut"/>
+    <addaction name="actionLoupeTool"/>
     <addaction name="actionFitting"/>
     <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
     <addaction name="separator"/>
@@ -427,6 +428,7 @@
    <addaction name="actionRotate"/>
    <addaction name="actionZoomIn"/>
    <addaction name="actionZoomOut"/>
+   <addaction name="actionLoupeTool"/>
    <addaction name="separator"/>
    <addaction name="actionFitting"/>
    <addaction name="actionDualView"/>
@@ -1094,6 +1096,18 @@
     <string extracomment="Flag to display images on the left and right sides with a portrait display">Divide wide image into 2 pages</string>
    </property>
   </action>
+  <action name="actionLoupeTool">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/loupe</normaloff>:/icons/loupe</iconset>
+   </property>
+   <property name="text">
+    <string>Loupe Tool</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1129,6 +1143,7 @@
     <slot>on_showSubfolders_triggered(bool)</slot>
     <slot>on_dontEnlargeSmallImagesOnFitting(bool)</slot>
     <slot>onActionSeparatePagesWhenWideImage_triggered(bool)</slot>
+    <slot>onActionLoupe_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2458,6 +2473,22 @@
    <signal>triggered(bool)</signal>
    <receiver>graphicsView</receiver>
    <slot>onActionSeparatePagesWhenWideImage_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLoupeTool</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>onActionLoupe_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
