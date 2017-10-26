@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## v1.0.3 (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+
+add loupe, animation image with scaling, 2 bugfixed
+
+- add Simple loupe function
+- Change animation image to scale by bilinear interpolation regardless of Shader setting
+- bugfixed: A window may not be activated when it is activated by image file association
+- bugfixed: In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole
+
+- other commits
+    - Simple loupe function (Thu Oct 26 14:22:25 2017 +0900) [b293542](https://github.com/kanryu/quickviewer/commit/b293542696187c540d61ab881fe48ccda008648b)
+    - Change animation image to scale by bilinear interpolation regardless of Shader setting (Thu Oct 26 10:19:52 2017 +0900) [77491fb](https://github.com/kanryu/quickviewer/commit/77491fbbc50fc26472ebd946fe9e8ef244808cf4)
+    - Update index.md (Wed Oct 25 21:03:25 2017 +0900) [103a116](https://github.com/kanryu/quickviewer/commit/103a116399ed72cea3dce18785a50e79dc1ee988)
+    - Update index.md (Wed Oct 25 21:01:15 2017 +0900) [39b3d6c](https://github.com/kanryu/quickviewer/commit/39b3d6c80b4c0f29468cf9f98a26c57f06e8ecf8)
+    - Update index.md (Wed Oct 25 18:06:57 2017 +0900) [d5af8e6](https://github.com/kanryu/quickviewer/commit/d5af8e6a18c95e56c409cf5c0d25b79139d7ceb5)
+    - Update index.md (Wed Oct 25 18:03:56 2017 +0900) [732a545](https://github.com/kanryu/quickviewer/commit/732a54509cf693e9ff7e1f802b9e59cfbdb05d98)
+    - Merge pull request #49 from geogeo-gr/patch-2 (Sat Oct 21 05:15:47 2017 +0900) [7a84ddf](https://github.com/kanryu/quickviewer/commit/7a84ddfbbbd8609e3dec0dd211fdbf3cf4bb528d)
+    -  (Sat Oct 21 05:15:47 2017 +0900) [7a84ddf](https://github.com/kanryu/quickviewer/commit/7a84ddfbbbd8609e3dec0dd211fdbf3cf4bb528d)
+    - Update quickviewer_el.ts to v1.0.2 (Sat Oct 21 05:15:47 2017 +0900) [7a84ddf](https://github.com/kanryu/quickviewer/commit/7a84ddfbbbd8609e3dec0dd211fdbf3cf4bb528d)
+    - Update quickviewer_el.ts (Fri Oct 20 11:06:52 2017 +0300) [5a1b990](https://github.com/kanryu/quickviewer/commit/5a1b990655ce4fa5e7ba04a7036a01321ed8a6b8)
+    -  (Fri Oct 20 11:06:52 2017 +0300) [5a1b990](https://github.com/kanryu/quickviewer/commit/5a1b990655ce4fa5e7ba04a7036a01321ed8a6b8)
+    -  add 'Divide wide image into 2 pages (Fri Oct 20 11:06:52 2017 +0300) [5a1b990](https://github.com/kanryu/quickviewer/commit/5a1b990655ce4fa5e7ba04a7036a01321ed8a6b8)
+    - Update index.md (Tue Oct 17 18:46:03 2017 +0900) [3d8bb5b](https://github.com/kanryu/quickviewer/commit/3d8bb5b48f5faf735d6cbb66369bee2f94558973)
+    - Update index.md (Mon Oct 16 02:44:36 2017 +0900) [0404e57](https://github.com/kanryu/quickviewer/commit/0404e5741d666a0ee9cda14eed6939ee941250ba)
+    - In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole (Mon Oct 16 01:32:56 2017 +0900) [790fcca](https://github.com/kanryu/quickviewer/commit/790fcca4859f593b1df160dd68ab5116c6470b14)
+    - changelog (Sun Oct 15 15:57:41 2017 +0900) [afad4f4](https://github.com/kanryu/quickviewer/commit/afad4f421f05937ada4029ddce28b738336cf1b6)
+
 ## v1.0.2 (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
 
 - add 'Divide wide image into 2 pages'
