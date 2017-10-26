@@ -180,42 +180,41 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
     checkInitialize();
 //    QSize newsize2 = Ic.Info.Orientation==6 || Ic.Info.Orientation==8 ? QSize(newsize.height(), newsize.width()) : newsize;
     QSize newsize2 = (Rotate+rotateOffset) % 180 ? QSize(newsize.height(), newsize.width()) : newsize;
-    if(Ic.Movie.isNull()) {
-        // only CPU resizing
-        if(qApp->Effect() < qvEnums::UsingFixedShader) {
-            if(Ic.ResizedImage.isNull()
-            || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
-                QImage resized = QZimg::scaled(Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
-                Ic.ResizedImage = resized;
-                Scene->removeItem(GrItem);
-                delete GrItem;
-                GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
-                GrItem->setRotation(Rotate);
-            }
-            GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
+    qvEnums::ShaderEffect effect = Ic.Movie.isNull() ? qApp->Effect() : qvEnums::Bilinear;
+    // only CPU resizing
+    if(effect < qvEnums::UsingFixedShader) {
+        if(Ic.ResizedImage.isNull()
+        || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
+            QImage resized = QZimg::scaled(Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+            Ic.ResizedImage = resized;
+            Scene->removeItem(GrItem);
+            delete GrItem;
+            GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
+            GrItem->setRotation(Rotate);
         }
-        // CPU resizing after GPU preview
-        if(qApp->Effect() > qvEnums::UsingCpuResizer && qApp->Effect() < qvEnums::UsingSomeShader) {
-            if(!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize) {
-                initializePage(true);
-            }
-            if(Ic.ResizedImage.isNull() && m_resizeGeneratingState==0) {
-                m_resizeGeneratingState = 1;
-                QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
-                connect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));
-                generateWatcher.setFuture(future);
-            }
-            if(!Ic.ResizedImage.isNull() && m_resizeGeneratingState==2) {
-                Scene->removeItem(GrItem);
-                delete GrItem;
-                GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
-                GrItem->setRotation(Rotate);
-            }
-            GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
+        GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
+    }
+    // CPU resizing after GPU preview
+    if(effect > qvEnums::UsingCpuResizer && qApp->Effect() < qvEnums::UsingSomeShader) {
+        if(!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize) {
+            initializePage(true);
         }
+        if(Ic.ResizedImage.isNull() && m_resizeGeneratingState==0) {
+            m_resizeGeneratingState = 1;
+            QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+            connect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));
+            generateWatcher.setFuture(future);
+        }
+        if(!Ic.ResizedImage.isNull() && m_resizeGeneratingState==2) {
+            Scene->removeItem(GrItem);
+            delete GrItem;
+            GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
+            GrItem->setRotation(Rotate);
+        }
+        GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
     }
     // only GPU resizing
-    if((qApp->Effect() > qvEnums::UsingFixedShader && qApp->Effect() < qvEnums::UsingCpuResizer) || qApp->Effect() > qvEnums::UsingSomeShader) {
+    if((effect > qvEnums::UsingFixedShader && effect < qvEnums::UsingCpuResizer) || effect > qvEnums::UsingSomeShader) {
         if(!Ic.ResizedImage.isNull())
             initializePage(true);
         GrItem->setScale(scale);
