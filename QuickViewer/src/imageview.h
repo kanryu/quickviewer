@@ -60,6 +60,7 @@ public:
     void resetBackgroundColor();
     void setSceneRectMode(bool scrolled, const QRect& sceneRect);
     void scrollOnLoupeMode();
+    void scrollOnZoomMode();
     bool isScrollMode() { return m_scrollMode; }
     QVector<PageContent>* pages() override {return &m_pages; }
     void updateViewportOffset(QPointF moved);
@@ -120,6 +121,7 @@ public slots:
     void on_dontEnlargeSmallImagesOnFitting(bool enable);
     void onActionSeparatePagesWhenWideImage_triggered(bool enable);
     void onActionLoupe_triggered(bool enable);
+    void onActionScrollWithCursorWhenZooming_triggered(bool enable);
 
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
@@ -143,6 +145,7 @@ private:
     QVector<int> m_pageRotations;
     int viewSizeIdx;
     QFont m_font;
+    QCursor m_loupeCursor;
 
     PageManager* m_pageManager;
     ShaderManager m_effectManager;

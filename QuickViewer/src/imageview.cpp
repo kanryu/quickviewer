@@ -7,6 +7,7 @@ ImageView::ImageView(QWidget *parent)
     : QGraphicsView(parent)
     , m_renderer(Native)
     , m_hoverState(Qt::AnchorHorizontalCenter)
+    , m_loupeCursor(QCursor(QPixmap(":/icons/loupe_cursor"), 20, 23))
     , m_pageManager(nullptr)
     , m_effectManager(this)
     , m_slideshowTimer(nullptr)
@@ -216,6 +217,11 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
             setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             setDragMode(QGraphicsView::NoDrag);
             scrollOnLoupeMode();
+        } else if(qApp->ScrollWithCursorWhenZooming()) {
+            setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+            setDragMode(QGraphicsView::NoDrag);
+            scrollOnZoomMode();
         } else {
             // Since Qt :: ScrollBarAsNeeded does not work correctly, judge the display state on its own and switch.
             bool willBeHide = m_isFullScreen && qApp->HideScrollBarInFullscreen();
@@ -255,6 +261,20 @@ void ImageView::scrollOnLoupeMode()
         ? L.top() + (Q.y() - L.top()) * (2*cursorPos.y() - S.y()) / S.y()
         : L.bottom() - (L.bottom() - Q.y()) * (S.y() + height() - 2*cursorPos.y()) / (height() - S.y())
     );
+}
+
+void ImageView::scrollOnZoomMode()
+{
+    QPoint cursorPos = QCursor::pos();
+//    QPoint cursorPos0 = QCursor::pos();
+    cursorPos = mapFromGlobal(cursorPos);
+    cursorPos = QPoint(cursorPos.x() < width()/4 ? 0 : (cursorPos.x()- width()/4)*4/2,
+                       cursorPos.y() < height()/4 ? 0 : (cursorPos.y()- height()/4)*4/2);
+    const QRectF sceneRect = scene()->sceneRect();
+//    qDebug() << cursorPos0 << cursorPos << QPoint(cursorPos.x()*horizontalScrollBar()->maximum()/width(), cursorPos.y()*verticalScrollBar()->maximum()/height());
+//    qDebug() << horizontalScrollBar()->maximum() << verticalScrollBar()->maximum();
+    horizontalScrollBar()->setValue(horizontalScrollBar()->minimum()+cursorPos.x()*(horizontalScrollBar()->maximum()-horizontalScrollBar()->minimum())/width());
+    verticalScrollBar()->setValue(horizontalScrollBar()->minimum()+cursorPos.y()*(verticalScrollBar()->maximum()-horizontalScrollBar()->minimum())/height());
 }
 
 void ImageView::updateViewportOffset(QPointF moved)
@@ -445,11 +465,14 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
         return;
     }
     if(qApp->LoupeTool()) {
-        setCursor(QCursor(QPixmap(":/icons/loupe_cursor"), 20, 23));
+        setCursor(m_loupeCursor);
         if(m_loupeEnable)
             scrollOnLoupeMode();
-    } else
+    } else if(qApp->ScrollWithCursorWhenZooming() && (scene()->sceneRect().width() > width() || scene()->sceneRect().height() > height())) {
+        scrollOnZoomMode();
+    } else {
         setCursor(QCursor(Qt::ArrowCursor));
+    }
 //    QApplication::setOverrideCursor(Qt::ArrowCursor);
     if(e->pos().y() < hover_border) {
         if(m_hoverState != Qt::AnchorTop)
@@ -470,11 +493,13 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
 
 void ImageView::wheelEvent(QWheelEvent *event)
 {
-    if(event->buttons() & Qt::RightButton || qApp->keyboardModifiers() & Qt::ControlModifier)
+    if(event->buttons() & Qt::RightButton
+       || qApp->keyboardModifiers() & Qt::ControlModifier
+       || qApp->ScrollWithCursorWhenZooming())
         return;
     if(m_loupeEnable) {
         if(event->delta() < 0)
-            m_loupeFactor -= 0.5;
+            m_loupeFactor = qMax(1.5, m_loupeFactor-0.5);
         if(event->delta() > 0)
             m_loupeFactor += 0.5;
         readyForPaint();
@@ -595,6 +620,12 @@ void ImageView::onActionLoupe_triggered(bool enable)
         m_loupeEnable = false;
         readyForPaint();
     }
+}
+
+void ImageView::onActionScrollWithCursorWhenZooming_triggered(bool enable)
+{
+    qApp->setScrollWithCursorWhenZooming(enable);
+    readyForPaint();
 }
 
 void ImageView::on_openFiler_triggered()

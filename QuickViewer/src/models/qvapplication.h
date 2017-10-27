@@ -150,6 +150,9 @@ public:
     void setTopWindowWhenDropped(bool topWindowWhenDropped) { m_topWindowWhenDropped = topWindowWhenDropped; }
     bool LoupeTool() { return m_loupeTool; }
     void setLoupeTool(bool loupeTool) { m_loupeTool = loupeTool; }
+    bool ScrollWithCursorWhenZooming() { return m_scrollWithCursorWhenZooming; }
+    void setScrollWithCursorWhenZooming(bool scrollWithCursorWhenZooming) { m_scrollWithCursorWhenZooming = scrollWithCursorWhenZooming; }
+
 
     // DualView
     bool DualView() { return m_dualView; }
@@ -320,6 +323,7 @@ private:
     bool m_loupeTool;
     QString m_titleTextFormat;
     QString m_statusTextFormat;
+    bool m_scrollWithCursorWhenZooming;
 
     // ToolBars
     bool m_showToolBar;

@@ -270,7 +270,7 @@ void MainWindow::wheelEvent(QWheelEvent *e)
         e->accept();
         return;
     }
-    if(ui->graphicsView->isScrollMode())
+    if(ui->graphicsView->isScrollMode() && !qApp->ScrollWithCursorWhenZooming())
         return;
     if(action) {
         action->trigger();
@@ -290,7 +290,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
     if(this->focusWidget() != ui->graphicsView)
         return;
-    if(ui->graphicsView->isScrollMode()) {
+    if(ui->graphicsView->isScrollMode() && !qApp->ScrollWithCursorWhenZooming()) {
         if(QString("Left, Right, Up, Down").contains(seq.toString())) {
             if(seq.toString()=="Left")
                 ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()-300);

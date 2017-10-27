@@ -377,9 +377,12 @@
      <string>&amp;Image</string>
     </property>
     <addaction name="actionRotate"/>
+    <addaction name="separator"/>
     <addaction name="actionZoomIn"/>
     <addaction name="actionZoomOut"/>
+    <addaction name="actionScrollWithCursorWhenZooming"/>
     <addaction name="actionLoupeTool"/>
+    <addaction name="separator"/>
     <addaction name="actionFitting"/>
     <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
     <addaction name="separator"/>
@@ -1108,6 +1111,14 @@
     <string>Loupe Tool</string>
    </property>
   </action>
+  <action name="actionScrollWithCursorWhenZooming">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar">Scroll with mouse cursor on zooming</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1144,6 +1155,7 @@
     <slot>on_dontEnlargeSmallImagesOnFitting(bool)</slot>
     <slot>onActionSeparatePagesWhenWideImage_triggered(bool)</slot>
     <slot>onActionLoupe_triggered(bool)</slot>
+    <slot>onActionScrollWithCursorWhenZooming_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2489,6 +2501,22 @@
    <signal>triggered(bool)</signal>
    <receiver>graphicsView</receiver>
    <slot>onActionLoupe_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionScrollWithCursorWhenZooming</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>onActionScrollWithCursorWhenZooming_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

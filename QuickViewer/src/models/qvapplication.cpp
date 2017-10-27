@@ -161,12 +161,13 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionZoomIn", ui->actionZoomIn, groupName);
     m_keyActions.registAction("actionZoomOut", ui->actionZoomOut, groupName);
     m_keyActions.registAction("actionDontEnlargeSmallImagesOnFitting", ui->actionDontEnlargeSmallImagesOnFitting, groupName);
+    m_keyActions.registAction("actionScrollWithCursorWhenZooming", ui->actionScrollWithCursorWhenZooming, groupName);
+    m_keyActions.registAction("actionLoupeTool", ui->actionLoupeTool, groupName);
 
     m_keyActions.registAction("actionDualView", ui->actionDualView, groupName);
     m_keyActions.registAction("actionRightSideBook", ui->actionRightSideBook, groupName);
     m_keyActions.registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView, groupName);
     m_keyActions.registAction("actionFirstImageAsOneView", ui->actionFirstImageAsOneView, groupName);
-    m_keyActions.registAction("actionLoupeTool", ui->actionLoupeTool, groupName);
     m_keyActions.registAction("actionSeparatePagesWhenWideImage", ui->actionSeparatePagesWhenWideImage, groupName);
 
     // View
@@ -318,6 +319,7 @@ void QVApplication::loadSettings()
     m_topWindowWhenRunWithAssoc = m_settings.value("TopWindowWhenRunWithAssoc", true).toBool();
     m_topWindowWhenDropped = m_settings.value("TopWindowWhenDropped", true).toBool();
     m_loupeTool = m_settings.value("LoupeTool", false).toBool();
+    m_scrollWithCursorWhenZooming = m_settings.value("ScrollWithCursorWhenZooming", false).toBool();
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -442,6 +444,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("TopWindowWhenRunWithAssoc", m_topWindowWhenRunWithAssoc);
     m_settings.setValue("TopWindowWhenDropped", m_topWindowWhenDropped);
     m_settings.setValue("LoupeTool", m_loupeTool);
+    m_settings.setValue("ScrollWithCursorWhenZooming", m_scrollWithCursorWhenZooming);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
