@@ -198,14 +198,20 @@ void ImageView::readyForPaint() {
     m_effectManager.prepareFinished();
 }
 
+static QPoint s_loupeBasePos;
+static QRect s_sceneRect;
+
 void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
 {
+    if(!m_loupeEnable)
+        s_sceneRect = sceneRect;
     // if Size of Image overs Size of View, use Image's size
     bool newMode = scrolled && (size().width() < sceneRect.width() || size().height() < sceneRect.height());
     if(newMode) {
         scene()->setSceneRect(QRect(QPoint(qMin(0, sceneRect.left()), 0), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
         if(m_loupeEnable) {
-            qDebug() << "scene" << sceneRect;
+//            qDebug() << "scene" << sceneRect;
+            s_loupeBasePos = mapFromGlobal(QCursor::pos());
             setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             setDragMode(QGraphicsView::NoDrag);
@@ -228,15 +234,27 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
 void ImageView::scrollOnLoupeMode()
 {
     QPoint cursorPos = QCursor::pos();
-    QPoint cursorPos0 = QCursor::pos();
+//    QPoint cursorPos0 = QCursor::pos();
     cursorPos = mapFromGlobal(cursorPos);
-    cursorPos = QPoint(cursorPos.x() < width()/6 ? 0 : (cursorPos.x()- width()/6)*6/4,
-                       cursorPos.y() < height()/6 ? 0 : (cursorPos.y()- height()/6)*6/4);
     const QRectF sceneRect = scene()->sceneRect();
-    qDebug() << cursorPos0 << cursorPos << QPoint(cursorPos.x()*horizontalScrollBar()->maximum()/width(), cursorPos.y()*verticalScrollBar()->maximum()/height());
-    qDebug() << horizontalScrollBar()->maximum() << verticalScrollBar()->maximum();
-    horizontalScrollBar()->setValue(horizontalScrollBar()->minimum()+cursorPos.x()*(horizontalScrollBar()->maximum()-horizontalScrollBar()->minimum())/width());
-    verticalScrollBar()->setValue(horizontalScrollBar()->minimum()+cursorPos.y()*(verticalScrollBar()->maximum()-horizontalScrollBar()->minimum())/height());
+
+    // The scrolling of the enlarged image is completed by moving the cursor
+    // at a distance of half the distance from the first clicked coordinate to the edge of the window
+    QRectF L = sceneRect;
+    QRect  K = s_sceneRect;
+    QPoint S = s_loupeBasePos;
+    QPoint R((S.x()-K.left())*L.width()/K.width()+L.left(),
+             (S.y()-K.top())*L.height()/K.height()+L.top());
+    QPoint Q = R-S;
+
+    horizontalScrollBar()->setValue(cursorPos.x() < S.x()
+        ? L.left() + (Q.x() - L.left()) * (2*cursorPos.x() - S.x()) / S.x()
+        : L.right() - (L.right() - Q.x()) * (S.x() + width() - 2*cursorPos.x()) / (width() - S.x())
+    );
+    verticalScrollBar()->setValue(cursorPos.y() < S.y()
+        ? L.top() + (Q.y() - L.top()) * (2*cursorPos.y() - S.y()) / S.y()
+        : L.bottom() - (L.bottom() - Q.y()) * (S.y() + height() - 2*cursorPos.y()) / (height() - S.y())
+    );
 }
 
 void ImageView::updateViewportOffset(QPointF moved)
@@ -427,7 +445,7 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
         return;
     }
     if(qApp->LoupeTool()) {
-        setCursor(QCursor(QPixmap(":/icons/loupe_cursor")));
+        setCursor(QCursor(QPixmap(":/icons/loupe_cursor"), 20, 23));
         if(m_loupeEnable)
             scrollOnLoupeMode();
     } else
