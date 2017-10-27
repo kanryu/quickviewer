@@ -120,14 +120,14 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
         currentSize = QSize(currentSize.width()/2, currentSize.height());
     QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
+    if(loupe > 1.0) {
+        return setPageLayoutManual(viewport, fitting, scale*loupe, rotateOffset);
+    }
     if(scale > 1.0 && qApp->DontEnlargeSmallImagesOnFitting())
         return setPageLayoutManual(viewport, fitting, 1.0, rotateOffset);
 
     QPoint of = Offset(rotateOffset);
     of *= scale;
-    if(loupe > 1.0) {
-        return setPageLayoutManual(viewport, fitting, scale*loupe, rotateOffset);
-    }
 
     QRect drawRect;
     if(newsize.height() == viewport.height()) { // fitting on upper and bottom
