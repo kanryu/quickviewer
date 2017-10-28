@@ -121,7 +121,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
     if(loupe > 1.0) {
-        return setPageLayoutManual(viewport, fitting, scale*loupe, rotateOffset);
+        return setPageLayoutManual(viewport, fitting, scale*loupe, rotateOffset, true);
     }
     if(scale > 1.0 && qApp->DontEnlargeSmallImagesOnFitting())
         return setPageLayoutManual(viewport, fitting, 1.0, rotateOffset);
@@ -148,7 +148,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     return drawRect;
 }
 
-QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitting, qreal scale, int rotateOffset) {
+QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitting, qreal scale, int rotateOffset, bool loupe) {
     if(!Ic.ImportSize.width()) {
         applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
         return QRect(viewport.topLeft(), QSize(100, 100));
@@ -174,11 +174,11 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
         // Display only the right side of the image
         imagePos = QPoint(imagePos.x()-newsize.width(), imagePos.y());
     }
-    applyResize(scale, rotateOffset, imagePos, newsize);
+    applyResize(scale, rotateOffset, imagePos, newsize, loupe);
     return drawRect;
 }
 
-void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize)
+void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize, bool loupe)
 {
     checkInitialize();
 //    QSize newsize2 = Ic.Info.Orientation==6 || Ic.Info.Orientation==8 ? QSize(newsize.height(), newsize.width()) : newsize;
@@ -186,7 +186,11 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
     qvEnums::ShaderEffect effect = Ic.Movie.isNull() ? qApp->Effect() : qvEnums::Bilinear;
     // only CPU resizing
     if(effect < qvEnums::UsingFixedShader) {
-        if(Ic.ResizedImage.isNull()
+        if(loupe && !Ic.ResizedImage.isNull()) {
+            Ic.ResizedImage = QImage();
+            initializePage(true);
+        }
+        else if(Ic.ResizedImage.isNull()
         || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
             QImage resized = QZimg::scaled(Ic.Image, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
             Ic.ResizedImage = resized;

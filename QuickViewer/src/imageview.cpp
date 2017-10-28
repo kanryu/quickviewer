@@ -185,7 +185,7 @@ void ImageView::readyForPaint() {
                 drawRect = m_pages[i].setPageLayoutFitting(pageRect, fitting, scalefactor, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
             } else {
                 qreal scale = 1.0*currentViewSize()/100 * scalefactor;
-                drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
+                drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i], m_loupeEnable);
             }
             m_pages[i].Text = qApp->ShowFullscreenSignage() && m_isFullScreen ? m_pageManager->pageSignage(i) : "";
             m_pages[i].resetSignage(QRect(QPoint(), viewport()->size()), fitting);
@@ -206,6 +206,7 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
     if(!m_loupeEnable) {
         m_sceneRect = sceneRect;
     }
+    bool afterLoupe = !m_loupeEnable && s_lastLoupeMode;
     if(m_loupeEnable && !s_lastLoupeMode) {
         m_scrollBaseValues = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
     }
@@ -231,6 +232,10 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
             setHorizontalScrollBarPolicy(!willBeHide && size().width() < sceneRect.width()+verticalScrollBar()->width() ? Qt::ScrollBarAsNeeded : Qt::ScrollBarAlwaysOff );
             setVerticalScrollBarPolicy(!willBeHide && size().height() < sceneRect.height()+horizontalScrollBar()->height() ? Qt::ScrollBarAsNeeded : Qt::ScrollBarAlwaysOff );
             setDragMode(QGraphicsView::ScrollHandDrag);
+            if(afterLoupe) {
+                horizontalScrollBar()->setValue(m_scrollBaseValues.x());
+                verticalScrollBar()->setValue(m_scrollBaseValues.y());
+            }
         }
     } else {
         scene()->setSceneRect(QRect(QPoint(), size()));
