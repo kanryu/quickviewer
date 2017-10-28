@@ -173,6 +173,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&m_pageManager, SIGNAL(pageChanged()), this, SLOT(onPageManager_pageChanged()));
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(onPageManager_volumeChanged(QString)));
     connect(ui->graphicsView, SIGNAL(scrollModeChanged(bool)), this, SLOT(onScrollModeChanged(bool)));
+    connect(ui->graphicsView, SIGNAL(zoomingChanged()), this, SLOT(onPageManager_pageChanged()));
+
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing

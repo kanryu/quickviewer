@@ -1286,7 +1286,7 @@
     <message>
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
-        <translation type="unfinished">Command</translation>
+        <translation>Command</translation>
     </message>
 </context>
 <context>
@@ -2218,6 +2218,11 @@
     <message>
         <source>Loupe Tool</source>
         <translation>拡大ツール</translation>
+    </message>
+    <message>
+        <source>Scroll with mouse cursor on zooming</source>
+        <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
+        <translation>拡大時にマウスカーソルの移動でスクロール</translation>
     </message>
 </context>
 <context>

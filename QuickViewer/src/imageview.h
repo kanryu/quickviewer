@@ -44,14 +44,10 @@ class ImageView : public QGraphicsView, public PageContentProtocol
     Q_OBJECT
 public:
     enum RendererType { Native, OpenGL, Image };
+    typedef QPair<uint, uint> ZoomFraction;
     explicit ImageView(QWidget *parent = Q_NULLPTR);
     void setRenderer(RendererType type = Native);
     void setPageManager(PageManager* manager);
-    /**
-     * @brief currentViewSize returns current manual resizing magnification value
-     * @return
-     */
-    int currentViewSize() { return viewSizeList[viewSizeIdx]; }
     Qt::AnchorPoint hoverState() const { return m_hoverState; }
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
     bool isSlideShow() const { return m_slideshowTimer != nullptr; }
@@ -77,6 +73,7 @@ signals:
 
     void fittingChanged(bool fitting) const;
     void scrollModeChanged(bool scrolling) const;
+    void zoomingChanged() const;
 
 protected:
 //    void paintEvent( QPaintEvent *event );
@@ -131,6 +128,7 @@ public slots:
 
 
 private:
+    qreal getZoomScale() {return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second;}
 
     RendererType m_renderer;
     QVector<PageContent> m_pages;
@@ -141,7 +139,7 @@ private:
     /**
      * @brief for manual ZoomIn or ZoomOut
      */
-    QList<int> viewSizeList;
+    QList<ZoomFraction> viewSizeList;
     QVector<int> m_pageRotations;
     int viewSizeIdx;
     QFont m_font;

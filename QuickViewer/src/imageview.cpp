@@ -22,7 +22,21 @@ ImageView::ImageView(QWidget *parent)
     , m_pageBacking(false)
     , m_loupeEnable(false)
 {
-    viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
+    //viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
+    viewSizeList
+            << ZoomFraction(1,6)    //  16.6%
+            << ZoomFraction(1,5)    //  20.0%
+            << ZoomFraction(1,4)    //  25.0%
+            << ZoomFraction(1,3)    //  33.3%
+            << ZoomFraction(1,2)    //  50.0%
+            << ZoomFraction(3,4)    //  75.0%
+            << ZoomFraction(1,1)    // 100  %
+            << ZoomFraction(3,2)    // 150  %
+            << ZoomFraction(2,1)    // 200  %
+            << ZoomFraction(3,1)    // 300  %
+            << ZoomFraction(4,1)    // 400  %
+            << ZoomFraction(6,1)    // 600  %
+            << ZoomFraction(8,1);   // 800  %
     viewSizeIdx = 6; // 100
 
     QGraphicsScene* scene = new QGraphicsScene(this);
@@ -181,11 +195,14 @@ void ImageView::readyForPaint() {
             QRect drawRect;
             qreal scalefactor = m_loupeEnable ? m_loupeFactor : 1.0;
             if(qApp->Fitting()) {
-                qreal scale = m_loupeEnable ? m_loupeFactor : 1.0;
-                drawRect = m_pages[i].setPageLayoutFitting(pageRect, fitting, scalefactor, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
+                drawRect = m_pages[i].setPageLayoutFitting(
+                            pageRect, fitting, scalefactor,
+                            m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
             } else {
-                qreal scale = 1.0*currentViewSize()/100 * scalefactor;
-                drawRect = m_pages[i].setPageLayoutManual(pageRect, fitting, scale, m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i], m_loupeEnable);
+                drawRect = m_pages[i].setPageLayoutManual(
+                            pageRect, fitting, getZoomScale() * scalefactor,
+                            m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i],
+                            m_loupeEnable);
             }
             m_pages[i].Text = qApp->ShowFullscreenSignage() && m_isFullScreen ? m_pageManager->pageSignage(i) : "";
             m_pages[i].resetSignage(QRect(QPoint(), viewport()->size()), fitting);
@@ -213,8 +230,11 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
     s_lastLoupeMode = m_loupeEnable;
     // if Size of Image overs Size of View, use Image's size
     bool newMode = scrolled && (size().width() < sceneRect.width() || size().height() < sceneRect.height());
+    QRectF oldrect = scene()->sceneRect();
+    QRectF newrect = newMode ? QRectF(QPoint(qMin(0, sceneRect.left()), 0), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height())))
+                             : QRectF(QPoint(), size());
+    scene()->setSceneRect(newrect);
     if(newMode) {
-        scene()->setSceneRect(QRect(QPoint(qMin(0, sceneRect.left()), 0), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
         if(m_loupeEnable) {
             m_loupeBasePos = mapFromGlobal(QCursor::pos());
             setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -238,11 +258,12 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
             }
         }
     } else {
-        scene()->setSceneRect(QRect(QPoint(), size()));
         setDragMode(QGraphicsView::NoDrag);
     }
     if(m_scrollMode != newMode)
         emit scrollModeChanged(m_scrollMode = newMode);
+    if(oldrect != newrect)
+        emit zoomingChanged();
 }
 
 void ImageView::scrollOnLoupeMode()
@@ -569,10 +590,10 @@ void ImageView::on_scaleUp_triggered()
     if(qApp->Fitting()) {
         qApp->setFitting(false);
         emit fittingChanged(false);
-        int scale = m_pages[0].GrItem->scale()*100;
+        qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = 0;
-        qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale <<  viewSizeList[viewSizeIdx];
-        while(viewSizeIdx < viewSizeList.size()-1 && viewSizeList[viewSizeIdx] < scale)
+        qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale << getZoomScale();
+        while(viewSizeIdx < viewSizeList.size()-1 && getZoomScale() < scale)
             viewSizeIdx++;
         readyForPaint();
         return;
@@ -589,9 +610,9 @@ void ImageView::on_scaleDown_triggered()
     if(qApp->Fitting()) {
         qApp->setFitting(false);
         emit fittingChanged(false);
-        int scale = m_pages[0].GrItem->scale()*100;
+        qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = viewSizeList.size()-1;
-        while(viewSizeIdx > 0 && viewSizeList[viewSizeIdx] > scale)
+        while(viewSizeIdx > 0 && getZoomScale() > scale)
             viewSizeIdx--;
         readyForPaint();
         return;

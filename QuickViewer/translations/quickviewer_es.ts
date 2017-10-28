@@ -1936,6 +1936,11 @@
         <source>Loupe Tool</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Scroll with mouse cursor on zooming</source>
+        <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
