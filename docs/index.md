@@ -308,6 +308,9 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 |             | Touch Panel | Pinch Closer | at the center of the screen |
 |             | Mouse Wheel | Right Button + Downward scrolling | |
 |             | Mouse Wheel | Ctrl + Downward scrolling | |
+| Loupe       | Mouse | Left Button | Loupe Tool |
+| Loupe Zoom In | Mouse | Left Button + Upward scrolling | Loupe Tool |
+| Loupe Zoom Out | Mouse | Left Button + Downward scrolling | Loupe Tool |
 | Page Rotate | Keyboard | R Key | |
 | Rotate      | Touch Panel | Place two fingers on the screen and then rotate them | at the center of the screen |
 | Zoom/Rotate cancel | Touch Panel | Double tap with two fingers | at the center of the screen |
