@@ -163,6 +163,11 @@ private:
     bool m_scrollMode;
     bool m_pageBacking;
     bool m_loupeEnable;
+
+    // Loupe
+    QPoint m_loupeBasePos;
+    QRect m_sceneRect;
+    QPoint m_scrollBaseValues;
 };
 
 

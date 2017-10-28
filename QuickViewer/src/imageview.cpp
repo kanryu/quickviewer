@@ -199,20 +199,23 @@ void ImageView::readyForPaint() {
     m_effectManager.prepareFinished();
 }
 
-static QPoint s_loupeBasePos;
-static QRect s_sceneRect;
+static bool s_lastLoupeMode;
 
 void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
 {
-    if(!m_loupeEnable)
-        s_sceneRect = sceneRect;
+    if(!m_loupeEnable) {
+        m_sceneRect = sceneRect;
+    }
+    if(m_loupeEnable && !s_lastLoupeMode) {
+        m_scrollBaseValues = QPoint(horizontalScrollBar()->value(), verticalScrollBar()->value());
+    }
+    s_lastLoupeMode = m_loupeEnable;
     // if Size of Image overs Size of View, use Image's size
     bool newMode = scrolled && (size().width() < sceneRect.width() || size().height() < sceneRect.height());
     if(newMode) {
         scene()->setSceneRect(QRect(QPoint(qMin(0, sceneRect.left()), 0), QSize(qMax(size().width(), sceneRect.width()), qMax(size().height(), sceneRect.height()))));
         if(m_loupeEnable) {
-//            qDebug() << "scene" << sceneRect;
-            s_loupeBasePos = mapFromGlobal(QCursor::pos());
+            m_loupeBasePos = mapFromGlobal(QCursor::pos());
             setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
             setDragMode(QGraphicsView::NoDrag);
@@ -247,8 +250,10 @@ void ImageView::scrollOnLoupeMode()
     // The scrolling of the enlarged image is completed by moving the cursor
     // at a distance of half the distance from the first clicked coordinate to the edge of the window
     QRectF L = sceneRect;
-    QRect  K = s_sceneRect;
-    QPoint S = s_loupeBasePos;
+    QRect  K = m_sceneRect;
+    QPoint V = m_scrollBaseValues;
+    K.moveTo(K.left()-V.x(), K.top()-V.y());
+    QPoint S = m_loupeBasePos;
     QPoint R((S.x()-K.left())*L.width()/K.width()+L.left(),
              (S.y()-K.top())*L.height()/K.height()+L.top());
     QPoint Q = R-S;
@@ -261,6 +266,7 @@ void ImageView::scrollOnLoupeMode()
         ? L.top() + (Q.y() - L.top()) * (2*cursorPos.y() - S.y()) / S.y()
         : L.bottom() - (L.bottom() - Q.y()) * (S.y() + height() - 2*cursorPos.y()) / (height() - S.y())
     );
+//    qDebug() << "S" << S << "K" << K << "L" << L << "R" << R << "scroolBase" << m_scrollBaseValues;
 }
 
 void ImageView::scrollOnZoomMode()
@@ -466,13 +472,15 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
     }
     if(qApp->LoupeTool()) {
         setCursor(m_loupeCursor);
-        if(m_loupeEnable)
-            scrollOnLoupeMode();
-    } else if(qApp->ScrollWithCursorWhenZooming() && (scene()->sceneRect().width() > width() || scene()->sceneRect().height() > height())) {
-        scrollOnZoomMode();
     } else {
         setCursor(QCursor(Qt::ArrowCursor));
     }
+    if(m_loupeEnable)
+        scrollOnLoupeMode();
+    else if(qApp->ScrollWithCursorWhenZooming() && (scene()->sceneRect().width() > width() || scene()->sceneRect().height() > height())) {
+        scrollOnZoomMode();
+    }
+
 //    QApplication::setOverrideCursor(Qt::ArrowCursor);
     if(e->pos().y() < hover_border) {
         if(m_hoverState != Qt::AnchorTop)
@@ -494,8 +502,7 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
 void ImageView::wheelEvent(QWheelEvent *event)
 {
     if(event->buttons() & Qt::RightButton
-       || qApp->keyboardModifiers() & Qt::ControlModifier
-       || qApp->ScrollWithCursorWhenZooming())
+       || qApp->keyboardModifiers() & Qt::ControlModifier)
         return;
     if(m_loupeEnable) {
         if(event->delta() < 0)
@@ -505,6 +512,8 @@ void ImageView::wheelEvent(QWheelEvent *event)
         readyForPaint();
         return;
     }
+    if(qApp->ScrollWithCursorWhenZooming())
+        return;
     QGraphicsView::wheelEvent(event);
 }
 
