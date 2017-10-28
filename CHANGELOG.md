@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## v1.0.4 (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+
+scrolling with mouse, start of zoom position of Loupe Tool, bugfixed
+
+- Reflect on the status bar when the display magnification is changed
+- add Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar
+- The image will be magnified exactly at the position of the lens of Loupe Tool
+- bugfixed: In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole
+
+- other commits
+    - Temporarily switch to GPU Bilinear when using loupe when CPU Resizing (Sat Oct 28 15:20:41 2017 +0900) [1a94117](https://github.com/kanryu/quickviewer/commit/1a94117056217db41816a918bbbaa5958aa02767)
+    - Update index-ja.md (Sat Oct 28 14:46:15 2017 +0900) [3a0e1b4](https://github.com/kanryu/quickviewer/commit/3a0e1b4b85a568ecfa2cf70b0a5533079fd9bf4f)
+    - Update index.md (Sat Oct 28 14:43:13 2017 +0900) [9c84c80](https://github.com/kanryu/quickviewer/commit/9c84c80bea6e9af97e2af2b82c98c91c296fd36a)
+    - Loupe tool under zooming (Sat Oct 28 14:26:25 2017 +0900) [29faca3](https://github.com/kanryu/quickviewer/commit/29faca31e6b38d8ed0a36a3bce11a374c871d947)
+    - add Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar (Sat Oct 28 02:37:11 2017 +0900) [45972cc](https://github.com/kanryu/quickviewer/commit/45972cc6caa919558b3e28c4d3e0eddebfa679f0)
+    - The image will be magnified exactly at the position of the lens of the magnifying glass (Sat Oct 28 01:49:10 2017 +0900) [2342077](https://github.com/kanryu/quickviewer/commit/234207735be687113ba0a3d135e72a30bc82784a)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Oct 27 09:13:40 2017 +0900) [74fed44](https://github.com/kanryu/quickviewer/commit/74fed442c6dd2eecad2d12ecb361a18cf49ec6d8)
+    - bugfixed: When registering an existing shortcut to another action, the new shortcut sometimes disappears depending on the order of rewriting from the shortcut information in Defaults (Fri Oct 27 09:13:15 2017 +0900) [1f454f2](https://github.com/kanryu/quickviewer/commit/1f454f2ad222e719222a74e2e90795353739a9f5)
+    - Update index-ja.md (Thu Oct 26 19:27:39 2017 +0900) [19bc30a](https://github.com/kanryu/quickviewer/commit/19bc30a3e60a55edb6fca17a633a3db74fac2328)
+    - Update index.md (Thu Oct 26 19:19:38 2017 +0900) [818c05f](https://github.com/kanryu/quickviewer/commit/818c05fd421600bb3bb47547b865dcabec67db7e)
+    - changelog (Thu Oct 26 17:04:53 2017 +0900) [ce73a34](https://github.com/kanryu/quickviewer/commit/ce73a34b604e2cbb1963a877e580e63037b6f364)
+
 ## v1.0.3 (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
 
 add loupe, animation image with scaling, 2 bugfixed
