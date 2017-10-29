@@ -256,8 +256,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
 //        QElapsedTimer et_supportsAnimation; et_supportsAnimation.start();
         if(reader.supportsAnimation()) {
             QvMovie movie = QvMovie(bytes, aformat.toUtf8());
-            ImageContent ic;
-            ic.Path = path;
+            ImageContent ic(path, bytes.length());
             ic.Movie = movie;
             ic.BaseSize = ic.ImportSize = reader.size();
             return ic;
@@ -296,7 +295,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
                 QThread::currentThread()->usleep(40000);
             }
             src = QZimg::toPackedImage(tmp);
-            if(src.isNull()) return ImageContent();
+            if(src.isNull()) return ImageContent(path, bytes.length());
         }
 
         // parsing JPEG EXIF
@@ -328,7 +327,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
                         src2 = src.copy(QRect(0, 0, src.width() >> 2 << 2, src.height() >> 1 << 1));
                         if(!src2.isNull()) break;
                         qDebug() << "[2]" << path << src2 << count;
-                        if(count >= 100) return ImageContent();
+                        if(count >= 100) return ImageContent(path, bytes.length());
                         QThread::currentThread()->usleep(40000);
                     }
                     src.swap(src2);
@@ -350,7 +349,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
                             QThread::currentThread()->usleep(1000);
                             continue;
                         }
-                        return ImageContent();
+                        return ImageContent(path, bytes.length());
                     } while(1);
                     src.swap(src2);
                 }
