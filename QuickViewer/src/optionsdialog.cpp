@@ -81,17 +81,21 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // Caption Formats
     ui->labelFormatUsage->setText(m_imageString.getFormatUsage());
+
     ui->lineEditWindowTitleUserStyle->setText(qApp->TitleTextFormat());
-    if(qApp->TitleTextFormat() == QV_WINDOWTITLE_FORMAT)
+    ui->labelWindowTitleSample->setText(m_imageString.formatString(qApp->TitleTextFormat()));
+    if(qApp->TitleTextFormat() == QV_WINDOWTITLE_FORMAT) {
         ui->radioButtonWindowTitleNormalStyle->setChecked(true);
-    else if(qApp->TitleTextFormat() == IRFANVIEW_WINDOWTITLE_FORMAT)
+    } else if(qApp->TitleTextFormat() == IRFANVIEW_WINDOWTITLE_FORMAT) {
         ui->radioButtonWindowTitleIrfanViewStyle->setChecked(true);
-    else
+    } else {
         ui->radioButtonWindowTitleUserDefined->setChecked(true);
+    }
     if(!ui->radioButtonWindowTitleUserDefined->isChecked())
         ui->lineEditWindowTitleUserStyle->setEnabled(false);
 
     ui->lineEditStatusBarUserStyle->setText(qApp->StatusTextFormat());
+    ui->labelStatusBarSample->setText(m_imageString.formatString(qApp->StatusTextFormat()));
     if(qApp->StatusTextFormat() == QV_STATUSBAR_FORMAT)
         ui->radioButtonStatusBarNormalStyle->setChecked(true);
     else if(qApp->StatusTextFormat() == IRFANVIEW_STATUSBAR_FORMAT)
@@ -100,9 +104,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         ui->radioButtonStatusBarUserDefined->setChecked(true);
     if(!ui->radioButtonStatusBarUserDefined->isChecked())
         ui->lineEditStatusBarUserStyle->setEnabled(false);
-
-    ui->labelStatusBarSample->setText(m_imageString.formatString("%p (%n)[%s] %f %2 | %p [%s] %f"));
-    ui->labelWindowTitleSample->setText(m_imageString.formatString("%V"));
 }
 
 OptionsDialog::~OptionsDialog()
