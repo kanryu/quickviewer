@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>Prev</source>
-        <translation>Adelante</translation>
+        <translation>Previo</translation>
     </message>
     <message>
         <source>Next</source>
@@ -45,7 +45,7 @@
     </message>
     <message>
         <source>&amp;CloseWindow</source>
-        <translation>&amp;Cierra Window</translation>
+        <translation>&amp;Cierra la ventana</translation>
     </message>
     <message>
         <source>Input Search words and Press Enter-key</source>
@@ -70,15 +70,15 @@
     </message>
     <message>
         <source>CatalogDisplay</source>
-        <translation>Visualización de ctálogo</translation>
+        <translation>Visualización de catalogo</translation>
     </message>
     <message>
         <source>switch display format</source>
-        <translation>Cambio de manera de visualización</translation>
+        <translation>Cambio la manera de visualización</translation>
     </message>
     <message>
         <source>catalog management</source>
-        <translation>Administración de catálogo</translation>
+        <translation>Manego de Catalogo</translation>
     </message>
     <message>
         <source>Catalog management</source>
@@ -86,28 +86,28 @@
     </message>
     <message>
         <source>List</source>
-        <translation>Echar una mirada</translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <source>DisplaySide-By-Side</source>
-        <translation>Colocando visualiza</translation>
+        <translation>Mirar Lado-a-Lado</translation>
     </message>
     <message>
         <source>IconOnly</source>
-        <translation>Solo icono</translation>
+        <translation>Solo Iconos</translation>
     </message>
     <message>
         <source>Switch display format</source>
-        <translation>Cambio de manera de visualización</translation>
+        <translation>Cambio la manera de visualización</translation>
     </message>
     <message>
         <source>CatalogManagement</source>
-        <translation>Administración de catálogo</translation>
+        <translation>Manejar Catalogo</translation>
     </message>
     <message>
         <source>Remove (Options) from book title</source>
         <extracomment>Ability to remove and display (parenthesized) text from Volume title in the catalog</extracomment>
-        <translation>Quita (Options) a título de libro</translation>
+        <translation>Remover (Options) titulo de libro</translation>
     </message>
     <message>
         <source>Field the search term and press enter key to search by the title.</source>
@@ -117,7 +117,7 @@
     <message>
         <source>Drop picture folder here and create a catalog.</source>
         <comment>Status bar text briefly explaining how to use CatalogWindow</comment>
-        <translation>Traslada el archivo de imagen y hace los catálogos.</translation>
+        <translation>Suelta una carpeta para crear un catalogo.</translation>
     </message>
     <message>
         <source>(%1/%2) volume display.</source>
@@ -129,7 +129,7 @@
     <name>DatabaseSettingDialog</name>
     <message>
         <source>Create new Catalog</source>
-        <translation>Catálogo nuevo</translation>
+        <translation>Crear un nuevo Catalogo</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>&amp;SelectFolder</source>
-        <translation>&amp;Selección de archivo</translation>
+        <translation>&amp;Selecciónar carpeta</translation>
     </message>
     <message>
         <source>Select a folder which contains Images or Archives</source>
@@ -151,19 +151,19 @@
     <message>
         <source>Each catalog can be created including Subfolders and/or Archives</source>
         <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
-        <translation>Cada catálogo puede incluir subcarpeta o carpeta</translation>
+        <translation>Cada catálogo puede incluir multiple subcarpetas</translation>
     </message>
     <message>
         <source>Please select a folder containing Images or Archives</source>
         <comment>Caption of FolderSelectDialog urging selection of folders containing Images and Archives</comment>
-        <translation>Selecciona un archivo que incluido unas Imágenes o carpetas</translation>
+        <translation>Por favor selecciona una carpeta que incluya imágenes o archivos</translation>
     </message>
 </context>
 <context>
     <name>ExifDialog</name>
     <message>
         <source>Exif Information</source>
-        <translation>Exif Información</translation>
+        <translation>Información Exif</translation>
     </message>
     <message>
         <source>ImageDescription</source>
@@ -300,12 +300,12 @@
     <message>
         <source>Flash did not fire</source>
         <comment>JPEG EXIF Flash setting value (0x0)</comment>
-        <translation type="unfinished">Sin flash</translation>
+        <translation>Sin flash</translation>
     </message>
     <message>
         <source>Flash fired</source>
         <comment>JPEG EXIF Flash setting value (0x1)</comment>
-        <translation type="unfinished">Tiene flash</translation>
+        <translation>Tiene flash</translation>
     </message>
     <message>
         <source>Strobe return light not detected</source>
@@ -410,42 +410,42 @@
     <message>
         <source>Horizontal (normal)</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(0 or 1)</comment>
-        <translation>Horizontalidad (norma)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Mirror horizontal</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(2)</comment>
-        <translation>Inversión</translation>
+        <translation>invertida Horrizontalmente</translation>
     </message>
     <message>
         <source>Rotate 180</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(3)</comment>
-        <translation>Rotación 180</translation>
+        <translation>Rotada a 180°</translation>
     </message>
     <message>
         <source>Mirror vertical</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(4)</comment>
-        <translation>Vuelva a la derecha y izquierda</translation>
+        <translation>Invertida Verticalmente</translation>
     </message>
     <message>
         <source>Mirror horizontal and rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(5)</comment>
-        <translation>Vuelva arriba y abajo, y rota izquierda a derecha de 270 grados</translation>
+        <translation>Inventida horizontalmente y rotada 270° CW</translation>
     </message>
     <message>
         <source>Rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(6)</comment>
-        <translation>Rota izquierda a derecha de 90 grados</translation>
+        <translation>Rotada a 90° CW</translation>
     </message>
     <message>
         <source>Mirror horizontal and rotate 90 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(7)</comment>
-        <translation>Vuelva arriba y abajo, y rota izquierda a derecha de 90 grados</translation>
+        <translation>Invertida Horizontalmente y rotada 90° CW</translation>
     </message>
     <message>
         <source>Rotate 270 CW</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(8)</comment>
-        <translation>Rota izquierda a derecha de 270 grados</translation>
+        <translation>Rotada a 270° CW</translation>
     </message>
     <message>
         <source>Exif is not included.</source>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <source>Orientation of camera</source>
-        <translation>Dirección de cámara</translation>
+        <translation>Orientacion de cámara</translation>
     </message>
     <message>
         <source>Copy to clipboard</source>
@@ -590,7 +590,7 @@
     <message>
         <source>Truevision Graphics Adapter Format Image</source>
         <comment>description of File format on Explorer(.tga)</comment>
-        <translation type="unfinished">Truevision Graphics Adapter Formatear Imagen</translation>
+        <translation>Truevision Graphics Adapter Formatear Imagen</translation>
     </message>
     <message>
         <source>Animated PNG Format Image</source>
@@ -630,22 +630,22 @@
     <message>
         <source>Canon Raw Format</source>
         <comment>description of File format on Explorer(.cr2)</comment>
-        <translation>Canon Raw Formatear Imagen</translation>
+        <translation>Canon Raw Format</translation>
     </message>
     <message>
         <source>Adobe Digital Negative Format</source>
         <comment>description of File format on Explorer(.dng)</comment>
-        <translation>Adobe Digital Negative Formatear Imagen</translation>
+        <translation>Adobe Digital Negative Format</translation>
     </message>
     <message>
         <source>Nicon Raw Format</source>
         <comment>description of File format on Explorer(.nef)</comment>
-        <translation>Nicon Raw Formatear Imagen</translation>
+        <translation>Nicon Raw Format</translation>
     </message>
     <message>
         <source>Sony Raw Format</source>
         <comment>description of File format on Explorer(.arw)</comment>
-        <translation>Sony Raw Formatear Imagen</translation>
+        <translation>Sony Raw Format</translation>
     </message>
     <message>
         <source>&amp;View with QuickViewer</source>
@@ -654,17 +654,17 @@
     </message>
     <message>
         <source>Associate files with QuickViewer</source>
-        <translation>Asociaciones de archivos a QuickViewer</translation>
+        <translation>Asociar archivos con QuickViewer</translation>
     </message>
     <message>
         <source>AllValid</source>
         <extracomment>Button to turn all check boxes on</extracomment>
-        <translation>Todo encendido</translation>
+        <translation>Activar todas las casillas de verificacion</translation>
     </message>
     <message>
         <source>AllInvalid</source>
         <extracomment>Button to turn off all check box</extracomment>
-        <translation>Todo apagado</translation>
+        <translation>Desactivar todas las casillas de verificacion</translation>
     </message>
     <message>
         <source>WebP Image (*.webp)</source>
@@ -754,7 +754,7 @@
     <message>
         <source>UpDate</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
-        <translation>día y hora reconducción</translation>
+        <translation>Dia y hora de construccion</translation>
     </message>
 </context>
 <context>
@@ -775,12 +775,12 @@
     <message>
         <source>Move to Home</source>
         <extracomment>Button for returning to QuickViewer&apos;s home folder</extracomment>
-        <translation>Vuelve al inicio</translation>
+        <translation>Volver al inicio</translation>
     </message>
     <message>
         <source>Prev</source>
         <extracomment>Button for returning to the previous folder from the currently displayed folder</extracomment>
-        <translation>Adelante</translation>
+        <translation>Previo</translation>
     </message>
     <message>
         <source>Next</source>
@@ -794,7 +794,7 @@
     </message>
     <message>
         <source>Reload</source>
-        <translation>Reconducción</translation>
+        <translation>Recargar</translation>
     </message>
     <message>
         <source>Name</source>
@@ -807,7 +807,7 @@
     </message>
     <message>
         <source>ToParent</source>
-        <translation>Archivo arriba</translation>
+        <translation>Navegar una carpeta hacia arriba</translation>
     </message>
     <message>
         <source>Others</source>
@@ -836,48 +836,48 @@
     </message>
     <message>
         <source>FolderList</source>
-        <translation>Echar una mirada</translation>
+        <translation>Lista de Carpetas</translation>
     </message>
     <message>
         <source>CurrentFolder</source>
         <extracomment>Label indicating that the current folder PATH is being displayed</extracomment>
-        <translation>Archivo actualidad</translation>
+        <translation>Carpeta Presente</translation>
     </message>
     <message>
         <source>Move to Home Folder</source>
-        <translation>Vuelve al inicio</translation>
+        <translation>Ir a Carpeta de Inicio</translation>
     </message>
     <message>
         <source>TopFolder</source>
         <extracomment>Button for moving from the currently displayed folder to the next higher folder</extracomment>
-        <translation>Archivo arriba</translation>
+        <translation>Navegar una carpeta hacia arriba</translation>
     </message>
     <message>
         <source>UpDate</source>
         <extracomment>Button for updating the currently displayed folder information</extracomment>
-        <translation>Reconducción</translation>
+        <translation>Refrescar</translation>
     </message>
     <message>
         <source>Change the sorting method</source>
         <extracomment>Tooltip for pulldown to change folder sorting method</extracomment>
-        <translation>Cambio de manera de colocar</translation>
+        <translation>Cambia la manera de clasificacion</translation>
     </message>
     <message>
         <source>Sort by Name</source>
-        <translation>Orden de nombre</translation>
+        <translation>Ordena por Nombre</translation>
     </message>
     <message>
         <source>Sorted by UpDate</source>
-        <translation>Orden de día y hora de reconducción</translation>
+        <translation>Ordena por Fecha</translation>
     </message>
     <message>
         <source>Set this folder to Home folder</source>
-        <translation>Vuelve a carpeta de inicio</translation>
+        <translation>Seleccionar esta carpeta para carpeta de Inicio</translation>
     </message>
     <message>
         <source>Not found any Folders or Archives</source>
         <comment>Display when there is no display item in Folder Window</comment>
-        <translation>No archivos o carpetas</translation>
+        <translation>No se pudo encontrar ninguna Carpeta o Archivo</translation>
     </message>
 </context>
 <context>
@@ -959,7 +959,7 @@
     <message>
         <source>KeyConfig</source>
         <extracomment>Title of the dialog to customize the shortcut keys</extracomment>
-        <translation>Ajuste Entrada de teclado</translation>
+        <translation>Configuracion de Teclado</translation>
     </message>
     <message>
         <source>Shortcut</source>
@@ -974,15 +974,15 @@
     <message>
         <source>Enter key sequence as text</source>
         <extracomment>Enter shortcut keys Gray text to display before inputting LineEdit</extracomment>
-        <translation>Escribe en este blanco en texto o aprieta el botón de registro</translation>
+        <translation>Entrar cualquier tecla como atajo o sequencia</translation>
     </message>
     <message>
         <source>Record</source>
-        <translation>Registro</translation>
+        <translation>Grabar</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation>RESET</translation>
+        <translation>Resetear</translation>
     </message>
     <message>
         <source>Command</source>
@@ -1022,12 +1022,12 @@
     <message>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
-        <translation>Escribir de teclado injusticia.</translation>
+        <translation>Tecla o secuencia invalida.</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
-        <translation>Compitiendo con otoro atajo teclado.</translation>
+        <translation type="unfinished">Tecla o secuencia puede tener conflictos con otra.</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
@@ -1042,12 +1042,12 @@
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation>Explicación</translation>
+        <translation>Descripción</translation>
     </message>
     <message>
         <source>CurrentShortcut</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation>Atajo actualidad</translation>
+        <translation>Atajo Presente</translation>
     </message>
     <message>
         <source>Add Sequence</source>
@@ -1124,7 +1124,7 @@
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Visualización</translation>
+        <translation>&amp;Ver</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -1133,7 +1133,7 @@
     <message>
         <source>E&amp;xit</source>
         <extracomment>End application</extracomment>
-        <translation>&amp;Salida</translation>
+        <translation>&amp;Salir</translation>
     </message>
     <message>
         <source>&amp;NextPage</source>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Fitting</source>
-        <translation>Agrandamiento o Reducción de imagen automático</translation>
+        <translation>&amp;Ajustar a tamano de ventana</translation>
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
@@ -1187,7 +1187,7 @@
     <message>
         <source>&amp;Open Image Folder</source>
         <extracomment>A menu for displaying a dialog for selecting an image to be displayed</extracomment>
-        <translation>&amp;Abierta Archivo de Imagen</translation>
+        <translation>&amp;Abrir Carpeta de Imagenes</translation>
     </message>
     <message>
         <source>&amp;Always open wide images as one view</source>
@@ -1209,7 +1209,7 @@
     <message>
         <source>&amp;Auto load last used</source>
         <extracomment>Opening the image automatically when opening the application the last time it was started</extracomment>
-        <translation>Restaurar el inicio al final de la última</translation>
+        <translation>&amp;Automaticamente cargar la ultimate usada</translation>
     </message>
     <message>
         <source>&amp;LastPage</source>
@@ -1237,12 +1237,12 @@
     <message>
         <source>Exif &amp;Information</source>
         <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
-        <translation>Exif &amp;Información</translation>
+        <translation>&amp;Información Exif</translation>
     </message>
     <message>
         <source>&amp;Key Config</source>
         <extracomment>Menu that displays a dialog for changing keyboard shortcuts</extracomment>
-        <translation>Ajuste escribir de teclado</translation>
+        <translation>Configuracion de &amp;Teclado</translation>
     </message>
     <message>
         <source>any folder or archive is not loaded.</source>
@@ -1261,7 +1261,7 @@
     <message>
         <source>N&amp;extVolume</source>
         <extracomment>Switch to the next Volume in the same folder as the currently displayed Volume button</extracomment>
-        <translation>&amp;Próximo volume</translation>
+        <translation>&amp;Próximo Volumen</translation>
     </message>
     <message>
         <source>P&amp;revVolume</source>
@@ -1270,7 +1270,7 @@
     </message>
     <message>
         <source>&amp;Navigation</source>
-        <translation>&amp;Mueve la página</translation>
+        <translation>&amp;Navegacion</translation>
     </message>
     <message>
         <source>Next only &amp;one page</source>
@@ -1303,12 +1303,12 @@
     <message>
         <source>&amp;Clear History</source>
         <extracomment>Menu for clearing the history of opening images</extracomment>
-        <translation>&amp;Borra el historial</translation>
+        <translation>&amp;Limpiar la historia</translation>
     </message>
     <message>
         <source>Stay On &amp;Top</source>
         <extracomment>When on it keeps the window always on top</extracomment>
-        <translation>Siemple indica este lado</translation>
+        <translation>&amp;Ventana Siempre Arriba</translation>
     </message>
     <message>
         <source>Confirmation</source>
@@ -1324,7 +1324,7 @@
     </message>
     <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
-        <translation>Visualiza/Oculta de Menú principal</translation>
+        <translation>&amp;Ver/Ocultar el Menu Principal</translation>
     </message>
     <message>
         <source>Are you sure you delete the image?</source>
@@ -1347,7 +1347,7 @@
     <message>
         <source>FastForward</source>
         <extracomment>Switch to 10 images in Volume button</extracomment>
-        <translation>Avance rápido</translation>
+        <translation>Rapido hacia Atras</translation>
     </message>
     <message>
         <source>FastBackward</source>
@@ -1357,7 +1357,7 @@
     <message>
         <source>&amp;Rotate</source>
         <extracomment>Button to rotate the currently displayed image 90 degrees clockwise</extracomment>
-        <translation>&amp;Rotación de imagen</translation>
+        <translation>&amp;Rotar</translation>
     </message>
     <message>
         <source>&amp;SlideShow</source>
@@ -1367,7 +1367,7 @@
     <message>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
-        <translation>importación de favoritos</translation>
+        <translation>Cargar Marcador</translation>
     </message>
     <message>
         <source>SaveBookmark</source>
@@ -1376,20 +1376,20 @@
     </message>
     <message>
         <source>ManageBookmarks</source>
-        <translation>Administración de favoritos</translation>
+        <translation>Manegar Marcadores</translation>
     </message>
     <message>
         <source>clearBookmarks</source>
         <extracomment>Button to delete all saved bookmarks</extracomment>
-        <translation>Borra todos los favoritos</translation>
+        <translation>Limpiar Marcadores</translation>
     </message>
     <message>
         <source>Bookmark Saved.</source>
-        <translation>Se ha guardado el favoritos</translation>
+        <translation>Marcado salvado.</translation>
     </message>
     <message>
         <source>ContextMenu</source>
-        <translation>contexto munú</translation>
+        <translation>Menu de Contexto</translation>
     </message>
     <message>
         <source>Bi&amp;cubic interpolation (slow)</source>
@@ -1418,20 +1418,20 @@
     <message>
         <source>Zoom&amp;In</source>
         <extracomment>Button for enlarging the currently displayed image</extracomment>
-        <translation>Visualización agrandada</translation>
+        <translation>&amp;Ampliar</translation>
     </message>
     <message>
         <source>ZoomIn</source>
-        <translation>Visualización agrandada</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
         <source>Zoom&amp;Out</source>
         <extracomment>Reduce the image currently displayed button</extracomment>
-        <translation>Visualización reducido</translation>
+        <translation>&amp;Reduccion</translation>
     </message>
     <message>
         <source>ZoomOut</source>
-        <translation>Visualización reducido</translation>
+        <translation>Reduccion</translation>
     </message>
     <message>
         <source>Show&amp;Catalog</source>
@@ -1450,12 +1450,12 @@
     <message>
         <source>Remove (Options) from book title when searching</source>
         <extracomment>Ability to search with the title removed (parenthesized) removed from the title of Volume in the catalog</extracomment>
-        <translation>Quita (opciónes) a la título de libro cuando busca</translation>
+        <translation>Remover (paréntesis) de el titulo de archivo en busqueda</translation>
     </message>
     <message>
         <source>CatalogViewIcon</source>
         <extracomment>For Volume in the catalog, a mode to list up icons and titles vertically</extracomment>
-        <translation>Visualiza de lado a lado</translation>
+        <translation>Ver en Iconos</translation>
     </message>
     <message>
         <source>CatalogViewIconNoText</source>
@@ -1465,12 +1465,12 @@
     <message>
         <source>CatalogViewList</source>
         <extracomment>Mode to list volumes in the catalog with icons and titles arranged side by side</extracomment>
-        <translation>Echar una mirada</translation>
+        <translation>Ver en Lista</translation>
     </message>
     <message>
         <source>ShowTagBar</source>
         <extracomment>Squeeze the Volume of the catalog Function to erase the bar displaying the tag button</extracomment>
-        <translation>Visualiza la barra de búsqueda de etiqueta</translation>
+        <translation>Mostrar Etiquetas</translation>
     </message>
     <message>
         <source>&amp;Copy Image to clipboard</source>
@@ -1485,7 +1485,7 @@
     <message>
         <source>Copy File to clipboard</source>
         <extracomment>Menu to copy currently displayed image file on Explorer</extracomment>
-        <translation>Copia archivo en tablero</translation>
+        <translation>Copiar Archivo en tablero</translation>
     </message>
     <message>
         <source>Run your &amp;mailer with an attachment</source>
@@ -1532,7 +1532,7 @@
     </message>
     <message>
         <source>F&amp;older</source>
-        <translation>Archivo</translation>
+        <translation>&amp;Carpeta</translation>
     </message>
     <message>
         <source>Open volume with progress</source>
@@ -1571,7 +1571,7 @@
     <message>
         <source>Show texts on Fullscreen</source>
         <extracomment>Signage that displays the file name of the image at full screen display</extracomment>
-        <translation>Mostrar textos en pantalla completa</translation>
+        <translation>Mostrar ruta de archivo en pantalla completa</translation>
     </message>
     <message>
         <source>Confirm to move Image to &amp;Recycle Bin</source>
@@ -1596,7 +1596,7 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation>Todos los archivos( *.*);;Imágenes (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</translation>
+        <translation>Todos( *.);;Imágenes (.jpg *.jpeg *.png *.tif *.tiff *.ico *.webp *.gif);;Archivados( *.zip *.7z *.rar *.cbz)</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
@@ -1626,22 +1626,22 @@
     <message>
         <source>&amp;NextImage</source>
         <extracomment>Switch to the next image button</extracomment>
-        <translation>&amp;Próxima imagen</translation>
+        <translation>Imagen Pr&amp;óxima</translation>
     </message>
     <message>
         <source>&amp;PrevImage</source>
         <extracomment>Switch to previous image button</extracomment>
-        <translation>&amp;Imagen Anterior</translation>
+        <translation>Imagen Pr&amp;evia</translation>
     </message>
     <message>
         <source>2page &amp;Spread</source>
         <extracomment>Arranging two images side by side like when opening a book</extracomment>
-        <translation>Vi&amp;sta de dos páginas</translation>
+        <translation>&amp;Pagina Doble</translation>
     </message>
     <message>
         <source>Bound on the &amp;right side</source>
         <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
-        <translation>Limitar en el lib&amp;ro de lado derecho</translation>
+        <translation>Doble Pagina de &amp;Der. a Izq.</translation>
     </message>
     <message>
         <source>&amp;Always display one landscape image even in 2 page display.</source>
@@ -1651,7 +1651,7 @@
     <message>
         <source>Open in &amp;Explorer</source>
         <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
-        <translation>Abre &amp;Explorer</translation>
+        <translation>Abrir en &amp;Explorador</translation>
     </message>
     <message>
         <source>Open browser to check &amp;Version</source>
@@ -1666,7 +1666,7 @@
     <message>
         <source>Prev o&amp;ne page only</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation>Vuelve solo &amp;Una Página</translation>
+        <translation>Previa (&amp;Una Pagina)</translation>
     </message>
     <message>
         <source>Always open &amp;first images even withas only one page</source>
@@ -1676,17 +1676,17 @@
     <message>
         <source>&amp;Nearest Neighbor interpolation (fast but coarse)</source>
         <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
-        <translation>&amp;Último vecino Interpolación (alta velocidad pero tosco)</translation>
+        <translation>&amp;Nearest Neighbor Interpolación (Rapido pero malo)</translation>
     </message>
     <message>
         <source>&amp;Restore window display at next startup</source>
         <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
-        <translation>&amp;Restaura Window State el próximo arranque</translation>
+        <translation>&amp;Recordar posicion de la ventana</translation>
     </message>
     <message>
         <source>AddBookmark</source>
         <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
-        <translation>Añadir a favoritos</translation>
+        <translation>Añadir a Marcados</translation>
     </message>
     <message>
         <source>Display Home&amp;page on browser</source>
@@ -1696,12 +1696,12 @@
     <message>
         <source>IconViewOnly</source>
         <extracomment>Mode to list Volume in the catalog with only the icons side by side</extracomment>
-        <translation>Solo icono</translation>
+        <translation>Ver en Iconos</translation>
     </message>
     <message>
         <source>Activate your e-mail software with an attachment</source>
         <extracomment>Menu to attach the currently displayed image to the mail software and start up</extracomment>
-        <translation>Adjunta este archivo y inicia el correo electrónico</translation>
+        <translation>Enviar esta Imagen por Email</translation>
     </message>
     <message>
         <source>Larger &amp;grid to display long title</source>
@@ -1711,27 +1711,27 @@
     <message>
         <source>Bicubic interpolation by CPU (quality)</source>
         <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
-        <translation>CPU Interpolación bicúbica</translation>
+        <translation>Bicubic interpolation por CPU (quality)</translation>
     </message>
     <message>
         <source>Open with Subfolders Image</source>
         <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
-        <translation>También abre la imágen de subarchivo</translation>
+        <translation>Abre con Subcarpetas</translation>
     </message>
     <message>
         <source>Previously opened page in Preview</source>
         <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
-        <translation>Abre la página que abrió antes</translation>
+        <translation>Pagina previante en Presentacion</translation>
     </message>
     <message>
         <source>Show how far you read</source>
         <extracomment>Ability to display read information read in the middle in FolderWindow</extracomment>
-        <translation>Visualiza el progreso de lectura</translation>
+        <translation>Ver que tan lejo has leido</translation>
     </message>
     <message>
         <source>Rename</source>
         <extracomment>A menu for changing the file name of the currently displayed image</extracomment>
-        <translation>Cambiar el nombre de la imagen</translation>
+        <translation>Renombrar</translation>
     </message>
     <message>
         <source>Full screen on startup</source>
@@ -1741,22 +1741,22 @@
     <message>
         <source>Any folder or archive is not loaded.</source>
         <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
-        <translation>algún archivos o carpetas no se cargan.</translation>
+        <translation>Ninguna carpeta o archivo esta cargado.</translation>
     </message>
     <message>
         <source>Image file not found. Can&apos;t be opened</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation>No pude abrir. ¿No hay nada imagens?</translation>
+        <translation>No se pudo abrir. ¿No hay imagenes?</translation>
     </message>
     <message>
         <source>Image file was not found. Can&apos;t be opened.</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation>No pude abrir. ¿No hay nada imagens?</translation>
+        <translation>No se pudo abrir. ¿No hay imagenes?</translation>
     </message>
     <message>
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
-        <translation>Abre una imagen o carpeta</translation>
+        <translation>Seleccione un archivo</translation>
     </message>
     <message>
         <source>Do you really want to hide the main menu?</source>
@@ -1776,101 +1776,101 @@
     <message>
         <source>&amp;Always display one landscape image even in 2 page display</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation>&amp;Imágenes amplia siempre abiertos como una vista</translation>
+        <translation>&amp;Solo demuestre una pagina Estrecha en Doble Pagina</translation>
     </message>
     <message>
         <source>Show Status&amp;Bar</source>
-        <translation>Visualiza la &amp;barra de estatus</translation>
+        <translation>Ver Bara de &amp;Estado</translation>
     </message>
     <message>
         <source>Show &amp;PageBar</source>
-        <translation>Visualiza la barra de &amp;página</translation>
+        <translation>Ver Bara de &amp;Pagina</translation>
     </message>
     <message>
         <source>Check &amp;version in browser</source>
         <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation>Abre su navegador y comprueba su &amp;versión</translation>
+        <translation>Ver si ahi una nueva &amp;version en el Internet</translation>
     </message>
     <message>
         <source>P&amp;rev Volume</source>
         <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
-        <translation>Volume anterio&amp;r</translation>
+        <translation>Volumen P&amp;revio</translation>
     </message>
     <message>
         <source>Next &amp;one page only</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation>Avanza s&amp;olo &amp;Una Página</translation>
+        <translation>Proximo (&amp;Una Pagina)</translation>
     </message>
     <message>
         <source>Show &amp;ToolBar</source>
-        <translation>Visualiza la barra de herramien&amp;tas</translation>
+        <translation>Ver la Bara de &amp;Herramientas</translation>
     </message>
     <message>
         <source>Show &amp;MenuBar</source>
-        <translation>Visualiza barra de &amp;menú</translation>
+        <translation>Ver la Bara de &amp;Menu</translation>
     </message>
     <message>
         <source>&amp;Copy image to clipboard</source>
         <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
-        <translation>&amp;Copia imagen en tablero</translation>
+        <translation>&amp;Copia la imagen a el portapapeles</translation>
     </message>
     <message>
         <source>Move image to &amp;Recycle Bin</source>
         <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
-        <translation>Coloca la imagen en la basu&amp;ra</translation>
+        <translation>Mover Imagen hacia &amp;Basura</translation>
     </message>
     <message>
         <source>&amp;Slideshow</source>
         <extracomment>Button to start displaying slideshow</extracomment>
-        <translation>Presentación de diapositiva&amp;s</translation>
+        <translation>&amp;Presentacion de Imagenes</translation>
     </message>
     <message>
         <source>Display Home&amp;page in browser</source>
         <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation>Visualiza la &amp;página de Internet en el navegador</translation>
+        <translation>Ver la &amp;pagina de QuickViewer en el internet</translation>
     </message>
     <message>
         <source>Show &amp;Catalog</source>
         <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
-        <translation>Visualiza el &amp;catálogo</translation>
+        <translation>Ver el &amp;Catalogo</translation>
     </message>
     <message>
         <source>Show Catalog</source>
-        <translation>Visualiza el catálogo</translation>
+        <translation>Ver el Catalogo</translation>
     </message>
     <message>
         <source>Show &amp;Folder</source>
         <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
-        <translation>Visualiza un archivo(&amp;F)</translation>
+        <translation>Ver &amp;Carpeta</translation>
     </message>
     <message>
         <source>CPU Bicubic after GPU Bilinear (standard)</source>
         <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
-        <translation>CPU Bicúbica después GPU Bilineal(estándar)</translation>
+        <translation>CPU Bicúbica después de GPU Bilineal (estándar)</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
         <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
-        <translation>Ajuste&amp;s</translation>
+        <translation>&amp;Configuracion</translation>
     </message>
     <message>
         <source>Fullscreen on startup</source>
         <extracomment>Ability to always launch applications in full screen</extracomment>
-        <translation>Pantalla completa en la siguiente ejecución</translation>
+        <translation>Pantalla completa al iniciar</translation>
     </message>
     <message>
         <source>Confirm moving image to &amp;Recycle Bin</source>
         <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
-        <translation>Confirmar para mover la imagen a la Papelera de &amp;reciclaje</translation>
+        <translation>Ver una advertencia antes de mandar a &amp;Borrar</translation>
     </message>
     <message>
         <source>Image Associations (requires Admin)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
-        <translation>Asociaciones de imágenes (requieren Admin)</translation>
+        <translation>Asociaciones de imágenes (requiere Administrador)</translation>
     </message>
     <message>
         <source>&amp;Mouse Config</source>
-        <translation>Configuración del ratón(&amp;M)</translation>
+        <translation>Configurar el &amp;Mouse</translation>
     </message>
     <message>
         <source>Delete the image</source>
@@ -1879,17 +1879,17 @@
     <message>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
-        <translation>Comprobación</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation>¿Tira esta imagen a la basura? ¿Es verdad?</translation>
+        <translation>¿Tirar esta imagen a la basura?</translation>
     </message>
     <message>
         <source>Confirmation</source>
         <comment>Confirm deleting image file on MessageBox title</comment>
-        <translation>Comprobación</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this image?</source>
@@ -1973,22 +1973,22 @@
     <message>
         <source>&amp;AddNew</source>
         <extracomment>Button to add a new catalog</extracomment>
-        <translation>&amp;Nuevo</translation>
+        <translation>&amp;Anadir</translation>
     </message>
     <message>
         <source>UpdateDatabase</source>
         <extracomment>Button for updating the contents of registered catalog</extracomment>
-        <translation>Actuakización</translation>
+        <translation>Actualizar Base de datos</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
         <extracomment>Button to delete information of registered catalog</extracomment>
-        <translation>&amp;Eliminación</translation>
+        <translation>&amp;Borrar</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
         <extracomment>Button to edit information on registered catalog</extracomment>
-        <translation>&amp;Redacción</translation>
+        <translation>&amp;Editar</translation>
     </message>
     <message>
         <source>Manage all Catalogs</source>
@@ -1997,12 +1997,12 @@
     </message>
     <message>
         <source>DeleteAll</source>
-        <translation>Elimina todo</translation>
+        <translation>Eliminar Todos</translation>
     </message>
     <message>
         <source>UpdateAll</source>
         <extracomment>登録済みのカタログの内容を更新するボタン</extracomment>
-        <translation>Actualiza todo</translation>
+        <translation>Actualizar Todos</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2061,17 +2061,17 @@
     <message>
         <source>Path</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation>Archivo</translation>
+        <translation>Ruta</translation>
     </message>
     <message>
         <source>Start Work</source>
         <comment>Button to start catalog creation for specified folder</comment>
-        <translation>Comienza el tratamiento</translation>
+        <translation>Crear Catalogo</translation>
     </message>
     <message>
         <source>Cancel Work</source>
         <comment>Button to cancel the catalog being generated</comment>
-        <translation>Cancela el tratamiento</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>soon</source>
@@ -2086,7 +2086,7 @@
     <message>
         <source>Successed!</source>
         <comment>Title of message box when catalog generation finished successfully</comment>
-        <translation>¡Tuvo éxito!</translation>
+        <translation>¡Fue Exitoso!</translation>
     </message>
     <message>
         <source>Creating Catalog Finished</source>
@@ -2096,7 +2096,7 @@
     <message>
         <source>Cancelled!</source>
         <comment>Title of message box when catalog generation was canceled</comment>
-        <translation>Ha cancelado</translation>
+        <translation>Ha Cancelado!</translation>
     </message>
     <message>
         <source>Catalog Create Cancelled</source>
@@ -2111,32 +2111,32 @@
     <message>
         <source>All Catalogs</source>
         <extracomment>Name of the frame in which buttons for operating all catalogs are arranged</extracomment>
-        <translation>Todos los catálogos</translation>
+        <translation>Todos los Catálogos</translation>
     </message>
     <message>
         <source>CreationTime</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation>día y hora de hacer</translation>
+        <translation>Tiempo de Creacion</translation>
     </message>
     <message>
         <source>approach to</source>
         <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
-        <translation>Pronto</translation>
+        <translation>ninguno</translation>
     </message>
     <message>
         <source>Edit Catalog</source>
         <comment>Button for editing contents of already created catalog</comment>
-        <translation>Redacta el catálogo</translation>
+        <translation>Editar el catálogo</translation>
     </message>
     <message>
         <source>Creating Catalog is Completed</source>
         <comment>Body of message box when catalog generation finished successfully</comment>
-        <translation>Crear un catálogo ha estado terminado</translation>
+        <translation>¡Se ha creado el catalogo con exito!</translation>
     </message>
     <message>
         <source>Creationing Catalog is Cancelled</source>
         <comment>Body of message box when catalog generation is canceled</comment>
-        <translation>Crear un catálogo ha estado cancelado</translation>
+        <translation>Se ha cancelado la creacion de catalogos</translation>
     </message>
 </context>
 <context>
@@ -2174,12 +2174,12 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation>Movimiento</translation>
+        <translation>Accion</translation>
     </message>
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
-        <translation>Explicación</translation>
+        <translation>Descripcion</translation>
     </message>
     <message>
         <source>Current Mouse Sequence</source>
@@ -2189,29 +2189,29 @@
     <message>
         <source>Mouse sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
-        <translation>Compitiendo con otoro atajo ratón.</translation>
+        <translation>Sequencia de mouse tiene conflictos con otros.</translation>
     </message>
     <message>
         <source>Mouse Config</source>
         <comment>Title of the dialog to customize the mouse sequences</comment>
-        <translation>Configuración del ratón</translation>
+        <translation>Configurar el Mouse</translation>
     </message>
     <message>
         <source>Command</source>
         <comment>caption of Command key</comment>
-        <translation type="unfinished">Movimiento</translation>
+        <translation>Movimiento</translation>
     </message>
     <message>
         <source>Option</source>
         <comment>caption of Option key</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opciones</translation>
     </message>
 </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>Programa una opción</translation>
+        <translation>Opciones</translation>
     </message>
     <message>
         <source>Increasing it makes NextVolume / PrevVolume more comfortable but increases memory consumption. 1 is appropriate for 32 bit version.</source>
@@ -2224,12 +2224,12 @@
     <message>
         <source>Number of volumes managed simultaneously (Restart is required)</source>
         <extracomment>Maximum number of volumes that an application simultaneously manages on memory</extracomment>
-        <translation>Número de volúmenes gestionados simultáneamente (Requiere reinicio)</translation>
+        <translation>Número de volúmenes manejados simultáneamente (Requiere reinicio)</translation>
     </message>
     <message>
         <source>SlideShow Delay (millisecond)</source>
         <extracomment>Wait time when images are automatically switched in slide show</extracomment>
-        <translation>Retardo de diapositivas (milisegundo)</translation>
+        <translation>Retrasar Presentacion de Imagenes (milisegundos)</translation>
     </message>
     <message>
         <source>BackgroundColor</source>
@@ -2242,7 +2242,7 @@
     <message>
         <source>Use checkered pattern</source>
         <extracomment>Function to make the background of the application a pattern of chessboard</extracomment>
-        <translation>Utilice un patrón a cuadros</translation>
+        <translation>Utilice un patrón de cuadros</translation>
     </message>
     <message>
         <source>Color2</source>
@@ -2250,16 +2250,16 @@
     </message>
     <message>
         <source>Increasing the number, the behavior of &quot;NextVolume&quot; / &quot;PrevVolume&quot; improves but, increases memory consumption. 1 is appropriate for 32 bit version.</source>
-        <translation>Incrementa el numero, puede mejorar el próximo volumen / volumen anterior, pero consume muchas memoria. 1 es apropiado para 32 bit versión.</translation>
+        <translation>Incrementando el numero puede mejorar el próximo volumen / volumen previo, pero consume muchas memoria. 1 es apropiado para 32 bit versión.</translation>
     </message>
     <message>
         <source>Increasing the value increases the display time of per image</source>
-        <translation>Incrementa el numero, incrementa el tiempo de visualización</translation>
+        <translation>Incrementa el tiempo de visualización por imagen</translation>
     </message>
     <message>
         <source>BackgroundPattern</source>
         <extracomment>Title of frame to change background color or pattern</extracomment>
-        <translation>Color de fondo</translation>
+        <translation>Fondo</translation>
     </message>
     <message>
         <source>BackgroundColor1</source>
@@ -2389,7 +2389,7 @@
     <message>
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
-        <translation>Archivo excepto imágenes</translation>
+        <translation>Extract solid archives to temporary directory</translation>
     </message>
 </context>
 <context>
@@ -2422,7 +2422,7 @@
     <message>
         <source>ContextMenu</source>
         <comment>ContextMenu Action Group</comment>
-        <translation type="unfinished">contexto munú</translation>
+        <translation>contexto munú</translation>
     </message>
     <message>
         <source>Shader</source>
@@ -2444,7 +2444,7 @@
     <name>RenameDialog</name>
     <message>
         <source>RenameDialog</source>
-        <translation>Cambiar nombre de diálogo</translation>
+        <translation>Renombrar</translation>
     </message>
     <message>
         <source>EditFilename</source>
@@ -2477,7 +2477,7 @@
     <message>
         <source>Rename failed. Same filename might be already existed?</source>
         <comment>Error message to display when file name change fails</comment>
-        <translation>No se pudo cambiar el nombre. ¿Existe el mismo nombre de archivo?</translation>
+        <translation>No se pudo cambiar el nombre. ¿Existe un archivo con el mismo nombre?</translation>
     </message>
 </context>
 <context>
@@ -2502,17 +2502,17 @@
     <message>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>
-        <translation>Para el récordo</translation>
+        <translation>Parar Grabacion</translation>
     </message>
     <message>
         <source>Record</source>
         <comment>Button for starting entering the shortcut key</comment>
-        <translation>Récordo</translation>
+        <translation>Grabar</translation>
     </message>
     <message>
         <source>Click and enter a new shortcut key.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation>Hace clic y escribe el atajo teclado de atajo nuevo.</translation>
+        <translation>Hace clic y escribe el atajo de teclado nuevo.</translation>
     </message>
 </context>
 </TS>
