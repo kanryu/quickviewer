@@ -1172,7 +1172,11 @@ void MainWindow::onActionTurnPageOnRight_triggered()
 void MainWindow::onActionOpenfolder_triggered()
 {
     QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)", "Text that specifies the file extension to be displayed when opening a file with OpenFileFolder");
-    QString folder = QFileDialog::getOpenFileName(this, tr("Please select the image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"), "", filter);
+    QString folder = QFileDialog::getOpenFileName(
+                this,
+                tr("Please select the image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"),
+                qApp->LastOpenedFolderPath(),
+                filter);
 //    QFileDialog dialog = QFileDialog(this, tr("Open a image folder"));
 //    if(dialog.exec()) {
     if(folder.length() > 0) {
@@ -1181,6 +1185,7 @@ void MainWindow::onActionOpenfolder_triggered()
 //        if(dir.exists())
 //            loadVolume(folder);
         loadVolume(folder);
+        qApp->setLastOpenedFolderPath(folder);
     }
 }
 

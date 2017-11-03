@@ -199,6 +199,8 @@ public:
     void setDontSavingHistory(bool savingHistory) { m_dontSavingHistory = savingHistory; }
     bool ExtractSolidArchiveToTemporaryDir() { return m_extractSolidArchiveToTemporaryDir; }
     void setExtractSolidArchiveToTemporaryDir(bool extractSolidArchiveToTemporaryDir) { m_extractSolidArchiveToTemporaryDir = extractSolidArchiveToTemporaryDir; }
+    QString LastOpenedFolderPath() { return m_lastOpenedFolderPath; }
+    void setLastOpenedFolderPath(QString lastOpenedFolderPath) { m_lastOpenedFolderPath = lastOpenedFolderPath; }
 
     // History
     int MaxHistoryCount() { return m_maxHistoryCount; }
@@ -347,6 +349,7 @@ private:
     QString m_lastViewPath;
     bool m_dontSavingHistory;
     bool m_extractSolidArchiveToTemporaryDir;
+    QString m_lastOpenedFolderPath;
 
     // Folder
     QString m_homeFolderPath;

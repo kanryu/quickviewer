@@ -339,6 +339,7 @@ void QVApplication::loadSettings()
     m_lastViewPath = m_settings.value("LastViewPath", "").toString();
     m_dontSavingHistory  = m_settings.value("DontSavingHistory", false).toBool();
     m_extractSolidArchiveToTemporaryDir = m_settings.value("ExtractSolidArchiveToTemporaryDir", true).toBool();
+    m_lastOpenedFolderPath = m_settings.value("LastOpenedFolderPath", "").toString();
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");
@@ -464,6 +465,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("LastViewPath", m_lastViewPath);
     m_settings.setValue("DontSavingHistory", m_dontSavingHistory);
     m_settings.setValue("ExtractSolidArchiveToTemporaryDir", m_extractSolidArchiveToTemporaryDir);
+    m_settings.setValue("LastOpenedFolderPath", m_lastOpenedFolderPath);
     m_settings.endGroup();
 
     m_settings.beginGroup("Folder");
