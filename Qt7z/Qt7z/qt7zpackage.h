@@ -44,9 +44,9 @@ private:
     void reset();
 
     Qt7zPackagePrivate *m_p;
+    QTemporaryDir *m_tempDir;
     bool m_solid;
     bool m_extractSolidArchiveToDir;
-    QTemporaryDir *m_tempDir;
 };
 
 #endif // QT7ZPACKAGE_H

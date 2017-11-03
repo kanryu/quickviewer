@@ -370,6 +370,8 @@ Qt7zPackage::Qt7zPackage() :
 Qt7zPackage::Qt7zPackage(const QString &packagePath)
   : m_p(new Qt7zPackagePrivate(this, packagePath))
   , m_tempDir(nullptr)
+  , m_solid(false)
+  , m_extractSolidArchiveToDir(false)
 {
 }
 
