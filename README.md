@@ -137,6 +137,9 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 
 ## Report issues
 
+Public Project Issues:
+https://github.com/kanryu/quickviewer/issues
+
 Please report issues as well as configuration details for your working 
 QuickViewer installations at <k.kanryu@gmail.com>
 
@@ -146,6 +149,10 @@ Thus, your feedback is welcome at KATO Kanryu<<k.kanryu@gmail.com>>.
 ## Project Source Code Repository
 
 https://github.com/kanryu/quickviewer
+
+To build from the sourcecodes, to see:　![HowToBuild.md](HowToBuild.md)
+
+
 
 ## License
 
