@@ -470,6 +470,12 @@ void ImageView::on_prevVolume_triggered()
         m_pageManager->prevVolume();
 }
 
+void ImageView::onActionShowFullscreenSignage_triggered(bool enable)
+{
+    qApp->setShowFullscreenSignage(enable);
+    readyForPaint();
+}
+
 #define HOVER_BORDER 20
 //#define NOT_HOVER_AREA 100
 

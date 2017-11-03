@@ -1270,11 +1270,6 @@ void MainWindow::onActionBeginAsFullscreen_triggered(bool enable)
     qApp->setBeginAsFullscreen(enable);
 }
 
-void MainWindow::onActionShowFullscreenSignage_triggered(bool enable)
-{
-    qApp->setShowFullscreenSignage(enable);
-}
-
 void MainWindow::onActionShowPanelSeparateWindow_triggered(bool enable)
 {
     qApp->setShowPanelSeparateWindow(enable);

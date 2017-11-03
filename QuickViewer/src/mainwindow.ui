@@ -1156,6 +1156,7 @@
     <slot>onActionSeparatePagesWhenWideImage_triggered(bool)</slot>
     <slot>onActionLoupe_triggered(bool)</slot>
     <slot>onActionScrollWithCursorWhenZooming_triggered(bool)</slot>
+    <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2275,7 +2276,7 @@
   <connection>
    <sender>actionShowFullscreenSignage</sender>
    <signal>triggered(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>graphicsView</receiver>
    <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2283,8 +2284,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>350</x>
-     <y>294</y>
+     <x>392</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>

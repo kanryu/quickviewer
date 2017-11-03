@@ -113,7 +113,6 @@ public slots:
     void onActionMaximizeOrNormal_triggered();
     void onActionOpenOptionsDialog_triggered();
     void onActionBeginAsFullscreen_triggered(bool enable);
-    void onActionShowFullscreenSignage_triggered(bool enable);
 //    void onActionShowFullscreenTitleBar_triggered(bool enable);
     void onActionShowPanelSeparateWindow_triggered(bool enable);
     void onActionLargeToolbarIcons_triggered(bool enable);

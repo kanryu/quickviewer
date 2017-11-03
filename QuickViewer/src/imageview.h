@@ -119,6 +119,7 @@ public slots:
     void onActionSeparatePagesWhenWideImage_triggered(bool enable);
     void onActionLoupe_triggered(bool enable);
     void onActionScrollWithCursorWhenZooming_triggered(bool enable);
+    void onActionShowFullscreenSignage_triggered(bool enable);
 
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();
