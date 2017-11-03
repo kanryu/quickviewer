@@ -1405,11 +1405,7 @@ void MainWindow::onActionRecyclePage_triggered()
         }
     }
     if(moveToTrush(path))  {
-        // if deletion successed, reload the volume
-        QString volumepath = m_pageManager.volumePath();
-        if(m_pageManager.nextPagePathAfterDeleted().length())
-            volumepath = m_pageManager.nextPagePathAfterDeleted();
-        loadVolume(volumepath);
+        m_pageManager.reloadVolumeAfterRemoveImage();
     }
 }
 
@@ -1446,10 +1442,7 @@ void MainWindow::onActionDeletePage_triggered()
     }
     QFile file(path);
     if(file.remove()) {
-        QString volumepath = m_pageManager.volumePath();
-        if(m_pageManager.nextPagePathAfterDeleted().length())
-            volumepath = m_pageManager.nextPagePathAfterDeleted();
-        loadVolume(volumepath);
+        m_pageManager.reloadVolumeAfterRemoveImage();
     }
 }
 
