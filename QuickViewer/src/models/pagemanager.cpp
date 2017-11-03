@@ -171,6 +171,24 @@ void PageManager::prevVolume()
     }
 }
 
+void PageManager::reloadVolume()
+{
+    if(!m_fileVolume)
+        return;
+    clearPages();
+    QString volumepath = m_fileVolume->volumePath();
+    if(m_fileVolume->size() > 1) {
+        if(!m_fileVolume->nextPage())
+            m_fileVolume->prevPage();
+        QString fullpath = m_fileVolume->currentPath();
+        m_volumes.remove(volumepath);
+        loadVolumeWithFile(fullpath, false);
+    } else {
+        m_volumes.remove(volumepath);
+        m_fileVolume = nullptr;
+    }
+}
+
 VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool immediate)
 {
     VolumeManager* newer = nullptr;

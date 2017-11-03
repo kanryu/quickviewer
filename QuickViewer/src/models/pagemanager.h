@@ -28,6 +28,7 @@ public:
     bool loadVolumeWithFile(QString path, bool prohibitProhibit2Page=false);
     void nextVolume();
     void prevVolume();
+    void reloadVolume();
 
     // Pages
     void nextPage();
