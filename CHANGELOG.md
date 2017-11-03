@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## v1.0.5 (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+
+- update Spanish translations/quickviewer_es.ts
+- update cn_zh language resource
+- Sometimes display examples of status bar and title bar are incorrect in setting dialog
+- The exact file size is not displayed on the status bar etc. when reading the animation image
+- Save the path opened with 'Open Image Folder'
+- bugfixed: current Volume was not reloaded after deleting the image
+- bugfixed: When I tried to open a deleted zip or 7z it was illegally finished
+- bugfixed: When changing the display of full screen signage, it did not change until the page was switched
+
+- other commits
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
+    -  (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
+    - # Conflicts: (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
+    - #       QuickViewer/src/mainwindow.cpp (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
+    - #       QuickViewer/src/models/pagemanager.cpp (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
+    - #       QuickViewer/src/models/pagemanager.h (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
+    - bugfixed: current Volume was not reloaded after deleting the image (Fri Nov 3 21:29:32 2017 +0900) [041e647](https://github.com/kanryu/quickviewer/commit/041e6474a865560bfdb37dcae6fbddb24c037df7)
+    - bugfixed: current Volume was not reloaded after deleting the image (Fri Nov 3 21:29:32 2017 +0900) [a883e8c](https://github.com/kanryu/quickviewer/commit/a883e8ca192b0c0c9508eeb76d68280e6ff740ff)
+    - bugfixed: When I tried to open a deleted zip or 7z it was illegally finished (Fri Nov 3 20:35:09 2017 +0900) [90b7810](https://github.com/kanryu/quickviewer/commit/90b7810d28d27f217c8532fd6834518cb3f1c916)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Nov 3 20:33:08 2017 +0900) [d175fe5](https://github.com/kanryu/quickviewer/commit/d175fe515ab2ad3f4af678e00b29af9eac935226)
+    - bugfixed: When changing the display of full screen signage, it did not change until the page was switched (Fri Nov 3 20:32:53 2017 +0900) [793292a](https://github.com/kanryu/quickviewer/commit/793292a71bf0f98f6dda4202da8fec3bd2ad6948)
+    - Update README.md (Wed Nov 1 09:51:41 2017 +0900) [aa2b05b](https://github.com/kanryu/quickviewer/commit/aa2b05be8c87563f04673c205cfc6e70ece0a58c)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Mon Oct 30 21:15:07 2017 +0900) [c34cda4](https://github.com/kanryu/quickviewer/commit/c34cda47efd0fe434a4d398b86d86a711f1347d4)
+    - update Spanish translations/quickviewer_es.ts (Mon Oct 30 21:14:54 2017 +0900) [7bd6cf6](https://github.com/kanryu/quickviewer/commit/7bd6cf61c12de0be5fbb6093e18d05ab45de75dd)
+    -  (Mon Oct 30 21:14:54 2017 +0900) [7bd6cf6](https://github.com/kanryu/quickviewer/commit/7bd6cf61c12de0be5fbb6093e18d05ab45de75dd)
+    -  contributed by @dragons4life (Mon Oct 30 21:14:54 2017 +0900) [7bd6cf6](https://github.com/kanryu/quickviewer/commit/7bd6cf61c12de0be5fbb6093e18d05ab45de75dd)
+    - Update Contribution.md (Mon Oct 30 19:20:03 2017 +0900) [216462c](https://github.com/kanryu/quickviewer/commit/216462c2c1e841066bd72db2694e6e065c8c2e7b)
+    - update cn_zh language resource (Mon Oct 30 18:27:56 2017 +0900) [b7bc3a4](https://github.com/kanryu/quickviewer/commit/b7bc3a4ef2931abd08c33e8a7182db4b1bc80591)
+    -  (Mon Oct 30 18:27:56 2017 +0900) [b7bc3a4](https://github.com/kanryu/quickviewer/commit/b7bc3a4ef2931abd08c33e8a7182db4b1bc80591)
+    -  contriuted by 河海江超群<mcoder2014@sina.com>, Thanks! (Mon Oct 30 18:27:56 2017 +0900) [b7bc3a4](https://github.com/kanryu/quickviewer/commit/b7bc3a4ef2931abd08c33e8a7182db4b1bc80591)
+    - Sometimes display examples of status bar and title bar are incorrect in setting dialog (Sun Oct 29 22:43:49 2017 +0900) [e4026b2](https://github.com/kanryu/quickviewer/commit/e4026b2abbbb5c80b0379681fd5c6c0bd4fd2e0a)
+    - The exact file size is not displayed on the status bar etc. when reading the animation image (Sun Oct 29 22:28:01 2017 +0900) [f627eb5](https://github.com/kanryu/quickviewer/commit/f627eb586b4e8dada163475ef379baa1fb219b5d)
+    - changelog (Sat Oct 28 18:16:38 2017 +0900) [779158c](https://github.com/kanryu/quickviewer/commit/779158c0de10ea356bb4f44301c811af3a1833da)
+
 ## v1.0.4 (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
 
 scrolling with mouse, start of zoom position of Loupe Tool, bugfixed
