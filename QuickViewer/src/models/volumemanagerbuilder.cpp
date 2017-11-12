@@ -91,7 +91,12 @@ VolumeManager *VolumeManagerBuilder::buildForAssoc()
 {
     QDir dir(QDir::toNativeSeparators(Path));
     dir.cdUp();
-    m_subfilename = Path.mid(dir.canonicalPath().length()+1);
+    // If it is the root directory of the Windows drive, the separator will be attached at the end
+    // e.g. "C:/"
+    QString volumeFolder = dir.canonicalPath();
+    m_subfilename = volumeFolder.length()==3 && volumeFolder[1]==':'
+            ? Path.mid(volumeFolder.length())
+            : Path.mid(volumeFolder.length()+1);
     if(!(m_volumeManager = CreateVolume(nullptr, dir.canonicalPath(), m_pageManager)))
         return m_volumeManager;
     if(m_volumeManager->isArchive()) {
