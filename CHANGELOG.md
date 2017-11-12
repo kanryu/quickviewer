@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v1.0.6 (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
+
+add 'Fit to width', 1 bugfixed
+
+- add 'Fit to width'
+- bugfixed: There may not be able to open as soon as you try to open the image in the root directory of the Windows drive.
+
+- other commits
+    - add 'Fit to width' (Sun Nov 12 18:05:28 2017 +0900) [026055a](https://github.com/kanryu/quickviewer/commit/026055aba02bada027e2e9f743088426d8addb22)
+    - bugfixed: There may not be able to open as soon as you try to open the image in the root directory of the Windows drive. (Sun Nov 12 14:28:47 2017 +0900) [4f7f670](https://github.com/kanryu/quickviewer/commit/4f7f67048b8b16d1acffeeb32cae335e08ac9cc5)
+    - changelog (Fri Nov 3 23:07:45 2017 +0900) [fa05bdf](https://github.com/kanryu/quickviewer/commit/fa05bdf9f3328463b7567d313359da0dc513cdcc)
+
 ## v1.0.5 (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
 
 - update Spanish translations/quickviewer_es.ts
