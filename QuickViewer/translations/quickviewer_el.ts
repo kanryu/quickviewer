@@ -1275,11 +1275,11 @@
     <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation>Π&amp;ροσαρμογή</translation>
+        <translation type="vanished">Π&amp;ροσαρμογή</translation>
     </message>
     <message>
         <source>Fitting</source>
-        <translation>Προσαρμογή</translation>
+        <translation type="vanished">Προσαρμογή</translation>
     </message>
     <message>
         <source>FastForward</source>
@@ -1443,6 +1443,15 @@
     <message>
         <source>Scroll with mouse cursor on zooming</source>
         <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Fit to window</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to width</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1349,11 +1349,11 @@
     <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation>フィット表示(&amp;F)</translation>
+        <translation type="vanished">フィット表示(&amp;F)</translation>
     </message>
     <message>
         <source>Fitting</source>
-        <translation>フィット表示</translation>
+        <translation type="vanished">フィット表示</translation>
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
@@ -2223,6 +2223,15 @@
         <source>Scroll with mouse cursor on zooming</source>
         <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
         <translation>拡大時にマウスカーソルの移動でスクロール</translation>
+    </message>
+    <message>
+        <source>&amp;Fit to window</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
+        <translation>ウィンドウにフィットさせる(&amp;F)</translation>
+    </message>
+    <message>
+        <source>Fit to width</source>
+        <translation>ウィンドウの幅に合わせる</translation>
     </message>
 </context>
 <context>

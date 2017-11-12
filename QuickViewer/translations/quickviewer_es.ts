@@ -410,7 +410,7 @@
     <message>
         <source>Horizontal (normal)</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(0 or 1)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Horizontalidad (norma)</translation>
     </message>
     <message>
         <source>Mirror horizontal</source>
@@ -1156,11 +1156,11 @@
     <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation>&amp;Agrandamiento o Reducción de imagen automático</translation>
+        <translation type="vanished">&amp;Agrandamiento o Reducción de imagen automático</translation>
     </message>
     <message>
         <source>Fitting</source>
-        <translation>&amp;Ajustar a tamano de ventana</translation>
+        <translation type="vanished">&amp;Ajustar a tamano de ventana</translation>
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
@@ -1939,6 +1939,15 @@
     <message>
         <source>Scroll with mouse cursor on zooming</source>
         <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Fit to window</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to width</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

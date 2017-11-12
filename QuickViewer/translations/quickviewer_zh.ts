@@ -849,30 +849,30 @@
     <message>
         <source>KeyConfig</source>
         <extracomment>Title of the dialog to customize the shortcut keys</extracomment>
-        <translation type="vanished">设定键入方式</translation>
+        <translation>设定键入方式</translation>
     </message>
     <message>
         <source>Shortcut</source>
         <extracomment>Title of the frame in which the shortcut changing function is arranged</extracomment>
-        <translation type="vanished">快捷</translation>
+        <translation>快捷</translation>
     </message>
     <message>
         <source>Key Sequence:</source>
         <extracomment>Title of LineEdit label to which shortcut key is input</extracomment>
-        <translation type="vanished">键入:</translation>
+        <translation>键入:</translation>
     </message>
     <message>
         <source>Enter key sequence as text</source>
         <extracomment>Enter shortcut keys Gray text to display before inputting LineEdit</extracomment>
-        <translation type="vanished">用文本形式输入在这输入栏或按保存键</translation>
+        <translation>用文本形式输入在这输入栏或按保存键</translation>
     </message>
     <message>
         <source>Record</source>
-        <translation type="vanished">保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="vanished">复位</translation>
+        <translation>复位</translation>
     </message>
     <message>
         <source>Command</source>
@@ -912,12 +912,12 @@
     <message>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
-        <translation type="vanished">无效的键入。</translation>
+        <translation>无效的键入。</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
-        <translation type="vanished">冲突其他快捷键。</translation>
+        <translation>冲突其他快捷键。</translation>
     </message>
     <message>
         <source>Key sequence has potential conflicts.</source>
@@ -927,17 +927,83 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="vanished">命令</translation>
+        <translation>命令</translation>
     </message>
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="vanished">说明</translation>
+        <translation>说明</translation>
     </message>
     <message>
         <source>CurrentShortcut</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="vanished">快捷</translation>
+        <translation>快捷</translation>
+    </message>
+    <message>
+        <source>Add Sequence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option Keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt</source>
+        <extracomment>maybe &apos;Option&apos; in OSX</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta</source>
+        <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse Buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wheel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wheel Scrolling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scroll Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scroll Down</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -980,11 +1046,11 @@
     <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation>适合尺寸(&amp;F)</translation>
+        <translation type="vanished">适合尺寸(&amp;F)</translation>
     </message>
     <message>
         <source>Fitting</source>
-        <translation>适合</translation>
+        <translation type="vanished">适合</translation>
     </message>
     <message>
         <source>&amp;Spread Viewing</source>
@@ -1740,6 +1806,15 @@
         <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
         <translation>鼠标滚轮缩放</translation>
     </message>
+    <message>
+        <source>&amp;Fit to window</source>
+        <extracomment>Automatically resize the image according to the size of the window</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to width</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1958,17 +2033,47 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation type="vanished">命令</translation>
+        <translation>命令</translation>
     </message>
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
-        <translation type="vanished">说明</translation>
+        <translation>说明</translation>
     </message>
     <message>
         <source>Command</source>
         <comment>caption of Command key</comment>
-        <translation type="obsolete">命令</translation>
+        <translation type="unfinished">命令</translation>
+    </message>
+    <message>
+        <source>Mouse Config</source>
+        <comment>Title of the dialog to customize the mouse sequences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse Sequence:</source>
+        <comment>Title of LineEdit label to which mouse sequence is input</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
+        <comment>Placeholder text urging the mouse input setting procedure</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Option</source>
+        <comment>caption of Option key</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current Mouse Sequence</source>
+        <comment>Title of the column of the content of the mouse sequence registered for Action</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse sequence has potential conflicts.</source>
+        <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2236,17 +2341,17 @@
     <message>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>
-        <translation type="vanished">停止保存</translation>
+        <translation>停止保存</translation>
     </message>
     <message>
         <source>Record</source>
         <comment>Button for starting entering the shortcut key</comment>
-        <translation type="vanished">保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <source>Click and enter a new shortcut key.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation type="vanished">点击用键盘输入新快捷键。</translation>
+        <translation>点击用键盘输入新快捷键。</translation>
     </message>
 </context>
 </TS>
