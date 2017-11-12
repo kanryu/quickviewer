@@ -109,7 +109,7 @@ QSize PageContent::CurrentSize(int rotateOffset) {
     return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
 }
 
-QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fitting, qreal loupe, int rotateOffset) {
+QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign align, FitMode fitMode, qreal loupe, int rotateOffset) {
     if(!Ic.ImportSize.width()) {
         applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
         return QRect(viewport.topLeft(), QSize(100, 100));
@@ -118,23 +118,27 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     bool goSeparate = viewport.height() > viewport.width() && Separation != NoSeparated;
     if(goSeparate)
         currentSize = QSize(currentSize.width()/2, currentSize.height());
-    QSize newsize = currentSize.scaled(viewport.size(), Qt::KeepAspectRatio);
+    QSize newsize = fitMode == FitMode::FitToRect
+            ? currentSize.scaled(viewport.size(), Qt::KeepAspectRatio)
+            : QSize(viewport.width(), currentSize.height()*viewport.width()/currentSize.width()) ;
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
     if(loupe > 1.0) {
-        return setPageLayoutManual(viewport, fitting, scale*loupe, rotateOffset, true);
+        return setPageLayoutManual(viewport, align, scale*loupe, rotateOffset, true);
     }
     if(scale > 1.0 && qApp->DontEnlargeSmallImagesOnFitting())
-        return setPageLayoutManual(viewport, fitting, 1.0, rotateOffset);
+        return setPageLayoutManual(viewport, align, 1.0, rotateOffset);
 
     QPoint of = Offset(rotateOffset);
     of *= scale;
 
     QRect drawRect;
     if(newsize.height() == viewport.height()) { // fitting on upper and bottom
-        int ofsinviewport = fitting==FitRight ? 0 : fitting==FitCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+        int ofsinviewport = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
-    } else { // fitting on left and right
+    } else if(fitMode == FitMode::FitToRect) { // fitting on left and right
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
+    } else {
+        drawRect = QRect(QPoint(of.x() + viewport.x(), of.y()), newsize);
     }
 
     QPoint imagePos = drawRect.topLeft();
@@ -148,7 +152,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::Fitting fit
     return drawRect;
 }
 
-QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitting, qreal scale, int rotateOffset, bool loupe) {
+QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::PageAlign align, qreal scale, int rotateOffset, bool loupe) {
     if(!Ic.ImportSize.width()) {
         applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
         return QRect(viewport.topLeft(), QSize(100, 100));
@@ -163,7 +167,7 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::Fitting fitt
     QPoint of = Offset(rotateOffset);
     of *= scale;
 
-    int ofsinviewport = fitting==FitRight ? 0 : fitting==FitCenter ? qMax(0, (viewport.width()-newsize.width())/2) : viewport.width()-newsize.width();
+    int ofsinviewport = align==PageRight ? 0 : align==PageCenter ? qMax(0, (viewport.width()-newsize.width())/2) : viewport.width()-newsize.width();
     int offsetY = qMax(0, (viewport.height()-newsize.height())/2);
     QRect drawRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y() + offsetY), newsize);
 
@@ -245,7 +249,7 @@ void PageContent::initializePage(bool resetResized)
     m_resizeGeneratingState = 0;
 }
 
-void PageContent::resetSignage(QRect viewport, PageContent::Fitting fitting)
+void PageContent::resetSignage(QRect viewport, PageContent::PageAlign fitting)
 {
     if(Text.isEmpty()) {
         if(GText) {
@@ -261,7 +265,7 @@ void PageContent::resetSignage(QRect viewport, PageContent::Fitting fitting)
     if(GText)
         return;
     GText = Scene->addText(Text);
-    GText->setPos(fitting == PageContent::FitRight ? viewport.right()-GText->boundingRect().width() : 0, 0);
+    GText->setPos(fitting == PageContent::PageRight ? viewport.right()-GText->boundingRect().width() : 0, 0);
 //qDebug() << GText->pos() << Text;
     GText->setDefaultTextColor(Qt::green);
     GText->setZValue(1);

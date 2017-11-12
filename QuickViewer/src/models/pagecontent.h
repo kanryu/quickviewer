@@ -82,11 +82,17 @@ class PageContent : public QObject
 {
     Q_OBJECT
 public:
-    enum Fitting {
-        FitCenter,
-        FitLeft,
-        FitRight
+    enum PageAlign {
+        PageCenter,
+        PageLeft,
+        PageRight
     };
+    enum FitMode {
+        NoFitting,
+        FitToRect,
+        FitToWidth
+    };
+
     enum SeparationState {
         NoSeparated,
         FirstSeparated,
@@ -131,12 +137,12 @@ public:
      * @brief setPageLayout set each image on the page
      * @param viewport: the image must be inscribed in the viewport area
      */
-    QRect setPageLayoutFitting(QRect viewport, Fitting fitting, qreal loupe, int rotateOffset=0);
-    QRect setPageLayoutManual(QRect viewport, Fitting fitting, qreal scale, int rotateOffset=0, bool loupe=false);
+    QRect setPageLayoutFitting(QRect viewport, PageAlign align, FitMode fitMode, qreal loupe, int rotateOffset=0);
+    QRect setPageLayoutManual(QRect viewport, PageAlign align, qreal scale, int rotateOffset=0, bool loupe=false);
 
     void applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize, bool loupe=false);
     void initializePage(bool resetResized=false);
-    void resetSignage(QRect viewport, PageContent::Fitting fitting);
+    void resetSignage(QRect viewport, PageContent::PageAlign fitting);
     void resetScene(QGraphicsScene* scene);
     void checkInitialize();
     void dispose();

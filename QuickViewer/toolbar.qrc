@@ -55,6 +55,8 @@
         <file alias="help">icons/help.png</file>
         <file alias="loupe">icons/loupe.png</file>
         <file alias="loupe_cursor">icons/loupe_cursor.png</file>
+        <file alias="fitting">icons/fitting.png</file>
+        <file alias="fittowidth">icons/fittowidth.png</file>
     </qresource>
     <qresource prefix="/icons/24">
         <file alias="arrow_left_icon_24">icons/24/arrow-pointing-to-left.png</file>

@@ -280,6 +280,7 @@ void QVApplication::loadSettings()
     bool bRightSideBookDefault = QLocale::system().language() == QLocale::Japanese;
     m_settings.beginGroup("View");
     m_fitting = m_settings.value("Fitting", true).toBool();
+    m_fitToWidth = m_settings.value("FitToWidth", false).toBool();
     m_dualView = m_settings.value("DualView", false).toBool();
     m_stayOnTop = m_settings.value("StayOnTop", false).toBool();
 
@@ -408,6 +409,7 @@ void QVApplication::saveSettings()
 {
     m_settings.beginGroup("View");
     m_settings.setValue("Fitting", m_fitting);
+    m_settings.setValue("FitToWidth", m_fitToWidth);
     m_settings.setValue("DualView", m_dualView);
     m_settings.setValue("StayOnTop", m_stayOnTop);
 

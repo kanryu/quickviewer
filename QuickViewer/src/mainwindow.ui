@@ -384,6 +384,7 @@
     <addaction name="actionLoupeTool"/>
     <addaction name="separator"/>
     <addaction name="actionFitting"/>
+    <addaction name="actionFitToWidth"/>
     <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
@@ -434,6 +435,7 @@
    <addaction name="actionLoupeTool"/>
    <addaction name="separator"/>
    <addaction name="actionFitting"/>
+   <addaction name="actionFitToWidth"/>
    <addaction name="actionDualView"/>
    <addaction name="separator"/>
    <addaction name="actionShowPanelSeparateWindow"/>
@@ -493,13 +495,10 @@
    </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
-     <normaloff>:/icons/maximize_icon</normaloff>:/icons/maximize_icon</iconset>
+     <normaloff>:/icons/fitting</normaloff>:/icons/fitting</iconset>
    </property>
    <property name="text">
-    <string extracomment="Automatically resize the image according to the size of the window">&amp;Fitting</string>
-   </property>
-   <property name="toolTip">
-    <string>Fitting</string>
+    <string extracomment="Automatically resize the image according to the size of the window">&amp;Fit to window</string>
    </property>
   </action>
   <action name="actionDualView">
@@ -520,7 +519,7 @@
    </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
-     <normaloff>:/icons/fullscreen2</normaloff>:/icons/fullscreen2</iconset>
+     <normaloff>:/icons/fullscreen</normaloff>:/icons/fullscreen</iconset>
    </property>
    <property name="text">
     <string extracomment="Button to switch the window display to full screen">Fullscreen</string>
@@ -1119,6 +1118,18 @@
     <string extracomment="Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar">Scroll with mouse cursor on zooming</string>
    </property>
   </action>
+  <action name="actionFitToWidth">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/fittowidth</normaloff>:/icons/fittowidth</iconset>
+   </property>
+   <property name="text">
+    <string>Fit to width</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1157,6 +1168,7 @@
     <slot>onActionLoupe_triggered(bool)</slot>
     <slot>onActionScrollWithCursorWhenZooming_triggered(bool)</slot>
     <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
+    <slot>on_fitToWidth_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1923,22 +1935,6 @@
   </connection>
   <connection>
    <sender>graphicsView</sender>
-   <signal>fittingChanged(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>onGraphicsView_fittingChanged(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>350</x>
-     <y>287</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>350</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>graphicsView</sender>
    <signal>anchorHovered(Qt::AnchorPoint)</signal>
    <receiver>MainWindow</receiver>
    <slot>onGraphicsView_anchorHovered(Qt::AnchorPoint)</slot>
@@ -2518,6 +2514,22 @@
    <signal>triggered(bool)</signal>
    <receiver>graphicsView</receiver>
    <slot>onActionScrollWithCursorWhenZooming_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFitToWidth</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_fitToWidth_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

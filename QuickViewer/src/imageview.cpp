@@ -178,6 +178,9 @@ void ImageView::readyForPaint() {
     if(!m_pages.empty()) {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
+        PageContent::FitMode fitMode = qApp->Fitting() ? PageContent::FitToRect
+                                     : qApp->FitToWidth() ? PageContent::FitToWidth
+                                     : PageContent::NoFitting;
         for(int i = 0; i < m_pages.size(); i++) {
             if(qApp->SeparatePagesWhenWideImage() && m_pages[i].Ic.wideImage()) {
                 if(m_pages[i].Separation == PageContent::NoSeparated && viewport()->width() < viewport()->height())
@@ -185,27 +188,27 @@ void ImageView::readyForPaint() {
                 if(m_pages[i].Separation != PageContent::NoSeparated && viewport()->width() > viewport()->height())
                     m_pages[i].Separation = PageContent::NoSeparated;
             }
-            PageContent::Fitting fitting = PageContent::FitCenter;
+            PageContent::PageAlign pageAlign = PageContent::PageCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
             if(m_pages.size() == 2) {
-                fitting = ((i==0 && !qApp->RightSideBook()) || (i==1 && qApp->RightSideBook()))
-                            ? PageContent::FitLeft : PageContent::FitRight;
-                pageRect = QRect(QPoint(fitting==PageContent::FitRight ? pageRect.width()/2 : 0 , 0), QSize(pageRect.width()/2,pageRect.height()));
+                pageAlign = ((i==0 && !qApp->RightSideBook()) || (i==1 && qApp->RightSideBook()))
+                            ? PageContent::PageLeft : PageContent::PageRight;
+                pageRect = QRect(QPoint(pageAlign==PageContent::PageRight ? pageRect.width()/2 : 0 , 0), QSize(pageRect.width()/2,pageRect.height()));
             }
             QRect drawRect;
             qreal scalefactor = m_loupeEnable ? m_loupeFactor : 1.0;
-            if(qApp->Fitting()) {
+            if(fitMode != PageContent::NoFitting) {
                 drawRect = m_pages[i].setPageLayoutFitting(
-                            pageRect, fitting, scalefactor,
+                            pageRect, pageAlign, fitMode, scalefactor,
                             m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
             } else {
                 drawRect = m_pages[i].setPageLayoutManual(
-                            pageRect, fitting, getZoomScale() * scalefactor,
+                            pageRect, pageAlign, getZoomScale() * scalefactor,
                             m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i],
                             m_loupeEnable);
             }
             m_pages[i].Text = qApp->ShowFullscreenSignage() && m_isFullScreen ? m_pageManager->pageSignage(i) : "";
-            m_pages[i].resetSignage(QRect(QPoint(), viewport()->size()), fitting);
+            m_pages[i].resetSignage(QRect(QPoint(), viewport()->size()), pageAlign);
             m_effectManager.prepare(dynamic_cast<QGraphicsPixmapItem*>(m_pages[i].GrItem), m_pages[i].Ic, drawRect.size());
             sceneRect = sceneRect.united(drawRect);
         }
@@ -569,9 +572,23 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
     readyForPaint();
 }
 
-void ImageView::on_fitting_triggered(bool maximized)
+void ImageView::on_fitting_triggered(bool enable)
 {
-    qApp->setFitting(maximized);
+    if(enable && qApp->FitToWidth()) {
+        qApp->setFitToWidth(false);
+        emit fittingChanged(PageContent::FitToRect);
+    }
+    qApp->setFitting(enable);
+    readyForPaint();
+}
+
+void ImageView::on_fitToWidth_triggered(bool enable)
+{
+    if(enable && qApp->Fitting()) {
+        qApp->setFitting(false);
+        emit fittingChanged(PageContent::FitToWidth);
+    }
+    qApp->setFitToWidth(enable);
     readyForPaint();
 }
 
@@ -593,9 +610,10 @@ void ImageView::on_scaleUp_triggered()
 {
     if(!m_pages.size())
         return;
-    if(qApp->Fitting()) {
+    if(qApp->Fitting() || qApp->FitToWidth()) {
         qApp->setFitting(false);
-        emit fittingChanged(false);
+        qApp->setFitToWidth(false);
+        emit fittingChanged(PageContent::NoFitting);
         qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = 0;
         qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale << getZoomScale();
@@ -613,9 +631,10 @@ void ImageView::on_scaleDown_triggered()
 {
     if(!m_pages.size())
         return;
-    if(qApp->Fitting()) {
+    if(qApp->Fitting() || qApp->FitToWidth()) {
         qApp->setFitting(false);
-        emit fittingChanged(false);
+        qApp->setFitToWidth(false);
+        emit fittingChanged(PageContent::NoFitting);
         qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = viewSizeList.size()-1;
         while(viewSizeIdx > 0 && getZoomScale() > scale)
