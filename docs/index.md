@@ -101,6 +101,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html](http://www.01net.com/telecharger/windows/Multimedia/albmums_et_visionneuses/fiches/140048.html)
 - **paperblog** (in French)
     - [http://www.paperblog.fr/8518927/quickviewer/](http://www.paperblog.fr/8518927/quickviewer/)
+- **软件No1** (in Simplified Chinese)
+    - [http://www.rjno1.com/best/p/2967-quickviewer.html](http://www.rjno1.com/best/p/2967-quickviewer.html)
 - **快乐无极** (in Simplified Chinese)
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
 - **ZEGMONET** (in Turkish)
@@ -131,6 +133,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://software.thaiware.com/13230-QuickViewer-Download.html](https://software.thaiware.com/13230-QuickViewer-Download.html)
 - **Dataporten** (in Norwegian)
     - [http://www.dataporten.net/quickviewer/](http://www.dataporten.net/quickviewer/)
+- **OS MANIA** (in Korean)
+    - [https://osmanias.com/index.php?document_srl=1261885&mid=software](https://osmanias.com/index.php?document_srl=1261885&mid=software)
 - **happycgi** (in Korean)
     - [http://www.happycgi.com/16255](http://www.happycgi.com/16255)
 - **프로그램 저장공간** (in Korean)
@@ -149,7 +153,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://www.geogeo.gr/index.php?topic=1787.0](https://www.geogeo.gr/index.php?topic=1787.0)
 - **BUG ONLINE** (in Croatian or Bosnian)
     - [http://www.bug.hr/program/quickviewer-102/97548.aspx](http://www.bug.hr/program/quickviewer-102/97548.aspx)
-
+- **Žive.sk** (in Slovak)
+    - [https://www.zive.sk/clanok/128715/novy-softver-expresny-prehliadac-fotiek-vynoveny-kancelarsky-balik/](https://www.zive.sk/clanok/128715/novy-softver-expresny-prehliadac-fotiek-vynoveny-kancelarsky-balik/)
 
 Thanks for reviewers! :)
 
