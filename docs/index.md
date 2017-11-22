@@ -113,6 +113,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.indiriliyo.com/quickviewer-indir-11274/](http://www.indiriliyo.com/quickviewer-indir-11274/)
 - **AfterDawn Nederland** (in Dutch)
     - [http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm](http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm)
+- *xCoumputer* (in Dutch)
+    - [http://xcomputer.site/2017/06/27/quickviewer-is-een-ultra-fast-windows-image-viewer/](http://xcomputer.site/2017/06/27/quickviewer-is-een-ultra-fast-windows-image-viewer/)
 - **DUNDI** (in Italian)
     - [http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/](http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/)
 - **Download HTML.it** (in Italian)
