@@ -1,6 +1,8 @@
 QuickViewer
 ===========
 
+[![Join the chat at https://gitter.im/kanryu/quickviewer](https://badges.gitter.im/kanryu/quickviewer.svg)](https://gitter.im/kanryu/quickviewer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A image/comic viewer application for Windows and Linux, it can show images very fast
 
 ## Project Website(in English / Japanese)
