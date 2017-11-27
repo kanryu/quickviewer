@@ -5,7 +5,13 @@ A image/comic viewer application for Windows and Linux, it can show images very 
 
 ## Project Website(in English / Japanese)
 
-https://kanryu.github.io/quickviewer/
+- GitHub (Official, source code repository)
+    - https://kanryu.github.io/quickviewer/
+- OSDN (Second official, in Japanese)
+    - https://ja.osdn.net/projects/quickviewer/
+- GITTER (web chat about QuickViewer)
+    - https://gitter.im/kanryu/quickviewer
+
 
 ## Summary
 
