@@ -129,7 +129,7 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 - Operating System
     - Windows Vista,7 or newer
     - Windows Sever 2008 or newer
-    - Running on Ubuntu Linux. but currently no supported because we need more contributers.
+    - Linux Distributions(Ubuntu, Kubuntu, Fedora, etc..)
 - CPU
     - minimum Dual Core(more better with internal GPU or external GPU)
 - Memory
