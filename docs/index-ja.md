@@ -23,7 +23,7 @@ fulltitle: QuickViewer オフィシャルページ
 - インストール作業なしでどこでも動いてレジストリの書き込みなし
 - 本を読むのに便利な見開き表示
 - アーカイブファイルの直接読み込み(zip/7z/rar/cbr/cbz)
-- これらの画像形式に対応(bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
+- これらの画像形式に対応(bmp/png/jpeg/webp/ico/tga/tiff/gif)
     - アニメーションPNG(APNG)/GIFに対応
     - JPEG EXIFに対応し、撮影したそのままの向きで画像を表示
 - 主要カメラメーカーのRaw画像形式に対応
