@@ -21,7 +21,7 @@ A image/comic viewer application for Windows and Linux, it can show images very 
  - Portable (without installers, registries, external libraries)
  - 2 Page Spread viewing (two images once, for digital books/comics)
  - To read archives directly (zip/7z/rar/cbr/cbz)
- - To show images (bmp/png/jpeg/dds/webp/ico/tga/tiff/gif)
+ - To show images (bmp/png/jpeg/webp/ico/tga/tiff/gif)
    - Supported for Animated PNG(APNG)/GIF
    - Auto rotation (using JPEG EXIF)
  - To show Raw digital camera images
