@@ -481,8 +481,9 @@ void MainWindow::setThumbnailManager(ThumbnailManager *manager)
 
 void MainWindow::onActionExit_triggered()
 {
-    QApplication::quit();
-    QCoreApplication::quit();
+    close();
+//    QApplication::quit();
+//    QCoreApplication::quit();
 }
 
 void MainWindow::onSavingHistory_triggered(bool enable)
