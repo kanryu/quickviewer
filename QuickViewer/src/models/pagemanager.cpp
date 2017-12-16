@@ -180,9 +180,10 @@ void PageManager::reloadVolumeAfterRemoveImage()
     if(m_fileVolume->size() > 1) {
         if(!m_fileVolume->nextPage())
             m_fileVolume->prevPage();
-        QString fullpath = m_fileVolume->currentPath();
+        QString fullpath = m_fileVolume->currentPathWithSeparator();
         m_volumes.remove(volumepath);
-        loadVolumeWithFile(fullpath, false);
+        m_fileVolume = nullptr;
+        loadVolume(fullpath);
     } else {
         m_volumes.remove(volumepath);
         m_fileVolume = nullptr;

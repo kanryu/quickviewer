@@ -26,6 +26,10 @@ public:
     virtual void setMailAttachment(QString ) {}
     virtual bool eventFilter(QObject *obj, QEvent *event);
 
+    /**
+     * @brief loadVolume
+     * @param prohibitProhibit2Page prohbit 2 page viewing
+     */
     void loadVolume(QString path, bool prohibitProhibit2Page=false);
     void resetShortcutKeys();
     void makeHistoryMenu();

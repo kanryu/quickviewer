@@ -60,6 +60,12 @@ public:
         else
             return QDir::fromNativeSeparators(QDir(m_loader->volumePath()).absoluteFilePath(m_filelist[m_cnt]));
     }
+    QString currentPathWithSeparator() {
+        return QString("%1::%2")
+                .arg(QDir::fromNativeSeparators(m_loader->volumePath()))
+                .arg(m_filelist[m_cnt]);
+    }
+
     QString getPathByFileName(QString name) {
         if(m_loader->isArchive())
             return QString("%1::%2")
