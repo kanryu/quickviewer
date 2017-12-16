@@ -34,6 +34,7 @@ public slots:
     void onRadioButtonStatusBar_triggered(bool enabled);
     void onLineEditWindowTitleUserStyle_textEdited(QString text);
     void onLineEditStatusBarUserStyle_textEdited(QString text);
+    void onCheckBoxShowUsage_clicked(bool enabled);
 
 private:
     Ui::OptionsDialog *ui;

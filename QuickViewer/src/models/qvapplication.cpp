@@ -319,8 +319,16 @@ void QVApplication::loadSettings()
     m_useFastDCTForJPEG = m_settings.value("UseFastDCTForJPEG", true).toBool();
     m_showPanelSeparateWindow  = m_settings.value("ShowPanelSeparateWindow", false).toBool();
     m_largeToolbarIcons  = m_settings.value("LargeToolbarIcons", false).toBool();
-    m_hidePageBarParmanently  = m_settings.value("HidePageBarParmanently", false).toBool();
-    m_hideScrollBarInFullscreen  = m_settings.value("HideScrollBarInFullscreen", true).toBool();
+
+    m_hideMenuBarParmanently   = m_settings.value("HideMenuBarParmanently",   false).toBool();
+    m_hideToolBarParmanently   = m_settings.value("HideToolBarParmanently",   false).toBool();
+    m_hidePageBarParmanently   = m_settings.value("HidePageBarParmanently",   false).toBool();
+
+    m_hideMenuBarInFullscreen   = m_settings.value("HideMenuBarInFullscreen", false).toBool();
+    m_hideToolBarInFullscreen   = m_settings.value("HideToolBarInFullscreen", false).toBool();
+    m_hidePageBarInFullscreen   = m_settings.value("HidePageBarInFullscreen", false).toBool();
+    m_hideScrollBarInFullscreen = m_settings.value("HideScrollBarInFullscreen", true).toBool();
+
     m_titleTextFormat = m_settings.value("TitleTextFormat", QV_WINDOWTITLE_FORMAT).toString();
     m_statusTextFormat = m_settings.value("StatusTextFormat", QV_STATUSBAR_FORMAT).toString();
     m_topWindowWhenRunWithAssoc = m_settings.value("TopWindowWhenRunWithAssoc", true).toBool();
@@ -450,8 +458,16 @@ void QVApplication::saveSettings()
     m_settings.setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);
     m_settings.setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
     m_settings.setValue("LargeToolbarIcons", m_largeToolbarIcons);
+
+    m_settings.setValue("HideMenuBarParmanently", m_hideMenuBarParmanently);
+    m_settings.setValue("HideToolBarParmanently", m_hideToolBarParmanently);
     m_settings.setValue("HidePageBarParmanently", m_hidePageBarParmanently);
+
+    m_settings.setValue("HideMenuBarInFullscreen", m_hideMenuBarInFullscreen);
+    m_settings.setValue("HideToolBarInFullscreen", m_hideToolBarInFullscreen);
+    m_settings.setValue("HidePageBarInFullscreen", m_hidePageBarInFullscreen);
     m_settings.setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
+
     m_settings.setValue("TitleTextFormat", m_titleTextFormat);
     m_settings.setValue("StatusTextFormat", m_statusTextFormat);
     m_settings.setValue("TopWindowWhenRunWithAssoc", m_topWindowWhenRunWithAssoc);
