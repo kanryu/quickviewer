@@ -100,6 +100,7 @@ public:
         m_fileVolume = nullptr;
         m_volumes.clear();
     }
+    QStringList enumVolumes(QDir dir);
 
 signals:
     /**

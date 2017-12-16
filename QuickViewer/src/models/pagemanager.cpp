@@ -89,8 +89,7 @@ void PageManager::nextVolume()
     if(!dir.cdUp())
         return;
     if(m_volumenames.size() == 0) {
-        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
-        IFileLoader::sortFiles(m_volumenames);
+        m_volumenames = enumVolumes(dir);
     }
     bool beforeMatch = true;
     int preloadCount = 0;
@@ -135,8 +134,7 @@ void PageManager::prevVolume()
         return;
     int matchCount = 0;
     if(m_volumenames.size() == 0) {
-        m_volumenames = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files, QDir::Name);
-        IFileLoader::sortFiles(m_volumenames);
+        m_volumenames = enumVolumes(dir);
     }
     QListIterator<QString> it(m_volumenames);it.toBack();
     bool beforeMatch = true;
@@ -468,4 +466,14 @@ bool PageManager::canDualView() const
 {
     QVApplication* myapp = qApp;
     return qApp->DualView() && !(m_wideImage && myapp->WideImageAsOnePageInDualView());
+}
+
+QStringList PageManager::enumVolumes(QDir dir)
+{
+    QStringList folders, archives;
+    folders = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs, QDir::Name);
+    IFileLoader::sortFiles(folders);
+    archives = dir.entryList(QDir::NoDotAndDotDot | QDir::Files, QDir::Name);
+    IFileLoader::sortFiles(archives);
+    return folders + archives;
 }
