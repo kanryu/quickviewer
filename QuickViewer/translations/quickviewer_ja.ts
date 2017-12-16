@@ -1349,7 +1349,7 @@
     <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation type="vanished">フィット表示(&amp;F)</translation>
+        <translation>フィット表示(&amp;F)</translation>
     </message>
     <message>
         <source>Fitting</source>
@@ -2227,11 +2227,23 @@
     <message>
         <source>&amp;Fit to window</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation>ウィンドウにフィットさせる(&amp;F)</translation>
+        <translation type="vanished">ウィンドウにフィットさせる(&amp;F)</translation>
     </message>
     <message>
         <source>Fit to width</source>
         <translation>ウィンドウの幅に合わせる</translation>
+    </message>
+    <message>
+        <source>Edit the image</source>
+        <translation>画像の操作</translation>
+    </message>
+    <message>
+        <source>Fit mode</source>
+        <translation>フィットさせる方法</translation>
+    </message>
+    <message>
+        <source>Fit to window</source>
+        <translation>ウィンドウにフィットさせる</translation>
     </message>
 </context>
 <context>
@@ -2685,6 +2697,47 @@
         <source>Activate the window when an image dropped on</source>
         <comment>Check box to activate the window when an image dropped on</comment>
         <translation>画像をウィンドウにドロップしたときにアクティブにする</translation>
+    </message>
+    <message>
+        <source>Tool bars</source>
+        <translation>ツールバー</translation>
+    </message>
+    <message>
+        <source>Hide permanently</source>
+        <translation>マウスホバー時の自動表示</translation>
+    </message>
+    <message>
+        <source>Hide menu bar permanently</source>
+        <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
+        <translation>メニューバーを表示させない</translation>
+    </message>
+    <message>
+        <source>Hide tool bar permanently</source>
+        <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
+        <translation>ツールバーを表示させない</translation>
+    </message>
+    <message>
+        <source>Hide in full screen</source>
+        <translation>フルスクリーンにおけるマウスホバー時の表示</translation>
+    </message>
+    <message>
+        <source>Hide menu bar in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation>メニューバーを表示させない</translation>
+    </message>
+    <message>
+        <source>Hide tool bar in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation>ツールバーを表示させない</translation>
+    </message>
+    <message>
+        <source>Hide page bar in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation>ページバーを表示させない</translation>
+    </message>
+    <message>
+        <source>Show the usage</source>
+        <translation>使い方の表示</translation>
     </message>
 </context>
 <context>

@@ -377,11 +377,6 @@
      <addaction name="actionMailAttachment"/>
      <addaction name="actionOpenExif"/>
     </widget>
-    <widget class="QMenu" name="menu">
-     <property name="title">
-      <string>ここに入力</string>
-     </property>
-    </widget>
     <widget class="QMenu" name="menuFit_mode">
      <property name="title">
       <string>Fit mode</string>
@@ -403,7 +398,6 @@
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
     <addaction name="separator"/>
-    <addaction name="menu"/>
    </widget>
    <widget class="QMenu" name="menu_Catalog">
     <property name="title">
@@ -1167,7 +1161,7 @@
      <normaloff>:/icons/fitting</normaloff>:/icons/fitting</iconset>
    </property>
    <property name="text">
-    <string>FitToWindow</string>
+    <string>Fit to window</string>
    </property>
   </action>
  </widget>

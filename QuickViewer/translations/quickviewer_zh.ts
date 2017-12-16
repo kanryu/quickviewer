@@ -1046,7 +1046,7 @@
     <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation type="vanished">适合尺寸(&amp;F)</translation>
+        <translation>适合尺寸(&amp;F)</translation>
     </message>
     <message>
         <source>Fitting</source>
@@ -1807,12 +1807,19 @@
         <translation>鼠标滚轮缩放</translation>
     </message>
     <message>
-        <source>&amp;Fit to window</source>
-        <extracomment>Automatically resize the image according to the size of the window</extracomment>
+        <source>Fit to width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Fit to width</source>
+        <source>Edit the image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to window</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2230,6 +2237,47 @@
         <source>Activate the window when an image dropped on</source>
         <comment>Check box to activate the window when an image dropped on</comment>
         <translation>当图片拖入时激活窗口</translation>
+    </message>
+    <message>
+        <source>Tool bars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide permanently</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide menu bar permanently</source>
+        <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide tool bar permanently</source>
+        <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide in full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide menu bar in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide tool bar in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide page bar in full screen</source>
+        <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show the usage</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
