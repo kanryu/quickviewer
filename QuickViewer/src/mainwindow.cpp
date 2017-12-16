@@ -501,22 +501,20 @@ void MainWindow::onActionClearHistory_triggered()
 
 void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
 {
-    bool showMenubar = !qApp->ShowMenuBar();
-    bool showToolbar = !qApp->ShowToolBar();
-    bool showPageBar = !qApp->ShowSliderBar();
     bool fullscreen = isFullScreen();
-    if(!fullscreen) {
-        if(!showToolbar && !showMenubar && !showPageBar)
-            return;
-    }
-    if(anchor == Qt::AnchorTop && (showMenubar || showToolbar || fullscreen)) {
+    bool showMenubar = fullscreen ? !qApp->HideMenuBarInFullscreen() : (!qApp->ShowMenuBar()   && !qApp->HideMenuBarParmanently());
+    bool showToolbar = fullscreen ? !qApp->HideToolBarInFullscreen() : (!qApp->ShowToolBar()   && !qApp->HideToolBarParmanently());
+    bool showPageBar = fullscreen ? !qApp->HidePageBarInFullscreen() : (!qApp->ShowSliderBar() && !qApp->HidePageBarParmanently());
+    if(!showToolbar && !showMenubar && !showPageBar)
+        return;
+    if(anchor == Qt::AnchorTop && (showMenubar || showToolbar)) {
         QInnerFrame *innerFrame = new QInnerFrame(ui->graphicsView);
         connect(innerFrame, &QInnerFrame::init, this, [=]{
-            if(showMenubar || fullscreen) {
+            if(showMenubar) {
                 innerFrame->layout()->addWidget(ui->menuBar);
                 ui->menuBar->setVisible(true);
             }
-            if(showToolbar || fullscreen) {
+            if(showToolbar) {
                 innerFrame->layout()->addWidget(ui->mainToolBar);
                 ui->mainToolBar->setVisible(true);
             }

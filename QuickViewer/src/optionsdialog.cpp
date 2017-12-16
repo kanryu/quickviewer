@@ -70,8 +70,16 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->checkBoxExtractSolidToTemporary->setChecked(qApp->ExtractSolidArchiveToTemporaryDir());
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
     ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
+
+    ui->checkBoxHideMenuBarParmanently->setChecked(qApp->HideMenuBarParmanently());
+    ui->checkBoxHideToolBarParmanently->setChecked(qApp->HideToolBarParmanently());
     ui->checkBoxHidePageBarParmanently->setChecked(qApp->HidePageBarParmanently());
+
+    ui->checkBoxHideMenuBarInFullscreen->setChecked(qApp->HideMenuBarInFullscreen());
+    ui->checkBoxHideToolBarInFullscreen->setChecked(qApp->HideToolBarInFullscreen());
+    ui->checkBoxHidePageBarInFullscreen->setChecked(qApp->HidePageBarInFullscreen());
     ui->checkBoxHideScrollBarInFullscreen->setChecked(qApp->HideScrollBarInFullscreen());
+
     ui->checkBoxTopWindowWhenRunWithAssoc->setChecked(qApp->TopWindowWhenRunWithAssoc());
     ui->checkBoxTopWindowWhenDropped->setChecked(qApp->TopWindowWhenDropped());
 
@@ -81,6 +89,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // Caption Formats
     ui->labelFormatUsage->setText(m_imageString.getFormatUsage());
+    ui->labelFormatUsage->setVisible(false);
 
     ui->lineEditWindowTitleUserStyle->setText(qApp->TitleTextFormat());
     ui->labelWindowTitleSample->setText(m_imageString.formatString(qApp->TitleTextFormat()));
@@ -124,8 +133,16 @@ void OptionsDialog::reflectResults()
     qApp->setExtractSolidArchiveToTemporaryDir(ui->checkBoxExtractSolidToTemporary->isChecked());
     qApp->setProhibitMultipleRunning(ui->checkBoxProhibitMultipleRunning->isChecked());
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
+
+    qApp->setHideMenuBarParmanently(ui->checkBoxHideMenuBarParmanently->isChecked());
+    qApp->setHideToolBarParmanently(ui->checkBoxHideToolBarParmanently->isChecked());
     qApp->setHidePageBarParmanently(ui->checkBoxHidePageBarParmanently->isChecked());
+
+    qApp->setHideMenuBarInFullscreen(ui->checkBoxHideMenuBarInFullscreen->isChecked());
+    qApp->setHideToolBarInFullscreen(ui->checkBoxHideToolBarInFullscreen->isChecked());
+    qApp->setHidePageBarInFullscreen(ui->checkBoxHidePageBarInFullscreen->isChecked());
     qApp->setHideScrollBarInFullscreen(ui->checkBoxHideScrollBarInFullscreen->isChecked());
+
     qApp->setTopWindowWhenRunWithAssoc(ui->checkBoxTopWindowWhenRunWithAssoc->isChecked());
     qApp->setTopWindowWhenDropped(ui->checkBoxTopWindowWhenDropped->isChecked());
 
@@ -245,4 +262,9 @@ void OptionsDialog::onLineEditWindowTitleUserStyle_textEdited(QString text)
 void OptionsDialog::onLineEditStatusBarUserStyle_textEdited(QString text)
 {
     resetStatusbarSample();
+}
+
+void OptionsDialog::onCheckBoxShowUsage_clicked(bool enabled)
+{
+    ui->labelFormatUsage->setVisible(enabled);
 }

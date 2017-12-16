@@ -138,10 +138,23 @@ public:
     void setShowPanelSeparateWindow(bool showPanelSeparateWindow) { m_showPanelSeparateWindow = showPanelSeparateWindow; }
     bool LargeToolbarIcons() { return m_largeToolbarIcons; }
     void setLargeToolbarIcons(bool largeToolbarIcons) { m_largeToolbarIcons = largeToolbarIcons; }
+
+    bool HideMenuBarParmanently() { return m_hideMenuBarParmanently; }
+    void setHideMenuBarParmanently(bool hideMenuBarParmanently) { m_hideMenuBarParmanently = hideMenuBarParmanently; }
+    bool HideToolBarParmanently() { return m_hideToolBarParmanently; }
+    void setHideToolBarParmanently(bool hideToolBarParmanently) { m_hideToolBarParmanently = hideToolBarParmanently; }
     bool HidePageBarParmanently() { return m_hidePageBarParmanently; }
     void setHidePageBarParmanently(bool hidePageBarParmanently) { m_hidePageBarParmanently = hidePageBarParmanently; }
+
+    bool HideMenuBarInFullscreen() { return m_hideMenuBarInFullscreen; }
+    void setHideMenuBarInFullscreen(bool hideMenuBarInFullscreen) { m_hideMenuBarInFullscreen = hideMenuBarInFullscreen; }
+    bool HideToolBarInFullscreen() { return m_hideToolBarInFullscreen; }
+    void setHideToolBarInFullscreen(bool hideToolBarInFullscreen) { m_hideToolBarInFullscreen = hideToolBarInFullscreen; }
+    bool HidePageBarInFullscreen() { return m_hidePageBarInFullscreen; }
+    void setHidePageBarInFullscreen(bool hidePageBarInFullscreen) { m_hidePageBarInFullscreen = hidePageBarInFullscreen; }
     bool HideScrollBarInFullscreen() { return m_hideScrollBarInFullscreen; }
     void setHideScrollBarInFullscreen(bool hideScrollBarInFullscreen) { m_hideScrollBarInFullscreen = hideScrollBarInFullscreen; }
+
     QString TitleTextFormat() { return m_titleTextFormat; }
     void setTitleTextFormat(QString titleTextFormat) { m_titleTextFormat = titleTextFormat; }
     QString StatusTextFormat() { return m_statusTextFormat; }
@@ -321,8 +334,16 @@ private:
     bool m_useFastDCTForJPEG;
     bool m_showPanelSeparateWindow;
     bool m_largeToolbarIcons;
+
+    bool m_hideMenuBarParmanently;
+    bool m_hideToolBarParmanently;
     bool m_hidePageBarParmanently;
+
+    bool m_hideMenuBarInFullscreen;
+    bool m_hideToolBarInFullscreen;
+    bool m_hidePageBarInFullscreen;
     bool m_hideScrollBarInFullscreen;
+
     bool m_topWindowWhenRunWithAssoc;
     bool m_topWindowWhenDropped;
     bool m_separatePagesWhenWideImage;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>458</width>
-    <height>512</height>
+    <height>468</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,9 +24,15 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_7">
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="currentIndex">
       <number>1</number>
      </property>
@@ -34,7 +40,7 @@
       <attribute name="title">
        <string>General</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <widget class="QFrame" name="frame">
          <property name="sizePolicy">
@@ -203,28 +209,14 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
-           <widget class="QCheckBox" name="checkBoxHidePageBarParmanently">
-            <property name="text">
-             <string extracomment="Flag to suppress the automatic display of the page bar">Hide page bar permanently</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QCheckBox" name="checkBoxHideScrollBarInFullscreen">
-            <property name="text">
-             <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide scroll bars in full screen</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0" colspan="2">
+          <item row="8" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxTopWindowWhenRunWithAssoc">
             <property name="text">
              <string comment="Check box to activate the window when activated by image association">Activate the window when launched with image association</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="9" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxTopWindowWhenDropped">
             <property name="text">
              <string comment="Check box to activate the window when an image dropped on">Activate the window when an image dropped on</string>
@@ -347,6 +339,99 @@
           </item>
          </layout>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="toolbars">
+      <attribute name="title">
+       <string>Tool bars</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Hide permanently</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QCheckBox" name="checkBoxHideMenuBarParmanently">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the page bar">Hide menu bar permanently</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHideToolBarParmanently">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the page bar">Hide tool bar permanently</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHidePageBarParmanently">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the page bar">Hide page bar permanently</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
+          <string>Hide in full screen</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QCheckBox" name="checkBoxHideMenuBarInFullscreen">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide menu bar in full screen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHideToolBarInFullscreen">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide tool bar in full screen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHidePageBarInFullscreen">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide page bar in full screen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxHideScrollBarInFullscreen">
+            <property name="text">
+             <string extracomment="Flag to suppress the automatic display of the scrollbars in fullscreen">Hide scroll bars in full screen</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>151</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -2185,6 +2270,13 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxShowUsage">
+            <property name="text">
+             <string>Show the usage</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -2414,6 +2506,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>checkBoxShowUsage</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>OptionsDialog</receiver>
+   <slot>onCheckBoxShowUsage_clicked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>227</x>
+     <y>437</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>228</x>
+     <y>255</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onBtnColorSelect_clicked()</slot>
@@ -2423,5 +2531,6 @@
   <slot>onLineEditWindowTitleUserStyle_textEdited(QString)</slot>
   <slot>onLineEditStatusBarUserStyle_textEdited(QString)</slot>
   <slot>onRadioButtonStatusBar_triggered(bool)</slot>
+  <slot>onCheckBoxShowUsage_clicked(bool)</slot>
  </slots>
 </ui>
