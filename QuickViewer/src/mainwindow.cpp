@@ -66,8 +66,10 @@ MainWindow::MainWindow(QWidget *parent)
     // setup checkable menus
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());
-    ui->actionFitToWidth->setChecked(qApp->FitToWidth());
-    ui->graphicsView->on_fitToWidth_triggered(qApp->FitToWidth());
+    switch(qApp->ImageFitMode()) {
+    case qvEnums::FitToRect: ui->actionFitToWindow->setChecked(true); break;
+    case qvEnums::FitToWidth: ui->actionFitToWidth->setChecked(true); break;
+    }
 
     ui->actionDualView->setChecked(qApp->DualView());
     ui->graphicsView->on_dualView_triggered(qApp->DualView());
@@ -176,7 +178,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&m_pageManager, SIGNAL(volumeChanged(QString)), this, SLOT(onPageManager_volumeChanged(QString)));
     connect(ui->graphicsView, SIGNAL(scrollModeChanged(bool)), this, SLOT(onScrollModeChanged(bool)));
     connect(ui->graphicsView, SIGNAL(zoomingChanged()), this, SLOT(onPageManager_pageChanged()));
-    connect(ui->graphicsView, SIGNAL(fittingChanged(PageContent::FitMode)), this, SLOT(onGraphicsView_fittingChanged(PageContent::FitMode)));
+    connect(ui->graphicsView, SIGNAL(fittingChanged(qvEnums::FitMode)), this, SLOT(onGraphicsView_fittingChanged(qvEnums::FitMode)));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
@@ -725,10 +727,10 @@ void MainWindow::onActionStayOnTop_triggered(bool top)
     show();
 }
 
-void MainWindow::onGraphicsView_fittingChanged(PageContent::FitMode mode)
+void MainWindow::onGraphicsView_fittingChanged(qvEnums::FitMode mode)
 {
-    ui->actionFitting->setChecked(mode == PageContent::FitToRect);
-    ui->actionFitToWidth->setChecked(mode == PageContent::FitToWidth);
+    ui->actionFitToWindow->setChecked(mode == qvEnums::FitToRect);
+    ui->actionFitToWidth->setChecked(mode == qvEnums::FitToWidth);
 }
 
 void MainWindow::onPageManager_pageChanged()

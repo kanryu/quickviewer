@@ -69,6 +69,13 @@ public:
 		Large2Icon = 40,
 	};
     Q_ENUM(ToolbarIconSize)
+
+    enum FitMode {
+        NoFitting,
+        FitToRect,
+        FitToWidth
+    };
+    Q_ENUM(FitMode)
 };
 
 

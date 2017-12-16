@@ -6,6 +6,7 @@
 
 #include "exif.h"
 #include "qvmovie.h"
+#include "qv_init.h"
 
 /**
  * @brief The ImageContent struct
@@ -87,11 +88,11 @@ public:
         PageLeft,
         PageRight
     };
-    enum FitMode {
-        NoFitting,
-        FitToRect,
-        FitToWidth
-    };
+//    enum FitMode {
+//        NoFitting,
+//        FitToRect,
+//        FitToWidth
+//    };
 
     enum SeparationState {
         NoSeparated,
@@ -137,7 +138,7 @@ public:
      * @brief setPageLayout set each image on the page
      * @param viewport: the image must be inscribed in the viewport area
      */
-    QRect setPageLayoutFitting(QRect viewport, PageAlign align, FitMode fitMode, qreal loupe, int rotateOffset=0);
+    QRect setPageLayoutFitting(QRect viewport, PageAlign align, qvEnums::FitMode fitMode, qreal loupe, int rotateOffset=0);
     QRect setPageLayoutManual(QRect viewport, PageAlign align, qreal scale, int rotateOffset=0, bool loupe=false);
 
     void applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize, bool loupe=false);

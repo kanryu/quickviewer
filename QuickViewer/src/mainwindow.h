@@ -173,7 +173,7 @@ public slots:
     void onScrollModeChanged(bool scrolled);
 
 private slots:
-    void onGraphicsView_fittingChanged(PageContent::FitMode mode);
+    void onGraphicsView_fittingChanged(qvEnums::FitMode mode);
 
 
 protected:

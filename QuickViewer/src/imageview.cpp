@@ -178,9 +178,7 @@ void ImageView::readyForPaint() {
     if(!m_pages.empty()) {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
-        PageContent::FitMode fitMode = qApp->Fitting() ? PageContent::FitToRect
-                                     : qApp->FitToWidth() ? PageContent::FitToWidth
-                                     : PageContent::NoFitting;
+        qvEnums::FitMode fitMode = qApp->ImageFitMode();
         for(int i = 0; i < m_pages.size(); i++) {
             if(qApp->SeparatePagesWhenWideImage() && m_pages[i].Ic.wideImage()) {
                 if(m_pages[i].Separation == PageContent::NoSeparated && viewport()->width() < viewport()->height())
@@ -197,7 +195,7 @@ void ImageView::readyForPaint() {
             }
             QRect drawRect;
             qreal scalefactor = m_loupeEnable ? m_loupeFactor : 1.0;
-            if(fitMode != PageContent::NoFitting) {
+            if(fitMode != qvEnums::NoFitting) {
                 drawRect = m_pages[i].setPageLayoutFitting(
                             pageRect, pageAlign, fitMode, scalefactor,
                             m_pageRotations.isEmpty() ? 0 : m_pageRotations[pageCount+i]);
@@ -574,21 +572,29 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
 
 void ImageView::on_fitting_triggered(bool enable)
 {
-    if(enable && qApp->FitToWidth()) {
-        qApp->setFitToWidth(false);
-        emit fittingChanged(PageContent::FitToRect);
-    }
     qApp->setFitting(enable);
+    readyForPaint();
+}
+
+void ImageView::on_fitToWindow_triggered(bool enable)
+{
+    if(!enable) {
+        return;
+    }
+    qApp->setImageFitMode(qvEnums::FitToRect);
+    emit fittingChanged(qvEnums::FitToRect);
+    qApp->setFitting(true);
     readyForPaint();
 }
 
 void ImageView::on_fitToWidth_triggered(bool enable)
 {
-    if(enable && qApp->Fitting()) {
-        qApp->setFitting(false);
-        emit fittingChanged(PageContent::FitToWidth);
+    if(!enable) {
+        return;
     }
-    qApp->setFitToWidth(enable);
+    qApp->setImageFitMode(qvEnums::FitToWidth);
+    emit fittingChanged(qvEnums::FitToWidth);
+    qApp->setFitting(true);
     readyForPaint();
 }
 
@@ -610,10 +616,9 @@ void ImageView::on_scaleUp_triggered()
 {
     if(!m_pages.size())
         return;
-    if(qApp->Fitting() || qApp->FitToWidth()) {
+    if(qApp->Fitting()) {
         qApp->setFitting(false);
-        qApp->setFitToWidth(false);
-        emit fittingChanged(PageContent::NoFitting);
+//        emit fittingChanged(PageContent::NoFitting);
         qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = 0;
         qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale << getZoomScale();
@@ -631,10 +636,9 @@ void ImageView::on_scaleDown_triggered()
 {
     if(!m_pages.size())
         return;
-    if(qApp->Fitting() || qApp->FitToWidth()) {
+    if(qApp->Fitting()) {
         qApp->setFitting(false);
-        qApp->setFitToWidth(false);
-        emit fittingChanged(PageContent::NoFitting);
+//        emit fittingChanged(PageContent::NoFitting);
         qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = viewSizeList.size()-1;
         while(viewSizeIdx > 0 && getZoomScale() > scale)

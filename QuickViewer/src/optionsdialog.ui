@@ -28,7 +28,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="general">
       <attribute name="title">
@@ -2203,9 +2203,6 @@
     </widget>
    </item>
   </layout>
-  <zorder>tabWidget</zorder>
-  <zorder>buttonBox</zorder>
-  <zorder>checkBoxExtractSolidToTemporary</zorder>
  </widget>
  <resources/>
  <connections>

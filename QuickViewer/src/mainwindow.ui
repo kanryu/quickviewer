@@ -198,6 +198,44 @@
     </item>
    </layout>
   </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionPrevPage"/>
+   <addaction name="actionNextPage"/>
+   <addaction name="actionFastBackward"/>
+   <addaction name="actionFastForward"/>
+   <addaction name="actionFirstPage"/>
+   <addaction name="actionLastPage"/>
+   <addaction name="actionShowSubfolders"/>
+   <addaction name="separator"/>
+   <addaction name="actionSaveBookmark"/>
+   <addaction name="actionLoadBookmark"/>
+   <addaction name="separator"/>
+   <addaction name="actionPrevVolume"/>
+   <addaction name="actionNextVolume"/>
+   <addaction name="separator"/>
+   <addaction name="actionSlideShow"/>
+   <addaction name="separator"/>
+   <addaction name="actionShowFolder"/>
+   <addaction name="actionShowCatalog"/>
+   <addaction name="separator"/>
+   <addaction name="actionRotate"/>
+   <addaction name="actionZoomIn"/>
+   <addaction name="actionZoomOut"/>
+   <addaction name="actionLoupeTool"/>
+   <addaction name="separator"/>
+   <addaction name="actionFitting"/>
+   <addaction name="actionDualView"/>
+   <addaction name="separator"/>
+   <addaction name="actionShowPanelSeparateWindow"/>
+   <addaction name="actionStayOnTop"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="enabled">
     <bool>true</bool>
@@ -238,6 +276,7 @@
     <addaction name="actionShowToolBar"/>
     <addaction name="actionShowPageBar"/>
     <addaction name="actionShowStatusBar"/>
+    <addaction name="actionOpenExif"/>
     <addaction name="separator"/>
     <addaction name="actionBeginAsFullscreen"/>
     <addaction name="actionRestoreWindowState"/>
@@ -327,23 +366,44 @@
      <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
      <addaction name="actionShaderCpuBicubic"/>
     </widget>
+    <widget class="QMenu" name="menuEdit_the_image">
+     <property name="title">
+      <string>Edit the image</string>
+     </property>
+     <addaction name="actionCopyPage"/>
+     <addaction name="actionCopyFile"/>
+     <addaction name="actionRecyclePage"/>
+     <addaction name="actionRenameImageFile"/>
+     <addaction name="actionMailAttachment"/>
+     <addaction name="actionOpenExif"/>
+    </widget>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>ここに入力</string>
+     </property>
+    </widget>
+    <widget class="QMenu" name="menuFit_mode">
+     <property name="title">
+      <string>Fit mode</string>
+     </property>
+     <addaction name="actionFitToWidth"/>
+     <addaction name="actionFitToWindow"/>
+    </widget>
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
     <addaction name="separator"/>
+    <addaction name="menuEdit_the_image"/>
+    <addaction name="menuFit_mode"/>
     <addaction name="menu_Shader"/>
     <addaction name="separator"/>
-    <addaction name="actionCopyPage"/>
-    <addaction name="actionCopyFile"/>
-    <addaction name="actionRecyclePage"/>
-    <addaction name="actionRenameImageFile"/>
-    <addaction name="actionMailAttachment"/>
     <addaction name="separator"/>
     <addaction name="actionOpenFiler"/>
-    <addaction name="actionOpenExif"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
+    <addaction name="separator"/>
+    <addaction name="menu"/>
    </widget>
    <widget class="QMenu" name="menu_Catalog">
     <property name="title">
@@ -376,6 +436,13 @@
     <property name="title">
      <string>&amp;Image</string>
     </property>
+    <widget class="QMenu" name="menuFitMode">
+     <property name="title">
+      <string>Fit mode</string>
+     </property>
+     <addaction name="actionFitToWindow"/>
+     <addaction name="actionFitToWidth"/>
+    </widget>
     <addaction name="actionRotate"/>
     <addaction name="separator"/>
     <addaction name="actionZoomIn"/>
@@ -384,7 +451,7 @@
     <addaction name="actionLoupeTool"/>
     <addaction name="separator"/>
     <addaction name="actionFitting"/>
-    <addaction name="actionFitToWidth"/>
+    <addaction name="menuFitMode"/>
     <addaction name="actionDontEnlargeSmallImagesOnFitting"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
@@ -403,45 +470,6 @@
    <addaction name="menuHelp"/>
    <addaction name="menuContextMenu"/>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionPrevPage"/>
-   <addaction name="actionNextPage"/>
-   <addaction name="actionFastBackward"/>
-   <addaction name="actionFastForward"/>
-   <addaction name="actionFirstPage"/>
-   <addaction name="actionLastPage"/>
-   <addaction name="actionShowSubfolders"/>
-   <addaction name="separator"/>
-   <addaction name="actionSaveBookmark"/>
-   <addaction name="actionLoadBookmark"/>
-   <addaction name="separator"/>
-   <addaction name="actionPrevVolume"/>
-   <addaction name="actionNextVolume"/>
-   <addaction name="separator"/>
-   <addaction name="actionSlideShow"/>
-   <addaction name="separator"/>
-   <addaction name="actionShowFolder"/>
-   <addaction name="actionShowCatalog"/>
-   <addaction name="separator"/>
-   <addaction name="actionRotate"/>
-   <addaction name="actionZoomIn"/>
-   <addaction name="actionZoomOut"/>
-   <addaction name="actionLoupeTool"/>
-   <addaction name="separator"/>
-   <addaction name="actionFitting"/>
-   <addaction name="actionFitToWidth"/>
-   <addaction name="actionDualView"/>
-   <addaction name="separator"/>
-   <addaction name="actionShowPanelSeparateWindow"/>
-   <addaction name="actionStayOnTop"/>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
    <property name="text">
     <string extracomment="End application">E&amp;xit</string>
@@ -495,10 +523,10 @@
    </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
-     <normaloff>:/icons/fitting</normaloff>:/icons/fitting</iconset>
+     <normaloff>:/icons/maximize_icon</normaloff>:/icons/maximize_icon</iconset>
    </property>
    <property name="text">
-    <string extracomment="Automatically resize the image according to the size of the window">&amp;Fit to window</string>
+    <string extracomment="Automatically resize the image according to the size of the window">&amp;Fitting</string>
    </property>
   </action>
   <action name="actionDualView">
@@ -1130,6 +1158,18 @@
     <string>Fit to width</string>
    </property>
   </action>
+  <action name="actionFitToWindow">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/fitting</normaloff>:/icons/fitting</iconset>
+   </property>
+   <property name="text">
+    <string>FitToWindow</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1169,6 +1209,7 @@
     <slot>onActionScrollWithCursorWhenZooming_triggered(bool)</slot>
     <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
     <slot>on_fitToWidth_triggered(bool)</slot>
+    <slot>on_fitToWindow_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2530,6 +2571,22 @@
    <signal>triggered(bool)</signal>
    <receiver>graphicsView</receiver>
    <slot>on_fitToWidth_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFitToWindow</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>on_fitToWindow_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

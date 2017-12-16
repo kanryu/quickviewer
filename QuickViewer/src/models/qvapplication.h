@@ -122,8 +122,8 @@ public:
     // View
     bool Fitting() { return m_fitting; }
     void setFitting (bool fitting) { m_fitting = fitting; }
-    bool FitToWidth() { return m_fitToWidth; }
-    void setFitToWidth(bool fitToWidth) { m_fitToWidth = fitToWidth; }
+    qvEnums::FitMode ImageFitMode() { return m_fitMode; }
+    void setImageFitMode(qvEnums::FitMode fitMode) { m_fitMode = fitMode; }
     QColor BackgroundColor() { return m_backgroundColor; }
     void setBackgroundColor (QColor backgroundColor) { m_backgroundColor = backgroundColor; }
     QColor BackgroundColor2() { return m_backgroundColor2; }
@@ -294,7 +294,8 @@ private:
 
     // View
     bool m_fitting;
-    bool m_fitToWidth;
+//    bool m_fitToWidth;
+    qvEnums::FitMode m_fitMode;
     bool m_dualView;
     bool m_stayOnTop;
     /**

@@ -158,6 +158,8 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     groupName = tr("Image", "Image Action Group");
     m_keyActions.registAction("actionRotate", ui->actionRotate, groupName);
     m_keyActions.registAction("actionFitting", ui->actionFitting, groupName);
+    m_keyActions.registAction("actionFitToWindow", ui->actionFitToWindow, groupName);
+    m_keyActions.registAction("actionFitToWidth", ui->actionFitToWidth, groupName);
     m_keyActions.registAction("actionZoomIn", ui->actionZoomIn, groupName);
     m_keyActions.registAction("actionZoomOut", ui->actionZoomOut, groupName);
     m_keyActions.registAction("actionDontEnlargeSmallImagesOnFitting", ui->actionDontEnlargeSmallImagesOnFitting, groupName);
@@ -280,7 +282,11 @@ void QVApplication::loadSettings()
     bool bRightSideBookDefault = QLocale::system().language() == QLocale::Japanese;
     m_settings.beginGroup("View");
     m_fitting = m_settings.value("Fitting", true).toBool();
-    m_fitToWidth = m_settings.value("FitToWidth", false).toBool();
+    {
+        QString fitModestring = m_settings.value("ImageFitMode", "FitToRect").toString();
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FitMode");
+        m_fitMode = (qvEnums::FitMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(fitModestring.toLatin1().data());
+    }
     m_dualView = m_settings.value("DualView", false).toBool();
     m_stayOnTop = m_settings.value("StayOnTop", false).toBool();
 
@@ -409,7 +415,11 @@ void QVApplication::saveSettings()
 {
     m_settings.beginGroup("View");
     m_settings.setValue("Fitting", m_fitting);
-    m_settings.setValue("FitToWidth", m_fitToWidth);
+    {
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FitMode");
+        QString fitModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_fitMode));
+        m_settings.setValue("ImageFitMode", fitModestring);
+    }
     m_settings.setValue("DualView", m_dualView);
     m_settings.setValue("StayOnTop", m_stayOnTop);
 

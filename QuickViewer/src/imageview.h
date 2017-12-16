@@ -71,7 +71,7 @@ signals:
     void anchorHovered(Qt::AnchorPoint anchor) const;
 //    void pageChanged() const;
 
-    void fittingChanged(PageContent::FitMode mode) const;
+    void fittingChanged(qvEnums::FitMode mode) const;
     void scrollModeChanged(bool scrolling) const;
     void zoomingChanged() const;
 
@@ -111,6 +111,7 @@ public slots:
 
     // View
     void on_fitting_triggered(bool maximized);
+    void on_fitToWindow_triggered(bool enable);
     void on_fitToWidth_triggered(bool enable);
     void on_dualView_triggered(bool viewdual);
     void on_rightSideBook_triggered(bool rightSideBook);

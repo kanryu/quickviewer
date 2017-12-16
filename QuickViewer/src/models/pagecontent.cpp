@@ -109,7 +109,7 @@ QSize PageContent::CurrentSize(int rotateOffset) {
     return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
 }
 
-QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign align, FitMode fitMode, qreal loupe, int rotateOffset) {
+QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign align, qvEnums::FitMode fitMode, qreal loupe, int rotateOffset) {
     if(!Ic.ImportSize.width()) {
         applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
         return QRect(viewport.topLeft(), QSize(100, 100));
@@ -118,7 +118,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign a
     bool goSeparate = viewport.height() > viewport.width() && Separation != NoSeparated;
     if(goSeparate)
         currentSize = QSize(currentSize.width()/2, currentSize.height());
-    QSize newsize = fitMode == FitMode::FitToRect
+    QSize newsize = fitMode == qvEnums::FitToRect
             ? currentSize.scaled(viewport.size(), Qt::KeepAspectRatio)
             : QSize(viewport.width(), currentSize.height()*viewport.width()/currentSize.width()) ;
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
@@ -135,7 +135,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign a
     if(newsize.height() == viewport.height()) { // fitting on upper and bottom
         int ofsinviewport = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
-    } else if(fitMode == FitMode::FitToRect) { // fitting on left and right
+    } else if(fitMode == qvEnums::FitToRect) { // fitting on left and right
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
     } else {
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y()), newsize);
