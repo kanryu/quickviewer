@@ -1,16 +1,22 @@
 # CHANGELOG
 
+- other commits
+    - changelog (Sun Dec 17 10:05:49 2017 +0900) [d56cbb7](https://github.com/kanryu/quickviewer/commit/d56cbb78da351019b841c5c7958c710f12fbc523)
+
 ## v1.0.7 (Sun Dec 17 10:04:40 2017 +0900) [e6e49c7](https://github.com/kanryu/quickviewer/commit/e6e49c7938f768512986ee3f4127a63b7944938a)
 
 (rev2) bugfixed: Fitting was not working properly
 
+## v1.0.7rev0 (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+
+- the order of volumes should be in order of 1.folder 2.archives
+- add flag hide tool bars parmanently
+- add flag hide tool bars in full screen
+- divided the switching between Fitting and Fitting mode into different flags
+- bugfixed: crash on deleting image on a folder
+- bugfixed: The position of the window was not saved when exiting the application from the menu
+
 - other commits
-    -  the order of volumes should be in order of 1.folder 2.archives (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
-    -  add flag hide tool bars parmanently (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
-    -  add flag hide tool bars in full screen (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
-    -  divided the switching between Fitting and Fitting mode into different flags (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
-    -  bugfixed: crash on deleting image on a folder (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
-    -  bugfixed: The position of the window was not saved when exiting the application from the menu (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
     - the order of volumes should be in order of 1.folder 2.archives (Sat Dec 16 21:22:26 2017 +0900) [ef9f113](https://github.com/kanryu/quickviewer/commit/ef9f1138024d46e4bd3442991ba18e7c01bc30fa)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Dec 16 21:18:18 2017 +0900) [438f4b7](https://github.com/kanryu/quickviewer/commit/438f4b7ae684460c893c47fd45e9983e75e05413)
     - add flag hide tool bars parmanently (Sat Dec 16 20:57:51 2017 +0900) [b825dff](https://github.com/kanryu/quickviewer/commit/b825dffb67a6df2031b7b8ef114cffb1a013d2eb)
