@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## v1.0.7 (Sun Dec 17 10:04:40 2017 +0900) [e6e49c7](https://github.com/kanryu/quickviewer/commit/e6e49c7938f768512986ee3f4127a63b7944938a)
+
+(rev2) bugfixed: Fitting was not working properly
+
+- other commits
+    -  the order of volumes should be in order of 1.folder 2.archives (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+    -  add flag hide tool bars parmanently (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+    -  add flag hide tool bars in full screen (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+    -  divided the switching between Fitting and Fitting mode into different flags (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+    -  bugfixed: crash on deleting image on a folder (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+    -  bugfixed: The position of the window was not saved when exiting the application from the menu (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+    - the order of volumes should be in order of 1.folder 2.archives (Sat Dec 16 21:22:26 2017 +0900) [ef9f113](https://github.com/kanryu/quickviewer/commit/ef9f1138024d46e4bd3442991ba18e7c01bc30fa)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Dec 16 21:18:18 2017 +0900) [438f4b7](https://github.com/kanryu/quickviewer/commit/438f4b7ae684460c893c47fd45e9983e75e05413)
+    - add flag hide tool bars parmanently (Sat Dec 16 20:57:51 2017 +0900) [b825dff](https://github.com/kanryu/quickviewer/commit/b825dffb67a6df2031b7b8ef114cffb1a013d2eb)
+    - add flag hide tool bars in full screen (Sat Dec 16 20:57:51 2017 +0900) [b825dff](https://github.com/kanryu/quickviewer/commit/b825dffb67a6df2031b7b8ef114cffb1a013d2eb)
+    - add flag hide tool bars parmanently (Sat Dec 16 20:57:51 2017 +0900) [55f18a1](https://github.com/kanryu/quickviewer/commit/55f18a104d2f2db164f07cde26b85b255a9fdbb9)
+    - add flag hide tool bars in full screen (Sat Dec 16 20:57:51 2017 +0900) [55f18a1](https://github.com/kanryu/quickviewer/commit/55f18a104d2f2db164f07cde26b85b255a9fdbb9)
+    - divided the switching between Fitting and Fitting mode into different flags (Sat Dec 16 19:57:33 2017 +0900) [7cd19a0](https://github.com/kanryu/quickviewer/commit/7cd19a0eb1ade6c0e8568690c5ede0d3d55bd5c0)
+    - bugfixed: crash on deleting image on a folder (Sat Dec 16 18:55:00 2017 +0900) [7d1274b](https://github.com/kanryu/quickviewer/commit/7d1274bf8df8afeff85483312143bdd84f2dadf4)
+    - bugfixed: The position of the window was not saved when exiting the application from the menu (Fri Dec 15 00:17:38 2017 +0900) [6103334](https://github.com/kanryu/quickviewer/commit/61033344095c27dd2c6861e32375ebcb291610a6)
+    - Update index-ja.md (Wed Dec 13 10:06:23 2017 +0900) [9011b6d](https://github.com/kanryu/quickviewer/commit/9011b6d7eb7208066ceeb90265aa73b5456e91c4)
+    - Update index.md (Wed Dec 13 10:05:39 2017 +0900) [66c6141](https://github.com/kanryu/quickviewer/commit/66c6141f073824838bb739916d73076ff92024df)
+    - Update README.md (Wed Dec 13 10:05:09 2017 +0900) [2180a1a](https://github.com/kanryu/quickviewer/commit/2180a1a3ca617cdfef1f74cd27bb10aaf874db7c)
+    - Update README.md (Sat Dec 2 10:22:12 2017 +0900) [e6223be](https://github.com/kanryu/quickviewer/commit/e6223be9e11d940a09f29053253e69e1e601ccc8)
+    - Update README.md (Mon Nov 27 16:24:16 2017 +0900) [ed24c31](https://github.com/kanryu/quickviewer/commit/ed24c312eb741219a66bb13954dd22c6905eb589)
+    - Merge pull request #54 from gitter-badger/gitter-badge (Mon Nov 27 16:23:08 2017 +0900) [2f276a5](https://github.com/kanryu/quickviewer/commit/2f276a592d91c6a62229321c836a33ee3430c126)
+    -  (Mon Nov 27 16:23:08 2017 +0900) [2f276a5](https://github.com/kanryu/quickviewer/commit/2f276a592d91c6a62229321c836a33ee3430c126)
+    - Add a Gitter chat badge to README.md (Mon Nov 27 16:23:08 2017 +0900) [2f276a5](https://github.com/kanryu/quickviewer/commit/2f276a592d91c6a62229321c836a33ee3430c126)
+    - Update README.md (Mon Nov 27 16:09:18 2017 +0900) [f3973dd](https://github.com/kanryu/quickviewer/commit/f3973ddaac05ff4a4477e4b99756dee816f237f6)
+    - Add Gitter badge (Mon Nov 27 06:55:29 2017 +0000) [8cc6ec6](https://github.com/kanryu/quickviewer/commit/8cc6ec6ccea3b2741e93bc9e9ad387d38d8da525)
+    - Update index.md (Fri Nov 24 23:39:46 2017 +0900) [55b9989](https://github.com/kanryu/quickviewer/commit/55b99890eaf4f893e787f7ab91f8655f8f5a5202)
+    - Update index.md (Wed Nov 22 19:28:38 2017 +0900) [741b4c4](https://github.com/kanryu/quickviewer/commit/741b4c40664a43e9d632a8f2ab841a2a3a544a76)
+    - Update index.md (Thu Nov 16 14:52:18 2017 +0900) [7024420](https://github.com/kanryu/quickviewer/commit/7024420a2352959c5f8a7373258e6febe084131d)
+    - changelog (Sun Nov 12 19:32:27 2017 +0900) [358ccc2](https://github.com/kanryu/quickviewer/commit/358ccc2af9aea519766d63639585a8d3e8336a39)
+
 ## v1.0.6 (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
 
 add 'Fit to width', 1 bugfixed
