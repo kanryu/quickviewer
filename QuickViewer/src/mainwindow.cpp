@@ -727,6 +727,7 @@ void MainWindow::onActionStayOnTop_triggered(bool top)
 
 void MainWindow::onGraphicsView_fittingChanged(qvEnums::FitMode mode)
 {
+    ui->actionFitting->setChecked(qApp->Fitting());
     ui->actionFitToWindow->setChecked(mode == qvEnums::FitToRect);
     ui->actionFitToWidth->setChecked(mode == qvEnums::FitToWidth);
 }

@@ -178,7 +178,7 @@ void ImageView::readyForPaint() {
     if(!m_pages.empty()) {
         int pageCount = m_pageManager->currentPage();
         QRect sceneRect;
-        qvEnums::FitMode fitMode = qApp->ImageFitMode();
+        qvEnums::FitMode fitMode = qApp->Fitting() ? qApp->ImageFitMode() : qvEnums::NoFitting;
         for(int i = 0; i < m_pages.size(); i++) {
             if(qApp->SeparatePagesWhenWideImage() && m_pages[i].Ic.wideImage()) {
                 if(m_pages[i].Separation == PageContent::NoSeparated && viewport()->width() < viewport()->height())
@@ -212,7 +212,7 @@ void ImageView::readyForPaint() {
         }
         // if Size of Image overs Size of View, use Image's size
 //        setSceneRectMode(!qApp->Fitting() && !m_isFullScreen, sceneRect);
-        setSceneRectMode(!qApp->Fitting() || m_loupeEnable, sceneRect);
+        setSceneRectMode(!(qApp->Fitting() && qApp->ImageFitMode() == qvEnums::FitToRect) || m_loupeEnable, sceneRect);
     }
     m_effectManager.prepareFinished();
 }
@@ -508,6 +508,7 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
     } else {
         setCursor(QCursor(Qt::ArrowCursor));
     }
+//    qDebug() << qApp->ScrollWithCursorWhenZooming() << scene()->sceneRect() << size();
     if(m_loupeEnable)
         scrollOnLoupeMode();
     else if(qApp->ScrollWithCursorWhenZooming() && (scene()->sceneRect().width() > width() || scene()->sceneRect().height() > height())) {
@@ -618,7 +619,7 @@ void ImageView::on_scaleUp_triggered()
         return;
     if(qApp->Fitting()) {
         qApp->setFitting(false);
-//        emit fittingChanged(PageContent::NoFitting);
+        emit fittingChanged(qApp->ImageFitMode());
         qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = 0;
         qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale << getZoomScale();
@@ -638,7 +639,7 @@ void ImageView::on_scaleDown_triggered()
         return;
     if(qApp->Fitting()) {
         qApp->setFitting(false);
-//        emit fittingChanged(PageContent::NoFitting);
+        emit fittingChanged(qApp->ImageFitMode());
         qreal scale = m_pages[0].GrItem->scale();
         viewSizeIdx = viewSizeList.size()-1;
         while(viewSizeIdx > 0 && getZoomScale() > scale)
