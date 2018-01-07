@@ -27,8 +27,8 @@ public:
     /**
      * @brief createPackedImage zimg must require 64bit packed memory bitmap
      * @param size of new image
-     * @param fmt of new image(only Format_Grayscale8, Format_RGB888, Format_ARGB32)
-     * @param stridePack packed byte size for each line(64 bytes aligned, or 64x4 bytes aligned for Format_ARGB32)
+     * @param fmt of new image(only Format_Grayscale8, Format_RGB888, Format_RGBA8888)
+     * @param stridePack packed byte size for each line(64 bytes aligned, or 64x4 bytes aligned for Format_RGBA8888)
      * @return a image which have 64byte aligned stride bytes for each line
      */
     static QImage createPackedImage(QSize size, QImage::Format fmt, int stridePack=64);

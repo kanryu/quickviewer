@@ -8,6 +8,26 @@
 #include "qvmovie.h"
 #include "qv_init.h"
 
+class ImageView;
+
+struct ImageRetouch
+{
+    float Brightness;
+    float Contrast;
+    float Gamma;
+    ImageRetouch(float brightness=0.0f, float contrast=1.0f, float gamma=1.0f)
+        :Brightness(brightness), Contrast(contrast), Gamma(gamma){}
+    bool isDefault() {
+        return *this == ImageRetouch();
+    }
+    bool operator==(const ImageRetouch& rhs)
+    {
+        return Brightness == rhs.Brightness
+                && Contrast == rhs.Contrast
+                && Gamma == rhs.Gamma;
+    }
+};
+
 /**
  * @brief The ImageContent struct
  * actual Image data and metadata
@@ -19,6 +39,10 @@ public:
      * @brief Image is a pixmap of the image for viewing
      */
     QImage Image;
+    /**
+     * @brief RetouchedImage is another view with changed pixels from Image
+     */
+    QImage RetouchedImage;
     /**
      * @brief ResizedImage is resized to actual view size from Image
      */
@@ -44,6 +68,7 @@ public:
      */
     easyexif::EXIFInfo Info;
     size_t FileLength;
+    ImageRetouch RetouchParam;
 
     ImageContent():FileLength(0){}
     ImageContent(QString path, size_t length):Path(path),FileLength(length){}
@@ -141,7 +166,10 @@ public:
     QRect setPageLayoutFitting(QRect viewport, PageAlign align, qvEnums::FitMode fitMode, qreal loupe, int rotateOffset=0);
     QRect setPageLayoutManual(QRect viewport, PageAlign align, qreal scale, int rotateOffset=0, bool loupe=false);
 
+
+
     void applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize, bool loupe=false);
+    QImage& applyRetouched();
     void initializePage(bool resetResized=false);
     void resetSignage(QRect viewport, PageContent::PageAlign fitting);
     void resetScene(QGraphicsScene* scene);
@@ -153,10 +181,13 @@ public slots:
     void on_resizeFinished_trigger();
     void on_animateFrameChanged_trigger(int frameNumber);
     void on_animateFinished_trigger();
+    void on_brightnessChanged_trigger(ImageRetouch param);
+    void on_brightnessReset_trigger();
 
 private:
     int m_resizeGeneratingState;
     bool initialized;
+    ImageView* m_imageView;
 };
 
 

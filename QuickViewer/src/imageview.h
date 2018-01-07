@@ -63,6 +63,7 @@ public:
     void updateViewportFactors(qreal currentScale, qreal currentRotate);
     void commitViewportFactors();
     void resetViewportFactors();
+    ImageRetouch brightness() { return m_retouchParams; }
 
 signals:
     /**
@@ -129,6 +130,8 @@ public slots:
     void on_copyPage_triggered();
     void on_copyFile_triggered();
 
+    // Retouch
+    void onBrightness_valueChanged(ImageRetouch params);
 
 private:
     qreal getZoomScale() {return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second;}
@@ -169,6 +172,9 @@ private:
     QPoint m_loupeBasePos;
     QRect m_sceneRect;
     QPoint m_scrollBaseValues;
+
+    // Brightness
+    ImageRetouch m_retouchParams;
 };
 
 

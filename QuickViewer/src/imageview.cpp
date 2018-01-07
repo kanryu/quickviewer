@@ -752,3 +752,9 @@ void ImageView::on_copyFile_triggered()
     clipboard->setMimeData(mimeData);
 }
 
+void ImageView::onBrightness_valueChanged(ImageRetouch params)
+{
+    m_retouchParams = params;
+    readyForPaint();
+}
+

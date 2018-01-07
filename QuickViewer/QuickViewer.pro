@@ -4,12 +4,10 @@
 #
 #-------------------------------------------------
 
+include(../QVProject.pri)
 
 QT       += core gui concurrent sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-## Comment out if you need OpenGL support
-DEFINES += QV_WITHOUT_OPENGL
 
 contains(DEFINES, QV_WITHOUT_OPENGL) {
     message(QuickViewer without OpenGL Support)
@@ -35,24 +33,6 @@ DEFINES += \
 
 CODECFORSRC = UTF-8
 
-
-greaterThan(QT_MAJOR_VERSION, 4) {
-    TARGET_ARCH=$${QT_ARCH}
-} else {
-    TARGET_ARCH=$${QMAKE_HOST.arch}
-}
-win32 {
-    contains(TARGET_ARCH, x86_64) {
-        TARGET_ARCH = x64
-    } else {
-        TARGET_ARCH = x86
-    }
-}
-
-#linux:equals(TARGET_ARCH, x64) {
-#} else {
-#}
-
 DESTDIR = ../bin
 
 INCLUDEPATH += ../ResizeHalf/ResizeHalf
@@ -68,6 +48,10 @@ LIBDIR = ../lib
 #LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg -lzlib -lquazip
 LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg
 
+contains(DEFINES, QV_WITH_LUMINOR) {
+    INCLUDEPATH += $$PWD/../luminor
+    LIBS += -L$$PWD/../luminor/$${LUMINOR_BIN_PATH} -lluminor -lluminor_rgba -lhalide_runtime -lqluminor
+}
 
 win32 {
     win32-msvc* {
@@ -121,7 +105,8 @@ SOURCES += \
     src/qactionmanager/qactionmanager.cpp \
     src/qactionmanager/qmousesequence.cpp \
     src/qactionmanager/shortcutbutton.cpp \
-    src/models/imagestring.cpp
+    src/models/imagestring.cpp \
+    src/brightnesswindow.cpp
 
 
 HEADERS  += \
@@ -161,7 +146,8 @@ HEADERS  += \
     src/qactionmanager/qactionmanager.h \
     src/qactionmanager/qmousesequence.h \
     src/qactionmanager/shortcutbutton.h \
-    src/models/imagestring.h
+    src/models/imagestring.h \
+    src/brightnesswindow.h
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer
@@ -187,7 +173,8 @@ FORMS    += \
     src/folderview/folderwindow.ui \
     src/optionsdialog.ui \
     src/renamedialog.ui \
-    ../AssociateFilesWithQuickViewer/fileassocdialog.ui
+    ../AssociateFilesWithQuickViewer/fileassocdialog.ui \
+    src/brightnesswindow.ui
 
 RESOURCES += toolbar.qrc
 

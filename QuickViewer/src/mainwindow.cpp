@@ -18,6 +18,7 @@
 #include "qmousesequence.h"
 #include "fileloader.h"
 #include "qinnerframe.h"
+#include "brightnesswindow.h"
 
 #ifdef Q_OS_WIN
 #include "fileassocdialog.h"
@@ -32,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_pageManager(this)
     , m_folderWindow(nullptr)
     , m_catalogWindow(nullptr)
+    , m_brightnessWindow(nullptr)
     , m_exifDialog(nullptr)
 {
     ui->setupUi(this);
@@ -169,7 +171,9 @@ MainWindow::MainWindow(QWidget *parent)
     case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
     default: break;
     }
-
+#ifndef QV_WITH_LUMINOR
+    ui->actionShowRetouchWindow->setVisible(false);
+#endif
     ui->graphicsView->installEventFilter(this);
     ui->mainToolBar->installEventFilter(this);
     ui->pageFrame->installEventFilter(this);
@@ -590,36 +594,48 @@ void MainWindow::resetShortCut(const QString name, const QString shortcuttext, b
     a->setShortcuts(seqlist);
 }
 
-void MainWindow::createCatalogWindow(bool docked)
+void MainWindow::closeAllDockedWindow()
 {
-    if(m_catalogWindow)
+    if(m_catalogWindow && m_catalogWindow->parent())
         onCatalogWindow_closed();
-    if(docked) {
-        if(m_folderWindow && m_folderWindow->parent())
-            onFolderWindow_closed();
-        if(m_exifDialog && m_exifDialog->parent())
-            onExifDialog_closed();
-        m_catalogWindow = new CatalogWindow(nullptr, ui);
-        m_catalogWindow->setThumbnailManager(m_thumbManager);
-        connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
-        connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
-        ui->catalogSplitter->insertWidget(0, m_catalogWindow);
-        auto sizes = ui->catalogSplitter->sizes();
-        int sum = sizes[0]+sizes[1];
-        sizes[0] = 200;
-        sizes[1] = sum-sizes[0];
-        ui->catalogSplitter->setSizes(sizes);
-        m_catalogWindow->setAsInnerWidget();
-    } else {
-        m_catalogWindow = new CatalogWindow(nullptr, ui);
-        m_catalogWindow->setThumbnailManager(m_thumbManager);
-        connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
-        connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
-        m_catalogWindow->setAsToplevelWindow();
-        QRect self = geometry();
-        m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
-        m_catalogWindow->show();
+    if(m_folderWindow && m_folderWindow->parent())
+        onFolderWindow_closed();
+    if(m_brightnessWindow && m_brightnessWindow->parent())
+        onBrightnessWindow_closed();
+    if(m_exifDialog && m_exifDialog->parent())
+        onExifDialog_closed();
+}
+
+////////////////////////////
+//// FolderWindow
+////////////////////////////
+void MainWindow::onActionShowFolder_triggered()
+{
+    if(m_folderWindow) {
+        onFolderWindow_closed();
+        return;
     }
+    createFolderWindow(!qApp->ShowPanelSeparateWindow());
+}
+
+void MainWindow::onFolderWindow_closed()
+{
+    if(m_folderWindow) {
+        delete m_folderWindow;
+        m_folderWindow = nullptr;
+    }
+}
+
+bool MainWindow::isFolderSearching()
+{
+    if(!m_folderWindow || !m_folderWindow->parent())
+        return false;
+    return true;
+}
+
+void MainWindow::onFolderWindow_openVolume(QString path)
+{
+    loadVolume(path);
 }
 
 void MainWindow::createFolderWindow(bool docked)
@@ -635,10 +651,7 @@ void MainWindow::createFolderWindow(bool docked)
             oldpath = qApp->HomeFolderPath();
     }
     if(docked) {
-        if(m_catalogWindow && m_catalogWindow->parent())
-            onCatalogWindow_closed();
-        if(m_exifDialog && m_exifDialog->parent())
-            onExifDialog_closed();
+        closeAllDockedWindow();
         m_folderWindow = new FolderWindow(nullptr, ui);
         m_folderWindow->setFolderPath(oldpath, false);
         connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
@@ -663,6 +676,112 @@ void MainWindow::createFolderWindow(bool docked)
         connect(m_folderWindow, SIGNAL(openVolume(QString)), this, SLOT(onFolderWindow_openVolume(QString)));
         connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
         m_folderWindow->show();
+    }
+}
+
+////////////////////////////
+//// CatalogWindow
+////////////////////////////
+void MainWindow::onActionShowCatalog_triggered()
+{
+    if(m_catalogWindow) {
+        onCatalogWindow_closed();
+        return;
+    }
+    createCatalogWindow(!qApp->ShowPanelSeparateWindow());
+}
+
+void MainWindow::onCatalogWindow_closed()
+{
+    if(m_catalogWindow) {
+        delete m_catalogWindow;
+        m_catalogWindow = nullptr;
+    }
+}
+
+bool MainWindow::isCatalogSearching()
+{
+    if(!m_catalogWindow || !m_catalogWindow->parent())
+        return false;
+    return m_catalogWindow->isCatalogSearching();
+}
+
+void MainWindow::createCatalogWindow(bool docked)
+{
+    if(m_catalogWindow)
+        onCatalogWindow_closed();
+    if(docked) {
+        closeAllDockedWindow();
+        m_catalogWindow = new CatalogWindow(nullptr, ui);
+        m_catalogWindow->setThumbnailManager(m_thumbManager);
+        connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
+        connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
+        ui->catalogSplitter->insertWidget(0, m_catalogWindow);
+        auto sizes = ui->catalogSplitter->sizes();
+        int sum = sizes[0]+sizes[1];
+        sizes[0] = 200;
+        sizes[1] = sum-sizes[0];
+        ui->catalogSplitter->setSizes(sizes);
+        m_catalogWindow->setAsInnerWidget();
+    } else {
+        m_catalogWindow = new CatalogWindow(nullptr, ui);
+        m_catalogWindow->setThumbnailManager(m_thumbManager);
+        connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
+        connect(m_catalogWindow, SIGNAL(openVolume(QString)), this, SLOT(onCatalogWindow_openVolume(QString)));
+        m_catalogWindow->setAsToplevelWindow();
+        QRect self = geometry();
+        m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+        m_catalogWindow->show();
+    }
+}
+
+////////////////////////////
+//// BrightnessWindow
+////////////////////////////
+void MainWindow::onActionShowBrightnessWindow_triggered(bool enable)
+{
+    if(m_brightnessWindow) {
+        onBrightnessWindow_closed();
+        return;
+    }
+    createBrightnessWindow(!qApp->ShowPanelSeparateWindow());
+
+}
+
+void MainWindow::onBrightnessWindow_closed()
+{
+    if(m_brightnessWindow) {
+        delete m_brightnessWindow;
+        m_brightnessWindow = nullptr;
+    }
+}
+
+void MainWindow::createBrightnessWindow(bool docked)
+{
+    if(m_brightnessWindow)
+        onBrightnessWindow_closed();
+    if(m_pageManager.currentPageContent().isEmpty())
+        return;
+    if(docked) {
+        closeAllDockedWindow();
+        m_brightnessWindow = new BrightnessWindow(nullptr, ui);
+        connect(m_brightnessWindow, SIGNAL(closed()), this, SLOT(onBrightnessWindow_closed()));
+        connect(m_brightnessWindow, SIGNAL(brightnessChanged(ImageRetouch)), ui->graphicsView, SLOT(onBrightness_valueChanged(ImageRetouch)));
+        m_brightnessWindow->setImageView(ui->graphicsView);
+        ui->catalogSplitter->insertWidget(0, m_brightnessWindow);
+        auto sizes = ui->catalogSplitter->sizes();
+        int sum = sizes[0]+sizes[1];
+        sizes[0] = 200;
+        sizes[1] = sum-sizes[0];
+        ui->catalogSplitter->setSizes(sizes);
+    } else {
+        m_brightnessWindow = new BrightnessWindow(nullptr, ui);
+        connect(m_brightnessWindow, SIGNAL(closed()), this, SLOT(onBrightnessWindow_closed()));
+        connect(m_brightnessWindow, SIGNAL(brightnessChanged(ImageRetouch)), ui->graphicsView, SLOT(onBrightness_valueChanged(ImageRetouch)));
+        m_brightnessWindow->setImageView(ui->graphicsView);
+        QRect self = geometry();
+        m_brightnessWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
+        m_brightnessWindow->show();
     }
 }
 
@@ -982,27 +1101,6 @@ void MainWindow::touchEvent(QTouchEvent * e)
 	}
 }
 
-void MainWindow::onActionShowFolder_triggered()
-{
-    if(m_folderWindow) {
-        onFolderWindow_closed();
-        return;
-    }
-    createFolderWindow(!qApp->ShowPanelSeparateWindow());
-}
-
-void MainWindow::onFolderWindow_closed()
-{
-    if(m_folderWindow) {
-        delete m_folderWindow;
-        m_folderWindow = nullptr;
-    }
-}
-
-void MainWindow::onFolderWindow_openVolume(QString path)
-{
-    loadVolume(path);
-}
 
 
 void MainWindow::onActionOpenVolumeWithProgress_triggered(bool enabled)
@@ -1016,37 +1114,6 @@ void MainWindow::onActionShowReadProgress_triggered(bool enabled)
     if(m_folderWindow) {
         m_folderWindow->reset();
     }
-}
-
-void MainWindow::onActionShowCatalog_triggered()
-{
-    if(m_catalogWindow) {
-        onCatalogWindow_closed();
-        return;
-    }
-    createCatalogWindow(!qApp->ShowPanelSeparateWindow());
-}
-
-void MainWindow::onCatalogWindow_closed()
-{
-    if(m_catalogWindow) {
-        delete m_catalogWindow;
-        m_catalogWindow = nullptr;
-    }
-}
-
-bool MainWindow::isCatalogSearching()
-{
-    if(!m_catalogWindow || !m_catalogWindow->parent())
-        return false;
-    return m_catalogWindow->isCatalogSearching();
-}
-
-bool MainWindow::isFolderSearching()
-{
-    if(!m_folderWindow || !m_folderWindow->parent())
-        return false;
-    return true;
 }
 
 void MainWindow::resetVolumeCaption()

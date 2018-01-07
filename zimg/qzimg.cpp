@@ -270,7 +270,7 @@ QImage QZimg::toPackedImage(const QImage &src, int stridePack)
     // QImage processing sometimes fails
     for(int count = 1; ; count++) {
         switch(src.format()) {
-        case QImage::Format_ARGB32:
+        case QImage::Format_RGBA8888:
         case QImage::Format_RGB32:
             return src;
         case QImage::Format_RGB555:
@@ -298,7 +298,7 @@ QImage QZimg::toPackedImage(const QImage &src, int stridePack)
 //        case QImage::Format_A2BGR30_Premultiplied:
 //        case QImage::Format_A2RGB30_Premultiplied:
         default:
-            converted = src.convertToFormat(QImage::Format_ARGB32);
+            converted = src.convertToFormat(QImage::Format_RGBA8888);
             break;
         }
         if(!converted.isNull()) break;

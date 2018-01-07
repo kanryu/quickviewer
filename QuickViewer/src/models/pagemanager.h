@@ -144,6 +144,7 @@ private:
 
     VolumeManager* m_fileVolume;
     ImageView * m_imaveView;
+
 //    VolumeManagerBuilder m_builderForAssoc;
 };
 

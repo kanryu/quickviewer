@@ -12,6 +12,7 @@ class MainWindow;
 class FolderWindow;
 class CatalogWindow;
 class ThumbnailManager;
+class BrightnessWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -31,6 +32,8 @@ public:
      * @param prohibitProhibit2Page prohbit 2 page viewing
      */
     void loadVolume(QString path, bool prohibitProhibit2Page=false);
+    void loadVolumeWithAssoc(QString path);
+
     void resetShortcutKeys();
     void makeHistoryMenu();
     void resetVolume(VolumeManager* newer);
@@ -46,13 +49,22 @@ public:
     }
     void makeBookmarkMenu();
     void setThumbnailManager(ThumbnailManager* manager);
-    bool isCatalogSearching();
-    bool isFolderSearching();
     void resetVolumeCaption();
     void resetShortCut(const QString name, const QString shortcuttext, bool removed);
-    void createCatalogWindow(bool docked);
+
+    void closeAllDockedWindow();
+
+    // FolderWindow
+    bool isFolderSearching();
     void createFolderWindow(bool docked);
-    void loadVolumeWithAssoc(QString path);
+
+    // CatalogWindow
+    bool isCatalogSearching();
+    void createCatalogWindow(bool docked);
+
+    // BrightnessWindow
+    void createBrightnessWindow(bool docked);
+
 
 protected:
     void dragEnterEvent(QDragEnterEvent *e) override;
@@ -96,6 +108,10 @@ public slots:
     void onActionCatalogViewIconNoText_triggered();
     void onActionShowTagBar_triggered(bool enable);
     void onActionCatalogIconLongText_triggered(bool enable);
+
+    // RetouchWindow
+    void onActionShowBrightnessWindow_triggered(bool enable);
+    void onBrightnessWindow_closed();
 
     // Navigation
     void onActionTurnPageOnLeft_triggered();
@@ -196,6 +212,7 @@ protected:
     ThumbnailManager* m_thumbManager;
     FolderWindow* m_folderWindow;
     CatalogWindow* m_catalogWindow;
+    BrightnessWindow* m_brightnessWindow;
     ExifDialog* m_exifDialog;
     QToolButton* m_fullscreenButton;
     uint m_menubarFontSize;

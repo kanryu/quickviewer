@@ -31,3 +31,6 @@
 [submodule "exiv2/exiv2"]
 	path = exiv2/exiv2
 	url = https://github.com/Exiv2/exiv2
+[submodule "luminor/luminor"]
+	path = luminor/luminor
+	url = https://github.com/kanryu/luminor

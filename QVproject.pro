@@ -1,3 +1,5 @@
+include("QVProject.pri")
+
 TEMPLATE = subdirs
 SUBDIRS = \
     Qt7z/Qt7z/qt7z.pro \
@@ -9,9 +11,15 @@ SUBDIRS = \
     QuickViewer \
     qvtest
 
+
 fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
 QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
 qvtest.depends = fileloader
+
+contains(DEFINES, QV_WITH_LUMINOR) {
+    SUBDIRS += luminor
+    QuickViewer.depends += luminor
+}
 
 win32 {
     SUBDIRS += AssociateFilesWithQuickViewer
