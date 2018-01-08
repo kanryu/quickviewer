@@ -1,6 +1,13 @@
 # CHANGELOG
 
+## v1.0.8 (Tue Jan 9 01:48:10 2018 +0900) [a5a090a](https://github.com/kanryu/quickviewer/commit/a5a090ab59fdb80226820e0257f2bc1299aa04ee)
+
+add a dialog for change brightness/contrast/gamma
+
 - other commits
+    - support for changing the brightness, contrast, or gamma value for the images (Sun Jan 7 15:00:00 2018 +0900) [eafaf10](https://github.com/kanryu/quickviewer/commit/eafaf10c832bc3c380babe3370ca907bfdd3f564)
+    - bugfixed: The longer the display sample of Window Title Format becomes, the collapsed design (Sun Dec 17 22:49:36 2017 +0900) [ab75f07](https://github.com/kanryu/quickviewer/commit/ab75f079b99f40f1027dbc1147b0e3f0d16c80e9)
+    - changelog (Sun Dec 17 10:07:37 2017 +0900) [859f98b](https://github.com/kanryu/quickviewer/commit/859f98bb4735a97166891c71ffdc4d01dc50b014)
     - changelog (Sun Dec 17 10:05:49 2017 +0900) [d56cbb7](https://github.com/kanryu/quickviewer/commit/d56cbb78da351019b841c5c7958c710f12fbc523)
 
 ## v1.0.7 (Sun Dec 17 10:04:40 2017 +0900) [e6e49c7](https://github.com/kanryu/quickviewer/commit/e6e49c7938f768512986ee3f4127a63b7944938a)
