@@ -2,6 +2,36 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP">
 <context>
+    <name>BrightnessWindow</name>
+    <message>
+        <source>Brightness</source>
+        <extracomment>label text which describes about changing brightness of the image</extracomment>
+        <translation>明るさ</translation>
+    </message>
+    <message>
+        <source>Contrast</source>
+        <extracomment>label text which describes about changing contrast of the image</extracomment>
+        <translation>コントラスト</translation>
+    </message>
+    <message>
+        <source>Gamma Value</source>
+        <extracomment>label text which describes about changing gamma value of the image</extracomment>
+        <translation>ガンマ値</translation>
+    </message>
+    <message>
+        <source>Change all images of the volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>リセット</translation>
+    </message>
+    <message>
+        <source>Brightness Window</source>
+        <translation>明るさ設定</translation>
+    </message>
+</context>
+<context>
     <name>CatalogWindow</name>
     <message>
         <source>CatalogWindow</source>
@@ -2244,6 +2274,11 @@
     <message>
         <source>Fit to window</source>
         <translation>ウィンドウにフィットさせる</translation>
+    </message>
+    <message>
+        <source>Change Brightness, Contrast or Gamma value</source>
+        <extracomment>a menu test which show window changes brightness of the image</extracomment>
+        <translation>明るさ、コントラスト、ガンマ値を変更</translation>
     </message>
 </context>
 <context>
