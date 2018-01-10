@@ -84,6 +84,7 @@ Hidden bars are displayed automatically when needed.
 - Catalog(via v0.6.0)
     - Database for your digital books, can manage thansands of volumes, quick view and search
 - File Associations(via v0.8.3)
+- Retouching(change Brightness, Contrast, Gamma value, via 1.0.8)
 
 ## Screen operations
 
