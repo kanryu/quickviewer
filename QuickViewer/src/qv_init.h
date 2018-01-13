@@ -31,6 +31,9 @@ public:
     enum ShaderEffect {
         UnPrepared,
         CpuBicubic,
+        CpuSpline16,
+        CpuSpline36,
+        CpuLanczos,
 
         UsingFixedShader,
         NearestNeighbor,

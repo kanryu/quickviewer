@@ -191,6 +191,22 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::PageAlign al
     return drawRect;
 }
 
+static QZimg::FilterMode ShaderEffect2FilterMode(qvEnums::ShaderEffect effect)
+{
+    switch (effect) {
+    case qvEnums::CpuBicubic: return QZimg::ResizeBicubic;
+    case qvEnums::CpuSpline16: return QZimg::ResizeSpline16;
+    case qvEnums::CpuSpline36: return QZimg::ResizeSpline36;
+    case qvEnums::CpuLanczos: return QZimg::ResizeLanczos;
+    case qvEnums::BilinearAndCpuBicubic: return QZimg::ResizeBicubic;
+    case qvEnums::BilinearAndCpuSpline16: return QZimg::ResizeSpline16;
+    case qvEnums::BilinearAndCpuSpline36: return QZimg::ResizeSpline36;
+    case qvEnums::BilinearAndCpuLanczos: return QZimg::ResizeLanczos;
+    default:return QZimg::ResizeBicubic;
+    }
+}
+
+
 void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize newsize, bool loupe)
 {
     checkInitialize();
@@ -216,15 +232,19 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
         if(loupe && !Ic.ResizedImage.isNull()) {
             Ic.ResizedImage = QImage();
             initializePage(true);
-        }
-        else if(Ic.ResizedImage.isNull()
-        || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
-            QImage resized = QZimg::scaled(srcImage, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
-            Ic.ResizedImage = resized;
-            Scene->removeItem(GrItem);
-            delete GrItem;
-            GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
-            GrItem->setRotation(Rotate);
+        } else {
+            if(Ic.ResizeMode != qApp->Effect())
+                Ic.ResizedImage = QImage();
+            if(Ic.ResizedImage.isNull()
+                || (!Ic.ResizedImage.isNull() && Ic.ResizedImage.size() != newsize2)) {
+                Ic.ResizeMode = qApp->Effect();
+                QImage resized = QZimg::scaled(srcImage, newsize2, Qt::IgnoreAspectRatio, ShaderEffect2FilterMode(qApp->Effect()));
+                Ic.ResizedImage = resized;
+                Scene->removeItem(GrItem);
+                delete GrItem;
+                GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
+                GrItem->setRotation(Rotate);
+            }
         }
         GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
     }
@@ -235,7 +255,7 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
         }
         if(Ic.ResizedImage.isNull() && m_resizeGeneratingState==0) {
             m_resizeGeneratingState = 1;
-            QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, srcImage, newsize2, Qt::IgnoreAspectRatio, QZimg::ResizeBicubic);
+            QFuture<QImage> future = QtConcurrent::run(QZimg::scaled, srcImage, newsize2, Qt::IgnoreAspectRatio, ShaderEffect2FilterMode(qApp->Effect()));
             connect(&generateWatcher, SIGNAL(finished()), this, SLOT(on_resizeFinished_trigger()));
             generateWatcher.setFuture(future);
         }

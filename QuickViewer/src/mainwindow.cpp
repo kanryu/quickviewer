@@ -159,7 +159,10 @@ MainWindow::MainWindow(QWidget *parent)
             << ui->actionShaderLanczos
            #endif
             << ui->actionShaderBilinearBeforeCpuBicubic
-            << ui->actionShaderCpuBicubic;
+            << ui->actionShaderCpuBicubic
+            << ui->actionShaderCpuSpline16
+            << ui->actionShaderCpuSpline36
+            << ui->actionShaderCpuLanczos;
     switch(qApp->Effect()) {
     case qvEnums::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
     case qvEnums::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
@@ -169,6 +172,9 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
     case qvEnums::BilinearAndCpuBicubic:  ui->actionShaderBilinearBeforeCpuBicubic->setChecked(true); break;
     case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
+    case qvEnums::CpuSpline16: ui->actionShaderCpuSpline16->setChecked(true); break;
+    case qvEnums::CpuSpline36: ui->actionShaderCpuSpline36->setChecked(true); break;
+    case qvEnums::CpuLanczos: ui->actionShaderCpuLanczos->setChecked(true); break;
     default: break;
     }
 #ifndef QV_WITH_LUMINOR
@@ -1597,6 +1603,30 @@ void MainWindow::onActionShaderCpuBicubic_triggered()
     uncheckAllShaderMenus();
     qApp->setEffect(qvEnums::CpuBicubic);
     ui->actionShaderCpuBicubic->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::onActionShaderCpuSpline16_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(qvEnums::CpuSpline16);
+    ui->actionShaderCpuSpline16->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::onActionShaderCpuSpline36_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(qvEnums::CpuSpline36);
+    ui->actionShaderCpuSpline36->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::onActionShaderCpuLanczos_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(qvEnums::CpuLanczos);
+    ui->actionShaderCpuLanczos->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
 

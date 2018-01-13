@@ -314,7 +314,7 @@ QImage QZimg::toPackedImage(const QImage &src, int stridePack)
     return converted;
 }
 
-QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_format out_format)
+static QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_format out_format, QZimg::FilterMode mode)
 {
     QImage oimg;
     // QImage processing sometimes fails
@@ -329,9 +329,17 @@ QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_for
 #endif
     }
     try {
-        //        zimgxx::zfilter_graph_builder_params params;
-        //        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(ifmt, ofmt, &params) };
-        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(in_format, out_format) };
+        const unsigned API_2_1 = ZIMG_MAKE_API_VERSION(2, 1);
+        zimg_graph_builder_params params;
+        zimg_graph_builder_params_default(&params, API_2_1);
+        switch(mode) {
+        case QZimg::ResizeBicubic: params.resample_filter = ZIMG_RESIZE_BICUBIC; break;
+        case QZimg::ResizeSpline16: params.resample_filter = ZIMG_RESIZE_SPLINE16; break;
+        case QZimg::ResizeSpline36: params.resample_filter = ZIMG_RESIZE_SPLINE36; break;
+        case QZimg::ResizeLanczos: params.resample_filter = ZIMG_RESIZE_LANCZOS; break;
+        }
+
+        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(in_format, out_format, &params) };
         unsigned input_buffering = graph.get_input_buffering();
         unsigned output_buffering = graph.get_output_buffering();
         size_t tmp_size = graph.get_tmp_size();
@@ -366,8 +374,8 @@ QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_for
 
 }
 
-QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_format out_format,
-                  zimgxx::zimage_format in_format_alpha, zimgxx::zimage_format out_format_alpha)
+static QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_format out_format,
+                  zimgxx::zimage_format in_format_alpha, zimgxx::zimage_format out_format_alpha, QZimg::FilterMode mode)
 {
     QImage oimg;
     // QImage processing sometimes fails
@@ -382,10 +390,18 @@ QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zimage_fo
 #endif
     }
     try {
-        //        zimgxx::zfilter_graph_builder_params params;
-        //        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(ifmt, ofmt, &params) };
-        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(in_format, out_format) };
-        zimgxx::FilterGraph graph_alpha{ zimgxx::FilterGraph::build(in_format_alpha, out_format_alpha) };
+        const unsigned API_2_1 = ZIMG_MAKE_API_VERSION(2, 1);
+        zimg_graph_builder_params params;
+        zimg_graph_builder_params_default(&params, API_2_1);
+        switch(mode) {
+        case QZimg::ResizeBicubic: params.resample_filter = ZIMG_RESIZE_BICUBIC; break;
+        case QZimg::ResizeSpline16: params.resample_filter = ZIMG_RESIZE_SPLINE16; break;
+        case QZimg::ResizeSpline36: params.resample_filter = ZIMG_RESIZE_SPLINE36; break;
+        case QZimg::ResizeLanczos: params.resample_filter = ZIMG_RESIZE_LANCZOS; break;
+        }
+
+        zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(in_format, out_format, &params) };
+        zimgxx::FilterGraph graph_alpha{ zimgxx::FilterGraph::build(in_format_alpha, out_format_alpha, &params) };
 
         unsigned input_buffering = std::max(graph.get_input_buffering(), graph_alpha.get_input_buffering());
         unsigned output_buffering = std::max(graph.get_output_buffering(), graph_alpha.get_output_buffering());
@@ -449,7 +465,7 @@ QImage QZimg::scaled(const QImage &src, const QSize &newsize, Qt::AspectRatioMod
             : in_format.width*out_format.height/in_format.height;
     QImage oimg;
     if(img.format() == QImage::Format_RGB32)
-        oimg = scaledRGB(img, in_format, out_format);
+        oimg = scaledRGB(img, in_format, out_format, mode);
     else {
         zimgxx::zimage_format in_format_alpha;
         in_format_alpha.width = img.width();
@@ -464,7 +480,7 @@ QImage QZimg::scaled(const QImage &src, const QSize &newsize, Qt::AspectRatioMod
         out_format_alpha.height = out_format.height;
         out_format_alpha.width = out_format.width;
 
-        oimg = scaledARGB(img, in_format, out_format, in_format_alpha, out_format_alpha);
+        oimg = scaledARGB(img, in_format, out_format, in_format_alpha, out_format_alpha, mode);
     }
 
     return oimg;

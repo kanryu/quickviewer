@@ -350,6 +350,9 @@
     <addaction name="separator"/>
     <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
     <addaction name="actionShaderCpuBicubic"/>
+    <addaction name="actionShaderCpuSpline16"/>
+    <addaction name="actionShaderCpuSpline36"/>
+    <addaction name="actionShaderCpuLanczos"/>
    </widget>
    <widget class="QMenu" name="menuContextMenu">
     <property name="title">
@@ -366,6 +369,9 @@
      <addaction name="separator"/>
      <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
      <addaction name="actionShaderCpuBicubic"/>
+     <addaction name="actionShaderCpuSpline16"/>
+     <addaction name="actionShaderCpuSpline36"/>
+     <addaction name="actionShaderCpuLanczos"/>
     </widget>
     <widget class="QMenu" name="menuEdit_the_image">
      <property name="title">
@@ -1176,6 +1182,30 @@
    </property>
    <property name="text">
     <string extracomment="a menu test which show window changes brightness of the image">Change Brightness, Contrast or Gamma value</string>
+   </property>
+  </action>
+  <action name="actionShaderCpuSpline16">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Menu that performs Spline16 interpolation with CPU when resizing image">Spline16 interpolation by CPU</string>
+   </property>
+  </action>
+  <action name="actionShaderCpuSpline36">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Menu that performs Spline36 interpolation with CPU when resizing image">Spline36 interpolation by CPU</string>
+   </property>
+  </action>
+  <action name="actionShaderCpuLanczos">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Menu that performs Lanczos interpolation with CPU when resizing image">Lanczos interpolation by CPU</string>
    </property>
   </action>
  </widget>
@@ -2622,6 +2652,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShaderCpuSpline16</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionShaderCpuSpline16_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShaderCpuSpline36</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionShaderCpuSpline36_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShaderCpuLanczos</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionShaderCpuLanczos_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2695,5 +2773,8 @@
   <slot>onActionTurnPageOnLeft_triggered()</slot>
   <slot>onActionTurnPageOnRight_triggered()</slot>
   <slot>onActionShowBrightnessWindow_triggered(bool)</slot>
+  <slot>onActionShaderCpuSpline16_triggered()</slot>
+  <slot>onActionShaderCpuSpline36_triggered()</slot>
+  <slot>onActionShaderCpuLanczos_triggered()</slot>
  </slots>
 </ui>

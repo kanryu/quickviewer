@@ -69,11 +69,12 @@ public:
     easyexif::EXIFInfo Info;
     size_t FileLength;
     ImageRetouch RetouchParam;
+    qvEnums::ShaderEffect ResizeMode;
 
-    ImageContent():FileLength(0){}
-    ImageContent(QString path, size_t length):Path(path),FileLength(length){}
+    ImageContent():FileLength(0),ResizeMode(qvEnums::Bilinear){}
+    ImageContent(QString path, size_t length):Path(path),FileLength(length),ResizeMode(qvEnums::Bilinear){}
     ImageContent(QImage image, QString path, QSize size, easyexif::EXIFInfo info, size_t length)
-        : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info), FileLength(length) {}
+        : Image(image), BaseSize(size), ImportSize(image.size()), Path(path), Info(info), FileLength(length),ResizeMode(qvEnums::Bilinear) {}
     ImageContent(const ImageContent& rhs)
         : Image(rhs.Image)
         , ResizedImage(rhs.ResizedImage)
@@ -83,6 +84,7 @@ public:
         , Path(rhs.Path)
         , Info(rhs.Info)
         , FileLength(rhs.FileLength)
+        , ResizeMode(rhs.ResizeMode)
     {}
     inline ImageContent& operator=(const ImageContent &rhs)
     {
@@ -94,6 +96,7 @@ public:
         ImportSize = rhs.ImportSize;
         Info = rhs.Info;
         FileLength = rhs.FileLength;
+        ResizeMode = rhs.ResizeMode;
         return *this;
     }
     bool wideImage() const {return BaseSize.width() > BaseSize.height(); }

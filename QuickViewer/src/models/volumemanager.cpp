@@ -236,6 +236,20 @@ static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 }
 
 
+static QZimg::FilterMode ShaderEffect2FilterMode(qvEnums::ShaderEffect effect)
+{
+    switch (effect) {
+    case qvEnums::CpuBicubic: return QZimg::ResizeBicubic;
+    case qvEnums::CpuSpline16: return QZimg::ResizeSpline16;
+    case qvEnums::CpuSpline36: return QZimg::ResizeSpline36;
+    case qvEnums::CpuLanczos: return QZimg::ResizeLanczos;
+    case qvEnums::BilinearAndCpuBicubic: return QZimg::ResizeBicubic;
+    case qvEnums::BilinearAndCpuSpline16: return QZimg::ResizeSpline16;
+    case qvEnums::BilinearAndCpuSpline36: return QZimg::ResizeSpline36;
+    case qvEnums::BilinearAndCpuLanczos: return QZimg::ResizeLanczos;
+    default:return QZimg::ResizeBicubic;
+    }
+}
 static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteArray bytes, QString aformat, uint loopcount)
 {
     for(;;) {
@@ -375,7 +389,8 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         // CPU resizing before Page Viewing
         if(!pageSize.isEmpty() && !ic.Image.isNull()) {
             QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-            ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
+            ic.ResizeMode == qApp->Effect();
+            ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio, ShaderEffect2FilterMode(qApp->Effect()));
         }
         return ic;
     }
@@ -420,7 +435,8 @@ ImageContent VolumeManager::futureReizeImage(ImageContent ic, QSize pageSize)
 {
 //    qDebug() << "futureReizeImage:" << ic.Path;
     QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-    ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio);
+    ic.ResizeMode == qApp->Effect();
+    ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio, ShaderEffect2FilterMode(qApp->Effect()));
     return ic;
 }
 

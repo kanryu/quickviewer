@@ -124,6 +124,9 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &, QSi
     switch(effect) {
     default: break;
     case qvEnums::CpuBicubic:
+    case qvEnums::CpuSpline16:
+    case qvEnums::CpuSpline36:
+    case qvEnums::CpuLanczos:
     case qvEnums::Bilinear:
     case qvEnums::BilinearAndCpuBicubic:
     case qvEnums::BilinearAndCpuSpline16:
