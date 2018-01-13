@@ -78,8 +78,9 @@ Hidden bars are displayed automatically when needed.
 - Put the current image into your mailer
 - Shader Program Filters(via v0.5.1)
     - Nearest Neighber
-    - Bicubic (by GPU)
-    - Lanczos
+    - Bilinear
+    - ~~Bicubic (by GPU, obsoleted via v0.7.2)~~
+    - ~~Lanczos (obsoleted via v0.7.2)~~
     - Bicubic by CPU
 - Catalog(via v0.6.0)
     - Database for your digital books, can manage thansands of volumes, quick view and search
