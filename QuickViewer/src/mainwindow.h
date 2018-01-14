@@ -179,7 +179,8 @@ public slots:
     void onActionShaderCpuBicubic_triggered();
     void onActionShaderCpuSpline16_triggered();
     void onActionShaderCpuSpline36_triggered();
-    void onActionShaderCpuLanczos_triggered();
+    void onActionShaderCpuLanczos3_triggered();
+    void onActionShaderCpuLanczos4_triggered();
 
     // Bookmark
     void onActionSaveBookmark_triggered();

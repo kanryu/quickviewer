@@ -14,7 +14,8 @@ public:
         ResizeBicubic,
         ResizeSpline16,
         ResizeSpline36,
-        ResizeLanczos,
+        ResizeLanczos3,
+        ResizeLanczos4,
     };
 #if QT_VERSION_MAJOR >= 5
     Q_ENUM(FilterMode)

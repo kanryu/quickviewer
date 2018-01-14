@@ -352,7 +352,8 @@
     <addaction name="actionShaderCpuBicubic"/>
     <addaction name="actionShaderCpuSpline16"/>
     <addaction name="actionShaderCpuSpline36"/>
-    <addaction name="actionShaderCpuLanczos"/>
+    <addaction name="actionShaderCpuLanczos3"/>
+    <addaction name="actionShaderCpuLanczos4"/>
    </widget>
    <widget class="QMenu" name="menuContextMenu">
     <property name="title">
@@ -371,7 +372,8 @@
      <addaction name="actionShaderCpuBicubic"/>
      <addaction name="actionShaderCpuSpline16"/>
      <addaction name="actionShaderCpuSpline36"/>
-     <addaction name="actionShaderCpuLanczos"/>
+     <addaction name="actionShaderCpuLanczos3"/>
+     <addaction name="actionShaderCpuLanczos4"/>
     </widget>
     <widget class="QMenu" name="menuEdit_the_image">
      <property name="title">
@@ -394,9 +396,9 @@
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
     <addaction name="separator"/>
-    <addaction name="menuEdit_the_image"/>
-    <addaction name="menuFit_mode"/>
     <addaction name="menu_Shader"/>
+    <addaction name="menuFit_mode"/>
+    <addaction name="menuEdit_the_image"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionOpenFiler"/>
@@ -1200,12 +1202,20 @@
     <string extracomment="Menu that performs Spline36 interpolation with CPU when resizing image">Spline36 interpolation by CPU</string>
    </property>
   </action>
-  <action name="actionShaderCpuLanczos">
+  <action name="actionShaderCpuLanczos3">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string extracomment="Menu that performs Lanczos interpolation with CPU when resizing image">Lanczos interpolation by CPU</string>
+    <string extracomment="Menu that performs Lanczos3 interpolation with CPU when resizing image">Lanczos3 interpolation by CPU</string>
+   </property>
+  </action>
+  <action name="actionShaderCpuLanczos4">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Menu that performs Lanczos4 interpolation with CPU when resizing image">Lanczos4 interpolation by CPU</string>
    </property>
   </action>
  </widget>
@@ -2685,10 +2695,26 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionShaderCpuLanczos</sender>
+   <sender>actionShaderCpuLanczos3</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>onActionShaderCpuLanczos_triggered()</slot>
+   <slot>onActionShaderCpuLanczos3_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShaderCpuLanczos4</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionShaderCpuLanczos4_triggered()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -2775,6 +2801,7 @@
   <slot>onActionShowBrightnessWindow_triggered(bool)</slot>
   <slot>onActionShaderCpuSpline16_triggered()</slot>
   <slot>onActionShaderCpuSpline36_triggered()</slot>
-  <slot>onActionShaderCpuLanczos_triggered()</slot>
+  <slot>onActionShaderCpuLanczos3_triggered()</slot>
+  <slot>onActionShaderCpuLanczos4_triggered()</slot>
  </slots>
 </ui>

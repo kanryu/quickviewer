@@ -162,7 +162,8 @@ MainWindow::MainWindow(QWidget *parent)
             << ui->actionShaderCpuBicubic
             << ui->actionShaderCpuSpline16
             << ui->actionShaderCpuSpline36
-            << ui->actionShaderCpuLanczos;
+            << ui->actionShaderCpuLanczos3
+            << ui->actionShaderCpuLanczos4;
     switch(qApp->Effect()) {
     case qvEnums::NearestNeighbor: ui->actionShaderNearestNeighbor->setChecked(true); break;
     case qvEnums::Bilinear: ui->actionShaderBilinear->setChecked(true); break;
@@ -174,7 +175,8 @@ MainWindow::MainWindow(QWidget *parent)
     case qvEnums::CpuBicubic: ui->actionShaderCpuBicubic->setChecked(true); break;
     case qvEnums::CpuSpline16: ui->actionShaderCpuSpline16->setChecked(true); break;
     case qvEnums::CpuSpline36: ui->actionShaderCpuSpline36->setChecked(true); break;
-    case qvEnums::CpuLanczos: ui->actionShaderCpuLanczos->setChecked(true); break;
+    case qvEnums::CpuLanczos3: ui->actionShaderCpuLanczos3->setChecked(true); break;
+    case qvEnums::CpuLanczos4: ui->actionShaderCpuLanczos4->setChecked(true); break;
     default: break;
     }
 #ifndef QV_WITH_LUMINOR
@@ -1622,11 +1624,19 @@ void MainWindow::onActionShaderCpuSpline36_triggered()
     ui->graphicsView->readyForPaint();
 }
 
-void MainWindow::onActionShaderCpuLanczos_triggered()
+void MainWindow::onActionShaderCpuLanczos3_triggered()
 {
     uncheckAllShaderMenus();
-    qApp->setEffect(qvEnums::CpuLanczos);
-    ui->actionShaderCpuLanczos->setChecked(true);
+    qApp->setEffect(qvEnums::CpuLanczos3);
+    ui->actionShaderCpuLanczos3->setChecked(true);
+    ui->graphicsView->readyForPaint();
+}
+
+void MainWindow::onActionShaderCpuLanczos4_triggered()
+{
+    uncheckAllShaderMenus();
+    qApp->setEffect(qvEnums::CpuLanczos4);
+    ui->actionShaderCpuLanczos4->setChecked(true);
     ui->graphicsView->readyForPaint();
 }
 

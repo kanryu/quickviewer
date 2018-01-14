@@ -33,7 +33,8 @@ public:
         CpuBicubic,
         CpuSpline16,
         CpuSpline36,
-        CpuLanczos,
+        CpuLanczos3,
+        CpuLanczos4,
 
         UsingFixedShader,
         NearestNeighbor,

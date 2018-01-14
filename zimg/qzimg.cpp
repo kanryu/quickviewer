@@ -336,7 +336,11 @@ static QImage scaledRGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zim
         case QZimg::ResizeBicubic: params.resample_filter = ZIMG_RESIZE_BICUBIC; break;
         case QZimg::ResizeSpline16: params.resample_filter = ZIMG_RESIZE_SPLINE16; break;
         case QZimg::ResizeSpline36: params.resample_filter = ZIMG_RESIZE_SPLINE36; break;
-        case QZimg::ResizeLanczos: params.resample_filter = ZIMG_RESIZE_LANCZOS; break;
+        case QZimg::ResizeLanczos3: params.resample_filter = ZIMG_RESIZE_LANCZOS; break;
+        case QZimg::ResizeLanczos4:
+            params.resample_filter = ZIMG_RESIZE_LANCZOS;
+            params.filter_param_a = 4.0;
+            break;
         }
 
         zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(in_format, out_format, &params) };
@@ -397,7 +401,11 @@ static QImage scaledARGB(QImage img, zimgxx::zimage_format in_format, zimgxx::zi
         case QZimg::ResizeBicubic: params.resample_filter = ZIMG_RESIZE_BICUBIC; break;
         case QZimg::ResizeSpline16: params.resample_filter = ZIMG_RESIZE_SPLINE16; break;
         case QZimg::ResizeSpline36: params.resample_filter = ZIMG_RESIZE_SPLINE36; break;
-        case QZimg::ResizeLanczos: params.resample_filter = ZIMG_RESIZE_LANCZOS; break;
+        case QZimg::ResizeLanczos3: params.resample_filter = ZIMG_RESIZE_LANCZOS; break;
+        case QZimg::ResizeLanczos4:
+            params.resample_filter = ZIMG_RESIZE_LANCZOS;
+            params.filter_param_a = 4.0;
+            break;
         }
 
         zimgxx::FilterGraph graph{ zimgxx::FilterGraph::build(in_format, out_format, &params) };

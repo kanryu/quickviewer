@@ -126,7 +126,7 @@ void ShaderManager::prepare(QGraphicsPixmapItem *item, const ImageContent &, QSi
     case qvEnums::CpuBicubic:
     case qvEnums::CpuSpline16:
     case qvEnums::CpuSpline36:
-    case qvEnums::CpuLanczos:
+    case qvEnums::CpuLanczos3:
     case qvEnums::Bilinear:
     case qvEnums::BilinearAndCpuBicubic:
     case qvEnums::BilinearAndCpuSpline16:

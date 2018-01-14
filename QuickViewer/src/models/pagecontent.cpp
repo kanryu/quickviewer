@@ -197,11 +197,11 @@ static QZimg::FilterMode ShaderEffect2FilterMode(qvEnums::ShaderEffect effect)
     case qvEnums::CpuBicubic: return QZimg::ResizeBicubic;
     case qvEnums::CpuSpline16: return QZimg::ResizeSpline16;
     case qvEnums::CpuSpline36: return QZimg::ResizeSpline36;
-    case qvEnums::CpuLanczos: return QZimg::ResizeLanczos;
+    case qvEnums::CpuLanczos3: return QZimg::ResizeLanczos3;
     case qvEnums::BilinearAndCpuBicubic: return QZimg::ResizeBicubic;
     case qvEnums::BilinearAndCpuSpline16: return QZimg::ResizeSpline16;
     case qvEnums::BilinearAndCpuSpline36: return QZimg::ResizeSpline36;
-    case qvEnums::BilinearAndCpuLanczos: return QZimg::ResizeLanczos;
+    case qvEnums::BilinearAndCpuLanczos: return QZimg::ResizeLanczos3;
     default:return QZimg::ResizeBicubic;
     }
 }
