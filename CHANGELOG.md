@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v1.0.9 (Mon Jan 15 20:04:38 2018 +0900) [74286a8](https://github.com/kanryu/quickviewer/commit/74286a8452620b9e3750e754e9c469ff88ae0438)
+
+add Next page or volume
+add Prev page or volume
+
+- other commits
+    - abolished 'CPU Bicubic after GPU Bilinear' (Mon Jan 15 18:40:10 2018 +0900) [d3adbb2](https://github.com/kanryu/quickviewer/commit/d3adbb229fc6431bb94af11e39ab28e6c7f2910a)
+    - fixed for luminor() (Mon Jan 15 18:40:10 2018 +0900) [d3adbb2](https://github.com/kanryu/quickviewer/commit/d3adbb229fc6431bb94af11e39ab28e6c7f2910a)
+    - add lanczos4 (Sun Jan 14 20:29:41 2018 +0900) [69ad771](https://github.com/kanryu/quickviewer/commit/69ad771a1134ac613759ad48a49776a2fab46342)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Jan 13 21:06:32 2018 +0900) [0ec56be](https://github.com/kanryu/quickviewer/commit/0ec56be8f2a93404c79a4485c5e2f36303ac51ff)
+    - add Shaders about Spline16/Spline36/Lanczos by CPU (Sat Jan 13 21:06:12 2018 +0900) [e22f9b2](https://github.com/kanryu/quickviewer/commit/e22f9b21178ff6a801d71f18a1be366bb58a517e)
+    - Update index-ja.md (Sat Jan 13 15:48:30 2018 +0900) [3737a98](https://github.com/kanryu/quickviewer/commit/3737a984d8fa856d9bd499a1a14536f5777b9f31)
+    - Update index.md (Sat Jan 13 15:44:44 2018 +0900) [d356a66](https://github.com/kanryu/quickviewer/commit/d356a660f7b8ceb1c13b830d223727eb593cac41)
+    - Update README.md (Sat Jan 13 15:43:35 2018 +0900) [5d6a42d](https://github.com/kanryu/quickviewer/commit/5d6a42d69f41f56517c98f1e60aad53771f609b1)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Thu Jan 11 19:17:08 2018 +0900) [ef0fc34](https://github.com/kanryu/quickviewer/commit/ef0fc34e53c8803a96ee5a9aff3aa1069ce05ea9)
+    - luminor_rgba supports interlieved bitmaps(RGBA, RGBA...) (Thu Jan 11 19:16:40 2018 +0900) [c2caf59](https://github.com/kanryu/quickviewer/commit/c2caf598f5f1ddc0cce0740a3a80e32ad60aebb4)
+    - Update README.md (Wed Jan 10 13:43:26 2018 +0900) [35ac66b](https://github.com/kanryu/quickviewer/commit/35ac66bdc26b54e2290bb9630ed853215875c740)
+    - changelog (Tue Jan 9 01:50:34 2018 +0900) [364ccba](https://github.com/kanryu/quickviewer/commit/364ccbad4f09fb01cade7f03badd822bab8bc696)
+
 ## v1.0.8 (Tue Jan 9 01:48:10 2018 +0900) [a5a090a](https://github.com/kanryu/quickviewer/commit/a5a090ab59fdb80226820e0257f2bc1299aa04ee)
 
 add a dialog for change brightness/contrast/gamma
