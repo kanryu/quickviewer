@@ -344,16 +344,15 @@
      <string>&amp;Shader</string>
     </property>
     <addaction name="actionShaderBilinear"/>
+    <addaction name="separator"/>
+    <addaction name="actionShaderCpuBicubic"/>
+    <addaction name="actionShaderCpuLanczos4"/>
+    <addaction name="separator"/>
+    <addaction name="actionShaderCpuLanczos3"/>
+    <addaction name="actionShaderNearestNeighbor"/>
     <addaction name="actionShaderBicubic"/>
     <addaction name="actionShaderLanczos"/>
-    <addaction name="actionShaderNearestNeighbor"/>
-    <addaction name="separator"/>
     <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
-    <addaction name="actionShaderCpuBicubic"/>
-    <addaction name="actionShaderCpuSpline16"/>
-    <addaction name="actionShaderCpuSpline36"/>
-    <addaction name="actionShaderCpuLanczos3"/>
-    <addaction name="actionShaderCpuLanczos4"/>
    </widget>
    <widget class="QMenu" name="menuContextMenu">
     <property name="title">
@@ -364,16 +363,15 @@
       <string>&amp;Shader</string>
      </property>
      <addaction name="actionShaderBilinear"/>
-     <addaction name="actionShaderBicubic"/>
-     <addaction name="actionShaderLanczos"/>
-     <addaction name="actionShaderNearestNeighbor"/>
      <addaction name="separator"/>
+     <addaction name="actionShaderBicubic"/>
+     <addaction name="actionShaderCpuLanczos4"/>
+     <addaction name="separator"/>
+     <addaction name="actionShaderCpuLanczos3"/>
+     <addaction name="actionShaderNearestNeighbor"/>
+     <addaction name="actionShaderLanczos"/>
      <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
      <addaction name="actionShaderCpuBicubic"/>
-     <addaction name="actionShaderCpuSpline16"/>
-     <addaction name="actionShaderCpuSpline36"/>
-     <addaction name="actionShaderCpuLanczos3"/>
-     <addaction name="actionShaderCpuLanczos4"/>
     </widget>
     <widget class="QMenu" name="menuEdit_the_image">
      <property name="title">
@@ -385,6 +383,7 @@
      <addaction name="actionRenameImageFile"/>
      <addaction name="actionMailAttachment"/>
      <addaction name="actionOpenExif"/>
+     <addaction name="actionOpenFiler"/>
     </widget>
     <widget class="QMenu" name="menuFit_mode">
      <property name="title">
@@ -392,6 +391,11 @@
      </property>
      <addaction name="actionFitToWidth"/>
      <addaction name="actionFitToWindow"/>
+    </widget>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>ここに入力</string>
+     </property>
     </widget>
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
@@ -401,12 +405,13 @@
     <addaction name="menuEdit_the_image"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
-    <addaction name="actionOpenFiler"/>
+    <addaction name="actionScrollWithCursorWhenZooming"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
     <addaction name="separator"/>
+    <addaction name="menu"/>
    </widget>
    <widget class="QMenu" name="menu_Catalog">
     <property name="title">

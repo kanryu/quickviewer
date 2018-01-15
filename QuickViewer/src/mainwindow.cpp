@@ -147,6 +147,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusLabel->setText(tr("Any folder or archive is not loaded.", "The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated"));
 
     // Shader
+    ui->actionShaderBilinearBeforeCpuBicubic->setVisible(false);
 #ifdef QV_WITHOUT_OPENGL
     ui->actionShaderBicubic->setVisible(false);
     ui->actionShaderLanczos->setVisible(false);

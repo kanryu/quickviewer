@@ -206,10 +206,16 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     groupName = tr("Shader", "Shader Action Group");
     m_keyActions.registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor, groupName);
     m_keyActions.registAction("actionShaderBilinear", ui->actionShaderBilinear, groupName);
+#ifndef QV_WITHOUT_OPENGL
     m_keyActions.registAction("actionShaderBicubic", ui->actionShaderBicubic, groupName);
     m_keyActions.registAction("actionShaderLanczos", ui->actionShaderLanczos, groupName);
-    m_keyActions.registAction("actionShaderBilinearBeforeCpuBicubic", ui->actionShaderBilinearBeforeCpuBicubic, groupName);
+#endif
+//    m_keyActions.registAction("actionShaderBilinearBeforeCpuBicubic", ui->actionShaderBilinearBeforeCpuBicubic, groupName);
     m_keyActions.registAction("actionShaderCpuBicubic", ui->actionShaderCpuBicubic, groupName);
+    m_keyActions.registAction("actionShaderCpuSpline16", ui->actionShaderCpuSpline16, groupName);
+    m_keyActions.registAction("actionShaderCpuSpline36", ui->actionShaderCpuSpline36, groupName);
+    m_keyActions.registAction("actionShaderCpuLanczos3", ui->actionShaderCpuLanczos3, groupName);
+    m_keyActions.registAction("actionShaderCpuLanczos4", ui->actionShaderCpuLanczos4, groupName);
 
     // Help
     groupName = tr("Help", "Help Action Group");
