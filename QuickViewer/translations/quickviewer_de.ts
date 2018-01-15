@@ -1060,587 +1060,623 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="254"/>
+        <location filename="../src/mainwindow.ui" line="252"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="258"/>
+        <location filename="../src/mainwindow.ui" line="256"/>
         <source>&amp;History</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="272"/>
+        <location filename="../src/mainwindow.ui" line="270"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="293"/>
+        <location filename="../src/mainwindow.ui" line="291"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="314"/>
+        <location filename="../src/mainwindow.ui" line="312"/>
         <source>&amp;Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="318"/>
-        <location filename="../src/mainwindow.ui" line="839"/>
-        <location filename="../src/mainwindow.cpp" line="945"/>
+        <location filename="../src/mainwindow.ui" line="316"/>
+        <location filename="../src/mainwindow.ui" line="846"/>
+        <location filename="../src/mainwindow.cpp" line="954"/>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="344"/>
-        <location filename="../src/mainwindow.ui" line="360"/>
+        <location filename="../src/mainwindow.ui" line="345"/>
+        <location filename="../src/mainwindow.ui" line="364"/>
         <source>&amp;Shader</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="356"/>
-        <location filename="../src/mainwindow.ui" line="1061"/>
+        <location filename="../src/mainwindow.ui" line="360"/>
+        <location filename="../src/mainwindow.ui" line="1068"/>
         <source>ContextMenu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="372"/>
+        <location filename="../src/mainwindow.ui" line="379"/>
         <source>Edit the image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="383"/>
-        <location filename="../src/mainwindow.ui" line="436"/>
+        <location filename="../src/mainwindow.ui" line="391"/>
+        <location filename="../src/mainwindow.ui" line="443"/>
         <source>Fit mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="405"/>
+        <location filename="../src/mainwindow.ui" line="412"/>
         <source>&amp;Catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="420"/>
+        <location filename="../src/mainwindow.ui" line="427"/>
         <source>F&amp;older</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="432"/>
+        <location filename="../src/mainwindow.ui" line="439"/>
         <source>&amp;Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="471"/>
+        <location filename="../src/mainwindow.ui" line="478"/>
         <source>E&amp;xit</source>
         <extracomment>End application</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="480"/>
+        <location filename="../src/mainwindow.ui" line="487"/>
         <source>&amp;NextImage</source>
         <extracomment>Switch to the next image button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="489"/>
+        <location filename="../src/mainwindow.ui" line="496"/>
         <source>&amp;PrevImage</source>
         <extracomment>Switch to previous image button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="498"/>
+        <location filename="../src/mainwindow.ui" line="505"/>
         <source>Zoom&amp;In</source>
         <extracomment>Button for enlarging the currently displayed image</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="501"/>
+        <location filename="../src/mainwindow.ui" line="508"/>
         <source>ZoomIn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="510"/>
+        <location filename="../src/mainwindow.ui" line="517"/>
         <source>Zoom&amp;Out</source>
         <extracomment>Reduce the image currently displayed button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="513"/>
+        <location filename="../src/mainwindow.ui" line="520"/>
         <source>ZoomOut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="525"/>
+        <location filename="../src/mainwindow.ui" line="532"/>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="537"/>
+        <location filename="../src/mainwindow.ui" line="544"/>
         <source>2page &amp;Spread</source>
         <extracomment>Arranging two images side by side like when opening a book</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="549"/>
+        <location filename="../src/mainwindow.ui" line="556"/>
         <source>Fullscreen</source>
         <extracomment>Button to switch the window display to full screen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="558"/>
+        <location filename="../src/mainwindow.ui" line="565"/>
         <source>&amp;About QuickViewer</source>
         <extracomment>A menu for displaying a message box for displaying application information</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="566"/>
+        <location filename="../src/mainwindow.ui" line="573"/>
         <source>&amp;Auto load last used</source>
         <extracomment>Opening the image automatically when opening the application the last time it was started</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="574"/>
+        <location filename="../src/mainwindow.ui" line="581"/>
         <source>Bound on the &amp;right side</source>
         <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="579"/>
+        <location filename="../src/mainwindow.ui" line="586"/>
         <source>&amp;Open Image Folder</source>
         <extracomment>A menu for displaying a dialog for selecting an image to be displayed</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="587"/>
+        <location filename="../src/mainwindow.ui" line="594"/>
         <source>&amp;Always display one landscape image even in 2 page display</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="596"/>
+        <location filename="../src/mainwindow.ui" line="603"/>
         <source>&amp;LastPage</source>
         <extracomment>Switch to the last image of Volume currently displayed button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="605"/>
+        <location filename="../src/mainwindow.ui" line="612"/>
         <source>&amp;FirstPage</source>
         <extracomment>Switch to the first image of the currently displayed Volume button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="616"/>
+        <location filename="../src/mainwindow.ui" line="623"/>
         <source>Show Status&amp;Bar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="624"/>
+        <location filename="../src/mainwindow.ui" line="631"/>
         <source>Show &amp;PageBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="629"/>
+        <location filename="../src/mainwindow.ui" line="636"/>
         <source>Open in &amp;Explorer</source>
         <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="634"/>
+        <location filename="../src/mainwindow.ui" line="641"/>
         <source>Exif &amp;Information</source>
         <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="639"/>
+        <location filename="../src/mainwindow.ui" line="646"/>
         <source>Check &amp;version in browser</source>
         <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="648"/>
+        <location filename="../src/mainwindow.ui" line="655"/>
         <source>N&amp;extVolume</source>
         <extracomment>Switch to the next Volume in the same folder as the currently displayed Volume button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="657"/>
+        <location filename="../src/mainwindow.ui" line="664"/>
         <source>P&amp;rev Volume</source>
         <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="662"/>
+        <location filename="../src/mainwindow.ui" line="669"/>
         <source>Next &amp;one page only</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="667"/>
+        <location filename="../src/mainwindow.ui" line="674"/>
         <source>Prev o&amp;ne page only</source>
         <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="672"/>
+        <location filename="../src/mainwindow.ui" line="679"/>
         <source>ExitApplicationOrFullscreen</source>
         <extracomment>Function that cancels it while full screen is displayed and terminates the application otherwise</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="680"/>
+        <location filename="../src/mainwindow.ui" line="687"/>
         <source>Show &amp;ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="688"/>
+        <location filename="../src/mainwindow.ui" line="695"/>
         <source>Always open &amp;first images even withas only one page</source>
         <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="696"/>
+        <location filename="../src/mainwindow.ui" line="703"/>
         <source>Show &amp;MenuBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="701"/>
+        <location filename="../src/mainwindow.ui" line="708"/>
         <source>&amp;Clear History</source>
         <extracomment>Menu for clearing the history of opening images</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="713"/>
+        <location filename="../src/mainwindow.ui" line="720"/>
         <source>Stay On &amp;Top</source>
         <extracomment>When on it keeps the window always on top</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="718"/>
+        <location filename="../src/mainwindow.ui" line="725"/>
         <source>&amp;Copy image to clipboard</source>
         <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="723"/>
+        <location filename="../src/mainwindow.ui" line="730"/>
         <source>Move image to &amp;Recycle Bin</source>
         <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="731"/>
+        <location filename="../src/mainwindow.ui" line="738"/>
         <source>&amp;Bilinear interpolation (fast)</source>
         <extracomment>Menu to resize the image by bilinear interpolation by GPU</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="739"/>
+        <location filename="../src/mainwindow.ui" line="746"/>
         <source>Bi&amp;cubic interpolation (slow)</source>
         <extracomment>Menu for resizing image by bicubic interpolation by GPU</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="747"/>
+        <location filename="../src/mainwindow.ui" line="754"/>
         <source>&amp;Lanczos interpolation (very slow)</source>
         <extracomment>Menu for resizing image by Lanczos interpolation by GPU</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="755"/>
+        <location filename="../src/mainwindow.ui" line="762"/>
         <source>&amp;Nearest Neighbor interpolation (fast but coarse)</source>
         <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="760"/>
+        <location filename="../src/mainwindow.ui" line="767"/>
         <source>&amp;Maximize or Normal</source>
         <extracomment>Function to switch windows to maximize or normal display</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="768"/>
+        <location filename="../src/mainwindow.ui" line="775"/>
         <source>&amp;Restore window display at next startup</source>
         <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="777"/>
+        <location filename="../src/mainwindow.ui" line="784"/>
         <source>FastForward</source>
         <extracomment>Switch to 10 images in Volume button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="786"/>
+        <location filename="../src/mainwindow.ui" line="793"/>
         <source>FastBackward</source>
         <extracomment>Switch to the previous 10 images in Volume button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="791"/>
+        <location filename="../src/mainwindow.ui" line="798"/>
         <source>Copy File to clipboard</source>
         <extracomment>Menu to copy currently displayed image file on Explorer</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="800"/>
+        <location filename="../src/mainwindow.ui" line="807"/>
         <source>&amp;Rotate</source>
         <extracomment>Button to rotate the currently displayed image 90 degrees clockwise</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="812"/>
+        <location filename="../src/mainwindow.ui" line="819"/>
         <source>&amp;Slideshow</source>
         <extracomment>Button to start displaying slideshow</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="821"/>
+        <location filename="../src/mainwindow.ui" line="828"/>
         <source>AddBookmark</source>
         <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="830"/>
+        <location filename="../src/mainwindow.ui" line="837"/>
         <source>ManageBookmarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="844"/>
+        <location filename="../src/mainwindow.ui" line="851"/>
         <source>clearBookmarks</source>
         <extracomment>Button to delete all saved bookmarks</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="849"/>
+        <location filename="../src/mainwindow.ui" line="856"/>
         <source>Display Home&amp;page in browser</source>
         <extracomment>Button to display the web page of the project in the browser</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="858"/>
+        <location filename="../src/mainwindow.ui" line="865"/>
         <source>Show &amp;Catalog</source>
         <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="861"/>
+        <location filename="../src/mainwindow.ui" line="868"/>
         <source>Show Catalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="869"/>
+        <location filename="../src/mainwindow.ui" line="876"/>
         <source>Remove (Options) from Book Title</source>
         <extracomment>Ability to remove and display (parenthesized) text from Volume title in the catalog</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="877"/>
+        <location filename="../src/mainwindow.ui" line="884"/>
         <source>Remove (Options) from book title when searching</source>
         <extracomment>Ability to search with the title removed (parenthesized) removed from the title of Volume in the catalog</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="889"/>
-        <location filename="../src/mainwindow.ui" line="892"/>
+        <location filename="../src/mainwindow.ui" line="896"/>
+        <location filename="../src/mainwindow.ui" line="899"/>
         <source>CatalogViewIcon</source>
         <extracomment>For Volume in the catalog, a mode to list up icons and titles vertically</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="904"/>
+        <location filename="../src/mainwindow.ui" line="911"/>
         <source>IconViewOnly</source>
         <extracomment>Mode to list Volume in the catalog with only the icons side by side</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="913"/>
-        <location filename="../src/mainwindow.ui" line="916"/>
+        <location filename="../src/mainwindow.ui" line="920"/>
+        <location filename="../src/mainwindow.ui" line="923"/>
         <source>CatalogViewList</source>
         <extracomment>Mode to list volumes in the catalog with icons and titles arranged side by side</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="924"/>
+        <location filename="../src/mainwindow.ui" line="931"/>
         <source>ShowTagBar</source>
         <extracomment>Squeeze the Volume of the catalog Function to erase the bar displaying the tag button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="929"/>
+        <location filename="../src/mainwindow.ui" line="936"/>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="934"/>
+        <location filename="../src/mainwindow.ui" line="941"/>
         <source>Activate your e-mail software with an attachment</source>
         <extracomment>Menu to attach the currently displayed image to the mail software and start up</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="942"/>
+        <location filename="../src/mainwindow.ui" line="949"/>
         <source>Larger &amp;grid to display long title</source>
         <extracomment>Functions to be used when the Volume title in the catalog is long</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="951"/>
+        <location filename="../src/mainwindow.ui" line="958"/>
         <source>Show &amp;Folder</source>
         <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="959"/>
+        <location filename="../src/mainwindow.ui" line="966"/>
         <source>CPU Bicubic after GPU Bilinear (standard)</source>
         <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="967"/>
+        <location filename="../src/mainwindow.ui" line="974"/>
         <source>Bicubic interpolation by CPU (quality)</source>
         <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="979"/>
+        <location filename="../src/mainwindow.ui" line="986"/>
         <source>Open with Subfolders Image</source>
         <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="987"/>
+        <location filename="../src/mainwindow.ui" line="994"/>
         <source>Previously opened page in Preview</source>
         <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="995"/>
+        <location filename="../src/mainwindow.ui" line="1002"/>
         <source>Show how far you read</source>
         <extracomment>Ability to display read information read in the middle in FolderWindow</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1000"/>
+        <location filename="../src/mainwindow.ui" line="1007"/>
         <source>&amp;Settings</source>
         <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1005"/>
+        <location filename="../src/mainwindow.ui" line="1012"/>
         <source>Rename</source>
         <extracomment>A menu for changing the file name of the currently displayed image</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1013"/>
+        <location filename="../src/mainwindow.ui" line="1020"/>
         <source>Don&apos;t enlarge small images on Fitting</source>
         <extracomment>Ability to display an image smaller than the window as it is when fit is displayed</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1026"/>
+        <location filename="../src/mainwindow.ui" line="1033"/>
         <source>Fullscreen on startup</source>
         <extracomment>Ability to always launch applications in full screen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1034"/>
+        <location filename="../src/mainwindow.ui" line="1041"/>
         <source>Show texts on Fullscreen</source>
         <extracomment>Signage that displays the file name of the image at full screen display</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1043"/>
+        <location filename="../src/mainwindow.ui" line="1050"/>
         <source>&amp;Key Config</source>
         <extracomment>Menu that displays a dialog for changing keyboard shortcuts</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1051"/>
+        <location filename="../src/mainwindow.ui" line="1058"/>
         <source>Confirm moving image to &amp;Recycle Bin</source>
         <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1056"/>
+        <location filename="../src/mainwindow.ui" line="1063"/>
         <source>Image Associations (requires Admin)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1066"/>
+        <location filename="../src/mainwindow.ui" line="1073"/>
         <source>&amp;Mouse Config</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1071"/>
+        <location filename="../src/mainwindow.ui" line="1078"/>
         <source>Delete the image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1076"/>
+        <location filename="../src/mainwindow.ui" line="1083"/>
         <source>Image Associations (only you)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1084"/>
+        <location filename="../src/mainwindow.ui" line="1091"/>
         <source>Don&apos;t update history</source>
         <extracomment>Flag for prohibiting update of history</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1096"/>
+        <location filename="../src/mainwindow.ui" line="1103"/>
         <source>Undock into separate window</source>
         <extracomment>Flag separating the catalog and folder windows into independent windows</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1104"/>
+        <location filename="../src/mainwindow.ui" line="1111"/>
         <source>Large menubar arnd toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1109"/>
+        <location filename="../src/mainwindow.ui" line="1116"/>
         <source>Turn over the page on the left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1114"/>
+        <location filename="../src/mainwindow.ui" line="1121"/>
         <source>Turn over the page on the right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1122"/>
+        <location filename="../src/mainwindow.ui" line="1129"/>
         <source>Divide wide image into 2 pages</source>
         <extracomment>Flag to display images on the left and right sides with a portrait display</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1134"/>
+        <location filename="../src/mainwindow.ui" line="1141"/>
         <source>Loupe Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1142"/>
+        <location filename="../src/mainwindow.ui" line="1149"/>
         <source>Scroll with mouse cursor on zooming</source>
         <extracomment>Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1154"/>
+        <location filename="../src/mainwindow.ui" line="1161"/>
         <source>Fit to width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1166"/>
+        <location filename="../src/mainwindow.ui" line="1173"/>
         <source>Fit to window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.ui" line="1178"/>
+        <location filename="../src/mainwindow.ui" line="1185"/>
         <source>Change Brightness, Contrast or Gamma value</source>
         <extracomment>a menu test which show window changes brightness of the image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1193"/>
+        <source>Spline16 interpolation by CPU</source>
+        <extracomment>Menu that performs Spline16 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1201"/>
+        <source>Spline36 interpolation by CPU</source>
+        <extracomment>Menu that performs Spline36 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1209"/>
+        <source>Lanczos3 interpolation by CPU</source>
+        <extracomment>Menu that performs Lanczos3 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1217"/>
+        <source>Lanczos4 interpolation by CPU</source>
+        <extracomment>Menu that performs Lanczos4 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1222"/>
+        <source>Next page or volume</source>
+        <extracomment>Switch to next image, or to next volume if the page is first button</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.ui" line="1227"/>
+        <source>Prev page or volume</source>
+        <extracomment>Switch to previous image, or to previous volume if the page is last button</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1655,55 +1691,55 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="447"/>
+        <location filename="../src/mainwindow.cpp" line="456"/>
         <source>Image file not found. Can&apos;t be opened</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="921"/>
+        <location filename="../src/mainwindow.cpp" line="930"/>
         <source>Image file was not found. Can&apos;t be opened.</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1246"/>
+        <location filename="../src/mainwindow.cpp" line="1255"/>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1249"/>
+        <location filename="../src/mainwindow.cpp" line="1258"/>
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1464"/>
+        <location filename="../src/mainwindow.cpp" line="1473"/>
         <source>Confirmation</source>
         <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1469"/>
+        <location filename="../src/mainwindow.cpp" line="1478"/>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1500"/>
+        <location filename="../src/mainwindow.cpp" line="1509"/>
         <source>Confirmation</source>
         <comment>Confirm deleting image file on MessageBox title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1505"/>
+        <location filename="../src/mainwindow.cpp" line="1514"/>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm deleting image file on Message Box body</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1610"/>
+        <location filename="../src/mainwindow.cpp" line="1651"/>
         <source>Bookmark Saved.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2160,43 +2196,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="147"/>
+        <location filename="../src/models/qvapplication.cpp" line="149"/>
         <source>Folder</source>
         <comment>Folder Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="151"/>
+        <location filename="../src/models/qvapplication.cpp" line="153"/>
         <source>Catalog</source>
         <comment>Catalog Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="158"/>
+        <location filename="../src/models/qvapplication.cpp" line="160"/>
         <source>Image</source>
         <comment>Image Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="176"/>
+        <location filename="../src/models/qvapplication.cpp" line="178"/>
         <source>View</source>
         <comment>View Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="191"/>
+        <location filename="../src/models/qvapplication.cpp" line="193"/>
         <source>ContextMenu</source>
         <comment>ContextMenu Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="206"/>
+        <location filename="../src/models/qvapplication.cpp" line="208"/>
         <source>Shader</source>
         <comment>Shader Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/models/qvapplication.cpp" line="215"/>
+        <location filename="../src/models/qvapplication.cpp" line="223"/>
         <source>Help</source>
         <comment>Help Action Group</comment>
         <translation type="unfinished"></translation>

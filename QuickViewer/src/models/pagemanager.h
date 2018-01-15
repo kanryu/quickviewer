@@ -31,8 +31,8 @@ public:
     void reloadVolumeAfterRemoveImage();
 
     // Pages
-    void nextPage();
-    void prevPage();
+    bool nextPage();
+    bool prevPage();
     void fastForwardPage();
     void fastBackwardPage();
     void selectPage(int pageNum, VolumeManager::CacheMode cacheMode=VolumeManager::Normal);

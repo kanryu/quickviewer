@@ -131,6 +131,8 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     groupName = tr("Bookmark", "Bookmark Action Group");
     m_keyActions.registAction("actionNextPage", ui->actionNextPage, groupName);
     m_keyActions.registAction("actionPrevPage", ui->actionPrevPage, groupName);
+    m_keyActions.registAction("actionNextPageOrVolume", ui->actionNextPageOrVolume, groupName);
+    m_keyActions.registAction("actionPrevPageOrVolume", ui->actionPrevPageOrVolume, groupName);
     m_keyActions.registAction("actionTurnPageOnLeft", ui->actionTurnPageOnLeft, groupName);
     m_keyActions.registAction("actionTurnPageOnRight", ui->actionTurnPageOnRight, groupName);
     m_keyActions.registAction("actionFastForward", ui->actionFastForward, groupName);

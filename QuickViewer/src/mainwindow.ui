@@ -219,8 +219,6 @@
    <addaction name="actionPrevVolume"/>
    <addaction name="actionNextVolume"/>
    <addaction name="separator"/>
-   <addaction name="actionSlideShow"/>
-   <addaction name="separator"/>
    <addaction name="actionShowFolder"/>
    <addaction name="actionShowCatalog"/>
    <addaction name="actionShowRetouchWindow"/>
@@ -338,6 +336,9 @@
     <addaction name="actionPrevVolume"/>
     <addaction name="separator"/>
     <addaction name="actionSlideShow"/>
+    <addaction name="separator"/>
+    <addaction name="actionNextPageOrVolume"/>
+    <addaction name="actionPrevPageOrVolume"/>
    </widget>
    <widget class="QMenu" name="menuShader">
     <property name="title">
@@ -364,14 +365,14 @@
      </property>
      <addaction name="actionShaderBilinear"/>
      <addaction name="separator"/>
-     <addaction name="actionShaderBicubic"/>
+     <addaction name="actionShaderCpuBicubic"/>
      <addaction name="actionShaderCpuLanczos4"/>
      <addaction name="separator"/>
      <addaction name="actionShaderCpuLanczos3"/>
      <addaction name="actionShaderNearestNeighbor"/>
      <addaction name="actionShaderLanczos"/>
      <addaction name="actionShaderBilinearBeforeCpuBicubic"/>
-     <addaction name="actionShaderCpuBicubic"/>
+     <addaction name="actionShaderBicubic"/>
     </widget>
     <widget class="QMenu" name="menuEdit_the_image">
      <property name="title">
@@ -392,11 +393,6 @@
      <addaction name="actionFitToWidth"/>
      <addaction name="actionFitToWindow"/>
     </widget>
-    <widget class="QMenu" name="menu">
-     <property name="title">
-      <string>ここに入力</string>
-     </property>
-    </widget>
     <addaction name="actionNextOnePage"/>
     <addaction name="actionPrevOnePage"/>
     <addaction name="separator"/>
@@ -404,14 +400,12 @@
     <addaction name="menuFit_mode"/>
     <addaction name="menuEdit_the_image"/>
     <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionScrollWithCursorWhenZooming"/>
     <addaction name="separator"/>
     <addaction name="actionDualView"/>
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
     <addaction name="separator"/>
-    <addaction name="menu"/>
    </widget>
    <widget class="QMenu" name="menu_Catalog">
     <property name="title">
@@ -1223,6 +1217,16 @@
     <string extracomment="Menu that performs Lanczos4 interpolation with CPU when resizing image">Lanczos4 interpolation by CPU</string>
    </property>
   </action>
+  <action name="actionNextPageOrVolume">
+   <property name="text">
+    <string extracomment="Switch to next image, or to next volume if the page is first button">Next page or volume</string>
+   </property>
+  </action>
+  <action name="actionPrevPageOrVolume">
+   <property name="text">
+    <string extracomment="Switch to previous image, or to previous volume if the page is last button">Prev page or volume</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1263,6 +1267,8 @@
     <slot>onActionShowFullscreenSignage_triggered(bool)</slot>
     <slot>on_fitToWidth_triggered(bool)</slot>
     <slot>on_fitToWindow_triggered(bool)</slot>
+    <slot>onActionNextPageOrVolume_triggered()</slot>
+    <slot>onActionPrevPageOrVolume_triggered()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2728,6 +2734,38 @@
     <hint type="destinationlabel">
      <x>392</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrevPageOrVolume</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>onActionPrevPageOrVolume_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNextPageOrVolume</sender>
+   <signal>triggered()</signal>
+   <receiver>graphicsView</receiver>
+   <slot>onActionNextPageOrVolume_triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>

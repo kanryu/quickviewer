@@ -389,7 +389,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         // CPU resizing before Page Viewing
         if(!pageSize.isEmpty() && !ic.Image.isNull()) {
             QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-            ic.ResizeMode == qApp->Effect();
+            ic.ResizeMode = qApp->Effect();
             ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio, ShaderEffect2FilterMode(qApp->Effect()));
         }
         return ic;
@@ -435,7 +435,7 @@ ImageContent VolumeManager::futureReizeImage(ImageContent ic, QSize pageSize)
 {
 //    qDebug() << "futureReizeImage:" << ic.Path;
     QSize newsize = ic.Info.Orientation==6 || ic.Info.Orientation==8 ? QSize(pageSize.height(), pageSize.width()) : pageSize;
-    ic.ResizeMode == qApp->Effect();
+    ic.ResizeMode = qApp->Effect();
     ic.ResizedImage = QZimg::scaled(ic.Image, newsize, Qt::KeepAspectRatio, ShaderEffect2FilterMode(qApp->Effect()));
     return ic;
 }

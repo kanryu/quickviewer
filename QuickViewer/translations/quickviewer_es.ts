@@ -1992,6 +1992,36 @@
         <extracomment>a menu test which show window changes brightness of the image</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Spline16 interpolation by CPU</source>
+        <extracomment>Menu that performs Spline16 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spline36 interpolation by CPU</source>
+        <extracomment>Menu that performs Spline36 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lanczos3 interpolation by CPU</source>
+        <extracomment>Menu that performs Lanczos3 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lanczos4 interpolation by CPU</source>
+        <extracomment>Menu that performs Lanczos4 interpolation with CPU when resizing image</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next page or volume</source>
+        <extracomment>Switch to next image, or to next volume if the page is first button</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prev page or volume</source>
+        <extracomment>Switch to previous image, or to previous volume if the page is last button</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

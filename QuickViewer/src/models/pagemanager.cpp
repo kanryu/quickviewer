@@ -229,16 +229,16 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
     return newer;
 }
 
-void PageManager::nextPage()
+bool PageManager::nextPage()
 {
     //qDebug() << "ImageView::nextPage()" << m_currentPage;
     if(m_fileVolume == nullptr
             || !m_fileVolume->enumerated()
-            || m_fileVolume->pageCount() >= m_fileVolume->size()-1) return;
+            || m_fileVolume->pageCount() >= m_fileVolume->size()-1) return false;
 
     m_fileVolume->setCacheMode(VolumeManager::NormalForward);
     bool result = m_fileVolume->nextPage();
-    if(!result) return;
+    if(!result) return false;
 
     int pageIncr = m_pages.size();
     m_currentPage += pageIncr;
@@ -249,17 +249,18 @@ void PageManager::nextPage()
     reloadCurrentPage();
     bookProgress();
     emit pageChanged();
+    return true;
 }
 
-void PageManager::prevPage()
+bool PageManager::prevPage()
 {
     if(m_fileVolume == nullptr
             || !m_fileVolume->enumerated()
-            || m_fileVolume->pageCount() < m_pages.size()) return;
+            || m_fileVolume->pageCount() < m_pages.size()) return false;
 
     m_fileVolume->setCacheMode(VolumeManager::NormalBackward);
     bool result = m_fileVolume->prevPage();
-    if(!result) return;
+    if(!result) return false;
     //QVApplication* app = qApp;
     m_currentPage--;
     if(qApp->DualView() && m_currentPage >= 1) {
@@ -274,6 +275,7 @@ void PageManager::prevPage()
     bookProgress();
 
     selectPage(m_currentPage, VolumeManager::NormalBackward);
+    return true;
 }
 
 #define PAGE_INTERVAL 10

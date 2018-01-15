@@ -391,6 +391,38 @@ void ImageView::on_prevPage_triggered()
     m_pageBacking = false;
 }
 
+void ImageView::onActionNextPageOrVolume_triggered()
+{
+    if(qApp->SeparatePagesWhenWideImage() && m_pages[0].Separation == PageContent::FirstSeparated) {
+        m_pages[0].Separation = PageContent::SecondSeparated;
+        readyForPaint();
+        return;
+    }
+    if(m_pageManager)
+        if(!m_pageManager->nextPage()) {
+            m_pageManager->nextVolume();
+            m_pageManager->firstPage();
+        }
+    if(isSlideShow())
+        toggleSlideShow();
+}
+
+void ImageView::onActionPrevPageOrVolume_triggered()
+{
+    if(qApp->SeparatePagesWhenWideImage() && m_pages[0].Separation == PageContent::SecondSeparated) {
+        m_pages[0].Separation = PageContent::FirstSeparated;
+        readyForPaint();
+        return;
+    }
+    if(m_pageManager)
+        if(!m_pageManager->prevPage()) {
+            m_pageManager->prevVolume();
+            m_pageManager->lastPage();
+        }
+    if(isSlideShow())
+        toggleSlideShow();
+}
+
 void ImageView::on_fastForwardPage_triggered()
 {
     if(m_pageManager)

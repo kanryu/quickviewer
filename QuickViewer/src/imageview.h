@@ -94,6 +94,8 @@ public slots:
     // Navigation
     void on_nextPage_triggered();
     void on_prevPage_triggered();
+    void onActionNextPageOrVolume_triggered();
+    void onActionPrevPageOrVolume_triggered();
     void on_fastForwardPage_triggered();
     void on_fastBackwardPage_triggered();
     void on_firstPage_triggered();

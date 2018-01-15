@@ -2280,6 +2280,36 @@
         <extracomment>a menu test which show window changes brightness of the image</extracomment>
         <translation>明るさ、コントラスト、ガンマ値を変更</translation>
     </message>
+    <message>
+        <source>Spline16 interpolation by CPU</source>
+        <extracomment>Menu that performs Spline16 interpolation with CPU when resizing image</extracomment>
+        <translation>CPUによるスプライン16補間</translation>
+    </message>
+    <message>
+        <source>Spline36 interpolation by CPU</source>
+        <extracomment>Menu that performs Spline36 interpolation with CPU when resizing image</extracomment>
+        <translation>CPUによるスプライン36補間</translation>
+    </message>
+    <message>
+        <source>Lanczos3 interpolation by CPU</source>
+        <extracomment>Menu that performs Lanczos3 interpolation with CPU when resizing image</extracomment>
+        <translation>CPUによるLanczos3補間</translation>
+    </message>
+    <message>
+        <source>Lanczos4 interpolation by CPU</source>
+        <extracomment>Menu that performs Lanczos4 interpolation with CPU when resizing image</extracomment>
+        <translation>CPUによるLanczos4補間</translation>
+    </message>
+    <message>
+        <source>Next page or volume</source>
+        <extracomment>Switch to next image, or to next volume if the page is first button</extracomment>
+        <translation>次の画像またはボリューム</translation>
+    </message>
+    <message>
+        <source>Prev page or volume</source>
+        <extracomment>Switch to previous image, or to previous volume if the page is last button</extracomment>
+        <translation>前の画像またはボリューム</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
