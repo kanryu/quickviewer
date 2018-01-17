@@ -469,7 +469,7 @@ void ImageView::on_prevOnlyOnePage_triggered()
 
 void ImageView::on_rotatePage_triggered()
 {
-    if(!m_pageManager)
+    if(!m_pageManager || m_pageRotations.empty())
         return;
     m_pageRotations[m_pageManager->currentPage()] += 90;
     readyForPaint();
