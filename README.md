@@ -79,7 +79,7 @@ Hidden bars are displayed automatically when needed.
 - Shader Program Filters(via v0.5.1)
     - Nearest Neighber
     - Bilinear
-    - ~~Bicubic (by GPU, obsoleted via v0.7.2)~~
+    - ~~Bicubic (by GPU, obsoleted via v0.7.2)~~
     - ~~Lanczos (obsoleted via v0.7.2)~~
     - Bicubic by CPU
 - Catalog(via v0.6.0)
