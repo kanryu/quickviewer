@@ -205,10 +205,12 @@ Thanks for reviewers! :)
     - Show/Hide title bar on fullscreen
 - [Shaders](shader) (quality of resize)
     - Bilinear interpolation (normal)
-    - ~~Bicubic interpolation (by GPU, obsoleted via v0.7.2)~~
-    - ~~Lanczos interpolation (obsoleted via v0.7.2)~~
     - Nearest Neighbor interpolation
     - Bicubic interpolation by CPU (high quality)
+    - ~~Bicubic interpolation (by GPU, obsoleted via v0.9.3)~~
+    - ~~Lanczos interpolation (obsoleted via v0.9.3)~~
+    - Lanczos3 by CPU (via 1.0.9)
+    - Lanczos4 by CPU (via 1.0.9)
 - Keyboard Config Setting
 
 ### Normal Viewing(One Page View)
