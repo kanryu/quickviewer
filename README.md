@@ -79,9 +79,11 @@ Hidden bars are displayed automatically when needed.
 - Shader Program Filters(via v0.5.1)
     - Nearest Neighber
     - Bilinear
-    - ~~Bicubic (by GPU, obsoleted via v0.7.2)~~
-    - ~~Lanczos (obsoleted via v0.7.2)~~
+    - ~~Bicubic (by GPU, obsoleted via v0.9.3)~~
+    - ~~Lanczos (obsoleted via v0.9.3)~~
     - Bicubic by CPU
+    - Lanczos3 by CPU (via 1.0.9)
+    - Lanczos4 by CPU (via 1.0.9)
 - Catalog(via v0.6.0)
     - Database for your digital books, can manage thansands of volumes, quick view and search
 - File Associations(via v0.8.3)
