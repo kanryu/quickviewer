@@ -21,6 +21,7 @@ fulltitle: QuickViewer オフィシャルページ
 
 - 画像切り替えメチャ早(OpenGL使用)
 - インストール作業なしでどこでも動いてレジストリの書き込みなし
+- タブレットPC対応
 - 本を読むのに便利な見開き表示
 - アーカイブファイルの直接読み込み(zip/7z/rar/cbr/cbz)
 - これらの画像形式に対応(bmp/png/jpeg/webp/ico/tga/tiff/gif)
