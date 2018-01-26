@@ -1,4 +1,4 @@
-include("QVProject.pri")
+include("QVproject.pri")
 
 TEMPLATE = subdirs
 SUBDIRS = \

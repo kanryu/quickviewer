@@ -17,6 +17,13 @@ win32 {
         TARGET_ARCH = x86
     }
 }
+unix {
+    contains(TARGET_ARCH, x86_64) {
+        TARGET_ARCH = x64
+    } else {
+        TARGET_ARCH = x86
+    }
+}
 
 win32 {
 LUMINOR_BIN_PATH = luminor-msvc2015-$${TARGET_ARCH}

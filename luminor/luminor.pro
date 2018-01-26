@@ -1,4 +1,4 @@
-include("../QVProject.pri")
+include("../QVproject.pri")
 QT       += core gui
 
 CONFIG += c++11
@@ -7,13 +7,15 @@ TARGET = qluminor
 TEMPLATE = lib
 CONFIG += staticlib
 
-#win32 {
-#LUMINOR_BIN_PATH = ./luminor-msvc2015-$${TARGET_ARCH}
-#}
+win32 {
+LIBS += -L$${LUMINOR_BIN_PATH} -lluminor -lluminor_rgba -lhalide_runtime
+}
 
-#unix {
-#LUMINOR_BIN_PATH = ./luminor-linux-$${TARGET_ARCH}
-#}
+unix {
+#OBJECTS_DIR += $${LUMINOR_BIN_PATH}
+#OBJECTS += $${LUMINOR_BIN_PATH}/luminor.o $${LUMINOR_BIN_PATH}/luminor_rgba.o
+LIBS += -L$${LUMINOR_BIN_PATH} -lhalide_runtime  $${LUMINOR_BIN_PATH}/luminor.o $${LUMINOR_BIN_PATH}/luminor_rgba.o
+}
 DESTDIR = ../lib
 
 INCLUDEPATH += $${LUMINOR_BIN_PATH} luminor
@@ -25,7 +27,6 @@ HEADERS += \
     qluminor.h
 
 
-LIBS += -L$${LUMINOR_BIN_PATH} -lluminor -lluminor_rgba -lhalide_runtime
 
 
 

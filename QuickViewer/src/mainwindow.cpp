@@ -581,7 +581,8 @@ void MainWindow::onScrollModeChanged(bool scrolled)
     QStringList cusors = {"Left", "Right", "Up", "Down"};
     // enable/disable cursor key shortcuts
     foreach(const QString& c, cusors) {
-        QString name = qApp->keyActions().getNameByValue(QKeySequence(c));
+        auto key = QKeySequence(c);
+        QString name = qApp->keyActions().getNameByValue(key);
         if(!name.isEmpty())
             resetShortCut(name, c, scrolled);
     }

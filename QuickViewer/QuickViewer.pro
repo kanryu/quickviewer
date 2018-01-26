@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include(../QVProject.pri)
+include(../QVproject.pri)
 
 QT       += core gui concurrent sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -50,7 +50,16 @@ LIBS += -L$${LIBDIR}  -leasyexif -lresizehalf -lfileloader -lQt7z -lunrar -lzimg
 
 contains(DEFINES, QV_WITH_LUMINOR) {
     INCLUDEPATH += $$PWD/../luminor
-    LIBS += -L$$PWD/../luminor/$${LUMINOR_BIN_PATH} -lluminor -lluminor_rgba -lhalide_runtime -lqluminor
+    win32 {
+        LIBS += -L$$PWD/../luminor/$${LUMINOR_BIN_PATH} -lluminor -lluminor_rgba -lhalide_runtime -lqluminor
+    }
+    unix {
+        LIBS += -L$$PWD/../luminor/$${LUMINOR_BIN_PATH} \
+                $$PWD/../luminor/$${LUMINOR_BIN_PATH}/luminor.o \
+                $$PWD/../luminor/$${LUMINOR_BIN_PATH}/luminor_rgba.o \
+                $$PWD/../luminor/$${LUMINOR_BIN_PATH}/halide_runtime.a \
+                -lqluminor -ldl
+    }
 }
 
 win32 {
