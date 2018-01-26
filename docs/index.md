@@ -22,6 +22,7 @@ You can browse images with much smoother response than ever before.
 
  - To show images very fast (using OpenGL)
  - Portable (without installers, registries, external libraries)
+ - Tablet PC ready
  - 2 Page Spread viewing (two images once, for digital books/comics)
  - To read archives directly (zip/7z/rar/cbr/cbz)
  - To show images (bmp/png/jpeg/webp/ico/tga/tiff/gif)
@@ -215,7 +216,7 @@ Thanks for reviewers! :)
     - ~~Lanczos interpolation (obsoleted via v0.9.3)~~
     - Lanczos3 by CPU (via 1.0.9)
     - Lanczos4 by CPU (via 1.0.9)
-- Keyboard Config Setting
+- Keyboard/Mouse Config Setting
 
 ### Normal Viewing(One Page View)
 
