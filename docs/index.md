@@ -212,10 +212,10 @@ Thanks for reviewers! :)
     - Bilinear interpolation (normal)
     - Nearest Neighbor interpolation
     - Bicubic interpolation by CPU (high quality)
-    - ~~Bicubic interpolation (by GPU, obsoleted via v0.9.3)~~
-    - ~~Lanczos interpolation (obsoleted via v0.9.3)~~
-    - Lanczos3 by CPU (via 1.0.9)
-    - Lanczos4 by CPU (via 1.0.9)
+    - ~~Bicubic interpolation (by GPU, obsoleted since v0.9.3)~~
+    - ~~Lanczos interpolation (obsoleted since v0.9.3)~~
+    - Lanczos3 by CPU (since 1.0.9)
+    - Lanczos4 by CPU (since 1.0.9)
 - Keyboard/Mouse Config Setting
 
 ### Normal Viewing(One Page View)
