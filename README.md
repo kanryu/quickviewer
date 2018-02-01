@@ -72,22 +72,22 @@ Hidden bars are displayed automatically when needed.
 - Fittng (To fit images up to window size)
 - Spread viewing (two image once)
     - Bound on the right side book(e.g. Japanese Style)
-- Pre page loading(via v0.2.0)
-- Exif Information(via v0.3.0)
+- Pre page loading(since v0.2.0)
+- Exif Information(since v0.3.0)
 - Show Windows Explorer for the current image
 - Put the current image into your mailer
-- Shader Program Filters(via v0.5.1)
+- Shader Program Filters(since v0.5.1)
     - Nearest Neighber
     - Bilinear
-    - ~~Bicubic (by GPU, obsoleted via v0.9.3)~~
-    - ~~Lanczos (obsoleted via v0.9.3)~~
+    - ~~Bicubic (by GPU, obsoleted since v0.9.3)~~
+    - ~~Lanczos (obsoleted since v0.9.3)~~
     - Bicubic by CPU
-    - Lanczos3 by CPU (via 1.0.9)
-    - Lanczos4 by CPU (via 1.0.9)
-- Catalog(via v0.6.0)
+    - Lanczos3 by CPU (since 1.0.9)
+    - Lanczos4 by CPU (since 1.0.9)
+- Catalog(since v0.6.0)
     - Database for your digital books, can manage thansands of volumes, quick view and search
-- File Associations(via v0.8.3)
-- Retouching(change Brightness, Contrast, Gamma value, via 1.0.8)
+- File Associations(since v0.8.3)
+- Retouching(change Brightness, Contrast, Gamma value, since 1.0.8)
 
 ## Screen operations
 
