@@ -56,7 +56,7 @@ public:
 
     // FolderWindow
     bool isFolderSearching();
-    void createFolderWindow(bool docked);
+    void createFolderWindow(bool docked, QString path="");
 
     // CatalogWindow
     bool isCatalogSearching();
@@ -96,6 +96,8 @@ public slots:
     void onFolderWindow_openVolume(QString path);
     void onActionOpenVolumeWithProgress_triggered(bool enabled);
     void onActionShowReadProgress_triggered(bool enabled);
+    void onActionSaveReadProgress_triggered(bool enable);
+    void onActionSaveFolderViewWidth_triggered(bool enable);
 
     // Catalog
     void onActionShowCatalog_triggered();
@@ -108,6 +110,7 @@ public slots:
     void onActionCatalogViewIconNoText_triggered();
     void onActionShowTagBar_triggered(bool enable);
     void onActionCatalogIconLongText_triggered(bool enable);
+    void onActionSaveCatalogViewWidth_triggered(bool enable);
 
     // RetouchWindow
     void onActionShowBrightnessWindow_triggered(bool enable);
@@ -200,6 +203,7 @@ protected:
     Ui::MainWindow *ui;
     bool m_viewerWindowStateMaximized;
     bool m_sliderChanging;
+    bool m_onWindowClosing;
 
     /**
      * @brief m_contextMenu Define on the context menu mainwindow.ui for the main screen and separate at startup

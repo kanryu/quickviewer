@@ -80,6 +80,15 @@ public:
         FitToWidth
     };
     Q_ENUM(FitMode)
+
+    enum OptionViewOnStartup {
+        NoViewStartup,
+        FolderStartup,
+        CatalogStartup,
+        RetouchStartup,
+//        ExifStartup,
+    };
+    Q_ENUM(OptionViewOnStartup)
 };
 
 

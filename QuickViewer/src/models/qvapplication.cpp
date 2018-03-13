@@ -343,6 +343,12 @@ void QVApplication::loadSettings()
     m_topWindowWhenDropped = m_settings.value("TopWindowWhenDropped", true).toBool();
     m_loupeTool = m_settings.value("LoupeTool", false).toBool();
     m_scrollWithCursorWhenZooming = m_settings.value("ScrollWithCursorWhenZooming", false).toBool();
+    {
+        QString showOptionstring = m_settings.value("ShowOptionViewOnStartup", "FolderStartup").toString();
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("OptionViewOnStartup");
+        m_showOptionViewOnStartup = (qvEnums::OptionViewOnStartup)qvEnums::staticMetaObject.enumerator(enumIdx)
+                .keysToValue(showOptionstring.toLatin1().data());
+    }
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -375,6 +381,9 @@ void QVApplication::loadSettings()
     }
     m_openVolumeWithProgress = m_settings.value("OpenVolumeWithProgress", true).toBool();
     m_showReadProgress = m_settings.value("ShowReadProgress", true).toBool();
+    m_saveReadProgress = m_settings.value("SaveReadProgress", true).toBool();
+    m_saveFolderViewWidth = m_settings.value("SaveFolderViewWidth", false).toBool();
+    m_folderViewWidth = m_settings.value("FolderViewWidth", 200).toInt();
     m_settings.endGroup();
 
     m_settings.beginGroup("Catalog");
@@ -394,6 +403,8 @@ void QVApplication::loadSettings()
     m_searchTitleWithOptions = m_settings.value("SearchTitleWithOptions", false).toBool();
     m_showTagBar = m_settings.value("ShowTagBar", true).toBool();
     m_iconLongText = m_settings.value("IconLongText", false).toBool();
+    m_saveCatalogViewWidth = m_settings.value("SaveCatalogViewWidth", false).toBool();
+    m_catalogViewWidth = m_settings.value("CatalogViewWidth", 200).toInt();
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
@@ -482,6 +493,12 @@ void QVApplication::saveSettings()
     m_settings.setValue("TopWindowWhenDropped", m_topWindowWhenDropped);
     m_settings.setValue("LoupeTool", m_loupeTool);
     m_settings.setValue("ScrollWithCursorWhenZooming", m_scrollWithCursorWhenZooming);
+    {
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("OptionViewOnStartup");
+        QString optionViewstring = QString(qvEnums::staticMetaObject.enumerator(enumIdx)
+                                           .valueToKey(m_showOptionViewOnStartup));
+        m_settings.setValue("ShowOptionViewOnStartup", optionViewstring);
+    }
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");
@@ -513,6 +530,9 @@ void QVApplication::saveSettings()
     }
     m_settings.setValue("OpenVolumeWithProgress", m_openVolumeWithProgress);
     m_settings.setValue("ShowReadProgress", m_showReadProgress);
+    m_settings.setValue("SaveReadProgress", m_saveReadProgress);
+    m_settings.setValue("SaveFolderViewWidth", m_saveFolderViewWidth);
+    m_settings.setValue("FolderViewWidth", m_folderViewWidth);
     m_settings.endGroup();
 
     m_settings.beginGroup("Catalog");
@@ -527,6 +547,8 @@ void QVApplication::saveSettings()
     m_settings.setValue("SearchTitleWithOptions", m_searchTitleWithOptions);
     m_settings.setValue("ShowTagBar", m_showTagBar);
     m_settings.setValue("IconLongText", m_iconLongText);
+    m_settings.setValue("SaveCatalogViewWidth", m_saveCatalogViewWidth);
+    m_settings.setValue("CatalogViewWidth", m_catalogViewWidth);
     m_settings.endGroup();
 
     m_settings.beginGroup("KeyConfig");
@@ -556,6 +578,6 @@ void QVApplication::saveSettings()
 
 
     m_settings.sync();
-
-    m_bookshelfManager->save();
+    if(qApp->SaveReadProgress())
+        m_bookshelfManager->save();
 }

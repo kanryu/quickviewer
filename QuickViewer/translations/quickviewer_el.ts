@@ -1526,6 +1526,21 @@
         <extracomment>Switch to previous image, or to previous volume if the page is last button</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save the Catalog view width</source>
+        <extracomment>Flag to restore the width of Catalog view</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the Folder display width</source>
+        <extracomment>Flag to restore the width of Folder view</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save how far you read</source>
+        <extracomment>Flag to save progress.ini</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

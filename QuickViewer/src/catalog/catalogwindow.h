@@ -38,6 +38,7 @@ public:
     void searchByWord(bool doForce=false);
     void dragEnterEvent(QDragEnterEvent *e);
     void dropEvent(QDropEvent *e);
+    void resizeEvent(QResizeEvent *event);
     bool isCatalogSearching();
     void clearTagFrame();
     void initTagButtons();

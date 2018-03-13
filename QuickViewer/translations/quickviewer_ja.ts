@@ -2310,6 +2310,21 @@
         <extracomment>Switch to previous image, or to previous volume if the page is last button</extracomment>
         <translation>前の画像またはボリューム</translation>
     </message>
+    <message>
+        <source>Save the Catalog view width</source>
+        <extracomment>Flag to restore the width of Catalog view</extracomment>
+        <translation>カタログ表示の幅を保存する</translation>
+    </message>
+    <message>
+        <source>Save the Folder display width</source>
+        <extracomment>Flag to restore the width of Folder view</extracomment>
+        <translation>フォルダ表示の幅を保存する</translation>
+    </message>
+    <message>
+        <source>Save how far you read</source>
+        <extracomment>Flag to save progress.ini</extracomment>
+        <translation>どこまで読んだかを保存する</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>

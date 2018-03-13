@@ -116,6 +116,7 @@ void FolderWindow::dropEvent(QDropEvent *e)
 void FolderWindow::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
+    qApp->setFolderViewWidth(event->size().width());
     resetPathLabel(event->size().width());
 
 }

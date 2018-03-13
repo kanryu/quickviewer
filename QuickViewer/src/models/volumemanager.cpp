@@ -308,6 +308,8 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
 //                if(count >= 100) return ImageContent(path);
                 QThread::currentThread()->usleep(40000);
             }
+            if(baseSize.isEmpty())
+                baseSize = loadingSize = tmp.size();
             src = QZimg::toPackedImage(tmp);
             if(src.isNull()) return ImageContent(path, bytes.length());
         }

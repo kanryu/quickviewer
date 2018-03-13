@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_sliderChanging(false)
+    , m_onWindowClosing(false)
     , m_viewerWindowStateMaximized(false)
 //    , contextMenu(this)
     , m_pageManager(this)
@@ -131,11 +132,15 @@ MainWindow::MainWindow(QWidget *parent)
     // Folders
     ui->actionOpenVolumeWithProgress->setChecked(qApp->OpenVolumeWithProgress());
     ui->actionShowReadProgress->setChecked(qApp->ShowReadProgress());
+    ui->actionSaveReadProgress->setChecked(qApp->SaveReadProgress());
+    ui->actionSaveFolderViewWidth->setChecked(qApp->SaveFolderViewWidth());
 
     // Catalogs
+    ui->actionCatalogIconLongText->setChecked(qApp->IconLongText());
     ui->actionSearchTitleWithOptions->setChecked(qApp->SearchTitleWithOptions());
     ui->actionCatalogTitleWithoutOptions->setChecked(qApp->TitleWithoutOptions());
     ui->actionShowTagBar->setChecked(qApp->ShowTagBar());
+    ui->actionSaveCatalogViewWidth->setChecked(qApp->SaveCatalogViewWidth());
 
     switch(qApp->CatalogViewModeSetting()) {
     case qvEnums::List: ui->actionCatalogViewList->setChecked(true); break;
@@ -334,7 +339,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::closeEvent(QCloseEvent *)
 {
-    onCatalogWindow_closed();
+    m_onWindowClosing = true;
     delete m_contextMenu;
     m_contextMenu = nullptr;
     qApp->setWindowGeometry(saveGeometry());
@@ -452,7 +457,7 @@ void MainWindow::loadVolume(QString path, bool prohibitProhibit2Page)
     if(m_pageManager.loadVolume(path)) {
         return;
     }
-
+    createFolderWindow(true, path);
     ui->statusLabel->setText(tr("Image file not found. Can't be opened", "Text to display in the status bar when failed to open the specified Volume"));
 }
 
@@ -492,6 +497,12 @@ void MainWindow::makeBookmarkMenu()
 void MainWindow::setThumbnailManager(ThumbnailManager *manager)
 {
     m_thumbManager = manager;
+
+    switch(qApp->ShowOptionViewOnStartup()) {
+    case qvEnums::NoViewStartup: break;
+    case qvEnums::FolderStartup: createFolderWindow(!qApp->ShowPanelSeparateWindow()); break;
+    case qvEnums::CatalogStartup: createCatalogWindow(!qApp->ShowPanelSeparateWindow()); break;
+    }
 }
 
 void MainWindow::onActionExit_triggered()
@@ -633,6 +644,8 @@ void MainWindow::onFolderWindow_closed()
     if(m_folderWindow) {
         delete m_folderWindow;
         m_folderWindow = nullptr;
+        if(!m_onWindowClosing)
+            qApp->setShowOptionViewOnStartup(qvEnums::NoViewStartup);
     }
 }
 
@@ -648,9 +661,9 @@ void MainWindow::onFolderWindow_openVolume(QString path)
     loadVolume(path);
 }
 
-void MainWindow::createFolderWindow(bool docked)
+void MainWindow::createFolderWindow(bool docked, QString path)
 {
-    QString oldpath;
+    QString oldpath = path;
     if(m_folderWindow) {
         oldpath = m_folderWindow->currentPath();
         onFolderWindow_closed();
@@ -660,8 +673,10 @@ void MainWindow::createFolderWindow(bool docked)
         if(oldpath.isEmpty())
             oldpath = qApp->HomeFolderPath();
     }
+    qApp->setShowOptionViewOnStartup(qvEnums::FolderStartup);
     if(docked) {
         closeAllDockedWindow();
+        int lastwidth = qApp->FolderViewWidth();
         m_folderWindow = new FolderWindow(nullptr, ui);
         m_folderWindow->setFolderPath(oldpath, false);
         connect(m_folderWindow, SIGNAL(closed()), this, SLOT(onFolderWindow_closed()));
@@ -670,7 +685,7 @@ void MainWindow::createFolderWindow(bool docked)
         ui->catalogSplitter->insertWidget(0, m_folderWindow);
         auto sizes = ui->catalogSplitter->sizes();
         int sum = sizes[0]+sizes[1];
-        sizes[0] = 200;
+        sizes[0] = qApp->SaveFolderViewWidth() ? lastwidth : 200;
         sizes[1] = sum-sizes[0];
         ui->catalogSplitter->setSizes(sizes);
         m_folderWindow->setAsInnerWidget();
@@ -706,6 +721,8 @@ void MainWindow::onCatalogWindow_closed()
     if(m_catalogWindow) {
         delete m_catalogWindow;
         m_catalogWindow = nullptr;
+        if(!m_onWindowClosing)
+            qApp->setShowOptionViewOnStartup(qvEnums::NoViewStartup);
     }
 }
 
@@ -720,8 +737,10 @@ void MainWindow::createCatalogWindow(bool docked)
 {
     if(m_catalogWindow)
         onCatalogWindow_closed();
+    qApp->setShowOptionViewOnStartup(qvEnums::CatalogStartup);
     if(docked) {
         closeAllDockedWindow();
+        int lastwidth = qApp->CatalogViewWidth();
         m_catalogWindow = new CatalogWindow(nullptr, ui);
         m_catalogWindow->setThumbnailManager(m_thumbManager);
         connect(m_catalogWindow, SIGNAL(closed()), this, SLOT(onCatalogWindow_closed()));
@@ -729,7 +748,7 @@ void MainWindow::createCatalogWindow(bool docked)
         ui->catalogSplitter->insertWidget(0, m_catalogWindow);
         auto sizes = ui->catalogSplitter->sizes();
         int sum = sizes[0]+sizes[1];
-        sizes[0] = 200;
+        sizes[0] = qApp->SaveCatalogViewWidth() ? lastwidth : 200;
         sizes[1] = sum-sizes[0];
         ui->catalogSplitter->setSizes(sizes);
         m_catalogWindow->setAsInnerWidget();
@@ -1126,6 +1145,16 @@ void MainWindow::onActionShowReadProgress_triggered(bool enabled)
     }
 }
 
+void MainWindow::onActionSaveReadProgress_triggered(bool enable)
+{
+    qApp->setSaveReadProgress(enable);
+}
+
+void MainWindow::onActionSaveFolderViewWidth_triggered(bool enable)
+{
+    qApp->setSaveFolderViewWidth(enable);
+}
+
 void MainWindow::resetVolumeCaption()
 {
     m_volumeCaption = m_imageString.getTitleBarText();
@@ -1233,6 +1262,11 @@ void MainWindow::onActionCatalogIconLongText_triggered(bool enable)
     qApp->setIconLongText(enable);
     if(m_catalogWindow)
         m_catalogWindow->resetViewMode();
+}
+
+void MainWindow::onActionSaveCatalogViewWidth_triggered(bool enable)
+{
+    qApp->setSaveCatalogViewWidth(enable);
 }
 
 void MainWindow::onActionTurnPageOnLeft_triggered()

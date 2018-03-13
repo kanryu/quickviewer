@@ -421,6 +421,7 @@
     <addaction name="actionCatalogIconLongText"/>
     <addaction name="actionCatalogTitleWithoutOptions"/>
     <addaction name="actionSearchTitleWithOptions"/>
+    <addaction name="actionSaveCatalogViewWidth"/>
    </widget>
    <widget class="QMenu" name="menu_Folder">
     <property name="title">
@@ -430,9 +431,11 @@
     <addaction name="separator"/>
     <addaction name="actionOpenVolumeWithProgress"/>
     <addaction name="actionShowReadProgress"/>
+    <addaction name="actionSaveReadProgress"/>
     <addaction name="separator"/>
     <addaction name="actionShowSubfolders"/>
     <addaction name="actionConfirmDeletePage"/>
+    <addaction name="actionSaveFolderViewWidth"/>
    </widget>
    <widget class="QMenu" name="menu_Image">
     <property name="title">
@@ -1225,6 +1228,30 @@
   <action name="actionPrevPageOrVolume">
    <property name="text">
     <string extracomment="Switch to previous image, or to previous volume if the page is last button">Prev page or volume</string>
+   </property>
+  </action>
+  <action name="actionSaveCatalogViewWidth">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag to restore the width of Catalog view">Save the Catalog view width</string>
+   </property>
+  </action>
+  <action name="actionSaveFolderViewWidth">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag to restore the width of Folder view">Save the Folder display width</string>
+   </property>
+  </action>
+  <action name="actionSaveReadProgress">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string extracomment="Flag to save progress.ini">Save how far you read</string>
    </property>
   </action>
  </widget>
@@ -2769,6 +2796,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSaveCatalogViewWidth</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSaveCatalogViewWidth_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveFolderViewWidth</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSaveFolderViewWidth_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveReadProgress</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSaveReadProgress_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2846,5 +2921,9 @@
   <slot>onActionShaderCpuSpline36_triggered()</slot>
   <slot>onActionShaderCpuLanczos3_triggered()</slot>
   <slot>onActionShaderCpuLanczos4_triggered()</slot>
+  <slot>onActionSaveCatalogViewWidth_triggered(bool)</slot>
+  <slot>onActionSaveFolderViewWidth_triggered(bool)</slot>
+  <slot>onActionDisableCreationProgress_triggered(bool)</slot>
+  <slot>onActionSaveReadProgress_triggered(bool)</slot>
  </slots>
 </ui>

@@ -49,7 +49,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool ShowFullscreenSignage READ ShowFullscreenSignage WRITE setShowFullscreenSignage)
 //    Q_PROPERTY(bool ShowFullscreenTitleBar READ ShowFullscreenTitleBar WRITE setShowFullscreenTitleBar)
 
-    // DuapView
+    // DualView
     Q_PROPERTY(bool DualView READ DualView WRITE setDualView)
     Q_PROPERTY(bool StayOnTop READ StayOnTop WRITE setStayOnTop)
     Q_PROPERTY(bool RightSideBook READ RightSideBook WRITE setRightSideBook)
@@ -167,6 +167,8 @@ public:
     void setLoupeTool(bool loupeTool) { m_loupeTool = loupeTool; }
     bool ScrollWithCursorWhenZooming() { return m_scrollWithCursorWhenZooming; }
     void setScrollWithCursorWhenZooming(bool scrollWithCursorWhenZooming) { m_scrollWithCursorWhenZooming = scrollWithCursorWhenZooming; }
+    qvEnums::OptionViewOnStartup ShowOptionViewOnStartup() { return m_showOptionViewOnStartup; }
+    void setShowOptionViewOnStartup(qvEnums::OptionViewOnStartup fitMode) { m_showOptionViewOnStartup = fitMode; }
 
 
     // DualView
@@ -246,6 +248,12 @@ public:
     void setShowReadProgress (bool showReadProgress) { m_showReadProgress = showReadProgress; }
     bool ShowSubfolders() { return m_showSubfolders; }
     void setShowSubfolders (bool showSubfolders) { m_showSubfolders = showSubfolders; }
+    bool SaveReadProgress() { return m_saveReadProgress; }
+    void setSaveReadProgress(bool saveReadProgress) { m_saveReadProgress = saveReadProgress; }
+    bool SaveFolderViewWidth() { return m_saveFolderViewWidth; }
+    void setSaveFolderViewWidth (bool saveFolderViewWidth) { m_saveFolderViewWidth = saveFolderViewWidth; }
+    int FolderViewWidth() { return m_folderViewWidth; }
+    void setFolderViewWidth(int folderViewWidth) { m_folderViewWidth = folderViewWidth; }
 
     // Catalog
     qvEnums::CatalogViewMode CatalogViewModeSetting() { return m_catalogViewModeSetting; }
@@ -264,6 +272,10 @@ public:
     void setShowTagBar (bool showTagBar) { m_showTagBar = showTagBar; }
     bool IconLongText() { return m_iconLongText; }
     void setIconLongText (bool iconLongText) { m_iconLongText = iconLongText; }
+    bool SaveCatalogViewWidth() { return m_saveCatalogViewWidth; }
+    void setSaveCatalogViewWidth (bool saveCatalogViewWidth) { m_saveCatalogViewWidth = saveCatalogViewWidth; }
+    int CatalogViewWidth() { return m_catalogViewWidth; }
+    void setCatalogViewWidth(int catalogViewWidth) { m_catalogViewWidth = catalogViewWidth; }
 
     // ShaderEffect
     qvEnums::ShaderEffect Effect() { return m_effect; }
@@ -351,6 +363,7 @@ private:
     QString m_titleTextFormat;
     QString m_statusTextFormat;
     bool m_scrollWithCursorWhenZooming;
+    qvEnums::OptionViewOnStartup m_showOptionViewOnStartup;
 
     // ToolBars
     bool m_showToolBar;
@@ -381,6 +394,9 @@ private:
     qvEnums::FolderViewSort m_folderSortMode;
     bool m_openVolumeWithProgress;
     bool m_showReadProgress;
+    bool m_saveReadProgress;
+    bool m_saveFolderViewWidth;
+    int m_folderViewWidth;
 
     // Catalog
     qvEnums::CatalogViewMode m_catalogViewModeSetting;
@@ -392,6 +408,8 @@ private:
     bool m_switchVolumesWhenCatalogShowing;
     bool m_showTagBar;
     bool m_iconLongText;
+    bool m_saveCatalogViewWidth;
+    int m_catalogViewWidth;
 
     // KeyConfig
     QActionManager<QKeySequence, QKeySequence, QAction*> m_keyActions;

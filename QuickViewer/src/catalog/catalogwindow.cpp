@@ -228,6 +228,12 @@ void CatalogWindow::dropEvent(QDropEvent *e)
     resetVolumes();
 }
 
+void CatalogWindow::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    qApp->setCatalogViewWidth(event->size().width());
+}
+
 void CatalogWindow::on_treeItemChanged(QString)
 {
     //ui->pathCombo->setCurrentText(QDir::toNativeSeparators(path));
