@@ -25,7 +25,8 @@ You can browse images with much smoother response than ever before.
  - Tablet PC ready
  - 2 Page Spread viewing (two images once, for digital books/comics)
  - To read archives directly (zip/7z/rar/cbr/cbz)
- - To show images (bmp/png/jpeg/webp/ico/tga/tiff/gif)
+ - To show images (bmp/png/jpeg/ico/dds/tga/tiff/gif)
+   - Supported for modern formats(JPEG 2000/JPEG XR/WebP)
    - Supported for Animated PNG(APNG)/GIF
    - Auto rotation (using JPEG EXIF)
  - To show Raw digital camera images
