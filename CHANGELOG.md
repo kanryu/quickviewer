@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## v1.1.0 (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+
+add plguins for JPEG-XR/DDS/JPEG 2000, add options for Folder/Catalog views
+
+- add plguins for JPEG-XR/DDS/JPEG 2000
+- add option for saving progress.ini
+- add option for save width of Folder/Catalog views
+- add option to start app with Folder/Catalog view
+
+- other commits
+    - Update index.md (Sat Feb 24 14:30:42 2018 +0900) [87b3b6b](https://github.com/kanryu/quickviewer/commit/87b3b6b2e23c7f8523ae30bf1e88575689f9deb8)
+    - Update index.md (Thu Feb 1 11:50:31 2018 +0900) [5557acf](https://github.com/kanryu/quickviewer/commit/5557acfdacdf517c9c401e9b240c99b9bcde6af3)
+    - Update README.md (Thu Feb 1 11:49:48 2018 +0900) [bc5bc24](https://github.com/kanryu/quickviewer/commit/bc5bc24943fbe77453c2d2fe55c1f0ccb4f8afc4)
+    - support for linux. but currently cannot make AppImage (Sat Jan 27 02:08:44 2018 +0900) [d4cb3c1](https://github.com/kanryu/quickviewer/commit/d4cb3c10a4ef6d470545b85ff3a1a188856947d3)
+    - add QVproject.pri (forgotten ...) (Sat Jan 27 00:47:03 2018 +0900) [21f32b5](https://github.com/kanryu/quickviewer/commit/21f32b59cafd35f4d81ace756e3afc7827d8d017)
+    - Update index-ja.md (Fri Jan 26 15:08:07 2018 +0900) [dd43d72](https://github.com/kanryu/quickviewer/commit/dd43d72cfc4fcbd00a46baff2921be12f74fb0e4)
+    - Update index.md (Fri Jan 26 15:07:25 2018 +0900) [8fa7726](https://github.com/kanryu/quickviewer/commit/8fa7726e572d05d1e8cc7c44fbd463a1effde2dc)
+    - Update index.md (Fri Jan 26 15:05:18 2018 +0900) [5f71a51](https://github.com/kanryu/quickviewer/commit/5f71a51a9ca5f48ccb4120c49c3b8aea53611934)
+    - Update index-ja.md (Thu Jan 18 20:34:34 2018 +0900) [4b2eeb1](https://github.com/kanryu/quickviewer/commit/4b2eeb10e754c06d95080314a25265eec1f0cb83)
+    - Update index.md (Thu Jan 18 20:31:26 2018 +0900) [3f93405](https://github.com/kanryu/quickviewer/commit/3f93405fcb877456908fbff2ae8467bc6f681499)
+    - Update README.md (Thu Jan 18 20:29:23 2018 +0900) [6981821](https://github.com/kanryu/quickviewer/commit/69818211953c78ed42dbc1a213cdc15a14eb259b)
+    - Update README.md (Thu Jan 18 20:27:16 2018 +0900) [a73b12e](https://github.com/kanryu/quickviewer/commit/a73b12e193816fc7979fdeb896324e0d390f6d9b)
+    - bugfixed: Pressing the Rotate button when the image is not loaded will end the Frame (Wed Jan 17 13:39:47 2018 +0900) [c88898d](https://github.com/kanryu/quickviewer/commit/c88898de8beb640372365554a54444b2f7474155)
+    - changelog (Mon Jan 15 20:05:26 2018 +0900) [cd11e39](https://github.com/kanryu/quickviewer/commit/cd11e3968f70184e20532c85dff6275c357e8f43)
+
 ## v1.0.9 (Mon Jan 15 20:04:38 2018 +0900) [74286a8](https://github.com/kanryu/quickviewer/commit/74286a8452620b9e3750e754e9c469ff88ae0438)
 
 add Next page or volume
