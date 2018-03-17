@@ -105,6 +105,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.paperblog.fr/8518927/quickviewer/](http://www.paperblog.fr/8518927/quickviewer/)
 - **V2EX** (in Simplified Chinese)
     - [https://www.v2ex.com/t/419966](https://www.v2ex.com/t/419966)
+- **河东软件园** (in Simplified Chinese)
+    - [http://www.pc0359.cn/downinfo/89233.html](http://www.pc0359.cn/downinfo/89233.html)
 - **软件No1** (in Simplified Chinese)
     - [http://www.rjno1.com/best/p/2967-quickviewer.html](http://www.rjno1.com/best/p/2967-quickviewer.html)
 - **快乐无极** (in Simplified Chinese)
