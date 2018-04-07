@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 QVDIR=$HOME/.quickviewer
 
@@ -9,6 +9,16 @@ if [ ! -e $QVDIR/thumbnail.sqlite3.db ] ; then
   cp $APPDIR/var/database/thumbnail.sqlite3.db $QVDIR
 fi
 
+# file paths to full paths
+arr=()
+for v in "$@"
+do
+  if [ -e $v ] ; then
+    v=`readlink -f "$v"`
+  fi
+  arr=("${arr[@]}" "$v")
+done
+
 #printenv
 
-$APPDIR/usr/bin/QuickViewer "$@"
+$APPDIR/usr/bin/QuickViewer "${arr[@]}"
