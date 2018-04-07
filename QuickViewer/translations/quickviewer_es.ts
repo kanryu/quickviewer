@@ -1067,7 +1067,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation>Movimiento</translation>
+        <translation type="vanished">Movimiento</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1143,6 +1143,11 @@
     <message>
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2270,7 +2275,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation>Accion</translation>
+        <translation type="vanished">Accion</translation>
     </message>
     <message>
         <source>Description</source>
@@ -2301,6 +2306,11 @@
         <source>Option</source>
         <comment>caption of Option key</comment>
         <translation>Opciones</translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

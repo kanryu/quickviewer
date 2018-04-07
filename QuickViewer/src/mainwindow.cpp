@@ -452,11 +452,17 @@ void MainWindow::loadVolume(QString path, bool prohibitProhibit2Page)
     QStringList seps = path.split("::");
     if(!IFileLoader::isArchiveFile(seps[0]) && IFileLoader::isImageFile(path)) {
         m_pageManager.loadVolumeWithFile(path, prohibitProhibit2Page);
+        changeFolderPath(m_pageManager.volumePath());
         return;
     }
     if(m_pageManager.loadVolume(path)) {
+        changeFolderPath(m_pageManager.volumePath());
         return;
     }
+
+    if(changeFolderPath(path))
+        return;
+
     createFolderWindow(true, path);
     ui->statusLabel->setText(tr("Image file not found. Can't be opened", "Text to display in the status bar when failed to open the specified Volume"));
 }
@@ -702,6 +708,14 @@ void MainWindow::createFolderWindow(bool docked, QString path)
         connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
         m_folderWindow->show();
     }
+}
+
+bool MainWindow::changeFolderPath(QString path)
+{
+    if(!m_folderWindow)
+        return false;
+    m_folderWindow->setFolderPath(path, false);
+    return true;
 }
 
 ////////////////////////////

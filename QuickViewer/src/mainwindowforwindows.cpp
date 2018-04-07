@@ -55,7 +55,8 @@ void MainWindowForWindows::setWindowTop(bool signalOnly)
 {
     auto hwnd = reinterpret_cast<HWND>(winId());
     if(!hwnd) return;
-    ::ShowWindow(hwnd,SW_RESTORE);
+    if(!isMaximized())
+        ::ShowWindow(hwnd,SW_RESTORE);
 //    ::SwitchToThisWindow(hwnd, false);
     int foregroundID;
     if(!signalOnly) {

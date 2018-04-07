@@ -957,7 +957,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation>命令</translation>
+        <translation type="vanished">命令</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1033,6 +1033,11 @@
     </message>
     <message>
         <source>Scroll Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2120,7 +2125,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation>命令</translation>
+        <translation type="vanished">命令</translation>
     </message>
     <message>
         <source>Description</source>
@@ -2160,6 +2165,11 @@
     <message>
         <source>Mouse sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

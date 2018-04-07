@@ -915,7 +915,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation>Δράσεις</translation>
+        <translation type="vanished">Δράσεις</translation>
     </message>
     <message>
         <source>Description</source>
@@ -926,6 +926,11 @@
         <source>CurrentShortcut</source>
         <comment>Title of the column of the content of the shortcut key registered for Action</comment>
         <translation>Τρέχουσα συντόμευση</translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1741,7 +1746,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation>Δράσεις</translation>
+        <translation type="vanished">Δράσεις</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1757,6 +1762,11 @@
         <source>Mouse sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
         <translation>Η ακολουθία του ποντικιού έχει πιθανές διενέξεις.</translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

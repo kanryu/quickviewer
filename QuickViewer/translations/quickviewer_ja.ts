@@ -1248,7 +1248,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation>動作</translation>
+        <translation type="vanished">動作</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1317,6 +1317,11 @@
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
         <translation>Command</translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
+        <translation>グループ</translation>
     </message>
 </context>
 <context>
@@ -2570,7 +2575,7 @@
     <message>
         <source>Motions</source>
         <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation>動作</translation>
+        <translation type="vanished">動作</translation>
     </message>
     <message>
         <source>Description</source>
@@ -2601,6 +2606,11 @@
         <source>Option</source>
         <comment>caption of Option key</comment>
         <translation></translation>
+    </message>
+    <message>
+        <source>Group</source>
+        <comment>Group of the Action to be registered with the shortcut key</comment>
+        <translation>グループ</translation>
     </message>
 </context>
 <context>
