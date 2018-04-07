@@ -148,6 +148,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     // Folder
     groupName = tr("Folder", "Folder Action Group");
     m_keyActions.registAction("actionShowFolder", ui->actionShowFolder, groupName);
+    m_keyActions.registAction("actionShowSubfolders", ui->actionShowSubfolders, groupName);
 
     // Catalog
     groupName = tr("Catalog", "Catalog Action Group");
@@ -184,10 +185,10 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionShowFullscreenSignage", ui->actionShowFullscreenSignage, groupName);
     m_keyActions.registAction("actionRestoreWindowState", ui->actionRestoreWindowState, groupName);
     m_keyActions.registAction("actionFullscreen", ui->actionFullscreen, groupName);
-    m_keyActions.registAction("actionStayOnTop", ui->actionStayOnTop, groupName);
     m_keyActions.registAction("actionExitApplicationOrFullscreen", ui->actionExitApplicationOrFullscreen, groupName);
     m_keyActions.registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal, groupName);
     m_keyActions.registAction("actionShowPanelSeparateWindow", ui->actionShowPanelSeparateWindow, groupName);
+    m_keyActions.registAction("actionStayOnTop", ui->actionStayOnTop, groupName);
 
     // ContextMenu
     groupName = tr("ContextMenu", "ContextMenu Action Group");
@@ -206,7 +207,6 @@ void QVApplication::registActions(Ui::MainWindow *ui)
 
     // Shader
     groupName = tr("Shader", "Shader Action Group");
-    m_keyActions.registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor, groupName);
     m_keyActions.registAction("actionShaderBilinear", ui->actionShaderBilinear, groupName);
 #ifndef QV_WITHOUT_OPENGL
     m_keyActions.registAction("actionShaderBicubic", ui->actionShaderBicubic, groupName);
@@ -218,17 +218,19 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionShaderCpuSpline36", ui->actionShaderCpuSpline36, groupName);
     m_keyActions.registAction("actionShaderCpuLanczos3", ui->actionShaderCpuLanczos3, groupName);
     m_keyActions.registAction("actionShaderCpuLanczos4", ui->actionShaderCpuLanczos4, groupName);
+    m_keyActions.registAction("actionShaderNearestNeighbor", ui->actionShaderNearestNeighbor, groupName);
 
     // Help
     groupName = tr("Help", "Help Action Group");
     m_keyActions.registAction("actionOpenKeyConfig", ui->actionOpenKeyConfig, groupName);
+    m_keyActions.registAction("actionOpenMouseConfig", ui->actionOpenMouseConfig, groupName);
     m_keyActions.registAction("actionOpenOptionsDialog", ui->actionOpenOptionsDialog, groupName);
-    m_keyActions.registAction("actionCheckVersion", ui->actionCheckVersion, groupName);
-    m_keyActions.registAction("actionCheckVersion", ui->actionCheckVersion, groupName);
     m_keyActions.registAction("actionProjectWeb", ui->actionProjectWeb, groupName);
+    m_keyActions.registAction("actionCheckVersion", ui->actionCheckVersion, groupName);
     m_keyActions.registAction("actionAppVersion", ui->actionAppVersion, groupName);
 
     m_mouseActions.actions() = m_keyActions.actions();
+    m_mouseActions.nameByGroups() = m_keyActions.nameByGroups();
 }
 
 void QVApplication::addHistory(QString path)
