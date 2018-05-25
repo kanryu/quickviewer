@@ -56,6 +56,8 @@ fulltitle: QuickViewer オフィシャルページ
 ## 外部レビュー
 - **Vector様**
     - [http://www.vector.co.jp/magazine/softnews/170914/n1709141.html](http://www.vector.co.jp/magazine/softnews/170914/n1709141.html)
+- **PCあれこれ探索様**
+    - [https://pc.mogeringo.com/archives/68711](https://pc.mogeringo.com/archives/68711)
 - **さのっち様(OSDN)**
     - [https://ja.osdn.net/projects/quickviewer/reviews/](https://ja.osdn.net/projects/quickviewer/reviews/)
 - **Free SoftNavi様**
