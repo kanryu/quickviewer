@@ -82,7 +82,7 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.vector.co.jp/magazine/softnews/170914/n1709141.html](http://www.vector.co.jp/magazine/softnews/170914/n1709141.html)
 - **OSDN** (in Japanese)
     - [https://ja.osdn.net/projects/quickviewer/reviews/](https://ja.osdn.net/projects/quickviewer/reviews/)
-- **PCあれこれ探索様**
+- **PCあれこれ探索**
     - [https://pc.mogeringo.com/archives/68711](https://pc.mogeringo.com/archives/68711)
 - **Free SoftNavi** (in Japanese)
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
