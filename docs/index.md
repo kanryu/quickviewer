@@ -51,7 +51,7 @@ You can browse images with much smoother response than ever before.
 
 The latest version is **release_version**.
 
-You can download **[Release Builded](https://github.com/kanryu/quickviewer/releases)** on the page. (Windows x86/x64, Linux AppImage x64)
+You can download **[Release Builded](https://github.com/kanryu/quickviewer/releases)** on the page. (Windows x86/x64, Mac dmg x64, Linux AppImage x64)
 
 You can also clone the latest source code from **[this repository.](https://github.com/kanryu/quickviewer)**
 
