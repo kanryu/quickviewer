@@ -47,6 +47,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionRegistAssocs->setVisible(false);
 #endif
 
+#ifdef Q_OS_MACOS
+    ui->menuBar->setNativeMenuBar(true);
+#endif
+
 	m_fullscreenButton = new QToolButton(this);
     m_fullscreenButton->setToolTip(tr("&Fullscreen"));
     m_fullscreenButton->setCheckable(true);

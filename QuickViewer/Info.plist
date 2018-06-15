@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleName</key>
+        <string>QuickViewer-@FULL_VERSION@</string>
+	<key>CFBundleDisplayName</key>
+        <string>QuickViewer-@FULL_VERSION@</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>CFBundleIconFile</key>
+	<string>quickviewer.icns</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleGetInfoString</key>
+        <string>QuickViewer @FULL_VERSION@</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleExecutable</key>
+	<string>QuickViewer</string>
+	<key>CFBundleIdentifier</key>
+        <string>com.kanryu.QuickViewer</string>
+	<key>NOTE</key>
+        <string>An image viewer developed at https://github.com/kanryu/quickviewer/</string>
+</dict>
+</plist>

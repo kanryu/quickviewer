@@ -17,6 +17,10 @@ FolderWindow::FolderWindow(QWidget *parent, Ui::MainWindow *)
 {
     ui->setupUi(this);
 
+#ifdef Q_OS_MACOS
+    ui->menuBar->setNativeMenuBar(false);
+#endif
+
     ui->folderView->installEventFilter(this);
 
     // folderView

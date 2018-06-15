@@ -1,6 +1,6 @@
 #include "fileoperator.h"
 
-FileOperator::FileOperator(QString json, QObject *parent) : QObject(parent)
+FileOperator::FileOperator(QObject *parent) : QObject(parent)
 {
 
 }

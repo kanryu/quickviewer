@@ -28,6 +28,12 @@ win32-msvc* {
     }
 }
 
+macos {
+    QMAKE_CXXFLAGS += -O2 -MD -MP -std=c++11
+    !CONFIG(debug, debug|release) {
+    }
+}
+
 SOURCES += \
     $$PWD/zimg/src/zimg/api/zimg.cpp \
     $$PWD/zimg/src/zimg/colorspace/colorspace.cpp \
@@ -198,3 +204,58 @@ win32-msvc* {
     QMAKE_EXTRA_COMPILERS += sse sse2 avx avx2
 }
 
+macos {
+    SOURCES_SSE = \
+            $$PWD/zimg/src/zimg/colorspace/operation_impl_sse.cpp \
+            $$PWD/zimg/src/zimg/resize/resize_impl_sse.cpp \
+
+    sse.name = sse
+    sse.input = SOURCES_SSE
+    sse.dependency_type = TYPE_C
+    sse.variable_out = OBJECTS
+    sse.output = ${QMAKE_VAR_OBJECTS_DIR}${QMAKE_FILE_IN_BASE}$${first(QMAKE_EXT_OBJ)}
+    sse.commands = $${QMAKE_CXX} $(CXXFLAGS) -msse $(INCPATH) -c ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
+
+    SOURCES_SSE2 = \
+            $$PWD/zimg/src/zimg/depth/dither_sse2.cpp \
+            $$PWD/zimg/src/zimg/colorspace/operation_impl_sse2.cpp \
+            $$PWD/zimg/src/zimg/depth/f16c_sse2.cpp \
+            $$PWD/zimg/src/zimg/resize/resize_impl_sse2.cpp \
+            $$PWD/zimg/src/zimg/depth/depth_convert_sse2.cpp \
+            $$PWD/zimg/src/zimg/depth/error_diffusion_sse2.cpp \
+
+    sse2.name = sse2
+    sse2.input = SOURCES_SSE2
+    sse2.dependency_type = TYPE_C
+    sse2.variable_out = OBJECTS
+    sse2.output = ${QMAKE_VAR_OBJECTS_DIR}${QMAKE_FILE_IN_BASE}$${first(QMAKE_EXT_OBJ)}
+    sse2.commands = $${QMAKE_CXX} $(CXXFLAGS) -msse2 $(INCPATH) -c ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
+
+    SOURCES_AVX = \
+            $$PWD/zimg/src/zimg/resize/resize_impl_avx.cpp \
+            $$PWD/zimg/src/zimg/colorspace/operation_impl_avx.cpp \
+            $$PWD/zimg/src/zimg/depth/f16c_ivb.cpp \
+
+    avx.name = avx
+    avx.input = SOURCES_AVX
+    avx.dependency_type = TYPE_C
+    avx.variable_out = OBJECTS
+    avx.output = ${QMAKE_VAR_OBJECTS_DIR}${QMAKE_FILE_IN_BASE}$${first(QMAKE_EXT_OBJ)}
+    avx.commands = $${QMAKE_CXX} $(CXXFLAGS) -mavx -mf16c $(INCPATH) -c ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
+
+    SOURCES_AVX2 = \
+            $$PWD/zimg/src/zimg/colorspace/operation_impl_avx2.cpp \
+            $$PWD/zimg/src/zimg/depth/depth_convert_avx2.cpp \
+            $$PWD/zimg/src/zimg/depth/dither_avx2.cpp \
+            $$PWD/zimg/src/zimg/depth/error_diffusion_avx2.cpp \
+            $$PWD/zimg/src/zimg/resize/resize_impl_avx2.cpp \
+
+    avx2.name = avx2
+    avx2.input = SOURCES_AVX2
+    avx2.dependency_type = TYPE_C
+    avx2.variable_out = OBJECTS
+    avx2.output = ${QMAKE_VAR_OBJECTS_DIR}${QMAKE_FILE_IN_BASE}$${first(QMAKE_EXT_OBJ)}
+    avx2.commands = $${QMAKE_CXX} $(CXXFLAGS)  -mavx2 -mf16c -mfma $(INCPATH) -c ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
+
+    QMAKE_EXTRA_COMPILERS += sse sse2 avx avx2
+}

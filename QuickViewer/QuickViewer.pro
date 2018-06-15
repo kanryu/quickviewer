@@ -72,10 +72,20 @@ win32 {
     }
     LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32 -luuid
 }
-unix {
+linux {
     DEFINES += _UNIX
     QMAKE_LFLAGS += -Wl,-rpath,../lib
     GCC_MAJOR = 6
+}
+macos {
+    DEFINES += _UNIX
+    QMAKE_LFLAGS += -Wl,-rpath,../lib -Wl,-rpath,../Frameworks
+    GCC_MAJOR = 6
+    # Info.plist variables
+    QMAKE_INFO_PLIST = $$PWD/Info.plist
+    ICON = $$PWD/icons/quickviewer.icns
+    ASSETCATALOG_COMPILER_APPICON_NAME=quickviewer.icns
+    EXECTABLE_NAME=QuickViewer
 }
 
 
@@ -193,8 +203,11 @@ RESOURCES += toolbar.qrc
     win32 {
         RESOURCES += qtconf-win.qrc
     }
-    unix {
+    linux {
         RESOURCES += qtconf-unix.qrc
+    }
+    macos {
+        RESOURCES += qtconf-macos.qrc
     }
 }
 
@@ -373,6 +386,57 @@ linux : !CONFIG(debug, debug|release) {
     install_shaders.path = $${MY_DEFAULT_INSTALL}/shared/shaders
     install_shaders.files = $$SHADERS
     install_db.path = $${MY_DEFAULT_INSTALL}/var/database
+    install_db.files = $$DBS $$DBBIN
+
+    INSTALLS += install_db
+    !contains(DEFINES, QV_WITHOUT_OPENGL) {
+        INSTALLS += install_shaders
+    }
+}
+
+macos : !CONFIG(debug, debug|release) {
+    APPDIR = QuickViewer.app
+    APPIMAGE = QuickViewer-$${VERSION}-$${TARGET_ARCH}.dmg
+    MY_DEFAULT_INSTALL = ../../$${APPDIR}
+
+    install_target.files = $${DESTDIR}/$${APPDIR}
+    install_target.path = ../../
+
+    install_libs.files = $${DESTDIR}/../lib/lib7z.1.0.dylib $${DESTDIR}/../lib/libfileloader.1.0.dylib
+    install_libs.commands = cp -rfp $${DESTDIR}/$${APPDIR} ../../
+    install_libs.path = $${MY_DEFAULT_INSTALL}/Contents/Frameworks
+
+    install_deploy_files.path = $${MY_DEFAULT_INSTALL}/Contents
+    install_deploy_files.files = $${PWD}/../README.md
+    install_deploy_files.commands = $$shell_path($$[QT_INSTALL_BINS]/macdeployqt) $${MY_DEFAULT_INSTALL} -libpath=$$${DESTDIR}/../lib
+    install_deploy_files.depends = install_install_target install_install_libs
+
+    install_translations.path = $${MY_DEFAULT_INSTALL}/Contents/Resources/translations
+    install_translations.commands = rm -f $${MY_DEFAULT_INSTALL}/Contents/PlugIns/sqldrivers/libqsqlmysql.dylib $${MY_DEFAULT_INSTALL}/Contents/PlugIns/sqldrivers/libqsqlpsql.dylib
+    install_translations.files = \
+        $${PWD}/translations/languages.ini \
+        $${PWD}/translations/quickviewer_ja.qm \
+        $${PWD}/translations/quickviewer_es.qm \
+        $${PWD}/translations/quickviewer_zh.qm \
+        $${PWD}/translations/quickviewer_el.qm \
+        $${PWD}/translations/qt_el.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
+
+    install_dmg.path = $${MY_DEFAULT_INSTALL}/..
+    install_dmg.files = $${APPIMAGE}
+    install_dmg.commands = $$shell_path($$[QT_INSTALL_BINS]/macdeployqt) $${MY_DEFAULT_INSTALL} -no-plugins -no-strip -dmg
+    install_dmg.depends = install_install_deploy_files install_install_translations install_install_db
+
+    install_rename_dmg.path = $${MY_DEFAULT_INSTALL}/Contents
+    install_rename_dmg.files = test
+    install_rename_dmg.commands = mv ../../QuickViewer.dmg ../../$${APPIMAGE}
+    install_rename_dmg.depends = install_install_dmg
+
+    INSTALLS += install_target install_libs install_desktop install_deploy_files install_translations install_db install_dmg install_rename_dmg
+
+    install_shaders.path = $${MY_DEFAULT_INSTALL}/shared/shaders
+    install_shaders.files = $${MY_DEFAULT_INSTALL}/Contents/Resources/shaders
+    install_db.path = $${MY_DEFAULT_INSTALL}/Contents/Resources
     install_db.files = $$DBS $$DBBIN
 
     INSTALLS += install_db

@@ -37,6 +37,10 @@ CatalogWindow::CatalogWindow(QWidget *parent, Ui::MainWindow *uiMain)
 {
     ui->setupUi(this);
 
+#ifdef Q_OS_MACOS
+    ui->menuBar->setNativeMenuBar(false);
+#endif
+
     // VolumeView
     m_itemModel.setViewMode(qApp->CatalogViewModeSetting());
     ui->volumeList->setModel(&m_itemModel);
