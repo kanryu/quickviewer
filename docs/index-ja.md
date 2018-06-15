@@ -49,7 +49,7 @@ fulltitle: QuickViewer オフィシャルページ
 ## ダウンロード
 
 - 最新版は **release_version** です。
-- [ビルド済みリリース版](https://github.com/kanryu/quickviewer/releases) からダウンロードしてください。(Windows x86/x64, Linux AppImage x64)
+- [ビルド済みリリース版](https://github.com/kanryu/quickviewer/releases) からダウンロードしてください。(Windows x86/x64, Mac dmg x64, Linux AppImage x64)
     - **Lhaplus** などのdeflate64に対応していない古いアーカイバは使用しないでください。[**7z**](https://sevenzip.osdn.jp/)などをご利用ください。
 - ソースコードについては [リポジトリ](https://github.com/kanryu/quickviewer) から最新のソースコードをcloneして入手してください。
 
