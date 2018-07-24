@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-        <string>QuickViewer-@FULL_VERSION@</string>
+        <string>QuickViewer</string>
 	<key>CFBundleDisplayName</key>
         <string>QuickViewer-@FULL_VERSION@</string>
 	<key>NSPrincipalClass</key>
