@@ -1305,7 +1305,7 @@ void MainWindow::onActionTurnPageOnRight_triggered()
 
 void MainWindow::onActionOpenfolder_triggered()
 {
-    QString filter = tr("All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)", "Text that specifies the file extension to be displayed when opening a file with OpenFileFolder");
+    QString filter = tr("All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)", "Text that specifies the file extension to be displayed when opening a file with OpenFileFolder");
     QString folder = QFileDialog::getOpenFileName(
                 this,
                 tr("Please select the image or archive", "Title of the dialog displayed when opening a file with OpenFileFolder"),
