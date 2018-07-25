@@ -49,6 +49,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 #ifdef Q_OS_MACOS
     ui->menuBar->setNativeMenuBar(true);
+    ui->actionOpenOptionsDialog->setMenuRole(QAction::PreferencesRole);
+    ui->actionAppVersion->setMenuRole(QAction::AboutRole);
+    ui->actionExit->setMenuRole(QAction::QuitRole);
+    ui->actionOpenKeyConfig->setMenuRole(QAction::NoRole);
+    ui->actionOpenMouseConfig->setMenuRole(QAction::NoRole);
+    ui->actionCheckVersion->setMenuRole(QAction::ApplicationSpecificRole);
 #endif
 
 	m_fullscreenButton = new QToolButton(this);
