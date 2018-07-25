@@ -26,7 +26,13 @@ int main(int argc, char *argv[])
         if(::lstrcmp(value, L"true")==0)
             qputenv("QT_QPA_PLATFORM", "direct2d");
     }
+#elif defined(Q_OS_MAC)
+    {
+        // hide icons on application menu.
+        QApplication::instance()->setAttribute(Qt::AA_DontShowIconsInMenus, true);
+    }
 #endif
+
     QVApplication app(argc, argv);
 
     app.myInstallTranslator();
