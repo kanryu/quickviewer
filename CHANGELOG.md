@@ -1,5 +1,69 @@
 # CHANGELOG
 
+## v1.1.1 (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+
+- Show Actions By Group on KeyConfig / MouseConfig
+- 'Lanczos 4 interpolation by CPU' became the original performance
+- add a menu 'Hide the mouse cursor on fullscreen'
+- When each dialog is displayed, the toggle of the closing button is enabled
+- use specific action roles instead of text heuristic roles
+- pull request by @pazos
+- Use standard CFBundleName without version
+- pull request by @pazos
+- hide menubar icons on mac
+- pull request by @pazos
+- fix for file chooser filter
+- pull request by @pazos
+
+- other commits
+    - add a menu 'Hide the mouse cursor on fullscreen' (Sun Jul 29 19:04:08 2018 +0900) [2e07721](https://github.com/kanryu/quickviewer/commit/2e07721207d84b9dcb5b28c5b9f94ec601434726)
+    - When each dialog is displayed, the toggle of the closing button is enabled (Sun Jul 29 17:40:52 2018 +0900) [110c88d](https://github.com/kanryu/quickviewer/commit/110c88d94c975662897bdf59c215847ba647474b)
+    - Merge pull request #86 from pazos/mac (Thu Jul 26 09:58:43 2018 +0900) [fb24915](https://github.com/kanryu/quickviewer/commit/fb24915ffd0b332662c63e91ae72c3a5a230f5af)
+    -  (Thu Jul 26 09:58:43 2018 +0900) [fb24915](https://github.com/kanryu/quickviewer/commit/fb24915ffd0b332662c63e91ae72c3a5a230f5af)
+    - use specific action roles instead of text heuristic roles (Thu Jul 26 09:58:43 2018 +0900) [fb24915](https://github.com/kanryu/quickviewer/commit/fb24915ffd0b332662c63e91ae72c3a5a230f5af)
+    - use specific action roles instead of text heuristic roles (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    -  (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    - by default Qt on mac tries to populate the 'native' application menu with - at least - (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    - the action for preferences, and the action for quit. It also tries to find the 'about' and 'aboutQt' (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    - actions - if any. (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    -  (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    - Those text heuristics can clash on some circunstances e.g: having 2 or more actions called SettingsSomething, (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    -  or even worst - having 2 or more action named with different names but with the same translation string. (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    -  (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    - This commit replaces the default TextHeuristicMenuRole by specific common actions. (about, quit, preferences, keyboard & mouse preferences..) (Thu Jul 26 01:29:54 2018 +0200) [880a65f](https://github.com/kanryu/quickviewer/commit/880a65f382c96569d28f0c2f2cfb23f8ebf4f7e9)
+    - Merge pull request #83 from pazos/mac_cosmetic_fixes (Wed Jul 25 09:14:54 2018 +0900) [29e78b7](https://github.com/kanryu/quickviewer/commit/29e78b70d6f84effc5397b312741cc1a098acb9b)
+    -  (Wed Jul 25 09:14:54 2018 +0900) [29e78b7](https://github.com/kanryu/quickviewer/commit/29e78b70d6f84effc5397b312741cc1a098acb9b)
+    - Mac cosmetic fixes (Wed Jul 25 09:14:54 2018 +0900) [29e78b7](https://github.com/kanryu/quickviewer/commit/29e78b70d6f84effc5397b312741cc1a098acb9b)
+    - Merge pull request #82 from pazos/filechooser_fix_mac (Tue Jul 24 16:37:40 2018 +0900) [ea8e0d3](https://github.com/kanryu/quickviewer/commit/ea8e0d30b835dae1e5312dbc2543af06d2216fb8)
+    -  (Tue Jul 24 16:37:40 2018 +0900) [ea8e0d3](https://github.com/kanryu/quickviewer/commit/ea8e0d30b835dae1e5312dbc2543af06d2216fb8)
+    - fix for file chooser filter (Tue Jul 24 16:37:40 2018 +0900) [ea8e0d3](https://github.com/kanryu/quickviewer/commit/ea8e0d30b835dae1e5312dbc2543af06d2216fb8)
+    - Use standard CFBundleName without version (Tue Jul 24 04:12:45 2018 +0200) [e83f54e](https://github.com/kanryu/quickviewer/commit/e83f54e68f9af8bdedf3e6b7b3f41046797566fb)
+    - hide menubar icons on mac (Tue Jul 24 04:12:16 2018 +0200) [d3184bd](https://github.com/kanryu/quickviewer/commit/d3184bd0c41868b2aa43b2ed379042b3cc2c0223)
+    - fix for file chooser filter (Tue Jul 24 03:01:43 2018 +0200) [6e7a804](https://github.com/kanryu/quickviewer/commit/6e7a804eda12058275e3adc083a21e75b1ad88d0)
+    - Update README.md (Thu Jul 5 15:17:17 2018 +0900) [fcd19a2](https://github.com/kanryu/quickviewer/commit/fcd19a2c2e725f0c4e7da59fd06e936efc02019d)
+    - Update index-ja.md (Fri Jun 15 17:16:18 2018 +0900) [748834e](https://github.com/kanryu/quickviewer/commit/748834e8ad63446657dde54630f3942acd682ff0)
+    - Update index.md (Fri Jun 15 17:15:37 2018 +0900) [d4cc5de](https://github.com/kanryu/quickviewer/commit/d4cc5de4747b9f23a2edaa8f3e89022a855ca88a)
+    - Update README.md (Fri Jun 15 17:14:22 2018 +0900) [1428104](https://github.com/kanryu/quickviewer/commit/1428104adb49f9012f443f636de040c6046509f8)
+    - add support for Mac (Fri Jun 15 17:06:27 2018 +0900) [014e858](https://github.com/kanryu/quickviewer/commit/014e858788b8850d088692a665d499240892f77a)
+    - Update index.md (Fri May 25 23:17:20 2018 +0900) [0a4fe4e](https://github.com/kanryu/quickviewer/commit/0a4fe4e936436094350509fa0f4e97854ddda9d5)
+    - Update index.md (Fri May 25 23:16:55 2018 +0900) [6574256](https://github.com/kanryu/quickviewer/commit/6574256b5bb7e5a6004babeb22896c9ef704cb0c)
+    - Update index.md (Fri May 25 23:16:31 2018 +0900) [51af2d1](https://github.com/kanryu/quickviewer/commit/51af2d1bc492ef32ef64433d4c2b51b63eb61b1c)
+    - Update index-ja.md (Fri May 25 23:15:36 2018 +0900) [10dc703](https://github.com/kanryu/quickviewer/commit/10dc703b1e72d6a7f4e80bc43f516b01d5cd2bc8)
+    - Update index-ja.md (Mon May 14 21:48:07 2018 +0900) [cc6998d](https://github.com/kanryu/quickviewer/commit/cc6998d66c2cfa52a7a5e762b04949a0e4c33539)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Sat Apr 7 19:29:04 2018 +0900) [dfd8a13](https://github.com/kanryu/quickviewer/commit/dfd8a13f2a0ebc7bff4573783a8397d501c0a5a8)
+    -  start to implement for FileOperators (Sat Apr 7 19:28:48 2018 +0900) [019a8ed](https://github.com/kanryu/quickviewer/commit/019a8ed88be3f4a3ae0778e446229d764c37b3dc)
+    -  bugfixed: image dropped when the window is maximized in Windows (Sat Apr 7 19:28:48 2018 +0900) [019a8ed](https://github.com/kanryu/quickviewer/commit/019a8ed88be3f4a3ae0778e446229d764c37b3dc)
+    -  bugfixed: crushed when to change dir on FolderWindow (Sat Apr 7 19:28:48 2018 +0900) [019a8ed](https://github.com/kanryu/quickviewer/commit/019a8ed88be3f4a3ae0778e446229d764c37b3dc)
+    -  Show Actions By Group on KeyConfig / MouseConfig (Sat Apr 7 19:24:25 2018 +0900) [ba27455](https://github.com/kanryu/quickviewer/commit/ba27455f510faa679ef3eb736c8d3ede7f21264a)
+    - Update index-ja.md (Tue Apr 3 19:44:45 2018 +0900) [f9fd541](https://github.com/kanryu/quickviewer/commit/f9fd541f3ce6146a781aa7e22d3a2d296a9e7adb)
+    - fixed problem for opening images as relative path(Linux, rev2) (Thu Mar 29 22:20:18 2018 +0900) [6a17f67](https://github.com/kanryu/quickviewer/commit/6a17f678cdf87bc2ad161a6f813ae5314519d017)
+    - Update index.md (Sun Mar 18 00:11:12 2018 +0900) [92aace8](https://github.com/kanryu/quickviewer/commit/92aace8c10810cfa21e47429fa7b3d4b9413a4ed)
+    - Update index.md (Sun Mar 18 00:05:40 2018 +0900) [913a194](https://github.com/kanryu/quickviewer/commit/913a1942dc2e6874ebd6f2d201a8a7eeae6e24a3)
+    - Update README.md (Tue Mar 13 22:48:35 2018 +0900) [173a3b9](https://github.com/kanryu/quickviewer/commit/173a3b91a8794efd6ac28eff3d2c6230b07662ec)
+    - Update index-ja.md (Tue Mar 13 22:47:29 2018 +0900) [05129e1](https://github.com/kanryu/quickviewer/commit/05129e1cf5876b4eda650b6b402f7babee66f091)
+    - Update index.md (Tue Mar 13 22:46:24 2018 +0900) [1bf3f0e](https://github.com/kanryu/quickviewer/commit/1bf3f0e5653b4d1a970cc2e9c9f8ea838b1efac2)
+    - changelog (Tue Mar 13 22:40:42 2018 +0900) [6a0630b](https://github.com/kanryu/quickviewer/commit/6a0630b65b11fdb73f587de5064bad9cc18e6356)
+
 ## v1.1.0 (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
 
 add plguins for JPEG-XR/DDS/JPEG 2000, add options for Folder/Catalog views
