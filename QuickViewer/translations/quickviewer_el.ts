@@ -1389,7 +1389,7 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation>Όλα τα αρχεία ( *.*);;Εικόνες (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Αρχειοθήκες ( *.zip *.7z *.rar)</translation>
+        <translation type="vanished">Όλα τα αρχεία ( *.*);;Εικόνες (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Αρχειοθήκες ( *.zip *.7z *.rar)</translation>
     </message>
     <message>
         <source>&amp;Slideshow</source>
@@ -1544,6 +1544,15 @@
     <message>
         <source>Save how far you read</source>
         <extracomment>Flag to save progress.ini</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide the mouse cursor on fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
+        <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

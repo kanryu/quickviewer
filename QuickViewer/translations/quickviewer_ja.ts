@@ -1900,7 +1900,7 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation>全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z *.rar)</translation>
+        <translation type="vanished">全てのファイル( *.*);;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z *.rar)</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
@@ -2329,6 +2329,15 @@
         <source>Save how far you read</source>
         <extracomment>Flag to save progress.ini</extracomment>
         <translation>どこまで読んだかを保存する</translation>
+    </message>
+    <message>
+        <source>Hide the mouse cursor on fullscreen</source>
+        <translation>フルスクリーン時にマウスカーソルを非表示にする</translation>
+    </message>
+    <message>
+        <source>All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
+        <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
+        <translation type="unfinished">全てのファイル( *.* );;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z</translation>
     </message>
 </context>
 <context>

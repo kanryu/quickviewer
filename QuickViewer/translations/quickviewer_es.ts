@@ -1631,7 +1631,7 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation>Todos( *.);;Imágenes (.jpg *.jpeg *.png *.tif *.tiff *.ico *.webp *.gif);;Archivados( *.zip *.7z *.rar *.cbz)</translation>
+        <translation type="vanished">Todos( *.);;Imágenes (.jpg *.jpeg *.png *.tif *.tiff *.ico *.webp *.gif);;Archivados( *.zip *.7z *.rar *.cbz)</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
@@ -2041,6 +2041,15 @@
         <source>Save how far you read</source>
         <extracomment>Flag to save progress.ini</extracomment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide the mouse cursor on fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
+        <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
+        <translation type="unfinished">Todos los archivos( *.* );;Imágenes (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</translation>
     </message>
 </context>
 <context>

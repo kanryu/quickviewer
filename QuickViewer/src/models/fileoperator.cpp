@@ -3,11 +3,12 @@
 FileOperator::FileOperator(QString json, QObject *parent)
     : QObject(parent)
     , m_operateAs(OperateAs::AsFile)
-    , m_mode(OperateAs::CopyMode)
+    , m_mode(OperateMode::CopyMode)
 {
     if(json.isEmpty())
         return;
-    auto doc = QJsonDocument.fromVariant(json);
+    QJsonDocument docc = QJsonDocument::fromVariant(json);
+    QJsonObject doc = docc.object();
     QJsonValue as = doc["as"];
     if(as.isString()) {
         m_operateAs = as.toString() == "file" ? OperateAs::AsFile : OperateAs::AsVolume;
@@ -32,4 +33,6 @@ QVariant FileOperator::toVariant()
                 : m_mode== OperateMode::MoveMode ? "move"
                                                  : "command";
     obj["command"] = m_command;
+    QJsonDocument doc = QJsonDocument(obj);
+    return doc.toVariant();
 }

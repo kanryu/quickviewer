@@ -1501,7 +1501,7 @@
     <message>
         <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation>任意文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;压缩包( *.zip *.7z *.rar)</translation>
+        <translation type="vanished">任意文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;压缩包( *.zip *.7z *.rar)</translation>
     </message>
     <message>
         <source>Open a image or archive</source>
@@ -1906,6 +1906,15 @@
         <source>Save how far you read</source>
         <extracomment>Flag to save progress.ini</extracomment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide the mouse cursor on fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
+        <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
+        <translation type="unfinished">全文件( *.* );;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
     </message>
 </context>
 <context>

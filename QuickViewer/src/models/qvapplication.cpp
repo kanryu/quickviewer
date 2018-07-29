@@ -129,7 +129,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionSaveBookmark", ui->actionSaveBookmark, groupName);
 
     // Navigation
-    groupName = tr("Bookmark", "Bookmark Action Group");
+    groupName = tr("Navigation", "Navigation Action Group");
     m_keyActions.registAction("actionNextPage", ui->actionNextPage, groupName);
     m_keyActions.registAction("actionPrevPage", ui->actionPrevPage, groupName);
     m_keyActions.registAction("actionNextPageOrVolume", ui->actionNextPageOrVolume, groupName);
@@ -170,6 +170,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionScrollWithCursorWhenZooming", ui->actionScrollWithCursorWhenZooming, groupName);
     m_keyActions.registAction("actionLoupeTool", ui->actionLoupeTool, groupName);
 
+    groupName = tr("Dual View", "Dual View Action Group");
     m_keyActions.registAction("actionDualView", ui->actionDualView, groupName);
     m_keyActions.registAction("actionRightSideBook", ui->actionRightSideBook, groupName);
     m_keyActions.registAction("actionWideImageAsOneView", ui->actionWideImageAsOneView, groupName);

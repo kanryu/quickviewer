@@ -198,6 +198,7 @@ static QZimg::FilterMode ShaderEffect2FilterMode(qvEnums::ShaderEffect effect)
     case qvEnums::CpuSpline16: return QZimg::ResizeSpline16;
     case qvEnums::CpuSpline36: return QZimg::ResizeSpline36;
     case qvEnums::CpuLanczos3: return QZimg::ResizeLanczos3;
+    case qvEnums::CpuLanczos4: return QZimg::ResizeLanczos4;
     case qvEnums::BilinearAndCpuBicubic: return QZimg::ResizeBicubic;
     case qvEnums::BilinearAndCpuSpline16: return QZimg::ResizeSpline16;
     case qvEnums::BilinearAndCpuSpline36: return QZimg::ResizeSpline36;
