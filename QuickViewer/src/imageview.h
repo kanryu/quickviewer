@@ -125,6 +125,7 @@ public slots:
     void onActionLoupe_triggered(bool enable);
     void onActionScrollWithCursorWhenZooming_triggered(bool enable);
     void onActionShowFullscreenSignage_triggered(bool enable);
+    void onActionHideMouseCursorInFullscreen_triggered(bool enable);
 
     void on_scaleUp_triggered();
     void on_scaleDown_triggered();

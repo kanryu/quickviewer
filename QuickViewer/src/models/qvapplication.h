@@ -154,6 +154,10 @@ public:
     void setHidePageBarInFullscreen(bool hidePageBarInFullscreen) { m_hidePageBarInFullscreen = hidePageBarInFullscreen; }
     bool HideScrollBarInFullscreen() { return m_hideScrollBarInFullscreen; }
     void setHideScrollBarInFullscreen(bool hideScrollBarInFullscreen) { m_hideScrollBarInFullscreen = hideScrollBarInFullscreen; }
+    bool HideMouseCursorInFullscreen() { return !InnerFrameShowing() && m_hideMouseCursorInFullscreen; }
+    void setHideMouseCursorInFullscreen(bool hideMouseCursorInFullscreen) { m_hideMouseCursorInFullscreen = hideMouseCursorInFullscreen; }
+    bool InnerFrameShowing() { return m_innerFrameShowing; }
+    void setInnerFrameShowing(bool innerFrameShowing) { m_innerFrameShowing = innerFrameShowing; }
 
     QString TitleTextFormat() { return m_titleTextFormat; }
     void setTitleTextFormat(QString titleTextFormat) { m_titleTextFormat = titleTextFormat; }
@@ -355,6 +359,7 @@ private:
     bool m_hideToolBarInFullscreen;
     bool m_hidePageBarInFullscreen;
     bool m_hideScrollBarInFullscreen;
+    bool m_hideMouseCursorInFullscreen;
 
     bool m_topWindowWhenRunWithAssoc;
     bool m_topWindowWhenDropped;
@@ -376,6 +381,7 @@ private:
     QByteArray m_windowGeometry;
     QByteArray m_windowState;
     bool m_beginAsFullscreen;
+    bool m_innerFrameShowing;
 
     // File
     bool m_autoLoaded;

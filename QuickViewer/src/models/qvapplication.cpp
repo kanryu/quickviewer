@@ -20,6 +20,7 @@ QVApplication::QVApplication(int &argc, char **argv)
 #else
     , m_settings(getUserHomeFilePath(APP_INI), QSettings::IniFormat, this)
 #endif
+    , m_innerFrameShowing(false)
     , m_bookshelfManager(nullptr)
 //    , m_languageSelector("quickviewer_", "translations/")
     // ATTENTION:
@@ -189,6 +190,7 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionMaximizeOrNormal", ui->actionMaximizeOrNormal, groupName);
     m_keyActions.registAction("actionShowPanelSeparateWindow", ui->actionShowPanelSeparateWindow, groupName);
     m_keyActions.registAction("actionStayOnTop", ui->actionStayOnTop, groupName);
+    m_keyActions.registAction("actionHideMouseCursorInFullscreen", ui->actionHideMouseCursorInFullscreen, groupName);
 
     // ContextMenu
     groupName = tr("ContextMenu", "ContextMenu Action Group");
@@ -338,13 +340,14 @@ void QVApplication::loadSettings()
     m_hideToolBarInFullscreen   = m_settings.value("HideToolBarInFullscreen", false).toBool();
     m_hidePageBarInFullscreen   = m_settings.value("HidePageBarInFullscreen", false).toBool();
     m_hideScrollBarInFullscreen = m_settings.value("HideScrollBarInFullscreen", true).toBool();
+    m_hideMouseCursorInFullscreen = m_settings.value("HideMouseCursorInFullscreen", false).toBool();
 
     m_titleTextFormat = m_settings.value("TitleTextFormat", QV_WINDOWTITLE_FORMAT).toString();
     m_statusTextFormat = m_settings.value("StatusTextFormat", QV_STATUSBAR_FORMAT).toString();
     m_topWindowWhenRunWithAssoc = m_settings.value("TopWindowWhenRunWithAssoc", true).toBool();
     m_topWindowWhenDropped = m_settings.value("TopWindowWhenDropped", true).toBool();
     m_loupeTool = m_settings.value("LoupeTool", false).toBool();
-    m_scrollWithCursorWhenZooming = m_settings.value("ScrollWithCursorWhenZooming", false).toBool();
+    m_scrollWithCursorWhenZooming = m_settings.value("ScrollWithCursorWhenZooming", true).toBool();
     {
         QString showOptionstring = m_settings.value("ShowOptionViewOnStartup", "FolderStartup").toString();
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("OptionViewOnStartup");
@@ -488,6 +491,7 @@ void QVApplication::saveSettings()
     m_settings.setValue("HideToolBarInFullscreen", m_hideToolBarInFullscreen);
     m_settings.setValue("HidePageBarInFullscreen", m_hidePageBarInFullscreen);
     m_settings.setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
+    m_settings.setValue("HideMouseCursorInFullscreen", m_hideMouseCursorInFullscreen);
 
     m_settings.setValue("TitleTextFormat", m_titleTextFormat);
     m_settings.setValue("StatusTextFormat", m_statusTextFormat);

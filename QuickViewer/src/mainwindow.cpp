@@ -559,6 +559,9 @@ void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
                 innerFrame->layout()->addWidget(ui->mainToolBar);
                 ui->mainToolBar->setVisible(true);
             }
+            ui->menuBar->setCursor(Qt::ArrowCursor);
+            ui->mainToolBar->setCursor(Qt::ArrowCursor);
+            qApp->setInnerFrameShowing(true);
         });
         connect(innerFrame, &QInnerFrame::deinit, this, [=]{
 //            qDebug() << showToolbar << showMenubar << fullscreen;
@@ -575,6 +578,7 @@ void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
                 if(!fullscreen2 && qApp->ShowMenuBar())
                     ui->menuBar->setVisible(true);
             }
+            qApp->setInnerFrameShowing(false);
         });
         connect(this, SIGNAL(changingFullscreen(bool)), innerFrame, SLOT(close()));
         connect(innerFrame, &QInnerFrame::closed, this, [=]{
@@ -587,10 +591,13 @@ void MainWindow::onGraphicsView_anchorHovered(Qt::AnchorPoint anchor)
         connect(innerFrame, &QInnerFrame::init, this, [&]{
             innerFrame->layout()->addWidget(ui->pageFrame);
             ui->pageFrame->show();
+            qApp->setInnerFrameShowing(true);
+            ui->pageFrame->setCursor(Qt::ArrowCursor);
         });
         connect(innerFrame, &QInnerFrame::deinit, this, [&]{
             ui->pageFrame->hide();
             ui->verticalViewPage->layout()->addWidget(ui->pageFrame);
+            qApp->setInnerFrameShowing(false);
         });
         connect(this, SIGNAL(changingFullscreen(bool)), innerFrame, SLOT(close()));
         connect(innerFrame, &QInnerFrame::closed, this, [=]{
@@ -907,6 +914,7 @@ void MainWindow::onActionFullscreen_triggered()
             statusBar()->show();
         ui->actionFullscreen->setChecked(false);
         ui->graphicsView->skipRisizeEvent(false);
+        ui->graphicsView->setCursor(Qt::ArrowCursor);
 
         if(m_viewerWindowStateMaximized) {
             showMaximized();
@@ -919,6 +927,8 @@ void MainWindow::onActionFullscreen_triggered()
         emit changingFullscreen(true);
         ui->graphicsView->setWillFullscreen(true);
         ui->graphicsView->skipRisizeEvent(true);
+        if(qApp->HideMouseCursorInFullscreen())
+            ui->graphicsView->setCursor(Qt::BlankCursor);
         m_viewerWindowStateMaximized = isMaximized();
 
         menuBar()->hide();

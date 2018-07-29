@@ -279,6 +279,7 @@
     <addaction name="separator"/>
     <addaction name="actionBeginAsFullscreen"/>
     <addaction name="actionRestoreWindowState"/>
+    <addaction name="actionHideMouseCursorInFullscreen"/>
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
     <addaction name="actionShowFullscreenSignage"/>
@@ -1267,6 +1268,14 @@
     <string extracomment="Flag to save progress.ini">Save how far you read</string>
    </property>
   </action>
+  <action name="actionHideMouseCursorInFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hide the mouse cursor on fullscreen</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1309,6 +1318,7 @@
     <slot>on_fitToWindow_triggered(bool)</slot>
     <slot>onActionNextPageOrVolume_triggered()</slot>
     <slot>onActionPrevPageOrVolume_triggered()</slot>
+    <slot>onActionHideMouseCursorInFullscreen_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2854,6 +2864,22 @@
     <hint type="destinationlabel">
      <x>392</x>
      <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionHideMouseCursorInFullscreen</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>graphicsView</receiver>
+   <slot>onActionHideMouseCursorInFullscreen_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>293</y>
     </hint>
    </hints>
   </connection>
