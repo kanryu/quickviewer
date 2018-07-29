@@ -640,6 +640,13 @@
    </property>
   </action>
   <action name="actionOpenExif">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../toolbar.qrc">
+     <normaloff>:/icons/exif_icon</normaloff>:/icons/exif_icon</iconset>
+   </property>
    <property name="text">
     <string extracomment="Button to display JPEG EXIF information (if any)">Exif &amp;Information</string>
    </property>
@@ -860,6 +867,9 @@
    </property>
   </action>
   <action name="actionShowCatalog">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/catalog_icon</normaloff>:/icons/catalog_icon</iconset>
@@ -953,6 +963,9 @@
    </property>
   </action>
   <action name="actionShowFolder">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
      <normaloff>:/icons/folder_32_icon</normaloff>:/icons/folder_32_icon</iconset>
@@ -1182,7 +1195,7 @@
    </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
-     <normaloff>:/icons/preference_icon2</normaloff>:/icons/preference_icon2</iconset>
+     <normaloff>:/icons/retouch_icon</normaloff>:/icons/retouch_icon</iconset>
    </property>
    <property name="text">
     <string extracomment="a menu test which show window changes brightness of the image">Change Brightness, Contrast or Gamma value</string>

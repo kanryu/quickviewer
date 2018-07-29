@@ -50,6 +50,7 @@
         <file alias="folder_view_list_green">icons/folder_view_list_green.png</file>
         <file alias="folder_view_list_red">icons/folder_view_list_red.png</file>
         <file alias="catalog_icon">icons/catalog.png</file>
+        <file alias="exif_icon">icons/exif.png</file>
         <file alias="subfolders_icon">icons/subfolders.png</file>
         <file alias="child_separate">icons/child_separate.png</file>
         <file alias="help">icons/help.png</file>
@@ -57,6 +58,7 @@
         <file alias="loupe_cursor">icons/loupe_cursor.png</file>
         <file alias="fitting">icons/fitting.png</file>
         <file alias="fittowidth">icons/fittowidth.png</file>
+        <file alias="retouch_icon">icons/retouch.png</file>
     </qresource>
     <qresource prefix="/icons/24">
         <file alias="arrow_left_icon_24">icons/24/arrow-pointing-to-left.png</file>

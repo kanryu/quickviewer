@@ -518,6 +518,7 @@ void MainWindow::setThumbnailManager(ThumbnailManager *manager)
     case qvEnums::NoViewStartup: break;
     case qvEnums::FolderStartup: createFolderWindow(!qApp->ShowPanelSeparateWindow()); break;
     case qvEnums::CatalogStartup: createCatalogWindow(!qApp->ShowPanelSeparateWindow()); break;
+    case qvEnums::RetouchStartup: createBrightnessWindow(!qApp->ShowPanelSeparateWindow()); break;
     }
 }
 
@@ -660,6 +661,8 @@ void MainWindow::onFolderWindow_closed()
     if(m_folderWindow) {
         delete m_folderWindow;
         m_folderWindow = nullptr;
+        ui->actionShowFolder->setChecked(false);
+
         if(!m_onWindowClosing)
             qApp->setShowOptionViewOnStartup(qvEnums::NoViewStartup);
     }
@@ -705,7 +708,6 @@ void MainWindow::createFolderWindow(bool docked, QString path)
         sizes[1] = sum-sizes[0];
         ui->catalogSplitter->setSizes(sizes);
         m_folderWindow->setAsInnerWidget();
-        return;
     } else {
         // close child widget, and recreate as independent window
         m_folderWindow = new FolderWindow(nullptr, ui);
@@ -718,6 +720,7 @@ void MainWindow::createFolderWindow(bool docked, QString path)
         connect(&m_pageManager, SIGNAL(volumeChanged(QString)), m_folderWindow, SLOT(onPageManager_volumeChanged(QString)));
         m_folderWindow->show();
     }
+    ui->actionShowFolder->setChecked(true);
 }
 
 bool MainWindow::changeFolderPath(QString path)
@@ -745,6 +748,8 @@ void MainWindow::onCatalogWindow_closed()
     if(m_catalogWindow) {
         delete m_catalogWindow;
         m_catalogWindow = nullptr;
+        ui->actionShowCatalog->setChecked(false);
+
         if(!m_onWindowClosing)
             qApp->setShowOptionViewOnStartup(qvEnums::NoViewStartup);
     }
@@ -786,6 +791,7 @@ void MainWindow::createCatalogWindow(bool docked)
         m_catalogWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
         m_catalogWindow->show();
     }
+    ui->actionShowCatalog->setChecked(true);
 }
 
 ////////////////////////////
@@ -806,6 +812,10 @@ void MainWindow::onBrightnessWindow_closed()
     if(m_brightnessWindow) {
         delete m_brightnessWindow;
         m_brightnessWindow = nullptr;
+        ui->actionShowRetouchWindow->setChecked(false);
+
+        if(!m_onWindowClosing)
+            qApp->setShowOptionViewOnStartup(qvEnums::NoViewStartup);
     }
 }
 
@@ -815,6 +825,7 @@ void MainWindow::createBrightnessWindow(bool docked)
         onBrightnessWindow_closed();
     if(m_pageManager.currentPageContent().isEmpty())
         return;
+    qApp->setShowOptionViewOnStartup(qvEnums::RetouchStartup);
     if(docked) {
         closeAllDockedWindow();
         m_brightnessWindow = new BrightnessWindow(nullptr, ui);
@@ -836,7 +847,48 @@ void MainWindow::createBrightnessWindow(bool docked)
         m_brightnessWindow->setGeometry(self.left()-100, self.top()+100, self.width(), self.height());
         m_brightnessWindow->show();
     }
+    ui->actionShowRetouchWindow->setChecked(true);
 }
+
+////////////////////////////
+//// ExifDialog
+////////////////////////////
+#define EXIF_DIALOG_WIDTH 280
+
+void MainWindow::onActionOpenExif_triggered()
+{
+    if(m_exifDialog || m_pageManager.currentPageCount()==0)
+        return;
+    const easyexif::EXIFInfo& info = m_pageManager.currentPageContent()[0].Info;
+    if(info.ImageWidth == 0)
+        return;
+    if(m_catalogWindow && m_catalogWindow->parent())
+        onCatalogWindow_closed();
+    if(m_folderWindow && m_folderWindow->parent())
+        onFolderWindow_closed();
+
+    m_exifDialog = new ExifDialog();
+    ui->actionOpenExif->setChecked(true);
+    m_exifDialog->setExif(m_pageManager.currentPageContent()[0]);
+    connect(m_exifDialog, SIGNAL(closed()), this, SLOT(onExifDialog_closed()));
+
+    ui->catalogSplitter->insertWidget(1, m_exifDialog);
+    auto sizes = ui->catalogSplitter->sizes();
+    int sum = sizes[0]+sizes[1];
+    sizes[1] = EXIF_DIALOG_WIDTH;
+    sizes[0] = sum-sizes[1];
+    ui->catalogSplitter->setSizes(sizes);
+}
+
+void MainWindow::onExifDialog_closed()
+{
+    if(m_exifDialog) {
+        delete m_exifDialog;
+        m_exifDialog = nullptr;
+        ui->actionOpenExif->setChecked(false);
+    }
+}
+
 
 void MainWindow::onActionFullscreen_triggered()
 {
@@ -1032,7 +1084,6 @@ void MainWindow::onMenuHistory_triggered(QAction *action)
     loadVolume(action->text().mid(4));
 }
 
-#define EXIF_DIALOG_WIDTH 280
 
 void MainWindow::resizeEvent(QResizeEvent *e)
 {
@@ -1184,39 +1235,6 @@ void MainWindow::resetVolumeCaption()
     m_volumeCaption = m_imageString.getTitleBarText();
     setWindowTitle(m_volumeCaption);
 }
-
-void MainWindow::onActionOpenExif_triggered()
-{
-    if(m_exifDialog || m_pageManager.currentPageCount()==0)
-        return;
-    const easyexif::EXIFInfo& info = m_pageManager.currentPageContent()[0].Info;
-    if(info.ImageWidth == 0)
-        return;
-    if(m_catalogWindow && m_catalogWindow->parent())
-        onCatalogWindow_closed();
-    if(m_folderWindow && m_folderWindow->parent())
-        onFolderWindow_closed();
-
-    m_exifDialog = new ExifDialog();
-    m_exifDialog->setExif(m_pageManager.currentPageContent()[0]);
-    connect(m_exifDialog, SIGNAL(closed()), this, SLOT(onExifDialog_closed()));
-
-    ui->catalogSplitter->insertWidget(1, m_exifDialog);
-    auto sizes = ui->catalogSplitter->sizes();
-    int sum = sizes[0]+sizes[1];
-    sizes[1] = EXIF_DIALOG_WIDTH;
-    sizes[0] = sum-sizes[1];
-    ui->catalogSplitter->setSizes(sizes);
-}
-
-void MainWindow::onExifDialog_closed()
-{
-    if(m_exifDialog) {
-        delete m_exifDialog;
-        m_exifDialog = nullptr;
-    }
-}
-
 
 void MainWindow::onCatalogWindow_openVolume(QString path)
 {
