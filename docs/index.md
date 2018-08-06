@@ -86,6 +86,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://pc.mogeringo.com/archives/68711](https://pc.mogeringo.com/archives/68711)
 - **Free SoftNavi** (in Japanese)
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
+- **写真・画像ソフトのガイド** (in Japanese)
+    - [http://www.photo-soft.net/freesoft/free0420.html](http://www.photo-soft.net/freesoft/free0420.html)
 - **REDES@ZONE** (in Spanish)
     - [https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/](https://www.redeszone.net/2017/06/28/quickviewer-visor-imagenes-optimizado-windows/)
 - **PC actual** (in Spanish)
