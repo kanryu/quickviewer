@@ -60,6 +60,8 @@ fulltitle: QuickViewer オフィシャルページ
     - [https://pc.mogeringo.com/archives/68711](https://pc.mogeringo.com/archives/68711)
 - **さのっち様(OSDN)**
     - [https://ja.osdn.net/projects/quickviewer/reviews/](https://ja.osdn.net/projects/quickviewer/reviews/)
+- **写真・画像ソフトのガイド様**
+    - [http://www.photo-soft.net/freesoft/free0420.html](http://www.photo-soft.net/freesoft/free0420.html)
 - **Free SoftNavi様**
     - [http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html](http://www.softnavi.com/review/graphic_viewer/quickviewer_1.html)
 - **the PORTABLE FREEWARE collection** (英語)
