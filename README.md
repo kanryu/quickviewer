@@ -36,7 +36,11 @@ A image/comic viewer application for Windows, Mac and Linux, it can show images 
 
 ## Download
 
-[binary distributions](https://github.com/kanryu/quickviewer/releases) (Windows x86/x64, Mac dmg x64, Linux AppImage x64)
+[binary distributions](https://github.com/kanryu/quickviewer/releases)
+
+ - Windows zip (x86/x64)
+ - Mac dmg (x64)
+ - Linux AppImage (x64)
 
 ## Screenshots
 
