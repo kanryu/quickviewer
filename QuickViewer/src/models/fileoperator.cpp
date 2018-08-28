@@ -1,3 +1,4 @@
+#include <QtCore>
 #include "fileoperator.h"
 
 FileOperator::FileOperator(QString json, QObject *parent)
