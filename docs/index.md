@@ -177,6 +177,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.bug.hr/program/quickviewer-102/97548.aspx](http://www.bug.hr/program/quickviewer-102/97548.aspx)
 - **Žive.sk** (in Slovak)
     - [https://www.zive.sk/clanok/128715/novy-softver-expresny-prehliadac-fotiek-vynoveny-kancelarsky-balik/](https://www.zive.sk/clanok/128715/novy-softver-expresny-prehliadac-fotiek-vynoveny-kancelarsky-balik/)
+- **ROOT.CZ** (in Czech)
+    - [https://www.root.cz/clanky/softwarova-sklizen-22-8-2018/](https://www.root.cz/clanky/softwarova-sklizen-22-8-2018/)
 
 Thanks for reviewers! :)
 
