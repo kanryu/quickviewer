@@ -29,6 +29,7 @@ You can browse images with much smoother response than ever before.
    - Supported for modern formats(JPEG 2000/JPEG XR/WebP)
    - Supported for Animated PNG(APNG)/GIF
    - Auto rotation (using JPEG EXIF)
+   - Supported for CYMK JPEGs(auto converted to sRGB)
  - To show Raw digital camera images
    - Canon (crw, cr2)
    - Nicon (nef)
