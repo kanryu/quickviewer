@@ -28,6 +28,7 @@ fulltitle: QuickViewer オフィシャルページ
     - 現代的な画像形式に対応(JPEG 2000/JPEG XR/WebP)
     - アニメーションPNG(APNG)/GIFに対応
     - JPEG EXIFに対応し、撮影したそのままの向きで画像を表示
+    - CMYK形式のJPEGに対応し、sRGBに自動変換されて表示
 - 主要カメラメーカーのRaw画像形式に対応
     - Canon(crw, cr2)
     - Nicon(nef)
