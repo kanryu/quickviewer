@@ -946,8 +946,8 @@ void MainWindow::onActionStayOnTop_triggered(bool top)
     qApp->setStayOnTop(top);
     // Qt's StayOnTop mechanism is not working correctly in Windows.
     // so win32api calling manually
-    if(setStayOnTop(top))
-        return;
+//    if(setStayOnTop(top))
+//        return;
     Qt::WindowFlags flags = windowFlags();
     if(top) {
         flags |= Qt::WindowStaysOnTopHint;
@@ -955,8 +955,14 @@ void MainWindow::onActionStayOnTop_triggered(bool top)
         flags &= ~Qt::WindowStaysOnTopHint;
     }
 //    flags |= Qt::WindowFullscreenButtonHint;
+    bool full = isFullScreen();
     setWindowFlags(flags);
-    show();
+    if(!full) {
+        show();
+        return;
+    }
+    onActionFullscreen_triggered();
+    onActionFullscreen_triggered();
 }
 
 void MainWindow::onGraphicsView_fittingChanged(qvEnums::FitMode mode)
