@@ -362,6 +362,10 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 - Memory
     - over 1GB free Memory
 
+## Privacy Policy
+[Privacy Policy](https://kanryu.github.io/quickviewer/privacypolicy)
+
+
 ```
 The final element.
 ```
