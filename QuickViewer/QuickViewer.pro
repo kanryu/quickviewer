@@ -203,8 +203,11 @@ RESOURCES += toolbar.qrc
     win32 {
         RESOURCES += qtconf-win.qrc
     }
-    linux {
-        RESOURCES += qtconf-unix.qrc
+    linux : contains(DEFINES, QV_PORTABLE) {
+        RESOURCES += qtconf-linux-appimage.qrc
+    }
+    linux : !contains(DEFINES, QV_PORTABLE) {
+#        RESOURCES += qtconf-unix.qrc
     }
     macos {
         RESOURCES += qtconf-macos.qrc
@@ -327,7 +330,8 @@ win32 : !CONFIG(debug, debug|release) {
 }
 
 # linuxdeployqt is required.
-linux : !CONFIG(debug, debug|release) {
+linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
+
     APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
     APPIMAGE = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
     MY_DEFAULT_INSTALL = ../../$${APPDIR}
@@ -342,15 +346,9 @@ linux : !CONFIG(debug, debug|release) {
     install_desktop.path = $${MY_DEFAULT_INSTALL}
 
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
-    install_deploy_files.files = $${PWD}/../README.md $${PWD}/AppRun
+    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs ; rm $${MY_DEFAULT_INSTALL}/AppRun
     install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
-
-    install_apprun.path = $${MY_DEFAULT_INSTALL}
-    install_apprun.files = $${PWD}/../LICENSE
-    install_apprun.commands = chmod 755 $${MY_DEFAULT_INSTALL}/AppRun
-    install_apprun.depends = install_install_deploy_files
-
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
     install_translations.commands = ldd $${MY_DEFAULT_INSTALL}/usr/bin/QuickViewer | awk \'\$$1==\"libstdc++.so.$${GCC_MAJOR}\" {print \$$3}\' | xargs cp -t $${MY_DEFAULT_INSTALL}/usr/lib
     install_translations.files = \
@@ -383,6 +381,16 @@ linux : !CONFIG(debug, debug|release) {
 
     INSTALLS += install_target install_libs install_desktop install_deploy_files install_apprun install_translations install_assoc_icons install_appimage
 
+#    contains(DEFINES, QV_PORTABLE) {
+#        install_deploy_files.files += $${PWD}/AppRun
+#        install_deploy_files.files -= $${PWD}/../LICENSE
+
+#        install_apprun.path = $${MY_DEFAULT_INSTALL}
+#        install_apprun.files = $${PWD}/../LICENSE
+#        install_apprun.commands = chmod 755 $${MY_DEFAULT_INSTALL}/AppRun
+#        install_apprun.depends = install_install_deploy_files
+#    }
+
     install_shaders.path = $${MY_DEFAULT_INSTALL}/shared/shaders
     install_shaders.files = $$SHADERS
     install_db.path = $${MY_DEFAULT_INSTALL}/var/database
@@ -392,6 +400,50 @@ linux : !CONFIG(debug, debug|release) {
     !contains(DEFINES, QV_WITHOUT_OPENGL) {
         INSTALLS += install_shaders
     }
+}
+
+# not portable, install into /usr/local/bin
+linux : !CONFIG(debug, debug|release) : !contains(DEFINES, QV_PORTABLE) {
+    APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
+    APPIMAGE = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
+    MY_DEFAULT_INSTALL = ../../$${APPDIR}
+
+    install_target.files = $${DESTDIR}/QuickViewer
+    install_target.path = /usr/local/bin
+
+    install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1 $${DESTDIR}/../lib/lib7z.so
+    install_libs.path = /usr/local/lib
+
+
+    install_deploy_files.path = /usr/local/shared/QuickViewer
+    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    install_deploy_files.depends = install_install_target install_install_libs
+
+    install_translations.path = /usr/local/shared/QuickViewer/translations
+    install_translations.files = \
+        $${PWD}/translations/languages.ini \
+        $${PWD}/translations/quickviewer_ja.qm \
+        $${PWD}/translations/quickviewer_es.qm \
+        $${PWD}/translations/quickviewer_zh.qm \
+        $${PWD}/translations/quickviewer_el.qm \
+        $${PWD}/translations/qt_el.qm \
+        $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
+
+    install_assoc_icons.path = /usr/shared/QuickViewer/icons
+    install_assoc_icons.files = \
+        ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_dds.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_gif.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_icon.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_jpeg.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_png.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_raw.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tga.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_tiff.ico \
+        ../AssociateFilesWithQuickViewer/icons/qv_webp.ico \
+
+    INSTALLS += install_target install_libs install_deploy_files install_translations install_assoc_icons
 }
 
 macos : !CONFIG(debug, debug|release) {
