@@ -74,8 +74,12 @@ win32 {
 }
 linux {
     DEFINES += _UNIX
-    QMAKE_LFLAGS += -Wl,-rpath,../lib
     GCC_MAJOR = 6
+    contains(DEFINES, QV_PORTABLE) {
+        QMAKE_LFLAGS += -Wl,-rpath,../lib
+    } else {
+        QMAKE_LFLAGS += -Wl,-rpath,/usr/local/lib
+    }
 }
 macos {
     DEFINES += _UNIX

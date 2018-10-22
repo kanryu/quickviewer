@@ -440,7 +440,7 @@ void QVApplication::loadSettings()
     m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "thumbnail.sqlite3.db").toString();
 #  endif
 #else
-    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", getUserHomeFilePath(".quickviewer/thumbnail.sqlite3.db")).toString();
+    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", ".quickviewer/thumbnail.sqlite3.db").toString();
 #endif
     m_maxSearchByCharChanged = m_settings.value("MaxSearchByCharChanged", 10000).toInt();
     m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();
