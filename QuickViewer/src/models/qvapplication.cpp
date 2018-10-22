@@ -27,7 +27,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
     //setOrganizationName(APP_ORGANIZATION);
-    qDebug() << "TranslationsPath" << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+//    qDebug() << "TranslationsPath" << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
 #if defined(Q_OS_WIN) && defined(QV_PORTABLE)
 #else

@@ -568,7 +568,7 @@ bool Qt7zPackage::extractFile(const QString &name, QIODevice *outStream)
     }
 
     if (m_tempDir) {
-        const QString abso = m_tempDir->filePath(name);
+        const QString abso = QDir(m_tempDir->path()).filePath(name);
         QFile file(abso);
         file.open(QIODevice::ReadOnly);
         QByteArray bytes = file.readAll();

@@ -207,7 +207,7 @@ RESOURCES += toolbar.qrc
         RESOURCES += qtconf-linux-appimage.qrc
     }
     linux : !contains(DEFINES, QV_PORTABLE) {
-#        RESOURCES += qtconf-unix.qrc
+#        RESOURCES += qtconf-linux.qrc
     }
     macos {
         RESOURCES += qtconf-macos.qrc
@@ -335,6 +335,7 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
     APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
     APPIMAGE = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
     MY_DEFAULT_INSTALL = ../../$${APPDIR}
+    message(DESTDIR $${DESTDIR})
 
     install_target.files = $${DESTDIR}/QuickViewer
     install_target.path = $${MY_DEFAULT_INSTALL}/usr/bin
@@ -419,15 +420,14 @@ linux : !CONFIG(debug, debug|release) : !contains(DEFINES, QV_PORTABLE) {
     install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     install_deploy_files.depends = install_install_target install_install_libs
 
-    install_translations.path = /usr/local/shared/QuickViewer/translations
+    install_translations.path = $$[QT_INSTALL_TRANSLATIONS]
     install_translations.files = \
         $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \
         $${PWD}/translations/quickviewer_es.qm \
         $${PWD}/translations/quickviewer_zh.qm \
         $${PWD}/translations/quickviewer_el.qm \
-        $${PWD}/translations/qt_el.qm \
-        $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
+        $${PWD}/translations/qt_el.qm
 
     install_assoc_icons.path = /usr/shared/QuickViewer/icons
     install_assoc_icons.files = \
