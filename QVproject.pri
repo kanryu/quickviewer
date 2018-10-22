@@ -4,6 +4,13 @@ DEFINES += QV_WITH_LUMINOR
 ## Comment out if you need OpenGL support
 DEFINES += QV_WITHOUT_OPENGL
 
+## Define when asking for portable operation.
+## When off, the installation will be done by OS standard method
+## Installation destination when not portable:
+##   Windows: "C:\Program Files" or "C:\Users\[user]\Appdata\Roaming"
+##   Linux:   "/usr/local"
+#DEFINES += QV_PORTABLE
+
 greaterThan(QT_MAJOR_VERSION, 4) {
     TARGET_ARCH=$${QT_ARCH}
 } else {

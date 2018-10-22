@@ -70,4 +70,7 @@
         <file alias="sync_icon_24">icons/24/sync.png</file>
         <file alias="3dot_icon_24">icons/24/three-dot.png</file>
     </qresource>
+    <qresource prefix="/databases">
+        <file alias="thumbnail_database">database/thumbnail.sqlite3.db</file>
+    </qresource>
 </RCC>

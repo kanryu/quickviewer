@@ -101,6 +101,12 @@ public:
     typedef QActionManager<QMouseSequence, QMouseValue, QAction*> MouseActionManager;
     explicit QVApplication(int &argc, char **argv);
     QString getApplicationFilePath(QString subFilePath);
+    /**
+     * @brief Returns the path of the setting file according to the execution environment of the application
+     * @param subFilePath
+     * @return
+     */
+    QString getFilePathOfApplicationSetting(QString subFilePath);
     QString getUserHomeFilePath(QString subFilePath);
 
     void myInstallTranslator();

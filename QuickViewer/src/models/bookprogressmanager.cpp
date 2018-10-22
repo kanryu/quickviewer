@@ -12,11 +12,7 @@ BookProgressManager::BookProgressManager(QObject *parent)
 
 static QString getProgressIniPath()
 {
-#ifdef Q_OS_WIN
-    return qApp->getApplicationFilePath(PROGRESS_INI);
-#else
-    return qApp->getUserHomeFilePath(PROGRESS_INI);
-#endif
+    return qApp->getFilePathOfApplicationSetting(PROGRESS_INI);
 }
 
 

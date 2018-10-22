@@ -15,11 +15,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_maxTextureSize(4096)
     , m_effect(qvEnums::Bilinear)
     , m_translator(nullptr)
-#ifdef Q_OS_WIN
-    , m_settings(getApplicationFilePath(APP_INI), QSettings::IniFormat, this)
-#else
-    , m_settings(getUserHomeFilePath(APP_INI), QSettings::IniFormat, this)
-#endif
+    , m_settings(getFilePathOfApplicationSetting(APP_INI), QSettings::IniFormat, this)
     , m_innerFrameShowing(false)
     , m_bookshelfManager(nullptr)
 //    , m_languageSelector("quickviewer_", "translations/")
@@ -30,7 +26,36 @@ QVApplication::QVApplication(int &argc, char **argv)
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
-    setOrganizationName(APP_ORGANIZATION);
+    //setOrganizationName(APP_ORGANIZATION);
+
+#if defined(Q_OS_WIN) && defined(QV_PORTABLE)
+#else
+    // if the first executed, must create data folder for the user
+    {
+#  if    defined(Q_OS_MAC) || defined(Q_OS_LINUX)
+        QString datapath = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(QV_DATADIR);
+#  elif  defined(Q_OS_WIN) && !defined(QV_PORTABLE)
+        QString datapath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#  endif
+        QDir dir(datapath);
+        QFile filedatabase(dir.filePath(QV_THUMBNAILS));
+        if(!filedatabase.exists()) {
+            if(!dir.exists())
+                dir.mkpath(".");
+            // write out thumbnail database from the resource into Application data directory
+            QFile resdatabase(QStringLiteral(":/databases/thumbnail_database"));
+            qDebug() << resdatabase.exists();
+            if(resdatabase.open(QIODevice::ReadOnly)) {
+                auto dat = resdatabase.readAll();
+                if(filedatabase.open(QIODevice::WriteOnly)) {
+                    filedatabase.write(dat);
+                    filedatabase.close();
+                }
+            }
+
+        }
+    }
+#endif
 
     m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
     connect(&m_languageSelector, SIGNAL(languageChanged(QString)), &m_qtbaseLanguageSelector, SLOT(resetTranslator(QString)));
@@ -44,6 +69,19 @@ QString QVApplication::getApplicationFilePath(QString subFilePath)
     return QDir::toNativeSeparators(QString("%1/%2").arg(applicationDirPath()).arg(subFilePath));
 }
 
+QString QVApplication::getFilePathOfApplicationSetting(QString subFilePath)
+{
+#ifdef Q_OS_WIN
+#  ifdef QV_PORTABLE
+    return getApplicationFilePath(subFilePath);
+#  else
+    return QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).filePath(subFilePath);
+#  endif
+#else
+    return getUserHomeFilePath(subFilePath);
+#endif
+}
+
 QString QVApplication::getUserHomeFilePath(QString subFilePath)
 {
     return QDir::toNativeSeparators(QString("%1/%2").arg(QString(qgetenv("HOME"))).arg(subFilePath));
@@ -51,11 +89,7 @@ QString QVApplication::getUserHomeFilePath(QString subFilePath)
 
 QString QVApplication::CatalogDatabasePath()
 {
-#ifdef Q_OS_WIN
-    return getApplicationFilePath(m_catalogDatabasePath);
-#else
-    return m_catalogDatabasePath;
-#endif
+    return getFilePathOfApplicationSetting(m_catalogDatabasePath);
 }
 
 void QVApplication::myInstallTranslator()
@@ -399,7 +433,11 @@ void QVApplication::loadSettings()
         m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
     }
 #ifdef Q_OS_WIN
+#  ifdef QV_PORTABLE
     m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
+#  else
+    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "thumbnail.sqlite3.db").toString();
+#  endif
 #else
     m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", getUserHomeFilePath(".quickviewer/thumbnail.sqlite3.db")).toString();
 #endif
