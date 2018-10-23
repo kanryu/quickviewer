@@ -1,4 +1,7 @@
 #include <QtWidgets>
+#ifndef QV_WITHOUT_OPENGL
+#  include <QtOpenGL>
+#endif
 
 #include "imageview.h"
 #include "qvapplication.h"

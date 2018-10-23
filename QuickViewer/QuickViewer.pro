@@ -78,7 +78,7 @@ linux {
     contains(DEFINES, QV_PORTABLE) {
         QMAKE_LFLAGS += -Wl,-rpath,../lib
     } else {
-        QMAKE_LFLAGS += -Wl,-rpath,/usr/local/lib
+        QMAKE_LFLAGS += -Wl,-rpath,$${QV_LIB_PATH}
     }
 }
 macos {
@@ -352,7 +352,7 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
 
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
     install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
-    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs ; rm $${MY_DEFAULT_INSTALL}/AppRun
+    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs
     install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
     install_translations.commands = ldd $${MY_DEFAULT_INSTALL}/usr/bin/QuickViewer | awk \'\$$1==\"libstdc++.so.$${GCC_MAJOR}\" {print \$$3}\' | xargs cp -t $${MY_DEFAULT_INSTALL}/usr/lib
@@ -414,13 +414,13 @@ linux : !CONFIG(debug, debug|release) : !contains(DEFINES, QV_PORTABLE) {
     MY_DEFAULT_INSTALL = ../../$${APPDIR}
 
     install_target.files = $${DESTDIR}/QuickViewer
-    install_target.path = /usr/local/bin
+    install_target.path = $${QV_BIN_PATH}
 
     install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1 $${DESTDIR}/../lib/lib7z.so
-    install_libs.path = /usr/local/lib
+    install_libs.path = $${QV_LIB_PATH}
 
 
-    install_deploy_files.path = /usr/local/shared/QuickViewer
+    install_deploy_files.path = $${QV_SHARED_PATH}/QuickViewer
     install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     install_deploy_files.depends = install_install_target install_install_libs
 
@@ -433,7 +433,7 @@ linux : !CONFIG(debug, debug|release) : !contains(DEFINES, QV_PORTABLE) {
         $${PWD}/translations/quickviewer_el.qm \
         $${PWD}/translations/qt_el.qm
 
-    install_assoc_icons.path = /usr/shared/QuickViewer/icons
+    install_assoc_icons.path = $${QV_SHARED_PATH}/QuickViewer/icons
     install_assoc_icons.files = \
         ../AssociateFilesWithQuickViewer/icons/qv_apng.ico \
         ../AssociateFilesWithQuickViewer/icons/qv_bmp.ico \
