@@ -170,4 +170,17 @@ Direct2D is implemented as a QPA plugin, and rendering method is automatically c
 
 Although it has not tried yet, in other OSs it should be possible to change the drawing method by other QPAs.
 
+## 6. Portable or System Standards
+
+There will be different opinion depending on the person whether an application should be able to boot on any PC from your USB memory or as a part of the PC's system.
+
+In QuickViewer, QV_PORTABLE in QVproject.pri makes it possible to select these two policies.
+
+When QV_PORTABLE is defined, it becomes an application that can copy to USB memory. Would you like to store data files such as ini files and DBs on the same drive as much as possible? For Linux and Mac, they are output as AppImage, dmg respectively.
+
+If not, QuickViewer will be built as an application embedded in the system. On Windows it will be installed in "C:\Program FIles".
+On Linux it will be /usr/local/bin. You may load system-specific shared libraries (eg 7z).
+
+
+
 Enjoy! :)
