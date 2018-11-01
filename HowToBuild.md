@@ -172,14 +172,14 @@ Although it has not tried yet, in other OSs it should be possible to change the 
 
 ## 6. Portable or System Standards
 
-There will be different opinion depending on the person whether an application should be able to boot on any PC from your USB memory or as a part of the PC's system.
+There will be different opinions whether an application should be able to boot on any PC from your USB flash drive or as a part of the system of the PC.
 
 In QuickViewer, QV_PORTABLE in QVproject.pri makes it possible to select these two policies.
 
-When QV_PORTABLE is defined, it becomes an application that can copy to USB memory. Would you like to store data files such as ini files and DBs on the same drive as much as possible? For Linux and Mac, they are output as AppImage, dmg respectively.
+When QV_PORTABLE is defined, it becomes an application that can copy to your USB flash drive. Would you like to store data files such as ini files and DBs on the same drive as much as possible? For Linux and Mac, they are output as AppImage, dmg respectively.
 
-If not, QuickViewer will be built as an application embedded in the system. On Windows it will be installed in "C:\Program FIles".
-On Linux it will be /usr/local/bin. You may load system-specific shared libraries (eg 7z).
+If not, QuickViewer will be built as an application embedded in the system. On Windows it will be installed into "C:\Program FIles".
+On Linux it will be /usr/local/bin. That may be executed with the system-specific shared libraries (eg 7z).
 
 
 
