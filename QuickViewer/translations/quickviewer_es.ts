@@ -34,18 +34,6 @@
 <context>
     <name>CatalogWindow</name>
     <message>
-        <source>CatalogWindow</source>
-        <translation type="vanished">Visualización de ctálogo</translation>
-    </message>
-    <message>
-        <source>FolderViewSelect</source>
-        <translation type="vanished">Cambio de manera de visualización</translation>
-    </message>
-    <message>
-        <source>ManageCatalogs</source>
-        <translation type="vanished">Administración de catálogo</translation>
-    </message>
-    <message>
         <source>&amp;View</source>
         <translation>&amp;Ver</translation>
     </message>
@@ -62,36 +50,8 @@
         <translation>Próximo</translation>
     </message>
     <message>
-        <source>FolderViewList</source>
-        <translation type="vanished">Echar una mirada</translation>
-    </message>
-    <message>
-        <source>FolderViewIcon</source>
-        <translation type="vanished">Colocando visualiza</translation>
-    </message>
-    <message>
-        <source>FolderViewIconNoText</source>
-        <translation type="vanished">Solo icono</translation>
-    </message>
-    <message>
         <source>&amp;CloseWindow</source>
         <translation>&amp;Cierra la ventana</translation>
-    </message>
-    <message>
-        <source>Input Search words and Press Enter-key</source>
-        <translation type="vanished">Escribe una Búsqueda de palabra y Aprieta teclado de entrar</translation>
-    </message>
-    <message>
-        <source>Drop image folders here and create Catalogs.</source>
-        <translation type="vanished">Traslada el archivo de imagen y hace los catálogos.</translation>
-    </message>
-    <message>
-        <source>(%1/%2) volumes listed.</source>
-        <translation type="vanished">(%1/%2) está en visualización.</translation>
-    </message>
-    <message>
-        <source>Remove (Options) from Book Title</source>
-        <translation type="vanished">Quita (Options) a título de libro</translation>
     </message>
     <message>
         <source>Remove (Options) from book title when searching</source>
@@ -109,10 +69,6 @@
     <message>
         <source>catalog management</source>
         <translation>Manego de Catalogo</translation>
-    </message>
-    <message>
-        <source>Catalog management</source>
-        <translation type="vanished">Administración de catálogo</translation>
     </message>
     <message>
         <source>List</source>
@@ -170,15 +126,6 @@
         <translation>&amp;Selecciónar carpeta</translation>
     </message>
     <message>
-        <source>Select a folder which contains Images or Archives</source>
-        <translation type="vanished">Selecciona un archivo que incluido unas Imágenes o carpetas</translation>
-    </message>
-    <message>
-        <source>Each catalog can contain subfolders or archives</source>
-        <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
-        <translation type="vanished">Cada catálogo puede incluir subcarpeta o carpeta</translation>
-    </message>
-    <message>
         <source>Each catalog can be created including Subfolders and/or Archives</source>
         <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
         <translation>Cada catálogo puede incluir multiple subcarpetas</translation>
@@ -208,10 +155,6 @@
         <translation>Modelo</translation>
     </message>
     <message>
-        <source>Orientation</source>
-        <translation type="vanished">Dirección de cámara</translation>
-    </message>
-    <message>
         <source>FNumber</source>
         <translation>FNumero</translation>
     </message>
@@ -226,46 +169,6 @@
     <message>
         <source>ImageHeight</source>
         <translation>Altura de imagen</translation>
-    </message>
-    <message>
-        <source>Flash did not fire</source>
-        <translation type="vanished">Sin flash</translation>
-    </message>
-    <message>
-        <source>Flash fired</source>
-        <translation type="vanished">Tiene flash</translation>
-    </message>
-    <message>
-        <source>Horizontal (normal)</source>
-        <translation type="vanished">Horizontalidad (norma)</translation>
-    </message>
-    <message>
-        <source>Mirror horizontal</source>
-        <translation type="vanished">Inversión</translation>
-    </message>
-    <message>
-        <source>Rotate 180</source>
-        <translation type="vanished">Rotación 180</translation>
-    </message>
-    <message>
-        <source>Mirror vertical</source>
-        <translation type="vanished">Vuelva a la derecha y izquierda</translation>
-    </message>
-    <message>
-        <source>Mirror horizontal and rotate 270 CW</source>
-        <translation type="vanished">Vuelva arriba y abajo, y rota izquierda a derecha de 270 grados</translation>
-    </message>
-    <message>
-        <source>Rotate 90 CW</source>
-        <translation type="vanished">Rota izquierda a derecha de 90 grados</translation>
-    </message>
-    <message>
-        <source>Mirror horizontal and rotate 90 CW</source>
-        <translation type="vanished">Vuelva arriba y abajo, y rota izquierda a derecha de 90 grados</translation>
-    </message>
-    <message>
-        <source>Rotate 270 CW</source>
-        <translation type="vanished">Rota izquierda a derecha de 270 grados</translation>
     </message>
     <message>
         <source>BitsPerSample</source>
@@ -503,15 +406,6 @@
 <context>
     <name>FileAssocDialog</name>
     <message>
-        <source>File Associations to QuickViewer</source>
-        <translation type="vanished">Asociaciones de archivos a QuickViewer</translation>
-    </message>
-    <message>
-        <source>All On</source>
-        <extracomment>Button to turn all check boxes on</extracomment>
-        <translation type="obsolete">Todo encendido</translation>
-    </message>
-    <message>
         <source>Truevision Graphics Adapter Format (*.tga)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -522,11 +416,6 @@
     <message>
         <source>Canon Raw Format (*.crw, *.cr2)</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>All Off</source>
-        <extracomment>Button to turn off all check box</extracomment>
-        <translation type="obsolete">Todo apagado</translation>
     </message>
     <message>
         <source>Sony Raw Format (*.arw)</source>
@@ -557,105 +446,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>PNG Format Image</source>
-        <translation type="vanished">PNG Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Truevision Graphics Adapter Format Image</source>
-        <translation type="vanished">Truevision Graphics Adapter Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Animated PNG Format Image</source>
-        <translation type="vanished">PNG animado Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Windows Bitmap Format Image</source>
-        <translation type="vanished">Windows Bitmap Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>DirectDraw Surface Format Image</source>
-        <translation type="vanished">DirectDraw Surface Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>GIF Format Image</source>
-        <translation type="vanished">GIF Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Windows Icon Format</source>
-        <translation type="vanished">Windows Icon Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Tiff Format Image</source>
-        <translation type="vanished">Tiff Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>WebP Format Image</source>
-        <translation type="vanished">WebP Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Canon Raw Format</source>
-        <translation type="vanished">Canon Raw Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Adobe Digital Negative Format</source>
-        <translation type="vanished">Adobe Digital Negative Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Nicon Raw Format</source>
-        <translation type="vanished">Nicon Raw Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Sony Raw Format</source>
-        <translation type="vanished">Sony Raw Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>&amp;View with QuickViewer</source>
-        <translation type="vanished">&amp;Ver con QuickViewer</translation>
-    </message>
-    <message>
-        <source>PNG Format Image</source>
-        <comment>description of File format on Explorer(.png)</comment>
-        <translation type="obsolete">PNG Formatear Imagen</translation>
-    </message>
-    <message>
         <source>Truevision Graphics Adapter Format Image</source>
         <comment>description of File format on Explorer(.tga)</comment>
         <translation>Truevision Graphics Adapter Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Animated PNG Format Image</source>
-        <comment>description of File format on Explorer(.apng)</comment>
-        <translation type="obsolete">PNG animado Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Windows Bitmap Format Image</source>
-        <comment>description of File format on Explorer(.bmp)</comment>
-        <translation type="obsolete">Windows Bitmap Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>DirectDraw Surface Format Image</source>
-        <comment>description of File format on Explorer(.dds)</comment>
-        <translation type="obsolete">DirectDraw Surface Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>GIF Format Image</source>
-        <comment>description of File format on Explorer(.gif)</comment>
-        <translation type="obsolete">GIF Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Windows Icon Format</source>
-        <comment>description of File format on Explorer(.ico)</comment>
-        <translation type="obsolete">Windows Icon Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>Tiff Format Image</source>
-        <comment>description of File format on Explorer(.tiff)</comment>
-        <translation type="obsolete">Tiff Formatear Imagen</translation>
-    </message>
-    <message>
-        <source>WebP Format Image</source>
-        <comment>description of File format on Explorer(.webp)</comment>
-        <translation type="obsolete">WebP Formatear Imagen</translation>
     </message>
     <message>
         <source>Canon Raw Format</source>
@@ -770,14 +563,6 @@
     <name>FolderItemModel</name>
     <message>
         <source>Name</source>
-        <translation type="vanished">Nombre</translation>
-    </message>
-    <message>
-        <source>ModifiedTime</source>
-        <translation type="vanished">día y hora reconducción</translation>
-    </message>
-    <message>
-        <source>Name</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
         <translation>Nombre</translation>
     </message>
@@ -789,19 +574,6 @@
 </context>
 <context>
     <name>FolderWindow</name>
-    <message>
-        <source>FolderWindow</source>
-        <translation type="vanished">Ver a lista de archivo</translation>
-    </message>
-    <message>
-        <source>Current Folder</source>
-        <extracomment>Label indicating that the current folder PATH is being displayed</extracomment>
-        <translation type="vanished">Archivo actualidad</translation>
-    </message>
-    <message>
-        <source>My Pictures</source>
-        <translation type="vanished">Mi foto</translation>
-    </message>
     <message>
         <source>Move to Home</source>
         <extracomment>Button for returning to QuickViewer&apos;s home folder</extracomment>
@@ -816,11 +588,6 @@
         <source>Next</source>
         <extracomment>Button for returning to the folder after the current displayed folder</extracomment>
         <translation>Próximo</translation>
-    </message>
-    <message>
-        <source>To parent folder</source>
-        <extracomment>Button for moving from the currently displayed folder to the next higher folder</extracomment>
-        <translation type="vanished">Archivo arriba</translation>
     </message>
     <message>
         <source>Reload</source>
@@ -842,27 +609,6 @@
     <message>
         <source>Others</source>
         <translation>Otros</translation>
-    </message>
-    <message>
-        <source>ModifiedTime</source>
-        <translation type="vanished">Orden de día y hora de reconducción</translation>
-    </message>
-    <message>
-        <source>set the folder as Home</source>
-        <translation type="vanished">Vuelve a carpeta de inicio</translation>
-    </message>
-    <message>
-        <source>No folders or archives</source>
-        <translation type="vanished">No archivos o carpetas</translation>
-    </message>
-    <message>
-        <source>ChangeSorting</source>
-        <translation type="vanished">Cambio de manera de colocar</translation>
-    </message>
-    <message>
-        <source>No folders or archives</source>
-        <comment>Display when there is no display item in Folder Window</comment>
-        <translation type="obsolete">No archivos o carpetas</translation>
     </message>
     <message>
         <source>FolderList</source>
@@ -1015,41 +761,6 @@
         <translation>Resetear</translation>
     </message>
     <message>
-        <source>Command</source>
-        <translation type="vanished">Movimiento</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation type="vanished">Explicación</translation>
-    </message>
-    <message>
-        <source>Target</source>
-        <translation type="vanished">Atajo actualidad</translation>
-    </message>
-    <message>
-        <source>Invalid key sequence.</source>
-        <translation type="vanished">Escribir de teclado injusticia.</translation>
-    </message>
-    <message>
-        <source>Key sequence has potential conflicts.</source>
-        <translation type="vanished">Compitiendo con otoro atajo teclado.</translation>
-    </message>
-    <message>
-        <source>Command</source>
-        <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="obsolete">Movimiento</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="obsolete">Explicación</translation>
-    </message>
-    <message>
-        <source>Target</source>
-        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="obsolete">Atajo actualidad</translation>
-    </message>
-    <message>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
         <translation>Tecla o secuencia invalida.</translation>
@@ -1058,16 +769,6 @@
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
         <translation type="unfinished">Tecla o secuencia puede tener conflictos con otra.</translation>
-    </message>
-    <message>
-        <source>Key sequence has potential conflicts.</source>
-        <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key));</comment>
-        <translation type="obsolete">Compitiendo con otoro atajo teclado.</translation>
-    </message>
-    <message>
-        <source>Motions</source>
-        <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="vanished">Movimiento</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1171,40 +872,9 @@
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <source>&amp;NextPage</source>
-        <extracomment>Switch to the next image button</extracomment>
-        <translation type="vanished">&amp;Próxima imagen</translation>
-    </message>
-    <message>
-        <source>NextPage</source>
-        <translation type="vanished">Próxima imagen</translation>
-    </message>
-    <message>
-        <source>&amp;PrevPage</source>
-        <extracomment>Switch to previous image button</extracomment>
-        <translation type="vanished">&amp;Imagen Anterior</translation>
-    </message>
-    <message>
-        <source>PrevPage</source>
-        <translation type="vanished">Imagen Anterior</translation>
-    </message>
-    <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
         <translation>&amp;Agrandamiento o Reducción de imagen automático</translation>
-    </message>
-    <message>
-        <source>Fitting</source>
-        <translation type="vanished">&amp;Ajustar a tamano de ventana</translation>
-    </message>
-    <message>
-        <source>&amp;Spread Viewing</source>
-        <extracomment>Arranging two images side by side like when opening a book</extracomment>
-        <translation type="vanished">&amp;Vista de dos páginas</translation>
-    </message>
-    <message>
-        <source>Spread Viewing</source>
-        <translation type="vanished">Vista de dos páginas</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
@@ -1215,27 +885,9 @@
         <translation>QuickViewer</translation>
     </message>
     <message>
-        <source>Bound on the &amp;right side book</source>
-        <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
-        <translation type="vanished">Limitar en el libro de lado derecho</translation>
-    </message>
-    <message>
         <source>&amp;Open Image Folder</source>
         <extracomment>A menu for displaying a dialog for selecting an image to be displayed</extracomment>
         <translation>&amp;Abrir Carpeta de Imagenes</translation>
-    </message>
-    <message>
-        <source>&amp;Always open wide images as one view</source>
-        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation type="vanished">&amp;Imágenes amplia siempre abiertos como una vista</translation>
-    </message>
-    <message>
-        <source>Can&apos;t be opened. Is there no images?</source>
-        <translation type="vanished">No pude abrir. ¿No hay nada imagens?</translation>
-    </message>
-    <message>
-        <source>Open a image or archive</source>
-        <translation type="vanished">Abre una imagen o carpeta</translation>
     </message>
     <message>
         <source>&amp;History</source>
@@ -1257,19 +909,6 @@
         <translation>&amp;Primera Página</translation>
     </message>
     <message>
-        <source>ShowStatus&amp;Bar</source>
-        <translation type="vanished">Visualiza la barra de estatus</translation>
-    </message>
-    <message>
-        <source>Show&amp;PageBar</source>
-        <translation type="vanished">Visualiza la barra de página</translation>
-    </message>
-    <message>
-        <source>Open &amp;Explorer</source>
-        <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
-        <translation type="vanished">Abre &amp;Explorer</translation>
-    </message>
-    <message>
         <source>Exif &amp;Information</source>
         <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
         <translation>&amp;Información Exif</translation>
@@ -1280,18 +919,9 @@
         <translation>Configuracion de &amp;Teclado</translation>
     </message>
     <message>
-        <source>any folder or archive is not loaded.</source>
-        <translation type="vanished">algún archivos o carpetas no se cargan</translation>
-    </message>
-    <message>
         <source>&amp;About QuickViewer</source>
         <extracomment>A menu for displaying a message box for displaying application information</extracomment>
         <translation>&amp;Sobre QuickViewer</translation>
-    </message>
-    <message>
-        <source>Check &amp;Version by your browser</source>
-        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation type="vanished">Abre su navegador y comprueba su versión</translation>
     </message>
     <message>
         <source>N&amp;extVolume</source>
@@ -1299,41 +929,13 @@
         <translation>&amp;Próximo Volumen</translation>
     </message>
     <message>
-        <source>P&amp;revVolume</source>
-        <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
-        <translation type="vanished">&amp;Volume anterior</translation>
-    </message>
-    <message>
         <source>&amp;Navigation</source>
         <translation>&amp;Navegacion</translation>
-    </message>
-    <message>
-        <source>Next only &amp;one page</source>
-        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation type="vanished">Avanza solo &amp;Una Página</translation>
-    </message>
-    <message>
-        <source>Prev only o&amp;ne page</source>
-        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation type="vanished">Vuelve solo &amp;Una Página</translation>
     </message>
     <message>
         <source>ExitApplicationOrFullscreen</source>
         <extracomment>Function that cancels it while full screen is displayed and terminates the application otherwise</extracomment>
         <translation>Cierra aplicaciones o pantalla completa</translation>
-    </message>
-    <message>
-        <source>Show&amp;ToolBar</source>
-        <translation type="vanished">Visualiza la barra de herramientas</translation>
-    </message>
-    <message>
-        <source>Always open &amp;first images as one view</source>
-        <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
-        <translation type="vanished">Primera imagen abiertos como una vista</translation>
-    </message>
-    <message>
-        <source>Show&amp;MenuBar</source>
-        <translation type="vanished">Visualiza&amp;barra de menú</translation>
     </message>
     <message>
         <source>&amp;Clear History</source>
@@ -1346,24 +948,8 @@
         <translation>&amp;Ventana Siempre Arriba</translation>
     </message>
     <message>
-        <source>Confirmation</source>
-        <translation type="vanished">Comprobación</translation>
-    </message>
-    <message>
-        <source>Do you really want to clear the main menu?</source>
-        <translation type="vanished">¿No visualiza el menú principal? ¿Es verdad?</translation>
-    </message>
-    <message>
-        <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
-        <translation type="vanished">Aprieta F8(default), o visualiza un contexto munú en la barra de titúlo, &lt;br /&gt; y selecciona &lt;strong&gt; &apos;Visualiza/Oculta de Menú principal&apos;&lt;/strong&gt;</translation>
-    </message>
-    <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
         <translation>&amp;Ver/Ocultar el Menu Principal</translation>
-    </message>
-    <message>
-        <source>Are you sure you delete the image?</source>
-        <translation type="vanished">¿Tira esta imagen a la basura? ¿Es verdad?</translation>
     </message>
     <message>
         <source>&amp;Shader</source>
@@ -1373,11 +959,6 @@
         <source>&amp;Maximize or Normal</source>
         <extracomment>Function to switch windows to maximize or normal display</extracomment>
         <translation>&amp;Máximo o Normal</translation>
-    </message>
-    <message>
-        <source>&amp;Restore Window State on next run</source>
-        <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
-        <translation type="vanished">&amp;Restaura Window State el próximo arranque</translation>
     </message>
     <message>
         <source>FastForward</source>
@@ -1395,19 +976,9 @@
         <translation>&amp;Rotar</translation>
     </message>
     <message>
-        <source>&amp;SlideShow</source>
-        <extracomment>Button to start displaying slideshow</extracomment>
-        <translation type="vanished">&amp;Presentación de diapositivas</translation>
-    </message>
-    <message>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
         <translation>Cargar Marcador</translation>
-    </message>
-    <message>
-        <source>SaveBookmark</source>
-        <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
-        <translation type="vanished">Añadir a favoritos</translation>
     </message>
     <message>
         <source>ManageBookmarks</source>
@@ -1437,16 +1008,6 @@
         <translation>&amp;Interpolación Lanczos (muy lento)</translation>
     </message>
     <message>
-        <source>&amp;Nearest Neighbor interpolation (coarse)</source>
-        <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
-        <translation type="vanished">&amp;Último vecino Interpolación (alta velocidad pero tosco)</translation>
-    </message>
-    <message>
-        <source>&amp;Project WebPage by your browser</source>
-        <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation type="vanished">Visualiza la página de Internet en el navegador</translation>
-    </message>
-    <message>
         <source>&amp;Catalog</source>
         <translation>&amp;Catálogo</translation>
     </message>
@@ -1469,15 +1030,6 @@
         <translation>Reduccion</translation>
     </message>
     <message>
-        <source>Show&amp;Catalog</source>
-        <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
-        <translation type="vanished">Visualiza el catálogo</translation>
-    </message>
-    <message>
-        <source>ShowCatalog</source>
-        <translation type="vanished">Visualiza el catálogo</translation>
-    </message>
-    <message>
         <source>Remove (Options) from Book Title</source>
         <extracomment>Ability to remove and display (parenthesized) text from Volume title in the catalog</extracomment>
         <translation>Quita (opciónes) a la Título de Libro</translation>
@@ -1493,11 +1045,6 @@
         <translation>Ver en Iconos</translation>
     </message>
     <message>
-        <source>CatalogViewIconNoText</source>
-        <extracomment>Mode to list Volume in the catalog with only the icons side by side</extracomment>
-        <translation type="vanished">Solo icono</translation>
-    </message>
-    <message>
         <source>CatalogViewList</source>
         <extracomment>Mode to list volumes in the catalog with icons and titles arranged side by side</extracomment>
         <translation>Ver en Lista</translation>
@@ -1508,33 +1055,9 @@
         <translation>Mostrar Etiquetas</translation>
     </message>
     <message>
-        <source>&amp;Copy Image to clipboard</source>
-        <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
-        <translation type="vanished">Copia imagen en tablero</translation>
-    </message>
-    <message>
-        <source>Move Image to &amp;Recycle Bin</source>
-        <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
-        <translation type="vanished">Coloca la imagen en la basura</translation>
-    </message>
-    <message>
         <source>Copy File to clipboard</source>
         <extracomment>Menu to copy currently displayed image file on Explorer</extracomment>
         <translation>Copiar Archivo en tablero</translation>
-    </message>
-    <message>
-        <source>Run your &amp;mailer with an attachment</source>
-        <extracomment>Menu to attach the currently displayed image to the mail software and start up</extracomment>
-        <translation type="vanished">Adjunta este archivo y inicia el correo electrónico</translation>
-    </message>
-    <message>
-        <source>Run your mailer with an attachment</source>
-        <translation type="vanished">Adjunta este archivo y inicia el correo electrónico</translation>
-    </message>
-    <message>
-        <source>Show large &amp;grid for long titles</source>
-        <extracomment>Functions to be used when the Volume title in the catalog is long</extracomment>
-        <translation type="vanished">Para vizualizar un título largo, tenga el bastidor grande</translation>
     </message>
     <message>
         <source>&amp;Bilinear interpolation (fast)</source>
@@ -1542,52 +1065,8 @@
         <translation>&amp;Complemento de Bilineal(rápido)</translation>
     </message>
     <message>
-        <source>Show&amp;Folder</source>
-        <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
-        <translation type="vanished">Visualiza un archivo</translation>
-    </message>
-    <message>
-        <source>CPU Bicubic after GPU Bilinear(standard)</source>
-        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
-        <translation type="vanished">CPU Bicúbica después GPU Bilineal(estándar)</translation>
-    </message>
-    <message>
-        <source>CPU Bicubic interpolation</source>
-        <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
-        <translation type="vanished">CPU Interpolación bicúbica</translation>
-    </message>
-    <message>
-        <source>ShowSubfolders</source>
-        <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
-        <translation type="vanished">También abre la imágen de subarchivo</translation>
-    </message>
-    <message>
-        <source>ShowImages in sub folders</source>
-        <translation type="vanished">También abre la imágen de subarchivo</translation>
-    </message>
-    <message>
         <source>F&amp;older</source>
         <translation>&amp;Carpeta</translation>
-    </message>
-    <message>
-        <source>Open volume with progress</source>
-        <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
-        <translation type="vanished">Abre la página que abrió antes</translation>
-    </message>
-    <message>
-        <source>ShowReadProgress</source>
-        <extracomment>Ability to display read information read in the middle in FolderWindow</extracomment>
-        <translation type="vanished">Visualiza el progreso de lectura</translation>
-    </message>
-    <message>
-        <source>&amp;Options Config</source>
-        <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
-        <translation type="vanished">Programa la opción</translation>
-    </message>
-    <message>
-        <source>Rename the image</source>
-        <extracomment>A menu for changing the file name of the currently displayed image</extracomment>
-        <translation type="vanished">Cambiar el nombre de la imagen</translation>
     </message>
     <message>
         <source>Don&apos;t enlarge small images on Fitting</source>
@@ -1595,68 +1074,9 @@
         <translation>No agrande las imágenes pequeñas en Fitting</translation>
     </message>
     <message>
-        <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
-        <translation type="vanished">Todos los archivos( *.*);;Imágenes (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</translation>
-    </message>
-    <message>
-        <source>Fullscreen on next run</source>
-        <extracomment>Ability to always launch applications in full screen</extracomment>
-        <translation type="vanished">Pantalla completa en la siguiente ejecución</translation>
-    </message>
-    <message>
         <source>Show texts on Fullscreen</source>
         <extracomment>Signage that displays the file name of the image at full screen display</extracomment>
         <translation>Mostrar ruta de archivo en pantalla completa</translation>
-    </message>
-    <message>
-        <source>Confirm to move Image to &amp;Recycle Bin</source>
-        <extracomment>A function to display a confirmation screen when moving the currently displayed image to Recycle Bin</extracomment>
-        <translation type="vanished">Confirmar para mover la imagen a la Papelera de &amp;reciclaje</translation>
-    </message>
-    <message>
-        <source>Image Associations (require Administration)</source>
-        <extracomment>Ability to associate QuickViewer and image files on Explorer</extracomment>
-        <translation type="vanished">Asociaciones de imágenes (requieren administración)</translation>
-    </message>
-    <message>
-        <source>any folder or archive is not loaded.</source>
-        <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
-        <translation type="obsolete">algún archivos o carpetas no se cargan</translation>
-    </message>
-    <message>
-        <source>Can&apos;t be opened. Is there no images?</source>
-        <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation type="obsolete">No pude abrir. ¿No hay nada imagens?</translation>
-    </message>
-    <message>
-        <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
-        <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation type="vanished">Todos( *.);;Imágenes (.jpg *.jpeg *.png *.tif *.tiff *.ico *.webp *.gif);;Archivados( *.zip *.7z *.rar *.cbz)</translation>
-    </message>
-    <message>
-        <source>Open a image or archive</source>
-        <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
-        <translation type="obsolete">Abre una imagen o carpeta</translation>
-    </message>
-    <message>
-        <source>Do you really want to clear the main menu?</source>
-        <comment>Message confirming to hide the main menu</comment>
-        <translation type="obsolete">¿No visualiza el menú principal? ¿Es verdad?</translation>
-    </message>
-    <message>
-        <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
-        <comment>Message confirming to hide the main menu</comment>
-        <translation type="vanished">Aprieta F8(default), o visualiza un contexto munú en la barra de titúlo, &lt;br /&gt; y selecciona &lt;strong&gt; &apos;Visualiza/Oculta de Menú principal&apos;&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation type="vanished">Comprobación</translation>
-    </message>
-    <message>
-        <source>Are you sure you delete the image?</source>
-        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="obsolete">¿Tira esta imagen a la basura? ¿Es verdad?</translation>
     </message>
     <message>
         <source>&amp;NextImage</source>
@@ -1679,24 +1099,9 @@
         <translation>Doble Pagina de &amp;Der. a Izq.</translation>
     </message>
     <message>
-        <source>&amp;Always display one landscape image even in 2 page display.</source>
-        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation type="vanished">&amp;Imágenes amplia siempre abiertos como una vista.</translation>
-    </message>
-    <message>
         <source>Open in &amp;Explorer</source>
         <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
         <translation>Abrir en &amp;Explorador</translation>
-    </message>
-    <message>
-        <source>Open browser to check &amp;Version</source>
-        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation type="vanished">Abre su navegador y comprueba su &amp;versión</translation>
-    </message>
-    <message>
-        <source>Advance &amp;one page only</source>
-        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation type="vanished">Avanza solo &amp;Una Página</translation>
     </message>
     <message>
         <source>Prev o&amp;ne page only</source>
@@ -1722,11 +1127,6 @@
         <source>AddBookmark</source>
         <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
         <translation>Añadir a Marcados</translation>
-    </message>
-    <message>
-        <source>Display Home&amp;page on browser</source>
-        <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation type="vanished">Visualiza la &amp;página de Internet en el navegador</translation>
     </message>
     <message>
         <source>IconViewOnly</source>
@@ -1769,11 +1169,6 @@
         <translation>Renombrar</translation>
     </message>
     <message>
-        <source>Full screen on startup</source>
-        <extracomment>Ability to always launch applications in full screen</extracomment>
-        <translation type="vanished">Pantalla completa en la siguiente ejecución</translation>
-    </message>
-    <message>
         <source>Any folder or archive is not loaded.</source>
         <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
         <translation>Ninguna carpeta o archivo esta cargado.</translation>
@@ -1792,16 +1187,6 @@
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
         <translation>Seleccione un archivo</translation>
-    </message>
-    <message>
-        <source>Do you really want to hide the main menu?</source>
-        <comment>Message confirming to hide the main menu</comment>
-        <translation type="vanished">¿No visualiza el menú principal? ¿Es verdad?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this image?</source>
-        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="vanished">¿Tira esta imagen a la basura? ¿Es verdad?</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -2055,15 +1440,6 @@
 <context>
     <name>MainWindowForWindows</name>
     <message>
-        <source>Sh&amp;ow or Hide MainMenuBar</source>
-        <translation type="vanished">Visualización de menú principal/Cambia en visualizasión oculta</translation>
-    </message>
-    <message>
-        <source>Sh&amp;ow or Hide MainMenuBar</source>
-        <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
-        <translation type="obsolete">Visualización de menú principal/Cambia en visualizasión oculta</translation>
-    </message>
-    <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
         <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
         <translation>Visualiza/Oculta de Menú principal</translation>
@@ -2074,11 +1450,6 @@
     <message>
         <source>ManageCatalogs</source>
         <translation>Administración de catálogo</translation>
-    </message>
-    <message>
-        <source>Manage a Catalog</source>
-        <extracomment>Name of the frame in which buttons for operating one catalog are arranged</extracomment>
-        <translation type="vanished">Catálogo seleccionado</translation>
     </message>
     <message>
         <source>&amp;AddNew</source>
@@ -2101,11 +1472,6 @@
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <source>Manage all Catalogs</source>
-        <extracomment>Name of the frame in which buttons for operating all catalogs are arranged</extracomment>
-        <translation type="vanished">Todos los catálogos</translation>
-    </message>
-    <message>
         <source>DeleteAll</source>
         <translation>Eliminar Todos</translation>
     </message>
@@ -2116,57 +1482,8 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Nombre</translation>
-    </message>
-    <message>
-        <source>Created</source>
-        <translation type="vanished">día y hora de hacer</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation type="vanished">Archivo</translation>
-    </message>
-    <message>
-        <source>Start Work</source>
-        <translation type="vanished">Comienza el tratamiento</translation>
-    </message>
-    <message>
-        <source>Cancel Work</source>
-        <translation type="vanished">Cancela el tratamiento</translation>
-    </message>
-    <message>
-        <source>soon</source>
-        <translation type="vanished">Pronto</translation>
-    </message>
-    <message>
-        <source>Edit a Catalog</source>
-        <translation type="vanished">Redacta el catálogo</translation>
-    </message>
-    <message>
-        <source>Catalog Create Cancelled</source>
-        <translation type="vanished">Crear un catálogo ha estado cancelado</translation>
-    </message>
-    <message>
-        <source>Successed!</source>
-        <translation type="vanished">¡Tuvo éxito!</translation>
-    </message>
-    <message>
-        <source>Creating Catalog Finished</source>
-        <translation type="vanished">Crear un catálogo ha estado terminado</translation>
-    </message>
-    <message>
-        <source>Cancelled!</source>
-        <translation type="vanished">Ha cancelado</translation>
-    </message>
-    <message>
-        <source>Name</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
         <translation>Nombre</translation>
-    </message>
-    <message>
-        <source>Created</source>
-        <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="obsolete">día y hora de hacer</translation>
     </message>
     <message>
         <source>Path</source>
@@ -2184,34 +1501,14 @@
         <translation>Cancelar</translation>
     </message>
     <message>
-        <source>soon</source>
-        <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
-        <translation type="obsolete">Pronto</translation>
-    </message>
-    <message>
-        <source>Edit a Catalog</source>
-        <comment>Button for editing contents of already created catalog</comment>
-        <translation type="obsolete">Redacta el catálogo</translation>
-    </message>
-    <message>
         <source>Successed!</source>
         <comment>Title of message box when catalog generation finished successfully</comment>
         <translation>¡Fue Exitoso!</translation>
     </message>
     <message>
-        <source>Creating Catalog Finished</source>
-        <comment>Body of message box when catalog generation finished successfully</comment>
-        <translation type="obsolete">Crear un catálogo ha estado terminado</translation>
-    </message>
-    <message>
         <source>Cancelled!</source>
         <comment>Title of message box when catalog generation was canceled</comment>
         <translation>Ha Cancelado!</translation>
-    </message>
-    <message>
-        <source>Catalog Create Cancelled</source>
-        <comment>Body of message box when catalog generation is canceled</comment>
-        <translation type="obsolete">Crear un catálogo ha estado cancelado</translation>
     </message>
     <message>
         <source>Selected Catalog</source>
@@ -2262,31 +1559,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Motions</source>
-        <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="obsolete">Movimiento</translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="obsolete">Explicación</translation>
-    </message>
-    <message>
-        <source>CurrentShortcut</source>
-        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="obsolete">Atajo actualidad</translation>
-    </message>
-    <message>
-        <source>Key sequence has potential conflicts.</source>
-        <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
-        <translation type="obsolete">Compitiendo con otoro atajo teclado.</translation>
-    </message>
-    <message>
-        <source>Motions</source>
-        <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation type="vanished">Accion</translation>
-    </message>
-    <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
         <translation>Descripcion</translation>
@@ -2329,14 +1601,6 @@
         <translation>Opciones</translation>
     </message>
     <message>
-        <source>Increasing it makes NextVolume / PrevVolume more comfortable but increases memory consumption. 1 is appropriate for 32 bit version.</source>
-        <translation type="vanished">Incrementa el numero, puede mejorar el próximo volumen / volumen anterior, pero consume muchas memoria. 1 es apropiado para 32 bit versión.</translation>
-    </message>
-    <message>
-        <source>Increasing the value increases the display time of one image</source>
-        <translation type="vanished">Incrementa el numero, incrementa el tiempo de visualización</translation>
-    </message>
-    <message>
         <source>Number of volumes managed simultaneously (Restart is required)</source>
         <extracomment>Maximum number of volumes that an application simultaneously manages on memory</extracomment>
         <translation>Número de volúmenes manejados simultáneamente (Requiere reinicio)</translation>
@@ -2347,21 +1611,9 @@
         <translation>Retrasar Presentacion de Imagenes (milisegundos)</translation>
     </message>
     <message>
-        <source>BackgroundColor</source>
-        <translation type="vanished">Color de fondo</translation>
-    </message>
-    <message>
-        <source>Color1</source>
-        <translation type="vanished">Color1</translation>
-    </message>
-    <message>
         <source>Use checkered pattern</source>
         <extracomment>Function to make the background of the application a pattern of chessboard</extracomment>
         <translation>Utilice un patrón de cuadros</translation>
-    </message>
-    <message>
-        <source>Color2</source>
-        <translation type="vanished">Color2</translation>
     </message>
     <message>
         <source>Increasing the number, the behavior of &quot;NextVolume&quot; / &quot;PrevVolume&quot; improves but, increases memory consumption. 1 is appropriate for 32 bit version.</source>
@@ -2534,15 +1786,6 @@
 <context>
     <name>PageContent</name>
     <message>
-        <source>NOT IMAGE</source>
-        <translation type="vanished">Archivo excepto imágenes</translation>
-    </message>
-    <message>
-        <source>NOT IMAGE</source>
-        <comment>Error messages to be displayed on screen when image loading fails</comment>
-        <translation type="obsolete">Archivo excepto imágenes</translation>
-    </message>
-    <message>
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>Extract solid archives to temporary directory</translation>
@@ -2595,6 +1838,16 @@
         <comment>Image Action Group</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Navigation</source>
+        <comment>Navigation Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dual View</source>
+        <comment>Dual View Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RenameDialog</name>
@@ -2606,24 +1859,6 @@
         <source>EditFilename</source>
         <extracomment>Label text prompting for file name</extracomment>
         <translation>Editar nombre de archivo</translation>
-    </message>
-    <message>
-        <source>Filename can&apos;t be empty.</source>
-        <translation type="vanished">El nombre de archivo no puede estar vacío.</translation>
-    </message>
-    <message>
-        <source>Rename failed. Does the same file name exist?</source>
-        <translation type="vanished">No se pudo cambiar el nombre. ¿Existe el mismo nombre de archivo?</translation>
-    </message>
-    <message>
-        <source>Filename can&apos;t be empty.</source>
-        <comment>An error message to be displayed when the file name is set to the empty character in the file name change dialog</comment>
-        <translation type="obsolete">El nombre de archivo no puede estar vacío.</translation>
-    </message>
-    <message>
-        <source>Rename failed. Does the same file name exist?</source>
-        <comment>Error message to display when file name change fails</comment>
-        <translation type="obsolete">No se pudo cambiar el nombre. ¿Existe el mismo nombre de archivo?</translation>
     </message>
     <message>
         <source>Filename is required.</source>
@@ -2638,23 +1873,6 @@
 </context>
 <context>
     <name>ShortcutButton</name>
-    <message>
-        <source>Click and type the new key sequence.</source>
-        <translation type="vanished">Hace clic y escribe el atajo teclado de atajo nuevo.</translation>
-    </message>
-    <message>
-        <source>Stop Recording</source>
-        <translation type="vanished">Para el récordo</translation>
-    </message>
-    <message>
-        <source>Record</source>
-        <translation type="vanished">Récordo</translation>
-    </message>
-    <message>
-        <source>Click and type the new key sequence.</source>
-        <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation type="obsolete">Hace clic y escribe el atajo teclado de atajo nuevo.</translation>
-    </message>
     <message>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>

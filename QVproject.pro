@@ -37,6 +37,7 @@ unix {
 CODECFORSRC = UTF-8
 
 TRANSLATIONS = \
+    QuickViewer/translations/quickviewer_en.ts \
     QuickViewer/translations/quickviewer_ja.ts \
     QuickViewer/translations/quickviewer_es.ts \
     QuickViewer/translations/quickviewer_zh.ts \

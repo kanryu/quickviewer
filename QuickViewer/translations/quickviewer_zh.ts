@@ -34,18 +34,6 @@
 <context>
     <name>CatalogWindow</name>
     <message>
-        <source>CatalogWindow</source>
-        <translation type="vanished">显示目录</translation>
-    </message>
-    <message>
-        <source>FolderViewSelect</source>
-        <translation type="vanished">转换显示方式</translation>
-    </message>
-    <message>
-        <source>ManageCatalogs</source>
-        <translation type="vanished">管理目录</translation>
-    </message>
-    <message>
         <source>&amp;View</source>
         <translation>视图(&amp;V)</translation>
     </message>
@@ -62,36 +50,8 @@
         <translation>下一个</translation>
     </message>
     <message>
-        <source>FolderViewList</source>
-        <translation type="vanished">清单</translation>
-    </message>
-    <message>
-        <source>FolderViewIcon</source>
-        <translation type="vanished">垂直并排</translation>
-    </message>
-    <message>
-        <source>FolderViewIconNoText</source>
-        <translation type="vanished">只表示图标</translation>
-    </message>
-    <message>
         <source>&amp;CloseWindow</source>
         <translation>关闭窗口(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Input Search words and Press Enter-key</source>
-        <translation type="vanished">以标题检索,要将关键词输入在这栏里</translation>
-    </message>
-    <message>
-        <source>Drop image folders here and create Catalogs.</source>
-        <translation type="vanished">拖放图像文件,制作目录</translation>
-    </message>
-    <message>
-        <source>(%1/%2) volumes listed.</source>
-        <translation type="vanished">(%1/%2)件 正在显示。</translation>
-    </message>
-    <message>
-        <source>Remove (Options) from Book Title</source>
-        <translation type="vanished">从书题除掉(括号)里的选项</translation>
     </message>
     <message>
         <source>Remove (Options) from book title when searching</source>
@@ -109,10 +69,6 @@
     <message>
         <source>catalog management</source>
         <translation>目录管理</translation>
-    </message>
-    <message>
-        <source>Catalog management</source>
-        <translation type="vanished">管理目录</translation>
     </message>
     <message>
         <source>List</source>
@@ -170,15 +126,6 @@
         <translation>选择文件夹路径(&amp;S)</translation>
     </message>
     <message>
-        <source>Select a folder which contains Images or Archives</source>
-        <translation type="vanished">选择包括图像或档案的文件夹</translation>
-    </message>
-    <message>
-        <source>Each catalog can contain subfolders or archives</source>
-        <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
-        <translation type="vanished">各目录能以包含子文件或档案形式制作</translation>
-    </message>
-    <message>
         <source>Each catalog can be created including Subfolders and/or Archives</source>
         <extracomment>A message indicating that one catalog can register multiple subfolders at once</extracomment>
         <translation>目录可以包含子文件夹&quot;/&quot; 或压缩包</translation>
@@ -208,10 +155,6 @@
         <translation>设备型号</translation>
     </message>
     <message>
-        <source>Orientation</source>
-        <translation type="vanished">镜头方向</translation>
-    </message>
-    <message>
         <source>FNumber</source>
         <translation>光圈值</translation>
     </message>
@@ -226,46 +169,6 @@
     <message>
         <source>ImageHeight</source>
         <translation>图像高度</translation>
-    </message>
-    <message>
-        <source>Flash did not fire</source>
-        <translation type="vanished">无闪光</translation>
-    </message>
-    <message>
-        <source>Flash fired</source>
-        <translation type="vanished">有闪光</translation>
-    </message>
-    <message>
-        <source>Horizontal (normal)</source>
-        <translation type="vanished">水平(标准)</translation>
-    </message>
-    <message>
-        <source>Mirror horizontal</source>
-        <translation type="vanished">上下反转</translation>
-    </message>
-    <message>
-        <source>Rotate 180</source>
-        <translation type="vanished">旋转180°</translation>
-    </message>
-    <message>
-        <source>Mirror vertical</source>
-        <translation type="vanished">左右反转</translation>
-    </message>
-    <message>
-        <source>Mirror horizontal and rotate 270 CW</source>
-        <translation type="vanished">上下反转,按顺时针方向旋转270°</translation>
-    </message>
-    <message>
-        <source>Rotate 90 CW</source>
-        <translation type="vanished">按顺时针方向旋转90°</translation>
-    </message>
-    <message>
-        <source>Mirror horizontal and rotate 90 CW</source>
-        <translation type="vanished">上下反转,按顺时针方向旋转90°</translation>
-    </message>
-    <message>
-        <source>Rotate 270 CW</source>
-        <translation type="vanished">按顺时针方向旋转270°</translation>
     </message>
     <message>
         <source>BitsPerSample</source>
@@ -660,14 +563,6 @@
     <name>FolderItemModel</name>
     <message>
         <source>Name</source>
-        <translation type="vanished">文件内容名</translation>
-    </message>
-    <message>
-        <source>ModifiedTime</source>
-        <translation type="vanished">更新时间</translation>
-    </message>
-    <message>
-        <source>Name</source>
         <comment>Title of the column in the folder list when displaying as an independent Window in Folder Window</comment>
         <translation>名称</translation>
     </message>
@@ -679,19 +574,6 @@
 </context>
 <context>
     <name>FolderWindow</name>
-    <message>
-        <source>FolderWindow</source>
-        <translation type="vanished">文件表</translation>
-    </message>
-    <message>
-        <source>Current Folder</source>
-        <extracomment>Label indicating that the current folder PATH is being displayed</extracomment>
-        <translation type="vanished">现在使用的</translation>
-    </message>
-    <message>
-        <source>My Pictures</source>
-        <translation type="vanished">图片收藏</translation>
-    </message>
     <message>
         <source>Move to Home</source>
         <extracomment>Button for returning to QuickViewer&apos;s home folder</extracomment>
@@ -706,11 +588,6 @@
         <source>Next</source>
         <extracomment>Button for returning to the folder after the current displayed folder</extracomment>
         <translation>下一个</translation>
-    </message>
-    <message>
-        <source>To parent folder</source>
-        <extracomment>Button for moving from the currently displayed folder to the next higher folder</extracomment>
-        <translation type="vanished">上文件</translation>
     </message>
     <message>
         <source>Reload</source>
@@ -732,27 +609,6 @@
     <message>
         <source>Others</source>
         <translation>其他</translation>
-    </message>
-    <message>
-        <source>ModifiedTime</source>
-        <translation type="vanished">按更新时间排列</translation>
-    </message>
-    <message>
-        <source>set the folder as Home</source>
-        <translation type="vanished">这个文件夹做主文件夹</translation>
-    </message>
-    <message>
-        <source>No folders or archives</source>
-        <translation type="vanished">找不到文件夹或档案</translation>
-    </message>
-    <message>
-        <source>ChangeSorting</source>
-        <translation type="vanished">变更排列方法</translation>
-    </message>
-    <message>
-        <source>No folders or archives</source>
-        <comment>Display when there is no display item in Folder Window</comment>
-        <translation type="obsolete">找不到文件夹或档案</translation>
     </message>
     <message>
         <source>FolderList</source>
@@ -905,41 +761,6 @@
         <translation>复位</translation>
     </message>
     <message>
-        <source>Command</source>
-        <translation type="vanished">命令</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation type="vanished">说明</translation>
-    </message>
-    <message>
-        <source>Target</source>
-        <translation type="vanished">现在的快捷方式</translation>
-    </message>
-    <message>
-        <source>Invalid key sequence.</source>
-        <translation type="vanished">无效的键入</translation>
-    </message>
-    <message>
-        <source>Key sequence has potential conflicts.</source>
-        <translation type="vanished">冲突其他快捷键</translation>
-    </message>
-    <message>
-        <source>Command</source>
-        <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="obsolete">命令</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="obsolete">说明</translation>
-    </message>
-    <message>
-        <source>Target</source>
-        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="obsolete">现在的快捷方式</translation>
-    </message>
-    <message>
         <source>Invalid key sequence.</source>
         <comment>Message when rejecting input contents of inappropriate shortcut key</comment>
         <translation>无效的键入。</translation>
@@ -948,16 +769,6 @@
         <source>Key sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key</comment>
         <translation>冲突其他快捷键。</translation>
-    </message>
-    <message>
-        <source>Key sequence has potential conflicts.</source>
-        <comment>Text to be displayed when the entered shortcut key conflicts with another shortcut key));</comment>
-        <translation type="obsolete">冲突其他快捷键</translation>
-    </message>
-    <message>
-        <source>Motions</source>
-        <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="vanished">命令</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1061,40 +872,9 @@
         <translation>关闭(&amp;x)</translation>
     </message>
     <message>
-        <source>&amp;NextPage</source>
-        <extracomment>Switch to the next image button</extracomment>
-        <translation type="vanished">下个图像(&amp;N)</translation>
-    </message>
-    <message>
-        <source>NextPage</source>
-        <translation type="vanished">下个图像</translation>
-    </message>
-    <message>
-        <source>&amp;PrevPage</source>
-        <extracomment>Switch to previous image button</extracomment>
-        <translation type="vanished">上个图像(&amp;P)</translation>
-    </message>
-    <message>
-        <source>PrevPage</source>
-        <translation type="vanished">上个图像</translation>
-    </message>
-    <message>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
         <translation>适合尺寸(&amp;F)</translation>
-    </message>
-    <message>
-        <source>Fitting</source>
-        <translation type="vanished">适合</translation>
-    </message>
-    <message>
-        <source>&amp;Spread Viewing</source>
-        <extracomment>Arranging two images side by side like when opening a book</extracomment>
-        <translation type="vanished">合页显示(&amp;D)</translation>
-    </message>
-    <message>
-        <source>Spread Viewing</source>
-        <translation type="vanished">合页显示</translation>
     </message>
     <message>
         <source>&amp;Fullscreen</source>
@@ -1105,27 +885,9 @@
         <translation>QuickViewer</translation>
     </message>
     <message>
-        <source>Bound on the &amp;right side book</source>
-        <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
-        <translation type="vanished">右侧开启的装订显示(&amp;R)</translation>
-    </message>
-    <message>
         <source>&amp;Open Image Folder</source>
         <extracomment>A menu for displaying a dialog for selecting an image to be displayed</extracomment>
         <translation>打开图像文件夹(&amp;O)</translation>
-    </message>
-    <message>
-        <source>&amp;Always open wide images as one view</source>
-        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation type="vanished">横宽的图像合页显示时也只显示一张(&amp;A)</translation>
-    </message>
-    <message>
-        <source>Can&apos;t be opened. Is there no images?</source>
-        <translation type="vanished">打不开了。找不到图像文件。</translation>
-    </message>
-    <message>
-        <source>Open a image or archive</source>
-        <translation type="vanished">选择要阅览的图像或档案</translation>
     </message>
     <message>
         <source>&amp;History</source>
@@ -1147,19 +909,6 @@
         <translation>第一页(&amp;F)</translation>
     </message>
     <message>
-        <source>ShowStatus&amp;Bar</source>
-        <translation type="vanished">显示状态栏(&amp;B)</translation>
-    </message>
-    <message>
-        <source>Show&amp;PageBar</source>
-        <translation type="vanished">显示页面栏(&amp;P)</translation>
-    </message>
-    <message>
-        <source>Open &amp;Explorer</source>
-        <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
-        <translation type="vanished">用Explorer视窗软件打开(&amp;E)</translation>
-    </message>
-    <message>
         <source>Exif &amp;Information</source>
         <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
         <translation>参数信息(&amp;I)</translation>
@@ -1170,18 +919,9 @@
         <translation>快捷键设置(&amp;K)</translation>
     </message>
     <message>
-        <source>any folder or archive is not loaded.</source>
-        <translation type="vanished">没读出文件夹或档案</translation>
-    </message>
-    <message>
         <source>&amp;About QuickViewer</source>
         <extracomment>A menu for displaying a message box for displaying application information</extracomment>
         <translation>关于QuickViewer(&amp;A)</translation>
-    </message>
-    <message>
-        <source>Check &amp;Version by your browser</source>
-        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation type="vanished">打开浏览器确认现在版本(&amp;V)</translation>
     </message>
     <message>
         <source>N&amp;extVolume</source>
@@ -1189,41 +929,13 @@
         <translation>下个画册(&amp;e)</translation>
     </message>
     <message>
-        <source>P&amp;revVolume</source>
-        <extracomment>Switch to the previous Volume in the same folder as Volume currently being displayed Button</extracomment>
-        <translation type="vanished">上卷(&amp;R)</translation>
-    </message>
-    <message>
         <source>&amp;Navigation</source>
         <translation>导航(&amp;N)</translation>
-    </message>
-    <message>
-        <source>Next only &amp;one page</source>
-        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation type="vanished">只翻一页(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Prev only o&amp;ne page</source>
-        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation type="vanished">只回一页(&amp;N)</translation>
     </message>
     <message>
         <source>ExitApplicationOrFullscreen</source>
         <extracomment>Function that cancels it while full screen is displayed and terminates the application otherwise</extracomment>
         <translation>退出</translation>
-    </message>
-    <message>
-        <source>Show&amp;ToolBar</source>
-        <translation type="vanished">显示工具栏(&amp;T)</translation>
-    </message>
-    <message>
-        <source>Always open &amp;first images as one view</source>
-        <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
-        <translation type="vanished">开始(封面)的图像合页显示时也只显示一张(&amp;F)</translation>
-    </message>
-    <message>
-        <source>Show&amp;MenuBar</source>
-        <translation type="vanished">显示菜单栏(&amp;M)</translation>
     </message>
     <message>
         <source>&amp;Clear History</source>
@@ -1236,24 +948,8 @@
         <translation>置顶(&amp;T)</translation>
     </message>
     <message>
-        <source>Confirmation</source>
-        <translation type="vanished">确认</translation>
-    </message>
-    <message>
-        <source>Do you really want to clear the main menu?</source>
-        <translation type="vanished">真的不表示主菜单?</translation>
-    </message>
-    <message>
-        <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
-        <translation type="vanished">按F8键盘(默认)或者在标题栏上表示快捷菜单选择&lt;br /&gt;&lt;strong&gt;《转换表示主菜单／不表示》&lt;/strong&gt;</translation>
-    </message>
-    <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
         <translation>显示/隐藏主菜单栏(&amp;o)</translation>
-    </message>
-    <message>
-        <source>Are you sure you delete the image?</source>
-        <translation type="vanished">真的将这图像扔进垃圾箱吗?</translation>
     </message>
     <message>
         <source>&amp;Shader</source>
@@ -1263,11 +959,6 @@
         <source>&amp;Maximize or Normal</source>
         <extracomment>Function to switch windows to maximize or normal display</extracomment>
         <translation>最大化或恢复窗口(&amp;M)</translation>
-    </message>
-    <message>
-        <source>&amp;Restore Window State on next run</source>
-        <extracomment>When restarting the next time, restore the position size of the window at the time of the last termination</extracomment>
-        <translation type="vanished">把窗口的表示下打开程序时恢复以前的状态(&amp;R)</translation>
     </message>
     <message>
         <source>FastForward</source>
@@ -1285,19 +976,9 @@
         <translation>旋转(&amp;R)</translation>
     </message>
     <message>
-        <source>&amp;SlideShow</source>
-        <extracomment>Button to start displaying slideshow</extracomment>
-        <translation type="vanished">幻灯片(&amp;S)</translation>
-    </message>
-    <message>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
         <translation>读取书签</translation>
-    </message>
-    <message>
-        <source>SaveBookmark</source>
-        <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
-        <translation type="vanished">加入书签</translation>
     </message>
     <message>
         <source>ManageBookmarks</source>
@@ -1327,16 +1008,6 @@
         <translation>兰克泽斯插法处理(&amp;L 非常慢)</translation>
     </message>
     <message>
-        <source>&amp;Nearest Neighbor interpolation (coarse)</source>
-        <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
-        <translation type="vanished">最近插法处理(&amp;N 太快而粗))</translation>
-    </message>
-    <message>
-        <source>&amp;Project WebPage by your browser</source>
-        <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation type="vanished">主页通过浏览器显示(&amp;P)</translation>
-    </message>
-    <message>
         <source>&amp;Catalog</source>
         <translation>目录(&amp;C)</translation>
     </message>
@@ -1359,15 +1030,6 @@
         <translation>缩小</translation>
     </message>
     <message>
-        <source>Show&amp;Catalog</source>
-        <extracomment>Button to display Catalog Window. Switch between internal display, independent display, and erase</extracomment>
-        <translation type="vanished">显示目录(&amp;C)</translation>
-    </message>
-    <message>
-        <source>ShowCatalog</source>
-        <translation type="vanished">显示目录</translation>
-    </message>
-    <message>
         <source>Remove (Options) from Book Title</source>
         <extracomment>Ability to remove and display (parenthesized) text from Volume title in the catalog</extracomment>
         <translation>从标题中移除(选项)</translation>
@@ -1383,11 +1045,6 @@
         <translation>目录图标</translation>
     </message>
     <message>
-        <source>CatalogViewIconNoText</source>
-        <extracomment>Mode to list Volume in the catalog with only the icons side by side</extracomment>
-        <translation type="vanished">只显示图标</translation>
-    </message>
-    <message>
         <source>CatalogViewList</source>
         <extracomment>Mode to list volumes in the catalog with icons and titles arranged side by side</extracomment>
         <translation>目录列表</translation>
@@ -1398,33 +1055,9 @@
         <translation>显示TagBar</translation>
     </message>
     <message>
-        <source>&amp;Copy Image to clipboard</source>
-        <extracomment>A menu for copying the bitmap of the currently displayed image to the clipboard</extracomment>
-        <translation type="vanished">将图像拷在剪贴板上(&amp;C)</translation>
-    </message>
-    <message>
-        <source>Move Image to &amp;Recycle Bin</source>
-        <extracomment>Menu that puts the currently displayed image in Recycle Bin</extracomment>
-        <translation type="vanished">将现在表示页放进垃圾箱(&amp;R)</translation>
-    </message>
-    <message>
         <source>Copy File to clipboard</source>
         <extracomment>Menu to copy currently displayed image file on Explorer</extracomment>
         <translation>复制文件导剪切板</translation>
-    </message>
-    <message>
-        <source>Run your &amp;mailer with an attachment</source>
-        <extracomment>Menu to attach the currently displayed image to the mail software and start up</extracomment>
-        <translation type="vanished">调出附件启动电子邮件软件(&amp;M)</translation>
-    </message>
-    <message>
-        <source>Run your mailer with an attachment</source>
-        <translation type="vanished">调出附件启动电子邮件软件</translation>
-    </message>
-    <message>
-        <source>Show large &amp;grid for long titles</source>
-        <extracomment>Functions to be used when the Volume title in the catalog is long</extracomment>
-        <translation type="vanished">为了显示长题扩大框架(&amp;G)</translation>
     </message>
     <message>
         <source>&amp;Bilinear interpolation (fast)</source>
@@ -1432,47 +1065,8 @@
         <translation>双线性插法(&amp;B 快速)</translation>
     </message>
     <message>
-        <source>Show&amp;Folder</source>
-        <extracomment>Button to display FolderWindow. Switch between internal display, independent display, and erase</extracomment>
-        <translation type="vanished">显示文件夹(&amp;F)</translation>
-    </message>
-    <message>
-        <source>CPU Bicubic after GPU Bilinear(standard)</source>
-        <extracomment>Preview by bilinear with GPU, then replace with bicubic resized image by CPU</extracomment>
-        <translation type="vanished">用GPU双线性插值后，用CPU双三次插值(标准）</translation>
-    </message>
-    <message>
-        <source>CPU Bicubic interpolation</source>
-        <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
-        <translation type="vanished">用CPU双三次插值</translation>
-    </message>
-    <message>
-        <source>ShowSubfolders</source>
-        <extracomment>When enumerating images, subfolders are also included in the range</extracomment>
-        <translation type="vanished">打开子文件夹</translation>
-    </message>
-    <message>
-        <source>ShowImages in sub folders</source>
-        <translation type="vanished">打开子文件夹内的图像</translation>
-    </message>
-    <message>
         <source>F&amp;older</source>
         <translation>文件夹(&amp;o)</translation>
-    </message>
-    <message>
-        <source>Open volume with progress</source>
-        <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
-        <translation type="vanished">打开以前打开过的书页</translation>
-    </message>
-    <message>
-        <source>ShowReadProgress</source>
-        <extracomment>Ability to display read information read in the middle in FolderWindow</extracomment>
-        <translation type="vanished">显示读到那里</translation>
-    </message>
-    <message>
-        <source>&amp;Options Config</source>
-        <extracomment>Menu for displaying a dialog for changing the adjunct setting of the application</extracomment>
-        <translation type="vanished">选项设置(&amp;O)</translation>
     </message>
     <message>
         <source>Don&apos;t enlarge small images on Fitting</source>
@@ -1483,50 +1077,6 @@
         <source>Show texts on Fullscreen</source>
         <extracomment>Signage that displays the file name of the image at full screen display</extracomment>
         <translation>全屏显示文字</translation>
-    </message>
-    <message>
-        <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
-        <translation type="vanished">全文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
-    </message>
-    <message>
-        <source>any folder or archive is not loaded.</source>
-        <comment>The text of the status bar to be displayed when there is no image to be displayed immediately after the application is activated</comment>
-        <translation type="obsolete">没读出文件夹或档案</translation>
-    </message>
-    <message>
-        <source>Can&apos;t be opened. Is there no images?</source>
-        <comment>Text to display in the status bar when failed to open the specified Volume</comment>
-        <translation type="obsolete">打不开了。找不到图像文件。</translation>
-    </message>
-    <message>
-        <source>All Files( *.*);;Images (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
-        <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation type="vanished">任意文件( *.*);;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;压缩包( *.zip *.7z *.rar)</translation>
-    </message>
-    <message>
-        <source>Open a image or archive</source>
-        <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
-        <translation type="obsolete">选择要阅览的图像或档案</translation>
-    </message>
-    <message>
-        <source>Do you really want to clear the main menu?</source>
-        <comment>Message confirming to hide the main menu</comment>
-        <translation type="obsolete">真的不表示主菜单?</translation>
-    </message>
-    <message>
-        <source>Press F8(default), or Show a context menu on the title bar, &lt;br /&gt;and select &lt;strong&gt;&apos;Show/Hide MainMenuBar&apos;&lt;/strong&gt;</source>
-        <comment>Message confirming to hide the main menu</comment>
-        <translation type="vanished">按F8键盘(默认)或者在标题栏上表示快捷菜单选择&lt;br /&gt;&lt;strong&gt;《转换表示主菜单／不表示》&lt;/strong&gt;</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Box MessageBox title</comment>
-        <translation type="vanished">确认</translation>
-    </message>
-    <message>
-        <source>Are you sure you delete the image?</source>
-        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="obsolete">真的将这图像扔进垃圾箱吗?</translation>
     </message>
     <message>
         <source>&amp;NextImage</source>
@@ -1549,24 +1099,9 @@
         <translation>右侧显示(&amp;r)</translation>
     </message>
     <message>
-        <source>&amp;Always display one landscape image even in 2 page display.</source>
-        <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation type="vanished">横宽的图像合页显示时也只显示一张(&amp;A)</translation>
-    </message>
-    <message>
         <source>Open in &amp;Explorer</source>
         <extracomment>Menu that displays Explorer with the currently displayed image file selected</extracomment>
         <translation>在文件管理器中查看(&amp;E)</translation>
-    </message>
-    <message>
-        <source>Open browser to check &amp;Version</source>
-        <extracomment>A menu to start up the browser to check whether the currently used QuickViewer is the latest version on the project web page</extracomment>
-        <translation type="vanished">打开浏览器确认现在版本(&amp;V)</translation>
-    </message>
-    <message>
-        <source>Advance &amp;one page only</source>
-        <extracomment>Because there are times when the page is missing due to bookbinding convenience, digital books will fit the left and right pages with this operation</extracomment>
-        <translation type="vanished">只翻一页(&amp;O)</translation>
     </message>
     <message>
         <source>Prev o&amp;ne page only</source>
@@ -1592,11 +1127,6 @@
         <source>AddBookmark</source>
         <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
         <translation>加入书签</translation>
-    </message>
-    <message>
-        <source>Display Home&amp;page on browser</source>
-        <extracomment>Button to display the web page of the project in the browser</extracomment>
-        <translation type="vanished">主页通过浏览器显示(&amp;P)</translation>
     </message>
     <message>
         <source>IconViewOnly</source>
@@ -1657,16 +1187,6 @@
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
         <translation>选择图片</translation>
-    </message>
-    <message>
-        <source>Do you really want to hide the main menu?</source>
-        <comment>Message confirming to hide the main menu</comment>
-        <translation type="vanished">真的不表示主菜单?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this image?</source>
-        <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
-        <translation type="vanished">真的将这图像扔进垃圾箱吗?</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -1920,15 +1440,6 @@
 <context>
     <name>MainWindowForWindows</name>
     <message>
-        <source>Sh&amp;ow or Hide MainMenuBar</source>
-        <translation type="vanished">转换主菜单的显示/不显示(&amp;O)</translation>
-    </message>
-    <message>
-        <source>Sh&amp;ow or Hide MainMenuBar</source>
-        <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
-        <translation type="obsolete">转换主菜单的显示/不显示(&amp;O)</translation>
-    </message>
-    <message>
         <source>Sh&amp;ow/Hide MainMenuBar</source>
         <comment>An additional menu displayed when right-clicking the title bar, which is used when undoing the main menu when it is hidden</comment>
         <translation>显示/隐藏主菜单(&amp;o)</translation>
@@ -1939,11 +1450,6 @@
     <message>
         <source>ManageCatalogs</source>
         <translation>目录管理</translation>
-    </message>
-    <message>
-        <source>Manage a Catalog</source>
-        <extracomment>Name of the frame in which buttons for operating one catalog are arranged</extracomment>
-        <translation type="vanished">选择的目录</translation>
     </message>
     <message>
         <source>&amp;AddNew</source>
@@ -1966,11 +1472,6 @@
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <source>Manage all Catalogs</source>
-        <extracomment>Name of the frame in which buttons for operating all catalogs are arranged</extracomment>
-        <translation type="vanished">全目录</translation>
-    </message>
-    <message>
         <source>DeleteAll</source>
         <translation>删除全部</translation>
     </message>
@@ -1981,57 +1482,8 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">目录名</translation>
-    </message>
-    <message>
-        <source>Created</source>
-        <translation type="vanished">制作时间</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation type="vanished">文件夹</translation>
-    </message>
-    <message>
-        <source>Start Work</source>
-        <translation type="vanished">开始处理</translation>
-    </message>
-    <message>
-        <source>Cancel Work</source>
-        <translation type="vanished">取消处理</translation>
-    </message>
-    <message>
-        <source>soon</source>
-        <translation type="vanished">即将开始</translation>
-    </message>
-    <message>
-        <source>Edit a Catalog</source>
-        <translation type="vanished">剪辑目录</translation>
-    </message>
-    <message>
-        <source>Catalog Create Cancelled</source>
-        <translation type="vanished">取消了目录制作</translation>
-    </message>
-    <message>
-        <source>Successed!</source>
-        <translation type="vanished">成功了！</translation>
-    </message>
-    <message>
-        <source>Creating Catalog Finished</source>
-        <translation type="vanished">制作目录结束了</translation>
-    </message>
-    <message>
-        <source>Cancelled!</source>
-        <translation type="vanished">取消了！</translation>
-    </message>
-    <message>
-        <source>Name</source>
         <comment>Title of the column in the list part of the folder registered as Catalog</comment>
         <translation>名称</translation>
-    </message>
-    <message>
-        <source>Created</source>
-        <comment>Title of the column in the list part of the folder registered as Catalog</comment>
-        <translation type="obsolete">制作时间</translation>
     </message>
     <message>
         <source>Path</source>
@@ -2049,34 +1501,14 @@
         <translation>取消处理</translation>
     </message>
     <message>
-        <source>soon</source>
-        <comment>Representation of time indicating that the catalog is not currently created and will be generated from now</comment>
-        <translation type="obsolete">即将开始</translation>
-    </message>
-    <message>
-        <source>Edit a Catalog</source>
-        <comment>Button for editing contents of already created catalog</comment>
-        <translation type="obsolete">剪辑目录</translation>
-    </message>
-    <message>
         <source>Successed!</source>
         <comment>Title of message box when catalog generation finished successfully</comment>
         <translation>成功！</translation>
     </message>
     <message>
-        <source>Creating Catalog Finished</source>
-        <comment>Body of message box when catalog generation finished successfully</comment>
-        <translation type="obsolete">制作目录结束了</translation>
-    </message>
-    <message>
         <source>Cancelled!</source>
         <comment>Title of message box when catalog generation was canceled</comment>
         <translation>取消！</translation>
-    </message>
-    <message>
-        <source>Catalog Create Cancelled</source>
-        <comment>Body of message box when catalog generation is canceled</comment>
-        <translation type="obsolete">取消了目录制作</translation>
     </message>
     <message>
         <source>Selected Catalog</source>
@@ -2116,26 +1548,6 @@
 </context>
 <context>
     <name>MouseConfigDialog</name>
-    <message>
-        <source>Motions</source>
-        <comment>Title of the column of Action to be registered with the shortcut key</comment>
-        <translation type="obsolete">命令</translation>
-    </message>
-    <message>
-        <source>Description</source>
-        <comment>Title of the column that displays the meaning of the action to be registered with the shortcut key</comment>
-        <translation type="obsolete">说明</translation>
-    </message>
-    <message>
-        <source>CurrentShortcut</source>
-        <comment>Title of the column of the content of the shortcut key registered for Action</comment>
-        <translation type="obsolete">快捷</translation>
-    </message>
-    <message>
-        <source>Motions</source>
-        <comment>Title of the column of Action to be registered with the mouse sequence</comment>
-        <translation type="vanished">命令</translation>
-    </message>
     <message>
         <source>Description</source>
         <comment>Title of the column that displays the meaning of the action to be registered with the mouse sequence</comment>
@@ -2187,14 +1599,6 @@
     <message>
         <source>Options</source>
         <translation>选项</translation>
-    </message>
-    <message>
-        <source>Increasing it makes NextVolume / PrevVolume more comfortable but increases memory consumption. 1 is appropriate for 32 bit version.</source>
-        <translation type="vanished">增加数值就改善《下卷》/《上卷》的举动，可多占内存。32位元版以1为合适的。</translation>
-    </message>
-    <message>
-        <source>Increasing the value increases the display time of one image</source>
-        <translation type="vanished">增加数值每一张图像显示时间就长</translation>
     </message>
     <message>
         <source>Number of volumes managed simultaneously (Restart is required)</source>
@@ -2382,15 +1786,6 @@
 <context>
     <name>PageContent</name>
     <message>
-        <source>NOT IMAGE</source>
-        <translation type="vanished">不是图像文件</translation>
-    </message>
-    <message>
-        <source>NOT IMAGE</source>
-        <comment>Error messages to be displayed on screen when image loading fails</comment>
-        <translation type="obsolete">不是图像文件</translation>
-    </message>
-    <message>
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>不是图像文件</translation>
@@ -2443,6 +1838,16 @@
         <comment>Image Action Group</comment>
         <translation>图像</translation>
     </message>
+    <message>
+        <source>Navigation</source>
+        <comment>Navigation Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dual View</source>
+        <comment>Dual View Action Group</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RenameDialog</name>
@@ -2468,23 +1873,6 @@
 </context>
 <context>
     <name>ShortcutButton</name>
-    <message>
-        <source>Click and type the new key sequence.</source>
-        <translation type="vanished">点击用键盘输入新快捷键</translation>
-    </message>
-    <message>
-        <source>Stop Recording</source>
-        <translation type="vanished">停止保存</translation>
-    </message>
-    <message>
-        <source>Record</source>
-        <translation type="vanished">保存</translation>
-    </message>
-    <message>
-        <source>Click and type the new key sequence.</source>
-        <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation type="obsolete">点击用键盘输入新快捷键</translation>
-    </message>
     <message>
         <source>Stop Recording</source>
         <comment>Button for canceling shortcut key input</comment>
