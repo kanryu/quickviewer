@@ -1297,11 +1297,6 @@
         <translation>Eliminar la imagen</translation>
     </message>
     <message>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
-        <translation>Confirmar</translation>
-    </message>
-    <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation>¿Tirar esta imagen a la basura?</translation>

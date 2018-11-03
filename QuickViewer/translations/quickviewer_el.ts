@@ -1239,11 +1239,6 @@
         <translation>Επιβεβαίωση</translation>
     </message>
     <message>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
-        <translation>Επιβεβαίωση</translation>
-    </message>
-    <message>
         <source>ExitApplicationOrFullscreen</source>
         <extracomment>Function that cancels it while full screen is displayed and terminates the application otherwise</extracomment>
         <translation>Έξοδος εφαρμογής σε πλήρη οθόνη</translation>

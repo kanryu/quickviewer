@@ -1297,11 +1297,6 @@
         <translation>現在のページの画像ファイルを削除する</translation>
     </message>
     <message>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
-        <translation>確認</translation>
-    </message>
-    <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation>本当にこの画像をゴミ箱に入れますか？</translation>

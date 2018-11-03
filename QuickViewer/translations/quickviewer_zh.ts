@@ -1297,11 +1297,6 @@
         <translation>删除图片</translation>
     </message>
     <message>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
-        <translation>确认</translation>
-    </message>
-    <message>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation>确认移动图片到回收站？</translation>

@@ -1563,7 +1563,7 @@ void MainWindow::onActionRecyclePage_triggered()
         QMessageBox msgBox(this);
         msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
         msgBox.setDefaultButton(QMessageBox::Cancel);
-        msgBox.setWindowTitle(tr("Confirmation", "Confirm putting displayed file in Recycle Bing MessageBox title"));
+        msgBox.setWindowTitle(tr("Confirmation", "Confirm deleting image file on MessageBox title"));
 
         //text
         msgBox.setTextFormat(Qt::RichText);

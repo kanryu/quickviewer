@@ -1738,18 +1738,13 @@
         <translation>Please select the image or archive</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1566"/>
-        <source>Confirmation</source>
-        <comment>Confirm putting displayed file in Recycle Bing MessageBox title</comment>
-        <translation>Confirmation</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="1571"/>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation>Are you sure you want to move the image to Recycle Bin</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1566"/>
         <location filename="../src/mainwindow.cpp" line="1602"/>
         <source>Confirmation</source>
         <comment>Confirm deleting image file on MessageBox title</comment>
