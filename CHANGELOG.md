@@ -1,5 +1,46 @@
 # CHANGELOG
 
+## v1.1.2 (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+
+Support text based translations
+
+- Support text based translations
+- You can translate QuickViewer only with a text editor
+- Support for not portable versions
+- Can be a packaged application some linux distributions
+- QuickViewer installer format from this version is provided.(Windows)
+- Bugfixed: a problem to show mainmenu when to show on top
+
+- other commits
+    - truncate dupulicated word 'Conformation' (Sun Nov 4 07:54:57 2018 +0900) [bbdd40e](https://github.com/kanryu/quickviewer/commit/bbdd40e99410501b63664956b5e775ddcaa71806)
+    - add translations/quickviewer_en.ts (Sun Nov 4 07:34:54 2018 +0900) [d41cf99](https://github.com/kanryu/quickviewer/commit/d41cf99fe325778557eba970d3a4fcf3a7e0dc15)
+    -  (Sun Nov 4 07:34:54 2018 +0900) [d41cf99](https://github.com/kanryu/quickviewer/commit/d41cf99fe325778557eba970d3a4fcf3a7e0dc15)
+    -  add translations/quickviewer_en.ts (dummy for lingohub.com) (Sun Nov 4 07:34:54 2018 +0900) [d41cf99](https://github.com/kanryu/quickviewer/commit/d41cf99fe325778557eba970d3a4fcf3a7e0dc15)
+    -  truncate other tss about vanished, obsoleted (Sun Nov 4 07:34:54 2018 +0900) [d41cf99](https://github.com/kanryu/quickviewer/commit/d41cf99fe325778557eba970d3a4fcf3a7e0dc15)
+    - Update HowToBuild.md (Thu Nov 1 17:11:56 2018 +0900) [7f77145](https://github.com/kanryu/quickviewer/commit/7f77145b22915ce391aa8eb3f8c694106156c0af)
+    - Update HowToBuild.md (Thu Nov 1 16:55:09 2018 +0900) [95277a8](https://github.com/kanryu/quickviewer/commit/95277a81b99fbbe327f087800d6237ccd56eb262)
+    - checking for building on linux with OpenGL (Tue Oct 23 21:53:49 2018 +0900) [79143f2](https://github.com/kanryu/quickviewer/commit/79143f2797980c8447d020e4bdbd5068c4b7844b)
+    - checked for ubuntu linux 16.04.2 (Mon Oct 22 21:20:22 2018 +0900) [dbce11b](https://github.com/kanryu/quickviewer/commit/dbce11b1bc78f82eb75430a2d3370c07888c0604)
+    - checked for ubuntu linux 16.04.2 (Mon Oct 22 20:30:28 2018 +0900) [ed0d9a3](https://github.com/kanryu/quickviewer/commit/ed0d9a30d228818bd837241b14ebcb1b22b8272a)
+    - Create terms_of_service.md (Mon Oct 22 18:25:05 2018 +0900) [5b5d398](https://github.com/kanryu/quickviewer/commit/5b5d398b3b822432b3766730d290e1348d212ec1)
+    - add privacy policy (Mon Oct 22 18:11:28 2018 +0900) [a86b26c](https://github.com/kanryu/quickviewer/commit/a86b26ca82840109ea467da689e5013667041f17)
+    - Update index.md (Mon Oct 22 18:00:40 2018 +0900) [d15ed7b](https://github.com/kanryu/quickviewer/commit/d15ed7b539301cf6290ae39d9a86a1dcc526a2c9)
+    - Create privacypolicy.md (Mon Oct 22 17:57:19 2018 +0900) [99b3784](https://github.com/kanryu/quickviewer/commit/99b3784c7b6809dc8870a5167b2aef70e7123ca8)
+    - Support to build at linux in the environment (Mon Oct 22 16:21:36 2018 +0900) [fe69ccc](https://github.com/kanryu/quickviewer/commit/fe69ccc356f5db58b72f11793a495959f60bcb90)
+    - Supported about QV_PORTABLE (Mon Oct 22 14:33:56 2018 +0900) [7254b8b](https://github.com/kanryu/quickviewer/commit/7254b8be350b18a9013f3a785db4ccc9e6bcf39f)
+    -  (Mon Oct 22 14:33:56 2018 +0900) [7254b8b](https://github.com/kanryu/quickviewer/commit/7254b8be350b18a9013f3a785db4ccc9e6bcf39f)
+    -  A flag indicating that it is portable is introduced. As a result, it can be assumed that an application is installed in the same way as a normal application (Mon Oct 22 14:33:56 2018 +0900) [7254b8b](https://github.com/kanryu/quickviewer/commit/7254b8be350b18a9013f3a785db4ccc9e6bcf39f)
+    - Bugfixed: a problem to show mainmenu when to show on top (Wed Oct 10 18:47:02 2018 +0900) [2acff6c](https://github.com/kanryu/quickviewer/commit/2acff6c815267cab5cc5d96504d3dcba5a88d7ca)
+    - Update index-ja.md (Sun Sep 23 15:08:27 2018 +0900) [7407ce5](https://github.com/kanryu/quickviewer/commit/7407ce5031ee933bfeba15c8884405780d2ee0bd)
+    - Update index.md (Sun Sep 23 15:07:34 2018 +0900) [4c9a623](https://github.com/kanryu/quickviewer/commit/4c9a623337ed3632aa1dfc7e30dbc293acd00c37)
+    - Update index.md (Tue Aug 28 23:53:01 2018 +0900) [b3efc87](https://github.com/kanryu/quickviewer/commit/b3efc87280421f9047a95594f6d3a815ddcaacd8)
+    - bugfixed: fixed for building by g++ (Tue Aug 28 23:26:50 2018 +0900) [1a12dbc](https://github.com/kanryu/quickviewer/commit/1a12dbc5d05591a612bf25e0888649ca0ce9832b)
+    - Update README.md (Thu Aug 9 09:04:20 2018 +0900) [8060bb8](https://github.com/kanryu/quickviewer/commit/8060bb8b0697ceb953cde75a6b81309d4e2eb868)
+    - Update index-ja.md (Mon Aug 6 18:32:35 2018 +0900) [73255a4](https://github.com/kanryu/quickviewer/commit/73255a4df929abd45bbcb90d5568b194121ec4aa)
+    - Update index.md (Mon Aug 6 18:31:52 2018 +0900) [c0a49e5](https://github.com/kanryu/quickviewer/commit/c0a49e56a2289edd039fa2fb38138c58cc188720)
+    - Update index.md (Sat Aug 4 23:02:55 2018 +0900) [eb415c1](https://github.com/kanryu/quickviewer/commit/eb415c1a5f9c255c27fed85d6763eee8219c6aa9)
+    - changelog (Sun Jul 29 19:44:30 2018 +0900) [a195bdb](https://github.com/kanryu/quickviewer/commit/a195bdbf444cf1ddc26fcd51c8cb438de88a68f3)
+
 ## v1.1.1 (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
 
 - Show Actions By Group on KeyConfig / MouseConfig
