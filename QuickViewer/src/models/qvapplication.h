@@ -108,6 +108,7 @@ public:
      */
     QString getFilePathOfApplicationSetting(QString subFilePath);
     QString getUserHomeFilePath(QString subFilePath);
+    QString getTranslationPath();
 
     void myInstallTranslator();
 

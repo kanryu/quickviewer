@@ -5,6 +5,7 @@
 #include "models/volumemanager.h"
 #include "imageview.h"
 #include "imagestring.h"
+#include "qlanguageselector.h"
 
 namespace Ui {
 class MainWindow;
@@ -161,6 +162,7 @@ public slots:
 //    void on_languageSpanish_triggered();
 //    void on_languageChinese_triggered();
     void onLanguageSelector_languageChanged(QString language);
+    void onLanguageSelector_openTextEditorForLanguage(LanguageInfo info);
     void onActionRegistAssocs_triggered();
     void onActionRegistAssocsUAC_triggered();
 

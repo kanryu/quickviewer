@@ -2,7 +2,7 @@
 DEFINES += QV_WITH_LUMINOR
 
 ## Comment out if you need OpenGL support
-#DEFINES += QV_WITHOUT_OPENGL
+DEFINES += QV_WITHOUT_OPENGL
 
 ## Define when asking for portable operation.
 ## When off, the installation will be done by OS standard method

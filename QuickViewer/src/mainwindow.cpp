@@ -117,6 +117,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Languages
     qApp->languageSelector()->initializeMenu(ui->menuChange_Language);
     connect(qApp->languageSelector(), SIGNAL(languageChanged(QString)), this, SLOT(onLanguageSelector_languageChanged(QString)));
+    connect(qApp->languageSelector(), SIGNAL(openTextEditorForLanguage(LanguageInfo)), this, SLOT(onLanguageSelector_openTextEditorForLanguage(LanguageInfo)));
 
     // ToolBar/PageBar/StatusBar/MenuBar
     ui->actionShowToolBar->setChecked(qApp->ShowToolBar());
@@ -1064,6 +1065,21 @@ void MainWindow::onLanguageSelector_languageChanged(QString language)
     qApp->setUiLanguage(language);
     ui->retranslateUi(this);
     ui->menuLoadBookmark->setTitle(QApplication::translate("MainWindow", "LoadBookmark", Q_NULLPTR));
+}
+
+void MainWindow::onLanguageSelector_openTextEditorForLanguage(LanguageInfo info)
+{
+    qDebug() << "openTextEditorForLanguage:" << info.TextFile;
+    QMessageBox msgBox(qApp->activeWindow());
+    msgBox.setIcon(QMessageBox::Information);
+    msgBox.setTextFormat(Qt::RichText);
+    QDir translationDir(qApp->getTranslationPath());
+    QString message = QString("<p>You can translate QuickViewer with a text editor!</p>"
+                              "<p>1. Open the file <b>\"%1\"</b><br />2. Save the file<br />3. Select 'UserLanguage' again.</p>")
+            .arg(translationDir.filePath(info.TextFile));
+
+    msgBox.setText(message);
+    msgBox.exec();
 }
 
 void MainWindow::onActionRegistAssocs_triggered()

@@ -41,11 +41,13 @@ INCLUDEPATH += ../QuickViewer/src/qlanguageselector
 SOURCES += \
         main.cpp \
         fileassocdialog.cpp \
-    ../QuickViewer/src/qlanguageselector/qlanguageselector.cpp
+    ../QuickViewer/src/qlanguageselector/qlanguageselector.cpp \
+    ../QuickViewer/src/qlanguageselector/qtexttranslator.cpp
 
 HEADERS += \
         fileassocdialog.h \
-    ../QuickViewer/src/qlanguageselector/qlanguageselector.h
+    ../QuickViewer/src/qlanguageselector/qlanguageselector.h \
+    ../QuickViewer/src/qlanguageselector/qtexttranslator.h
 
 FORMS += \
         fileassocdialog.ui

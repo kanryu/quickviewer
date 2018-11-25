@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.1.1
+VERSION = 1.1.2
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -130,7 +130,8 @@ SOURCES += \
     src/qactionmanager/shortcutbutton.cpp \
     src/models/imagestring.cpp \
     src/brightnesswindow.cpp \
-    src/models/fileoperator.cpp
+    src/models/fileoperator.cpp \
+    src/qlanguageselector/qtexttranslator.cpp
 
 
 HEADERS  += \
@@ -172,7 +173,8 @@ HEADERS  += \
     src/qactionmanager/shortcutbutton.h \
     src/models/imagestring.h \
     src/brightnesswindow.h \
-    src/models/fileoperator.h
+    src/models/fileoperator.h \
+    src/qlanguageselector/qtexttranslator.h
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer
@@ -292,7 +294,9 @@ win32 : !CONFIG(debug, debug|release) {
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
     install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
     install_deploy_files.commands = $$shell_path($$[QT_INSTALL_BINS]/windeployqt) --release --compiler-runtime $$shell_path($${MY_DEFAULT_INSTALL}/QuickViewer.exe)
+
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
+    install_translations.commands = $$shell_path($$[QT_INSTALL_BINS]/../../../Tools/QtCreator/bin/qbs) -f $${PWD}/translations/maketransconf.qbs qbs.installRoot:$${MY_DEFAULT_INSTALL}
     install_translations.files = \
         $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \

@@ -18,11 +18,8 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_settings(getFilePathOfApplicationSetting(APP_INI), QSettings::IniFormat, this)
     , m_innerFrameShowing(false)
     , m_bookshelfManager(nullptr)
-//    , m_languageSelector("quickviewer_", "translations/")
-    // ATTENTION:
-    // default 'QLibraryInfo::location(TranslationsPath)' is "[QTDIR]/translations"
-    , m_languageSelector("quickviewer_", QLibraryInfo::location(QLibraryInfo::TranslationsPath))
-    , m_qtbaseLanguageSelector("qt_", QLibraryInfo::location(QLibraryInfo::TranslationsPath))
+    , m_languageSelector("quickviewer_", getTranslationPath())
+    , m_qtbaseLanguageSelector("qt_", getTranslationPath())
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
@@ -58,6 +55,8 @@ QVApplication::QVApplication(int &argc, char **argv)
     }
 #endif
 
+    m_languageSelector.initialize();
+    m_qtbaseLanguageSelector.copyLanguages(m_languageSelector.Languages());
     m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
     connect(&m_languageSelector, SIGNAL(languageChanged(QString)), &m_qtbaseLanguageSelector, SLOT(resetTranslator(QString)));
     registDefaultKeyMap();
@@ -86,6 +85,17 @@ QString QVApplication::getFilePathOfApplicationSetting(QString subFilePath)
 QString QVApplication::getUserHomeFilePath(QString subFilePath)
 {
     return QDir::toNativeSeparators(QString("%1/%2").arg(QString(qgetenv("HOME"))).arg(subFilePath));
+}
+
+QString QVApplication::getTranslationPath()
+{
+    // ATTENTION:
+    // default 'QLibraryInfo::location(TranslationsPath)' is "[QTDIR]/translations"
+#ifdef _DEBUG
+    return getApplicationFilePath("translations");
+#else
+    return QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
 }
 
 QString QVApplication::CatalogDatabasePath()
