@@ -261,7 +261,11 @@ win32 : !CONFIG(debug, debug|release) {
 
         INSTALLS += install_target install_deploy_files install_translations install_assoc_icons
     } else {
-        MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
+        contains(DEFINES, QV_PORTABLE) {
+            MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
+        } else {
+            MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}/$${TARGET_ARCH}
+        }
 
         install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
 
@@ -287,7 +291,7 @@ win32 : !CONFIG(debug, debug|release) {
             "$${install_msvcrt.PATH}/vccorlib140.dll" \
             "$${install_msvcrt.PATH}/vcruntime140.dll"
 
-        INSTALLS += install_target install_deploy_files install_translations install_qrawspeed install_msvcrt install_assoc_icons
+        INSTALLS += install_target install_deploy_files install_translations install_translations2 install_qrawspeed install_msvcrt install_assoc_icons
     }
     install_target.path = $${MY_DEFAULT_INSTALL}
 #   install_target.files += $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
@@ -296,7 +300,7 @@ win32 : !CONFIG(debug, debug|release) {
     install_deploy_files.commands = $$shell_path($$[QT_INSTALL_BINS]/windeployqt) --release --compiler-runtime $$shell_path($${MY_DEFAULT_INSTALL}/QuickViewer.exe)
 
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
-    install_translations.commands = $$shell_path($$[QT_INSTALL_BINS]/../../../Tools/QtCreator/bin/qbs) -f $${PWD}/translations/maketransconf.qbs qbs.installRoot:$${MY_DEFAULT_INSTALL}
+    install_translations.commands = $$shell_path($$[QT_INSTALL_BINS]/../../../Tools/QtCreator/bin/qbs) resolve -f $${PWD}/translations/maketransconf.qbs qbs.installRoot:$${MY_DEFAULT_INSTALL}
     install_translations.files = \
         $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \
@@ -304,6 +308,11 @@ win32 : !CONFIG(debug, debug|release) {
         $${PWD}/translations/quickviewer_zh.qm \
         $${PWD}/translations/quickviewer_el.qm \
         $${PWD}/translations/qt_el.qm \
+
+    install_translations2.path = $${MY_DEFAULT_INSTALL}/translations
+    install_translations2.commands = $$shell_path($$[QT_INSTALL_BINS]/../../../Tools/QtCreator/bin/qbs) -f $${PWD}/translations/maketransconf.qbs qbs.installRoot:$${MY_DEFAULT_INSTALL}
+    install_translations2.depends = install_install_translations
+    install_translations2.files = \
         $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
 
     install_assoc_icons.path = $${MY_DEFAULT_INSTALL}/iconengines
