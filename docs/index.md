@@ -174,6 +174,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://gr.pcmag.com/free-apps/28062/news/e-dorean-epharmoge-tes-emeras-quickviewer](http://gr.pcmag.com/free-apps/28062/news/e-dorean-epharmoge-tes-emeras-quickviewer)
 - **geogeo.gr** (in Greek)
     - [https://www.geogeo.gr/index.php?topic=1787.0](https://www.geogeo.gr/index.php?topic=1787.0)
+- **lovefortechnology** (in Greek)
+    - [https://www.lovefortechnology.net/2018/12/quickviewer_11.html](https://www.lovefortechnology.net/2018/12/quickviewer_11.html)
 - **BUG ONLINE** (in Croatian or Bosnian)
     - [http://www.bug.hr/program/quickviewer-102/97548.aspx](http://www.bug.hr/program/quickviewer-102/97548.aspx)
 - **Žive.sk** (in Slovak)
