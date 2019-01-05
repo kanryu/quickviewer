@@ -70,6 +70,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->checkBoxExtractSolidToTemporary->setChecked(qApp->ExtractSolidArchiveToTemporaryDir());
     ui->checkBoxProhibitMultipleRunning->setChecked(qApp->ProhibitMultipleRunning());
     ui->checkBoxUseDirect2D->setChecked(qApp->UseDirect2D());
+    ui->checkBoxSlideshowRandomly->setChecked(qApp->SlideShowRandomly());
 
     ui->checkBoxHideMenuBarParmanently->setChecked(qApp->HideMenuBarParmanently());
     ui->checkBoxHideToolBarParmanently->setChecked(qApp->HideToolBarParmanently());
@@ -133,6 +134,7 @@ void OptionsDialog::reflectResults()
     qApp->setExtractSolidArchiveToTemporaryDir(ui->checkBoxExtractSolidToTemporary->isChecked());
     qApp->setProhibitMultipleRunning(ui->checkBoxProhibitMultipleRunning->isChecked());
     qApp->setUseDirect2D(ui->checkBoxUseDirect2D->isChecked());
+    qApp->setSlideShowRandomly(ui->checkBoxSlideshowRandomly->isChecked());
 
     qApp->setHideMenuBarParmanently(ui->checkBoxHideMenuBarParmanently->isChecked());
     qApp->setHideToolBarParmanently(ui->checkBoxHideToolBarParmanently->isChecked());

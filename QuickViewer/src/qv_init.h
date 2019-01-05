@@ -92,6 +92,16 @@ public:
 //        ExifStartup,
     };
     Q_ENUM(OptionViewOnStartup)
+
+    enum ImageSortBy {
+        SortByFileName,
+        SortByFileNameDescending,
+        SortByFileSize,
+        SortByFileSizeDescending,
+        SortByModifiedTime,
+        SortByModifiedTimeDescending,
+    };
+    Q_ENUM(ImageSortBy)
 };
 
 

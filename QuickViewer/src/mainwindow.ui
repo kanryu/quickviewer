@@ -269,8 +269,22 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="actionLargeToolbarIcons"/>
+    <widget class="QMenu" name="menu_Sort_by">
+     <property name="title">
+      <string>&amp;Sort by</string>
+     </property>
+     <addaction name="actionSortByFileName"/>
+     <addaction name="actionSortByFileNameDescending"/>
+     <addaction name="separator"/>
+     <addaction name="actionSortByFileSize"/>
+     <addaction name="actionSortByFileSizeDescending"/>
+     <addaction name="separator"/>
+     <addaction name="actionSortByModifiedTime"/>
+     <addaction name="actionSortByModifiedTimeDescending"/>
+    </widget>
+    <addaction name="menu_Sort_by"/>
     <addaction name="separator"/>
+    <addaction name="actionLargeToolbarIcons"/>
     <addaction name="actionShowMenuBar"/>
     <addaction name="actionShowToolBar"/>
     <addaction name="actionShowPageBar"/>
@@ -820,7 +834,7 @@
   </action>
   <action name="actionSlideShow">
    <property name="checkable">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../toolbar.qrc">
@@ -1276,6 +1290,59 @@
     <string>Hide the mouse cursor on fullscreen</string>
    </property>
   </action>
+  <action name="action_Sort_by">
+   <property name="text">
+    <string>&amp;Sort by</string>
+   </property>
+  </action>
+  <action name="actionSortByFileName">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Filename</string>
+   </property>
+  </action>
+  <action name="actionSortByFileNameDescending">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Filename(descending)</string>
+   </property>
+  </action>
+  <action name="actionSortByFileSize">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>File size</string>
+   </property>
+  </action>
+  <action name="actionSortByFileSizeDescending">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>File size(descending)</string>
+   </property>
+  </action>
+  <action name="actionSortByModifiedTime">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Modified Time</string>
+   </property>
+  </action>
+  <action name="actionSortByModifiedTimeDescending">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Modified Time(descending)</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -1319,6 +1386,12 @@
     <slot>onActionNextPageOrVolume_triggered()</slot>
     <slot>onActionPrevPageOrVolume_triggered()</slot>
     <slot>onActionHideMouseCursorInFullscreen_triggered(bool)</slot>
+    <slot>onActionSortByFileName_triggered(bool)</slot>
+    <slot>onActionSortByFileNameDescending_triggered(bool)</slot>
+    <slot>onActionSortByFileSize_triggered(bool)</slot>
+    <slot>onActionSortByFileSizeDescending_triggered(bool)</slot>
+    <slot>onActionSortByModifiedTime_triggered(bool)</slot>
+    <slot>onActionSortByModifiedTimeDescending_triggered(bool)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -2883,6 +2956,102 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSortByFileName</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSortByFileName_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSortByFileNameDescending</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSortByFileNameDescending_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSortByFileSize</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSortByFileSize_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSortByFileSizeDescending</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSortByFileSizeDescending_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSortByModifiedTime</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSortByModifiedTime_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSortByModifiedTimeDescending</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>onActionSortByModifiedTimeDescending_triggered(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_nextPage_triggered()</slot>
@@ -2964,5 +3133,11 @@
   <slot>onActionSaveFolderViewWidth_triggered(bool)</slot>
   <slot>onActionDisableCreationProgress_triggered(bool)</slot>
   <slot>onActionSaveReadProgress_triggered(bool)</slot>
+  <slot>onActionSortByFileName_triggered(bool)</slot>
+  <slot>onActionSortByFileNameDescending_triggered(bool)</slot>
+  <slot>onActionSortByFileSize_triggered(bool)</slot>
+  <slot>onActionSortByFileSizeDescending_triggered(bool)</slot>
+  <slot>onActionSortByModifiedTime_triggered(bool)</slot>
+  <slot>onActionSortByModifiedTimeDescending_triggered(bool)</slot>
  </slots>
 </ui>

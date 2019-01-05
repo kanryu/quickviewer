@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.1.2
+VERSION = 1.1.3
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -25,7 +25,7 @@ CONFIG += plugin
 QMAKE_TARGET_COMPANY = KATO Kanryu(k.kanryu@gmail.com)
 QMAKE_TARGET_PRODUCT = QuickViewer
 QMAKE_TARGET_DESCRIPTION = QuickViewer for folders/archives
-QMAKE_TARGET_COPYRIGHT = (C) 2017 KATO Kanryu
+QMAKE_TARGET_COPYRIGHT = (C) 2017-2019 KATO Kanryu
 
 DEFINES += \
   APP_VERSION=\\\"$$VERSION\\\" \
@@ -131,7 +131,8 @@ SOURCES += \
     src/models/imagestring.cpp \
     src/brightnesswindow.cpp \
     src/models/fileoperator.cpp \
-    src/qlanguageselector/qtexttranslator.cpp
+    src/qlanguageselector/qtexttranslator.cpp \
+    src/models/qvimagemetadata.cpp
 
 
 HEADERS  += \
@@ -174,7 +175,8 @@ HEADERS  += \
     src/models/imagestring.h \
     src/brightnesswindow.h \
     src/models/fileoperator.h \
-    src/qlanguageselector/qtexttranslator.h
+    src/qlanguageselector/qtexttranslator.h \
+    src/models/qvimagemetadata.h
 
 win32 {
     INCLUDEPATH += ../AssociateFilesWithQuickViewer
@@ -262,7 +264,7 @@ win32 : !CONFIG(debug, debug|release) {
         INSTALLS += install_target install_deploy_files install_translations install_assoc_icons
     } else {
         contains(DEFINES, QV_PORTABLE) {
-            MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-$${TARGET_ARCH}
+            MY_DEFAULT_INSTALL = ../../QuickViewer-portable-$${VERSION}-$${TARGET_ARCH}
         } else {
             MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}/$${TARGET_ARCH}
         }

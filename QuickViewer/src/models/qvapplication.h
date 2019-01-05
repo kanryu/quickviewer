@@ -126,7 +126,11 @@ public:
     bool UseFastDCTForJPEG() { return m_useFastDCTForJPEG; }
     void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
 
+    // Navigations
+
     // View
+    qvEnums::ImageSortBy ImageSortBy() { return m_imageSortBy; }
+    void setImageSortBy(qvEnums::ImageSortBy sortBy) { m_imageSortBy = sortBy; }
     bool Fitting() { return m_fitting; }
     void setFitting (bool fitting) { m_fitting = fitting; }
     qvEnums::FitMode ImageFitMode() { return m_fitMode; }
@@ -180,6 +184,10 @@ public:
     void setScrollWithCursorWhenZooming(bool scrollWithCursorWhenZooming) { m_scrollWithCursorWhenZooming = scrollWithCursorWhenZooming; }
     qvEnums::OptionViewOnStartup ShowOptionViewOnStartup() { return m_showOptionViewOnStartup; }
     void setShowOptionViewOnStartup(qvEnums::OptionViewOnStartup fitMode) { m_showOptionViewOnStartup = fitMode; }
+    bool SlideShowOnNormalWindow() { return m_slideShowOnNormalWindow; }
+    void setSlideShowOnNormalWindow(bool slideShowOnNormalWindow) { m_slideShowOnNormalWindow = slideShowOnNormalWindow; }
+    bool SlideShowRandomly() { return m_slideShowRandomly; }
+    void setSlideShowRandomly(bool slideshowRandomly) { m_slideShowRandomly = slideshowRandomly; }
 
 
     // DualView
@@ -326,9 +334,10 @@ private:
     int m_maxTextureSize;
 
     // Navigations
-    bool m_suppressKeyRepeat;
+    bool m_slideShowRandomly;
 
     // View
+    qvEnums::ImageSortBy m_imageSortBy;
     bool m_fitting;
 //    bool m_fitToWidth;
     qvEnums::FitMode m_fitMode;
@@ -376,6 +385,7 @@ private:
     QString m_statusTextFormat;
     bool m_scrollWithCursorWhenZooming;
     qvEnums::OptionViewOnStartup m_showOptionViewOnStartup;
+    bool m_slideShowOnNormalWindow;
 
     // ToolBars
     bool m_showToolBar;

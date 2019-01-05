@@ -79,9 +79,25 @@ MainWindow::MainWindow(QWidget *parent)
     // setup checkable menus
     ui->actionFitting->setChecked(qApp->Fitting());
     ui->graphicsView->on_fitting_triggered(qApp->Fitting());
+    switch(qApp->ImageSortBy()) {
+    case qvEnums::SortByFileName: ui->actionSortByFileName->setChecked(true); break;
+    case qvEnums::SortByFileNameDescending: ui->actionSortByFileNameDescending->setChecked(true); break;
+    case qvEnums::SortByFileSize: ui->actionSortByFileSize->setChecked(true); break;
+    case qvEnums::SortByFileSizeDescending: ui->actionSortByFileSizeDescending->setChecked(true); break;
+    case qvEnums::SortByModifiedTime: ui->actionSortByModifiedTime->setChecked(true); break;
+    case qvEnums::SortByModifiedTimeDescending: ui->actionSortByModifiedTimeDescending->setChecked(true); break;
+    }
+    m_sortByMenuGroup
+            << ui->actionSortByFileName
+            << ui->actionSortByFileNameDescending
+            << ui->actionSortByFileSize
+            << ui->actionSortByFileSizeDescending
+            << ui->actionSortByModifiedTime
+            << ui->actionSortByModifiedTimeDescending;
     switch(qApp->ImageFitMode()) {
     case qvEnums::FitToRect: ui->actionFitToWindow->setChecked(true); break;
     case qvEnums::FitToWidth: ui->actionFitToWidth->setChecked(true); break;
+    default:break;
     }
 
     ui->actionDualView->setChecked(qApp->DualView());
@@ -208,6 +224,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->graphicsView, SIGNAL(scrollModeChanged(bool)), this, SLOT(onScrollModeChanged(bool)));
     connect(ui->graphicsView, SIGNAL(zoomingChanged()), this, SLOT(onPageManager_pageChanged()));
     connect(ui->graphicsView, SIGNAL(fittingChanged(qvEnums::FitMode)), this, SLOT(onGraphicsView_fittingChanged(qvEnums::FitMode)));
+    connect(ui->graphicsView, SIGNAL(slideShowStopped()), this, SLOT(onSlideShowStopped()));
 
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
@@ -922,7 +939,7 @@ void MainWindow::onActionFullscreen_triggered()
         } else {
             showNormal();
         }
-        if(ui->graphicsView->isSlideShow())
+        if(!qApp->SlideShowOnNormalWindow() && ui->graphicsView->isSlideShow())
             ui->graphicsView->toggleSlideShow();
     } else {
         emit changingFullscreen(true);
@@ -1657,13 +1674,18 @@ void MainWindow::onActionRestoreWindowState_triggered(bool saveState)
     qApp->setRestoreWindowState(saveState);
 }
 
-void MainWindow::onActionSlideShow_triggered(bool )
+void MainWindow::onActionSlideShow_triggered(bool)
 {
     if(m_pageManager.size() == 0)
         return;
-    if(!isFullScreen())
+    if(!qApp->SlideShowOnNormalWindow() && !isFullScreen())
         ui->actionFullscreen->trigger();
     ui->graphicsView->toggleSlideShow();
+}
+
+void MainWindow::onSlideShowStopped()
+{
+    ui->actionSlideShow->setChecked(false);
 }
 
 void MainWindow::onActionShaderNearestNeighbor_triggered()
@@ -1781,4 +1803,64 @@ void MainWindow::onMenuLoadBookmark_triggered(QAction *action)
     }
     QString path = action->data().toString();
     m_pageManager.loadVolume(QDir::toNativeSeparators(path));
+}
+
+void MainWindow::onActionSortByFileName_triggered(bool )
+{
+    uncheckAllSortByMenus();
+    ui->actionSortByFileName->setChecked(true);
+    if(qApp->ImageSortBy() == qvEnums::SortByFileName)
+        return;
+    qApp->setImageSortBy(qvEnums::SortByFileName);
+    m_pageManager.sort(qvEnums::SortByFileName);
+}
+
+void MainWindow::onActionSortByFileNameDescending_triggered(bool )
+{
+    uncheckAllSortByMenus();
+    ui->actionSortByFileNameDescending->setChecked(true);
+    if(qApp->ImageSortBy() == qvEnums::SortByFileNameDescending)
+        return;
+    qApp->setImageSortBy(qvEnums::SortByFileNameDescending);
+    m_pageManager.sort(qvEnums::SortByFileNameDescending);
+}
+
+void MainWindow::onActionSortByFileSize_triggered(bool )
+{
+    uncheckAllSortByMenus();
+    ui->actionSortByFileSize->setChecked(true);
+    if(qApp->ImageSortBy() == qvEnums::SortByFileSize)
+        return;
+    qApp->setImageSortBy(qvEnums::SortByFileSize);
+    m_pageManager.sort(qvEnums::SortByFileSize);
+}
+
+void MainWindow::onActionSortByFileSizeDescending_triggered(bool )
+{
+    uncheckAllSortByMenus();
+    ui->actionSortByFileSizeDescending->setChecked(true);
+    if(qApp->ImageSortBy() == qvEnums::SortByFileSizeDescending)
+        return;
+    qApp->setImageSortBy(qvEnums::SortByFileSizeDescending);
+    m_pageManager.sort(qvEnums::SortByFileSizeDescending);
+}
+
+void MainWindow::onActionSortByModifiedTime_triggered(bool )
+{
+    uncheckAllSortByMenus();
+    ui->actionSortByModifiedTime->setChecked(true);
+    if(qApp->ImageSortBy() == qvEnums::SortByModifiedTime)
+        return;
+    qApp->setImageSortBy(qvEnums::SortByModifiedTime);
+    m_pageManager.sort(qvEnums::SortByModifiedTime);
+}
+
+void MainWindow::onActionSortByModifiedTimeDescending_triggered(bool )
+{
+    uncheckAllSortByMenus();
+    ui->actionSortByModifiedTimeDescending->setChecked(true);
+    if(qApp->ImageSortBy() == qvEnums::SortByModifiedTimeDescending)
+        return;
+    qApp->setImageSortBy(qvEnums::SortByModifiedTimeDescending);
+    m_pageManager.sort(qvEnums::SortByModifiedTimeDescending);
 }

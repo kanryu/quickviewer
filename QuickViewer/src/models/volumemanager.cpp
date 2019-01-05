@@ -1,4 +1,5 @@
 #include <QtGui>
+#include <random>
 
 #include "volumemanager.h"
 #include "ResizeHalf.h"
@@ -47,12 +48,121 @@ ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
 
 void VolumeManager::on_enmumerated()
 {
+    foreach(const QString& fl, m_filelist) {
+        m_imageMetadataList << QvImageMetadata(this, fl);
+    }
     m_imageCache.insert(m_filelist.indexOf(m_subfilename), QtConcurrent::run(pathThrough, m_currentCacheSync));
     findImageByName(m_subfilename);
     setCacheMode(VolumeManager::Normal);
     on_ready();
     m_pageManager->on_pageEnumerated();
 }
+
+#ifdef Q_OS_WIN
+#include <Shlwapi.h>
+
+static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+{
+    std::wstring ss1(m1.filename().toStdWString());
+    std::wstring ss2(m2.filename().toStdWString());
+    return ::StrCmpLogicalW(ss1.c_str(), ss2.c_str()) > 0;
+}
+#else
+
+static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+{
+    return s1 > s2;
+}
+
+#endif
+
+static bool fileSizeLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+{
+    QvImageMetadata& mm1 = const_cast<QvImageMetadata&>(m1);
+    QvImageMetadata& mm2 = const_cast<QvImageMetadata&>(m2);
+    return mm1.getFileSize() < mm2.getFileSize();
+}
+static bool fileSizeDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+{
+    QvImageMetadata& mm1 = const_cast<QvImageMetadata&>(m1);
+    QvImageMetadata& mm2 = const_cast<QvImageMetadata&>(m2);
+    return mm1.getFileSize() > mm2.getFileSize();
+}
+static bool modifiedTimeLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+{
+    QvImageMetadata& mm1 = const_cast<QvImageMetadata&>(m1);
+    QvImageMetadata& mm2 = const_cast<QvImageMetadata&>(m2);
+    return mm1.getMTime() < mm2.getMTime();
+}
+static bool modifiedTimeDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+{
+    QvImageMetadata& mm1 = const_cast<QvImageMetadata&>(m1);
+    QvImageMetadata& mm2 = const_cast<QvImageMetadata&>(m2);
+    return mm1.getMTime() > mm2.getMTime();
+}
+
+
+
+void VolumeManager::sort(qvEnums::ImageSortBy sortBy)
+{
+    switch(sortBy) {
+    case qvEnums::SortByFileName: break;
+    case qvEnums::SortByFileNameDescending:
+        std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), fileNameDescendingLessThan);
+        break;
+    case qvEnums::SortByFileSize:
+        std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), fileSizeLessThan);
+        break;
+    case qvEnums::SortByFileSizeDescending:
+        std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), fileSizeDescendingLessThan);
+        break;
+    case qvEnums::SortByModifiedTime:
+        std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), modifiedTimeLessThan);
+        break;
+    case qvEnums::SortByModifiedTimeDescending:
+        std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), modifiedTimeDescendingLessThan);
+        break;
+    }
+    m_cnt = 0;
+    m_imageCache.clear();
+    on_ready();
+}
+
+void VolumeManager::startSlideShow()
+{
+    if(!qApp->SlideShowRandomly())
+        return;
+    m_randomfilelist = m_filelist;
+    m_randomfilelist.detach();
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(m_randomfilelist.begin(), m_randomfilelist.end(), g);
+    m_cnt = 0;
+    m_imageCache.clear();
+    on_ready();
+}
+
+void VolumeManager::stopSlideShow()
+{
+    if(!qApp->SlideShowRandomly())
+        return;
+    m_randomfilelist.clear();
+    m_cnt = 0;
+    m_imageCache.clear();
+    on_ready();
+}
+
+QString VolumeManager::getIndexedFileName(int idx) {
+    if(idx < 0 || idx >= m_filelist.size())
+        return "";
+    if(!m_randomfilelist.isEmpty())
+        return m_randomfilelist[idx];
+    if(qApp->ImageSortBy() == qvEnums::SortByFileName)
+        return m_filelist[idx];
+    else
+        return m_imageMetadataList[idx].filename();
+}
+
 
 void VolumeManager::on_ready()
 {
@@ -132,7 +242,7 @@ void VolumeManager::on_ready()
             m_imageCache.insertNoChecked(cnt, QtConcurrent::run(
                  futureLoadImageFromFileVolume,
                  this,
-                 m_filelist[cnt],
+                 getIndexedFileName(cnt),
                  (m_pageManager && qApp->Effect() < qvEnums::UsingFixedShader)
                      ? m_pageManager->viewportSize()
                      : QSize())
@@ -217,7 +327,6 @@ QString VolumeManager::FullPathToSubFilePath(QString path)
     }
     return path.mid(path.indexOf("::")+2);
 }
-
 
 static void parseExifTextExtents(QImage& img, easyexif::EXIFInfo& info)
 {

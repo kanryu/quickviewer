@@ -46,6 +46,7 @@ public:
     QSize viewportSize();
     void setImageView(ImageView* view){m_imaveView = view;}
     void bookProgress();
+    void sort(qvEnums::ImageSortBy sortBy);
 
     // Get String
     int currentPageCount() { return m_pages.size(); }
@@ -125,6 +126,8 @@ signals:
 
 public slots:
     void on_pageEnumerated();
+    void onSlideShowStarted();
+    void onSlideShowStopped();
 
 
 private:

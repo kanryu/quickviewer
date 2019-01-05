@@ -13,6 +13,7 @@ QVApplication::QVApplication(int &argc, char **argv)
     : QApplication(argc, argv)
     , m_mainThread(QThread::currentThread())
     , m_maxTextureSize(4096)
+    , m_imageSortBy(qvEnums::SortByFileName)
     , m_effect(qvEnums::Bilinear)
     , m_translator(nullptr)
     , m_settings(getFilePathOfApplicationSetting(APP_INI), QSettings::IniFormat, this)
@@ -237,6 +238,12 @@ void QVApplication::registActions(Ui::MainWindow *ui)
     m_keyActions.registAction("actionShowPanelSeparateWindow", ui->actionShowPanelSeparateWindow, groupName);
     m_keyActions.registAction("actionStayOnTop", ui->actionStayOnTop, groupName);
     m_keyActions.registAction("actionHideMouseCursorInFullscreen", ui->actionHideMouseCursorInFullscreen, groupName);
+    m_keyActions.registAction("actionSortByFileName", ui->actionSortByFileName, groupName);
+    m_keyActions.registAction("actionSortByFileNameDescending", ui->actionSortByFileNameDescending, groupName);
+    m_keyActions.registAction("actionSortByFileSize", ui->actionSortByFileSize, groupName);
+    m_keyActions.registAction("actionSortByFileSizeDescending", ui->actionSortByFileSizeDescending, groupName);
+    m_keyActions.registAction("actionSortByModifiedTime", ui->actionSortByModifiedTime, groupName);
+    m_keyActions.registAction("actionSortByModifiedTimeDescending", ui->actionSortByModifiedTimeDescending, groupName);
 
     // ContextMenu
     groupName = tr("ContextMenu", "ContextMenu Action Group");
@@ -338,7 +345,15 @@ QString QVApplication::getDefaultPictureFolderPath()
 void QVApplication::loadSettings()
 {
     bool bRightSideBookDefault = QLocale::system().language() == QLocale::Japanese;
+
+    // View
     m_settings.beginGroup("View");
+    {
+        QString sortByString = m_settings.value("ImageSortBy", "SortByFileName").toString();
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("ImageSortBy");
+        m_imageSortBy = (qvEnums::ImageSortBy)qvEnums::staticMetaObject.enumerator(enumIdx)
+                .keysToValue(sortByString.toLatin1().data());
+    }
     m_fitting = m_settings.value("Fitting", true).toBool();
     {
         QString fitModestring = m_settings.value("ImageFitMode", "FitToRect").toString();
@@ -400,8 +415,11 @@ void QVApplication::loadSettings()
         m_showOptionViewOnStartup = (qvEnums::OptionViewOnStartup)qvEnums::staticMetaObject.enumerator(enumIdx)
                 .keysToValue(showOptionstring.toLatin1().data());
     }
+    m_slideShowOnNormalWindow = m_settings.value("SlideShowOnNormalWindow", true).toBool();
+    m_slideShowRandomly = m_settings.value("SlideshowRandomly", false).toBool();
     m_settings.endGroup();
 
+    // WindowState
     m_settings.beginGroup("WindowState");
     m_restoreWindowState  = m_settings.value("RestoreWindowState", false).toBool();
     m_windowGeometry  = m_settings.value("WindowGeometry", "").toByteArray();
@@ -409,6 +427,7 @@ void QVApplication::loadSettings()
     m_beginAsFullscreen  = m_settings.value("BeginAsFullscreen", false).toBool();
     m_settings.endGroup();
 
+    // File
     m_settings.beginGroup("File");
     m_autoLoaded  = m_settings.value("AutoLoaded", true).toBool();
     m_history = m_settings.value("History", QStringList()).value<QStringList>();
@@ -422,6 +441,7 @@ void QVApplication::loadSettings()
     m_lastOpenedFolderPath = m_settings.value("LastOpenedFolderPath", "").toString();
     m_settings.endGroup();
 
+    // Folder
     m_settings.beginGroup("Folder");
     QString defaultPath = getDefaultPictureFolderPath();
     m_homeFolderPath = m_settings.value("HomeFolderPath", defaultPath).toString();
@@ -437,6 +457,7 @@ void QVApplication::loadSettings()
     m_folderViewWidth = m_settings.value("FolderViewWidth", 200).toInt();
     m_settings.endGroup();
 
+    // Catalog
     m_settings.beginGroup("Catalog");
     {
         QString viewModestring = m_settings.value("CatalogViewModeSetting", "Icon").toString();
@@ -462,15 +483,15 @@ void QVApplication::loadSettings()
     m_catalogViewWidth = m_settings.value("CatalogViewWidth", 200).toInt();
     m_settings.endGroup();
 
+    // KeyConfig
     m_settings.beginGroup("KeyConfig");
     foreach(const QString& action, m_settings.childKeys()) {
-        if(action == "actionFullscreen")
-            qDebug() << action;
         QString str = m_settings.value(action, "").toString();
         m_keyActions.updateKey(action,  QKeySequence(str), true);
     }
     m_settings.endGroup();
 
+    // MouseConfig
     m_settings.beginGroup("MouseConfig");
     foreach(const QString& action, m_settings.childKeys()) {
         QString str = m_settings.value(action, "").toString();
@@ -478,6 +499,7 @@ void QVApplication::loadSettings()
     }
     m_settings.endGroup();
 
+    // Shader
     m_settings.beginGroup("Shader");
     QString effectstring = m_settings.value("Effect", "Bilinear").toString();
     m_effect = ShaderManager::stringToShaderEffect(effectstring);
@@ -485,6 +507,7 @@ void QVApplication::loadSettings()
     m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
     m_settings.endGroup();
 
+    // Others
     m_settings.beginGroup("Others");
     m_uiLanguage = m_settings.value("UiLanguage", "").toString();
     m_confirmDeletePage = m_settings.value("ConfirmDeletePage", true).toBool();
@@ -496,6 +519,11 @@ void QVApplication::loadSettings()
 void QVApplication::saveSettings()
 {
     m_settings.beginGroup("View");
+    {
+        int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("ImageSortBy");
+        QString sortByString = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_imageSortBy));
+        m_settings.setValue("ImageSortBy", sortByString);
+    }
     m_settings.setValue("Fitting", m_fitting);
     {
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FitMode");
@@ -555,6 +583,8 @@ void QVApplication::saveSettings()
                                            .valueToKey(m_showOptionViewOnStartup));
         m_settings.setValue("ShowOptionViewOnStartup", optionViewstring);
     }
+    m_settings.setValue("SlideShowOnNormalWindow", m_slideShowOnNormalWindow);
+    m_settings.setValue("SlideshowRandomly", m_slideShowRandomly);
     m_settings.endGroup();
 
     m_settings.beginGroup("WindowState");

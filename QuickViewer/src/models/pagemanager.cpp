@@ -79,6 +79,20 @@ void PageManager::on_pageEnumerated()
     emit pageChanged();
 }
 
+void PageManager::onSlideShowStarted()
+{
+    m_fileVolume->startSlideShow();
+    if(qApp->SlideShowRandomly())
+        firstPage();
+}
+
+void PageManager::onSlideShowStopped()
+{
+    m_fileVolume->stopSlideShow();
+    if(qApp->SlideShowRandomly())
+        firstPage();
+}
+
 void PageManager::nextVolume()
 {
     if(!m_fileVolume)
@@ -416,6 +430,12 @@ void PageManager::bookProgress()
         book.Current = 0;
     }
     qApp->bookshelfManager()->insert(path, book);
+}
+
+void PageManager::sort(qvEnums::ImageSortBy sortBy)
+{
+    m_fileVolume->sort(sortBy);
+    firstPage();
 }
 
 

@@ -98,6 +98,8 @@ void ImageView::setPageManager(PageManager *manager)
     connect(manager, SIGNAL(readyForPaint()), this, SLOT(readyForPaint()));
     connect(manager, SIGNAL(volumeChanged(QString)), this, SLOT(on_volumeChanged_triggered(QString)));
     connect(manager, SIGNAL(pageAdded(ImageContent, bool)), this, SLOT(on_addImage_triggered(ImageContent, bool)));
+    connect(this, SIGNAL(slideShowStarted()), manager, SLOT(onSlideShowStarted()));
+    connect(this, SIGNAL(slideShowStopped()), manager, SLOT(onSlideShowStopped()));
 }
 
 void ImageView::toggleSlideShow()
@@ -107,8 +109,10 @@ void ImageView::toggleSlideShow()
     if(m_slideshowTimer) {
         delete m_slideshowTimer;
         m_slideshowTimer = nullptr;
+        emit slideShowStopped();
         return;
     }
+    emit slideShowStarted();
     m_slideshowTimer = new QTimer();
     connect(m_slideshowTimer, SIGNAL(timeout()), this, SLOT(on_slideShowChanging_triggered()));
     m_slideshowTimer->start(qApp->SlideShowWait());

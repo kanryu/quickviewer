@@ -8,6 +8,7 @@
 #include "fileloader.h"
 #include "timeorderdcache.h"
 #include "pagecontent.h"
+#include "qvimagemetadata.h"
 
 class PageManager;
 class VolumeManagerBuilder;
@@ -51,6 +52,9 @@ public:
     bool isArchive() const { return m_loader->isArchive(); }
     bool hasSubDirectories() const { return m_loader->hasSubDirectories(); }
 
+    void sort(qvEnums::ImageSortBy sortBy);
+    void startSlideShow();
+    void stopSlideShow();
 
     QString currentPath() {
         if(m_loader->isArchive())
@@ -74,11 +78,7 @@ public:
         else
             return QDir(m_loader->realVolumePath()).absoluteFilePath(name);
     }
-    QString getIndexedFileName(int idx) {
-        if(idx < 0 || idx >= m_filelist.size())
-            return "";
-        return m_filelist[idx];
-    }
+    QString getIndexedFileName(int idx);
     QString getPathByIndex(int idx) {
         if(idx < 0 || idx >= m_filelist.size())
             return "";
@@ -137,6 +137,8 @@ private:
      */
     int m_cnt;
     QList<QString> m_filelist;
+    QList<QString> m_randomfilelist;
+    QList<QvImageMetadata> m_imageMetadataList;
     future_image m_currentCache;
     ImageContent m_currentCacheSync;
 

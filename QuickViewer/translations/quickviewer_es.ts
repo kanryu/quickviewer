@@ -1431,6 +1431,34 @@
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished">Todos los archivos( *.* );;Imágenes (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</translation>
     </message>
+    <message>
+        <source>&amp;Sort by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filename(descending)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File size(descending)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modified Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modified Time(descending)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1777,6 +1805,11 @@
         <source>Show the usage</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Randomly display in slideshow</source>
+        <extracomment>The text of the check box. Slideshow usually moves to the next page in the current sorting order, but displays it in random order</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>
@@ -1784,6 +1817,14 @@
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>Extract solid archives to temporary directory</translation>
+    </message>
+</context>
+<context>
+    <name>QLanguageSelector</name>
+    <message>
+        <source>Always use text translation</source>
+        <comment>Menu text that uses textual translation rather than regular qm format</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

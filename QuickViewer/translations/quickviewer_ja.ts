@@ -1431,6 +1431,34 @@
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished">全てのファイル( *.* );;画像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;アーカイブ( *.zip *.7z</translation>
     </message>
+    <message>
+        <source>&amp;Sort by</source>
+        <translation>並べ替え(&amp;S)</translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation>ファイル名(昇順)</translation>
+    </message>
+    <message>
+        <source>Filename(descending)</source>
+        <translation>ファイル名(降順)</translation>
+    </message>
+    <message>
+        <source>File size</source>
+        <translation>ファイルサイズ(昇順)</translation>
+    </message>
+    <message>
+        <source>File size(descending)</source>
+        <translation>ファイルサイズ(降順)</translation>
+    </message>
+    <message>
+        <source>Modified Time</source>
+        <translation>ファイル変更日時(昇順)</translation>
+    </message>
+    <message>
+        <source>Modified Time(descending)</source>
+        <translation>ファイル変更日時(降順)</translation>
+    </message>
 </context>
 <context>
     <name>MainWindowForWindows</name>
@@ -1777,6 +1805,11 @@
         <source>Show the usage</source>
         <translation>使い方の表示</translation>
     </message>
+    <message>
+        <source>Randomly display in slideshow</source>
+        <extracomment>The text of the check box. Slideshow usually moves to the next page in the current sorting order, but displays it in random order</extracomment>
+        <translation>スライドショーでランダムに並べ替えて表示する</translation>
+    </message>
 </context>
 <context>
     <name>PageContent</name>
@@ -1784,6 +1817,14 @@
         <source>NOT IMAGE FILE</source>
         <comment>Error messages to be displayed on screen when image loading fails</comment>
         <translation>画像以外のファイルです</translation>
+    </message>
+</context>
+<context>
+    <name>QLanguageSelector</name>
+    <message>
+        <source>Always use text translation</source>
+        <comment>Menu text that uses textual translation rather than regular qm format</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
