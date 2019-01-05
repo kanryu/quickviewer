@@ -1,11 +1,17 @@
 # CHANGELOG
 
 - other commits
-    - Improve slide show and add file sort (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
-    -  (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
-    -  The slideshow can be executed even in the window display (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
-    -  Addition of function that can make slide show display order random (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
-    -  Addition of file sorting method change function (file name, file size, change time stamp) (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
+    - changelog (Sat Jan 5 23:07:40 2019 +0900) [ecbc547](https://github.com/kanryu/quickviewer/commit/ecbc5476431cd23f9e35c295f8e39410ab2ed411)
+
+## v1.1.3 (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
+
+Improve slide show and add file sort
+
+- The slideshow can be executed even in the window display
+- Addition of function that can make slide show display order random
+- Addition of file sorting method change function (file name, file size, change time stamp)
+
+- other commits
     - Update index.md (Tue Dec 18 10:20:40 2018 +0900) [6a29119](https://github.com/kanryu/quickviewer/commit/6a29119a24914d8a05a17df4acd8f84904652ced)
     - update qlanguageselector, support for building text translations (Mon Dec 3 18:00:05 2018 +0900) [97edc36](https://github.com/kanryu/quickviewer/commit/97edc36b50fc75df7ceef5c73b89a9eceb76a7e9)
     - CHANGELOG (Sun Nov 25 23:01:48 2018 +0900) [5d33c22](https://github.com/kanryu/quickviewer/commit/5d33c22e90fb5397eac2811b1d07fdb43b12505c)
