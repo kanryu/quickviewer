@@ -62,6 +62,38 @@ Project {
                         LanguageCode: "ja",
                         TargetVersion: version,
                     },
+                    "quickviewer_es.ts": {
+                        TranslatorName: "QuickViewer Developer Team",
+                        TranslatorEmail: "k.kanryu@gmail.com",
+                        Caption: "Spanish",
+                        LanguageName: "Spanish",
+                        LanguageCode: "es",
+                        TargetVersion: version,
+                    },
+                    "quickviewer_zh.ts": {
+                        TranslatorName: "河海江超群",
+                        TranslatorEmail: "mcoder2014@sina.com",
+                        Caption: "Chinese",
+                        LanguageName: "Chinese(zh_CN)",
+                        LanguageCode: "zh",
+                        TargetVersion: version,
+                    },
+                    "quickviewer_el.ts": {
+                        TranslatorName: "Edgar Hoffmann",
+                        TranslatorEmail: "kontakt@freiesoftwareog.org",
+                        Caption: "Greek",
+                        LanguageName: "Greek",
+                        LanguageCode: "el",
+                        TargetVersion: version,
+                    },
+                    "quickviewer_fr.ts": {
+                        TranslatorName: "michel-wf",
+                        TranslatorEmail: "michel.2wf@sfr.fr",
+                        Caption: "French",
+                        LanguageName: "French",
+                        LanguageCode: "fr",
+                        TargetVersion: version,
+                    },
                 }
             }
         }
