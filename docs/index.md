@@ -132,7 +132,7 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm](http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm)
 - *xCoumputer* (in Dutch)
     - [http://xcomputer.site/2017/06/27/quickviewer-is-een-ultra-fast-windows-image-viewer/](http://xcomputer.site/2017/06/27/quickviewer-is-een-ultra-fast-windows-image-viewer/)
-- * Computer Idee | Dagelijks computer nieuws, tips en trucs en gratis downloads* (in Dutch)
+- *Computer Idee - Dagelijks computer nieuws, tips en trucs en gratis downloads* (in Dutch)
     - [https://www.computeridee.nl/downloads/foto/quickviewer-een-snelle-plaatjesviewer-met-leuke-extras/](https://www.computeridee.nl/downloads/foto/quickviewer-een-snelle-plaatjesviewer-met-leuke-extras/)
 - **DUNDI** (in Italian)
     - [http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/](http://www.dundi.it/quickviewer-un-visualizzatore-veloce-di-immagini-per-windows/)
