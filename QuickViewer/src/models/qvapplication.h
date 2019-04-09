@@ -322,7 +322,8 @@ public:
     QString UiTheme() { return m_uiTheme; }
     void setUiTheme (QString uiTheme) {
         m_uiTheme = uiTheme;
-        QString themeFilePath = getApplicationFilePath("themes/"+uiTheme+".qss");
+        //QString themeFilePath = getApplicationFilePath(":/themes/"+m_uiTheme+".qss"); //Local files
+        QString themeFilePath(":/themes/"+m_uiTheme+".qss"); // Resource files
         QFile File(themeFilePath);
         File.open(QFile::ReadOnly);
         QString styleSheet = QString(File.readAll());
