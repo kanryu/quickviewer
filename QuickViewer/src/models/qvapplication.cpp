@@ -515,7 +515,8 @@ void QVApplication::loadSettings()
 
     m_settings.beginGroup("Appearance");
     m_uiTheme = m_settings.value("UiTheme", "Default").toString();
-    QString themeFilePath = getApplicationFilePath("themes/"+m_uiTheme+".qss");
+    //QString themeFilePath = getApplicationFilePath(":/themes/"+m_uiTheme+".qss"); //Local files
+    QString themeFilePath(":/themes/"+m_uiTheme+".qss"); // Resource files
     QFile File(themeFilePath);
     File.open(QFile::ReadOnly);
     QString styleSheet = QString(File.readAll());

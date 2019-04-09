@@ -205,7 +205,8 @@ FORMS    += \
     ../AssociateFilesWithQuickViewer/fileassocdialog.ui \
     src/brightnesswindow.ui
 
-RESOURCES += toolbar.qrc
+RESOURCES += toolbar.qrc \
+    themes.qrc
 
 !CONFIG(debug, debug|release) {
     win32 {
