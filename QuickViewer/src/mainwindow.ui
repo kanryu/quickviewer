@@ -244,7 +244,7 @@
      <x>0</x>
      <y>0</y>
      <width>785</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -3027,8 +3027,8 @@
    <slot>onActionSortByModifiedTime_triggered(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>392</x>
-     <y>294</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>392</x>

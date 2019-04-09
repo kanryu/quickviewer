@@ -37,9 +37,8 @@ int main(int argc, char *argv[])
     }
 #endif
 
-
     QVApplication app(argc, argv);
-
+    app.setEffectEnabled(Qt::UI_AnimateCombo, false);
     app.myInstallTranslator();
     int result = 0;
     {

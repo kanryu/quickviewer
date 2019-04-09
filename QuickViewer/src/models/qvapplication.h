@@ -96,6 +96,9 @@ class QVApplication : public QApplication
     Q_PROPERTY(QString UiLanguage READ UiLanguage WRITE setUiLanguage)
     Q_PROPERTY(bool ConfirmDeletePage READ ConfirmDeletePage WRITE setConfirmDeletePage)
 
+    // Theme
+    Q_PROPERTY(QString UiTheme READ UiTheme WRITE setUiTheme)
+
 public:
     typedef QActionManager<QKeySequence, QKeySequence, QAction*> KeyActionManager;
     typedef QActionManager<QMouseSequence, QMouseValue, QAction*> MouseActionManager;
@@ -315,6 +318,17 @@ public:
     KeyActionManager& keyActions() { return m_keyActions; }
     MouseActionManager& mouseActions() { return m_mouseActions; }
 
+    // Appearance
+    QString UiTheme() { return m_uiTheme; }
+    void setUiTheme (QString uiTheme) {
+        m_uiTheme = uiTheme;
+        QString themeFilePath = getApplicationFilePath("themes/"+uiTheme+".qss");
+        QFile File(themeFilePath);
+        File.open(QFile::ReadOnly);
+        QString styleSheet = QString(File.readAll());
+        QApplication::setStyleSheet(styleSheet);
+    }
+
     void registDefaultKeyMap();
     void registDefaultMouseMap();
     void registActions(Ui::MainWindow* ui);
@@ -448,6 +462,9 @@ private:
     QString m_uiLanguage;
     QTranslator *m_translator;
     bool m_confirmDeletePage;
+
+    // Appearance
+    QString m_uiTheme;
 
     QSettings m_settings;
     BookProgressManager* m_bookshelfManager;

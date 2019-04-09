@@ -513,6 +513,15 @@ void QVApplication::loadSettings()
     m_confirmDeletePage = m_settings.value("ConfirmDeletePage", true).toBool();
     m_settings.endGroup();
 
+    m_settings.beginGroup("Appearance");
+    m_uiTheme = m_settings.value("UiTheme", "Default").toString();
+    QString themeFilePath = getApplicationFilePath("themes/"+m_uiTheme+".qss");
+    QFile File(themeFilePath);
+    File.open(QFile::ReadOnly);
+    QString styleSheet = QString(File.readAll());
+    QApplication::setStyleSheet(styleSheet);
+    m_settings.endGroup();
+
     m_bookshelfManager = new BookProgressManager(this);
 }
 
@@ -662,6 +671,9 @@ void QVApplication::saveSettings()
     m_settings.setValue("ConfirmDeletePage", m_confirmDeletePage);
     m_settings.endGroup();
 
+    m_settings.beginGroup("Appearance");
+    m_settings.setValue("UiTheme", m_uiTheme);
+    m_settings.endGroup();
 
     m_settings.sync();
     if(qApp->SaveReadProgress())
