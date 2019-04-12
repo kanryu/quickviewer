@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>themes/Dark.qss</file>
+        <file>themes/Default.qss</file>
+        <file>themes/dark/arrow_down.svg</file>
+        <file>themes/dark/arrow_down_disabled.svg</file>
+        <file>themes/dark/arrow_up.svg</file>
+        <file>themes/dark/arrow_up_disabled.svg</file>
+        <file>themes/dark/branch_closed.svg</file>
+        <file>themes/dark/branch_open.svg</file>
+        <file>themes/dark/checkbox_check_dark.svg</file>
+        <file>themes/dark/checkbox_check_disabled.svg</file>
+        <file>themes/dark/checkbox_check_lite.svg</file>
+        <file>themes/dark/handle_horizontal.svg</file>
+        <file>themes/dark/handle_vertical.svg</file>
+        <file>themes/dark/radio_check_dark.svg</file>
+        <file>themes/dark/radio_check_disabled.svg</file>
+        <file>themes/dark/radio_check_lite.svg</file>
+        <file>themes/dark/toolbar_ext.svg</file>
+    </qresource>
+</RCC>

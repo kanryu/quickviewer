@@ -114,6 +114,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         ui->radioButtonStatusBarUserDefined->setChecked(true);
     if(!ui->radioButtonStatusBarUserDefined->isChecked())
         ui->lineEditStatusBarUserStyle->setEnabled(false);
+
+    ui->comboBoxThemeSelector->setCurrentText(qApp->UiTheme());
 }
 
 OptionsDialog::~OptionsDialog()
@@ -161,6 +163,8 @@ void OptionsDialog::reflectResults()
         qApp->setStatusTextFormat(IRFANVIEW_STATUSBAR_FORMAT);
     else
         qApp->setStatusTextFormat(ui->lineEditStatusBarUserStyle->text());
+
+    qApp->setUiTheme(ui->comboBoxThemeSelector->currentText());
 }
 
 void OptionsDialog::resetColorButton(QPushButton* btn, QColor color)
@@ -270,3 +274,4 @@ void OptionsDialog::onCheckBoxShowUsage_clicked(bool enabled)
 {
     ui->labelFormatUsage->setVisible(enabled);
 }
+
