@@ -16,24 +16,29 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_imageSortBy(qvEnums::SortByFileName)
     , m_effect(qvEnums::Bilinear)
     , m_translator(nullptr)
-    , m_settings(getFilePathOfApplicationSetting(APP_INI), QSettings::IniFormat, this)
+    , m_settings(nullptr)
     , m_innerFrameShowing(false)
     , m_bookshelfManager(nullptr)
     , m_languageSelector("quickviewer_", getTranslationPath())
     , m_qtbaseLanguageSelector("qt_", getTranslationPath())
+#if defined(Q_OS_WIN)
+    , m_portable(false)
+#endif
 {
     setApplicationVersion(APP_VERSION);
     setApplicationName(APP_NAME);
     //setOrganizationName(APP_ORGANIZATION);
 //    qDebug() << "TranslationsPath" << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
-#if defined(Q_OS_WIN) && defined(QV_PORTABLE)
-#else
-    // if the first executed, must create data folder for the user
+//#if defined(Q_OS_WIN)
+//    QByteArray programFiles = qgetenv("ProgramFiles");
+//    if(applicationDirPath().startsWith(programFiles))
+//#endif
     {
+        // if the first executed, must create data folder for the user
 #  if    defined(Q_OS_MAC) || defined(Q_OS_LINUX)
         QString datapath = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(QV_DATADIR);
-#  elif  defined(Q_OS_WIN) && !defined(QV_PORTABLE)
+#  elif  defined(Q_OS_WIN)
         QString datapath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #  endif
         QDir dir(datapath);
@@ -54,11 +59,12 @@ QVApplication::QVApplication(int &argc, char **argv)
 
         }
     }
-#endif
+//#endif
+    m_settings = new QSettings(getFilePathOfApplicationSetting(APP_INI), QSettings::IniFormat, this);
 
     m_languageSelector.initialize();
     m_qtbaseLanguageSelector.copyLanguages(m_languageSelector.Languages());
-    m_settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
+    m_settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
     connect(&m_languageSelector, SIGNAL(languageChanged(QString)), &m_qtbaseLanguageSelector, SLOT(resetTranslator(QString)));
     registDefaultKeyMap();
     registDefaultMouseMap();
@@ -73,11 +79,11 @@ QString QVApplication::getApplicationFilePath(QString subFilePath)
 QString QVApplication::getFilePathOfApplicationSetting(QString subFilePath)
 {
 #ifdef Q_OS_WIN
-#  ifdef QV_PORTABLE
-    return getApplicationFilePath(subFilePath);
-#  else
-    return QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).filePath(subFilePath);
-#  endif
+    if(m_portable) {
+        return getApplicationFilePath(subFilePath);
+    } else {
+        return QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).filePath(subFilePath);
+    }
 #else
     return getUserHomeFilePath(subFilePath);
 #endif
@@ -347,336 +353,336 @@ void QVApplication::loadSettings()
     bool bRightSideBookDefault = QLocale::system().language() == QLocale::Japanese;
 
     // View
-    m_settings.beginGroup("View");
+    m_settings->beginGroup("View");
     {
-        QString sortByString = m_settings.value("ImageSortBy", "SortByFileName").toString();
+        QString sortByString = m_settings->value("ImageSortBy", "SortByFileName").toString();
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("ImageSortBy");
         m_imageSortBy = (qvEnums::ImageSortBy)qvEnums::staticMetaObject.enumerator(enumIdx)
                 .keysToValue(sortByString.toLatin1().data());
     }
-    m_fitting = m_settings.value("Fitting", true).toBool();
+    m_fitting = m_settings->value("Fitting", true).toBool();
     {
-        QString fitModestring = m_settings.value("ImageFitMode", "FitToRect").toString();
+        QString fitModestring = m_settings->value("ImageFitMode", "FitToRect").toString();
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FitMode");
         m_fitMode = (qvEnums::FitMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(fitModestring.toLatin1().data());
     }
-    m_dualView = m_settings.value("DualView", false).toBool();
-    m_stayOnTop = m_settings.value("StayOnTop", false).toBool();
+    m_dualView = m_settings->value("DualView", false).toBool();
+    m_stayOnTop = m_settings->value("StayOnTop", false).toBool();
 
-    m_rightSideBook = m_settings.value("RightSideBook", bRightSideBookDefault).toBool();
-    m_wideImageAsOnePageInDualView = m_settings.value("WideImageAsOnePageInDualView", true).toBool();
-    m_firstImageAsOnePageInDualView = m_settings.value("FirstImageAsOnePageInDualView", false).toBool();
-    m_separatePagesWhenWideImage = m_settings.value("SeparatePagesWhenWideImage", false).toBool();
+    m_rightSideBook = m_settings->value("RightSideBook", bRightSideBookDefault).toBool();
+    m_wideImageAsOnePageInDualView = m_settings->value("WideImageAsOnePageInDualView", true).toBool();
+    m_firstImageAsOnePageInDualView = m_settings->value("FirstImageAsOnePageInDualView", false).toBool();
+    m_separatePagesWhenWideImage = m_settings->value("SeparatePagesWhenWideImage", false).toBool();
 
-    m_showToolBar = m_settings.value("ShowToolBar", true).toBool();
-    m_showSliderBar = m_settings.value("ShowSliderBar", true).toBool();
-    m_showStatusBar = m_settings.value("ShowStatusBar", true).toBool();
-    m_showMenuBar = m_settings.value("ShowMenuBar", true).toBool();
-    m_showSubfolders = m_settings.value("ShowSubfolders", false).toBool();
-    m_slideShowWait = m_settings.value("SlideShowWait", 5000).toInt();
-    m_maxTextureSize = m_settings.value("MaxTextureSize", 4096).toInt();
+    m_showToolBar = m_settings->value("ShowToolBar", true).toBool();
+    m_showSliderBar = m_settings->value("ShowSliderBar", true).toBool();
+    m_showStatusBar = m_settings->value("ShowStatusBar", true).toBool();
+    m_showMenuBar = m_settings->value("ShowMenuBar", true).toBool();
+    m_showSubfolders = m_settings->value("ShowSubfolders", false).toBool();
+    m_slideShowWait = m_settings->value("SlideShowWait", 5000).toInt();
+    m_maxTextureSize = m_settings->value("MaxTextureSize", 4096).toInt();
 #ifdef Q_PROCESSOR_X86_64
-    m_maxVolumesCache = m_settings.value("MaxVolumesCache", 5).toInt();
-    m_maxImagesCache = m_settings.value("MaxImagesCache", 22).toInt();
+    m_maxVolumesCache = m_settings->value("MaxVolumesCache", 5).toInt();
+    m_maxImagesCache = m_settings->value("MaxImagesCache", 22).toInt();
 #else
-    m_maxVolumesCache = m_settings.value("MaxVolumesCache", 1).toInt();
-    m_maxImagesCache = m_settings.value("MaxImagesCache", 6).toInt();
+    m_maxVolumesCache = m_settings->value("MaxVolumesCache", 1).toInt();
+    m_maxImagesCache = m_settings->value("MaxImagesCache", 6).toInt();
 #endif
-    m_backgroundColor = QColor(m_settings.value("BackgroundColor", "0x797979").toString().toUInt(nullptr, 16));
-    m_backgroundColor2 = QColor(m_settings.value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
-    m_useCheckeredPattern  = m_settings.value("UseCheckeredPattern", true).toBool();
-    m_dontEnlargeSmallImagesOnFitting  = m_settings.value("DontEnlargeSmallImagesOnFitting", true).toBool();
-    m_showFullscreenSignage  = m_settings.value("ShowFullscreenSignage", true).toBool();
-//    m_showFullscreenTitleBar = m_settings.value("ShowFullscreenTitleBar", true).toBool();
-    m_useDirect2D = m_settings.value("UseDirect2D", false).toBool();
-    m_useFastDCTForJPEG = m_settings.value("UseFastDCTForJPEG", true).toBool();
-    m_showPanelSeparateWindow  = m_settings.value("ShowPanelSeparateWindow", false).toBool();
-    m_largeToolbarIcons  = m_settings.value("LargeToolbarIcons", false).toBool();
+    m_backgroundColor = QColor(m_settings->value("BackgroundColor", "0x797979").toString().toUInt(nullptr, 16));
+    m_backgroundColor2 = QColor(m_settings->value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
+    m_useCheckeredPattern  = m_settings->value("UseCheckeredPattern", true).toBool();
+    m_dontEnlargeSmallImagesOnFitting  = m_settings->value("DontEnlargeSmallImagesOnFitting", true).toBool();
+    m_showFullscreenSignage  = m_settings->value("ShowFullscreenSignage", true).toBool();
+//    m_showFullscreenTitleBar = m_settings->value("ShowFullscreenTitleBar", true).toBool();
+    m_useDirect2D = m_settings->value("UseDirect2D", false).toBool();
+    m_useFastDCTForJPEG = m_settings->value("UseFastDCTForJPEG", true).toBool();
+    m_showPanelSeparateWindow  = m_settings->value("ShowPanelSeparateWindow", false).toBool();
+    m_largeToolbarIcons  = m_settings->value("LargeToolbarIcons", false).toBool();
 
-    m_hideMenuBarParmanently   = m_settings.value("HideMenuBarParmanently",   false).toBool();
-    m_hideToolBarParmanently   = m_settings.value("HideToolBarParmanently",   false).toBool();
-    m_hidePageBarParmanently   = m_settings.value("HidePageBarParmanently",   false).toBool();
+    m_hideMenuBarParmanently   = m_settings->value("HideMenuBarParmanently",   false).toBool();
+    m_hideToolBarParmanently   = m_settings->value("HideToolBarParmanently",   false).toBool();
+    m_hidePageBarParmanently   = m_settings->value("HidePageBarParmanently",   false).toBool();
 
-    m_hideMenuBarInFullscreen   = m_settings.value("HideMenuBarInFullscreen", false).toBool();
-    m_hideToolBarInFullscreen   = m_settings.value("HideToolBarInFullscreen", false).toBool();
-    m_hidePageBarInFullscreen   = m_settings.value("HidePageBarInFullscreen", false).toBool();
-    m_hideScrollBarInFullscreen = m_settings.value("HideScrollBarInFullscreen", true).toBool();
-    m_hideMouseCursorInFullscreen = m_settings.value("HideMouseCursorInFullscreen", false).toBool();
+    m_hideMenuBarInFullscreen   = m_settings->value("HideMenuBarInFullscreen", false).toBool();
+    m_hideToolBarInFullscreen   = m_settings->value("HideToolBarInFullscreen", false).toBool();
+    m_hidePageBarInFullscreen   = m_settings->value("HidePageBarInFullscreen", false).toBool();
+    m_hideScrollBarInFullscreen = m_settings->value("HideScrollBarInFullscreen", true).toBool();
+    m_hideMouseCursorInFullscreen = m_settings->value("HideMouseCursorInFullscreen", false).toBool();
 
-    m_titleTextFormat = m_settings.value("TitleTextFormat", QV_WINDOWTITLE_FORMAT).toString();
-    m_statusTextFormat = m_settings.value("StatusTextFormat", QV_STATUSBAR_FORMAT).toString();
-    m_topWindowWhenRunWithAssoc = m_settings.value("TopWindowWhenRunWithAssoc", true).toBool();
-    m_topWindowWhenDropped = m_settings.value("TopWindowWhenDropped", true).toBool();
-    m_loupeTool = m_settings.value("LoupeTool", false).toBool();
-    m_scrollWithCursorWhenZooming = m_settings.value("ScrollWithCursorWhenZooming", true).toBool();
+    m_titleTextFormat = m_settings->value("TitleTextFormat", QV_WINDOWTITLE_FORMAT).toString();
+    m_statusTextFormat = m_settings->value("StatusTextFormat", QV_STATUSBAR_FORMAT).toString();
+    m_topWindowWhenRunWithAssoc = m_settings->value("TopWindowWhenRunWithAssoc", true).toBool();
+    m_topWindowWhenDropped = m_settings->value("TopWindowWhenDropped", true).toBool();
+    m_loupeTool = m_settings->value("LoupeTool", false).toBool();
+    m_scrollWithCursorWhenZooming = m_settings->value("ScrollWithCursorWhenZooming", true).toBool();
     {
-        QString showOptionstring = m_settings.value("ShowOptionViewOnStartup", "FolderStartup").toString();
+        QString showOptionstring = m_settings->value("ShowOptionViewOnStartup", "FolderStartup").toString();
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("OptionViewOnStartup");
         m_showOptionViewOnStartup = (qvEnums::OptionViewOnStartup)qvEnums::staticMetaObject.enumerator(enumIdx)
                 .keysToValue(showOptionstring.toLatin1().data());
     }
-    m_slideShowOnNormalWindow = m_settings.value("SlideShowOnNormalWindow", true).toBool();
-    m_slideShowRandomly = m_settings.value("SlideshowRandomly", false).toBool();
-    m_settings.endGroup();
+    m_slideShowOnNormalWindow = m_settings->value("SlideShowOnNormalWindow", true).toBool();
+    m_slideShowRandomly = m_settings->value("SlideshowRandomly", false).toBool();
+    m_settings->endGroup();
 
     // WindowState
-    m_settings.beginGroup("WindowState");
-    m_restoreWindowState  = m_settings.value("RestoreWindowState", false).toBool();
-    m_windowGeometry  = m_settings.value("WindowGeometry", "").toByteArray();
-    m_windowState  = m_settings.value("WindowState", "").toByteArray();
-    m_beginAsFullscreen  = m_settings.value("BeginAsFullscreen", false).toBool();
-    m_settings.endGroup();
+    m_settings->beginGroup("WindowState");
+    m_restoreWindowState  = m_settings->value("RestoreWindowState", false).toBool();
+    m_windowGeometry  = m_settings->value("WindowGeometry", "").toByteArray();
+    m_windowState  = m_settings->value("WindowState", "").toByteArray();
+    m_beginAsFullscreen  = m_settings->value("BeginAsFullscreen", false).toBool();
+    m_settings->endGroup();
 
     // File
-    m_settings.beginGroup("File");
-    m_autoLoaded  = m_settings.value("AutoLoaded", true).toBool();
-    m_history = m_settings.value("History", QStringList()).value<QStringList>();
-    m_maxHistoryCount = m_settings.value("MaxHistoryCount", 36).toInt();
-    m_bookmarks = m_settings.value("Bookmarks", QStringList()).value<QStringList>();
-    m_maxBookmarkCount = m_settings.value("MaxBookmarkCount", 20).toInt();
-    m_prohibitMultipleRunning  = m_settings.value("ProhibitMultipleRunning", false).toBool();
-    m_lastViewPath = m_settings.value("LastViewPath", "").toString();
-    m_dontSavingHistory  = m_settings.value("DontSavingHistory", false).toBool();
-    m_extractSolidArchiveToTemporaryDir = m_settings.value("ExtractSolidArchiveToTemporaryDir", true).toBool();
-    m_lastOpenedFolderPath = m_settings.value("LastOpenedFolderPath", "").toString();
-    m_settings.endGroup();
+    m_settings->beginGroup("File");
+    m_autoLoaded  = m_settings->value("AutoLoaded", true).toBool();
+    m_history = m_settings->value("History", QStringList()).value<QStringList>();
+    m_maxHistoryCount = m_settings->value("MaxHistoryCount", 36).toInt();
+    m_bookmarks = m_settings->value("Bookmarks", QStringList()).value<QStringList>();
+    m_maxBookmarkCount = m_settings->value("MaxBookmarkCount", 20).toInt();
+    m_prohibitMultipleRunning  = m_settings->value("ProhibitMultipleRunning", false).toBool();
+    m_lastViewPath = m_settings->value("LastViewPath", "").toString();
+    m_dontSavingHistory  = m_settings->value("DontSavingHistory", false).toBool();
+    m_extractSolidArchiveToTemporaryDir = m_settings->value("ExtractSolidArchiveToTemporaryDir", true).toBool();
+    m_lastOpenedFolderPath = m_settings->value("LastOpenedFolderPath", "").toString();
+    m_settings->endGroup();
 
     // Folder
-    m_settings.beginGroup("Folder");
+    m_settings->beginGroup("Folder");
     QString defaultPath = getDefaultPictureFolderPath();
-    m_homeFolderPath = m_settings.value("HomeFolderPath", defaultPath).toString();
+    m_homeFolderPath = m_settings->value("HomeFolderPath", defaultPath).toString();
     {
-        QString folderSortModestring = m_settings.value("FolderSortMode", "OrderByName").toString();
+        QString folderSortModestring = m_settings->value("FolderSortMode", "OrderByName").toString();
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FolderViewSort");
         m_folderSortMode = (qvEnums::FolderViewSort)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(folderSortModestring.toLatin1().data());
     }
-    m_openVolumeWithProgress = m_settings.value("OpenVolumeWithProgress", true).toBool();
-    m_showReadProgress = m_settings.value("ShowReadProgress", true).toBool();
-    m_saveReadProgress = m_settings.value("SaveReadProgress", true).toBool();
-    m_saveFolderViewWidth = m_settings.value("SaveFolderViewWidth", false).toBool();
-    m_folderViewWidth = m_settings.value("FolderViewWidth", 200).toInt();
-    m_settings.endGroup();
+    m_openVolumeWithProgress = m_settings->value("OpenVolumeWithProgress", true).toBool();
+    m_showReadProgress = m_settings->value("ShowReadProgress", true).toBool();
+    m_saveReadProgress = m_settings->value("SaveReadProgress", true).toBool();
+    m_saveFolderViewWidth = m_settings->value("SaveFolderViewWidth", false).toBool();
+    m_folderViewWidth = m_settings->value("FolderViewWidth", 200).toInt();
+    m_settings->endGroup();
 
     // Catalog
-    m_settings.beginGroup("Catalog");
+    m_settings->beginGroup("Catalog");
     {
-        QString viewModestring = m_settings.value("CatalogViewModeSetting", "Icon").toString();
+        QString viewModestring = m_settings->value("CatalogViewModeSetting", "Icon").toString();
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
         m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
     }
 #ifdef Q_OS_WIN
 #  ifdef QV_PORTABLE
-    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
+    m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
 #  else
-    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", "thumbnail.sqlite3.db").toString();
+    m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", "thumbnail.sqlite3.db").toString();
 #  endif
 #else
-    m_catalogDatabasePath = m_settings.value("CatalogDatabasePath", ".quickviewer/thumbnail.sqlite3.db").toString();
+    m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", ".quickviewer/thumbnail.sqlite3.db").toString();
 #endif
-    m_maxSearchByCharChanged = m_settings.value("MaxSearchByCharChanged", 10000).toInt();
-    m_maxShowFrontpage = m_settings.value("MaxShowFrontpage", 1000).toInt();
-    m_titleWithoutOptions = m_settings.value("TitleWithoutOptions", false).toBool();
-    m_searchTitleWithOptions = m_settings.value("SearchTitleWithOptions", false).toBool();
-    m_showTagBar = m_settings.value("ShowTagBar", true).toBool();
-    m_iconLongText = m_settings.value("IconLongText", false).toBool();
-    m_saveCatalogViewWidth = m_settings.value("SaveCatalogViewWidth", false).toBool();
-    m_catalogViewWidth = m_settings.value("CatalogViewWidth", 200).toInt();
-    m_settings.endGroup();
+    m_maxSearchByCharChanged = m_settings->value("MaxSearchByCharChanged", 10000).toInt();
+    m_maxShowFrontpage = m_settings->value("MaxShowFrontpage", 1000).toInt();
+    m_titleWithoutOptions = m_settings->value("TitleWithoutOptions", false).toBool();
+    m_searchTitleWithOptions = m_settings->value("SearchTitleWithOptions", false).toBool();
+    m_showTagBar = m_settings->value("ShowTagBar", true).toBool();
+    m_iconLongText = m_settings->value("IconLongText", false).toBool();
+    m_saveCatalogViewWidth = m_settings->value("SaveCatalogViewWidth", false).toBool();
+    m_catalogViewWidth = m_settings->value("CatalogViewWidth", 200).toInt();
+    m_settings->endGroup();
 
     // KeyConfig
-    m_settings.beginGroup("KeyConfig");
-    foreach(const QString& action, m_settings.childKeys()) {
-        QString str = m_settings.value(action, "").toString();
+    m_settings->beginGroup("KeyConfig");
+    foreach(const QString& action, m_settings->childKeys()) {
+        QString str = m_settings->value(action, "").toString();
         m_keyActions.updateKey(action,  QKeySequence(str), true);
     }
-    m_settings.endGroup();
+    m_settings->endGroup();
 
     // MouseConfig
-    m_settings.beginGroup("MouseConfig");
-    foreach(const QString& action, m_settings.childKeys()) {
-        QString str = m_settings.value(action, "").toString();
+    m_settings->beginGroup("MouseConfig");
+    foreach(const QString& action, m_settings->childKeys()) {
+        QString str = m_settings->value(action, "").toString();
         m_mouseActions.updateKey(action, QMouseSequence(str), true);
     }
-    m_settings.endGroup();
+    m_settings->endGroup();
 
     // Shader
-    m_settings.beginGroup("Shader");
-    QString effectstring = m_settings.value("Effect", "Bilinear").toString();
+    m_settings->beginGroup("Shader");
+    QString effectstring = m_settings->value("Effect", "Bilinear").toString();
     m_effect = ShaderManager::stringToShaderEffect(effectstring);
-    m_bicubicShaderPath = m_settings.value("BicubicShaderPath", "shaders/bicubic.frag").toString();
-    m_lanczosShaderPath = m_settings.value("LanczosShaderPath", "shaders/lanczos.frag").toString();
-    m_settings.endGroup();
+    m_bicubicShaderPath = m_settings->value("BicubicShaderPath", "shaders/bicubic.frag").toString();
+    m_lanczosShaderPath = m_settings->value("LanczosShaderPath", "shaders/lanczos.frag").toString();
+    m_settings->endGroup();
 
     // Others
-    m_settings.beginGroup("Others");
-    m_uiLanguage = m_settings.value("UiLanguage", "").toString();
-    m_confirmDeletePage = m_settings.value("ConfirmDeletePage", true).toBool();
-    m_settings.endGroup();
+    m_settings->beginGroup("Others");
+    m_uiLanguage = m_settings->value("UiLanguage", "").toString();
+    m_confirmDeletePage = m_settings->value("ConfirmDeletePage", true).toBool();
+    m_settings->endGroup();
 
-    m_settings.beginGroup("Appearance");
-    m_uiTheme = m_settings.value("UiTheme", "Default").toString();
+    m_settings->beginGroup("Appearance");
+    m_uiTheme = m_settings->value("UiTheme", "Default").toString();
     //QString themeFilePath = getApplicationFilePath(":/themes/"+m_uiTheme+".qss"); //Local files
     QString themeFilePath(":/themes/"+m_uiTheme+".qss"); // Resource files
     QFile File(themeFilePath);
     File.open(QFile::ReadOnly);
     QString styleSheet = QString(File.readAll());
     QApplication::setStyleSheet(styleSheet);
-    m_settings.endGroup();
+    m_settings->endGroup();
 
     m_bookshelfManager = new BookProgressManager(this);
 }
 
 void QVApplication::saveSettings()
 {
-    m_settings.beginGroup("View");
+    m_settings->beginGroup("View");
     {
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("ImageSortBy");
         QString sortByString = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_imageSortBy));
-        m_settings.setValue("ImageSortBy", sortByString);
+        m_settings->setValue("ImageSortBy", sortByString);
     }
-    m_settings.setValue("Fitting", m_fitting);
+    m_settings->setValue("Fitting", m_fitting);
     {
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FitMode");
         QString fitModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_fitMode));
-        m_settings.setValue("ImageFitMode", fitModestring);
+        m_settings->setValue("ImageFitMode", fitModestring);
     }
-    m_settings.setValue("DualView", m_dualView);
-    m_settings.setValue("StayOnTop", m_stayOnTop);
+    m_settings->setValue("DualView", m_dualView);
+    m_settings->setValue("StayOnTop", m_stayOnTop);
 
-    m_settings.setValue("RightSideBook", m_rightSideBook);
-    m_settings.setValue("WideImageAsOnePageInDualView", m_wideImageAsOnePageInDualView);
-    m_settings.setValue("FirstImageAsOnePageInDualView", m_firstImageAsOnePageInDualView);
-    m_settings.setValue("SeparatePagesWhenWideImage", m_separatePagesWhenWideImage);
+    m_settings->setValue("RightSideBook", m_rightSideBook);
+    m_settings->setValue("WideImageAsOnePageInDualView", m_wideImageAsOnePageInDualView);
+    m_settings->setValue("FirstImageAsOnePageInDualView", m_firstImageAsOnePageInDualView);
+    m_settings->setValue("SeparatePagesWhenWideImage", m_separatePagesWhenWideImage);
 
-    m_settings.setValue("ShowToolBar", m_showToolBar);
-    m_settings.setValue("ShowSliderBar", m_showSliderBar);
-    m_settings.setValue("ShowStatusBar", m_showStatusBar);
-    m_settings.setValue("ShowMenuBar", m_showMenuBar);
-    m_settings.setValue("ShowSubfolders", m_showSubfolders);
-    m_settings.setValue("SlideShowWait", m_slideShowWait);
-    m_settings.setValue("MaxTextureSize", m_maxTextureSize);
-    m_settings.setValue("MaxVolumesCache", m_maxVolumesCache);
-    m_settings.setValue("MaxImagesCache", m_maxImagesCache);
+    m_settings->setValue("ShowToolBar", m_showToolBar);
+    m_settings->setValue("ShowSliderBar", m_showSliderBar);
+    m_settings->setValue("ShowStatusBar", m_showStatusBar);
+    m_settings->setValue("ShowMenuBar", m_showMenuBar);
+    m_settings->setValue("ShowSubfolders", m_showSubfolders);
+    m_settings->setValue("SlideShowWait", m_slideShowWait);
+    m_settings->setValue("MaxTextureSize", m_maxTextureSize);
+    m_settings->setValue("MaxVolumesCache", m_maxVolumesCache);
+    m_settings->setValue("MaxImagesCache", m_maxImagesCache);
     QString rgbstring;
     rgbstring.setNum(m_backgroundColor.rgb(), 16);
-    m_settings.setValue("BackgroundColor", rgbstring);
+    m_settings->setValue("BackgroundColor", rgbstring);
     rgbstring.setNum(m_backgroundColor2.rgb(), 16);
-    m_settings.setValue("BackgroundColor2", rgbstring);
-    m_settings.setValue("UseCheckeredPattern", m_useCheckeredPattern);
-    m_settings.setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
-    m_settings.setValue("ShowFullscreenSignage", m_showFullscreenSignage);
-//    m_settings.setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
-    m_settings.setValue("UseDirect2D", m_useDirect2D);
-    m_settings.setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);
-    m_settings.setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
-    m_settings.setValue("LargeToolbarIcons", m_largeToolbarIcons);
+    m_settings->setValue("BackgroundColor2", rgbstring);
+    m_settings->setValue("UseCheckeredPattern", m_useCheckeredPattern);
+    m_settings->setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
+    m_settings->setValue("ShowFullscreenSignage", m_showFullscreenSignage);
+//    m_settings->setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
+    m_settings->setValue("UseDirect2D", m_useDirect2D);
+    m_settings->setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);
+    m_settings->setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
+    m_settings->setValue("LargeToolbarIcons", m_largeToolbarIcons);
 
-    m_settings.setValue("HideMenuBarParmanently", m_hideMenuBarParmanently);
-    m_settings.setValue("HideToolBarParmanently", m_hideToolBarParmanently);
-    m_settings.setValue("HidePageBarParmanently", m_hidePageBarParmanently);
+    m_settings->setValue("HideMenuBarParmanently", m_hideMenuBarParmanently);
+    m_settings->setValue("HideToolBarParmanently", m_hideToolBarParmanently);
+    m_settings->setValue("HidePageBarParmanently", m_hidePageBarParmanently);
 
-    m_settings.setValue("HideMenuBarInFullscreen", m_hideMenuBarInFullscreen);
-    m_settings.setValue("HideToolBarInFullscreen", m_hideToolBarInFullscreen);
-    m_settings.setValue("HidePageBarInFullscreen", m_hidePageBarInFullscreen);
-    m_settings.setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
-    m_settings.setValue("HideMouseCursorInFullscreen", m_hideMouseCursorInFullscreen);
+    m_settings->setValue("HideMenuBarInFullscreen", m_hideMenuBarInFullscreen);
+    m_settings->setValue("HideToolBarInFullscreen", m_hideToolBarInFullscreen);
+    m_settings->setValue("HidePageBarInFullscreen", m_hidePageBarInFullscreen);
+    m_settings->setValue("HideScrollBarInFullscreen", m_hideScrollBarInFullscreen);
+    m_settings->setValue("HideMouseCursorInFullscreen", m_hideMouseCursorInFullscreen);
 
-    m_settings.setValue("TitleTextFormat", m_titleTextFormat);
-    m_settings.setValue("StatusTextFormat", m_statusTextFormat);
-    m_settings.setValue("TopWindowWhenRunWithAssoc", m_topWindowWhenRunWithAssoc);
-    m_settings.setValue("TopWindowWhenDropped", m_topWindowWhenDropped);
-    m_settings.setValue("LoupeTool", m_loupeTool);
-    m_settings.setValue("ScrollWithCursorWhenZooming", m_scrollWithCursorWhenZooming);
+    m_settings->setValue("TitleTextFormat", m_titleTextFormat);
+    m_settings->setValue("StatusTextFormat", m_statusTextFormat);
+    m_settings->setValue("TopWindowWhenRunWithAssoc", m_topWindowWhenRunWithAssoc);
+    m_settings->setValue("TopWindowWhenDropped", m_topWindowWhenDropped);
+    m_settings->setValue("LoupeTool", m_loupeTool);
+    m_settings->setValue("ScrollWithCursorWhenZooming", m_scrollWithCursorWhenZooming);
     {
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("OptionViewOnStartup");
         QString optionViewstring = QString(qvEnums::staticMetaObject.enumerator(enumIdx)
                                            .valueToKey(m_showOptionViewOnStartup));
-        m_settings.setValue("ShowOptionViewOnStartup", optionViewstring);
+        m_settings->setValue("ShowOptionViewOnStartup", optionViewstring);
     }
-    m_settings.setValue("SlideShowOnNormalWindow", m_slideShowOnNormalWindow);
-    m_settings.setValue("SlideshowRandomly", m_slideShowRandomly);
-    m_settings.endGroup();
+    m_settings->setValue("SlideShowOnNormalWindow", m_slideShowOnNormalWindow);
+    m_settings->setValue("SlideshowRandomly", m_slideShowRandomly);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("WindowState");
-    m_settings.setValue("RestoreWindowState", m_restoreWindowState);
-    m_settings.setValue("WindowGeometry", m_windowGeometry);
-    m_settings.setValue("WindowState", m_windowState);
-    m_settings.setValue("BeginAsFullscreen", m_beginAsFullscreen);
-    m_settings.endGroup();
+    m_settings->beginGroup("WindowState");
+    m_settings->setValue("RestoreWindowState", m_restoreWindowState);
+    m_settings->setValue("WindowGeometry", m_windowGeometry);
+    m_settings->setValue("WindowState", m_windowState);
+    m_settings->setValue("BeginAsFullscreen", m_beginAsFullscreen);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("File");
-    m_settings.setValue("AutoLoaded", m_autoLoaded);
-    m_settings.setValue("MaxHistoryCount", m_maxHistoryCount);
-    m_settings.setValue("History", QVariant::fromValue(m_history));
-    m_settings.setValue("MaxBookmarkCount", m_maxBookmarkCount);
-    m_settings.setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
-    m_settings.setValue("ProhibitMultipleRunning", m_prohibitMultipleRunning);
-    m_settings.setValue("LastViewPath", m_lastViewPath);
-    m_settings.setValue("DontSavingHistory", m_dontSavingHistory);
-    m_settings.setValue("ExtractSolidArchiveToTemporaryDir", m_extractSolidArchiveToTemporaryDir);
-    m_settings.setValue("LastOpenedFolderPath", m_lastOpenedFolderPath);
-    m_settings.endGroup();
+    m_settings->beginGroup("File");
+    m_settings->setValue("AutoLoaded", m_autoLoaded);
+    m_settings->setValue("MaxHistoryCount", m_maxHistoryCount);
+    m_settings->setValue("History", QVariant::fromValue(m_history));
+    m_settings->setValue("MaxBookmarkCount", m_maxBookmarkCount);
+    m_settings->setValue("Bookmarks", QVariant::fromValue(m_bookmarks));
+    m_settings->setValue("ProhibitMultipleRunning", m_prohibitMultipleRunning);
+    m_settings->setValue("LastViewPath", m_lastViewPath);
+    m_settings->setValue("DontSavingHistory", m_dontSavingHistory);
+    m_settings->setValue("ExtractSolidArchiveToTemporaryDir", m_extractSolidArchiveToTemporaryDir);
+    m_settings->setValue("LastOpenedFolderPath", m_lastOpenedFolderPath);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("Folder");
-    m_settings.setValue("HomeFolderPath", m_homeFolderPath);
+    m_settings->beginGroup("Folder");
+    m_settings->setValue("HomeFolderPath", m_homeFolderPath);
     {
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("FolderViewSort");
         QString folderSortModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_folderSortMode));
-        m_settings.setValue("FolderSortMode", folderSortModestring);
+        m_settings->setValue("FolderSortMode", folderSortModestring);
     }
-    m_settings.setValue("OpenVolumeWithProgress", m_openVolumeWithProgress);
-    m_settings.setValue("ShowReadProgress", m_showReadProgress);
-    m_settings.setValue("SaveReadProgress", m_saveReadProgress);
-    m_settings.setValue("SaveFolderViewWidth", m_saveFolderViewWidth);
-    m_settings.setValue("FolderViewWidth", m_folderViewWidth);
-    m_settings.endGroup();
+    m_settings->setValue("OpenVolumeWithProgress", m_openVolumeWithProgress);
+    m_settings->setValue("ShowReadProgress", m_showReadProgress);
+    m_settings->setValue("SaveReadProgress", m_saveReadProgress);
+    m_settings->setValue("SaveFolderViewWidth", m_saveFolderViewWidth);
+    m_settings->setValue("FolderViewWidth", m_folderViewWidth);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("Catalog");
+    m_settings->beginGroup("Catalog");
     {
         int enumIdx = qvEnums::staticMetaObject.indexOfEnumerator("CatalogViewMode");
         QString viewModestring = QString(qvEnums::staticMetaObject.enumerator(enumIdx).valueToKey(m_catalogViewModeSetting));
-        m_settings.setValue("CatalogViewModeSetting", viewModestring);
+        m_settings->setValue("CatalogViewModeSetting", viewModestring);
     }
-    m_settings.setValue("MaxSearchByCharChanged", m_maxSearchByCharChanged);
-    m_settings.setValue("MaxShowFrontpage", m_maxShowFrontpage);
-    m_settings.setValue("TitleWithoutOptions", m_titleWithoutOptions);
-    m_settings.setValue("SearchTitleWithOptions", m_searchTitleWithOptions);
-    m_settings.setValue("ShowTagBar", m_showTagBar);
-    m_settings.setValue("IconLongText", m_iconLongText);
-    m_settings.setValue("SaveCatalogViewWidth", m_saveCatalogViewWidth);
-    m_settings.setValue("CatalogViewWidth", m_catalogViewWidth);
-    m_settings.endGroup();
+    m_settings->setValue("MaxSearchByCharChanged", m_maxSearchByCharChanged);
+    m_settings->setValue("MaxShowFrontpage", m_maxShowFrontpage);
+    m_settings->setValue("TitleWithoutOptions", m_titleWithoutOptions);
+    m_settings->setValue("SearchTitleWithOptions", m_searchTitleWithOptions);
+    m_settings->setValue("ShowTagBar", m_showTagBar);
+    m_settings->setValue("IconLongText", m_iconLongText);
+    m_settings->setValue("SaveCatalogViewWidth", m_saveCatalogViewWidth);
+    m_settings->setValue("CatalogViewWidth", m_catalogViewWidth);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("KeyConfig");
+    m_settings->beginGroup("KeyConfig");
     foreach(const QString& action, m_keyActions.keyMaps().keys()) {
         QKeySequence seqs = m_keyActions.keyMaps()[action];
-        m_settings.setValue(action, seqs.toString());
+        m_settings->setValue(action, seqs.toString());
     }
-    m_settings.endGroup();
+    m_settings->endGroup();
 
-    m_settings.beginGroup("MouseConfig");
+    m_settings->beginGroup("MouseConfig");
     foreach(const QString& action, m_mouseActions.keyMaps().keys()) {
         QMouseSequence seqs = m_mouseActions.keyMaps()[action];
-        m_settings.setValue(action, seqs.toString());
+        m_settings->setValue(action, seqs.toString());
     }
-    m_settings.endGroup();
+    m_settings->endGroup();
 
-    m_settings.beginGroup("Shader");
-    m_settings.setValue("Effect", ShaderManager::shaderEffectToString(m_effect));
-    m_settings.setValue("BicubicShaderPath", m_bicubicShaderPath);
-    m_settings.setValue("LanczosShaderPath", m_lanczosShaderPath);
-    m_settings.endGroup();
+    m_settings->beginGroup("Shader");
+    m_settings->setValue("Effect", ShaderManager::shaderEffectToString(m_effect));
+    m_settings->setValue("BicubicShaderPath", m_bicubicShaderPath);
+    m_settings->setValue("LanczosShaderPath", m_lanczosShaderPath);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("Others");
-    m_settings.setValue("UiLanguage", m_uiLanguage);
-    m_settings.setValue("ConfirmDeletePage", m_confirmDeletePage);
-    m_settings.endGroup();
+    m_settings->beginGroup("Others");
+    m_settings->setValue("UiLanguage", m_uiLanguage);
+    m_settings->setValue("ConfirmDeletePage", m_confirmDeletePage);
+    m_settings->endGroup();
 
-    m_settings.beginGroup("Appearance");
-    m_settings.setValue("UiTheme", m_uiTheme);
-    m_settings.endGroup();
+    m_settings->beginGroup("Appearance");
+    m_settings->setValue("UiTheme", m_uiTheme);
+    m_settings->endGroup();
 
-    m_settings.sync();
+    m_settings->sync();
     if(qApp->SaveReadProgress())
         m_bookshelfManager->save();
 }

@@ -467,11 +467,16 @@ private:
     // Appearance
     QString m_uiTheme;
 
-    QSettings m_settings;
+    QSettings* m_settings;
     BookProgressManager* m_bookshelfManager;
 
     QLanguageSelector m_languageSelector;
     QLanguageSelector m_qtbaseLanguageSelector;
+
+#if defined(Q_OS_WIN)
+    // System Dependable
+    bool m_portable;
+#endif
 };
 
 #endif // QVAPPLICATION_H
