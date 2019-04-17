@@ -14,15 +14,15 @@ QVApplication::QVApplication(int &argc, char **argv)
     , m_mainThread(QThread::currentThread())
     , m_maxTextureSize(4096)
     , m_imageSortBy(qvEnums::SortByFileName)
+    , m_innerFrameShowing(false)
     , m_effect(qvEnums::Bilinear)
     , m_translator(nullptr)
     , m_settings(nullptr)
-    , m_innerFrameShowing(false)
     , m_bookshelfManager(nullptr)
     , m_languageSelector("quickviewer_", getTranslationPath())
     , m_qtbaseLanguageSelector("qt_", getTranslationPath())
 #if defined(Q_OS_WIN)
-    , m_portable(false)
+    , m_portable(true)
 #endif
 {
     setApplicationVersion(APP_VERSION);
@@ -30,10 +30,16 @@ QVApplication::QVApplication(int &argc, char **argv)
     //setOrganizationName(APP_ORGANIZATION);
 //    qDebug() << "TranslationsPath" << QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 
-//#if defined(Q_OS_WIN)
-//    QByteArray programFiles = qgetenv("ProgramFiles");
-//    if(applicationDirPath().startsWith(programFiles))
-//#endif
+#if defined(Q_OS_WIN)
+    // Since there is an evil implementation that forcibly installs QuickViewer in Windows "C:/Program Files", the specification is changed as follows.
+    // Once assuming that it is a Portable environment, if there is QuickViewer in "C:/Program Files", it corresponds by denying it.
+    QByteArray programFiles = qgetenv("ProgramFiles");
+    QString appdir = applicationDirPath();
+    if(QDir::toNativeSeparators(appdir).startsWith(programFiles))
+        m_portable = false;
+
+    if(m_portable)
+#endif
     {
         // if the first executed, must create data folder for the user
 #  if    defined(Q_OS_MAC) || defined(Q_OS_LINUX)
