@@ -1,0 +1,75 @@
+#shortcutGroupBox QGroupBox {
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 10px 5px 5px 5px;
+}
+
+#OptionsDialog QGroupBox {
+  border: 1px solid gray;
+  border-radius: 3px;
+}
+
+#FolderWindow #frame QToolButton {
+    height: 24px;
+    border: none;
+}
+#FolderWindow #frame QToolButton:hover {
+    height: 24px;
+    border: none;
+    background-color: yellow;
+}
+#FolderWindow #frame QPushButton {
+    border: none;
+}
+#FolderWindow #frame QPushButton:hover {
+    border: none;
+    background-color: yellow;
+}
+
+#CatalogWindow QToolButton {
+    border-style: none;
+    padding 0px;
+}
+
+#TagFrame QPushButton {
+    background-color: lightskyblue;
+    border-style: inset;
+    border-width: 1px;
+    border-radius: 6px;
+    font: 11px;
+    padding: 3px;
+}
+#TagFrame QPushButton:checked {
+    background-color: lightpink;
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 6px;
+    font: 11px;
+    padding: 3px;
+}
+#TagFrame QFrame.layout {
+  layoutLeftMargin: 1px;
+  layoutRightMargin: 1px;
+  layoutTopMargin: 1px;
+  layoutBottomMargin: 1px;
+  layoutSpacing: 1px;
+}
+
+#volumeList {
+	background-color: #C0C0C0
+}
+
+#ManageDatabaseDialog QGroupBox {
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+#cancelButton {
+	border-width: 2px;
+	padding: 8px;
+}
+
+#deleteAllButton {
+	padding 5px;
+}
