@@ -1,33 +1,55 @@
 # CHANGELOG
 
+## v1.1.4 (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+
+add French translation, Dark color theme, support as a normal
+application
+
+- add French translation (contributed by M.2WF)
+- add Dark color theme (contributed by @rurigk)
+- support to run as a normal application(located on c:/Program Files)
+
+- other commits
+    - If it's running under C:/Program Files, it's not considered portable (Tue Apr 16 16:49:03 2019 +0900) [ec3b2ed](https://github.com/kanryu/quickviewer/commit/ec3b2ed61545f480e2afe6aa71bfd2495348869b)
+    - backport to qt-5.9 (Fri Apr 12 16:12:40 2019 +0900) [6c0ed9f](https://github.com/kanryu/quickviewer/commit/6c0ed9f3c3f5179d00ad2ec967b711603fc27ae1)
+    - Merge pull request #100 from rurigk/master (Fri Apr 12 16:04:22 2019 +0900) [895dff2](https://github.com/kanryu/quickviewer/commit/895dff2edf7453e7898f90e58f4667b215e1feb3)
+    -  (Fri Apr 12 16:04:22 2019 +0900) [895dff2](https://github.com/kanryu/quickviewer/commit/895dff2edf7453e7898f90e58f4667b215e1feb3)
+    - Theme selector and dark theme (Fri Apr 12 16:04:22 2019 +0900) [895dff2](https://github.com/kanryu/quickviewer/commit/895dff2edf7453e7898f90e58f4667b215e1feb3)
+    - Fix: Incorrect file path (Tue Apr 9 14:37:48 2019 -0500) [ef29dbc](https://github.com/kanryu/quickviewer/commit/ef29dbc02f536f5bdff170115d8f45fe190593bd)
+    - Themes moved to resources, Load theme from resource (Tue Apr 9 14:30:55 2019 -0500) [615a913](https://github.com/kanryu/quickviewer/commit/615a9138f2fd25321651d0154ac3ae892c182c6b)
+    - Basic theme selector added (Tue Apr 9 13:48:56 2019 -0500) [cfbc1d1](https://github.com/kanryu/quickviewer/commit/cfbc1d18816d444f3b159055e335ff445cf6f12e)
+    - Update index.md (Wed Feb 27 10:02:41 2019 +0900) [6cb3f4a](https://github.com/kanryu/quickviewer/commit/6cb3f4a97e7bf83faea6a7c27fe103ca8608f81f)
+    - Update index.md (Wed Feb 27 10:01:48 2019 +0900) [acf0282](https://github.com/kanryu/quickviewer/commit/acf02823c0fe39a29de2d2e6a6421accad5136a6)
+    - Update index.md (Wed Feb 27 10:00:03 2019 +0900) [4028af1](https://github.com/kanryu/quickviewer/commit/4028af160a5319b4c8e54671438e9f9d4bbf0b67)
+    - add French translations(Contributed by michel.2wf) (Tue Feb 19 00:18:05 2019 +0900) [0b88f69](https://github.com/kanryu/quickviewer/commit/0b88f69a8457b79f759fa95cee87300ec26c37ad)
+
+## v1.1.3 (Sat Jan 5 23:09:20 2019 +0900) [c84abe3](https://github.com/kanryu/quickviewer/commit/c84abe3b2e3ae5cc987ecec58dcbc697ae44c04e)
+
+changelog
+
 - other commits
     - changelog (Sat Jan 5 23:07:40 2019 +0900) [ecbc547](https://github.com/kanryu/quickviewer/commit/ecbc5476431cd23f9e35c295f8e39410ab2ed411)
-
-## v1.1.3 (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
-
-Improve slide show and add file sort
-
-- The slideshow can be executed even in the window display
-- Addition of function that can make slide show display order random
-- Addition of file sorting method change function (file name, file size, change time stamp)
-
-- other commits
+    - Improve slide show and add file sort (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
+    -  (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
+    -  The slideshow can be executed even in the window display (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
+    -  Addition of function that can make slide show display order random (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
+    -  Addition of file sorting method change function (file name, file size, change time stamp) (Sat Jan 5 23:06:53 2019 +0900) [d860c6f](https://github.com/kanryu/quickviewer/commit/d860c6fd62076943f559d73217d5240d64f64665)
     - Update index.md (Tue Dec 18 10:20:40 2018 +0900) [6a29119](https://github.com/kanryu/quickviewer/commit/6a29119a24914d8a05a17df4acd8f84904652ced)
     - update qlanguageselector, support for building text translations (Mon Dec 3 18:00:05 2018 +0900) [97edc36](https://github.com/kanryu/quickviewer/commit/97edc36b50fc75df7ceef5c73b89a9eceb76a7e9)
-    - CHANGELOG (Sun Nov 25 23:01:48 2018 +0900) [5d33c22](https://github.com/kanryu/quickviewer/commit/5d33c22e90fb5397eac2811b1d07fdb43b12505c)
 
-## v1.1.2 (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+## v1.1.2 (Sun Nov 25 23:01:48 2018 +0900) [5d33c22](https://github.com/kanryu/quickviewer/commit/5d33c22e90fb5397eac2811b1d07fdb43b12505c)
 
-Support text based translations
-
-- Support text based translations
-- You can translate QuickViewer only with a text editor
-- Support for not portable versions
-- Can be a packaged application some linux distributions
-- QuickViewer installer format from this version is provided.(Windows)
-- Bugfixed: a problem to show mainmenu when to show on top
+CHANGELOG
 
 - other commits
+    - Support text based translations (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  Support text based translations (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  You can translate QuickViewer only with a text editor (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  Support for not portable versions (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  Can be a packaged application some linux distributions (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  QuickViewer installer format from this version is provided.(Windows) (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
+    -  Bugfixed: a problem to show mainmenu when to show on top (Sun Nov 25 23:00:59 2018 +0900) [bd4cc59](https://github.com/kanryu/quickviewer/commit/bd4cc5905fb4b8751883d8fe962f0956c5fd75d7)
     - truncate dupulicated word 'Conformation' (Sun Nov 4 07:54:57 2018 +0900) [bbdd40e](https://github.com/kanryu/quickviewer/commit/bbdd40e99410501b63664956b5e775ddcaa71806)
     - add translations/quickviewer_en.ts (Sun Nov 4 07:34:54 2018 +0900) [d41cf99](https://github.com/kanryu/quickviewer/commit/d41cf99fe325778557eba970d3a4fcf3a7e0dc15)
     -  (Sun Nov 4 07:34:54 2018 +0900) [d41cf99](https://github.com/kanryu/quickviewer/commit/d41cf99fe325778557eba970d3a4fcf3a7e0dc15)
@@ -55,24 +77,24 @@ Support text based translations
     - Update index-ja.md (Mon Aug 6 18:32:35 2018 +0900) [73255a4](https://github.com/kanryu/quickviewer/commit/73255a4df929abd45bbcb90d5568b194121ec4aa)
     - Update index.md (Mon Aug 6 18:31:52 2018 +0900) [c0a49e5](https://github.com/kanryu/quickviewer/commit/c0a49e56a2289edd039fa2fb38138c58cc188720)
     - Update index.md (Sat Aug 4 23:02:55 2018 +0900) [eb415c1](https://github.com/kanryu/quickviewer/commit/eb415c1a5f9c255c27fed85d6763eee8219c6aa9)
-    - changelog (Sun Jul 29 19:44:30 2018 +0900) [a195bdb](https://github.com/kanryu/quickviewer/commit/a195bdbf444cf1ddc26fcd51c8cb438de88a68f3)
 
-## v1.1.1 (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+## v1.1.1 (Sun Jul 29 19:44:30 2018 +0900) [a195bdb](https://github.com/kanryu/quickviewer/commit/a195bdbf444cf1ddc26fcd51c8cb438de88a68f3)
 
-- Show Actions By Group on KeyConfig / MouseConfig
-- 'Lanczos 4 interpolation by CPU' became the original performance
-- add a menu 'Hide the mouse cursor on fullscreen'
-- When each dialog is displayed, the toggle of the closing button is enabled
-- use specific action roles instead of text heuristic roles
-- pull request by @pazos
-- Use standard CFBundleName without version
-- pull request by @pazos
-- hide menubar icons on mac
-- pull request by @pazos
-- fix for file chooser filter
-- pull request by @pazos
+changelog
 
 - other commits
+    -  Show Actions By Group on KeyConfig / MouseConfig (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  'Lanczos 4 interpolation by CPU' became the original performance (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  add a menu 'Hide the mouse cursor on fullscreen' (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  When each dialog is displayed, the toggle of the closing button is enabled (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  use specific action roles instead of text heuristic roles (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  pull request by @pazos (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  Use standard CFBundleName without version (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  pull request by @pazos (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  hide menubar icons on mac (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  pull request by @pazos (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  fix for file chooser filter (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
+    -  pull request by @pazos (Sun Jul 29 19:43:34 2018 +0900) [c9aff29](https://github.com/kanryu/quickviewer/commit/c9aff291ba364c7a8a6e155374342f8fcf6cf5be)
     - add a menu 'Hide the mouse cursor on fullscreen' (Sun Jul 29 19:04:08 2018 +0900) [2e07721](https://github.com/kanryu/quickviewer/commit/2e07721207d84b9dcb5b28c5b9f94ec601434726)
     - When each dialog is displayed, the toggle of the closing button is enabled (Sun Jul 29 17:40:52 2018 +0900) [110c88d](https://github.com/kanryu/quickviewer/commit/110c88d94c975662897bdf59c215847ba647474b)
     - Merge pull request #86 from pazos/mac (Thu Jul 26 09:58:43 2018 +0900) [fb24915](https://github.com/kanryu/quickviewer/commit/fb24915ffd0b332662c63e91ae72c3a5a230f5af)
@@ -119,18 +141,18 @@ Support text based translations
     - Update README.md (Tue Mar 13 22:48:35 2018 +0900) [173a3b9](https://github.com/kanryu/quickviewer/commit/173a3b91a8794efd6ac28eff3d2c6230b07662ec)
     - Update index-ja.md (Tue Mar 13 22:47:29 2018 +0900) [05129e1](https://github.com/kanryu/quickviewer/commit/05129e1cf5876b4eda650b6b402f7babee66f091)
     - Update index.md (Tue Mar 13 22:46:24 2018 +0900) [1bf3f0e](https://github.com/kanryu/quickviewer/commit/1bf3f0e5653b4d1a970cc2e9c9f8ea838b1efac2)
-    - changelog (Tue Mar 13 22:40:42 2018 +0900) [6a0630b](https://github.com/kanryu/quickviewer/commit/6a0630b65b11fdb73f587de5064bad9cc18e6356)
 
-## v1.1.0 (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+## v1.1.0 (Tue Mar 13 22:40:42 2018 +0900) [6a0630b](https://github.com/kanryu/quickviewer/commit/6a0630b65b11fdb73f587de5064bad9cc18e6356)
 
-add plguins for JPEG-XR/DDS/JPEG 2000, add options for Folder/Catalog views
-
-- add plguins for JPEG-XR/DDS/JPEG 2000
-- add option for saving progress.ini
-- add option for save width of Folder/Catalog views
-- add option to start app with Folder/Catalog view
+changelog
 
 - other commits
+    - add plguins for JPEG-XR/DDS/JPEG 2000, add options for Folder/Catalog views (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+    -  (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+    -  add plguins for JPEG-XR/DDS/JPEG 2000 (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+    -  add option for saving progress.ini (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+    -  add option for save width of Folder/Catalog views (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
+    -  add option to start app with Folder/Catalog view (Tue Mar 13 22:40:08 2018 +0900) [2a7ef9a](https://github.com/kanryu/quickviewer/commit/2a7ef9ac2ed79a4b3443f9840819b7a860ebfd0d)
     - Update index.md (Sat Feb 24 14:30:42 2018 +0900) [87b3b6b](https://github.com/kanryu/quickviewer/commit/87b3b6b2e23c7f8523ae30bf1e88575689f9deb8)
     - Update index.md (Thu Feb 1 11:50:31 2018 +0900) [5557acf](https://github.com/kanryu/quickviewer/commit/5557acfdacdf517c9c401e9b240c99b9bcde6af3)
     - Update README.md (Thu Feb 1 11:49:48 2018 +0900) [bc5bc24](https://github.com/kanryu/quickviewer/commit/bc5bc24943fbe77453c2d2fe55c1f0ccb4f8afc4)
@@ -144,14 +166,14 @@ add plguins for JPEG-XR/DDS/JPEG 2000, add options for Folder/Catalog views
     - Update README.md (Thu Jan 18 20:29:23 2018 +0900) [6981821](https://github.com/kanryu/quickviewer/commit/69818211953c78ed42dbc1a213cdc15a14eb259b)
     - Update README.md (Thu Jan 18 20:27:16 2018 +0900) [a73b12e](https://github.com/kanryu/quickviewer/commit/a73b12e193816fc7979fdeb896324e0d390f6d9b)
     - bugfixed: Pressing the Rotate button when the image is not loaded will end the Frame (Wed Jan 17 13:39:47 2018 +0900) [c88898d](https://github.com/kanryu/quickviewer/commit/c88898de8beb640372365554a54444b2f7474155)
-    - changelog (Mon Jan 15 20:05:26 2018 +0900) [cd11e39](https://github.com/kanryu/quickviewer/commit/cd11e3968f70184e20532c85dff6275c357e8f43)
 
-## v1.0.9 (Mon Jan 15 20:04:38 2018 +0900) [74286a8](https://github.com/kanryu/quickviewer/commit/74286a8452620b9e3750e754e9c469ff88ae0438)
+## v1.0.9 (Mon Jan 15 20:05:26 2018 +0900) [cd11e39](https://github.com/kanryu/quickviewer/commit/cd11e3968f70184e20532c85dff6275c357e8f43)
 
-add Next page or volume
-add Prev page or volume
+changelog
 
 - other commits
+    - add Next page or volume (Mon Jan 15 20:04:38 2018 +0900) [74286a8](https://github.com/kanryu/quickviewer/commit/74286a8452620b9e3750e754e9c469ff88ae0438)
+    - add Prev page or volume (Mon Jan 15 20:04:38 2018 +0900) [74286a8](https://github.com/kanryu/quickviewer/commit/74286a8452620b9e3750e754e9c469ff88ae0438)
     - abolished 'CPU Bicubic after GPU Bilinear' (Mon Jan 15 18:40:10 2018 +0900) [d3adbb2](https://github.com/kanryu/quickviewer/commit/d3adbb229fc6431bb94af11e39ab28e6c7f2910a)
     - fixed for luminor() (Mon Jan 15 18:40:10 2018 +0900) [d3adbb2](https://github.com/kanryu/quickviewer/commit/d3adbb229fc6431bb94af11e39ab28e6c7f2910a)
     - add lanczos4 (Sun Jan 14 20:29:41 2018 +0900) [69ad771](https://github.com/kanryu/quickviewer/commit/69ad771a1134ac613759ad48a49776a2fab46342)
@@ -163,23 +185,20 @@ add Prev page or volume
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Thu Jan 11 19:17:08 2018 +0900) [ef0fc34](https://github.com/kanryu/quickviewer/commit/ef0fc34e53c8803a96ee5a9aff3aa1069ce05ea9)
     - luminor_rgba supports interlieved bitmaps(RGBA, RGBA...) (Thu Jan 11 19:16:40 2018 +0900) [c2caf59](https://github.com/kanryu/quickviewer/commit/c2caf598f5f1ddc0cce0740a3a80e32ad60aebb4)
     - Update README.md (Wed Jan 10 13:43:26 2018 +0900) [35ac66b](https://github.com/kanryu/quickviewer/commit/35ac66bdc26b54e2290bb9630ed853215875c740)
-    - changelog (Tue Jan 9 01:50:34 2018 +0900) [364ccba](https://github.com/kanryu/quickviewer/commit/364ccbad4f09fb01cade7f03badd822bab8bc696)
 
-## v1.0.8 (Tue Jan 9 01:48:10 2018 +0900) [a5a090a](https://github.com/kanryu/quickviewer/commit/a5a090ab59fdb80226820e0257f2bc1299aa04ee)
+## v1.0.8 (Tue Jan 9 01:50:34 2018 +0900) [364ccba](https://github.com/kanryu/quickviewer/commit/364ccbad4f09fb01cade7f03badd822bab8bc696)
 
-add a dialog for change brightness/contrast/gamma
+changelog
 
 - other commits
+    - add a dialog for change brightness/contrast/gamma (Tue Jan 9 01:48:10 2018 +0900) [a5a090a](https://github.com/kanryu/quickviewer/commit/a5a090ab59fdb80226820e0257f2bc1299aa04ee)
     - support for changing the brightness, contrast, or gamma value for the images (Sun Jan 7 15:00:00 2018 +0900) [eafaf10](https://github.com/kanryu/quickviewer/commit/eafaf10c832bc3c380babe3370ca907bfdd3f564)
     - bugfixed: The longer the display sample of Window Title Format becomes, the collapsed design (Sun Dec 17 22:49:36 2017 +0900) [ab75f07](https://github.com/kanryu/quickviewer/commit/ab75f079b99f40f1027dbc1147b0e3f0d16c80e9)
     - changelog (Sun Dec 17 10:07:37 2017 +0900) [859f98b](https://github.com/kanryu/quickviewer/commit/859f98bb4735a97166891c71ffdc4d01dc50b014)
     - changelog (Sun Dec 17 10:05:49 2017 +0900) [d56cbb7](https://github.com/kanryu/quickviewer/commit/d56cbb78da351019b841c5c7958c710f12fbc523)
+    - (rev2) bugfixed: Fitting was not working properly (Sun Dec 17 10:04:40 2017 +0900) [e6e49c7](https://github.com/kanryu/quickviewer/commit/e6e49c7938f768512986ee3f4127a63b7944938a)
 
-## v1.0.7 (Sun Dec 17 10:04:40 2017 +0900) [e6e49c7](https://github.com/kanryu/quickviewer/commit/e6e49c7938f768512986ee3f4127a63b7944938a)
-
-(rev2) bugfixed: Fitting was not working properly
-
-## v1.0.7rev0 (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
+## v1.0.7 (Sat Dec 16 21:58:02 2017 +0900) [798d9d7](https://github.com/kanryu/quickviewer/commit/798d9d780c9cd3c7d571e00323e1be420bfe3889)
 
 - the order of volumes should be in order of 1.folder 2.archives
 - add flag hide tool bars parmanently
@@ -211,32 +230,32 @@ add a dialog for change brightness/contrast/gamma
     - Update index.md (Fri Nov 24 23:39:46 2017 +0900) [55b9989](https://github.com/kanryu/quickviewer/commit/55b99890eaf4f893e787f7ab91f8655f8f5a5202)
     - Update index.md (Wed Nov 22 19:28:38 2017 +0900) [741b4c4](https://github.com/kanryu/quickviewer/commit/741b4c40664a43e9d632a8f2ab841a2a3a544a76)
     - Update index.md (Thu Nov 16 14:52:18 2017 +0900) [7024420](https://github.com/kanryu/quickviewer/commit/7024420a2352959c5f8a7373258e6febe084131d)
-    - changelog (Sun Nov 12 19:32:27 2017 +0900) [358ccc2](https://github.com/kanryu/quickviewer/commit/358ccc2af9aea519766d63639585a8d3e8336a39)
 
-## v1.0.6 (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
+## v1.0.6 (Sun Nov 12 19:32:27 2017 +0900) [358ccc2](https://github.com/kanryu/quickviewer/commit/358ccc2af9aea519766d63639585a8d3e8336a39)
 
-add 'Fit to width', 1 bugfixed
-
-- add 'Fit to width'
-- bugfixed: There may not be able to open as soon as you try to open the image in the root directory of the Windows drive.
+changelog
 
 - other commits
+    - add 'Fit to width', 1 bugfixed (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
+    -  (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
+    -  add 'Fit to width' (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
+    -  bugfixed: There may not be able to open as soon as you try to open the image in the root directory of the Windows drive. (Sun Nov 12 19:31:53 2017 +0900) [2891c9f](https://github.com/kanryu/quickviewer/commit/2891c9fe502b15c6589c45833cb3d98e24d66204)
     - add 'Fit to width' (Sun Nov 12 18:05:28 2017 +0900) [026055a](https://github.com/kanryu/quickviewer/commit/026055aba02bada027e2e9f743088426d8addb22)
     - bugfixed: There may not be able to open as soon as you try to open the image in the root directory of the Windows drive. (Sun Nov 12 14:28:47 2017 +0900) [4f7f670](https://github.com/kanryu/quickviewer/commit/4f7f67048b8b16d1acffeeb32cae335e08ac9cc5)
-    - changelog (Fri Nov 3 23:07:45 2017 +0900) [fa05bdf](https://github.com/kanryu/quickviewer/commit/fa05bdf9f3328463b7567d313359da0dc513cdcc)
 
-## v1.0.5 (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+## v1.0.5 (Fri Nov 3 23:07:45 2017 +0900) [fa05bdf](https://github.com/kanryu/quickviewer/commit/fa05bdf9f3328463b7567d313359da0dc513cdcc)
 
-- update Spanish translations/quickviewer_es.ts
-- update cn_zh language resource
-- Sometimes display examples of status bar and title bar are incorrect in setting dialog
-- The exact file size is not displayed on the status bar etc. when reading the animation image
-- Save the path opened with 'Open Image Folder'
-- bugfixed: current Volume was not reloaded after deleting the image
-- bugfixed: When I tried to open a deleted zip or 7z it was illegally finished
-- bugfixed: When changing the display of full screen signage, it did not change until the page was switched
+changelog
 
 - other commits
+    -  update Spanish translations/quickviewer_es.ts (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  update cn_zh language resource (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  Sometimes display examples of status bar and title bar are incorrect in setting dialog (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  The exact file size is not displayed on the status bar etc. when reading the animation image (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  Save the path opened with 'Open Image Folder' (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  bugfixed: current Volume was not reloaded after deleting the image (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  bugfixed: When I tried to open a deleted zip or 7z it was illegally finished (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
+    -  bugfixed: When changing the display of full screen signage, it did not change until the page was switched (Fri Nov 3 23:07:17 2017 +0900) [e88fa18](https://github.com/kanryu/quickviewer/commit/e88fa1845e2b377dbdd626507d1501a14b6d59d1)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
     -  (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
     - # Conflicts: (Fri Nov 3 21:54:53 2017 +0900) [dc7b674](https://github.com/kanryu/quickviewer/commit/dc7b6742dd1da9286f7677d0f38e9fd503879419)
@@ -259,18 +278,18 @@ add 'Fit to width', 1 bugfixed
     -  contriuted by 河海江超群<mcoder2014@sina.com>, Thanks! (Mon Oct 30 18:27:56 2017 +0900) [b7bc3a4](https://github.com/kanryu/quickviewer/commit/b7bc3a4ef2931abd08c33e8a7182db4b1bc80591)
     - Sometimes display examples of status bar and title bar are incorrect in setting dialog (Sun Oct 29 22:43:49 2017 +0900) [e4026b2](https://github.com/kanryu/quickviewer/commit/e4026b2abbbb5c80b0379681fd5c6c0bd4fd2e0a)
     - The exact file size is not displayed on the status bar etc. when reading the animation image (Sun Oct 29 22:28:01 2017 +0900) [f627eb5](https://github.com/kanryu/quickviewer/commit/f627eb586b4e8dada163475ef379baa1fb219b5d)
-    - changelog (Sat Oct 28 18:16:38 2017 +0900) [779158c](https://github.com/kanryu/quickviewer/commit/779158c0de10ea356bb4f44301c811af3a1833da)
 
-## v1.0.4 (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+## v1.0.4 (Sat Oct 28 18:16:38 2017 +0900) [779158c](https://github.com/kanryu/quickviewer/commit/779158c0de10ea356bb4f44301c811af3a1833da)
 
-scrolling with mouse, start of zoom position of Loupe Tool, bugfixed
-
-- Reflect on the status bar when the display magnification is changed
-- add Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar
-- The image will be magnified exactly at the position of the lens of Loupe Tool
-- bugfixed: In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole
+changelog
 
 - other commits
+    - scrolling with mouse, start of zoom position of Loupe Tool, bugfixed (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+    -  (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+    -  Reflect on the status bar when the display magnification is changed (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+    -  add Flag to scroll the image with moving the mouse pointer instead of displaying the scroll bar (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+    -  The image will be magnified exactly at the position of the lens of Loupe Tool (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
+    -  bugfixed: In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole (Sat Oct 28 18:15:59 2017 +0900) [1ded411](https://github.com/kanryu/quickviewer/commit/1ded41152975b1b17ebc7ecb5f75261e9e154f4d)
     - Temporarily switch to GPU Bilinear when using loupe when CPU Resizing (Sat Oct 28 15:20:41 2017 +0900) [1a94117](https://github.com/kanryu/quickviewer/commit/1a94117056217db41816a918bbbaa5958aa02767)
     - Update index-ja.md (Sat Oct 28 14:46:15 2017 +0900) [3a0e1b4](https://github.com/kanryu/quickviewer/commit/3a0e1b4b85a568ecfa2cf70b0a5533079fd9bf4f)
     - Update index.md (Sat Oct 28 14:43:13 2017 +0900) [9c84c80](https://github.com/kanryu/quickviewer/commit/9c84c80bea6e9af97e2af2b82c98c91c296fd36a)
@@ -281,18 +300,18 @@ scrolling with mouse, start of zoom position of Loupe Tool, bugfixed
     - bugfixed: When registering an existing shortcut to another action, the new shortcut sometimes disappears depending on the order of rewriting from the shortcut information in Defaults (Fri Oct 27 09:13:15 2017 +0900) [1f454f2](https://github.com/kanryu/quickviewer/commit/1f454f2ad222e719222a74e2e90795353739a9f5)
     - Update index-ja.md (Thu Oct 26 19:27:39 2017 +0900) [19bc30a](https://github.com/kanryu/quickviewer/commit/19bc30a3e60a55edb6fca17a633a3db74fac2328)
     - Update index.md (Thu Oct 26 19:19:38 2017 +0900) [818c05f](https://github.com/kanryu/quickviewer/commit/818c05fd421600bb3bb47547b865dcabec67db7e)
-    - changelog (Thu Oct 26 17:04:53 2017 +0900) [ce73a34](https://github.com/kanryu/quickviewer/commit/ce73a34b604e2cbb1963a877e580e63037b6f364)
 
-## v1.0.3 (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+## v1.0.3 (Thu Oct 26 17:04:53 2017 +0900) [ce73a34](https://github.com/kanryu/quickviewer/commit/ce73a34b604e2cbb1963a877e580e63037b6f364)
 
-add loupe, animation image with scaling, 2 bugfixed
-
-- add Simple loupe function
-- Change animation image to scale by bilinear interpolation regardless of Shader setting
-- bugfixed: A window may not be activated when it is activated by image file association
-- bugfixed: In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole
+changelog
 
 - other commits
+    - add loupe, animation image with scaling, 2 bugfixed (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+    -  (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+    -  add Simple loupe function (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+    -  Change animation image to scale by bilinear interpolation regardless of Shader setting (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+    -  bugfixed: A window may not be activated when it is activated by image file association (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
+    -  bugfixed: In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole (Thu Oct 26 17:03:42 2017 +0900) [1a318b6](https://github.com/kanryu/quickviewer/commit/1a318b6cb5ccd213783f04d37da2fe95330b4431)
     - Simple loupe function (Thu Oct 26 14:22:25 2017 +0900) [b293542](https://github.com/kanryu/quickviewer/commit/b293542696187c540d61ab881fe48ccda008648b)
     - Change animation image to scale by bilinear interpolation regardless of Shader setting (Thu Oct 26 10:19:52 2017 +0900) [77491fb](https://github.com/kanryu/quickviewer/commit/77491fbbc50fc26472ebd946fe9e8ef244808cf4)
     - Update index.md (Wed Oct 25 21:03:25 2017 +0900) [103a116](https://github.com/kanryu/quickviewer/commit/103a116399ed72cea3dce18785a50e79dc1ee988)
@@ -308,16 +327,16 @@ add loupe, animation image with scaling, 2 bugfixed
     - Update index.md (Tue Oct 17 18:46:03 2017 +0900) [3d8bb5b](https://github.com/kanryu/quickviewer/commit/3d8bb5b48f5faf735d6cbb66369bee2f94558973)
     - Update index.md (Mon Oct 16 02:44:36 2017 +0900) [0404e57](https://github.com/kanryu/quickviewer/commit/0404e5741d666a0ee9cda14eed6939ee941250ba)
     - In the case where assignment of input is set to another Action, the assignment may disappear at the time of initialization of the whole (Mon Oct 16 01:32:56 2017 +0900) [790fcca](https://github.com/kanryu/quickviewer/commit/790fcca4859f593b1df160dd68ab5116c6470b14)
-    - changelog (Sun Oct 15 15:57:41 2017 +0900) [afad4f4](https://github.com/kanryu/quickviewer/commit/afad4f421f05937ada4029ddce28b738336cf1b6)
 
-## v1.0.2 (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
+## v1.0.2 (Sun Oct 15 15:57:41 2017 +0900) [afad4f4](https://github.com/kanryu/quickviewer/commit/afad4f421f05937ada4029ddce28b738336cf1b6)
 
-- add 'Divide wide image into 2 pages'
-- Known bug:
-- Since the rotation of the tablet can not be detected, correct display can not be performed immediately after rotation.
-- You can solve by moving to the next page and returning to the original page
+changelog
 
 - other commits
+    -  add 'Divide wide image into 2 pages' (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
+    -  Known bug: (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
+    -  Since the rotation of the tablet can not be detected, correct display can not be performed immediately after rotation. (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
+    -  You can solve by moving to the next page and returning to the original page (Sun Oct 15 15:56:32 2017 +0900) [dff804a](https://github.com/kanryu/quickviewer/commit/dff804a467733ad9f1f538076f701f52c35f896b)
     -  support to activate the window when run with file association (Sun Oct 15 14:10:49 2017 +0900) [edabc9c](https://github.com/kanryu/quickviewer/commit/edabc9c5a447def9de46e57b444de2663ee73054)
     -  support to activate the window when image file dropped (Sun Oct 15 14:10:49 2017 +0900) [edabc9c](https://github.com/kanryu/quickviewer/commit/edabc9c5a447def9de46e57b444de2663ee73054)
     - bugfixed: When switching '2 page spread', the page has changed (Sun Oct 15 13:14:10 2017 +0900) [403bf8d](https://github.com/kanryu/quickviewer/commit/403bf8d0b29b9bf4c4176ca332839b2d8ea6b19a)
@@ -325,33 +344,33 @@ add loupe, animation image with scaling, 2 bugfixed
     - Update index-ja.md (Sat Oct 14 18:22:56 2017 +0900) [5a9256e](https://github.com/kanryu/quickviewer/commit/5a9256e3604474da96ddb065f73b88d152d865f2)
     - Update index-ja.md (Sat Oct 14 18:21:47 2017 +0900) [9e21985](https://github.com/kanryu/quickviewer/commit/9e21985a15352f19866609994cee6317872bb823)
     - Update index.md (Sat Oct 14 18:11:52 2017 +0900) [5cbd239](https://github.com/kanryu/quickviewer/commit/5cbd239a20b13f87b01e909eacc9c4c29140d98f)
-    - changelog (Sat Oct 14 06:36:16 2017 +0900) [6238808](https://github.com/kanryu/quickviewer/commit/6238808bbf241e658c03c8bcd6d4b38abc58622b)
 
-## v1.0.1 (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
+## v1.0.1 (Sat Oct 14 06:36:16 2017 +0900) [6238808](https://github.com/kanryu/quickviewer/commit/6238808bbf241e658c03c8bcd6d4b38abc58622b)
 
-pinch with touch panel, support for solid 7z, bugfixed
-
-- Addition of screen rescaling and rotation function with touch panel
-- Add to expand solid 7z archive to temporary directory
-- bugfixed: Closing the setting dialog with no image displayed aborted
+changelog
 
 - other commits
+    - pinch with touch panel, support for solid 7z, bugfixed (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
+    -  (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
+    -  Addition of screen rescaling and rotation function with touch panel (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
+    -  Add to expand solid 7z archive to temporary directory (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
+    -  bugfixed: Closing the setting dialog with no image displayed aborted (Sat Oct 14 06:35:39 2017 +0900) [06bc84f](https://github.com/kanryu/quickviewer/commit/06bc84fc64cb169adee770111ac12e54e6c89cea)
     - Addition of screen rescaling and rotation function with touch panel (Sat Oct 14 06:34:43 2017 +0900) [2fcf76d](https://github.com/kanryu/quickviewer/commit/2fcf76d4da46a39097ed0cab040ccf0be82f6c85)
     - bugfixed: Closing the setting dialog with no image displayed aborted (Thu Oct 12 04:19:48 2017 +0900) [79a84cd](https://github.com/kanryu/quickviewer/commit/79a84cdb77165a84585f8c740be3f43c02789b59)
     -  code checking for g++ (Sat Oct 7 06:26:59 2017 +0900) [4a773fb](https://github.com/kanryu/quickviewer/commit/4a773fbf7ec444b3f59476bb27d3e35a0b946137)
     -  bugfixed: It cannot be opened when AppImage is passed a file containing spaces (Sat Oct 7 06:26:59 2017 +0900) [4a773fb](https://github.com/kanryu/quickviewer/commit/4a773fbf7ec444b3f59476bb27d3e35a0b946137)
-    - changelog (Sun Oct 1 16:38:14 2017 +0900) [cd0baf2](https://github.com/kanryu/quickviewer/commit/cd0baf290add60c84955b2aefa592dce07d37441)
 
-## v1.0.0 (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+## v1.0.0 (Sun Oct 1 16:38:14 2017 +0900) [cd0baf2](https://github.com/kanryu/quickviewer/commit/cd0baf290add60c84955b2aefa592dce07d37441)
 
-support for changing text format, abolish a menu, 2 bugfixed
-
-- support for changing text format  of title bar and status bar
-- abolish 'Show full path of volume'
-- bugfixed: There were cases where redrawing was not performed normally when the image was reduced or rotated
-- bugfixed: Rotating the image by resizing by the CPU caused the wrong aspect ratio
+changelog
 
 - other commits
+    - support for changing text format, abolish a menu, 2 bugfixed (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+    -  (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+    -  support for changing text format  of title bar and status bar (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+    -  abolish 'Show full path of volume' (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+    -  bugfixed: There were cases where redrawing was not performed normally when the image was reduced or rotated (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
+    -  bugfixed: Rotating the image by resizing by the CPU caused the wrong aspect ratio (Sun Oct 1 16:37:28 2017 +0900) [d4b06fd](https://github.com/kanryu/quickviewer/commit/d4b06fd8329137c3469b243f6d209ebcf81a2de3)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Fri Sep 29 08:38:45 2017 +0900) [1ab257f](https://github.com/kanryu/quickviewer/commit/1ab257f0dde52437b475c03c1fa09a9575c7d23c)
     -  bugfixed: There were cases where redrawing was not performed normally when the image was reduced or rotated (Fri Sep 29 08:38:34 2017 +0900) [c42b9ba](https://github.com/kanryu/quickviewer/commit/c42b9ba84a2a5e7867a6bdd46e77f236483937e5)
     -  bugfixed: Rotating the image by resizing by the CPU caused the wrong aspect ratio (Fri Sep 29 08:38:34 2017 +0900) [c42b9ba](https://github.com/kanryu/quickviewer/commit/c42b9ba84a2a5e7867a6bdd46e77f236483937e5)
@@ -370,20 +389,20 @@ support for changing text format, abolish a menu, 2 bugfixed
     - Update index-ja.md (Mon Sep 25 07:00:09 2017 +0900) [1063288](https://github.com/kanryu/quickviewer/commit/1063288a835fc583d6a5e3b27f8b6c7352765454)
     - Update README.md (Mon Sep 25 06:55:59 2017 +0900) [7a76d47](https://github.com/kanryu/quickviewer/commit/7a76d47652af30cd387a941cc4dd93eb833cb4b6)
     - Update index.md (Mon Sep 25 06:55:16 2017 +0900) [0ac4d02](https://github.com/kanryu/quickviewer/commit/0ac4d0281ca9641d8e8645caaab34bc9d6942a2a)
-    - changelog (Mon Sep 25 06:36:43 2017 +0900) [2f0db41](https://github.com/kanryu/quickviewer/commit/2f0db412ab46ff1e515b97a85a5ba5dfd85684f3)
-    - changelog (Mon Sep 25 06:35:25 2017 +0900) [b8c263f](https://github.com/kanryu/quickviewer/commit/b8c263f16c0f9bc8047cb86d50254bba753bcac9)
 
-## v0.9.9 (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+## v0.9.9 (Mon Sep 25 06:36:43 2017 +0900) [2f0db41](https://github.com/kanryu/quickviewer/commit/2f0db412ab46ff1e515b97a85a5ba5dfd85684f3)
 
-Supports touch panel input, enlarge menubar/toolbar, hide bars, bugfixed
-
-- Supports touch panel input
-- add function to enlarge display of main menu and tool bar
-- Hide scroll bars in full screen mode
-- Hide page bar permanently
-- bugfixed: The left end was not displayed when the image is larger than the screen
+changelog
 
 - other commits
+    - changelog (Mon Sep 25 06:35:25 2017 +0900) [b8c263f](https://github.com/kanryu/quickviewer/commit/b8c263f16c0f9bc8047cb86d50254bba753bcac9)
+    - Supports touch panel input, enlarge menubar/toolbar, hide bars, bugfixed (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  Supports touch panel input (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  add function to enlarge display of main menu and tool bar (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  Hide scroll bars in full screen mode (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  Hide page bar permanently (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
+    -  bugfixed: The left end was not displayed when the image is larger than the screen (Mon Sep 25 06:34:49 2017 +0900) [e4cfe93](https://github.com/kanryu/quickviewer/commit/e4cfe93d42ce83794f48fdcfa702deb0d02c0bb7)
     - behavior of touch paging (Mon Sep 25 05:36:11 2017 +0900) [526c6ce](https://github.com/kanryu/quickviewer/commit/526c6cee77a8d2aac3180a683206cd47f383b181)
     -  Hide scroll bars in full screen mode (Mon Sep 25 05:14:16 2017 +0900) [16faa44](https://github.com/kanryu/quickviewer/commit/16faa44d330ff80b410038255729249ed9328007)
     -  bugfixed: The left end was not displayed when the image is larger than the screen (Mon Sep 25 05:14:16 2017 +0900) [16faa44](https://github.com/kanryu/quickviewer/commit/16faa44d330ff80b410038255729249ed9328007)
@@ -397,22 +416,22 @@ Supports touch panel input, enlarge menubar/toolbar, hide bars, bugfixed
     - #       QuickViewer/src/mainwindow.cpp (Sun Sep 24 00:01:03 2017 +0900) [d170b06](https://github.com/kanryu/quickviewer/commit/d170b06bf27c59beb6772329ebca82e446710e3d)
     - add function to enlarge display of main menu and tool bar (Sat Sep 23 23:58:06 2017 +0900) [c2b1471](https://github.com/kanryu/quickviewer/commit/c2b1471698d2c290ef4b2752738d098b753b6cfe)
     - checked on Ubuntu Linux-14.04.5 (Wed Sep 20 23:41:38 2017 +0900) [fd9dbf2](https://github.com/kanryu/quickviewer/commit/fd9dbf2bdf1c0529f9c8e5e6a578d020b6003b4f)
-    - changelog (Wed Sep 20 22:51:45 2017 +0900) [a40f68f](https://github.com/kanryu/quickviewer/commit/a40f68fb7991ffb8aff8ee61429be3ba41a8352f)
 
-## v0.9.8 (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+## v0.9.8 (Wed Sep 20 22:51:45 2017 +0900) [a40f68f](https://github.com/kanryu/quickviewer/commit/a40f68fb7991ffb8aff8ee61429be3ba41a8352f)
 
-improve behavior for tool windows and scroll bars, add 2 menus, 2 bugfixed
-
-- improve behavior
-- tool windows such as Catalog/Folder Window
-- If scroll bars are required only for width or height of an image, only the scroll bars that are required are displayed.
-- can Scroll images with cursor keys when to show scrollbars
-- add 'Don't update history'
-- add 'Show full path of the volume'
-- bugfixed: The left end was not displayed when the image is larger than the screen
-- bugfixed: prevent to crash on incorrect file
+changelog
 
 - other commits
+    - improve behavior for tool windows and scroll bars, add 2 menus, 2 bugfixed (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  improve behavior (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  tool windows such as Catalog/Folder Window (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  If scroll bars are required only for width or height of an image, only the scroll bars that are required are displayed. (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  can Scroll images with cursor keys when to show scrollbars (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  add 'Don't update history' (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  add 'Show full path of the volume' (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  bugfixed: The left end was not displayed when the image is larger than the screen (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
+    -  bugfixed: prevent to crash on incorrect file (Wed Sep 20 22:51:00 2017 +0900) [57605f8](https://github.com/kanryu/quickviewer/commit/57605f8e43dcf871be6e66134469fa51a1aa5733)
     - remove shortcutbutton (Wed Sep 20 10:22:43 2017 +0900) [8b6ff79](https://github.com/kanryu/quickviewer/commit/8b6ff79e125f9aa9df47ced57723fa3ad4672648)
     -  can Scroll images with cursor keys when to show scrollbars (Wed Sep 20 09:32:52 2017 +0900) [447c089](https://github.com/kanryu/quickviewer/commit/447c089dd8b3774fcb29fd76f53f65bc3e642ab1)
     -  bugfixed: The left end was not displayed when the image is larger than the screen (Wed Sep 20 09:32:52 2017 +0900) [447c089](https://github.com/kanryu/quickviewer/commit/447c089dd8b3774fcb29fd76f53f65bc3e642ab1)
@@ -420,19 +439,19 @@ improve behavior for tool windows and scroll bars, add 2 menus, 2 bugfixed
     -  add 'Show full path of the volume' (Wed Sep 20 05:25:42 2017 +0900) [b55d474](https://github.com/kanryu/quickviewer/commit/b55d474995f33d8194880a9d260527aaf019d1b5)
     - If scroll bars are required only for width or height of an image, only the scroll bars that are required are displayed. (Wed Sep 20 03:38:41 2017 +0900) [1bb1ee5](https://github.com/kanryu/quickviewer/commit/1bb1ee5ec094ad748fddfecc0bc78ea880e1c20f)
     - prevent to crash on incorrect file (Sat Sep 16 02:20:56 2017 +0900) [3782ad7](https://github.com/kanryu/quickviewer/commit/3782ad7e31fa9e5755e9fbb5b8e9c097436f27b6)
-    - changelog (Fri Sep 15 17:44:32 2017 +0900) [316f33e](https://github.com/kanryu/quickviewer/commit/316f33ec921d4210514b0e787ebd21cf1ac500c3)
 
-## v0.9.7 (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+## v0.9.7 (Fri Sep 15 17:44:32 2017 +0900) [316f33e](https://github.com/kanryu/quickviewer/commit/316f33ec921d4210514b0e787ebd21cf1ac500c3)
 
-improved loading JPEG, Exif display, bugfixed
-
-- improved loading JPEG
-- Added option to change precision (iDCT) at JPEG loading
-- The JPEG in CYMK format can be correctly read using ICC Profile.
-- Improvement of Exif information display
-- bugfixed: When multiple shortcut keys were registered, it did not work properly
+changelog
 
 - other commits
+    - improved loading JPEG, Exif display, bugfixed (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+    -  (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+    -  improved loading JPEG (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+    -  Added option to change precision (iDCT) at JPEG loading (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+    -  The JPEG in CYMK format can be correctly read using ICC Profile. (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+    -  Improvement of Exif information display (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
+    -  bugfixed: When multiple shortcut keys were registered, it did not work properly (Fri Sep 15 17:44:02 2017 +0900) [8dffaf4](https://github.com/kanryu/quickviewer/commit/8dffaf434d03f3b288e1723721b09cea997d2891)
     - Update index.md (Thu Sep 14 01:29:14 2017 +0900) [0a37ae1](https://github.com/kanryu/quickviewer/commit/0a37ae1d9f2757440c0734d8d013fe9a08cabfef)
     - Update index.md (Thu Sep 14 01:07:54 2017 +0900) [bf2444d](https://github.com/kanryu/quickviewer/commit/bf2444d8b532ce9a945b80179eaf9e7be0702727)
     - Update index-ja.md (Thu Sep 14 01:07:26 2017 +0900) [43204f2](https://github.com/kanryu/quickviewer/commit/43204f206247b46471ee2eeb3d6942ca8559fedc)
