@@ -92,7 +92,15 @@ Project {
                         Caption: "French",
                         LanguageName: "French",
                         LanguageCode: "fr",
-                        TargetVersion: version,
+                        TargetVersion: "1.1.3",
+                    },
+                    "quickviewer_ru.ts": {
+                        TranslatorName: "КонтинентСвободы.рф",
+                        TranslatorEmail: "s-r-grass@mail.ru",
+                        Caption: "Russian",
+                        LanguageName: "Russian",
+                        LanguageCode: "ru",
+                        TargetVersion: "1.1.4",
                     },
                 }
             }
