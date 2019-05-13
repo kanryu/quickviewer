@@ -50,6 +50,7 @@ Project {
                     "; ",
                     "; Note 1: Use \\n (backslash+n) instead of new line for each text, if you need.",
                     "; Note 2: 'hint' is a hint comment for each 'text'.",
+                    "; Note 3: We recommend that you start translating from the [MainWindow].",
                     "; ",
                 ],
                 section_name: "FileInfo",
