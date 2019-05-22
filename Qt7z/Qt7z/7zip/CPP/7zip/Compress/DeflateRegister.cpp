@@ -22,6 +22,4 @@ REGISTER_CODEC_CREATE(CreateEnc, NEncoder::CCOMCoder)
 
 REGISTER_CODEC_2(Deflate, CreateDec, CreateEnc, 0x40108, "Deflate")
 
-QT7Z_STATIC_LINK_FORCE_INCLUDE
-
 }}

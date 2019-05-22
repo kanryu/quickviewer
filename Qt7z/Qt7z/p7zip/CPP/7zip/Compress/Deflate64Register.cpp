@@ -23,6 +23,4 @@ REGISTER_CODEC_CREATE(CreateEnc, NEncoder::CCOMCoder64())
 
 REGISTER_CODEC_2(Deflate64, CreateDec, CreateEnc, 0x40109, "Deflate64")
 
-QT7Z_STATIC_LINK_FORCE_INCLUDE64
-
 }}

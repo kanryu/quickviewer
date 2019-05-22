@@ -1,5 +1,5 @@
 /* CpuArch.h -- CPU specific code
-2017-04-03 : Igor Pavlov : Public domain */
+2018-02-18 : Igor Pavlov : Public domain */
 
 #ifndef __CPU_ARCH_H
 #define __CPU_ARCH_H
@@ -174,7 +174,7 @@ MY_CPU_LE_UNALIGN means that CPU is LITTLE ENDIAN and CPU supports unaligned mem
 #ifndef MY_CPU_NAME
   #ifdef MY_CPU_LE
     #define MY_CPU_NAME "LE"
-  #elif MY_CPU_BE
+  #elif defined(MY_CPU_BE)
     #define MY_CPU_NAME "BE"
   #else
     /*
@@ -190,8 +190,7 @@ MY_CPU_LE_UNALIGN means that CPU is LITTLE ENDIAN and CPU supports unaligned mem
 #ifdef MY_CPU_LE
   #if defined(MY_CPU_X86_OR_AMD64) \
       || defined(MY_CPU_ARM64) \
-      || defined(__ARM_FEATURE_UNALIGNED) \
-      || defined(__AARCH64EL__)
+      || defined(__ARM_FEATURE_UNALIGNED)
     #define MY_CPU_LE_UNALIGN
   #endif
 #endif
@@ -237,6 +236,11 @@ MY_CPU_LE_UNALIGN means that CPU is LITTLE ENDIAN and CPU supports unaligned mem
 
 #endif
 
+#ifdef __has_builtin
+  #define MY__has_builtin(x) __has_builtin(x)
+#else
+  #define MY__has_builtin(x) 0
+#endif
 
 #if defined(MY_CPU_LE_UNALIGN) && /* defined(_WIN64) && */ (_MSC_VER >= 1300)
 
@@ -244,15 +248,21 @@ MY_CPU_LE_UNALIGN means that CPU is LITTLE ENDIAN and CPU supports unaligned mem
 
 #include <stdlib.h>
 
+#pragma intrinsic(_byteswap_ushort)
 #pragma intrinsic(_byteswap_ulong)
 #pragma intrinsic(_byteswap_uint64)
+
+/* #define GetBe16(p) _byteswap_ushort(*(const UInt16 *)(const Byte *)(p)) */
 #define GetBe32(p) _byteswap_ulong(*(const UInt32 *)(const Byte *)(p))
 #define GetBe64(p) _byteswap_uint64(*(const UInt64 *)(const Byte *)(p))
 
 #define SetBe32(p, v) (*(UInt32 *)(void *)(p)) = _byteswap_ulong(v)
 
-#elif defined(MY_CPU_LE_UNALIGN) && defined (__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))
+#elif defined(MY_CPU_LE_UNALIGN) && ( \
+       (defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 3))) \
+    || (defined(__clang__) && MY__has_builtin(__builtin_bswap16)) )
 
+/* #define GetBe16(p) __builtin_bswap16(*(const UInt16 *)(const Byte *)(p)) */
 #define GetBe32(p) __builtin_bswap32(*(const UInt32 *)(const Byte *)(p))
 #define GetBe64(p) __builtin_bswap64(*(const UInt64 *)(const Byte *)(p))
 
@@ -277,9 +287,13 @@ MY_CPU_LE_UNALIGN means that CPU is LITTLE ENDIAN and CPU supports unaligned mem
 #endif
 
 
+#ifndef GetBe16
+
 #define GetBe16(p) ( (UInt16) ( \
     ((UInt16)((const Byte *)(p))[0] << 8) | \
              ((const Byte *)(p))[1] ))
+
+#endif
 
 
 
@@ -304,15 +318,16 @@ enum
 
 void MyCPUID(UInt32 function, UInt32 *a, UInt32 *b, UInt32 *c, UInt32 *d);
 
-Bool x86cpuid_CheckAndRead(Cx86cpuid *p);
+BoolInt x86cpuid_CheckAndRead(Cx86cpuid *p);
 int x86cpuid_GetFirm(const Cx86cpuid *p);
 
 #define x86cpuid_GetFamily(ver) (((ver >> 16) & 0xFF0) | ((ver >> 8) & 0xF))
 #define x86cpuid_GetModel(ver)  (((ver >> 12) &  0xF0) | ((ver >> 4) & 0xF))
 #define x86cpuid_GetStepping(ver) (ver & 0xF)
 
-Bool CPU_Is_InOrder();
-Bool CPU_Is_Aes_Supported();
+BoolInt CPU_Is_InOrder();
+BoolInt CPU_Is_Aes_Supported();
+BoolInt CPU_IsSupported_PageGB();
 
 #endif
 

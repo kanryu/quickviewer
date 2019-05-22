@@ -12,10 +12,4 @@ REGISTER_CODEC_CREATE(CreateCodec, CCopyCoder())
 
 REGISTER_CODEC_2(Copy, CreateCodec, CreateCodec, 0, "Copy")
 
-namespace NCopy {
-
-QT7Z_STATIC_LINK_FORCE_INCLUDE
-
-}
-
 }

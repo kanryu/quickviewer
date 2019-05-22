@@ -13,10 +13,4 @@ REGISTER_FILTER_E(AES256CBC,
     CAesCbcEncoder(32),
     0x6F00181, "AES256CBC")
 
-namespace NAes {
-
-QT7Z_STATIC_LINK_FORCE_INCLUDE
-
-}
-
 }

@@ -23,8 +23,6 @@ REGISTER_ARC_IO(
   NArcInfoFlags::kFindSignature |
   NArcInfoFlags::kMultiSignature |
   NArcInfoFlags::kUseGlobalOffset,
-  IsArc_Zip);
-
-QT7Z_STATIC_LINK_FORCE_INCLUDE
-
+  IsArc_Zip)
+ 
 }}

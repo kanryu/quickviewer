@@ -40,7 +40,6 @@ CHandler::CHandler()
   _crcSize = 4;
   
   #ifdef __7Z_SET_PROPERTIES
-  _numThreads = NSystem::GetNumberOfProcessors();
   _useMultiThreadMixer = true;
   #endif
   
@@ -235,6 +234,13 @@ STDMETHODIMP CHandler::GetArchiveProperty(PROPID propID, PROPVARIANT *value)
       // if (_db.UnsupportedVersion) v |= kpv_ErrorFlags_Unsupported;
       if (_db.UnsupportedFeatureError) v |= kpv_ErrorFlags_UnsupportedFeature;
       prop = v;
+      break;
+    }
+
+    case kpidReadOnly:
+    {
+      if (!_db.CanUpdate())
+        prop = true;
       break;
     }
   }
@@ -714,8 +720,8 @@ STDMETHODIMP CHandler::Close()
 STDMETHODIMP CHandler::SetProperties(const wchar_t * const *names, const PROPVARIANT *values, UInt32 numProps)
 {
   COM_TRY_BEGIN
-  const UInt32 numProcessors = NSystem::GetNumberOfProcessors();
-  _numThreads = numProcessors;
+  
+  InitCommon();
   _useMultiThreadMixer = true;
 
   for (UInt32 i = 0; i < numProps; i++)
@@ -734,13 +740,15 @@ STDMETHODIMP CHandler::SetProperties(const wchar_t * const *names, const PROPVAR
         RINOK(PROPVARIANT_to_bool(value, _useMultiThreadMixer));
         continue;
       }
-      if (name.IsPrefixedBy_Ascii_NoCase("mt"))
       {
-        RINOK(ParseMtProp(name.Ptr(2), value, numProcessors, _numThreads));
-        continue;
+        HRESULT hres;
+        if (SetCommonProperty(name, value, hres))
+        {
+          RINOK(hres);
+          continue;
+        }
       }
-      else
-        return E_INVALIDARG;
+      return E_INVALIDARG;
     }
   }
   return S_OK;

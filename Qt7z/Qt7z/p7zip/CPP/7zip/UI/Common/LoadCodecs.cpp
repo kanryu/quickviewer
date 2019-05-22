@@ -129,14 +129,14 @@ static const unsigned kNumArcsMax = 64;
 static unsigned g_NumArcs = 0;
 static const CArcInfo *g_Arcs[kNumArcsMax];
 
-//void RegisterArc(const CArcInfo *arcInfo) throw()
-//{
-//  if (g_NumArcs < kNumArcsMax)
-//  {
-//    g_Arcs[g_NumArcs] = arcInfo;
-//    g_NumArcs++;
-//  }
-//}
+void RegisterArc(const CArcInfo *arcInfo) throw()
+{
+  if (g_NumArcs < kNumArcsMax)
+  {
+    g_Arcs[g_NumArcs] = arcInfo;
+    g_NumArcs++;
+  }
+}
 
 static void SplitString(const UString &srcString, UStringVector &destStrings)
 {

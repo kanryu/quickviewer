@@ -2,7 +2,7 @@ include("QVproject.pri")
 
 TEMPLATE = subdirs
 SUBDIRS = \
-    Qt7z/Qt7z/qt7z.pro \
+    Qt7z/Qt7z \
     ResizeHalf \
     easyexif \
     unrar \
@@ -12,7 +12,7 @@ SUBDIRS = \
     qvtest
 
 
-fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
+fileloader.depends = Qt7z/Qt7z unrar
 QuickViewer.depends = ResizeHalf easyexif fileloader zimg
 qvtest.depends = fileloader
 

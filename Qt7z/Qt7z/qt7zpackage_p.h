@@ -2,126 +2,133 @@
 #define QT7ZPACKAGE_P_H
 
 #include <QtCore>
+#include <lib7zip.h>
+
 #include "qt7zpackage.h"
 #include "qt7zfileinfo.h"
 
 
-#ifdef Q_OS_WIN
-#include "7zip/CPP/Common/MyWindows.h"
-#include "7zip/CPP/Common/MyCom.h"
-#include "7zip/CPP/Common/MyInitGuid.h"
-#include "7zip/CPP/7zip/Bundles/Alone7z/StdAfx.h"
-#include "7zip/CPP/7zip/Common/RegisterArc.h"
-#include "7zip/CPP/7zip/Common/RegisterCodec.h"
-#include "7zip/CPP/7zip/UI/Common/OpenArchive.h"
-#include "7zip/CPP/7zip/UI/Common/Extract.h"
-#include "7zip/CPP/7zip/UI/Common/ArchiveExtractCallback.h"
-#include "7zip/CPP/Windows/PropVariantConv.h"
-#else
-#include "p7zip/CPP/include_windows/windows.h"
-#include "p7zip/CPP/include_windows/basetyps.h"
-#include "p7zip/CPP/include_windows/tchar.h"
-#include "p7zip/CPP/myWindows/StdAfx.h"
-#include "p7zip/CPP/Common/MyWindows.h"
-#include "p7zip/CPP/Common/MyCom.h"
-#include "p7zip/CPP/Common/MyInitGuid.h"
-#include "p7zip/CPP/7zip/Common/RegisterArc.h"
-#include "p7zip/CPP/7zip/Common/RegisterCodec.h"
-#include "p7zip/CPP/7zip/UI/Common/OpenArchive.h"
-#include "p7zip/CPP/7zip/UI/Common/Extract.h"
-#include "p7zip/CPP/7zip/UI/Common/ArchiveExtractCallback.h"
-#include "p7zip/CPP/Windows/PropVariantConv.h"
-#endif
+using namespace lib7zip;
 
-class ExtractCallback;
-class Qt7zPackagePrivate;
+//class ExtractCallback;
+//class Qt7zPackagePrivate;
 
-struct CListUInt64Def
-{
-  UInt64 Val;
-  bool Def;
+//struct CListUInt64Def
+//{
+//  UInt64 Val;
+//  bool Def;
 
-  CListUInt64Def(): Val(0), Def(false) {}
-  void Add(UInt64 v) { Val += v; Def = true; }
-  void Add(const CListUInt64Def &v) { if (v.Def) Add(v.Val); }
-};
+//  CListUInt64Def(): Val(0), Def(false) {}
+//  void Add(UInt64 v) { Val += v; Def = true; }
+//  void Add(const CListUInt64Def &v) { if (v.Def) Add(v.Val); }
+//};
 
+///** Property structure of each content file extracted by lib7zip
+// */
+//struct Qt7zArchiveItemProperties
+//{
+//public:
+//    /* by GetStringProperty() */
+//    QString Comment;             // PropertyIndexEnum::kpidComment
+//    QString Characteristics;     // PropertyIndexEnum::kpidCharacts
+//    QString CreatorApplication;  // PropertyIndexEnum::kpidCreatorApp
+//    QString Label;               // PropertyIndexEnum::kpidVolumeName
+//    QString FullPath;            // PropertyIndexEnum::kpidPath
+//    QString User;                // PropertyIndexEnum::kpidUser
+//    QString Group;               // PropertyIndexEnum::kpidGroup
+//    /* by GetUInt64Property() */
+//    uint64_t UncompressedSize; // PropertyIndexEnum::kpidSize
+//    uint64_t PackSize;         // PropertyIndexEnum::kpidPackSize
+//    uint64_t Attributes;       // PropertyIndexEnum::kpidAttrib
+//    uint64_t PhysicalSize;     // PropertyIndexEnum::kpidPhySize
+//    uint64_t HeadersSize;      // PropertyIndexEnum::kpidHeadersSize
+//    uint64_t Checksum;         // PropertyIndexEnum::kpidChecksum
+//    uint64_t TotalSize;        // PropertyIndexEnum::kpidTotalSize
+//    uint64_t FreeSpace;        // PropertyIndexEnum::kpidFreeSpace
+//    uint64_t ClusterSize;      // PropertyIndexEnum::kpidClusterSize
+//    /* by GetFileTimeProperty() */
+//    uint64_t Created;          // PropertyIndexEnum::kpidCTime
+//    uint64_t Accessed;         // PropertyIndexEnum::kpidATime
+//    uint64_t Modified;         // PropertyIndexEnum::kpidMTime
+//    /* by GetBoolProperty() */
+//    bool IsSolid;     // PropertyIndexEnum::kpidSolid
+//    bool IsEncrypted; // PropertyIndexEnum::kpidEncrypted
+//    bool IsDir;       // PropertyIndexEnum::kpidIsDir
 
+//    Qt7zArchiveItemProperties() {
+//        UncompressedSize = 0;
+//        PackSize = 0;
+//        Attributes = 0;
+//        PhysicalSize = 0;
+//        HeadersSize = 0;
+//        Checksum = 0;
+//        TotalSize = 0;
+//        FreeSpace = 0;
+//        ClusterSize = 0;
+//        IsSolid = false;
+//        IsEncrypted = false;
+//        IsDir = false;
+//    }
+//    Qt7zArchiveItemProperties(const Qt7zArchiveItemProperties& rhs) {
+//        Comment = rhs.Comment;
+//        Characteristics = rhs.Characteristics;
+//        CreatorApplication = rhs.CreatorApplication;
+//        Label = rhs.Label;
+//        FullPath = rhs.FullPath;
+//        User = rhs.User;
+//        Group = rhs.Group;
+//        UncompressedSize = rhs.UncompressedSize;
+//        PackSize = rhs.PackSize;
+//        Attributes = rhs.Attributes;
+//        PhysicalSize = rhs.PhysicalSize;
+//        HeadersSize = rhs.HeadersSize;
+//        Checksum = rhs.Checksum;
+//        TotalSize = rhs.TotalSize;
+//        FreeSpace = rhs.FreeSpace;
+//        ClusterSize = rhs.ClusterSize;
+//        IsSolid = rhs.IsSolid;
+//        IsEncrypted = rhs.IsEncrypted;
+//        IsDir = rhs.IsDir;
+//    }
 
-class SequentialStreamAdapter : public ISequentialOutStream, public IOutStreamFinish, public CMyUnknownImp
-{
-public:
-    MY_UNKNOWN_IMP2(ISequentialOutStream, IOutStreamFinish)
-    STDMETHOD(Write)(const void *data, UInt32 size, UInt32 *processedSize);
-    STDMETHOD(OutStreamFinish)();
+//    static Qt7zArchiveItemProperties fromC7ZipArchiveItem(C7ZipArchiveItem& item) {
+//        Qt7zArchiveItemProperties prop;
+//        std::wstring strVal;
+//        item.GetStringProperty(PropertyIndexEnum::kpidSolid, strVal);
+//        prop.Comment = QString::fromStdWString(strVal);
+//        item.GetStringProperty(PropertyIndexEnum::kpidCharacts, strVal);
+//        prop.Characteristics = QString::fromStdWString(strVal);
+//        item.GetStringProperty(PropertyIndexEnum::kpidCreatorApp, strVal);
+//        prop.CreatorApplication = QString::fromStdWString(strVal);
+//        item.GetStringProperty(PropertyIndexEnum::kpidVolumeName, strVal);
+//        prop.Label = QString::fromStdWString(strVal);
+//        item.GetStringProperty(PropertyIndexEnum::kpidPath, strVal);
+//        prop.FullPath = QString::fromStdWString(strVal);
+//        item.GetStringProperty(PropertyIndexEnum::kpidUser, strVal);
+//        prop.User = QString::fromStdWString(strVal);
+//        item.GetStringProperty(PropertyIndexEnum::kpidGroup, strVal);
+//        prop.Group = QString::fromStdWString(strVal);
 
-    SequentialStreamAdapter(QIODevice *device, UInt32 index, ExtractCallback *callback)
-        : CMyUnknownImp()
-        , m_device(device) {}
-
-private:
-    QIODevice *m_device;
-};
-
-class OpenCallback : public IOpenCallbackUI, public CMyUnknownImp
-{
-public:
-    OpenCallback(Qt7zPackage::Client *client) :
-        m_client(client)
-    {
-    }
-
-    INTERFACE_IOpenCallbackUI(override;)
-
-private:
-    Qt7zPackage::Client *m_client;
-};
-
-class ExtractCallback : public IArchiveExtractCallback, public ICryptoGetTextPassword, public CMyUnknownImp
-{
-public:
-    MY_UNKNOWN_IMP2(IArchiveExtractCallback, ICryptoGetTextPassword)
-    INTERFACE_IArchiveExtractCallback(;)
-    STDMETHOD(CryptoGetTextPassword)(BSTR *password) override;
-
-    ExtractCallback(Qt7zPackagePrivate *qt7zprivate);
-
-
-    int opRes() const
-    {
-        return m_opRes;
-    }
-    virtual void WriteFileFinished(UInt32 index, QIODevice* device);
-
-protected:
-    Qt7zPackagePrivate *m_p;
-    Qt7zPackage::Client *m_client;
-    Qt7zFileInfo m_fileInfo;
-    QIODevice *m_device;
-    UInt32 m_index;
-    int m_opRes;
-    int m_unpackFinished;
-};
-
-class ExtractFileCallback : public ExtractCallback
-{
-public:
-    ExtractFileCallback(Qt7zPackagePrivate *qt7zprivate, const Qt7zFileInfo fileInfo, QIODevice *outStream);
-    STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode);
-    void WriteFileFinished(UInt32 index, QIODevice* device);
-private:
-    QIODevice *m_outStream;
-};
-
-class ExtractArchiveCallback : public ExtractCallback
-{
-public:
-    ExtractArchiveCallback(Qt7zPackagePrivate *qt7zprivate, QString toDirPath);
-    STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode);
-    void WriteFileFinished(UInt32 index, QIODevice* device);
-private:
-    QString m_toDirPath;
-};
+//        item.GetUInt64Property(PropertyIndexEnum::kpidSize, prop.UncompressedSize);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidPackSize, prop.PackSize);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidAttrib, prop.Attributes);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidPhySize, prop.PhysicalSize);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidHeadersSize, prop.HeadersSize);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidChecksum, prop.Checksum);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidTotalSize, prop.TotalSize);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidFreeSpace, prop.FreeSpace);
+//        item.GetUInt64Property(PropertyIndexEnum::kpidClusterSize, prop.ClusterSize);
+        
+//        item.GetFileTimeProperty(PropertyIndexEnum::kpidCTime, prop.Created);
+//        item.GetFileTimeProperty(PropertyIndexEnum::kpidATime, prop.Accessed);
+//        item.GetFileTimeProperty(PropertyIndexEnum::kpidMTime, prop.Modified);
+        
+//        item.GetBoolProperty(PropertyIndexEnum::kpidSolid, prop.IsSolid);
+//        item.GetBoolProperty(PropertyIndexEnum::kpidEncrypted, prop.IsEncrypted);
+//        item.GetBoolProperty(PropertyIndexEnum::kpidIsDir, prop.IsDir);
+//        return prop;
+//    }
+//};
 
 class Qt7zPackagePrivate
 {
@@ -130,11 +137,15 @@ public:
     Qt7zPackagePrivate(Qt7zPackage *q);
     Qt7zPackagePrivate(Qt7zPackage *q, const QString &packagePath);
     ~Qt7zPackagePrivate();
+    bool open();
+    bool extractToDir(const QString &dirpath);
 
     Qt7zPackage::Client *m_client;
     Qt7zPackage *m_q;
     QList<Qt7zFileInfo> m_fileInfoList;
     QStringList m_fileNameList;
+    static C7ZipLibrary* lib7zip;
+    static bool lib7zip_fatal_error;
 
 private:
     void init();
@@ -142,11 +153,13 @@ private:
 
     QString m_packagePath;
     bool m_isOpen;
-    QHash<QString, UInt32> m_fileNameToIndex;
+    QHash<QString, uint32_t> m_fileNameToIndex;
+    
+    QFile m_file;
+    C7ZipArchive* m_pArchive;
+    C7ZipInStream* m_pInStream;
 
 //    QScopedPointer<CCodecs> m_codecs;
-    CCodecs* m_codecs;
-    CArchiveLink m_arcLink;
 };
 
 

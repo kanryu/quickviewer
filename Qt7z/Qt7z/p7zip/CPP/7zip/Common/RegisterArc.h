@@ -75,10 +75,4 @@ void RegisterArc(const CArcInfo *arcInfo) throw();
   struct CRegisterArcDecSig { CRegisterArcDecSig() { sig[0]--; RegisterArc(&g_ArcInfo); }}; \
   static CRegisterArcDecSig g_RegisterArc;
 
-#ifdef QT7Z_STATIC_LINK
-#define QT7Z_STATIC_LINK_FORCE_INCLUDE bool g_forceLink;
-#else
-#define QT7Z_STATIC_LINK_FORCE_INCLUDE
-#endif
-
 #endif

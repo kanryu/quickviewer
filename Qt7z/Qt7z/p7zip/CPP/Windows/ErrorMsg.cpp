@@ -8,7 +8,7 @@
 namespace NWindows {
 namespace NError {
 
-UString MyFormatMessage(HRESULT errorCode)
+UString MyFormatMessage(DWORD errorCode)
 {
   const char * txt = 0;
   AString msg;

@@ -34,3 +34,6 @@
 [submodule "luminor/luminor"]
 	path = luminor/luminor
 	url = https://github.com/kanryu/luminor
+[submodule "Qt7z/Qt7z/lib7zip"]
+	path = Qt7z/Qt7z/lib7zip
+	url = https://github.com/kanryu/lib7zip

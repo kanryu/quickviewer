@@ -19,12 +19,16 @@
 
 using namespace NWindows;
 
-static const char g_WinAttribChars[16 + 1] = "RHS8DAdNTsLCOnE_";
+static const unsigned kNumWinAtrribFlags = 21;
+static const char g_WinAttribChars[kNumWinAtrribFlags + 1] = "RHS8DAdNTsLCOIEV.X.PU";
+
 /*
+FILE_ATTRIBUTE_
+
 0 READONLY
 1 HIDDEN
 2 SYSTEM
-
+3 (Volume label - obsolete)
 4 DIRECTORY
 5 ARCHIVE
 6 DEVICE
@@ -34,11 +38,18 @@ static const char g_WinAttribChars[16 + 1] = "RHS8DAdNTsLCOnE_";
 10 REPARSE_POINT
 11 COMPRESSED
 12 OFFLINE
-13 NOT_CONTENT_INDEXED
+13 NOT_CONTENT_INDEXED (I - Win10 attrib/Explorer)
 14 ENCRYPTED
-
-16 VIRTUAL
+15 INTEGRITY_STREAM (V - ReFS Win8/Win2012)
+16 VIRTUAL (reserved)
+17 NO_SCRUB_DATA (X - ReFS Win8/Win2012 attrib)
+18 RECALL_ON_OPEN or EA
+19 PINNED
+20 UNPINNED
+21 STRICTLY_SEQUENTIAL
+22 RECALL_ON_DATA_ACCESS
 */
+
 
 static const char kPosixTypes[16] = { '0', 'p', 'c', '3', 'd', '5', 'b', '7', '-', '9', 'l', 'B', 's', 'D', 'E', 'F' };
 #define MY_ATTR_CHAR(a, n, c) ((a) & (1 << (n))) ? c : '-';
@@ -65,23 +76,56 @@ static void ConvertPosixAttribToString(char *s, UInt32 a) throw()
   }
 }
 
+
 void ConvertWinAttribToString(char *s, UInt32 wa) throw()
 {
-  for (int i = 0; i < 16; i++)
-    if ((wa & (1 << i)) && i != 7)
-      *s++ = g_WinAttribChars[i];
-  *s = 0;
-
-  // we support p7zip trick that stores posix attributes in high 16 bits, and 0x8000 flag
-  // we also support ZIP archives created in Unix, that store posix attributes in high 16 bits without 0x8000 flag
+  /*
+  some programs store posix attributes in high 16 bits.
+  p7zip - stores additional 0x8000 flag marker.
+  macos - stores additional 0x4000 flag marker.
+  info-zip - no additional marker.
+  */
   
-  // if (wa & 0x8000)
-  if ((wa >> 16) != 0)
+  bool isPosix = ((wa & 0xF0000000) != 0);
+  
+  UInt32 posix = 0;
+  if (isPosix)
+  {
+    posix = wa >> 16;
+    wa &= (UInt32)0x3FFF;
+  }
+
+  for (unsigned i = 0; i < kNumWinAtrribFlags; i++)
+  {
+    UInt32 flag = (1 << i);
+    if ((wa & flag) != 0)
+    {
+      char c = g_WinAttribChars[i];
+      if (c != '.')
+      {
+        wa &= ~flag;
+        // if (i != 7) // we can disable N (NORMAL) printing
+        *s++ = c;
+      }
+    }
+  }
+  
+  if (wa != 0)
   {
     *s++ = ' ';
-    ConvertPosixAttribToString(s, wa >> 16);
+    ConvertUInt32ToHex8Digits(wa, s);
+    s += strlen(s);
+  }
+
+  *s = 0;
+
+  if (isPosix)
+  {
+    *s++ = ' ';
+    ConvertPosixAttribToString(s, posix);
   }
 }
+
 
 void ConvertPropertyToShortString2(char *dest, const PROPVARIANT &prop, PROPID propID, int level) throw()
 {
@@ -180,7 +224,6 @@ static inline void AddHexToString(AString &res, unsigned v)
 {
   res += (char)GetHex(v >> 4);
   res += (char)GetHex(v & 0xF);
-  res += ' ';
 }
 
 /*
@@ -224,6 +267,14 @@ struct CSecID2Name
   UInt32 n;
   const char *sz;
 };
+
+static int FindPairIndex(const CSecID2Name * pairs, unsigned num, UInt32 id)
+{
+  for (unsigned i = 0; i < num; i++)
+    if (pairs[i].n == id)
+      return i;
+  return -1;
+}
 
 static const CSecID2Name sid_32_Names[] =
 {
@@ -315,22 +366,22 @@ static void ParseSid(AString &s, const Byte *p, UInt32 lim, UInt32 &sidSize)
     if (v0 == 32 && num == 2)
     {
       UInt32 v1 = Get32(p + 12);
-      for (unsigned i = 0; i < ARRAY_SIZE(sid_32_Names); i++)
-        if (sid_32_Names[i].n == v1)
-        {
-          s += sid_32_Names[i].sz;
-          return;
-        }
+      int index = FindPairIndex(sid_32_Names, ARRAY_SIZE(sid_32_Names), v1);
+      if (index >= 0)
+      {
+        s += sid_32_Names[(unsigned)index].sz;
+        return;
+      }
     }
     if (v0 == 21 && num == 5)
     {
       UInt32 v4 = Get32(p + 8 + 4 * 4);
-      for (unsigned i = 0; i < ARRAY_SIZE(sid_21_Names); i++)
-        if (sid_21_Names[i].n == v4)
-        {
-          s += sid_21_Names[i].sz;
-          return;
-        }
+      int index = FindPairIndex(sid_21_Names, ARRAY_SIZE(sid_21_Names), v4);
+      if (index >= 0)
+      {
+        s += sid_21_Names[(unsigned)index].sz;
+        return;
+      }
     }
     if (v0 == 80 && num == 6)
     {
@@ -375,20 +426,13 @@ static void ParseOwner(AString &s, const Byte *p, UInt32 size, UInt32 pos)
   ParseSid(s, p + pos, size - pos, sidSize);
 }
 
-static void AddUInt32ToString(AString &s, UInt32 val)
-{
-  char sz[16];
-  ConvertUInt32ToString(val, sz);
-  s += sz;
-}
-
 static void ParseAcl(AString &s, const Byte *p, UInt32 size, const char *strName, UInt32 flags, UInt32 offset)
 {
   UInt32 control = Get16(p + 2);
   if ((flags & control) == 0)
     return;
   UInt32 pos = Get32(p + offset);
-  s += ' ';
+  s.Add_Space();
   s += strName;
   if (pos >= size)
     return;
@@ -399,7 +443,7 @@ static void ParseAcl(AString &s, const Byte *p, UInt32 size, const char *strName
   if (Get16(p) != 2) // revision
     return;
   UInt32 num = Get32(p + 4);
-  AddUInt32ToString(s, num);
+  s.Add_UInt32(num);
   
   /*
   UInt32 aclSize = Get16(p + 2);
@@ -422,7 +466,7 @@ static void ParseAcl(AString &s, const Byte *p, UInt32 size, const char *strName
     size -= 8;
 
     UInt32 sidSize = 0;
-    s += ' ';
+    s.Add_Space();
     ParseSid(s, p, size, sidSize);
     if (sidSize == 0)
       return;
@@ -464,12 +508,12 @@ void ConvertNtSecureToString(const Byte *data, UInt32 size, AString &s)
     return;
   }
   ParseOwner(s, data, size, Get32(data + 4));
-  s += ' ';
+  s.Add_Space();
   ParseOwner(s, data, size, Get32(data + 8));
   ParseAcl(s, data, size, "s:", MY_SE_SACL_PRESENT, 12);
   ParseAcl(s, data, size, "d:", MY_SE_DACL_PRESENT, 16);
-  s += ' ';
-  AddUInt32ToString(s, size);
+  s.Add_Space();
+  s.Add_UInt32(size);
   // s += '\n';
   // s += Data_To_Hex(data, size);
 }
@@ -523,11 +567,38 @@ bool CheckNtSecure(const Byte *data, UInt32 size) throw()
 
 #endif
 
+
+
+// IO_REPARSE_TAG_*
+
+static const CSecID2Name k_ReparseTags[] =
+{
+  { 0xA0000003, "MOUNT_POINT" },
+  { 0xC0000004, "HSM" },
+  { 0x80000005, "DRIVE_EXTENDER" },
+  { 0x80000006, "HSM2" },
+  { 0x80000007, "SIS" },
+  { 0x80000008, "WIM" },
+  { 0x80000009, "CSV" },
+  { 0x8000000A, "DFS" },
+  { 0x8000000B, "FILTER_MANAGER" },
+  { 0xA000000C, "SYMLINK" },
+  { 0xA0000010, "IIS_CACHE" },
+  { 0x80000012, "DFSR" },
+  { 0x80000013, "DEDUP" },
+  { 0xC0000014, "APPXSTRM" },
+  { 0x80000014, "NFS" },
+  { 0x80000015, "FILE_PLACEHOLDER" },
+  { 0x80000016, "DFM" },
+  { 0x80000017, "WOF" }
+};
+
 bool ConvertNtReparseToString(const Byte *data, UInt32 size, UString &s)
 {
   s.Empty();
   NFile::CReparseAttr attr;
-  if (attr.Parse(data, size))
+  DWORD errorCode = 0;
+  if (attr.Parse(data, size, errorCode))
   {
     if (!attr.IsSymLink())
       s += "Junction: ";
@@ -549,19 +620,48 @@ bool ConvertNtReparseToString(const Byte *data, UInt32 size, UString &s)
   if (Get16(data + 6) != 0) // padding
     return false;
 
-  char hex[16];
-  ConvertUInt32ToHex8Digits(tag, hex);
-  s += hex;
-  s.Add_Space();
-
-  data += 8;
-
-  for (UInt32 i = 0; i < len; i++)
+  /*
+  #define _my_IO_REPARSE_TAG_DEDUP        (0x80000013L)
+  if (tag == _my_IO_REPARSE_TAG_DEDUP)
   {
-    unsigned b = ((const Byte *)data)[i];
-    s += (char)GetHex((b >> 4) & 0xF);
-    s += (char)GetHex(b & 0xF);
   }
+  */
+
+  {
+    int index = FindPairIndex(k_ReparseTags, ARRAY_SIZE(k_ReparseTags), tag);
+    if (index >= 0)
+      s += k_ReparseTags[(unsigned)index].sz;
+    else
+    {
+      s += "REPARSE:";
+      char hex[16];
+      ConvertUInt32ToHex8Digits(tag, hex);
+      s += hex;
+    }
+  }
+
+  s += ":";
+  s.Add_UInt32(len);
+
+  if (len != 0)
+  {
+    s.Add_Space();
+    
+    data += 8;
+    
+    for (UInt32 i = 0; i < len; i++)
+    {
+      if (i >= 8)
+      {
+        s += "...";
+        break;
+      }
+      unsigned b = data[i];
+      s += (char)GetHex((b >> 4) & 0xF);
+      s += (char)GetHex(b & 0xF);
+    }
+  }
+
   return true;
 }
 

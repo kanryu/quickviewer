@@ -197,6 +197,9 @@ static HRESULT DecompressArchive(
   
   HRESULT result;
   Int32 testMode = (options.TestMode && !calcCrc) ? 1: 0;
+
+  CArchiveExtractCallback_Closer ecsCloser(ecs);
+
   if (options.StdInMode)
   {
     result = archive->Extract(NULL, (UInt32)(Int32)-1, testMode, ecs);
@@ -206,8 +209,11 @@ static HRESULT DecompressArchive(
   }
   else
     result = archive->Extract(&realIndices.Front(), realIndices.Size(), testMode, ecs);
-  if (result == S_OK && !options.StdInMode)
-    result = ecs->SetDirsTimes();
+  
+  HRESULT res2 = ecsCloser.Close();
+  if (result == S_OK)
+    result = res2;
+
   return callback->ExtractResult(result);
 }
 
@@ -279,7 +285,9 @@ HRESULT Extract(
   CArchiveExtractCallback *ecs = new CArchiveExtractCallback;
   CMyComPtr<IArchiveExtractCallback> ec(ecs);
   bool multi = (numArcs > 1);
-  ecs->InitForMulti(multi, options.PathMode, options.OverwriteMode);
+  ecs->InitForMulti(multi, options.PathMode, options.OverwriteMode,
+      false // keepEmptyDirParts
+      );
   #ifndef _SFX
   ecs->SetHashMethods(hash);
   #endif

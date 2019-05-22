@@ -128,6 +128,15 @@ bool SetFileAttrib(CFSTR path, DWORD attrib)
   return false;
 }
 
+
+bool SetFileAttrib_PosixHighDetect(CFSTR path, DWORD attrib)
+{
+  if ((attrib & 0xF0000000) != 0)
+    attrib &= 0x3FFF;
+  return SetFileAttrib(path, attrib);
+}
+
+
 bool RemoveDir(CFSTR path)
 {
   #ifndef _UNICODE
@@ -658,12 +667,27 @@ bool CTempFile::Remove()
 
 bool CTempFile::MoveTo(CFSTR name, bool deleteDestBefore)
 {
+  // DWORD attrib = 0;
   if (deleteDestBefore)
+  {
     if (NFind::DoesFileExist(name))
+    {
+      // attrib = NFind::GetFileAttrib(name);
       if (!DeleteFileAlways(name))
         return false;
+    }
+  }
   DisableDeleting();
   return MyMoveFile(_path, name);
+  
+  /*
+  if (attrib != INVALID_FILE_ATTRIBUTES && (attrib & FILE_ATTRIBUTE_READONLY))
+  {
+    DWORD attrib2 = NFind::GetFileAttrib(name);
+    if (attrib2 != INVALID_FILE_ATTRIBUTES)
+      SetFileAttrib(name, attrib2 | FILE_ATTRIBUTE_READONLY);
+  }
+  */
 }
 
 bool CTempDir::Create(CFSTR prefix)
