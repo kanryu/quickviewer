@@ -3,7 +3,7 @@ include("QVproject.pri")
 TEMPLATE = subdirs
 SUBDIRS = \
     Qt7z/Qt7z/qt7z.pro \
-    ResizeHalf/resizehalf.pro \
+    ResizeHalf \
     easyexif \
     unrar \
     fileloader \
@@ -13,7 +13,7 @@ SUBDIRS = \
 
 
 fileloader.depends = Qt7z/Qt7z/qt7z.pro unrar
-QuickViewer.depends = ResizeHalf/resizehalf.pro easyexif fileloader zimg
+QuickViewer.depends = ResizeHalf easyexif fileloader zimg
 qvtest.depends = fileloader
 
 contains(DEFINES, QV_WITH_LUMINOR) {
@@ -43,6 +43,7 @@ TRANSLATIONS = \
     QuickViewer/translations/quickviewer_zh.ts \
     QuickViewer/translations/quickviewer_el.ts \
     QuickViewer/translations/quickviewer_fr.ts \
+    QuickViewer/translations/quickviewer_ru.ts \
 
 DISTFILES += \
     QuickViewer/translations/quickviewer_ja.qm \
