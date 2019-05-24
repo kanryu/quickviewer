@@ -112,6 +112,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.paperblog.fr/8518927/quickviewer/](http://www.paperblog.fr/8518927/quickviewer/)
 - **V2EX** (in Simplified Chinese)
     - [https://www.v2ex.com/t/419966](https://www.v2ex.com/t/419966)
+- **cfan 科技新生活** (in Simplified Chinese)
+    - [http://www.cfan.com.cn/2019/0429/132353.shtml](http://www.cfan.com.cn/2019/0429/132353.shtml)
 - **河东软件园** (in Simplified Chinese)
     - [http://www.pc0359.cn/downinfo/89233.html](http://www.pc0359.cn/downinfo/89233.html)
 - **QuickViewer打开浏览本地照片教程(极速下载站)** (in Simplified Chinese)
