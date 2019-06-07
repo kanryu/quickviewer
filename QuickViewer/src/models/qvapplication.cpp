@@ -1,5 +1,6 @@
 #include <QtGui>
 //#include <QtOpenGL>
+#include "fileloader7zarchive.h"
 
 #ifdef Q_OS_WIN
 #include <shlobj.h>
@@ -75,6 +76,13 @@ QVApplication::QVApplication(int &argc, char **argv)
     registDefaultKeyMap();
     registDefaultMouseMap();
     loadSettings();
+
+    FileLoader7zArchive::initializeLib();
+}
+
+QVApplication::~QVApplication()
+{
+    FileLoader7zArchive::uninitializeLib();
 }
 
 QString QVApplication::getApplicationFilePath(QString subFilePath)

@@ -27,21 +27,24 @@ win32 {
 unix {
     DEFINES += _UNIX
 }
+INCLUDEPATH += \
+        ../Qt7z/Qt7z/7zip \
+        ../Qt7z/Qt7z/7zip/CPP \
+        ../Qt7z/Qt7z/lib7zip/src \
 
 SOURCES += \
     $$PWD/fileloader.cpp \
     $$PWD/fileloader7zarchive.cpp \
     $$PWD/fileloaderdirectory.cpp \
-    $$PWD/fileloaderrararchive.cpp \
     $$PWD/fileloadersubdirectory.cpp \
+    $$PWD/fileloaderrararchive.cpp \
 
 HEADERS += \
     $$PWD/fileloader.h \
     $$PWD/fileloader7zarchive.h \
     $$PWD/fileloaderdirectory.h \
-    $$PWD/fileloaderrararchive.h \
     $$PWD/fileloadersubdirectory.h \
-
+    $$PWD/fileloaderrararchive.h \
 
 DESTDIR = ../lib
 LIBS += -L../lib
@@ -50,7 +53,7 @@ DEFINES += UNRAR RARDLL
 INCLUDEPATH += ../unrar
 LIBS += -lunrar
 
-DEFINES += QT7Z_STATIC
+#DEFINES += QT7Z_STATIC
 INCLUDEPATH += ../Qt7z/Qt7z
 LIBS += -lQt7z
 

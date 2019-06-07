@@ -10,22 +10,23 @@
 #INCLUDEPATH += \
 #    $$PWD/7z
 
-DEFINES += QT7Z_LIBRARY QT7Z_STATIC EXTERNAL_CODECS
-HEADERS += $$PWD/*.h \
-    $$PWD/qt7zpackage_p.h
-SOURCES += \
-    $$PWD/qt7zfileinfo.cpp \
-    $$PWD/qt7zpackage.cpp \
+#DEFINES += QT7Z_LIBRARY QT7Z_STATIC EXTERNAL_CODECS
+DEFINES += QT_DEPRECATED_WARNINGS
+#HEADERS += $$PWD/*.h \
+#    $$PWD/qt7zpackage_p.h
+#SOURCES += \
+#    $$PWD/qt7zfileinfo.cpp \
+#    $$PWD/qt7zpackage.cpp \
 
 win32 {
-    DEFINES += QT7Z_STATIC_LINK
-    DEFINES += UNICODE
-    DEFINES += _UNICODE
-    DEFINES += WIN_LONG_PATH
-    DEFINES += _7ZIP_LARGE_PAGES
-    DEFINES += SUPPORT_DEVICE_FILE
+#    DEFINES += QT7Z_STATIC_LINK
+#    DEFINES += UNICODE
+#    DEFINES += _UNICODE
+#    DEFINES += WIN_LONG_PATH
+#    DEFINES += _7ZIP_LARGE_PAGES
+#    DEFINES += SUPPORT_DEVICE_FILE
     !CONFIG(debug, debug|release): DEFINES += NDEBUG
-    *g++*: DEFINES += NTDDI_VERSION=NTDDI_VISTA
+#    *g++*: DEFINES += NTDDI_VERSION=NTDDI_VISTA
 
     INCLUDEPATH += \
         $$PWD/7zip \
@@ -49,6 +50,8 @@ win32 {
         $$PWD/lib7zip/src/OSFunctions_OS2.cpp \
         $$PWD/lib7zip/src/OSFunctions_UnixLike.cpp \
         $$PWD/lib7zip/src/OSFunctions_Win32.cpp \
+        $$PWD/7zip/CPP/Common/MyWindows.cpp \
+        $$PWD/7zip/CPP/Windows/PropVariant.cpp \
 
 #    SOURCES += \
 #        $$PWD/7zip/C/7zCrc.c \

@@ -103,6 +103,7 @@ public:
     typedef QActionManager<QKeySequence, QKeySequence, QAction*> KeyActionManager;
     typedef QActionManager<QMouseSequence, QMouseValue, QAction*> MouseActionManager;
     explicit QVApplication(int &argc, char **argv);
+    ~QVApplication();
     QString getApplicationFilePath(QString subFilePath);
     /**
      * @brief Returns the path of the setting file according to the execution environment of the application

@@ -53,6 +53,10 @@ public:
      */
     InflateCacheMode getCacheMode() { return m_cacheMode; }
 
+    static bool initializeLib();
+    static bool isInitialized();
+    static void uninitializeLib();
+
 protected:
     FileLoader7zArchivePrivate* d;
     QString m_volumepath;
