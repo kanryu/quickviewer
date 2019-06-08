@@ -37,7 +37,7 @@ A image/comic viewer application for Windows, Mac and Linux, it can show images 
    - Ricoh(dng)
    - etc..
  - Can make/view/search catalog from thousands of your digital books
- - Multilingual support(English/Spanish/Simplified Chinese/Japanese/Greek)
+ - Multilingual support(English/Spanish/Simplified Chinese/French/Russian/Japanese/Greek)
 
 ## Download
 
