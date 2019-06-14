@@ -10,55 +10,27 @@
 using namespace lib7zip;
 
 
-class TestInStream : public C7ZipInStream
+class Qt7zStreamReader : public C7ZipInStream
 {
 private:
-    FILE * m_pFile;
+    QIODevice *m_inStream;
     std::string m_strFileName;
     wstring m_strFileExt;
     int m_nFileSize;
 public:
-    TestInStream(std::string fileName) :
+    Qt7zStreamReader(std::string fileName) :
+        m_inStream(nullptr),
         m_strFileName(fileName),
         m_strFileExt(L"7z")
     {
-
-        wprintf(L"fileName.c_str(): %s\n", fileName.c_str());
-        m_pFile = fopen(fileName.c_str(), "rb");
-        if (m_pFile) {
-            fseek(m_pFile, 0, SEEK_END);
-            m_nFileSize = ftell(m_pFile);
-            fseek(m_pFile, 0, SEEK_SET);
-
-            auto pos = m_strFileName.find_last_of(".");
-
-            if (pos != m_strFileName.npos) {
-#ifdef _WIN32
-                std::string tmp = m_strFileName.substr(pos + 1);
-                int nLen = MultiByteToWideChar(CP_ACP, 0, tmp.c_str(), -1, NULL, NULL);
-                LPWSTR lpszW = new WCHAR[nLen];
-                MultiByteToWideChar(CP_ACP, 0,
-                                    tmp.c_str(), -1, lpszW, nLen);
-                m_strFileExt = lpszW;
-                // free the string
-                delete[] lpszW;
-#else
-                m_strFileExt = L"7z";
-#endif
-            }
-            wprintf(L"Ext:%ls\n", m_strFileExt.c_str());
-        }
-        else {
-            wprintf(L"fileName.c_str(): %s cant open\n", fileName.c_str());
-        }
     }
 
-    virtual ~TestInStream()
+    virtual ~Qt7zStreamReader()
     {
-        fclose(m_pFile);
     }
-
-public:
+    void setFile(QIODevice *inStream) {
+        m_inStream = inStream;
+    }
     virtual wstring GetExt() const
     {
         wprintf(L"GetExt:%ls\n", m_strFileExt.c_str());
@@ -67,15 +39,15 @@ public:
 
     virtual int Read(void *data, unsigned int size, unsigned int *processedSize)
     {
-        if (!m_pFile)
+        if (!m_inStream)
             return 1;
+        auto readBytes = m_inStream->read((char*)data, size);
 
-        int count = fread(data, 1, size, m_pFile);
-        wprintf(L"Read:%d %d\n", size, count);
+        wprintf(L"Read:%d %d\n", size, readBytes);
 
-        if (count >= 0) {
-            if (processedSize != NULL)
-                *processedSize = count;
+        if (readBytes >= 0) {
+            if (processedSize != nullptr)
+                *processedSize = readBytes;
 
             return 0;
         }
@@ -85,25 +57,37 @@ public:
 
     virtual int Seek(__int64 offset, unsigned int seekOrigin, unsigned __int64 *newPosition)
     {
-        if (!m_pFile)
+        bool result = false;
+        if(!m_inStream)
             return 1;
-
-        int result = fseek(m_pFile, (long)offset, seekOrigin);
-
-        if (!result) {
-            if (newPosition)
-                *newPosition = ftell(m_pFile);
-
-            return 0;
+        switch(seekOrigin) {
+        case SEEK_SET:
+            result = m_inStream->seek(offset);
+            break;
+        case SEEK_CUR:
+            {
+                auto pos = m_inStream->pos();
+                result = m_inStream->seek(pos+offset);
+                break;
+            }
+        case SEEK_END:
+            {
+                auto sz = m_inStream->size();
+                result = m_inStream->seek(sz+offset);
+                break;
+            }
         }
-
-        return result;
+        if(newPosition) {
+            qint64 pos2 = m_inStream->pos();
+            *newPosition = pos2;
+        }
+        return result == true ? 0 : 1;
     }
 
     virtual int GetSize(unsigned __int64 * size)
     {
         if (size)
-            *size = m_nFileSize;
+            *size = m_inStream->size();
         return 0;
     }
 };
@@ -130,7 +114,6 @@ public:
     {
     }
 
-public:
     int GetFileSize() const
     {
         return m_outStream->size();
@@ -162,7 +145,7 @@ public:
             break;
         case SEEK_CUR:
             {
-                auto pos = m_outStream->pos();
+                qint64 pos = m_outStream->pos();
                 result = m_outStream->seek(pos+offset);
                 break;
             }
@@ -172,6 +155,10 @@ public:
                 result = m_outStream->seek(sz+offset);
                 break;
             }
+        }
+        if(newPosition) {
+            qint64 pos2 = m_outStream->pos();
+            *newPosition = pos2;
         }
         return result == true ? 0 : 1;
     }
@@ -295,18 +282,26 @@ class FileLoader7zArchivePrivate
 public:
     QString m_packagePath;
     C7ZipArchive* m_pArchive;
-    TestInStream stream;
+    Qt7zStreamReader stream;
     QMap<QString, Qt7zFileInfo> m_fileinfomap;
     QTemporaryFile m_tempFile;
     QList<Qt7zFileInfo> m_fileInfoList;
     QStringList m_fileNameList;
     QHash<QString, uint32_t> m_fileNameToIndex;
+    QFile m_archiveFile;
 
     FileLoader7zArchivePrivate(QString sevenzippath)
         : m_packagePath(sevenzippath)
         , m_pArchive(nullptr)
         , stream(sevenzippath.toStdString())
     {
+        m_archiveFile.setFileName(sevenzippath);
+        qDebug() << m_archiveFile;
+        if(!m_archiveFile.open(QIODevice::ReadOnly)) {
+            m_pArchive = nullptr;
+            return;
+        }
+        stream.setFile(&m_archiveFile);
         if (!c7zipLib->OpenArchive(&stream, &m_pArchive)) {
             m_pArchive = nullptr;
             return;
