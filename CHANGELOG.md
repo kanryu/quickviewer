@@ -1,15 +1,52 @@
 # CHANGELOG
 
-## v1.1.4 (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+## v1.1.5 (Mon Jun 17 16:40:36 2019 +0900) [6499a42](https://github.com/kanryu/quickviewer/commit/6499a425d0ad37af121b3ca1426f66988f48fa52)
 
-add French translation, Dark color theme, support as a normal
-application
+add Russian language resources, using official SevenZip, bugfixed
 
-- add French translation (contributed by M.2WF)
-- add Dark color theme (contributed by @rurigk)
-- support to run as a normal application(located on c:/Program Files)
+- add Russian language resources(contributed by @mrkaban)
+- using official SevenZip, instead of modified one
+- bugfixed:Image reduction may not work properly in x86 version
+- default changes:
+- Auto load last used -> false
+- MaxTextureSize default -> bigger 4096px for large display users
 
 - other commits
+    - fileloader7zarchive uses QFile instead of FILE* (Fri Jun 14 17:21:02 2019 +0900) [e1ef100](https://github.com/kanryu/quickviewer/commit/e1ef100e4baa3aab2aea5b817c9cbae4a1d8fca5)
+    - Update README.md (Sat Jun 8 11:18:57 2019 +0900) [ef68bdc](https://github.com/kanryu/quickviewer/commit/ef68bdc601cf679c736b06fe094fb24cbb2322b2)
+    - bugfixed: official 7z.dll does not work properly in fileloader. (Fri Jun 7 15:27:24 2019 +0900) [d142aab](https://github.com/kanryu/quickviewer/commit/d142aab022d931c085829c1245347a0cd56eaed4)
+    - Create FUNDING.yml (Tue May 28 09:13:16 2019 +0900) [c62821d](https://github.com/kanryu/quickviewer/commit/c62821da67aef8de44f0c56a4cba230f9dbe3e93)
+    - Update index.md (Fri May 24 17:04:46 2019 +0900) [38a67b8](https://github.com/kanryu/quickviewer/commit/38a67b848fee52dd9c4cf6b39c88e86a0241e07e)
+    - Update README.md (Fri May 24 14:11:58 2019 +0900) [8006254](https://github.com/kanryu/quickviewer/commit/80062546ff88b201d5282d6b4a7127ac44c87a0d)
+    - updating SevenZip (Wed May 22 16:06:24 2019 +0900) [95604b9](https://github.com/kanryu/quickviewer/commit/95604b94d56648796643e4742b8d94429d287ca6)
+    -  (Wed May 22 16:06:24 2019 +0900) [95604b9](https://github.com/kanryu/quickviewer/commit/95604b94d56648796643e4742b8d94429d287ca6)
+    -  Stop static linking of SevenZip's fixed program and adopt dynamic (Wed May 22 16:06:24 2019 +0900) [95604b9](https://github.com/kanryu/quickviewer/commit/95604b94d56648796643e4742b8d94429d287ca6)
+    - linking of the official DLL. (Wed May 22 16:06:24 2019 +0900) [95604b9](https://github.com/kanryu/quickviewer/commit/95604b94d56648796643e4742b8d94429d287ca6)
+    -  On other operating systems we need to use p7zip instead of SevenZip, so (Wed May 22 16:06:24 2019 +0900) [95604b9](https://github.com/kanryu/quickviewer/commit/95604b94d56648796643e4742b8d94429d287ca6)
+    - we will do some additional work. (Wed May 22 16:06:24 2019 +0900) [95604b9](https://github.com/kanryu/quickviewer/commit/95604b94d56648796643e4742b8d94429d287ca6)
+    - ResizeHalf updated (Fixed a bug in ResizeHalf (It crashed when shrinking an image of width not divisible by 4)) (Wed May 22 15:51:03 2019 +0900) [a48ba04](https://github.com/kanryu/quickviewer/commit/a48ba041f8b6fc39a7c634bfdea94e9c1bfbebc4)
+    - * add Russian language resources (Mon May 13 23:04:44 2019 +0900) [8a4a82e](https://github.com/kanryu/quickviewer/commit/8a4a82ea1877ab214046011913b0b21d214f65b7)
+    -  (Mon May 13 23:04:44 2019 +0900) [8a4a82e](https://github.com/kanryu/quickviewer/commit/8a4a82ea1877ab214046011913b0b21d214f65b7)
+    -  Donated by @mrkaban (Mon May 13 23:04:44 2019 +0900) [8a4a82e](https://github.com/kanryu/quickviewer/commit/8a4a82ea1877ab214046011913b0b21d214f65b7)
+    - add Russian language resources (Sun May 12 20:55:13 2019 +0900) [672eab1](https://github.com/kanryu/quickviewer/commit/672eab1112b2138754fa79c6eafc04c38c81f335)
+    -  (Sun May 12 20:55:13 2019 +0900) [672eab1](https://github.com/kanryu/quickviewer/commit/672eab1112b2138754fa79c6eafc04c38c81f335)
+    -  Donated by @mrkaban (Sun May 12 20:55:13 2019 +0900) [672eab1](https://github.com/kanryu/quickviewer/commit/672eab1112b2138754fa79c6eafc04c38c81f335)
+    - Merge pull request #101 from rurigk/master (Wed Apr 17 14:38:42 2019 +0900) [a8d0645](https://github.com/kanryu/quickviewer/commit/a8d064584e9e6eafa79eb049bf85060ef7a7d05a)
+    -  (Wed Apr 17 14:38:42 2019 +0900) [a8d0645](https://github.com/kanryu/quickviewer/commit/a8d064584e9e6eafa79eb049bf85060ef7a7d05a)
+    - Default theme rules (Wed Apr 17 14:38:42 2019 +0900) [a8d0645](https://github.com/kanryu/quickviewer/commit/a8d064584e9e6eafa79eb049bf85060ef7a7d05a)
+    - Default theme rules (Wed Apr 17 00:30:58 2019 -0500) [6406805](https://github.com/kanryu/quickviewer/commit/6406805eefeee7a6b64d7aea2a1f29234edab16b)
+
+## v1.1.4 (Wed Apr 17 10:09:24 2019 +0900) [0be40b6](https://github.com/kanryu/quickviewer/commit/0be40b6e888d950eb1136a25a21cefff87c4ad24)
+
+changelog
+
+- other commits
+    - add French translation, Dark color theme, support as a normal (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+    - application (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+    -  (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+    -  add French translation (contributed by M.2WF) (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+    -  add Dark color theme (contributed by @rurigk) (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
+    -  support to run as a normal application(located on c:/Program Files) (Wed Apr 17 09:42:51 2019 +0900) [e6392b8](https://github.com/kanryu/quickviewer/commit/e6392b8b4705e95f0a3485598db0477681aab5a7)
     - If it's running under C:/Program Files, it's not considered portable (Tue Apr 16 16:49:03 2019 +0900) [ec3b2ed](https://github.com/kanryu/quickviewer/commit/ec3b2ed61545f480e2afe6aa71bfd2495348869b)
     - backport to qt-5.9 (Fri Apr 12 16:12:40 2019 +0900) [6c0ed9f](https://github.com/kanryu/quickviewer/commit/6c0ed9f3c3f5179d00ad2ec967b711603fc27ae1)
     - Merge pull request #100 from rurigk/master (Fri Apr 12 16:04:22 2019 +0900) [895dff2](https://github.com/kanryu/quickviewer/commit/895dff2edf7453e7898f90e58f4667b215e1feb3)
