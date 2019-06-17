@@ -51,7 +51,7 @@
             <x>0</x>
             <y>0</y>
             <width>635</width>
-            <height>471</height>
+            <height>472</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -144,7 +144,7 @@
                  <string>Increasing the value increases the display time of per image</string>
                 </property>
                 <property name="minimum">
-                 <number>1000</number>
+                 <number>500</number>
                 </property>
                 <property name="maximum">
                  <number>20000</number>
@@ -515,7 +515,7 @@
             <x>0</x>
             <y>0</y>
             <width>635</width>
-            <height>471</height>
+            <height>472</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">

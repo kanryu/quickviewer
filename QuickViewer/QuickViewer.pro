@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.1.4
+VERSION = 1.1.5
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -71,6 +71,9 @@ win32 {
         }
     }
     LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32 -luuid
+
+    # copy official 7z.dll to build/bin/
+    QMAKE_POST_LINK += $$QMAKE_COPY /B $$shell_quote($$shell_path($$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll)) $$shell_path($${DESTDIR})
 }
 linux {
     DEFINES += _UNIX
@@ -262,7 +265,7 @@ win32 : !CONFIG(debug, debug|release) {
     mingw {
         MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-mingw-$${TARGET_ARCH}
 
-        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
+        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll
 
         INSTALLS += install_target install_deploy_files install_translations install_assoc_icons
     } else {
@@ -272,7 +275,7 @@ win32 : !CONFIG(debug, debug|release) {
             MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}/$${TARGET_ARCH}
         }
 
-        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe
+        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll
 
         install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
         install_qrawspeed.files = \

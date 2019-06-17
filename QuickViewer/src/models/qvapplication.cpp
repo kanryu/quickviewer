@@ -394,7 +394,11 @@ void QVApplication::loadSettings()
     m_showMenuBar = m_settings->value("ShowMenuBar", true).toBool();
     m_showSubfolders = m_settings->value("ShowSubfolders", false).toBool();
     m_slideShowWait = m_settings->value("SlideShowWait", 5000).toInt();
-    m_maxTextureSize = m_settings->value("MaxTextureSize", 4096).toInt();
+    QRect rec = desktop()->screenGeometry();
+    uint32_t desktop_width = rec.width();
+    uint32_t maxTextureSize = desktop_width < 2048 ? 4096 : (uint32_t)(desktop_width*2.1);
+    qDebug() << "desktop width:" << rec.width();
+    m_maxTextureSize = m_settings->value("MaxTextureSize", maxTextureSize).toInt();
 #ifdef Q_PROCESSOR_X86_64
     m_maxVolumesCache = m_settings->value("MaxVolumesCache", 5).toInt();
     m_maxImagesCache = m_settings->value("MaxImagesCache", 22).toInt();
@@ -449,7 +453,7 @@ void QVApplication::loadSettings()
 
     // File
     m_settings->beginGroup("File");
-    m_autoLoaded  = m_settings->value("AutoLoaded", true).toBool();
+    m_autoLoaded  = m_settings->value("AutoLoaded", false).toBool();
     m_history = m_settings->value("History", QStringList()).value<QStringList>();
     m_maxHistoryCount = m_settings->value("MaxHistoryCount", 36).toInt();
     m_bookmarks = m_settings->value("Bookmarks", QStringList()).value<QStringList>();
