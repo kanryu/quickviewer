@@ -39,14 +39,16 @@ QVApplication::QVApplication(int &argc, char **argv)
     if(QDir::toNativeSeparators(appdir).startsWith(programFiles))
         m_portable = false;
 
-    if(m_portable)
+    if(!m_portable)
 #endif
     {
-        // if the first executed, must create data folder for the user
+        // In a non-portable environment, QuickViewer creates a directory for the application
+        // in a fixed PATH inside the user directory, and stores data files in it.
 #  if    defined(Q_OS_MAC) || defined(Q_OS_LINUX)
         QString datapath = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(QV_DATADIR);
 #  elif  defined(Q_OS_WIN)
         QString datapath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+//        qDebug() << datapath;
 #  endif
         QDir dir(datapath);
         QFile filedatabase(dir.filePath(QV_THUMBNAILS));
@@ -489,11 +491,11 @@ void QVApplication::loadSettings()
         m_catalogViewModeSetting = (qvEnums::CatalogViewMode)qvEnums::staticMetaObject.enumerator(enumIdx).keysToValue(viewModestring.toLatin1().data());
     }
 #ifdef Q_OS_WIN
-#  ifdef QV_PORTABLE
-    m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
-#  else
-    m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", "thumbnail.sqlite3.db").toString();
-#  endif
+    if(m_portable) {
+        m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", "database/thumbnail.sqlite3.db").toString();
+    } else {
+        m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", "thumbnail.sqlite3.db").toString();
+    }
 #else
     m_catalogDatabasePath = m_settings->value("CatalogDatabasePath", ".quickviewer/thumbnail.sqlite3.db").toString();
 #endif
