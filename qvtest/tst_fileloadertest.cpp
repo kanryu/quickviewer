@@ -38,7 +38,7 @@ FileLoaderTest::FileLoaderTest()
 
 void FileLoaderTest::testCase1_deflate_mbcs()
 {
-    FileLoader7zArchive seven(nullptr, DATAPATH "deflate-mbcs.zip");
+    FileLoader7zArchive seven(nullptr, "zip", DATAPATH "deflate-mbcs.zip");
     Q_ASSERT(seven.volumePath() == DATAPATH "deflate-mbcs.zip");
 
     // check filelist
@@ -55,7 +55,7 @@ void FileLoaderTest::testCase1_deflate_mbcs()
 
 void FileLoaderTest::testCase2_deflate_utf8()
 {
-    FileLoader7zArchive seven(nullptr, DATAPATH "deflate-utf8.zip");
+    FileLoader7zArchive seven(nullptr, "zip", DATAPATH "deflate-utf8.zip");
     Q_ASSERT(seven.volumePath() == DATAPATH "deflate-utf8.zip");
 
     // check filelist
@@ -72,7 +72,7 @@ void FileLoaderTest::testCase2_deflate_utf8()
 
 void FileLoaderTest::testCase3_deflate64_mbcs()
 {
-    FileLoader7zArchive seven(nullptr, DATAPATH "deflate64-mbcs.zip");
+    FileLoader7zArchive seven(nullptr, "zip", DATAPATH "deflate64-mbcs.zip");
     Q_ASSERT(seven.volumePath() == DATAPATH "deflate64-mbcs.zip");
 
     // check filelist
@@ -89,7 +89,7 @@ void FileLoaderTest::testCase3_deflate64_mbcs()
 
 void FileLoaderTest::testCase4_deflate64_utf8()
 {
-    FileLoader7zArchive seven(nullptr, DATAPATH "deflate64-utf8.zip");
+    FileLoader7zArchive seven(nullptr, "zip", DATAPATH "deflate64-utf8.zip");
     Q_ASSERT(seven.volumePath() == DATAPATH "deflate64-utf8.zip");
 
     // check filelist

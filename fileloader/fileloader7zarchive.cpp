@@ -18,10 +18,10 @@ private:
     wstring m_strFileExt;
     int m_nFileSize;
 public:
-    Qt7zStreamReader(std::string fileName) :
+    Qt7zStreamReader(std::string fileName, wstring extOfArchive) :
         m_inStream(nullptr),
         m_strFileName(fileName),
-        m_strFileExt(L"7z")
+        m_strFileExt(extOfArchive)
     {
     }
 
@@ -100,13 +100,11 @@ class Qt7zStreamWriter : public C7ZipOutStream
 private:
     QIODevice *m_outStream;
     QString m_strFileName;
-    wstring m_strFileExt;
     int m_nFileSize;
 public:
     Qt7zStreamWriter(QIODevice *outStream, QString fileName) :
       m_outStream(outStream),
-      m_strFileName(fileName),
-      m_strFileExt(L"7z")
+      m_strFileName(fileName)
     {
     }
 
@@ -290,10 +288,10 @@ public:
     QHash<QString, uint32_t> m_fileNameToIndex;
     QFile m_archiveFile;
 
-    FileLoader7zArchivePrivate(QString sevenzippath)
+    FileLoader7zArchivePrivate(QString sevenzippath, QString extensionOfFile)
         : m_packagePath(sevenzippath)
         , m_pArchive(nullptr)
-        , stream(sevenzippath.toStdString())
+        , stream(sevenzippath.toStdString(), extensionOfFile.toStdWString())
     {
         m_archiveFile.setFileName(sevenzippath);
         qDebug() << m_archiveFile;
@@ -408,9 +406,9 @@ public:
 
 };
 
-FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath, bool extractSolidArchiveToTemporaryDir)
+FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath, QString extensionOfFile, bool extractSolidArchiveToTemporaryDir)
     : IFileLoader(parent)
-    , d(new FileLoader7zArchivePrivate(sevenzippath))
+    , d(new FileLoader7zArchivePrivate(sevenzippath, extensionOfFile))
     , m_volumepath(sevenzippath)
     , m_valid(d->m_pArchive != nullptr)
     , m_extractSolidArchiveToTemporaryDir(extractSolidArchiveToTemporaryDir)

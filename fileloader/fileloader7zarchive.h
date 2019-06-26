@@ -8,7 +8,7 @@ class FileLoader7zArchivePrivate;
 class FileLoader7zArchive : public IFileLoader
 {
 public:
-    FileLoader7zArchive(QObject* parent, QString sevenzippath, bool extractSolidArchiveToTemporaryDir=false);
+    FileLoader7zArchive(QObject* parent, QString sevenzippath, QString extensionOfFile, bool extractSolidArchiveToTemporaryDir=false);
 
     ~FileLoader7zArchive();
     /**
@@ -60,6 +60,7 @@ public:
 protected:
     FileLoader7zArchivePrivate* d;
     QString m_volumepath;
+    QString m_extensionOfFile;
     QStringList m_imageFileList;
     QStringList m_subArchiveList;
     bool m_valid;
