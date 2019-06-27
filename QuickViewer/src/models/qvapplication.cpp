@@ -145,8 +145,8 @@ void QVApplication::registDefaultKeyMap()
     m_keyActions.addDefaultKey("actionFastBackward", QKeySequence("Shift+H, Num+1"));
     m_keyActions.addDefaultKey("actionLastPage", QKeySequence("Ctrl+L, End"));
     m_keyActions.addDefaultKey("actionFirstPage", QKeySequence("Ctrl+H, Home"));
-    m_keyActions.addDefaultKey("actionNextVolume", QKeySequence("Ctrl+J, PgDown"));
-    m_keyActions.addDefaultKey("actionPrevVolume", QKeySequence("Ctrl+K, PgUp"));
+    m_keyActions.addDefaultKey("actionNextVolume", QKeySequence("Ctrl+J, PgDown, X"));
+    m_keyActions.addDefaultKey("actionPrevVolume", QKeySequence("Ctrl+K, PgUp, Z"));
     m_keyActions.addDefaultKey("actionZoomIn", QKeySequence("K, Num++"));
     m_keyActions.addDefaultKey("actionZoomOut", QKeySequence("J, Num+-"));
     m_keyActions.addDefaultKey("actionRenameImageFile", QKeySequence("F2"));

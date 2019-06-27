@@ -9,6 +9,44 @@
 
 using namespace lib7zip;
 
+static C7ZipLibrary* c7zipLib = nullptr;
+static bool c7ziplib_alive = true;
+
+const wchar_t * index_names[] = {
+        L"kpidPackSize", //(Packed Size)
+        L"kpidAttrib", //(Attributes)
+        L"kpidCTime", //(Created)
+        L"kpidATime", //(Accessed)
+        L"kpidMTime", //(Modified)
+        L"kpidSolid", //(Solid)
+        L"kpidEncrypted", //(Encrypted)
+        L"kpidUser", //(User)
+        L"kpidGroup", //(Group)
+        L"kpidComment", //(Comment)
+        L"kpidPhySize", //(Physical Size)
+        L"kpidHeadersSize", //(Headers Size)
+        L"kpidChecksum", //(Checksum)
+        L"kpidCharacts", //(Characteristics)
+        L"kpidCreatorApp", //(Creator Application)
+        L"kpidTotalSize", //(Total Size)
+        L"kpidFreeSpace", //(Free Space)
+        L"kpidClusterSize", //(Cluster Size)
+        L"kpidVolumeName", //(Label)
+        L"kpidPath", //(FullPath)
+        L"kpidIsDir", //(IsDir)
+};
+
+struct Qt7zFileInfo
+{
+    QString fileName;
+    QString arcName;
+    quint64 size;
+    size_t pre_total;
+    bool isDir;
+    bool isCrcDefined;
+    quint32 crc;
+    bool isEncrypted;
+};
 
 class Qt7zStreamReader : public C7ZipInStream
 {
@@ -168,68 +206,6 @@ public:
     }
 };
 
-const wchar_t * index_names[] = {
-        L"kpidPackSize", //(Packed Size)
-        L"kpidAttrib", //(Attributes)
-        L"kpidCTime", //(Created)
-        L"kpidATime", //(Accessed)
-        L"kpidMTime", //(Modified)
-        L"kpidSolid", //(Solid)
-        L"kpidEncrypted", //(Encrypted)
-        L"kpidUser", //(User)
-        L"kpidGroup", //(Group)
-        L"kpidComment", //(Comment)
-        L"kpidPhySize", //(Physical Size)
-        L"kpidHeadersSize", //(Headers Size)
-        L"kpidChecksum", //(Checksum)
-        L"kpidCharacts", //(Characteristics)
-        L"kpidCreatorApp", //(Creator Application)
-        L"kpidTotalSize", //(Total Size)
-        L"kpidFreeSpace", //(Free Space)
-        L"kpidClusterSize", //(Cluster Size)
-        L"kpidVolumeName", //(Label)
-        L"kpidPath", //(FullPath)
-        L"kpidIsDir", //(IsDir)
-};
-
-static C7ZipLibrary* c7zipLib = nullptr;
-static bool c7ziplib_alive = true;
-
-bool FileLoader7zArchive::initializeLib()
-{
-    if(!c7zipLib) {
-        c7zipLib = new C7ZipLibrary();
-        c7ziplib_alive = c7zipLib->Initialize();
-        return c7ziplib_alive;
-    }
-    return false;
-}
-
-bool FileLoader7zArchive::isInitialized()
-{
-    return c7zipLib && c7ziplib_alive;
-}
-
-void FileLoader7zArchive::uninitializeLib()
-{
-    if(c7zipLib) {
-        delete c7zipLib;
-        c7zipLib = nullptr;
-    }
-}
-
-struct Qt7zFileInfo
-{
-    QString fileName;
-    QString arcName;
-    quint64 size;
-    size_t pre_total;
-    bool isDir;
-    bool isCrcDefined;
-    quint32 crc;
-    bool isEncrypted;
-};
-
 static Qt7zFileInfo fromC7ZipArchiveItem(C7ZipArchiveItem& item, QString packagePath, size_t pre_total) {
     Qt7zFileInfo prop;
     std::wstring strVal;
@@ -275,6 +251,10 @@ static Qt7zFileInfo fromC7ZipArchiveItem(C7ZipArchiveItem& item, QString package
     return prop;
 }
 
+/**
+ * Unzip the 7z archive using lib7zip.
+ * In the case of a solid, it is expanded in the temp directory and then re-read if necessary.
+ */
 class FileLoader7zArchivePrivate
 {
 public:
@@ -287,11 +267,15 @@ public:
     QStringList m_fileNameList;
     QHash<QString, uint32_t> m_fileNameToIndex;
     QFile m_archiveFile;
+    QTemporaryDir* m_tempDir;
+    bool m_hasExtractedFiles;
 
     FileLoader7zArchivePrivate(QString sevenzippath, QString extensionOfFile)
         : m_packagePath(sevenzippath)
         , m_pArchive(nullptr)
         , stream(sevenzippath.toStdString(), extensionOfFile.toStdWString())
+        , m_tempDir(nullptr)
+        , m_hasExtractedFiles(false)
     {
         m_archiveFile.setFileName(sevenzippath);
         qDebug() << m_archiveFile;
@@ -371,6 +355,22 @@ public:
         }//for
 
     }
+    ~FileLoader7zArchivePrivate() {
+        if(m_tempDir) {
+            delete m_tempDir;
+            m_tempDir = nullptr;
+        }
+    }
+    bool isSolid() {
+        if(!m_pArchive)
+            return false;
+        bool bSolid = false;
+        m_pArchive->GetBoolProperty(PropertyIndexEnum::kpidSolid, bSolid);
+        return bSolid;
+    }
+    bool hasExtractedFiles() {
+        return m_hasExtractedFiles;
+    }
     bool extractFile(const QString &name, QIODevice *outStream)
     {
         if (!outStream || !outStream->isWritable()) {
@@ -379,18 +379,10 @@ public:
         }
 
         if (m_pArchive == nullptr) {
+            qWarning() << "Qt7z: The archive is not loaded!";
             return false;
         }
 
-//        if (m_tempDir) {
-//            uint32_t index = m_p->m_fileNameToIndex[name];
-//            const QString abso = QDir(m_tempDir->path()).filePath(QString::number(index));
-//            QFile file(abso);
-//            file.open(QIODevice::ReadOnly);
-//            QByteArray bytes = file.readAll();
-//            outStream->write(bytes);
-//            return true;
-//        }
         qDebug() << name << m_fileNameToIndex;
         auto indexIt = m_fileNameToIndex.find(name);
         if (indexIt == m_fileNameToIndex.end()) {
@@ -398,13 +390,75 @@ public:
             return false;
         }
         uint32_t index = *indexIt;
+        if (m_tempDir) {
+            const QString abso = QDir(m_tempDir->path()).filePath(QString::number(index));
+            QFile file(abso);
+            qDebug() << "tempExstracted open:" << abso;
+            file.open(QIODevice::ReadOnly);
+            QByteArray bytes = file.readAll();
+            qDebug() << bytes;
+            outStream->write(bytes);
+            return true;
+        }
         Qt7zStreamWriter oStream(outStream, name);
         m_pArchive->Extract(index, &oStream);
 
         return true;
     }
+    bool extractToDir(const QString &dirpath)
+    {
+        m_tempDir = new QTemporaryDir(dirpath);
+        m_tempDir->setAutoRemove(true);
+        qDebug() << "tempdir:" << m_tempDir->path();
 
+        unsigned int numItems = 0;
+        m_pArchive->GetItemCount(&numItems);
+
+        wprintf(L"%d\n", numItems);
+        size_t pre_total = 0;
+
+        for(uint32_t i = 0;i < numItems;i++) {
+            Qt7zFileInfo info = m_fileInfoList[i];
+            if(info.isDir)
+                continue;
+            const QString abso = QDir(m_tempDir->path()).filePath(QString::number(i));
+            QFile file(abso);
+            if(file.open(QIODevice::WriteOnly)) {
+                Qt7zStreamWriter oStream(&file, info.fileName);
+                m_pArchive->Extract(i, &oStream);
+                file.close();
+            } else {
+                qDebug() << "Qt7zPackagePrivate::extractToDir()" << "file:" << abso << "can't open";
+                return false;
+            }
+        }//for
+        m_hasExtractedFiles = true;
+        return true;
+    }
 };
+
+bool FileLoader7zArchive::initializeLib()
+{
+    if(!c7zipLib) {
+        c7zipLib = new C7ZipLibrary();
+        c7ziplib_alive = c7zipLib->Initialize();
+        return c7ziplib_alive;
+    }
+    return false;
+}
+
+bool FileLoader7zArchive::isInitialized()
+{
+    return c7zipLib && c7ziplib_alive;
+}
+
+void FileLoader7zArchive::uninitializeLib()
+{
+    if(c7zipLib) {
+        delete c7zipLib;
+        c7zipLib = nullptr;
+    }
+}
 
 FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath, QString extensionOfFile, bool extractSolidArchiveToTemporaryDir)
     : IFileLoader(parent)
@@ -443,17 +497,20 @@ void FileLoader7zArchive::initialize()
     }
     IFileLoader::sortFiles(m_imageFileList);
     IFileLoader::sortFiles(m_subArchiveList);
-//    if(m_extractSolidArchiveToTemporaryDir && d->m_reader.isSolid()) {
-//        QString tempdir = QString("%1/qv_%2").arg(QDir::tempPath()).arg(++s_archiveCnt, 3, 10, QLatin1Char('0'));
-//        d->m_reader.extractToDir(QDir::toNativeSeparators(tempdir));
-//    }
+    if(m_extractSolidArchiveToTemporaryDir && d->isSolid()) {
+        QString tempdir = QString("%1/qv_%2").arg(QDir::tempPath()).arg(++s_archiveCnt, 3, 10, QLatin1Char('0')); // e.g. "/tmp/qv_001"
+        d->extractToDir(tempdir);
+    }
     m_valid = true;
 }
 
 QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
 {
     QByteArray bytes;
-    mutex.lock();
+    bool needLock = !d->hasExtractedFiles();
+    if(needLock) {
+        mutex.lock();
+    }
     qDebug() << name << d->m_fileNameToIndex;
     qDebug() << m_imageFileList;
     if(m_imageFileList.contains(name)) {
@@ -463,8 +520,16 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
         iobuffer.open(QIODevice::WriteOnly);
         d->extractFile(info.fileName, &iobuffer);
     }
-    mutex.unlock();
+    if(needLock) {
+        mutex.unlock();
+    }
     return bytes;
 }
 
-FileLoader7zArchive::~FileLoader7zArchive() {if(d){delete d;d=nullptr;}}
+FileLoader7zArchive::~FileLoader7zArchive()
+{
+    if(d){
+        delete d;
+        d=nullptr;
+    }
+}
