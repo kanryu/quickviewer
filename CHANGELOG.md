@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v1.1.6 (Thu Jun 27 16:30:53 2019 +0900) [e179cf9](https://github.com/kanryu/quickviewer/commit/e179cf99c7a7cd0ddb2f0e8ffb6f98706dad6d82)
+
+2 bugfixed, default shortcut key changed
+
+- bigfixed: Thumbnai.sqlite3.db was not copied when launched with C:/Program
+Files
+- bigfixed: Could not open zip/cbz archive
+- Add shortcut to switch Volume (Z,X keys)
+
+- other commits
+    - lib7zip needs to specify the archive format as a string when opening an archive. Added a fix to give zip when opening zip. (Wed Jun 26 16:35:09 2019 +0900) [8cdb6d4](https://github.com/kanryu/quickviewer/commit/8cdb6d44e0022dcb9a0ad9eb0dc3d66f34ce007c)
+    - When executed in a nonportable environment for Windows version, (Tue Jun 25 16:19:59 2019 +0900) [2881eeb](https://github.com/kanryu/quickviewer/commit/2881eebca05184a68e4e806933ab847b9583ac3c)
+    - thumbnail.sqlite3.db was not copied and the catalog function could not (Tue Jun 25 16:19:59 2019 +0900) [2881eeb](https://github.com/kanryu/quickviewer/commit/2881eebca05184a68e4e806933ab847b9583ac3c)
+    - be used. (Tue Jun 25 16:19:59 2019 +0900) [2881eeb](https://github.com/kanryu/quickviewer/commit/2881eebca05184a68e4e806933ab847b9583ac3c)
+    -  (Tue Jun 25 16:19:59 2019 +0900) [2881eeb](https://github.com/kanryu/quickviewer/commit/2881eebca05184a68e4e806933ab847b9583ac3c)
+    -  reported by @eddiezato (Tue Jun 25 16:19:59 2019 +0900) [2881eeb](https://github.com/kanryu/quickviewer/commit/2881eebca05184a68e4e806933ab847b9583ac3c)
+    - changelog (Mon Jun 17 16:52:15 2019 +0900) [6212403](https://github.com/kanryu/quickviewer/commit/621240391f25b722cd0e91111aa87132654a8408)
+
 ## v1.1.5 (Mon Jun 17 16:40:36 2019 +0900) [6499a42](https://github.com/kanryu/quickviewer/commit/6499a425d0ad37af121b3ca1426f66988f48fa52)
 
 add Russian language resources, using official SevenZip, bugfixed
