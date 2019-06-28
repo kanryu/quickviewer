@@ -81,6 +81,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.trishtech.com/2017/08/quickviewer-comfortable-image-viewer-for-windows/](http://www.trishtech.com/2017/08/quickviewer-comfortable-image-viewer-for-windows/)
 - **Download82**
     - [http://www.download82.com/download/windows/quickviewer/](http://www.download82.com/download/windows/quickviewer/)
+- **PHOTO-FREEWARE.NET**
+    - [http://www.photo-freeware.net/download/action/show/Item/quickviewer/](http://www.photo-freeware.net/download/action/show/Item/quickviewer/)
 - **Vector** (in Japanese)
     - [http://www.vector.co.jp/magazine/softnews/170914/n1709141.html](http://www.vector.co.jp/magazine/softnews/170914/n1709141.html)
 - **OSDN** (in Japanese)
