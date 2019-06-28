@@ -65,6 +65,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
 - **ghacks.net**
     - [https://www.ghacks.net/2017/06/27/quickviewer-ultra-fast-windows-image-viewer/](https://www.ghacks.net/2017/06/27/quickviewer-ultra-fast-windows-image-viewer/)
+- **KaranPC**
+    - [https://karanpc.com/quickviewer-free-download/](https://karanpc.com/quickviewer-free-download/)
 - **Downloadcrew**
     - [https://downloadcrew.com/article/35266-quickviewer](https://downloadcrew.com/article/35266-quickviewer)
 - **SOFTPEDIA**
