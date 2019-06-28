@@ -126,6 +126,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [http://www.oyksoft.com/soft/46227.html](http://www.oyksoft.com/soft/46227.html)
 - **胖蒜** (in Simplified Chinese)
     - [https://pangsuan.com/p/QuickViewer.html](https://pangsuan.com/p/QuickViewer.html)
+- **脚本之家** (in Simplified Chinese)
+    - [https://www.jb51.net/softs/592327.html](https://www.jb51.net/softs/592327.html)
 - **ZEGMONET** (in Turkish)
     - [http://zegmonet.com/2017/08/26/windows-icin-goruntu-goruntuleyici-programi-quickviewer](http://zegmonet.com/2017/08/26/windows-icin-goruntu-goruntuleyici-programi-quickviewer)
 - **sekizbir.com** (in Turkish)
