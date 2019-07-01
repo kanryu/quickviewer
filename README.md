@@ -188,7 +188,7 @@ Thus, your feedback is welcome at KATO Kanryu<<k.kanryu@gmail.com>>.
 
 https://github.com/kanryu/quickviewer
 
-To build from the sourcecodes, to see:　![HowToBuild.md](HowToBuild.md)
+To build from the sourcecodes, to see:　[HowToBuild.md](HowToBuild.md)
 
 
 
