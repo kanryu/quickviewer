@@ -136,6 +136,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/](https://sekizbir.com/quickviewer-ultra-hizli-bir-windows-resim-goruntuleyici/)
 - **indiriliyo** (in Turkish)
     - [http://www.indiriliyo.com/quickviewer-indir-11274/](http://www.indiriliyo.com/quickviewer-indir-11274/)
+- **Hilalay** (in Turkish)
+    - [https://hilalay.com/windows-icin-goruntu-goruntuleyicisi-quickviewer/](https://hilalay.com/windows-icin-goruntu-goruntuleyicisi-quickviewer/)
 - **AfterDawn Nederland** (in Dutch)
     - [http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm](http://nl.afterdawn.com/downloads/desktop/beeld_kijken/quickviewer-64-bit.cfm)
 - **xCoumputer** (in Dutch)
