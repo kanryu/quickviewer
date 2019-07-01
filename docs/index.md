@@ -151,7 +151,7 @@ You can also clone the latest source code from **[this repository.](https://gith
 - **SARZAMINDOWNLOAD.COM** (in Arabic)
     - [http://www.sarzamindownload.com/9899/](http://www.sarzamindownload.com/9899/)
 - **دانلود رایگان نرم افزار** (in Arabic)
-    - https://patoghu.com/grafick/photo_explorer/16288-quickviewer.html](https://patoghu.com/grafick/photo_explorer/16288-quickviewer.html)
+    - [https://patoghu.com/grafick/photo_explorer/16288-quickviewer.html](https://patoghu.com/grafick/photo_explorer/16288-quickviewer.html)
 - **Мир Софта** (in Russian)
     - [https://mirsofta.ru/soft/QuickViewer.html](https://mirsofta.ru/soft/QuickViewer.html)
 - **zoomexe** (in Russian)
