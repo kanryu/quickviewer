@@ -420,6 +420,7 @@
     <addaction name="actionDualView"/>
     <addaction name="actionWideImageAsOneView"/>
     <addaction name="actionFirstImageAsOneView"/>
+    <addaction name="actionRightSideBook"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menu_Catalog">
