@@ -48,6 +48,9 @@ struct Qt7zFileInfo
     bool isEncrypted;
 };
 
+/** Used by lib7zip to read binary streams.
+ * Usually 7z archive itself.
+ */
 class Qt7zStreamReader : public C7ZipInStream
 {
 private:
@@ -130,23 +133,20 @@ public:
     }
 };
 
-/** Used by lib7zip to write binary streams.
- *  Specifically, it is used when expanding from 7z content files.
- */
-class Qt7zStreamWriter : public C7ZipOutStream
+class Qt7zBaseStreamWriter : public C7ZipOutStream
 {
-private:
+protected:
     QIODevice *m_outStream;
-    QString m_strFileName;
     int m_nFileSize;
+    int m_index;
 public:
-    Qt7zStreamWriter(QIODevice *outStream, QString fileName) :
-      m_outStream(outStream),
-      m_strFileName(fileName)
+    Qt7zBaseStreamWriter() :
+      m_outStream(nullptr),
+      m_index(-1)
     {
     }
 
-    virtual ~Qt7zStreamWriter()
+    virtual ~Qt7zBaseStreamWriter()
     {
     }
 
@@ -204,7 +204,77 @@ public:
         wprintf(L"SetFileSize:%ld\n", size);
         return 0;
     }
+    virtual int ReopenForIndex(unsigned int index)
+    {
+        wprintf(L"SetIndex:%ld\n", index);
+        m_index = index;
+        return 0;
+    }
 };
+
+/** Used by lib7zip to write binary streams.
+ *  Output binary stream expanded from 7z archive to QIODevice.
+ */
+class Qt7zStreamWriter : public Qt7zBaseStreamWriter
+{
+private:
+    QString m_strFileName;
+public:
+    Qt7zStreamWriter(QIODevice *outStream, QString fileName)
+     : Qt7zBaseStreamWriter()
+     , m_strFileName(fileName)
+    {
+        m_outStream = outStream;
+    }
+};
+
+/** Used by lib7zip to write binary streams.
+ *  C7ZipArchive :: ExtractAll () is supported. Switch QIODevice when ReopenForIndex () is called
+ */
+class Qt7zMultiStreamWriter : public QObject, public Qt7zBaseStreamWriter
+{
+    Q_OBJECT
+
+private:
+    QList<Qt7zFileInfo>* m_fileInfoList;
+    QString m_baseDirPath;
+    void finalize()
+    {
+        if(m_outStream) {
+            m_outStream->close();
+            delete m_outStream;
+            m_outStream = nullptr;
+            m_nFileSize = 0;
+        }
+    }
+
+public:
+    Qt7zMultiStreamWriter(QString basePath, QList<Qt7zFileInfo>* pFileInfoList, QObject* parent)
+     : QObject(parent)
+     , Qt7zBaseStreamWriter()
+     , m_baseDirPath(basePath)
+     , m_fileInfoList(pFileInfoList)
+    {
+    }
+    ~Qt7zMultiStreamWriter()
+    {
+        finalize();
+    }
+    virtual int ReopenForIndex(unsigned int index)
+    {
+        wprintf(L"SetIndex:%ld\n", index);
+        m_index = index;
+        finalize();
+        Qt7zFileInfo info = m_fileInfoList->value(index);
+        if(!info.isDir) {
+            const QString abso = QDir(m_baseDirPath).filePath(QString::number(index));
+            m_outStream = new QFile(abso);
+            m_outStream->open(QIODevice::WriteOnly);
+        }
+        return 0;
+    }
+};
+
 
 static Qt7zFileInfo fromC7ZipArchiveItem(C7ZipArchiveItem& item, QString packagePath, size_t pre_total) {
     Qt7zFileInfo prop;
@@ -255,8 +325,10 @@ static Qt7zFileInfo fromC7ZipArchiveItem(C7ZipArchiveItem& item, QString package
  * Unzip the 7z archive using lib7zip.
  * In the case of a solid, it is expanded in the temp directory and then re-read if necessary.
  */
-class FileLoader7zArchivePrivate
+class FileLoader7zArchivePrivate : public QObject
 {
+    Q_OBJECT
+
 public:
     QString m_packagePath;
     C7ZipArchive* m_pArchive;
@@ -270,8 +342,9 @@ public:
     QTemporaryDir* m_tempDir;
     bool m_hasExtractedFiles;
 
-    FileLoader7zArchivePrivate(QString sevenzippath, QString extensionOfFile)
-        : m_packagePath(sevenzippath)
+    FileLoader7zArchivePrivate(QString sevenzippath, QString extensionOfFile, QObject* parent)
+        : QObject(parent)
+        , m_packagePath(sevenzippath)
         , m_pArchive(nullptr)
         , stream(sevenzippath.toStdString(), extensionOfFile.toStdWString())
         , m_tempDir(nullptr)
@@ -405,6 +478,36 @@ public:
 
         return true;
     }
+//    bool extractToDir(const QString &dirpath)
+//    {
+//        m_tempDir = new QTemporaryDir(dirpath);
+//        m_tempDir->setAutoRemove(true);
+//        qDebug() << "tempdir:" << m_tempDir->path();
+
+//        unsigned int numItems = 0;
+//        m_pArchive->GetItemCount(&numItems);
+
+//        wprintf(L"%d\n", numItems);
+//        size_t pre_total = 0;
+
+//        for(uint32_t i = 0;i < numItems;i++) {
+//            Qt7zFileInfo info = m_fileInfoList[i];
+//            if(info.isDir)
+//                continue;
+//            const QString abso = QDir(m_tempDir->path()).filePath(QString::number(i));
+//            QFile file(abso);
+//            if(file.open(QIODevice::WriteOnly)) {
+//                Qt7zStreamWriter oStream(&file, info.fileName);
+//                m_pArchive->Extract(i, &oStream);
+//                file.close();
+//            } else {
+//                qDebug() << "Qt7zPackagePrivate::extractToDir()" << "file:" << abso << "can't open";
+//                return false;
+//            }
+//        }//for
+//        m_hasExtractedFiles = true;
+//        return true;
+//    }
     bool extractToDir(const QString &dirpath)
     {
         m_tempDir = new QTemporaryDir(dirpath);
@@ -416,26 +519,12 @@ public:
 
         wprintf(L"%d\n", numItems);
         size_t pre_total = 0;
+        Qt7zMultiStreamWriter multiWriter(m_tempDir->path(), &m_fileInfoList, this);
+        m_pArchive->ExtractAll(&multiWriter);
 
-        for(uint32_t i = 0;i < numItems;i++) {
-            Qt7zFileInfo info = m_fileInfoList[i];
-            if(info.isDir)
-                continue;
-            const QString abso = QDir(m_tempDir->path()).filePath(QString::number(i));
-            QFile file(abso);
-            if(file.open(QIODevice::WriteOnly)) {
-                Qt7zStreamWriter oStream(&file, info.fileName);
-                m_pArchive->Extract(i, &oStream);
-                file.close();
-            } else {
-                qDebug() << "Qt7zPackagePrivate::extractToDir()" << "file:" << abso << "can't open";
-                return false;
-            }
-        }//for
         m_hasExtractedFiles = true;
         return true;
-    }
-};
+    }};
 
 bool FileLoader7zArchive::initializeLib()
 {
@@ -462,7 +551,7 @@ void FileLoader7zArchive::uninitializeLib()
 
 FileLoader7zArchive::FileLoader7zArchive(QObject* parent, QString sevenzippath, QString extensionOfFile, bool extractSolidArchiveToTemporaryDir)
     : IFileLoader(parent)
-    , d(new FileLoader7zArchivePrivate(sevenzippath, extensionOfFile))
+    , d(new FileLoader7zArchivePrivate(sevenzippath, extensionOfFile, this))
     , m_volumepath(sevenzippath)
     , m_valid(d->m_pArchive != nullptr)
     , m_extractSolidArchiveToTemporaryDir(extractSolidArchiveToTemporaryDir)
@@ -533,3 +622,6 @@ FileLoader7zArchive::~FileLoader7zArchive()
         d=nullptr;
     }
 }
+
+
+#include "fileloader7zarchive.moc"
