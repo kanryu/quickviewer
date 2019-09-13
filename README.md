@@ -167,9 +167,9 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 
 ## Looking for contributers!
 
-- Spanish Speakers
-- French Speakers
-- Chinese Speakers
+- Hindu speaker
+- Arabic speaker
+- Malay speaker
 - Mac software engeneers
 
 
