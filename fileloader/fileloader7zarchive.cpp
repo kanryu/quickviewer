@@ -51,23 +51,32 @@ struct Qt7zFileInfo
 /** Used by lib7zip to read binary streams.
  * Usually 7z archive itself.
  */
-class Qt7zStreamReader : public C7ZipInStream
+class Qt7zStreamReader : public QObject, public C7ZipInStream
 {
+    Q_OBJECT
+
 private:
+    QTimer m_timer;
     QIODevice *m_inStream;
     std::string m_strFileName;
     wstring m_strFileExt;
-    int m_nFileSize;
+    qint64 m_lastpos;
 public:
-    Qt7zStreamReader(std::string fileName, wstring extOfArchive) :
-        m_inStream(nullptr),
-        m_strFileName(fileName),
-        m_strFileExt(extOfArchive)
+    Qt7zStreamReader(std::string fileName, wstring extOfArchive, QObject* parent)
+      : QObject(parent)
+      , m_timer(parent)
+      , m_inStream(nullptr)
+      , m_strFileName(fileName)
+      , m_strFileExt(extOfArchive)
+      , m_lastpos(0)
     {
+        connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+        connect(this, SIGNAL(startMyTimer()), this, SLOT(onStartTimer()));
     }
 
     virtual ~Qt7zStreamReader()
     {
+        m_timer.stop();
     }
     void setFile(QIODevice *inStream) {
         m_inStream = inStream;
@@ -80,13 +89,14 @@ public:
 
     virtual int Read(void *data, unsigned int size, unsigned int *processedSize)
     {
-        if (!m_inStream)
+        if (!m_inStream || reopen())
             return 1;
         auto readBytes = m_inStream->read((char*)data, size);
-
+        emit startMyTimer();
         wprintf(L"Read:%d %d\n", size, readBytes);
 
         if (readBytes >= 0) {
+            m_lastpos += readBytes;
             if (processedSize != nullptr)
                 *processedSize = readBytes;
 
@@ -99,7 +109,7 @@ public:
     virtual int Seek(__int64 offset, unsigned int seekOrigin, unsigned __int64 *newPosition)
     {
         bool result = false;
-        if(!m_inStream)
+        if(!m_inStream || reopen())
             return 1;
         switch(seekOrigin) {
         case SEEK_SET:
@@ -118,9 +128,9 @@ public:
                 break;
             }
         }
+        m_lastpos = m_inStream->pos();
         if(newPosition) {
-            qint64 pos2 = m_inStream->pos();
-            *newPosition = pos2;
+            *newPosition = m_lastpos;
         }
         return result == true ? 0 : 1;
     }
@@ -130,6 +140,35 @@ public:
         if (size)
             *size = m_inStream->size();
         return 0;
+    }
+    int reopen()
+    {
+        if(m_inStream->isOpen()) {
+            emit stopMyTimer();
+        } else if(!m_inStream->open(QIODevice::ReadOnly)) {
+            return 1;
+        } else {
+            m_inStream->seek(m_lastpos);
+        }
+        return 0;
+    }
+signals:
+    void startMyTimer();
+    void stopMyTimer();
+
+public slots:
+    void onStartTimer()
+    {
+        m_timer.start(1000);
+    }
+    void onStopTimer()
+    {
+        m_timer.stop();
+    }
+    void onTimeout()
+    {
+        if(m_inStream)
+            m_inStream->close();
     }
 };
 
@@ -346,7 +385,7 @@ public:
         : QObject(parent)
         , m_packagePath(sevenzippath)
         , m_pArchive(nullptr)
-        , stream(sevenzippath.toStdString(), extensionOfFile.toStdWString())
+        , stream(sevenzippath.toStdString(), extensionOfFile.toStdWString(), this)
         , m_tempDir(nullptr)
         , m_hasExtractedFiles(false)
     {
