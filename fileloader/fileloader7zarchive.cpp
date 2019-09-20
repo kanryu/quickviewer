@@ -11,6 +11,7 @@ using namespace lib7zip;
 
 static C7ZipLibrary* c7zipLib = nullptr;
 static bool c7ziplib_alive = true;
+QStringList FileLoader7zArchive::st_supportedArchiveFormats;
 
 const wchar_t * index_names[] = {
         L"kpidPackSize", //(Packed Size)
@@ -570,6 +571,14 @@ bool FileLoader7zArchive::initializeLib()
     if(!c7zipLib) {
         c7zipLib = new C7ZipLibrary();
         c7ziplib_alive = c7zipLib->Initialize();
+
+        // enumrate archive formats
+        std::vector<wstring> formats;
+        c7zipLib->GetSupportedExts(formats);
+        for(const wstring& x : formats) {
+            st_supportedArchiveFormats << QString::fromStdWString(x);
+        }
+
         return c7ziplib_alive;
     }
     return false;

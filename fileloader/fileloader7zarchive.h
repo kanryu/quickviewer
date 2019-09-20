@@ -56,6 +56,7 @@ public:
     static bool initializeLib();
     static bool isInitialized();
     static void uninitializeLib();
+    static QStringList st_supportedArchiveFormats;
 
 protected:
     FileLoader7zArchivePrivate* d;
@@ -69,6 +70,7 @@ protected:
     bool m_extractSolidArchiveToTemporaryDir;
     QFutureWatcher<void> watcher;
     QTemporaryDir* m_temp;
+
 
     void initialize();
 };
