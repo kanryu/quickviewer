@@ -391,7 +391,7 @@ public:
         , m_hasExtractedFiles(false)
     {
         m_archiveFile.setFileName(sevenzippath);
-        qDebug() << m_archiveFile;
+        //qDebug() << m_archiveFile;
         if(!m_archiveFile.open(QIODevice::ReadOnly)) {
             m_pArchive = nullptr;
             return;
