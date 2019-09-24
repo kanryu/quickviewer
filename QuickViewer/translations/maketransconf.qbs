@@ -103,6 +103,14 @@ Project {
                         LanguageCode: "ru",
                         TargetVersion: "1.1.4",
                     },
+                    "quickviewer_ar.ts": {
+                        TranslatorName: "MFM Dawdeh",
+                        TranslatorEmail: "lalalogitech@hotmail.com",
+                        Caption: "Arabic",
+                        LanguageName: "العربية",
+                        LanguageCode: "ar",
+                        TargetVersion: "1.1.4",
+                    },
                 }
             }
         }
@@ -132,6 +140,8 @@ Project {
                     "; Rewriting 'text' to **YOUR LANGUAGE**, you can translate QuickViewer.",
                     "; If you do, please do post it to us. Many other people will be able to use your translation.",
                     "; You can post to Issue(https://github.com/kanryu/quickviewer/issues) or send an email to <k.kanryu@gmail.com>.",
+                    "; ",
+                    "; It is recommended to translate [MainWindow] first.",
                     "; ",
                     "; Note 1: Use \\n (backslash+n) instead of new line for each text, if you need.",
                     "; Note 2: 'hint' is a hint comment for each 'text'.",
