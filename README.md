@@ -25,7 +25,7 @@ A image/comic viewer application for Windows, Mac and Linux, it can show images 
  - To show images very fast (using OpenGL)
  - Portable (without installers, registries, external libraries)
  - 2 Page Spread viewing (two images once, for digital books/comics)
- - To read archives directly (zip/7z/rar/cbr/cbz)
+ - To read archives directly (zip/7z/rar/cbz/cb7/cbr/cab/tar.gz/tar.bz2/tar.xz/etc...)
  - To show images (bmp/png/jpeg/ico/dds/tga/tiff/gif)
    - Supported for modern formats(JPEG 2000/JPEG XR/WebP)
    - Supported for Animated PNG(APNG)/GIF
