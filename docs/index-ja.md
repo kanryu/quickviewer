@@ -23,7 +23,7 @@ fulltitle: QuickViewer オフィシャルページ
 - インストール作業なしでどこでも動いてレジストリの書き込みなし
 - タブレットPC対応
 - 本を読むのに便利な見開き表示
-- アーカイブファイルの直接読み込み(zip/7z/rar/cbr/cbz)
+- アーカイブファイルの直接読み込み(zip/7z/rar/cbz/cb7/cbr/cab/tar.gz/tar.bz2/tar.xz/他)
 - これらの画像形式に対応(bmp/png/jpeg/ico/dds/tga/tiff/gif)
     - 現代的な画像形式に対応(JPEG 2000/JPEG XR/WebP)
     - アニメーションPNG(APNG)/GIFに対応
