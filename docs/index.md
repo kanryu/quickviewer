@@ -24,7 +24,7 @@ You can browse images with much smoother response than ever before.
  - Portable (without installers, registries, external libraries)
  - Tablet PC ready
  - 2 Page Spread viewing (two images once, for digital books/comics)
- - To read archives directly (zip/7z/rar/cbr/cbz)
+ - To read archives directly (zip/7z/rar/cbz/cb7/cbr/cab/tar.gz/tar.bz2/tar.xz/etc ...)
  - To show images (bmp/png/jpeg/ico/dds/tga/tiff/gif)
    - Supported for modern formats(JPEG 2000/JPEG XR/WebP)
    - Supported for Animated PNG(APNG)/GIF
