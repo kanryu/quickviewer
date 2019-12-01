@@ -63,6 +63,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://www.portablefreeware.com/index.php?id=2899](https://www.portablefreeware.com/index.php?id=2899)
 - **MajorGeeks.com**
     - [http://www.majorgeeks.com/files/details/quickviewer.html](http://www.majorgeeks.com/files/details/quickviewer.html)
+- **MADDOWNLOAD.COM**
+    - [https://maddownload.com/photo-editors/quickviewer/](https://maddownload.com/photo-editors/quickviewer/)
 - **ghacks.net**
     - [https://www.ghacks.net/2017/06/27/quickviewer-ultra-fast-windows-image-viewer/](https://www.ghacks.net/2017/06/27/quickviewer-ultra-fast-windows-image-viewer/)
 - **KaranPC**
