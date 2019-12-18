@@ -115,7 +115,7 @@ QPoint PageContent::Offset(int rotateOffset) {
 
 QSize PageContent::CurrentSize(int rotateOffset) {
     int rot = (Rotate+rotateOffset) % 360;
-    return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
+    return rot==90 || rot==270 ? QSize(Ic.BaseSize.height(), Ic.BaseSize.width()) : Ic.BaseSize;
 }
 
 QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign align, qvEnums::FitMode fitMode, qreal loupe, int rotateOffset) {
