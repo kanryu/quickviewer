@@ -44,6 +44,7 @@ TRANSLATIONS = \
     QuickViewer/translations/quickviewer_el.ts \
     QuickViewer/translations/quickviewer_fr.ts \
     QuickViewer/translations/quickviewer_ru.ts \
+    QuickViewer/translations/quickviewer_ar.ts \
 
 DISTFILES += \
     QuickViewer/translations/quickviewer_ja.qm \

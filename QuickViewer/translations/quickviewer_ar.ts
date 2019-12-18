@@ -255,7 +255,7 @@
     <message>
         <source>Flash fired</source>
         <comment>JPEG EXIF Flash setting value (0x1)</comment>
-        <translation>الوميض اطلقت</translation>
+        <translation>اطلاق الوميض</translation>
     </message>
     <message>
         <source>Strobe return light not detected</source>
@@ -270,27 +270,27 @@
     <message>
         <source>Flash fired, compulsory flash mode</source>
         <comment>JPEG EXIF Flash setting value (0x9)</comment>
-        <translation>الوميض اطلقت، وضع فلاش الزامي</translation>
+        <translation>اطلاق الوميض، وضع فلاش الزامي</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0xD)</comment>
-        <translation>الوميض اطلقت، وضع فلاش الزامي، ضوء العودة لم يتم الكشف عنها</translation>
+        <translation>اطلاق الوميض، وضع فلاش الزامي، ضوء العودة لم يتم الكشف عنها</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0xF)</comment>
-        <translation>الوميض اطلق، وضع الوميض الزامي، ضوء العودة الكشف عن</translation>
+        <translation>اطلاق الوميض وضع الوميض الزامي، ضوء العودة الكشف عن</translation>
     </message>
     <message>
         <source>Flash did not fire, compulsory flash mode</source>
         <comment>JPEG EXIF Flash setting value (0x10)</comment>
-        <translation>الوميض لم يطلق النار، وضع الوميض الزامي</translation>
+        <translation>الوميض لم يطلق وضع الوميض الزامي</translation>
     </message>
     <message>
         <source>Flash did not fire, auto mode</source>
         <comment>JPEG EXIF Flash setting value (0x18)</comment>
-        <translation>الوميض لم يطلق النار، وضع تلقائي</translation>
+        <translation>الوميض لم يطلق وضع تلقائي</translation>
     </message>
     <message>
         <source>Flash fired, auto mode</source>
@@ -320,47 +320,47 @@
     <message>
         <source>Flash fired, red-eye reduction mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x45)</comment>
-        <translation>اطلقت فلاش، وضع الحد من العين الحمراء، ضوء العودة لم يتم الكشف عنها</translation>
+        <translation>اطلاق الوميض وضع الحد من العين الحمراء، ضوء العودة لم يتم الكشف عنها</translation>
     </message>
     <message>
         <source>Flash fired, red-eye reduction mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x47)</comment>
-        <translation>اطلقت فلاش، وضع الحد من العين الحمراء، ضوء العودة الكشف عن</translation>
+        <translation>اطلاق الوميض وضع الحد من العين الحمراء، ضوء العودة الكشف عن</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x49)</comment>
-        <translation>فلاش اطلقت، وضع فلاش الزامي، وضع الحد من العين الحمراء</translation>
+        <translation>اطلاق الوميض وضع فلاش الزامي، وضع الحد من العين الحمراء</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected</source>
         <comment>JPEG EXIF Flash setting value (0x4D)</comment>
-        <translation>فلاش اطلقت، وضع فلاش الزامي، وضع الحد من العين الحمراء، ضوء العودة لم يتم الكشف عنها</translation>
+        <translation>اطلاق الوميض وضع فلاش الزامي، وضع الحد من العين الحمراء، ضوء العودة لم يتم الكشف عنها</translation>
     </message>
     <message>
         <source>Flash fired, compulsory flash mode, red-eye reduction mode, return light detected</source>
         <comment>JPEG EXIF Flash setting value (0x4F)</comment>
-        <translation>اطلقت فلاش، وضع فلاش الزامي، وضع الحد من العين الحمراء، ضوء العودة الكشف عن</translation>
+        <translation>اطلاق الوميض وضع فلاش الزامي، وضع الحد من العين الحمراء، ضوء العودة الكشف عن</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x59)</comment>
-        <translation>اطلقت فلاش، وضع السيارات، ووضع الحد من العين الحمراء</translation>
+        <translation>اطلاق الوميض وضع تلقائي ووضع الحد من العين الحمراء</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, return light not detected, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x5D)</comment>
-        <translation>اطلقت فلاش، وضع السيارات، وضوء العودة لم يتم الكشف عنها، ووضع الحد من العين الحمراء</translation>
+        <translation>اطلاق الوميض وضع تلقائي وضوء العودة لم يتم الكشف عنها، ووضع الحد من العين الحمراء</translation>
     </message>
     <message>
         <source>Flash fired, auto mode, return light detected, red-eye reduction mode</source>
         <comment>JPEG EXIF Flash setting value (0x5F)</comment>
-        <translation>اطلقت فلاش، وضع السيارات، ضوء العودة الكشف عنها، وضع الحد من العين الحمراء</translation>
+        <translation>اطلاق الوميض وضع تلقائي ضوء العودة الكشف عنها، وضع الحد من العين الحمراء</translation>
     </message>
     <message>
         <source>Horizontal (normal)</source>
         <comment>JPEG EXIF Orientation of the main body of the camera(0 or 1)</comment>
-        <translation>(افقي (عادي</translation>
+        <translation>افقي (عادي)</translation>
     </message>
     <message>
         <source>Mirror horizontal</source>
@@ -577,7 +577,7 @@
     <message>
         <source>Move to Home</source>
         <extracomment>Button for returning to QuickViewer&apos;s home folder</extracomment>
-        <translation>الانتقال الى الصفحة الرئيسية</translation>
+        <translation>الانتقال للصفحة الرئيسية</translation>
     </message>
     <message>
         <source>Prev</source>
@@ -600,7 +600,7 @@
     </message>
     <message>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation>الرئيسية</translation>
     </message>
     <message>
         <source>ToParent</source>
@@ -677,7 +677,7 @@
     <message>
         <source>Volume name (only folder/archive name), e.g. &apos;Sample Book&apos;)</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>(اسم وحدة التخزين (اسم المجلد/الارشيف فقط)، على سبيل المثال &apos;كتاب نموذج</translation>
+        <translation>اسم وحدة التخزين (اسم المجلد/الارشيف فقط)، على سبيل المثال &apos;كتاب نموذج)</translation>
     </message>
     <message>
         <source>Volume full path, e.g. &apos;C:/Users/qv/Desktop/Sample Book&apos;</source>
@@ -687,7 +687,7 @@
     <message>
         <source>Image file name (only file name), e.g. &apos;page01.jpg&apos;</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>&apos;page01.jpg&apos; اسم ملف الصورة (اسم الملف فقط)، على سبيل المثال</translation>
+        <translation>page01.jpg&apos; اسم ملف الصورة (اسم الملف فقط)، على سبيل المثال</translation>
     </message>
     <message>
         <source>Image file path in volume, e.g. &apos;subpath/page01.jpg&apos;</source>
@@ -697,17 +697,17 @@
     <message>
         <source>Image size, e.g. &apos;1920x1080&apos;</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>&apos;حجم الصورة، على سبيل المثال &apos;1920x1080</translation>
+        <translation>حجم الصورة، على سبيل المثال &apos;1920x1080&apos;</translation>
     </message>
     <message>
         <source>Display magnification of image, e.g. &apos;25%&apos;</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>&apos;عرض تكبير الصورة، على سبيل المثال &apos;25%</translation>
+        <translation>عرض تكبير الصورة، على سبيل المثال &apos;25%&apos;</translation>
     </message>
     <message>
         <source>Image file size with usefull, e.g. &apos;63.23 KB&apos;</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>&apos;حجم ملف الصورة مع الاستخدام الكامل، على سبيل المثال &apos;63.23 ك ب</translation>
+        <translation>حجم ملف الصورة مع الاستخدام الكامل، على سبيل المثال &apos;63.23 ك ب&apos;</translation>
     </message>
     <message>
         <source>Image file size as correct number of bytes, e.g. &apos;1,154,340 Bytes&apos;</source>
@@ -717,17 +717,17 @@
     <message>
         <source>Image bitmap size with useful, e.g. &apos;1.59 MB&apos;</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>&apos;حجم الصورة النقطية مع مفيدة، على سبيل المثال &apos;1.59 م ب</translation>
+        <translation>حجم الصورة النقطية مع مفيدة، على سبيل المثال &apos;1.59 م ب&apos;</translation>
     </message>
     <message>
         <source>Current page number of the volume e.g. &apos;33/100&apos; or &apos;33-34/100&apos;</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>&apos;رقم الصفحة الحالي للمجلد مثل &apos;33/100&apos; او &apos;33-34/100</translation>
+        <translation>رقم الصفحة الحالي للمجلد مثل &apos;33/100&apos; او &apos;33-34/100&apos;</translation>
     </message>
     <message>
         <source>Second image format separator(when 2 page spread viewing is valid)</source>
         <comment>Format tag of text displayed in title bar and status bar</comment>
-        <translation>(فاصل تنسيق الصورة الثاني (عندما يكون عرض الحيز 2 صفحة صالحا</translation>
+        <translation>فاصل تنسيق الصورة الثاني (عندما يكون عرض الحيز 2 صفحة صالحا)</translation>
     </message>
 </context>
 <context>
@@ -911,7 +911,7 @@
     <message>
         <source>Exif &amp;Information</source>
         <extracomment>Button to display JPEG EXIF information (if any)</extracomment>
-        <translation>اكسيف &amp;المعلومات</translation>
+        <translation>&amp;معلومات إكسيف</translation>
     </message>
     <message>
         <source>&amp;Key Config</source>
@@ -921,7 +921,7 @@
     <message>
         <source>&amp;About QuickViewer</source>
         <extracomment>A menu for displaying a message box for displaying application information</extracomment>
-        <translation>&amp;عن برنامج كويك فير</translation>
+        <translation>حول QuickViewer(&amp;A)</translation>
     </message>
     <message>
         <source>N&amp;extVolume</source>
@@ -1000,7 +1000,7 @@
     <message>
         <source>Bi&amp;cubic interpolation (slow)</source>
         <extracomment>Menu for resizing image by bicubic interpolation by GPU</extracomment>
-        <translation>(الاس&amp;تيفاء ثنائي ومكعب (بطيء</translation>
+        <translation>الاس&amp;تيفاء ثنائي ومكعب (بطيء)</translation>
     </message>
     <message>
         <source>&amp;Lanczos interpolation (very slow)</source>
@@ -1062,7 +1062,7 @@
     <message>
         <source>&amp;Bilinear interpolation (fast)</source>
         <extracomment>Menu to resize the image by bilinear interpolation by GPU</extracomment>
-        <translation>(الاستكمال الخطي (سريع</translation>
+        <translation>الاستكمال الخطي (سريع)</translation>
     </message>
     <message>
         <source>F&amp;older</source>
@@ -1111,12 +1111,12 @@
     <message>
         <source>Always open &amp;first images even withas only one page</source>
         <extracomment>In the case of a digital book, since the first image is a cover page, only one image is displayed</extracomment>
-        <translation>فتح الصور والمقامة دائمًا حتى مع صفحة واحدة فقط</translation>
+        <translation>فتح الصور والمقامة دائما حتى مع صفحة واحدة فقط</translation>
     </message>
     <message>
         <source>&amp;Nearest Neighbor interpolation (fast but coarse)</source>
         <extracomment>Menu to resize image by Nearest Neighbor interpolation by GPU</extracomment>
-        <translation>(&amp;اقرب الاستيفاء الجار (سريع ولكن خشنة</translation>
+        <translation>&amp;اقرب الاستيفاء الجار (سريع ولكن خشنة)</translation>
     </message>
     <message>
         <source>&amp;Restore window display at next startup</source>
@@ -1126,7 +1126,7 @@
     <message>
         <source>AddBookmark</source>
         <extracomment>Button to add the currently displayed volume and page to bookmark</extracomment>
-        <translation>اضافة اشارة مرجعية</translation>
+        <translation>اضافة قائمة العناوين</translation>
     </message>
     <message>
         <source>IconViewOnly</source>
@@ -1146,7 +1146,7 @@
     <message>
         <source>Bicubic interpolation by CPU (quality)</source>
         <extracomment>Menu that performs bicubic interpolation with CPU when resizing image</extracomment>
-        <translation>(الاستيفاء ثنائي المكعب من قبل المعالج (الجودة</translation>
+        <translation>الاستيفاء ثنائي المكعب من قبل المعالج (الجودة)</translation>
     </message>
     <message>
         <source>Open with Subfolders Image</source>
@@ -1156,7 +1156,7 @@
     <message>
         <source>Previously opened page in Preview</source>
         <extracomment>A setting menu that allows you to advance the page to the point you read when you reopen Volume that you read a part way up again</extracomment>
-        <translation>صفحة تم فتحها مسبقًا في المعاينة</translation>
+        <translation>صفحة تم فتحها مسبقا في المعاينة</translation>
     </message>
     <message>
         <source>Show how far you read</source>
@@ -1266,11 +1266,11 @@
     <message>
         <source>Image Associations (requires Admin)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
-        <translation>(جمعيات الصور (يتطلب المشرف</translation>
+        <translation>ارتباطات الصور (يتطلب المشرف)</translation>
     </message>
     <message>
         <source>&amp;Mouse Config</source>
-        <translation>&amp;الماوس التكوين</translation>
+        <translation>&amp;تكوين الماوس</translation>
     </message>
     <message>
         <source>Delete the image</source>
@@ -1279,7 +1279,7 @@
     <message>
         <source>Image Associations (only you)</source>
         <extracomment>Ability to associate QuickViewer and image files on Explorer (Host Global)</extracomment>
-        <translation>(جمعيات الصور (انت فقط</translation>
+        <translation>ارتباطات الصور (انت فقط)</translation>
     </message>
     <message>
         <source>Don&apos;t update history</source>
@@ -1297,7 +1297,7 @@
     </message>
     <message>
         <source>Large menubar arnd toolbar</source>
-        <translation>شريط ادوات arnd menubar كبير</translation>
+        <translation>شريط قوائم كبير وشريط ادوات</translation>
     </message>
     <message>
         <source>Turn over the page on the left</source>
@@ -1401,7 +1401,7 @@
     </message>
     <message>
         <source>Filename(descending)</source>
-        <translation>(اسم الملف (تنازلي</translation>
+        <translation>اسم الملف (تنازلي)</translation>
     </message>
     <message>
         <source>File size</source>
@@ -1409,7 +1409,7 @@
     </message>
     <message>
         <source>File size(descending)</source>
-        <translation>(حجم الملف (تنازلي</translation>
+        <translation>حجم الملف (تنازلي)</translation>
     </message>
     <message>
         <source>Modified Time</source>
@@ -1417,7 +1417,7 @@
     </message>
     <message>
         <source>Modified Time(descending)</source>
-        <translation>(وقت التعديل (تنازلي</translation>
+        <translation>وقت التعديل (تنازلي)</translation>
     </message>
     <message>
         <source>Any folder or archive is not loaded.</source>
@@ -1506,7 +1506,7 @@
     <message>
         <source>Selected Catalog</source>
         <extracomment>Name of the frame in which buttons for operating one catalog are arranged</extracomment>
-        <translation>كتالوج مختارة</translation>
+        <translation>كتالوج حدد</translation>
     </message>
     <message>
         <source>All Catalogs</source>
@@ -1626,12 +1626,12 @@
     <message>
         <source>Number of volumes managed simultaneously (Restart is required)</source>
         <extracomment>Maximum number of volumes that an application simultaneously manages on memory</extracomment>
-        <translation>(عدد وحدات التخزين التي تتم ادارتها في وقت واحد (مطلوب اعادة التشغيل</translation>
+        <translation>عدد وحدات التخزين التي تتم ادارتها في وقت واحد (مطلوب اعادة التشغيل)</translation>
     </message>
     <message>
         <source>SlideShow Delay (millisecond)</source>
         <extracomment>Wait time when images are automatically switched in slide show</extracomment>
-        <translation>(تاخير عرض الشرائح (مللي ثانية</translation>
+        <translation>تاخير عرض الشرائح (مللي ثانية)</translation>
     </message>
     <message>
         <source>Use checkered pattern</source>
@@ -1661,7 +1661,7 @@
     </message>
     <message>
         <source>Prohibit multiple running (Restart is required)</source>
-        <translation>(منع تشغيل متعددة (اعادة التشغيل مطلوبة</translation>
+        <translation>منع تشغيل متعددة (اعادة التشغيل مطلوبة)</translation>
     </message>
     <message>
         <source>Increasing the number, the behavior of &quot;NextImage&quot; / &quot;PrevImage&quot; improves but, increases memory consumption. 6 is appropriate for 32 bit version.</source>
@@ -1670,7 +1670,7 @@
     <message>
         <source>Number of images managed simultaneously (Restart is required)</source>
         <extracomment>Maximum number of images that an application simultaneously manages on memory</extracomment>
-        <translation>(عدد الصور التي تتم ادارتها في وقت واحد (مطلوب اعادة التشغيل</translation>
+        <translation>عدد الصور التي تتم ادارتها في وقت واحد (مطلوب اعادة التشغيل)</translation>
     </message>
     <message>
         <source>Increasing the value will degrade performance. Approximately twice the value of your display is appropriate.</source>
@@ -1679,7 +1679,7 @@
     <message>
         <source>Maximum size to hold the image (pixel)</source>
         <extracomment>Keeping a huge image as it is will degrade performance, so if it is larger than this value it automatically shrinks</extracomment>
-        <translation>(الحد الاقصى لحجم الاحتفاظ بالصورة (بكسل</translation>
+        <translation>الحد الاقصى لحجم الاحتفاظ بالصورة (بكسل)</translation>
     </message>
     <message>
         <source>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</source>
@@ -1688,7 +1688,7 @@
     <message>
         <source>Rendering with Direct2D (Restart is required)</source>
         <extracomment>Normally it is drawing with Windows GDI, but switching to drawing by Direct2D. QPA is loaded at startup.</extracomment>
-        <translation>(التقديم باستخدام الـ 2D المباشر (مطلوب اعادة التشغيل</translation>
+        <translation>التقديم باستخدام الـ 2D المباشر (مطلوب اعادة التشغيل)</translation>
     </message>
     <message>
         <source>Speed up JPEG loading in exchange for quality of display.</source>
@@ -1711,7 +1711,7 @@
     </message>
     <message>
         <source>General</source>
-        <translation>العامه</translation>
+        <translation>عام</translation>
     </message>
     <message>
         <source>Caption Format</source>
@@ -1802,7 +1802,7 @@
     </message>
     <message>
         <source>QuickViewer theme</source>
-        <translation>موضوع العارض السريع</translation>
+        <translation>اسلوب العارض السريع</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1901,7 +1901,7 @@
     <name>RenameDialog</name>
     <message>
         <source>RenameDialog</source>
-        <translation>اعادة تسمية مربع الحوار</translation>
+        <translation>تسمية مربع الحوار</translation>
     </message>
     <message>
         <source>EditFilename</source>
@@ -1924,7 +1924,7 @@
     <message>
         <source>Click and enter a new shortcut key.</source>
         <comment>Gray text to be displayed on LineEdit to input the shortcut key</comment>
-        <translation>انقر فوق وادخل مفتاح اختصار جديد.</translation>
+        <translation>انقر و ادخل مفتاح اختصار جديد.</translation>
     </message>
     <message>
         <source>Stop Recording</source>

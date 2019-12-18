@@ -23,13 +23,13 @@ VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path,
     QString ext = pathinfo.completeSuffix().toLower();
 
     // Mapping extension aliases to original names
-    QString fmt = ext;
-    if(ext == "cbz") { fmt = "zip"; }
-    if(ext == "cbr") { fmt = "rar"; }
-    if(ext == "cb7") { fmt = "7z"; }
-    if(ext == "tar.gz") { fmt = "tgz"; }
-    if(ext == "tar.bz2") { fmt = "tbz2"; }
-    if(ext == "tar.xz") { fmt = "txz"; }
+    QString fmt = pathinfo.suffix().toLower();
+    if(ext.right(3) == "cbz") { fmt = "zip"; }
+    if(ext.right(3) == "cbr") { fmt = "rar"; }
+    if(ext.right(3) == "cb7") { fmt = "7z"; }
+    if(ext.right(6) == "tar.gz") { fmt = "tgz"; }
+    if(ext.right(7) == "tar.bz2") { fmt = "tbz2"; }
+    if(ext.right(6) == "tar.xz") { fmt = "txz"; }
 
     // RAR deploys using unrar directly
     if(fmt == "rar") {

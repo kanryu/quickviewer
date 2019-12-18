@@ -236,6 +236,7 @@ DISTFILES += \
     translations/quickviewer_el.qm \
     translations/quickviewer_fr.qm \
     translations/quickviewer_ru.qm \
+    translations/quickviewer_ar.qm \
 
 # Shaders will be installed into DIST_DIR/shaders
 SHADERS += \
@@ -317,6 +318,7 @@ win32 : !CONFIG(debug, debug|release) {
         $${PWD}/translations/quickviewer_el.qm \
         $${PWD}/translations/quickviewer_fr.qm \
         $${PWD}/translations/quickviewer_ru.qm \
+        $${PWD}/translations/quickviewer_ar.qm \
         $${PWD}/translations/qt_el.qm \
 
     install_translations2.path = $${MY_DEFAULT_INSTALL}/translations
@@ -387,6 +389,7 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
         $${PWD}/translations/quickviewer_el.qm \
         $${PWD}/translations/quickviewer_fr.qm \
         $${PWD}/translations/quickviewer_ru.qm \
+        $${PWD}/translations/quickviewer_ar.qm \
         $${PWD}/translations/qt_el.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
 
@@ -458,6 +461,7 @@ linux : !CONFIG(debug, debug|release) : !contains(DEFINES, QV_PORTABLE) {
         $${PWD}/translations/quickviewer_el.qm \
         $${PWD}/translations/quickviewer_fr.qm \
         $${PWD}/translations/quickviewer_ru.qm \
+        $${PWD}/translations/quickviewer_ar.qm \
         $${PWD}/translations/qt_el.qm
 
     install_assoc_icons.path = $${QV_SHARED_PATH}/QuickViewer/icons
@@ -504,6 +508,7 @@ macos : !CONFIG(debug, debug|release) {
         $${PWD}/translations/quickviewer_el.qm \
         $${PWD}/translations/quickviewer_fr.qm \
         $${PWD}/translations/quickviewer_ru.qm \
+        $${PWD}/translations/quickviewer_ar.qm \
         $${PWD}/translations/qt_el.qm \
         $$[QT_INSTALL_TRANSLATIONS]/qt_zh_CN.qm \
 
