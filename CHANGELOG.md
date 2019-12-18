@@ -1,12 +1,18 @@
 # CHANGELOG
 
 - other commits
-    - Add Arabic translation, 3 bugfixed (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
-    -  (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
-    -  add Arabic translation(contributed by MFM Dawdeh) (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
-    -  bugfixed: When an image is being reduced and read (mainly JPEG), the image was not displayed at the correct display magnification. (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
-    -  bugfixed: When the display magnification of the image is changed in bilinear, it is displayed in the nearest neighbor (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
-    -  bugfixed: failed to open an archive or image file that contains a dot (.) In the PATH or file name other than the extension. (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    - CHANGELOG (Wed Dec 18 23:46:13 2019 +0900) [236a9ce](https://github.com/kanryu/quickviewer/commit/236a9ce614a62871e0f55c5585680463aa31b8e9)
+
+## v1.1.8 (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+
+Add Arabic translation, 3 bugfixed
+
+- add Arabic translation(contributed by MFM Dawdeh)
+- bugfixed: When an image is being reduced and read (mainly JPEG), the image was not displayed at the correct display magnification.
+- bugfixed: When the display magnification of the image is changed in bilinear, it is displayed in the nearest neighbor
+- bugfixed: failed to open an archive or image file that contains a dot (.) In the PATH or file name other than the extension.
+
+- other commits
     - bugfixed: When an image is being reduced and read (mainly JPEG), the image was not displayed at the correct display magnification. (Wed Dec 18 23:22:13 2019 +0900) [1e36a8c](https://github.com/kanryu/quickviewer/commit/1e36a8c01440157584667e781c71494304022f62)
     - bugfixed: When the display magnification of the image is changed in bilinear, it is displayed in the nearest neighbor (Wed Dec 18 23:05:16 2019 +0900) [89363a7](https://github.com/kanryu/quickviewer/commit/89363a7114b24881cfa542837349477c4bab9004)
     - bugfixed: failed to open an archive or image file that contains a dot (.) In the PATH or file name other than the extension. (Wed Dec 18 22:31:42 2019 +0900) [9f7edd2](https://github.com/kanryu/quickviewer/commit/9f7edd2a9adc27153b60b00becca8a86d7420bbf)
