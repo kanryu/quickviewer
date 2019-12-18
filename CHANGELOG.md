@@ -1,5 +1,23 @@
 # CHANGELOG
 
+- other commits
+    - Add Arabic translation, 3 bugfixed (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    -  (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    -  add Arabic translation(contributed by MFM Dawdeh) (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    -  bugfixed: When an image is being reduced and read (mainly JPEG), the image was not displayed at the correct display magnification. (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    -  bugfixed: When the display magnification of the image is changed in bilinear, it is displayed in the nearest neighbor (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    -  bugfixed: failed to open an archive or image file that contains a dot (.) In the PATH or file name other than the extension. (Wed Dec 18 23:37:27 2019 +0900) [517ead9](https://github.com/kanryu/quickviewer/commit/517ead91e878ad4cf6ba57711a9456c63df84880)
+    - bugfixed: When an image is being reduced and read (mainly JPEG), the image was not displayed at the correct display magnification. (Wed Dec 18 23:22:13 2019 +0900) [1e36a8c](https://github.com/kanryu/quickviewer/commit/1e36a8c01440157584667e781c71494304022f62)
+    - bugfixed: When the display magnification of the image is changed in bilinear, it is displayed in the nearest neighbor (Wed Dec 18 23:05:16 2019 +0900) [89363a7](https://github.com/kanryu/quickviewer/commit/89363a7114b24881cfa542837349477c4bab9004)
+    - bugfixed: failed to open an archive or image file that contains a dot (.) In the PATH or file name other than the extension. (Wed Dec 18 22:31:42 2019 +0900) [9f7edd2](https://github.com/kanryu/quickviewer/commit/9f7edd2a9adc27153b60b00becca8a86d7420bbf)
+    - Update index.md (Mon Dec 2 00:17:02 2019 +0900) [050e1c1](https://github.com/kanryu/quickviewer/commit/050e1c1a7c648f8969136d6644aedd982142f7fb)
+    - Update index.md (Thu Sep 26 17:29:58 2019 +0900) [076952f](https://github.com/kanryu/quickviewer/commit/076952f37d2eb0a62df4b6b537bd7bd9be1d6594)
+    - Update index-ja.md (Thu Sep 26 11:24:12 2019 +0900) [7951844](https://github.com/kanryu/quickviewer/commit/7951844894835963202c756f4b73c7886ead55ca)
+    - Update index.md (Thu Sep 26 11:23:40 2019 +0900) [a0c2313](https://github.com/kanryu/quickviewer/commit/a0c2313d8786af16711ca09b3063279b88c3efac)
+    - Update README.md (Thu Sep 26 09:45:25 2019 +0900) [c3eb2b5](https://github.com/kanryu/quickviewer/commit/c3eb2b58c02630f2baac1d5481275f0b2a64cbce)
+    - add Arabic translation(contributed by MFM Dawdeh) (Tue Sep 24 21:39:04 2019 +0900) [f8a1e93](https://github.com/kanryu/quickviewer/commit/f8a1e933e13b1e96c1032150c4b7e038db0f3bf8)
+    - CHANGELOG.md (Tue Sep 24 00:12:41 2019 +0900) [dbb2ee6](https://github.com/kanryu/quickviewer/commit/dbb2ee6d1700e93e441dc6aa5d5ef96bbc5b2931)
+
 ## v1.1.7 (Mon Sep 23 23:47:19 2019 +0900) [d8b85b7](https://github.com/kanryu/quickviewer/commit/d8b85b757647f61e433d40337ac6175bf103cd1b)
 
 faster extracting 7z archives, support for more archive formats
