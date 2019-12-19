@@ -200,6 +200,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://www.zive.sk/clanok/128715/novy-softver-expresny-prehliadac-fotiek-vynoveny-kancelarsky-balik/](https://www.zive.sk/clanok/128715/novy-softver-expresny-prehliadac-fotiek-vynoveny-kancelarsky-balik/)
 - **ROOT.CZ** (in Czech)
     - [https://www.root.cz/clanky/softwarova-sklizen-22-8-2018/](https://www.root.cz/clanky/softwarova-sklizen-22-8-2018/)
+- **Taimeienphi.vn** (in Vietnamese)
+    - [https://news.bangnam.com/url/taimienphi.vn/download-quickviewer-38922](https://news.bangnam.com/url/taimienphi.vn/download-quickviewer-38922)
 
 Thanks for reviewers! :)
 
