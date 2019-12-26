@@ -39,7 +39,7 @@ You can browse images with much smoother response than ever before.
  - Can make/view/search catalog from thousands of your digital books
  - Can search books from auto generated tags
  - Touch panel input (Page navigations/Zooming/Rotate/Change fullscreen)
- - Multilingual support (English/Spanish/Simplified Chinese/Japanese/Greek)
+ - Multilingual support(English/Spanish/Simplified Chinese/French/Arabic/Russian/Japanese/Greek)
 
 
 ## How to use
