@@ -1140,7 +1140,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Large menubar arnd toolbar</string>
+    <string>Large menubar and toolbar</string>
    </property>
   </action>
   <action name="actionTurnPageOnLeft">
