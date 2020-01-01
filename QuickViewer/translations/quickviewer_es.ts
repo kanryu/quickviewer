@@ -1331,7 +1331,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

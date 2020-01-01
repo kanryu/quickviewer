@@ -1331,7 +1331,7 @@
         <translation>画像(&amp;I)</translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation>メニューバーとツールバーを大きくする</translation>
     </message>
     <message>

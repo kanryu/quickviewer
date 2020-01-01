@@ -1331,7 +1331,7 @@
         <translation>图像(&amp;I)</translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation>大号图标</translation>
     </message>
     <message>

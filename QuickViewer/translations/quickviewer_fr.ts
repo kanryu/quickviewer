@@ -1656,7 +1656,7 @@
         <translation>&amp;Image</translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation>Grande barre d&apos;outils et barre de menu</translation>
     </message>
     <message>

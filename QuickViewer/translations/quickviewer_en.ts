@@ -1603,7 +1603,7 @@
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1143"/>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

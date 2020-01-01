@@ -1331,7 +1331,7 @@
         <translation>&amp;Εικόνα</translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation>Μεγάλες γραμμές μενού και εργαλείων</translation>
     </message>
     <message>

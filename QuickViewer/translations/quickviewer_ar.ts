@@ -1296,7 +1296,7 @@
         <translation>&amp;صورة</translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation>شريط قوائم كبير وشريط ادوات</translation>
     </message>
     <message>

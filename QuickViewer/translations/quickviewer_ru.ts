@@ -1600,7 +1600,7 @@
         <translation>&amp;Изображение</translation>
     </message>
     <message>
-        <source>Large menubar arnd toolbar</source>
+        <source>Large menubar and toolbar</source>
         <translation>Большая панель инструментов и меню</translation>
     </message>
     <message>
