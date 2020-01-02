@@ -167,10 +167,8 @@ You can do screen operations with the main menu, tool bar, mouse button, wheel, 
 
 ## Looking for contributers!
 
-- Hindu speaker
-- Arabic speaker
-- Malay speaker
-- Mac software engeneers
+- Portuguese/Hindu/Bengali/Malay speaker
+- Mac/Linux software engeneers
 
 
 ## Report issues
