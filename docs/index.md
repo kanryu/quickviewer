@@ -89,6 +89,8 @@ You can also clone the latest source code from **[this repository.](https://gith
     - [https://ebookee.org/QuickViewer-1-1-7-Multilingual_4140431.html](https://ebookee.org/QuickViewer-1-1-7-Multilingual_4140431.html)
 - **FileCroco**
     - [https://www.filecroco.com/download-quickviewer/](https://www.filecroco.com/download-quickviewer/)
+- **KUBADOWNLOAD.**
+    - [https://kubadownload.com/app/quickviewer-download](https://kubadownload.com/app/quickviewer-download)
 - **Vector** (in Japanese)
     - [http://www.vector.co.jp/magazine/softnews/170914/n1709141.html](http://www.vector.co.jp/magazine/softnews/170914/n1709141.html)
 - **OSDN** (in Japanese)
