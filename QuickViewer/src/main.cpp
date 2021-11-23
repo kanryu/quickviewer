@@ -20,6 +20,10 @@ int main(int argc, char *argv[])
         // it must be set to the QT_QPA_PLATFORM environment variable before that.
 #  ifdef QV_PORTABLE
         QString inipath = QDir::toNativeSeparators(QFileInfo(argv[0]).path());
+        QDir iniSubDir = QDir(inipath + "\\" CONFIG_SUBDIR);
+        if (iniSubDir.exists()) {
+        	inipath += "\\" CONFIG_SUBDIR;
+        }
         inipath += "\\" APP_INI;
 #  else
         QString inipath = QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).filePath(APP_INI);

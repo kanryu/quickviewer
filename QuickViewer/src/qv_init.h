@@ -9,6 +9,7 @@
 #define QV_THUMBNAILS "thumbnail.sqlite3.db"
 
 #ifdef Q_OS_WIN
+#define CONFIG_SUBDIR "config"
 #define APP_INI "quickviewer.ini"
 #define PROGRESS_INI "progress.ini"
 #define LINEFEED "\r\n"

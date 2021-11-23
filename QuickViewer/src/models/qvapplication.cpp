@@ -96,6 +96,10 @@ QString QVApplication::getFilePathOfApplicationSetting(QString subFilePath)
 {
 #ifdef Q_OS_WIN
     if(m_portable) {
+        QDir settingsSubDir = getApplicationFilePath(QString("%1/" CONFIG_SUBDIR).arg(subFilePath));
+        if (settingsSubDir.exists()) {
+            return settingsSubDir;
+        }
         return getApplicationFilePath(subFilePath);
     } else {
         return QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).filePath(subFilePath);
