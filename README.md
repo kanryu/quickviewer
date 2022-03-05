@@ -27,21 +27,22 @@ An image/comic viewer for Windows, Mac, and Linux. It can show images very fast!
 ## Summary
 
  - Fast viewing (using OpenGL)
- - Portability (needn't installers, registries, external libraries)
- - Double page spread view (displaying of two images at once: handy for digital books/comics)
+ - Cross-platform (Windows, macOS, Linux)
+ - Portable (no installer needed, does not write to registries, does not need external libraries)
+ - Double-page spread view (displaying of two images at once: handy for digital books/comics)
  - Direct reading of archives (zip/7z/rar/cbz/cb7/cbr/cab/tar.gz/tar.bz2/tar.xz, and more)
- - Viewing different types of images (bmp/png/jpeg/ico/dds/tga/tiff/gif)
-   - Supported modern formats (JPEG 2000/JPEG XR/WebP)
-   - Supported Animated PNG (APNG) and GIF
-   - Auto rotation (using JPEG EXIF)
- - Viewing Raw images of digital cameras:
+ - View many different types of images (bmp/png/jpeg/ico/dds/tga/tiff/gif)
+   - Supports modern formats (JPEG 2000 / JPEG XR / WebP)
+   - Supports Animated PNG (APNG) and GIF
+   - Auto-rotation (using JPEG Exif)
+ - View RAW images from digital cameras:
    - Canon (crw/cr2)
    - Nikon (nef)
    - Sony (arw)
    - Ricoh (dng)
-   - etc.
- - Creating/viewing/searching through the catalogs from thousands of your digital books
- - Multilingual support (English/Spanish/Simplified Chinese/French/Arabic/Russian/Japanese/Greek)
+   - more
+ - Create/view/search through the catalogs from thousands of your digital books
+ - Multilingual support (English/Spanish/French/Greek/Japanese/Arabic/Russian/Simplified Chinese)
 
 
 ## Download
@@ -55,17 +56,17 @@ An image/comic viewer for Windows, Mac, and Linux. It can show images very fast!
 
 ## Contributing
 
-Contributions go far beyond pull requests and commits to program. Although we would love to give you an opportunity of putting your stamp upon the QuickViewer, we also are thrilled to receive a great variety of other contributions, including:
+Contributions go far beyond pull requests and commits to the code. We would love to give you an opportunity to put your stamp on QuickViewer. We also are thrilled to receive a great variety of other contributions, including:
 
 - Documentation updates, enhancements, designs, or bugfixes
 - Spelling or grammar corrections
-- Addition of another language translations, especially of your native ones—this is very easy
+- Addition of another language translations, especially of your native language — this is very easy
 - `README.md` corrections or redesign
-- Adding units, or functional tests
-- Trialling GitHub issues—especially determining whether an issue is still persists or is reproducible
+- Adding unit or functional tests
+- Testing GitHub issues — especially determining whether an issue still persists and is reproducible
 - Blogging, chatting, tweeting
 
-We contracted with OpenCollective to allow this project to accept donations. Your one-off, or ongoing, money contributions will help us improve QuickViewer's capabilities and make it easier to use on each computer.
+We contracted with OpenCollective to allow this project to accept donations. Your one-time or ongoing financial contributions will help us improve QuickViewer's capabilities and make it easier to use on each device.
 
 https://opencollective.com/quickviewer
 
@@ -76,22 +77,22 @@ https://opencollective.com/quickviewer
 
 ![1 page viewing](https://github.com/kanryu/quickviewer/wiki/images/singleview.jpg)
 
-### Double page spread view
+### Double-page spread view
 
 ![Spread viewing](https://github.com/kanryu/quickviewer/wiki/images/dualview.jpg)
 
 ### Stripped view
 
-If you want, you can remove all attached bars and display images alone.
-Hidden bars are displayed automatically upon hover top or bottom of program window respectively.
+If you want, you can remove all attached bars, and display images alone.
+Hidden bars are displayed automatically upon hovering over the top or bottom of the program window.
 
 ![Stripped viewing](https://github.com/kanryu/quickviewer/wiki/images/stripped.jpg)
 
 
 ## How to use
 
-- Execute the application and drag and drop image folder/archive into the window.
-- Create shortcut and drag and drop image folder/archive on it.
+- Execute QuickViewer and then drag and drop an image, folder, or archive onto the window.
+- Create a shortcut to QuickViewer and then drag and drop an image, folder, or archive onto it.
 
 
 ## Features
@@ -101,7 +102,7 @@ Hidden bars are displayed automatically upon hover top or bottom of program wind
 - Fullscreen (press 'F11 Key', click Mouse wheel, or 'Esc Key' (to windowed only))
 - Auto load the view (restore last book when application is executed)
 - Fitting (fit images to the size of the window)
-- Double page spread view (show two images simultaneously)
+- Double-page spread view (show two images simultaneously)
     - Bound to the right side (e.g. Japanese Style)
 - Pages' pre-loading (since v0.2.0)
 - Exif Information (since v0.3.0)
