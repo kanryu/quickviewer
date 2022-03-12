@@ -122,7 +122,7 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
 
 ### For Windows
 
-- **[database]**
+- **[config/database]** or **[database]**
     - SQLite database which contains Catalogs and thumbnails
 - **[shaders]**
     - Fragment Shaders for image resizing (obsolete)
@@ -132,11 +132,16 @@ $ ln -s ../../quickviewer/QuickViewer/translations translations
     - Application main
 - **AssociateFilesWithQuickViewer.exe**
     - Set the association of image formats with UAC
-- **quickviewer.ini**
+- **[config/quickviewer.ini]** or **[quickviewer.ini]**
     - Main configuration file. Includes keyboard and mouse settings
-- **progress.ini**
+- **[config/progress.ini]** or **[progress.ini]**
     - Record the last displayed image in volume.
 
+The versions with **config** subdirectory are preferred due to their
+better security properties - the directory may be made writable without
+allowing modifications to the binary files. However, since they break
+compatibility with current installations, they are only used if the
+directory exists.
 
 ### For Linux (.AppImage)
 
