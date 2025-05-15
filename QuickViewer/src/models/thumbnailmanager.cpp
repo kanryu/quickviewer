@@ -2,7 +2,6 @@
 #include <QtSql>
 #include <QDebug>
 #include <QApplication>
-#include <QDesktopWidget>
 
 #ifdef Q_OS_WIN
 #include <Shlwapi.h>
@@ -54,7 +53,7 @@ bool ThumbnailManager::isHeavyImageFile(QString path)
 
 void ThumbnailManager::sortFiles(QStringList &filenames)
 {
-    qSort(filenames.begin(), filenames.end(), caseInsensitiveLessThan);
+    std::sort(filenames.begin(), filenames.end(), caseInsensitiveLessThan);
 }
 
 
@@ -109,7 +108,7 @@ ThumbnailManager::ThumbnailManager(QObject* parent, QString dbpath)
     else
     {
        qDebug() << "Database: connection ok";
-       QtConcurrent::run(this, &ThumbnailManager::volumes);
+       QtConcurrent::run([&]{return volumes();});
     }
 }
 
@@ -259,7 +258,7 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
                     return -1;
                 int sub_id = createVolumeInternal(subpath, catalog_id, p.parent_id);
                 if(sub_id < 0) return -1;
-                workers.append(QtConcurrent::run(this, &ThumbnailManager::createSubVolumesConcurrent, subpath, sub_id, p.volume_id));
+                workers.append(QtConcurrent::run([&]{ return createSubVolumesConcurrent(subpath, sub_id, p.volume_id);}));
 
             }
         }
@@ -287,7 +286,7 @@ int ThumbnailManager::createVolumesFrontPageOnly(QString dirpath, int catalog_id
                 t_files.bindValue(":width", v.frontPage.imagesize.width());
                 t_files.bindValue(":height", v.frontPage.imagesize.height());
                 t_files.bindValue(":thumb_id", t_thumbs.lastInsertId());
-                t_files.bindValue(":created_at", v.frontPage.info.created());
+                //t_files.bindValue(":created_at", v.frontPage.info.created());
                 t_files.bindValue(":updated_at", v.frontPage.info.lastModified());
                 if(!execInsertQuery(t_files, "t_files")) return -1;
 
@@ -518,7 +517,7 @@ void ThumbnailManager::updateVolumeOrders()
         volumes_pt[i] = &volumes[i];
     }
 
-    qSort(volumes_pt.begin(), volumes_pt.end(), caseInsensitiveLessThanVolumeOrder);
+    std::sort(volumes_pt.begin(), volumes_pt.end(), caseInsensitiveLessThanVolumeOrder);
     t_volumeorders.prepare("INSERT INTO t_volumeorders (id,parent_id,volumename_asc)"
                       " VALUES (:id,:parent_id,:volumename_asc)");
     for(int i = 0; i < volumes_pt.size(); i++) {
@@ -632,7 +631,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
         if(!isImageFile(filename))
             continue;
         QString filepath = dir.filePath(filename);
-        workers.append(QtConcurrent::run(this, &ThumbnailManager::createFileRecord, filename, filepath, filename_asc++));
+        workers.append(QtConcurrent::run([&]{return createFileRecord(filename, filepath, filename_asc++);}));
     }
     foreach(auto worker, workers) {
         const FileWorker& w = worker.result();
@@ -654,7 +653,7 @@ int ThumbnailManager::createVolumeContent(QString dirpath, int volume_id)
         t_files.bindValue(":width", w.imagesize.width());
         t_files.bindValue(":height", w.imagesize.height());
         t_files.bindValue(":thumb_id", t_thumbs.lastInsertId());
-        t_files.bindValue(":created_at", DateTimeToIsoString(w.info.created()));
+        //t_files.bindValue(":created_at", DateTimeToIsoString(w.info.created()));
         t_files.bindValue(":updated_at", DateTimeToIsoString(w.info.lastModified()));
         t_files.bindValue(":alternated", w.alternated.size()==0 ? nullptr : w.alternated);
         if(!execInsertQuery(t_files, "t_files")) return -1;
@@ -745,7 +744,7 @@ QList<CatalogRecord> ThumbnailManager::callCreateCatalog(const QList<CatalogReco
 
 QFutureWatcher<QList<CatalogRecord> > *ThumbnailManager::createCatalogAsync(QList<CatalogRecord> newers)
 {
-    QFuture<QList<CatalogRecord>> future = QtConcurrent::run(this, &ThumbnailManager::callCreateCatalog, newers);
+    QFuture<QList<CatalogRecord>> future = QtConcurrent::run([&]{return callCreateCatalog(newers);});
     m_catalogWatcher.setFuture(future);
     return &m_catalogWatcher;
 }

@@ -47,7 +47,7 @@ QVApplication::QVApplication(int &argc, char **argv)
 #  if    defined(Q_OS_MAC) || defined(Q_OS_LINUX)
         QString datapath = QDir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)).filePath(QV_DATADIR);
 #  elif  defined(Q_OS_WIN)
-        QString datapath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+        QString datapath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 //        qDebug() << datapath;
 #  endif
         QDir dir(datapath);
@@ -73,7 +73,7 @@ QVApplication::QVApplication(int &argc, char **argv)
 
     m_languageSelector.initialize();
     m_qtbaseLanguageSelector.copyLanguages(m_languageSelector.Languages());
-    m_settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
+    //m_settings->setIniCodec(QTextCodec::codecForName("UTF-8"));
     connect(&m_languageSelector, SIGNAL(languageChanged(QString)), &m_qtbaseLanguageSelector, SLOT(resetTranslator(QString)));
     registDefaultKeyMap();
     registDefaultMouseMap();
@@ -98,7 +98,7 @@ QString QVApplication::getFilePathOfApplicationSetting(QString subFilePath)
     if(m_portable) {
         return getApplicationFilePath(subFilePath);
     } else {
-        return QDir(QStandardPaths::writableLocation(QStandardPaths::DataLocation)).filePath(subFilePath);
+        return QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).filePath(subFilePath);
     }
 #else
     return getUserHomeFilePath(subFilePath);
@@ -396,7 +396,7 @@ void QVApplication::loadSettings()
     m_showMenuBar = m_settings->value("ShowMenuBar", true).toBool();
     m_showSubfolders = m_settings->value("ShowSubfolders", false).toBool();
     m_slideShowWait = m_settings->value("SlideShowWait", 5000).toInt();
-    QRect rec = desktop()->screenGeometry();
+    QRect rec = QGuiApplication::primaryScreen()->geometry();
     uint32_t desktop_width = rec.width();
     uint32_t maxTextureSize = desktop_width < 2048 ? 4096 : (uint32_t)(desktop_width*2.1);
     qDebug() << "desktop width:" << rec.width();

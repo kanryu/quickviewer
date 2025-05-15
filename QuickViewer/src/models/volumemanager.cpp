@@ -42,7 +42,7 @@ ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
 {
     m_subfilename = subfilename;
     m_currentCacheSync = VolumeManager::futureLoadImageFromFileVolume(this, subfilename, QSize());
-    m_watcher.setFuture(QtConcurrent::run(this, &VolumeManager::enumerate));
+    m_watcher.setFuture(QtConcurrent::run([&]{enumerate();}));
     return m_currentCacheSync;
 }
 

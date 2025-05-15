@@ -197,11 +197,11 @@ void FolderWindow::setFolderPath(QString path, bool showParent)
         }
         qvEnums::FolderViewSort sortmode = qApp->FolderSortMode();
         if(sortmode == qvEnums::OrderByName) {
-            qSort(m_volumes.begin(), m_volumes.end(), filenameLessThan);
+            std::sort(m_volumes.begin(), m_volumes.end(), filenameLessThan);
         } else {
             typedef std::reverse_iterator<QList<QvFolderItem>::iterator> reverse_iterator;
 //            qSort(m_volumes.rbegin(), m_volumes.rend(), updatedAtLessThan);
-            qSort(reverse_iterator(m_volumes.end()), reverse_iterator(m_volumes.begin()), updatedAtLessThan);
+            std::sort(reverse_iterator(m_volumes.end()), reverse_iterator(m_volumes.begin()), updatedAtLessThan);
         }
     }
 

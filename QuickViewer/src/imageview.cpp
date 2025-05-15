@@ -588,9 +588,9 @@ void ImageView::wheelEvent(QWheelEvent *event)
        || qApp->keyboardModifiers() & Qt::ControlModifier)
         return;
     if(m_loupeEnable) {
-        if(event->delta() < 0)
+        if(event->pixelDelta().y() < 0)
             m_loupeFactor = qMax(1.5, m_loupeFactor-0.5);
-        if(event->delta() > 0)
+        if(event->pixelDelta().y() > 0)
             m_loupeFactor += 0.5;
         readyForPaint();
         return;

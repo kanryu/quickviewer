@@ -100,7 +100,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(QString UiTheme READ UiTheme WRITE setUiTheme)
 
 public:
-    typedef QActionManager<QKeySequence, QKeySequence, QAction*> KeyActionManager;
+    typedef QActionManager<QKeySequence, QKeyCombination, QAction*> KeyActionManager;
     typedef QActionManager<QMouseSequence, QMouseValue, QAction*> MouseActionManager;
     explicit QVApplication(int &argc, char **argv);
     ~QVApplication();
@@ -451,8 +451,8 @@ private:
     int m_catalogViewWidth;
 
     // KeyConfig
-    QActionManager<QKeySequence, QKeySequence, QAction*> m_keyActions;
-    QActionManager<QMouseSequence, QMouseValue, QAction*> m_mouseActions;
+    KeyActionManager m_keyActions;
+    MouseActionManager m_mouseActions;
 
 
     // Shader Effect

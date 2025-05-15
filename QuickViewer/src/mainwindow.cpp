@@ -313,9 +313,10 @@ static bool needContextMenu = false;
 
 void MainWindow::wheelEvent(QWheelEvent *e)
 {
-    int delta = e->delta() < 0 ? -Q_MOUSE_DELTA : e->delta() > 0 ? Q_MOUSE_DELTA : 0;
+    int delta_y = e->pixelDelta().y();
+    int delta = delta_y < 0 ? -Q_MOUSE_DELTA : delta_y > 0 ? Q_MOUSE_DELTA : 0;
     QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), e->buttons(), delta);
-    QAction* action = qApp->mouseActions().getActionByKey(mv);
+    QAction* action = qApp->mouseActions().getActionByValue(mv);
     if(e->buttons() & Qt::RightButton)
         needContextMenu = false;
     if(action == ui->actionZoomIn || action == ui->actionZoomOut) {
@@ -435,7 +436,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             // If isScrollMode () is enabled, priority is given to screen drag scroll
             if(mv.Key == "+::LeftButton" && ui->graphicsView->isScrollMode())
                 break;
-            QAction* action = qApp->mouseActions().getActionByKey(mv);
+            QAction* action = qApp->mouseActions().getActionByValue(mv);
             if(action) {
                 action->trigger();
                 return true;
@@ -448,7 +449,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 //            QContextMenuEvent *contextMenuEvent = dynamic_cast<QContextMenuEvent*>(event);
 //            qDebug() << contextMenuEvent;
             QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), Qt::RightButton, 0);
-            QAction* action = qApp->mouseActions().getActionByKey(mv);
+            QAction* action = qApp->mouseActions().getActionByValue(mv);
             if(action && needContextMenu) {
                 action->trigger();
                 needContextMenu = false;
@@ -635,7 +636,7 @@ void MainWindow::onScrollModeChanged(bool scrolled)
     // enable/disable cursor key shortcuts
     foreach(const QString& c, cusors) {
         auto key = QKeySequence(c);
-        QString name = qApp->keyActions().getNameByValue(key);
+        QString name = qApp->keyActions().getNameByKey(key);
         if(!name.isEmpty())
             resetShortCut(name, c, scrolled);
     }

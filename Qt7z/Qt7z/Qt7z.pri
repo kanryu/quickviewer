@@ -33,6 +33,43 @@ win32 {
         $$PWD/7zip/CPP \
         $$PWD/lib7zip/src \
 
+    HEADERS += \
+        $$PWD/7zip/CPP/Common/AutoPtr.h \
+        $$PWD/7zip/CPP/Common/C_FileIO.h \
+        $$PWD/7zip/CPP/Common/ComTry.h \
+        $$PWD/7zip/CPP/Common/CommandLineParser.h \
+        $$PWD/7zip/CPP/Common/Common.h \
+        $$PWD/7zip/CPP/Common/Defs.h \
+        $$PWD/7zip/CPP/Common/DynLimBuf.h \
+        $$PWD/7zip/CPP/Common/DynamicBuffer.h \
+        $$PWD/7zip/CPP/Common/IntToString.h \
+        $$PWD/7zip/CPP/Common/Lang.h \
+        $$PWD/7zip/CPP/Common/ListFileUtils.h \
+        $$PWD/7zip/CPP/Common/MyBuffer.h \
+        $$PWD/7zip/CPP/Common/MyBuffer2.h \
+        $$PWD/7zip/CPP/Common/MyCom.h \
+        $$PWD/7zip/CPP/Common/MyException.h \
+        $$PWD/7zip/CPP/Common/MyGuidDef.h \
+        $$PWD/7zip/CPP/Common/MyInitGuid.h \
+        $$PWD/7zip/CPP/Common/MyLinux.h \
+        $$PWD/7zip/CPP/Common/MyMap.h \
+        $$PWD/7zip/CPP/Common/MyString.h \
+        $$PWD/7zip/CPP/Common/MyTypes.h \
+        $$PWD/7zip/CPP/Common/MyUnknown.h \
+        $$PWD/7zip/CPP/Common/MyVector.h \
+        $$PWD/7zip/CPP/Common/MyWindows.h \
+        $$PWD/7zip/CPP/Common/MyXml.h \
+        $$PWD/7zip/CPP/Common/NewHandler.h \
+        $$PWD/7zip/CPP/Common/Random.h \
+        $$PWD/7zip/CPP/Common/StdAfx.h \
+        $$PWD/7zip/CPP/Common/StdInStream.h \
+        $$PWD/7zip/CPP/Common/StdOutStream.h \
+        $$PWD/7zip/CPP/Common/StringConvert.h \
+        $$PWD/7zip/CPP/Common/StringToInt.h \
+        $$PWD/7zip/CPP/Common/TextConfig.h \
+        $$PWD/7zip/CPP/Common/UTFConvert.h \
+        $$PWD/7zip/CPP/Common/Wildcard.h \
+
     SOURCES += \
         $$PWD/lib7zip/src/7ZipArchive.cpp \
         $$PWD/lib7zip/src/7ZipArchiveItem.cpp \
@@ -52,6 +89,11 @@ win32 {
         $$PWD/lib7zip/src/OSFunctions_Win32.cpp \
         $$PWD/7zip/CPP/Common/MyWindows.cpp \
         $$PWD/7zip/CPP/Windows/PropVariant.cpp \
+
+PRECOMPILED_HEADER += $$PWD/7zip/CPP/Common/StdAfx.h
+precompile_header:!isEmpty(PRECOMPILED_HEADER) {
+    DEFINES += USING_PCH
+}
 
 #    SOURCES += \
 #        $$PWD/7zip/C/7zCrc.c \

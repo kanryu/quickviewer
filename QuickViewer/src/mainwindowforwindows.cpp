@@ -177,32 +177,32 @@ bool MainWindowForWindows::eventFilter(QObject *obj, QEvent *event)
 }
 
 
-// This method is used because QShowEvent may not be called
-bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
-{
-    if(!bFirstView)
-        return false;
+// // This method is used because QShowEvent may not be called
+// bool MainWindowForWindows::nativeEvent(const QByteArray &, void *, long *)
+// {
+//     if(!bFirstView)
+//         return false;
 
-//    int mes = reinterpret_cast<int>(message);
-    auto hwnd = reinterpret_cast<HWND>(winId());
-    m_showMainMenu = ::GetSystemMenu(hwnd, false);
+// //    int mes = reinterpret_cast<int>(message);
+//     auto hwnd = reinterpret_cast<HWND>(winId());
+//     m_showMainMenu = ::GetSystemMenu(hwnd, false);
 
-    QString menutxt = ui->actionShowMainMenuBar->text();
+//     QString menutxt = ui->actionShowMainMenuBar->text();
 
-    ::AppendMenu(m_showMainMenu, MF_SEPARATOR, IDM_SHOWMAINMENU-1, 0);
-    ::AppendMenu(m_showMainMenu, MF_STRING, IDM_SHOWMAINMENU,
-                 reinterpret_cast<LPCWSTR>(menutxt.utf16()));
+//     ::AppendMenu(m_showMainMenu, MF_SEPARATOR, IDM_SHOWMAINMENU-1, 0);
+//     ::AppendMenu(m_showMainMenu, MF_STRING, IDM_SHOWMAINMENU,
+//                  reinterpret_cast<LPCWSTR>(menutxt.utf16()));
 
-#ifdef _WIN64
-    DefStaticProc = (WNDPROC)GetWindowLongPtr(hwnd , GWLP_WNDPROC);
-    SetWindowLongPtr(hwnd , GWLP_WNDPROC , reinterpret_cast<LONG_PTR>(StaticProc));
-#else
-    DefStaticProc = (WNDPROC)GetWindowLongPtr(hwnd , GWL_WNDPROC);
-    SetWindowLongPtr(hwnd , GWL_WNDPROC , reinterpret_cast<LONG_PTR>(StaticProc));
-#endif
-    bFirstView = false;
-    return false;
-}
+// #ifdef _WIN64
+//     DefStaticProc = (WNDPROC)GetWindowLongPtr(hwnd , GWLP_WNDPROC);
+//     SetWindowLongPtr(hwnd , GWLP_WNDPROC , reinterpret_cast<LONG_PTR>(StaticProc));
+// #else
+//     DefStaticProc = (WNDPROC)GetWindowLongPtr(hwnd , GWL_WNDPROC);
+//     SetWindowLongPtr(hwnd , GWL_WNDPROC , reinterpret_cast<LONG_PTR>(StaticProc));
+// #endif
+//     bFirstView = false;
+//     return false;
+// }
 
 
 LRESULT CALLBACK MainWindowForWindows::StaticProc(HWND hwnd , UINT msg , WPARAM wp , LPARAM lp) {
