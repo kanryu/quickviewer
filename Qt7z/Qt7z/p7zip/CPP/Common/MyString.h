@@ -176,8 +176,10 @@ bool StringsAreEqualNoCase(const wchar_t *s1, const wchar_t *s2) throw();
 
 bool IsString1PrefixedByString2(const char *s1, const char *s2) throw();
 bool IsString1PrefixedByString2(const wchar_t *s1, const wchar_t *s2) throw();
+bool IsString1PrefixedByString2_NoCase_Ascii(const wchar_t *u, const char *a) throw();
 bool IsString1PrefixedByString2_NoCase(const wchar_t *s1, const wchar_t *s2) throw();
 
+#define MyStringCompare(s1, s2) wcscmp(s1, s2)
 int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2) throw();
 // int MyStringCompareNoCase_N(const wchar_t *s1, const wchar_t *s2, unsigned num) throw();
 
@@ -300,6 +302,7 @@ public:
   
   void Add_Space();
   void Add_Space_if_NotEmpty();
+  void Add_OptSpaced(const char *s);
   void Add_LF();
   void Add_PathSepar() { operator+=(CHAR_PATH_SEPARATOR); }
 
@@ -307,6 +310,8 @@ public:
   AString &operator+=(const AString &s);
   void AddAscii(const char *s) { operator+=(s); }
 
+  void Add_UInt32(UInt32 v);
+  
   void SetFrom(const char *s, unsigned len); // no check
   void SetFrom_CalcLen(const char *s, unsigned len);
   // void SetFromAscii(const char *s) { operator+=(s); }
@@ -452,9 +457,9 @@ class UString
 
   // ---------- forbidden functions ----------
   
-  UString &operator+=(char c);
+  // UString &operator+=(char c);
   UString &operator+=(unsigned char c);
-  UString &operator=(char c);
+  // UString &operator=(char c);
   UString &operator=(unsigned char c);
   UString(char c);
   UString(unsigned char c);
@@ -476,6 +481,7 @@ public:
   UString(wchar_t c);
   UString(const wchar_t *s);
   UString(const UString &s);
+  explicit UString(const char *s);
   ~UString() { MY_STRING_DELETE(_chars); }
 
   unsigned Len() const { return _len; }
@@ -516,9 +522,12 @@ public:
   }
 
   UString &operator=(wchar_t c);
+  UString &operator=(char c) { return (*this)=((wchar_t)c); }
   UString &operator=(const wchar_t *s);
   UString &operator=(const UString &s);
   void SetFromBstr(BSTR s);
+  UString &operator=(const char *s);
+  UString &operator=(const AString &s) { return operator=(s.Ptr()); }
 
   UString &operator+=(wchar_t c)
   {
@@ -532,6 +541,8 @@ public:
     return *this;
   }
 
+  UString &operator+=(char c) { return (*this)+=((wchar_t)(unsigned char)c); }
+
   void Add_Space();
   void Add_Space_if_NotEmpty();
   void Add_LF();
@@ -539,6 +550,10 @@ public:
 
   UString &operator+=(const wchar_t *s);
   UString &operator+=(const UString &s);
+  UString &operator+=(const char *s);
+  UString &operator+=(const AString &s) { return operator+=(s.Ptr()); }
+
+  void Add_UInt32(UInt32 v);
 
   void SetFrom(const wchar_t *s, unsigned len); // no check
 
@@ -689,6 +704,8 @@ public:
 
   // operator const wchar_t *() const { return _chars; }
   const wchar_t *GetRawPtr() const { return _chars; }
+
+  int Compare(const wchar_t *s) const { return wcscmp(_chars, s); }
 
   wchar_t *GetBuf(unsigned minLen)
   {

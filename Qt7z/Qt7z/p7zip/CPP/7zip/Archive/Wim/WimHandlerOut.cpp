@@ -671,7 +671,7 @@ void CHeader::SetDefaultFields(bool useLZX)
     ChunkSize = kChunkSize;
     ChunkSizeBits = kChunkSizeBits;
   }
-  g_RandomGenerator.Generate(Guid, 16);
+  MY_RAND_GEN(Guid, 16);
   PartNumber = 1;
   NumParts = 1;
   NumImages = 1;
@@ -1828,7 +1828,7 @@ STDMETHODIMP CHandler::UpdateItems(ISequentialOutStream *outSeqStream, UInt32 nu
     curPos += kStreamInfoSize;
   }
 
-  AString xml = "<WIM>";
+  AString xml ("<WIM>");
   AddTagUInt64_ToString(xml, "TOTALBYTES", curPos);
   for (i = 0; i < trees.Size(); i++)
   {

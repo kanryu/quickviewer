@@ -9,11 +9,19 @@
 
 #include "../../Common/CreateCoder.h"
 
-#include "ZipIn.h"
 #include "ZipCompressionMode.h"
+#include "ZipIn.h"
 
 namespace NArchive {
 namespace NZip {
+
+const unsigned kNumMethodNames1 = NFileHeader::NCompressionMethod::kLZMA + 1;
+const unsigned kMethodNames2Start = NFileHeader::NCompressionMethod::kZstd;
+const unsigned kNumMethodNames2 = NFileHeader::NCompressionMethod::kWzAES + 1 - kMethodNames2Start;
+
+extern const char * const kMethodNames1[kNumMethodNames1];
+extern const char * const kMethodNames2[kNumMethodNames2];
+
 
 class CHandler:
   public IInArchive,
@@ -63,7 +71,7 @@ private:
     m_WriteNtfsTimeExtra = true;
     _removeSfxBlock = false;
     m_ForceLocal = false;
-    m_ForceUtf8 = false;
+    m_ForceUtf8 = true;
     _forceCodePage = false;
     _specifiedCodePage = CP_OEMCP;
   }

@@ -71,7 +71,7 @@ static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageM
 
 static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
 {
-    return s1 > s2;
+    return m1.filename() > m2.filename();
 }
 
 #endif

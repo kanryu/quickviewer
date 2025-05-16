@@ -1,6 +1,6 @@
 // Windows/PropVariant.cpp
 
-#include "StdAfx.h"
+#include "../myWindows/StdAfx.h"
 
 #include "../Common/Defs.h"
 
@@ -91,7 +91,7 @@ CPropVariant& CPropVariant::operator=(BSTR bstrSrc)
   return *this;
 }
 
-static const char *kMemException = "out of memory";
+static const char * const kMemException = "out of memory";
 
 CPropVariant& CPropVariant::operator=(LPCOLESTR lpszSrc)
 {

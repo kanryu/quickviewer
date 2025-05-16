@@ -80,7 +80,9 @@ static const UInt32 kHistorySize = 1 << 20;
 static const UInt32 kWindowReservSize = (1 << 22) + 256;
 
 CDecoder::CDecoder():
-  m_IsSolid(false)
+  m_IsSolid(false),
+  _solidAllowed(false),
+  m_TablesOK(false)
 {
 }
 
@@ -100,8 +102,9 @@ UInt32 CDecoder::ReadBits(unsigned numBits) { return m_InBitStream.ReadBits(numB
 
 bool CDecoder::ReadTables(void)
 {
+  m_TablesOK = false;
   Byte levelLevels[kLevelTableSize];
-  Byte newLevels[kMaxTableSize];
+  Byte lens[kMaxTableSize];
   m_AudioMode = (ReadBits(1) == 1);
 
   if (ReadBits(1) == 0)
@@ -131,16 +134,29 @@ bool CDecoder::ReadTables(void)
     UInt32 sym = m_LevelDecoder.Decode(&m_InBitStream);
     if (sym < kTableDirectLevels)
     {
-      newLevels[i] = (Byte)((sym + m_LastLevels[i]) & kLevelMask);
+      lens[i] = (Byte)((sym + m_LastLevels[i]) & kLevelMask);
       i++;
     }
     else
     {
       if (sym == kTableLevelRepNumber)
       {
-        unsigned t = ReadBits(2) + 3;
-        for (unsigned reps = t; reps > 0 && i < numLevels; reps--, i++)
-          newLevels[i] = newLevels[i - 1];
+        unsigned num = ReadBits(2) + 3;
+        if (i == 0)
+        {
+          // return false;
+          continue; // original unRAR
+        }
+        num += i;
+        if (num > numLevels)
+        {
+          // return false;
+          num = numLevels; // original unRAR
+        }
+        Byte v = lens[(size_t)i - 1];
+        do
+          lens[i++] = v;
+        while (i < num);
       }
       else
       {
@@ -151,8 +167,15 @@ bool CDecoder::ReadTables(void)
           num = ReadBits(7) + 11;
         else
           return false;
-        for (; num > 0 && i < numLevels; num--)
-          newLevels[i++] = 0;
+        num += i;
+        if (num > numLevels)
+        {
+          // return false;
+          num = numLevels; // original unRAR
+        }
+        do
+          lens[i++] = 0;
+        while (i < num);
       }
     }
   }
@@ -160,16 +183,17 @@ bool CDecoder::ReadTables(void)
   if (m_AudioMode)
     for (i = 0; i < m_NumChannels; i++)
     {
-      RIF(m_MMDecoders[i].Build(&newLevels[i * kMMTableSize]));
+      RIF(m_MMDecoders[i].Build(&lens[i * kMMTableSize]));
     }
   else
   {
-    RIF(m_MainDecoder.Build(&newLevels[0]));
-    RIF(m_DistDecoder.Build(&newLevels[kMainTableSize]));
-    RIF(m_LenDecoder.Build(&newLevels[kMainTableSize + kDistTableSize]));
+    RIF(m_MainDecoder.Build(&lens[0]));
+    RIF(m_DistDecoder.Build(&lens[kMainTableSize]));
+    RIF(m_LenDecoder.Build(&lens[kMainTableSize + kDistTableSize]));
   }
   
-  memcpy(m_LastLevels, newLevels, kMaxTableSize);
+  memcpy(m_LastLevels, lens, kMaxTableSize);
+  m_TablesOK = true;
   return true;
 }
 
@@ -214,13 +238,12 @@ public:
 
 bool CDecoder::DecodeMm(UInt32 pos)
 {
-  while (pos-- > 0)
+  while (pos-- != 0)
   {
     UInt32 symbol = m_MMDecoders[m_MmFilter.CurrentChannel].Decode(&m_InBitStream);
-    if (symbol == 256)
-      return true;
-    if (symbol >= kMMTableSize)
-      return false;
+    if (symbol >= 256)
+      return symbol == 256;
+
     /*
     Byte byPredict = m_Predictor.Predict();
     Byte byReal = (Byte)(byPredict - (Byte)symbol);
@@ -248,6 +271,8 @@ bool CDecoder::DecodeLz(Int32 pos)
     }
     else if (sym >= kMatchNumber)
     {
+      if (sym >= kMainTableSize)
+        return false;
       sym -= kMatchNumber;
       length = kNormalMatchMinLen + UInt32(kLenStart[sym]) +
         m_InBitStream.ReadBits(kLenDirectBits[sym]);
@@ -296,10 +321,9 @@ bool CDecoder::DecodeLz(Int32 pos)
         m_InBitStream.ReadBits(kLen2DistDirectBits[sym]);
       length = 2;
     }
-    else if (sym == kReadTableNumber)
+    else // (sym == kReadTableNumber)
       return true;
-    else
-      return false;
+      
     m_RepDists[m_RepDistPtr++ & 3] = distance;
     m_LastLength = length;
     if (!m_OutWindowStream.CopyBlock(distance, length))
@@ -314,6 +338,10 @@ HRESULT CDecoder::CodeReal(ISequentialInStream *inStream, ISequentialOutStream *
 {
   if (inSize == NULL || outSize == NULL)
     return E_INVALIDARG;
+
+  if (m_IsSolid && !_solidAllowed)
+    return S_FALSE;
+  _solidAllowed = false;
 
   if (!m_OutWindowStream.Create(kHistorySize))
     return E_OUTOFMEMORY;
@@ -338,11 +366,14 @@ HRESULT CDecoder::CodeReal(ISequentialInStream *inStream, ISequentialOutStream *
       if (m_InBitStream.GetProcessedSize() + 2 <= m_PackSize) // test it: probably incorrect;
         if (!ReadTables())
           return S_FALSE;
+      _solidAllowed = true;
       return S_OK;
     }
     if (!ReadTables())
       return S_FALSE;
   }
+  if (!m_TablesOK)
+    return S_FALSE;
 
   UInt64 startPos = m_OutWindowStream.GetProcessedSize();
   while (pos < unPackSize)
@@ -378,6 +409,7 @@ HRESULT CDecoder::CodeReal(ISequentialInStream *inStream, ISequentialOutStream *
 
   if (!ReadLastTables())
     return S_FALSE;
+  _solidAllowed = true;
   return m_OutWindowStream.Flush();
 }
 
