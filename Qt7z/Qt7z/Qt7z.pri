@@ -19,6 +19,20 @@ win32 {
         $$PWD/lib7zip/src \
 
     HEADERS += \
+        $$PWD/lib7zip/src/7ZipArchiveOpenCallback.h \
+        $$PWD/lib7zip/src/7ZipCodecInfo.h \
+        $$PWD/lib7zip/src/7ZipCompressCodecsInfo.h \
+        $$PWD/lib7zip/src/7ZipDllHandler.h \
+        $$PWD/lib7zip/src/7ZipFormatInfo.h \
+        $$PWD/lib7zip/src/7ZipFunctions.h \
+        $$PWD/lib7zip/src/7ZipInStreamWrapper.h \
+        $$PWD/lib7zip/src/GUIDs.h \
+        $$PWD/lib7zip/src/HelperFuncs.h \
+        $$PWD/lib7zip/src/OSFunctions.h \
+        $$PWD/lib7zip/src/OSFunctions_OS2.h \
+        $$PWD/lib7zip/src/OSFunctions_UnixLike.h \
+        $$PWD/lib7zip/src/OSFunctions_Win32.h \
+        $$PWD/lib7zip/src/lib7zip.h \
         $$PWD/7zip/CPP/Common/AutoPtr.h \
         $$PWD/7zip/CPP/Common/C_FileIO.h \
         $$PWD/7zip/CPP/Common/ComTry.h \
@@ -67,15 +81,15 @@ win32 {
         $$PWD/lib7zip/src/7zipLibrary.cpp \
         $$PWD/lib7zip/src/7ZipObjectPtrArray.cpp \
         $$PWD/lib7zip/src/7ZipOpenArchive.cpp \
-        $$PWD/lib7zip/src/GUIDs.cpp \
         $$PWD/lib7zip/src/HelperFuncs.cpp \
+        $$PWD/lib7zip/src/GUIDs.cpp \
         $$PWD/lib7zip/src/OSFunctions_OS2.cpp \
         $$PWD/lib7zip/src/OSFunctions_UnixLike.cpp \
         $$PWD/lib7zip/src/OSFunctions_Win32.cpp \
         $$PWD/7zip/CPP/Common/MyWindows.cpp \
         $$PWD/7zip/CPP/Windows/PropVariant.cpp \
 
-    PRECOMPILED_HEADER += $$PWD/7zip/CPP/Common/StdAfx.h
+    PRECOMPILED_HEADER += $$PWD/7zip/CPP/Common/StdAfx.h $$PWD/7zip/CPP/Common/MyWindows.h
     precompile_header:!isEmpty(PRECOMPILED_HEADER) {
         DEFINES += USING_PCH
     }
@@ -107,6 +121,19 @@ LIBS += -ldl
        $$PWD/lib7zip/src \
 
     HEADERS += \
+        $$PWD/lib7zip/src/7ZipArchiveOpenCallback.h \
+        $$PWD/lib7zip/src/7ZipCodecInfo.h \
+        $$PWD/lib7zip/src/7ZipCompressCodecsInfo.h \
+        $$PWD/lib7zip/src/7ZipDllHandler.h \
+        $$PWD/lib7zip/src/7ZipFormatInfo.h \
+        $$PWD/lib7zip/src/7ZipFunctions.h \
+        $$PWD/lib7zip/src/7ZipInStreamWrapper.h \
+        $$PWD/lib7zip/src/HelperFuncs.h \
+        $$PWD/lib7zip/src/OSFunctions.h \
+        $$PWD/lib7zip/src/OSFunctions_OS2.h \
+        $$PWD/lib7zip/src/OSFunctions_UnixLike.h \
+        $$PWD/lib7zip/src/OSFunctions_Win32.h \
+        $$PWD/lib7zip/src/lib7zip.h \
         $$PWD/p7zip/CPP/Common/AutoPtr.h \
         $$PWD/p7zip/CPP/Common/C_FileIO.h \
         $$PWD/p7zip/CPP/Common/ComTry.h \
