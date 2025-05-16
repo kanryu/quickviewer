@@ -1066,6 +1066,7 @@ static const char * const k_Formats_with_simple_signuature[] =
   , "rar"
   , "bzip2"
   , "gzip"
+  , "lzip"
   , "cab"
   , "wim"
   , "rpm"
@@ -1481,6 +1482,12 @@ public:
     Offset = 0;
   }
 };
+
+bool CExtractCallback_To_OpenCallback::SetFileSymLinkAttrib()
+{
+  /* DO NOTHING */
+  return S_OK;
+}
 
 STDMETHODIMP CExtractCallback_To_OpenCallback::SetTotal(UInt64 /* size */)
 {

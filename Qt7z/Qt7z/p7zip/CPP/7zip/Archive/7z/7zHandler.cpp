@@ -450,6 +450,103 @@ HRESULT CHandler::SetMethodToProp(CNum folderIndex, PROPVARIANT *prop) const
           GetStringForSizeValue(dest, GetUi32(props + 1));
         }
       }
+      else if (id == k_BROTLI)
+      {
+        name = "Brotli";
+        if (propsSize == 3)
+        {
+          char *dest = s;
+          *dest++ = 'v';
+          ConvertUInt32ToString(props[0], dest);
+          dest += MyStringLen(dest);
+          *dest++ = '.';
+          ConvertUInt32ToString(props[1], dest);
+          dest += MyStringLen(dest);
+          *dest++ = ',';
+          *dest++ = 'l';
+          ConvertUInt32ToString(props[2], dest);
+          dest += MyStringLen(dest);
+        }
+      }
+      else if (id == k_LIZARD)
+      {
+        name = "Lizard";
+        if (propsSize == 3)
+        {
+          char *dest = s;
+          *dest++ = 'v';
+          ConvertUInt32ToString(props[0], dest);
+          dest += MyStringLen(dest);
+          *dest++ = '.';
+          ConvertUInt32ToString(props[1], dest);
+          dest += MyStringLen(dest);
+          *dest++ = ',';
+          *dest++ = 'l';
+          ConvertUInt32ToString(props[2], dest);
+          dest += MyStringLen(dest);
+        }
+      }
+      else if (id == k_LZ4)
+      {
+        name = "LZ4";
+        if (propsSize == 3 || propsSize == 5)
+        {
+          char *dest = s;
+          *dest++ = 'v';
+          ConvertUInt32ToString(props[0], dest);
+          dest += MyStringLen(dest);
+          *dest++ = '.';
+          ConvertUInt32ToString(props[1], dest);
+          dest += MyStringLen(dest);
+          *dest++ = ',';
+          *dest++ = 'l';
+          ConvertUInt32ToString(props[2], dest);
+          dest += MyStringLen(dest);
+        }
+      }
+      else if (id == k_LZ5)
+      {
+        name = "LZ5";
+        if (propsSize == 3 || propsSize == 5)
+        {
+          char *dest = s;
+          *dest++ = 'v';
+          ConvertUInt32ToString(props[0], dest);
+          dest += MyStringLen(dest);
+          *dest++ = '.';
+          ConvertUInt32ToString(props[1], dest);
+          dest += MyStringLen(dest);
+          *dest++ = ',';
+          *dest++ = 'l';
+          ConvertUInt32ToString(props[2], dest);
+          dest += MyStringLen(dest);
+        }
+      }
+      else if (id == k_ZSTD)
+      {
+        name = "ZSTD";
+        if (propsSize == 3 || propsSize == 5)
+        {
+          char *dest = s;
+          UInt32 l = props[2];
+          *dest++ = 'v';
+          ConvertUInt32ToString(props[0], dest);
+          dest += MyStringLen(dest);
+          *dest++ = '.';
+          ConvertUInt32ToString(props[1], dest);
+          dest += MyStringLen(dest);
+          *dest++ = ',';
+          if (l <= 22) {
+            *dest++ = 'l';
+            ConvertUInt32ToString(l, dest);
+          } else {
+            *dest++ = 'f';
+            *dest++ = 'l';
+            ConvertUInt32ToString(l - 32, dest);
+          }
+          dest += MyStringLen(dest);
+        }
+      }
       else if (id == k_Delta)
       {
         name = "Delta";
@@ -540,7 +637,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
   */
   
   const CFileItem &item = _db.Files[index];
-  UInt32 index2 = index;
+  const UInt32 index2 = index;
 
   switch (propID)
   {
@@ -575,7 +672,7 @@ STDMETHODIMP CHandler::GetProperty(UInt32 index, PROPID propID, PROPVARIANT *val
     case kpidCTime:  SetFileTimeProp_From_UInt64Def(value, _db.CTime, index2); break;
     case kpidATime:  SetFileTimeProp_From_UInt64Def(value, _db.ATime, index2); break;
     case kpidMTime:  SetFileTimeProp_From_UInt64Def(value, _db.MTime, index2); break;
-    case kpidAttrib:  if (item.AttribDefined) PropVarEm_Set_UInt32(value, item.Attrib); break;
+    case kpidAttrib:  if (_db.Attrib.ValidAndDefined(index2)) PropVarEm_Set_UInt32(value, _db.Attrib.Vals[index2]); break;
     case kpidCRC:  if (item.CrcDefined) PropVarEm_Set_UInt32(value, item.Crc); break;
     case kpidEncrypted:  PropVarEm_Set_Bool(value, IsFolderEncrypted(_db.FileIndexToFolderIndexMap[index2])); break;
     case kpidIsAnti:  PropVarEm_Set_Bool(value, _db.IsItemAnti(index2)); break;

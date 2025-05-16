@@ -11,24 +11,26 @@ TARGET = zimg
 TEMPLATE = lib
 CONFIG += staticlib
 CONFIG += warn_off
-CONFIG += c++11
 
 DEFINES += ZIMG_X86
 
 win32-msvc* {
+    CONFIG += c++11
     QMAKE_CXXFLAGS += /wd4819 /wd4996
     !CONFIG(debug, debug|release) {
         QMAKE_CXXFLAGS += /GL /W3 /Gy /Gm- /Gd /Oi
     }
 }
 
-*g++* {
-    QMAKE_CXXFLAGS += -O2 -MD -MP -std=c++11
+*clang* || *g++* {
+    CONFIG += c++17
+    QMAKE_CXXFLAGS += -O2 -MD -MP -std=c++17 -include $$PWD/StdAfx.h
     !CONFIG(debug, debug|release) {
     }
 }
 
 macos {
+    CONFIG += c++11
     QMAKE_CXXFLAGS += -O2 -MD -MP -std=c++11
     !CONFIG(debug, debug|release) {
     }
@@ -148,7 +150,7 @@ win32-msvc* {
 
 }
 
-*g++* {
+*clang* || *g++* {
     SOURCES_SSE = \
             $$PWD/zimg/src/zimg/colorspace/operation_impl_sse.cpp \
             $$PWD/zimg/src/zimg/resize/resize_impl_sse.cpp \

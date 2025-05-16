@@ -1,6 +1,6 @@
 // MyWindows.cpp
 
-#include "StdAfx.h"
+#include "../myWindows/StdAfx.h"
 
 #ifndef _WIN32
 
