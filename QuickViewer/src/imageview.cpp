@@ -584,19 +584,29 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
 
 void ImageView::wheelEvent(QWheelEvent *event)
 {
+    int delta_y = event->angleDelta().y();
+    int delta = delta_y < 0 ? -Q_MOUSE_DELTA : delta_y > 0 ? Q_MOUSE_DELTA : 0;
     if(event->buttons() & Qt::RightButton
        || qApp->keyboardModifiers() & Qt::ControlModifier)
         return;
     if(m_loupeEnable) {
-        if(event->pixelDelta().y() < 0)
+        if(delta_y < 0)
             m_loupeFactor = qMax(1.5, m_loupeFactor-0.5);
-        if(event->pixelDelta().y() > 0)
+        if(delta_y > 0)
             m_loupeFactor += 0.5;
         readyForPaint();
         return;
     }
-    if(qApp->ScrollWithCursorWhenZooming())
+    if(qApp->ScrollWithCursorWhenZooming()) {
+        QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), event->buttons(), delta);
+        QAction* action = qApp->mouseActions().getActionByValue(mv);
+        if(action) {
+            action->trigger();
+            event->accept();
+            return;
+        }
         return;
+    }
     QGraphicsView::wheelEvent(event);
 }
 

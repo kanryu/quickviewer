@@ -313,7 +313,7 @@ static bool needContextMenu = false;
 
 void MainWindow::wheelEvent(QWheelEvent *e)
 {
-    int delta_y = e->pixelDelta().y();
+    int delta_y = e->angleDelta().y();
     int delta = delta_y < 0 ? -Q_MOUSE_DELTA : delta_y > 0 ? Q_MOUSE_DELTA : 0;
     QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), e->buttons(), delta);
     QAction* action = qApp->mouseActions().getActionByValue(mv);
