@@ -412,7 +412,8 @@ void QVApplication::loadSettings()
     m_backgroundColor2 = QColor(m_settings->value("BackgroundColor2", "0x5e5e5e").toString().toUInt(nullptr, 16));
     m_useCheckeredPattern  = m_settings->value("UseCheckeredPattern", true).toBool();
     m_dontEnlargeSmallImagesOnFitting  = m_settings->value("DontEnlargeSmallImagesOnFitting", true).toBool();
-    m_showFullscreenSignage  = m_settings->value("ShowFullscreenSignage", true).toBool();
+    m_showFullscreenSignage  = m_settings->value("ShowFullscreenSignage", false).toBool();
+    m_dontShrinkForLargeImage  = m_settings->value("DontShrinkForLargeImage", true).toBool();
 //    m_showFullscreenTitleBar = m_settings->value("ShowFullscreenTitleBar", true).toBool();
     m_useDirect2D = m_settings->value("UseDirect2D", false).toBool();
     m_useFastDCTForJPEG = m_settings->value("UseFastDCTForJPEG", true).toBool();
@@ -591,6 +592,7 @@ void QVApplication::saveSettings()
     m_settings->setValue("UseCheckeredPattern", m_useCheckeredPattern);
     m_settings->setValue("DontEnlargeSmallImagesOnFitting", m_dontEnlargeSmallImagesOnFitting);
     m_settings->setValue("ShowFullscreenSignage", m_showFullscreenSignage);
+    m_settings->setValue("DontShrinkForLargeImage", m_dontShrinkForLargeImage);
 //    m_settings->setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
     m_settings->setValue("UseDirect2D", m_useDirect2D);
     m_settings->setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);

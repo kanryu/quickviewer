@@ -1093,7 +1093,7 @@
     <message>
         <location filename="../src/mainwindow.ui" line="331"/>
         <location filename="../src/mainwindow.ui" line="872"/>
-        <location filename="../src/mainwindow.cpp" line="1084"/>
+        <location filename="../src/mainwindow.cpp" line="1085"/>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
         <translation type="unfinished"></translation>
@@ -1750,50 +1750,50 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="495"/>
+        <location filename="../src/mainwindow.cpp" line="496"/>
         <source>Image file not found. Can&apos;t be opened</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1060"/>
+        <location filename="../src/mainwindow.cpp" line="1061"/>
         <source>Image file was not found. Can&apos;t be opened.</source>
         <comment>Text to display in the status bar when failed to open the specified Volume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1381"/>
+        <location filename="../src/mainwindow.cpp" line="1382"/>
         <source>All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1384"/>
+        <location filename="../src/mainwindow.cpp" line="1385"/>
         <source>Please select the image or archive</source>
         <comment>Title of the dialog displayed when opening a file with OpenFileFolder</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1599"/>
-        <location filename="../src/mainwindow.cpp" line="1635"/>
+        <location filename="../src/mainwindow.cpp" line="1600"/>
+        <location filename="../src/mainwindow.cpp" line="1636"/>
         <source>Confirmation</source>
         <comment>Confirm deleting image file on MessageBox title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1604"/>
+        <location filename="../src/mainwindow.cpp" line="1605"/>
         <source>Are you sure you want to move the image to Recycle Bin?</source>
         <comment>Confirm putting displayed file in Recycle Box Message Box body</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1640"/>
+        <location filename="../src/mainwindow.cpp" line="1641"/>
         <source>Are you sure you want to delete this image?</source>
         <comment>Confirm deleting image file on Message Box body</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1782"/>
+        <location filename="../src/mainwindow.cpp" line="1783"/>
         <source>Bookmark Saved.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2047,39 +2047,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="192"/>
+        <location filename="../src/optionsdialog.ui" line="195"/>
+        <source>Keeps even large images at their original size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.ui" line="202"/>
         <source>Speed up JPEG loading in exchange for quality of display.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="195"/>
+        <location filename="../src/optionsdialog.ui" line="205"/>
         <source>Use fast DCT for loading JPEG</source>
         <extracomment>Option to use TJFLAG_FASTDCT on libjpeg-turbo</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="202"/>
+        <location filename="../src/optionsdialog.ui" line="212"/>
         <source>It takes time to develop all contents, but switching of images becomes faster.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="205"/>
+        <location filename="../src/optionsdialog.ui" line="215"/>
         <source>Extract solid archives to temporary directory</source>
         <extracomment>Flag to expand contents of solid compressed archive to temporary directory</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="212"/>
+        <location filename="../src/optionsdialog.ui" line="222"/>
         <source>Prohibit multiple running (Restart is required)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="219"/>
+        <location filename="../src/optionsdialog.ui" line="236"/>
         <source>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="222"/>
+        <location filename="../src/optionsdialog.ui" line="239"/>
         <source>Rendering with Direct2D (Restart is required)</source>
         <extracomment>Normally it is drawing with Windows GDI, but switching to drawing by Direct2D. QPA is loaded at startup.</extracomment>
         <translation type="unfinished"></translation>
@@ -2091,157 +2096,162 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="236"/>
+        <location filename="../src/optionsdialog.ui" line="192"/>
+        <source>(Performance degradation)Disables automatic shrinking of images on loading.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.ui" line="246"/>
         <source>Activate the window when an image dropped on</source>
         <comment>Check box to activate the window when an image dropped on</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="243"/>
+        <location filename="../src/optionsdialog.ui" line="253"/>
         <source>Randomly display in slideshow</source>
         <extracomment>The text of the check box. Slideshow usually moves to the next page in the current sorting order, but displays it in random order</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="250"/>
+        <location filename="../src/optionsdialog.ui" line="260"/>
         <source>QuickViewer theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="264"/>
+        <location filename="../src/optionsdialog.ui" line="274"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="269"/>
+        <location filename="../src/optionsdialog.ui" line="279"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="286"/>
+        <location filename="../src/optionsdialog.ui" line="296"/>
         <source>BackgroundPattern</source>
         <extracomment>Title of frame to change background color or pattern</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="307"/>
+        <location filename="../src/optionsdialog.ui" line="317"/>
         <source>BackgroundColor1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="333"/>
+        <location filename="../src/optionsdialog.ui" line="343"/>
         <source>Use checkered pattern</source>
         <extracomment>Function to make the background of the application a pattern of chessboard</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="340"/>
+        <location filename="../src/optionsdialog.ui" line="350"/>
         <source>BackgroundColor2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="399"/>
+        <location filename="../src/optionsdialog.ui" line="409"/>
         <source>Tool bars</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="414"/>
+        <location filename="../src/optionsdialog.ui" line="424"/>
         <source>Hide permanently</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="420"/>
+        <location filename="../src/optionsdialog.ui" line="430"/>
         <source>Hide menu bar permanently</source>
         <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="427"/>
+        <location filename="../src/optionsdialog.ui" line="437"/>
         <source>Hide tool bar permanently</source>
         <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="434"/>
+        <location filename="../src/optionsdialog.ui" line="444"/>
         <source>Hide page bar permanently</source>
         <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="450"/>
+        <location filename="../src/optionsdialog.ui" line="460"/>
         <source>Hide in full screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="456"/>
+        <location filename="../src/optionsdialog.ui" line="466"/>
         <source>Hide menu bar in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="463"/>
+        <location filename="../src/optionsdialog.ui" line="473"/>
         <source>Hide tool bar in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="470"/>
+        <location filename="../src/optionsdialog.ui" line="480"/>
         <source>Hide page bar in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="477"/>
+        <location filename="../src/optionsdialog.ui" line="487"/>
         <source>Hide scroll bars in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="504"/>
+        <location filename="../src/optionsdialog.ui" line="514"/>
         <source>Caption Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="531"/>
+        <location filename="../src/optionsdialog.ui" line="541"/>
         <source>Window Title Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="537"/>
-        <location filename="../src/optionsdialog.ui" line="1444"/>
+        <location filename="../src/optionsdialog.ui" line="547"/>
+        <location filename="../src/optionsdialog.ui" line="1454"/>
         <source>Normal style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="966"/>
-        <location filename="../src/optionsdialog.ui" line="1873"/>
+        <location filename="../src/optionsdialog.ui" line="976"/>
+        <location filename="../src/optionsdialog.ui" line="1883"/>
         <source>IrfanView style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="1395"/>
-        <location filename="../src/optionsdialog.ui" line="2302"/>
+        <location filename="../src/optionsdialog.ui" line="1405"/>
+        <location filename="../src/optionsdialog.ui" line="2312"/>
         <source>User Defined Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="1412"/>
-        <location filename="../src/optionsdialog.ui" line="2319"/>
+        <location filename="../src/optionsdialog.ui" line="1422"/>
+        <location filename="../src/optionsdialog.ui" line="2329"/>
         <source>Display Sample:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="1438"/>
+        <location filename="../src/optionsdialog.ui" line="1448"/>
         <source>StatusBar Caption Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="2339"/>
+        <location filename="../src/optionsdialog.ui" line="2349"/>
         <source>Format Usage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.ui" line="2355"/>
+        <location filename="../src/optionsdialog.ui" line="2365"/>
         <source>Show the usage</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2258,7 +2268,7 @@
 <context>
     <name>QLanguageSelector</name>
     <message>
-        <location filename="../src/qlanguageselector/qlanguageselector.cpp" line="149"/>
+        <location filename="../src/qlanguageselector/qlanguageselector.cpp" line="148"/>
         <source>Always use text translation</source>
         <comment>Menu text that uses textual translation rather than regular qm format</comment>
         <translation type="unfinished"></translation>

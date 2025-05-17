@@ -438,7 +438,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         ic.Info = info;
         if(src.isNull())
             return ic;
-        if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
+        if(qApp->DontShrinkForLargeImage() || (src.width() <= maxTextureSize && src.height() <= maxTextureSize)) {
             ic = ImageContent(src, path, baseSize, info, bytes.length());
         } else {
             // resample for too big images
@@ -495,7 +495,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
 
     //        ImageContent ic(QPixmap::fromImage(half), path, srcSizeReal, info);
             ic.Image = half;
-            ic.ImportSize = srcSizeReal;
+            ic.ImportSize = half.size();
         }
         // CPU resizing before Page Viewing
         if(!pageSize.isEmpty() && !ic.Image.isNull()) {

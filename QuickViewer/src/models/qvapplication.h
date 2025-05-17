@@ -47,6 +47,7 @@ class QVApplication : public QApplication
     Q_PROPERTY(bool UseCheckeredPattern READ UseCheckeredPattern WRITE setUseCheckeredPattern)
     Q_PROPERTY(bool DontEnlargeSmallImagesOnFitting READ DontEnlargeSmallImagesOnFitting WRITE setDontEnlargeSmallImagesOnFitting)
     Q_PROPERTY(bool ShowFullscreenSignage READ ShowFullscreenSignage WRITE setShowFullscreenSignage)
+    Q_PROPERTY(bool DontShrinkForLargeImage READ DontShrinkForLargeImage WRITE setDontShrinkForLargeImage)
 //    Q_PROPERTY(bool ShowFullscreenTitleBar READ ShowFullscreenTitleBar WRITE setShowFullscreenTitleBar)
 
     // DualView
@@ -147,6 +148,8 @@ public:
     void setUseCheckeredPattern (bool useCheckeredPattern) { m_useCheckeredPattern = useCheckeredPattern; }
     bool ShowFullscreenSignage() { return m_showFullscreenSignage; }
     void setShowFullscreenSignage (bool showFullscreenSignage) { m_showFullscreenSignage = showFullscreenSignage; }
+    bool DontShrinkForLargeImage() { return m_dontShrinkForLargeImage; }
+    void setDontShrinkForLargeImage (bool dontShrinkForLargeImage) { m_dontShrinkForLargeImage = dontShrinkForLargeImage; }
     bool UseDirect2D() { return m_useDirect2D; }
     void setUseDirect2D(bool useDirect2D) { m_useDirect2D = useDirect2D; }
     bool ShowPanelSeparateWindow() { return m_showPanelSeparateWindow; }
@@ -377,6 +380,7 @@ private:
     bool m_useCheckeredPattern;
     bool m_dontEnlargeSmallImagesOnFitting;
     bool m_showFullscreenSignage;
+    bool m_dontShrinkForLargeImage;
 //    bool m_showFullscreenTitleBar;
     bool m_useDirect2D;
     bool m_useFastDCTForJPEG;
