@@ -111,7 +111,7 @@ void ManageDatabaseDialog::resetCatalogList()
             item->setText(1, tr("approach to", "Representation of time indicating that the catalog is not currently created and will be generated from now"));
             item->setText(2, catalog.path);
             item->setData(0, Qt::UserRole, cnt--);
-            item->setBackgroundColor(0, QColor("lightgreen"));
+            item->setBackground(0, QBrush(QColor("lightgreen")));
             QFont font = item->font(0);
             font.setItalic(true);
             item->setFont(0, font);

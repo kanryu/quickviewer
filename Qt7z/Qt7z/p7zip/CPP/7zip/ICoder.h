@@ -104,24 +104,56 @@ namespace NCoderPropID
   enum EEnum
   {
     kDefaultProp = 0,
-    kDictionarySize,
-    kUsedMemorySize,
-    kOrder,
-    kBlockSize,
-    kPosStateBits,
-    kLitContextBits,
-    kLitPosBits,
-    kNumFastBytes,
-    kMatchFinder,
-    kMatchFinderCycles,
-    kNumPasses,
-    kAlgorithm,
-    kNumThreads,
-    kEndMarker,
-    kLevel,
-    kReduceSize // estimated size of data that will be compressed. Encoder can use this value to reduce dictionary size.
+    kDictionarySize,    // VT_UI4
+    kUsedMemorySize,    // VT_UI4
+    kOrder,             // VT_UI4
+    kBlockSize,         // VT_UI4 or VT_UI8
+    kPosStateBits,      // VT_UI4
+    kLitContextBits,    // VT_UI4
+    kLitPosBits,        // VT_UI4
+    kNumFastBytes,      // VT_UI4
+    kMatchFinder,       // VT_BSTR
+    kMatchFinderCycles, // VT_UI4
+    kNumPasses,         // VT_UI4
+    kAlgorithm,         // VT_UI4
+    kNumThreads,        // VT_UI4
+    kEndMarker,         // VT_BOOL
+    kLevel,             // VT_UI4
+    kReduceSize,        // VT_UI8 : it's estimated size of largest data stream that will be compressed
+                        //   encoder can use this value to reduce dictionary size and allocate data buffers
+
+    kExpectedDataSize,  // VT_UI8 : for ICompressSetCoderPropertiesOpt :
+                        //   it's estimated size of current data stream
+                        //   real data size can differ from that size
+                        //   encoder can use this value to optimize encoder initialization
+
+    kBlockSize2,        // VT_UI4 or VT_UI8
+    kCheckSize,         // VT_UI4 : size of digest in bytes
+    kFilter,            // VT_BSTR
+    kMemUse,            // VT_UI8
+
+    /* zstd props */
+    kStrategy,          // VT_UI4 1=ZSTD_fast, 2=ZSTD_dfast, 3=ZSTD_greedy, 4=ZSTD_lazy, 5=ZSTD_lazy2, 6=ZSTD_btlazy2, 7=ZSTD_btopt, 8=ZSTD_btultra
+    kFast,              // VT_UI4 The minimum fast is 1 and the maximum is 64 (default: unused)
+    kLong,              // VT_UI4 The minimum long is 10 (1KiB) and the maximum is 30 (1GiB) on x32 and 31 (2GiB) on x64
+    kWindowLog,         // VT_UI4 The minimum long is 10 (1KiB) and the maximum is 30 (1GiB) on x32 and 31 (2GiB) on x64
+    kHashLog,           // VT_UI4 The minimum hlog is 6 (64 B) and the maximum is 26 (128 MiB).
+    kChainLog,          // VT_UI4 The minimum clog is 6 (64 B) and the maximum is 28 (256 MiB)
+    kSearchLog,         // VT_UI4 The minimum slog is 1 and the maximum is 26
+    kMinMatch,          // VT_UI4 The minimum slen is 3 and the maximum is 7.
+    kTargetLen,         // VT_UI4 The minimum tlen is 0 and the maximum is 999.
+    kOverlapLog,        // VT_UI4 The minimum ovlog is 0 and the maximum is 9.  (default: 6)
+    kLdmHashLog,        // VT_UI4 The minimum ldmhlog is 6 and the maximum is 26 (default: 20).
+    kLdmSearchLength,   // VT_UI4 The minimum ldmslen is 4 and the maximum is 4096 (default: 64).
+    kLdmBucketSizeLog,  // VT_UI4 The minimum ldmblog is 0 and the maximum is 8 (default: 3).
+    kLdmHashRateLog    // VT_UI4 The default value is wlog - ldmhlog.
   };
 }
+
+CODER_INTERFACE(ICompressSetCoderPropertiesOpt, 0x1F)
+{
+  STDMETHOD(SetCoderPropertiesOpt)(const PROPID *propIDs, const PROPVARIANT *props, UInt32 numProps) PURE;
+};
 
 CODER_INTERFACE(ICompressSetCoderProperties, 0x20)
 {
@@ -170,6 +202,10 @@ CODER_INTERFACE(ICompressSetFinishMode, 0x26)
     1 : full decoding. The stream must be finished at the end of decoding. */
 };
 
+CODER_INTERFACE(ICompressGetInStreamProcessedSize2, 0x27)
+{
+  STDMETHOD(GetInStreamProcessedSize2)(UInt32 streamIndex, UInt64 *value) PURE;
+};
 
 CODER_INTERFACE(ICompressGetSubStreamSize, 0x30)
 {

@@ -8,9 +8,9 @@
 
 using namespace NWindows;
 
-bool StringToBool(const UString &s, bool &res)
+bool StringToBool(const wchar_t *s, bool &res)
 {
-  if (s.IsEmpty() || (s[0] == '+' && s[1] == 0) || StringsAreEqualNoCase_Ascii(s, "ON"))
+  if (s[0] == 0 || (s[0] == '+' && s[1] == 0) || StringsAreEqualNoCase_Ascii(s, "ON"))
   {
     res = true;
     return true;
@@ -39,6 +39,14 @@ unsigned ParseStringToUInt32(const UString &srcString, UInt32 &number)
   const wchar_t *start = srcString;
   const wchar_t *end;
   number = ConvertStringToUInt32(start, &end);
+  return (unsigned)(end - start);
+}
+
+static unsigned ParseStringToUInt64(const UString &srcString, UInt64 &number)
+{
+  const wchar_t *start = srcString;
+  const wchar_t *end;
+  number = ConvertStringToUInt64(start, &end);
   return (unsigned)(end - start);
 }
 
@@ -95,7 +103,7 @@ static HRESULT StringToDictSize(const UString &s, NCOM::CPropVariant &destProp)
 {
   const wchar_t *end;
   UInt32 number = ConvertStringToUInt32(s, &end);
-  unsigned numDigits = (unsigned)(end - s);
+  unsigned numDigits = (unsigned)(end - s.Ptr());
   if (numDigits == 0 || s.Len() > numDigits + 1)
     return E_INVALIDARG;
   
@@ -144,17 +152,29 @@ static HRESULT PROPVARIANT_to_DictSize(const PROPVARIANT &prop, NCOM::CPropVaria
     return S_OK;
   }
   if (prop.vt == VT_BSTR)
-    return StringToDictSize(prop.bstrVal, destProp);
+  {
+    UString s;
+    s = prop.bstrVal;
+    return StringToDictSize(s, destProp);
+  }
   return E_INVALIDARG;
 }
 
 
-void CProps::AddProp32(PROPID propid, UInt32 level)
+void CProps::AddProp32(PROPID propid, UInt32 val)
 {
   CProp &prop = Props.AddNew();
   prop.IsOptional = true;
   prop.Id = propid;
-  prop.Value = (UInt32)level;
+  prop.Value = (UInt32)val;
+}
+
+void CProps::AddPropBool(PROPID propid, bool val)
+{
+  CProp &prop = Props.AddNew();
+  prop.IsOptional = true;
+  prop.Id = propid;
+  prop.Value = val;
 }
 
 class CCoderProps
@@ -251,7 +271,29 @@ static const CNameToPropID g_NameToPropID[] =
   { VT_UI4, "mt" },
   { VT_BOOL, "eos" },
   { VT_UI4, "x" },
-  { VT_UI4, "reduceSize" }
+  { VT_UI8, "reduce" },
+
+  { VT_UI8, "expect" },
+
+  { VT_UI4, "b" },
+  { VT_UI4, "check" },
+  { VT_BSTR, "filter" },
+  { VT_UI8, "memuse" },
+  
+  { VT_UI4, "strat" },
+  { VT_UI4, "fast" },
+  { VT_UI4, "long" },
+  { VT_UI4, "wlog" },
+  { VT_UI4, "hlog" },
+  { VT_UI4, "clog" },
+  { VT_UI4, "slog" },
+  { VT_UI4, "slen" },
+  { VT_UI4, "tlen" },
+  { VT_UI4, "ovlog" },
+  { VT_UI4, "ldmhlog" },
+  { VT_UI4, "ldmslen" },
+  { VT_UI4, "ldmblog" },
+  { VT_UI4, "ldmhevery" }
 };
 
 static int FindPropIdExact(const UString &name)
@@ -333,7 +375,8 @@ static bool IsLogSizeProp(PROPID propid)
     case NCoderPropID::kDictionarySize:
     case NCoderPropID::kUsedMemorySize:
     case NCoderPropID::kBlockSize:
-    case NCoderPropID::kReduceSize:
+    case NCoderPropID::kBlockSize2:
+    // case NCoderPropID::kReduceSize:
       return true;
   }
   return false;
@@ -366,9 +409,22 @@ HRESULT CMethodProps::SetParam(const UString &name, const UString &value)
     }
     else if (!value.IsEmpty())
     {
-      UInt32 number;
-      if (ParseStringToUInt32(value, number) == value.Len())
-        propValue = number;
+     if (nameToPropID.VarType == VT_UI4)
+      {
+        UInt32 number;
+        if (ParseStringToUInt32(value, number) == value.Len())
+          propValue = number;
+        else
+          propValue = value;
+      }
+      else if (nameToPropID.VarType == VT_UI8)
+      {
+        UInt64 number;
+        if (ParseStringToUInt64(value, number) == value.Len())
+          propValue = number;
+        else
+          propValue = value;
+      }
       else
         propValue = value;
     }
@@ -454,5 +510,7 @@ HRESULT COneMethodInfo::ParseMethodFromPROPVARIANT(const UString &realName, cons
   // -m{N}=method
   if (value.vt != VT_BSTR)
     return E_INVALIDARG;
-  return ParseMethodFromString(value.bstrVal);
+  UString s;
+  s = value.bstrVal;
+  return ParseMethodFromString(s);
 }

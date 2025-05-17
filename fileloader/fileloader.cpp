@@ -1,4 +1,5 @@
 #include "fileloader.h"
+#include <algorithm>
 #include <QImageReader>
 #include <QDebug>
 
@@ -77,7 +78,8 @@ bool IFileLoader::isAnimatedImageFile(QString path)
 
 void IFileLoader::sortFiles(QStringList &filenames)
 {
-    qSort(filenames.begin(), filenames.end(), caseInsensitiveLessThan);
+//    qSort(filenames.begin(), filenames.end(), caseInsensitiveLessThan);
+    std::sort(filenames.begin(), filenames.end(), caseInsensitiveLessThan);
 }
 
 #ifdef Q_OS_WIN

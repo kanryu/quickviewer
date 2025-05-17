@@ -4,5 +4,6 @@
 #define __STDAFX_H
 
 #include "Common.h"
+#include "MyWindows.h"
 
 #endif

@@ -21,7 +21,7 @@ ENDIF(WIN32 OR CMAKE_USE_PTHREADS_INIT)
 
 add_definitions(-DENV_HAVE_GCCVISIBILITYPATCH)
 
-SET(CMAKE_CXX_FLAGS "-fvisibility=hidden -fvisibility-inlines-hidden")
+SET(CMAKE_CXX_FLAGS "-fvisibility=hidden -fvisibility-inlines-hidden -std=gnu++11")
 
 add_subdirectory(7za)
 
@@ -30,6 +30,10 @@ add_subdirectory(7z_)
 add_subdirectory(7zr)
 
 add_subdirectory(Format7zFree  bin)
+
+add_subdirectory(Rar  bin/Codecs)
+
+add_subdirectory(SFXCon)
 
 find_package(wxWidgets COMPONENTS core base adv)
 

@@ -155,7 +155,7 @@ IArchiveExtractCallback::GetStream()
 if (IProgress::SetTotal() was called)
 {
   IProgress::SetCompleted(completeValue) uses
-    packSize   - for some stream formats (xz, gz, bz2, lzma, z, ppmd).
+    packSize   - for some stream formats (xz, gz, bz2, lz, lzma, z, ppmd).
     unpackSize - for another formats.
 }
 else
@@ -175,6 +175,7 @@ SetOperationResult()
   STDMETHOD(GetStream)(UInt32 index, ISequentialOutStream **outStream, Int32 askExtractMode) x; \
   STDMETHOD(PrepareOperation)(Int32 askExtractMode) x; \
   STDMETHOD(SetOperationResult)(Int32 opRes) x; \
+  virtual bool SetFileSymLinkAttrib() x; \
 
 ARCHIVE_INTERFACE_SUB(IArchiveExtractCallback, IProgress, 0x20)
 {

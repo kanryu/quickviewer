@@ -80,6 +80,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     ui->checkBoxHideToolBarInFullscreen->setChecked(qApp->HideToolBarInFullscreen());
     ui->checkBoxHidePageBarInFullscreen->setChecked(qApp->HidePageBarInFullscreen());
     ui->checkBoxHideScrollBarInFullscreen->setChecked(qApp->HideScrollBarInFullscreen());
+    ui->checkBoxDontShrinkForLargeImage->setChecked(qApp->DontShrinkForLargeImage());
 
     ui->checkBoxTopWindowWhenRunWithAssoc->setChecked(qApp->TopWindowWhenRunWithAssoc());
     ui->checkBoxTopWindowWhenDropped->setChecked(qApp->TopWindowWhenDropped());
@@ -146,6 +147,7 @@ void OptionsDialog::reflectResults()
     qApp->setHideToolBarInFullscreen(ui->checkBoxHideToolBarInFullscreen->isChecked());
     qApp->setHidePageBarInFullscreen(ui->checkBoxHidePageBarInFullscreen->isChecked());
     qApp->setHideScrollBarInFullscreen(ui->checkBoxHideScrollBarInFullscreen->isChecked());
+    qApp->setDontShrinkForLargeImage(ui->checkBoxDontShrinkForLargeImage->isChecked());
 
     qApp->setTopWindowWhenRunWithAssoc(ui->checkBoxTopWindowWhenRunWithAssoc->isChecked());
     qApp->setTopWindowWhenDropped(ui->checkBoxTopWindowWhenDropped->isChecked());
@@ -273,5 +275,8 @@ void OptionsDialog::onLineEditStatusBarUserStyle_textEdited(QString text)
 void OptionsDialog::onCheckBoxShowUsage_clicked(bool enabled)
 {
     ui->labelFormatUsage->setVisible(enabled);
+}
+void OptionsDialog::onCheckBoxDontShrinkForLargeImage_clicked(bool enabled)
+{
 }
 

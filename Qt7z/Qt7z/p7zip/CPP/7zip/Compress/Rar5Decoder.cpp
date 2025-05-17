@@ -72,6 +72,7 @@ CDecoder::CDecoder():
     _writtenFileSize(0),
     _dictSizeLog(0),
     _isSolid(false),
+    _solidAllowed(false),
     _wasInit(false),
     _inputBuf(NULL)
 {
@@ -196,6 +197,8 @@ HRESULT CDecoder::ExecuteFilter(const CFilter &f)
 
     default:
       _unsupportedFilter = true;
+      memset(_filterSrc, 0, f.Size);
+      // return S_OK;  // unrar
   }
 
   return WriteData(useDest ?
@@ -301,7 +304,11 @@ HRESULT CDecoder::AddFilter(CBitDecoder &_bitStream)
   UInt32 blockStart = ReadUInt32(_bitStream);
   f.Size = ReadUInt32(_bitStream);
 
-  // if (f.Size > ((UInt32)1 << 16)) _unsupportedFilter = true;
+  if (f.Size > ((UInt32)1 << 22))
+  {
+    _unsupportedFilter = true;
+    f.Size = 0;  // unrar 5.5.5
+  }
 
   f.Type = (Byte)_bitStream.ReadBits9fix(3);
   f.Channels = 0;
@@ -448,7 +455,7 @@ HRESULT CDecoder::ReadTables(CBitDecoder &_bitStream)
           // return S_FALSE;
           continue; // original unRAR
         }
-        Byte v = lens[i - 1];
+        Byte v = lens[(size_t)i - 1];
         do
           lens[i++] = v;
         while (i < num);
@@ -475,7 +482,7 @@ HRESULT CDecoder::ReadTables(CBitDecoder &_bitStream)
   _useAlignBits = false;
   // _useAlignBits = true;
   for (i = 0; i < kAlignTableSize; i++)
-    if (lens[kMainTableSize + kDistTableSize + i] != kNumAlignBits)
+    if (lens[kMainTableSize + kDistTableSize + (size_t)i] != kNumAlignBits)
     {
       _useAlignBits = true;
       break;
@@ -801,7 +808,10 @@ HRESULT CDecoder::CodeReal()
   */
 
   if (res == S_OK)
+  {
+    _solidAllowed = true;
     res = res2;
+  }
      
   if (res == S_OK && _unpackSize_Defined && _writtenFileSize != _unpackSize)
     return S_FALSE;
@@ -821,6 +831,9 @@ STDMETHODIMP CDecoder::Code(ISequentialInStream *inStream, ISequentialOutStream 
 {
   try
   {
+    if (_isSolid && !_solidAllowed)
+      return S_FALSE;
+    _solidAllowed = false;
     if (_dictSizeLog >= sizeof(size_t) * 8)
       return E_NOTIMPL;
 
@@ -862,22 +875,25 @@ STDMETHODIMP CDecoder::Code(ISequentialInStream *inStream, ISequentialOutStream 
       _numCorrectDistSymbols = newSizeLog * 2;
     }
 
-    if (!_window || _winSize != newSize)
+    // If dictionary was reduced, we use allocated dictionary block
+    // for compatibility with original unRAR decoder.
+
+    if (_window && newSize < _winSizeAllocated)
+      _winSize = _winSizeAllocated;
+    else if (!_window || _winSize != newSize)
     {
-      if (!_isSolid && newSize > _winSizeAllocated)
+      if (!_isSolid)
       {
         ::MidFree(_window);
         _window = NULL;
         _winSizeAllocated = 0;
       }
 
-      Byte *win = _window;
-      if (!_window || newSize > _winSizeAllocated)
+      Byte *win;
       {
         win = (Byte *)::MidAlloc(newSize);
         if (!win)
           return E_OUTOFMEMORY;
-        _winSizeAllocated = newSize;
         memset(win, 0, newSize);
       }
       
@@ -892,16 +908,18 @@ STDMETHODIMP CDecoder::Code(ISequentialInStream *inStream, ISequentialOutStream 
         size_t newMask = newSize - 1;
         size_t oldMask = _winSize - 1;
         size_t winPos = _winPos;
-        for (size_t i = 1; i < oldSize; i++) // i < oldSize) ?
+        for (size_t i = 1; i <= oldSize; i++) // i < oldSize) ?
           win[(winPos - i) & newMask] = winOld[(winPos - i) & oldMask];
         ::MidFree(_window);
       }
       
       _window = win;
+      _winSizeAllocated = newSize;
       _winSize = newSize;
     }
 
     _winMask = _winSize - 1;
+    _winPos &= _winMask;
 
     if (!_inputBuf)
     {

@@ -14,7 +14,8 @@ win32-msvc* {
     QMAKE_CXXFLAGS += /wd4819
 }
 
-*g++* {
+*clang* || *g++* {
+    CONFIG += c++17
     win32: CONFIG += staticlib
     QMAKE_LFLAGS += -Wl,-rpath,../lib
     QMAKE_CXXFLAGS += -std=c++11

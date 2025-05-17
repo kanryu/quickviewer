@@ -42,7 +42,7 @@ ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
 {
     m_subfilename = subfilename;
     m_currentCacheSync = VolumeManager::futureLoadImageFromFileVolume(this, subfilename, QSize());
-    m_watcher.setFuture(QtConcurrent::run(this, &VolumeManager::enumerate));
+    m_watcher.setFuture(QtConcurrent::run([&]{enumerate();}));
     return m_currentCacheSync;
 }
 
@@ -71,7 +71,7 @@ static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageM
 
 static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
 {
-    return s1 > s2;
+    return m1.filename() > m2.filename();
 }
 
 #endif
@@ -438,7 +438,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         ic.Info = info;
         if(src.isNull())
             return ic;
-        if(src.width() <= maxTextureSize && src.height() <= maxTextureSize) {
+        if(qApp->DontShrinkForLargeImage() || (src.width() <= maxTextureSize && src.height() <= maxTextureSize)) {
             ic = ImageContent(src, path, baseSize, info, bytes.length());
         } else {
             // resample for too big images
@@ -495,7 +495,7 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
 
     //        ImageContent ic(QPixmap::fromImage(half), path, srcSizeReal, info);
             ic.Image = half;
-            ic.ImportSize = srcSizeReal;
+            ic.ImportSize = half.size();
         }
         // CPU resizing before Page Viewing
         if(!pageSize.isEmpty() && !ic.Image.isNull()) {

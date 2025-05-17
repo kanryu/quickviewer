@@ -115,7 +115,7 @@ QPoint PageContent::Offset(int rotateOffset) {
 
 QSize PageContent::CurrentSize(int rotateOffset) {
     int rot = (Rotate+rotateOffset) % 360;
-    return rot==90 || rot==270 ? QSize(Ic.BaseSize.height(), Ic.BaseSize.width()) : Ic.BaseSize;
+    return rot==90 || rot==270 ? QSize(Ic.Image.height(), Ic.Image.width()) : Ic.Image.size();
 }
 
 QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign align, qvEnums::FitMode fitMode, qreal loupe, int rotateOffset) {
@@ -228,6 +228,7 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
 //    }
 
     QImage& srcImage = applyRetouched();
+    qreal retouchedScale = srcImage.size() == Ic.ImportSize ? scale : scale * Ic.ImportSize.width() / srcImage.width();
     // only CPU resizing
     if(effect < qvEnums::UsingFixedShader) {
         if(loupe && !Ic.ResizedImage.isNull()) {
@@ -247,7 +248,7 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
                 GrItem->setRotation(Rotate);
             }
         }
-        GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
+        GrItem->setScale(Ic.ResizedImage.isNull() ? retouchedScale : 1.0);
     }
     // CPU resizing after GPU preview
     if(effect > qvEnums::UsingCpuResizer && qApp->Effect() < qvEnums::UsingSomeShader) {
@@ -266,14 +267,14 @@ void PageContent::applyResize(qreal scale, int rotateOffset, QPoint pos, QSize n
             GrItem = Scene->addPixmap(QPixmap::fromImage(Ic.ResizedImage));
             GrItem->setRotation(Rotate);
         }
-        GrItem->setScale(Ic.ResizedImage.isNull() ? scale : 1.0);
+        GrItem->setScale(Ic.ResizedImage.isNull() ? retouchedScale : 1.0);
     }
     // only GPU resizing
     if((effect > qvEnums::UsingFixedShader && effect < qvEnums::UsingCpuResizer) || effect > qvEnums::UsingSomeShader) {
 //        if(!Ic.ResizedImage.isNull())
 //            initializePage(true);
         initializePage(true);
-        GrItem->setScale(scale);
+        GrItem->setScale(retouchedScale);
     }
     GrItem->setRotation(Rotate+rotateOffset);
     GrItem->setPos(pos);

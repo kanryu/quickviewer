@@ -50,8 +50,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>635</width>
-            <height>472</height>
+            <width>649</width>
+            <height>492</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -157,7 +157,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_5">
                 <property name="toolTip">
                  <string>Increasing the value will degrade performance. Approximately twice the value of your display is appropriate.</string>
@@ -167,7 +167,7 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QSpinBox" name="spinMaxTextureSize">
                 <property name="toolTip">
                  <string>Increasing the value will degrade performance. Approximately twice the value of your display is appropriate.</string>
@@ -186,7 +186,17 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="checkBoxDontShrinkForLargeImage">
+                <property name="toolTip">
+                 <string>(Performance degradation)Disables automatic shrinking of images on loading.</string>
+                </property>
+                <property name="text">
+                 <string>Keeps even large images at their original size</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
                <widget class="QCheckBox" name="checkBoxUseFastDctForJPEG">
                 <property name="toolTip">
                  <string>Speed up JPEG loading in exchange for quality of display.</string>
@@ -196,7 +206,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="8" column="0">
                <widget class="QCheckBox" name="checkBoxExtractSolidToTemporary">
                 <property name="toolTip">
                  <string>It takes time to develop all contents, but switching of images becomes faster.</string>
@@ -206,14 +216,21 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="9" column="0">
                <widget class="QCheckBox" name="checkBoxProhibitMultipleRunning">
                 <property name="text">
                  <string>Prohibit multiple running (Restart is required)</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
+              <item row="10" column="0">
+               <widget class="QCheckBox" name="checkBoxTopWindowWhenRunWithAssoc">
+                <property name="text">
+                 <string comment="Check box to activate the window when activated by image association">Activate the window when launched with image association</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1">
                <widget class="QCheckBox" name="checkBoxUseDirect2D">
                 <property name="toolTip">
                  <string>In a high-resolution environment, it may not work properly unless it is Direct2D. Normally it may be off</string>
@@ -223,35 +240,28 @@
                 </property>
                </widget>
               </item>
-              <item row="9" column="0" colspan="2">
-               <widget class="QCheckBox" name="checkBoxTopWindowWhenRunWithAssoc">
-                <property name="text">
-                 <string comment="Check box to activate the window when activated by image association">Activate the window when launched with image association</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="0" colspan="2">
+              <item row="11" column="0">
                <widget class="QCheckBox" name="checkBoxTopWindowWhenDropped">
                 <property name="text">
                  <string comment="Check box to activate the window when an image dropped on">Activate the window when an image dropped on</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
+              <item row="11" column="1">
                <widget class="QCheckBox" name="checkBoxSlideshowRandomly">
                 <property name="text">
                  <string extracomment="The text of the check box. Slideshow usually moves to the next page in the current sorting order, but displays it in random order">Randomly display in slideshow</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
+              <item row="13" column="0">
                <widget class="QLabel" name="labelThemeSelector">
                 <property name="text">
                  <string>QuickViewer theme</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="1">
+              <item row="13" column="1">
                <widget class="QComboBox" name="comboBoxThemeSelector">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -514,8 +524,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>635</width>
-            <height>472</height>
+            <width>649</width>
+            <height>492</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">

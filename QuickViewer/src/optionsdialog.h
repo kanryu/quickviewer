@@ -35,6 +35,7 @@ public slots:
     void onLineEditWindowTitleUserStyle_textEdited(QString text);
     void onLineEditStatusBarUserStyle_textEdited(QString text);
     void onCheckBoxShowUsage_clicked(bool enabled);
+    void onCheckBoxDontShrinkForLargeImage_clicked(bool enabled);
 
 private:
     Ui::OptionsDialog *ui;

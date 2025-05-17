@@ -62,7 +62,7 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
     }
     emit volumeChanged("");
-    m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
+    m_volumes.insert(pathbase, QtConcurrent::run([&]{return passThrough(newer);}));
     m_fileVolume = newer;
     clearPages();
     m_currentPage = 0;
@@ -210,7 +210,8 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
     if(m_volumes.contains(pathbase)) {
         if(!immediate && !m_volumes.object(pathbase).isFinished())
             return nullptr;
-        VolumeManager* cached = m_volumes.object(pathbase);
+        QFuture<VolumeManager*> future = m_volumes.object(pathbase);
+        VolumeManager* cached = future.takeResult();
         if(!cached) {
             m_volumes.remove(pathbase);
             return nullptr;
@@ -233,10 +234,11 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
         qDebug() << "addVolumeCache:immediate" << path;
         newer = builder.build(onlyCover);
         if(newer)
-            m_volumes.insert(pathbase, QtConcurrent::run(this, &PageManager::passThrough, newer));
+            m_volumes.insert(pathbase, QtConcurrent::run([&]{return passThrough(newer);}));
     } else {
         m_volumes.retain(pathbase);
-        newer = m_volumes.object(pathbase);
+        QFuture<VolumeManager*> future = m_volumes.object(pathbase);
+        newer = future.takeResult();
     }
     if(newer && subfilename.length())
         newer->findImageByName(subfilename);

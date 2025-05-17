@@ -6,6 +6,7 @@
 #ifdef _WIN32
 
 #include <windows.h>
+#include <winerror.h>
 
 #ifdef UNDER_CE
   #undef VARIANT_TRUE

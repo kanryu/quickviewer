@@ -112,7 +112,7 @@ QString ImageString::formatString(QString fmt)
         case 'F': result << QString(tr("%L1 Bytes")).arg(page.Ic.FileLength); break;
             // Image bitmap size with useful, e.g. '1.59 MB'
         case 'b': {
-            double filelength = page.Ic.Image.byteCount();
+            double filelength = page.Ic.Image.sizeInBytes();
             if(filelength < 1024)
                 result << QString(tr("%1 Bytes")).arg(filelength);
             else if(filelength < 1024*1024)

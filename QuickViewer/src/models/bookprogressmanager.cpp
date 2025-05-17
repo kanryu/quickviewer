@@ -19,7 +19,7 @@ static QString getProgressIniPath()
 void BookProgressManager::save()
 {
     QSettings settings(getProgressIniPath(), QSettings::IniFormat, this);
-    settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
+    //settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     QStringList titles;
     foreach(const BookProgress& book, m_books.values()) {
@@ -40,7 +40,7 @@ void BookProgressManager::save()
 BookProgressManager::BookProgressMap BookProgressManager::initializeAsync()
 {
     QSettings settings(getProgressIniPath(), QSettings::IniFormat);
-    settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
+    //settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
 
     BookProgressMap result;
     QStringList groups = settings.childGroups();

@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.1.8
+VERSION = 1.2.0
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -288,8 +288,13 @@ win32 : !CONFIG(debug, debug|release) {
 
 #            ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qlodepng0.dll \
 
+        install_qvavif.path = $${MY_DEFAULT_INSTALL}/imageformats
+        install_qvavif.files = \
+            ../../../qt-avif-image-plugin/imageformats-$${TARGET_ARCH}/qavif6.dll \
+
         # dlls instead of vcredist_xxx.exe
-        install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
+        #install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
+        install_msvcrt.PATH = C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Redist/MSVC/14.38.33130/x64/Microsoft.VC143.CRT
         install_msvcrt.path = $${MY_DEFAULT_INSTALL}
         install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
         install_msvcrt.commands = -$(DEL_FILE) "$${install_msvcrt.removefiles}"
@@ -300,7 +305,7 @@ win32 : !CONFIG(debug, debug|release) {
             "$${install_msvcrt.PATH}/vccorlib140.dll" \
             "$${install_msvcrt.PATH}/vcruntime140.dll"
 
-        INSTALLS += install_target install_deploy_files install_translations install_translations2 install_qrawspeed install_msvcrt install_assoc_icons
+        INSTALLS += install_target install_deploy_files install_translations install_translations2 install_qrawspeed install_qvavif install_msvcrt install_assoc_icons
     }
     install_target.path = $${MY_DEFAULT_INSTALL}
 #   install_target.files += $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
