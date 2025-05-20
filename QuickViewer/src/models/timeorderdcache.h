@@ -95,7 +95,9 @@ public:
      TimeOrderdCacheFuturePtr(int maxsize=30)
          : TimeOrderdCache<Key, QFuture<T*> >(maxsize){}
     void trash(QFuture<T*> oldest) {
-        delete oldest.result();
+        QtConcurrent::run([=]{
+            delete oldest.result();
+        });
     }
 };
 

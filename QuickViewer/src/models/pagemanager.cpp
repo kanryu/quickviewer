@@ -62,7 +62,7 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
     }
     emit volumeChanged("");
-    m_volumes.insert(pathbase, QtConcurrent::run([&]{return passThrough(newer);}));
+    m_volumes.insert(pathbase, QtConcurrent::run([=]{return newer;}));
     m_fileVolume = newer;
     clearPages();
     m_currentPage = 0;
@@ -204,44 +204,37 @@ void PageManager::reloadVolumeAfterRemoveImage()
 
 VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool immediate)
 {
-    VolumeManager* newer = nullptr;
     QString pathbase = QDir::fromNativeSeparators(VolumeManager::FullPathToVolumePath(path));
     QString subfilename = VolumeManager::FullPathToSubFilePath(path);
-    if(m_volumes.contains(pathbase)) {
-        if(!immediate && !m_volumes.object(pathbase).isFinished())
-            return nullptr;
-        QFuture<VolumeManager*> future = m_volumes.object(pathbase);
-        VolumeManager* cached = future.takeResult();
-        if(!cached) {
-            m_volumes.remove(pathbase);
-            return nullptr;
-        }
-        // If the subdirectory search is switched valid, we need to recreate the instance
-        if(!cached->isArchive() &&
-                ((qApp->ShowSubfolders() && !cached->hasSubDirectories())
-                 || (!qApp->ShowSubfolders() && cached->hasSubDirectories()))) {
-            qDebug() << qApp->ShowSubfolders() << cached->hasSubDirectories();
-            m_volumes.remove(pathbase);
-        }
-    }
     if(!m_volumes.contains(pathbase)) {
+        m_volumes.insert(pathbase, QtConcurrent::run(&VolumeManagerBuilder::buildAsync, path, this, onlyCover));
         if(!immediate) {
             qDebug() << "addVolumeCache:prefetch" << path;
-            m_volumes.insert(pathbase, QtConcurrent::run(&VolumeManagerBuilder::buildAsync, path, this, onlyCover));
             return nullptr;
         }
-        VolumeManagerBuilder builder(path, this);
         qDebug() << "addVolumeCache:immediate" << path;
-        newer = builder.build(onlyCover);
-        if(newer)
-            m_volumes.insert(pathbase, QtConcurrent::run([&]{return passThrough(newer);}));
-    } else {
-        m_volumes.retain(pathbase);
-        QFuture<VolumeManager*> future = m_volumes.object(pathbase);
-        newer = future.takeResult();
     }
+    QFuture<VolumeManager*> future = m_volumes.object(pathbase);
+    if(!immediate && !future.isFinished())
+        return nullptr;
+
+    // Wait until the loading is complete
+    VolumeManager* newer = future.result();
+    if(!newer) {
+        m_volumes.remove(pathbase);
+        return nullptr;
+    }
+    // If the subdirectory search is switched valid, we need to recreate the instance
+    if(!newer->isArchive() &&
+        ((qApp->ShowSubfolders() && !newer->hasSubDirectories())
+         || (!qApp->ShowSubfolders() && newer->hasSubDirectories()))) {
+        qDebug() << qApp->ShowSubfolders() << newer->hasSubDirectories();
+        m_volumes.remove(pathbase);
+    }
+    m_volumes.retain(pathbase);
+
     if(newer && subfilename.length())
-        newer->findImageByName(subfilename);
+       newer->findImageByName(subfilename);
     return newer;
 }
 

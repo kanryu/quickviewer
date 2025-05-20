@@ -57,7 +57,7 @@ class Qt7zStreamReader : public QObject, public C7ZipInStream
     Q_OBJECT
 
 private:
-    QTimer m_timer;
+    //QTimer m_timer;
     QIODevice *m_inStream;
     std::string m_strFileName;
     wstring m_strFileExt;
@@ -65,19 +65,19 @@ private:
 public:
     Qt7zStreamReader(std::string fileName, wstring extOfArchive, QObject* parent)
       : QObject(parent)
-      , m_timer(parent)
+      //, m_timer(parent)
       , m_inStream(nullptr)
       , m_strFileName(fileName)
       , m_strFileExt(extOfArchive)
       , m_lastpos(0)
     {
-        connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
-        connect(this, SIGNAL(startMyTimer()), this, SLOT(onStartTimer()));
+        // connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+        // connect(this, SIGNAL(startMyTimer()), this, SLOT(onStartTimer()));
     }
 
     virtual ~Qt7zStreamReader()
     {
-        m_timer.stop();
+        //m_timer.stop();
     }
     void setFile(QIODevice *inStream) {
         m_inStream = inStream;
@@ -160,16 +160,16 @@ signals:
 public slots:
     void onStartTimer()
     {
-        m_timer.start(1000);
+        //m_timer.start(1000);
     }
     void onStopTimer()
     {
-        m_timer.stop();
+        //m_timer.stop();
     }
     void onTimeout()
     {
-        if(m_inStream)
-            m_inStream->close();
+        // if(m_inStream)
+        //     m_inStream->close();
     }
 };
 
@@ -282,7 +282,7 @@ private:
     {
         if(m_outStream) {
             m_outStream->close();
-            delete m_outStream;
+            m_outStream->deleteLater();
             m_outStream = nullptr;
             m_nFileSize = 0;
         }
@@ -666,7 +666,7 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
 FileLoader7zArchive::~FileLoader7zArchive()
 {
     if(d){
-        delete d;
+        d->deleteLater();
         d=nullptr;
     }
 }

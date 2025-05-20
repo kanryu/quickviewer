@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.2.0
+VERSION = 1.2.1
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -276,7 +276,12 @@ win32 : !CONFIG(debug, debug|release) {
             MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}/$${TARGET_ARCH}
         }
 
-        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll
+        install_target.path = $${MY_DEFAULT_INSTALL}
+        #   install_target.files += $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
+        install_target.files = \
+            $${DESTDIR}/QuickViewer.exe \
+            $${DESTDIR}/AssociateFilesWithQuickViewer.exe \
+            $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll \
 
         install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
         install_qrawspeed.files = \
@@ -307,10 +312,11 @@ win32 : !CONFIG(debug, debug|release) {
 
         INSTALLS += install_target install_deploy_files install_translations install_translations2 install_qrawspeed install_qvavif install_msvcrt install_assoc_icons
     }
-    install_target.path = $${MY_DEFAULT_INSTALL}
-#   install_target.files += $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
-    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    install_deploy_files.files = \
+        $${PWD}/../README.md \
+        $${PWD}/../LICENSE
+
     install_deploy_files.commands = $$shell_path($$[QT_INSTALL_BINS]/windeployqt) --release --compiler-runtime $$shell_path($${MY_DEFAULT_INSTALL}/QuickViewer.exe)
 
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
@@ -349,7 +355,9 @@ win32 : !CONFIG(debug, debug|release) {
     install_shaders.path = $${MY_DEFAULT_INSTALL}/shaders
     install_shaders.files = $$SHADERS
     install_db.path = $${MY_DEFAULT_INSTALL}/database
-    install_db.files = $$DBS $$DBBIN
+    install_db.files = \
+        $$DBS \
+        $$DBBIN \
 
     INSTALLS += install_db
     !contains(DEFINES, QV_WITHOUT_OPENGL) {
@@ -374,14 +382,20 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
     install_target.files = $${DESTDIR}/QuickViewer
     install_target.path = $${MY_DEFAULT_INSTALL}/usr/bin
 
-    install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1 $${DESTDIR}/../lib/lib7z.so
+    install_libs.files = \
+        $${DESTDIR}/../lib/libfileloader.so.1 \
+        $${DESTDIR}/../lib/lib7z.so \
+
     install_libs.path = $${MY_DEFAULT_INSTALL}/usr/lib
 
     install_desktop.files = $${PWD}/QuickViewer.desktop $${PWD}/../docs/quickviewer.png
     install_desktop.path = $${MY_DEFAULT_INSTALL}
 
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
-    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    install_deploy_files.files = \
+        $${PWD}/../README.md \
+        $${PWD}/../LICENSE \
+
     install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs
     install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
@@ -449,12 +463,18 @@ linux : !CONFIG(debug, debug|release) : !contains(DEFINES, QV_PORTABLE) {
     install_target.files = $${DESTDIR}/QuickViewer
     install_target.path = $${QV_BIN_PATH}
 
-    install_libs.files = $${DESTDIR}/../lib/libfileloader.so.1 $${DESTDIR}/../lib/lib7z.so
+    install_libs.files = \
+        $${DESTDIR}/../lib/libfileloader.so.1 \
+        $${DESTDIR}/../lib/lib7z.so \
+
     install_libs.path = $${QV_LIB_PATH}
 
 
     install_deploy_files.path = $${QV_SHARED_PATH}/QuickViewer
-    install_deploy_files.files = $${PWD}/../README.md $${PWD}/../LICENSE
+    install_deploy_files.files = \
+        $${PWD}/../README.md \
+        $${PWD}/../LICENSE \
+
     install_deploy_files.depends = install_install_target install_install_libs
 
     install_translations.path = $$[QT_INSTALL_TRANSLATIONS]

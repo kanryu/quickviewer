@@ -27,7 +27,7 @@ VolumeManager::VolumeManager(QObject *parent, IFileLoader* loader, PageManager* 
 VolumeManager::~VolumeManager() {
     m_imageCache.clear();
     if(m_loader) {
-        delete m_loader;
+        m_loader->deleteLater();
         m_loader = nullptr;
     }
 }
@@ -42,7 +42,7 @@ ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
 {
     m_subfilename = subfilename;
     m_currentCacheSync = VolumeManager::futureLoadImageFromFileVolume(this, subfilename, QSize());
-    m_watcher.setFuture(QtConcurrent::run([&]{enumerate();}));
+    m_watcher.setFuture(QtConcurrent::run(&VolumeManager::enumerate, this));
     return m_currentCacheSync;
 }
 
