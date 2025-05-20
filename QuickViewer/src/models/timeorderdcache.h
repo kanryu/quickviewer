@@ -2,6 +2,7 @@
 #define TIMEORDERDCACHE_H
 
 #include <QtCore>
+#include <QtConcurrent>
 
 template <typename Key, typename T>
 class TimeOrderdCache
