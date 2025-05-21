@@ -215,6 +215,7 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
         qDebug() << "addVolumeCache:immediate" << path;
         VolumeManagerBuilder builder(path, this);
         VolumeManager* imm = builder.build(onlyCover);
+        qDebug() << "addVolumeCache:imm" << imm;
         m_volumes.insert(pathbase, QtConcurrent::run([&]{return passThrough(imm);}));
     }
     QFuture<VolumeManager*> future = m_volumes.object(pathbase);
@@ -223,6 +224,7 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
 
     // Wait until the loading is complete
     VolumeManager* newer = future.result();
+    qDebug() << "addVolumeCache:newer" << newer;
     if(!newer) {
         m_volumes.remove(pathbase);
         return nullptr;
@@ -235,6 +237,7 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
         m_volumes.remove(pathbase);
     }
     m_volumes.retain(pathbase);
+    qDebug() << "addVolumeCache:retain";
 
     if(newer && subfilename.length())
        newer->findImageByName(subfilename);
