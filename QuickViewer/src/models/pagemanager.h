@@ -131,7 +131,7 @@ public slots:
 
 
 private:
-    VolumeManager* addVolumeCache(QString path, bool onlyCover=false, bool immediate=true);
+    VolumeManager* addVolumeCache(QString path, bool onlyCover, bool immediate);
     VolumeManager* createVolume(QString path, bool onlyCover);
     VolumeManager* passThrough(VolumeManager* vol) { return vol; }
     /**

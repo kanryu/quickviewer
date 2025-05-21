@@ -376,19 +376,28 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
 
     APPDIR = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppDir
     APPIMAGE = QuickViewer-$${VERSION}-$${TARGET_ARCH}.AppImage
-    MY_DEFAULT_INSTALL = ../../$${APPDIR}
+    MY_DEFAULT_INSTALL = $${OUT_PWD}/../../$${APPDIR}
     message(DESTDIR $${DESTDIR})
 
-    install_target.files = $${DESTDIR}/QuickViewer
+    # for(var, $$list($$enumerate_vars())) {
+    #   message($$var)
+    #   message($$eval($$var))
+    # }
+
+    install_target.files = \
+        $${OUT_PWD}/../bin/QuickViewer \
+
     install_target.path = $${MY_DEFAULT_INSTALL}/usr/bin
 
     install_libs.files = \
-        $${DESTDIR}/../lib/libfileloader.so.1 \
-        $${DESTDIR}/../lib/lib7z.so \
+        $${OUT_PWD}/../lib/libfileloader.so.1 \
 
     install_libs.path = $${MY_DEFAULT_INSTALL}/usr/lib
 
-    install_desktop.files = $${PWD}/QuickViewer.desktop $${PWD}/../docs/quickviewer.png
+    install_desktop.files = \
+        $${PWD}/QuickViewer.desktop \
+        $${PWD}/../docs/quickviewer.png \
+
     install_desktop.path = $${MY_DEFAULT_INSTALL}
 
     install_deploy_files.path = $${MY_DEFAULT_INSTALL}
@@ -398,8 +407,10 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
 
     install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs
     install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
+
+#    install_translations.commands = ldd $${MY_DEFAULT_INSTALL}/usr/bin/QuickViewer | awk \'\$$1==\"libstdc++.so.$${GCC_MAJOR}\" {print \$$3}\' | xargs cp -t $${MY_DEFAULT_INSTALL}/usr/lib
+
     install_translations.path = $${MY_DEFAULT_INSTALL}/translations
-    install_translations.commands = ldd $${MY_DEFAULT_INSTALL}/usr/bin/QuickViewer | awk \'\$$1==\"libstdc++.so.$${GCC_MAJOR}\" {print \$$3}\' | xargs cp -t $${MY_DEFAULT_INSTALL}/usr/lib
     install_translations.files = \
         $${PWD}/translations/languages.ini \
         $${PWD}/translations/quickviewer_ja.qm \

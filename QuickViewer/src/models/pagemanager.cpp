@@ -24,7 +24,7 @@ bool PageManager::loadVolume(QString path, bool coverOnly)
     }
     clearPages();
     m_fileVolume = nullptr;
-    VolumeManager* newer = addVolumeCache(path, coverOnly);
+    VolumeManager* newer = addVolumeCache(path, coverOnly, true);
     if(!newer) {
         emit volumeChanged("");
         return false;
@@ -207,12 +207,15 @@ VolumeManager* PageManager::addVolumeCache(QString path, bool onlyCover, bool im
     QString pathbase = QDir::fromNativeSeparators(VolumeManager::FullPathToVolumePath(path));
     QString subfilename = VolumeManager::FullPathToSubFilePath(path);
     if(!m_volumes.contains(pathbase)) {
-        m_volumes.insert(pathbase, QtConcurrent::run(&VolumeManagerBuilder::buildAsync, path, this, onlyCover));
         if(!immediate) {
             qDebug() << "addVolumeCache:prefetch" << path;
+            m_volumes.insert(pathbase, QtConcurrent::run(&VolumeManagerBuilder::buildAsync, path, this, onlyCover));
             return nullptr;
         }
         qDebug() << "addVolumeCache:immediate" << path;
+        VolumeManagerBuilder builder(path, this);
+        VolumeManager* imm = builder.build(onlyCover);
+        m_volumes.insert(pathbase, QtConcurrent::run([&]{return passThrough(imm);}));
     }
     QFuture<VolumeManager*> future = m_volumes.object(pathbase);
     if(!immediate && !future.isFinished())

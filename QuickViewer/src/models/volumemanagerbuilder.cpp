@@ -70,7 +70,7 @@ VolumeManager* VolumeManagerBuilder::CreateVolume(QObject* parent, QString path,
 }
 
 VolumeManagerBuilder::VolumeManagerBuilder(QString path, PageManager *pageManager)
-    : QObject(pageManager)
+    : QObject(nullptr)
     , Path(path)
     , m_pageManager(pageManager)
     , m_volumeManager(nullptr)
