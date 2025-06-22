@@ -435,8 +435,10 @@ void PageManager::bookProgress()
 
 void PageManager::sort(qvEnums::ImageSortBy sortBy)
 {
-    m_fileVolume->sort(sortBy);
-    firstPage();
+    if (m_fileVolume != nullptr) {
+        m_fileVolume->sort(sortBy);
+        firstPage();
+    }
 }
 
 

@@ -46,6 +46,9 @@ public:
      */
     QByteArray getFile(QString filename, QMutex& mutex);
 
+    quint64 getFileSize(QString filename);
+    QDateTime getFileModified(QString filename);
+
     /**
      * @brief getCacheMode
      *

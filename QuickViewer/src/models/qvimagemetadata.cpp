@@ -10,6 +10,9 @@ QvImageMetadata::QvImageMetadata(VolumeManager *volume, QString filename)
 
 QDateTime QvImageMetadata::getMTime()
 {
+    if(m_volume->isArchive()) {
+        return m_volume->FileLoader()->getFileModified(m_filename);
+    }
     if(m_info.fileName().isEmpty())
         initFileInfo();
     return m_info.lastModified();
@@ -17,6 +20,9 @@ QDateTime QvImageMetadata::getMTime()
 
 qint64 QvImageMetadata::getFileSize()
 {
+    if(m_volume->isArchive()) {
+        return m_volume->FileLoader()->getFileSize(m_filename);
+    }
     if(m_info.fileName().isEmpty())
         initFileInfo();
     return m_info.size();

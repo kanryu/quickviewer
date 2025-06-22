@@ -90,6 +90,9 @@ public:
      */
     virtual QByteArray getFile(QString filename, QMutex& mutex)=0;
 
+    virtual quint64 getFileSize(QString filename);
+    virtual QDateTime getFileModified(QString filename);
+
     /**
      * @brief getCacheMode
      *

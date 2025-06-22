@@ -36,6 +36,7 @@ void VolumeManager::enumerate()
 {
     m_filelist = m_loader->contents();
     m_enumerated = true;
+    sortForReady(qApp->ImageSortBy());
 }
 
 ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
@@ -48,9 +49,9 @@ ImageContent VolumeManager::getImageBeforeEnmumerate(QString subfilename)
 
 void VolumeManager::on_enmumerated()
 {
-    foreach(const QString& fl, m_filelist) {
-        m_imageMetadataList << QvImageMetadata(this, fl);
-    }
+    // foreach(const QString& fl, m_filelist) {
+    //     m_imageMetadataList << QvImageMetadata(this, fl);
+    // }
     m_imageCache.insert(m_filelist.indexOf(m_subfilename), QtConcurrent::run(pathThrough, m_currentCacheSync));
     findImageByName(m_subfilename);
     setCacheMode(VolumeManager::Normal);
@@ -58,23 +59,35 @@ void VolumeManager::on_enmumerated()
     m_pageManager->on_pageEnumerated();
 }
 
-#ifdef Q_OS_WIN
-#include <Shlwapi.h>
+// #ifdef Q_OS_WIN
+// #include <Shlwapi.h>
 
-static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+// static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+// {
+//     std::wstring ss1(m1.filename().toStdWString());
+//     std::wstring ss2(m2.filename().toStdWString());
+//     return ::StrCmpLogicalW(ss1.c_str(), ss2.c_str()) > 0;
+// }
+// #else
+
+// static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+// {
+//     return m1.filename() > m2.filename();
+// }
+
+// #endif
+
+static bool fileNameDescendingLessThan(const QString& m1, const QString& m2)
 {
-    std::wstring ss1(m1.filename().toStdWString());
-    std::wstring ss2(m2.filename().toStdWString());
-    return ::StrCmpLogicalW(ss1.c_str(), ss2.c_str()) > 0;
+    QCollator col;col.setNumericMode(true);
+    return col.compare(m1, m2) < 0;
 }
-#else
 
-static bool fileNameDescendingLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
+static bool fileNameDescendingGreaterThan(const QString& m1, const QString& m2)
 {
-    return m1.filename() > m2.filename();
+    QCollator col;col.setNumericMode(true);
+    return col.compare(m1, m2) > 0;
 }
-
-#endif
 
 static bool fileSizeLessThan(const QvImageMetadata& m1, const QvImageMetadata& m2)
 {
@@ -105,10 +118,22 @@ static bool modifiedTimeDescendingLessThan(const QvImageMetadata& m1, const QvIm
 
 void VolumeManager::sort(qvEnums::ImageSortBy sortBy)
 {
+    sortForReady(sortBy);
+    on_ready();
+}
+
+void VolumeManager::sortForReady(qvEnums::ImageSortBy sortBy)
+{
+    m_imageMetadataList.clear();
+    foreach(const QString& fl, m_filelist) {
+        m_imageMetadataList << QvImageMetadata(this, fl);
+    }
     switch(sortBy) {
-    case qvEnums::SortByFileName: break;
+    case qvEnums::SortByFileName:
+        std::sort(m_filelist.begin(), m_filelist.end(), fileNameDescendingLessThan);
+        break;
     case qvEnums::SortByFileNameDescending:
-        std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), fileNameDescendingLessThan);
+        std::sort(m_filelist.begin(), m_filelist.end(), fileNameDescendingGreaterThan);
         break;
     case qvEnums::SortByFileSize:
         std::stable_sort(m_imageMetadataList.begin(), m_imageMetadataList.end(), fileSizeLessThan);
@@ -125,7 +150,6 @@ void VolumeManager::sort(qvEnums::ImageSortBy sortBy)
     }
     m_cnt = 0;
     m_imageCache.clear();
-    on_ready();
 }
 
 void VolumeManager::startSlideShow()
@@ -157,7 +181,8 @@ QString VolumeManager::getIndexedFileName(int idx) {
         return "";
     if(!m_randomfilelist.isEmpty())
         return m_randomfilelist[idx];
-    if(qApp->ImageSortBy() == qvEnums::SortByFileName)
+    if(qApp->ImageSortBy() == qvEnums::SortByFileName
+        || qApp->ImageSortBy() == qvEnums::SortByFileNameDescending)
         return m_filelist[idx];
     else
         return m_imageMetadataList[idx].filename();

@@ -42,6 +42,7 @@ struct Qt7zFileInfo
     QString fileName;
     QString arcName;
     quint64 size;
+    QDateTime Modified;
     size_t pre_total;
     bool isDir;
     bool isCrcDefined;
@@ -353,7 +354,9 @@ static Qt7zFileInfo fromC7ZipArchiveItem(C7ZipArchiveItem& item, QString package
 
 //    item.GetFileTimeProperty(PropertyIndexEnum::kpidCTime, prop.Created);
 //    item.GetFileTimeProperty(PropertyIndexEnum::kpidATime, prop.Accessed);
-//    item.GetFileTimeProperty(PropertyIndexEnum::kpidMTime, prop.Modified);
+    unsigned long long mtime = 0;
+    item.GetFileTimeProperty(PropertyIndexEnum::kpidMTime, mtime);
+    prop.Modified = QDateTime::fromSecsSinceEpoch(mtime);
 
 //    item.GetBoolProperty(PropertyIndexEnum::kpidSolid, prop.IsSolid);
     item.GetBoolProperty(PropertyIndexEnum::kpidEncrypted, prop.isEncrypted);
@@ -661,6 +664,22 @@ QByteArray FileLoader7zArchive::getFile(QString name, QMutex& mutex)
         mutex.unlock();
     }
     return bytes;
+}
+
+quint64 FileLoader7zArchive::getFileSize(QString filename) {
+    if (!d->m_fileinfomap.contains(filename)) {
+        return 0;
+    }
+    Qt7zFileInfo info = d->m_fileinfomap[filename];
+    return info.size;
+}
+
+QDateTime FileLoader7zArchive::getFileModified(QString filename) {
+    if (!d->m_fileinfomap.contains(filename)) {
+        return QDateTime();
+    }
+    Qt7zFileInfo info = d->m_fileinfomap[filename];
+    return info.Modified;
 }
 
 FileLoader7zArchive::~FileLoader7zArchive()

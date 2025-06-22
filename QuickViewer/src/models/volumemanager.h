@@ -43,6 +43,7 @@ public:
     void enumerate();
     bool enumerated() { return m_enumerated; }
     ImageContent getImageBeforeEnmumerate(QString subfilename);
+    IFileLoader* FileLoader() { return m_loader; }
 
     static ImageContent futureLoadImageFromFileVolume(VolumeManager* volume, QString path, QSize pageSize);
     static ImageContent futureReizeImage(ImageContent ic, QSize pageSize);
@@ -53,6 +54,7 @@ public:
     bool hasSubDirectories() const { return m_loader->hasSubDirectories(); }
 
     void sort(qvEnums::ImageSortBy sortBy);
+    void sortForReady(qvEnums::ImageSortBy sortBy);
     void startSlideShow();
     void stopSlideShow();
 

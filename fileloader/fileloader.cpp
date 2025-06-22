@@ -22,9 +22,9 @@ bool IFileLoader::isImageFile(QString path)
 //        foreach(const QString& e, st_supportedImageFormats) {
 //            qDebug()<<  QString(e);
 //        }
-#ifdef QT_DEBUG
+//#ifdef QT_DEBUG
         qDebug() << st_supportedImageFormats;
-#endif
+//#endif
     }
 //    QStringList exts = {".jpg", ".jpeg", ".bmp", ".gif", ".png", ".dds", ".ico", ".tga", ".tif", ".tiff", ".webp", ".wbp"};
     QString lower = path.toLower().mid(path.lastIndexOf(".")+1);
@@ -97,4 +97,12 @@ bool IFileLoader::caseInsensitiveLessThan(const QString &s1, const QString &s2)
     return s1.toLower() < s2.toLower();
 }
 #endif
+
+quint64 IFileLoader::getFileSize(QString filename) {
+    return 0;
+}
+
+QDateTime IFileLoader::getFileModified(QString filename) {
+    return QDateTime();
+}
 
