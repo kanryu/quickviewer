@@ -80,6 +80,10 @@ QVApplication::QVApplication(int &argc, char **argv)
     loadSettings();
 
     FileLoader7zArchive::initializeLib();
+
+    // Qt6 has a limit on loading large images, but this is inconvenient,
+    // so we will relax this limit (and in the future make it a configurable value).
+    QImageReader::setAllocationLimit(1024);
 }
 
 QVApplication::~QVApplication()
@@ -413,7 +417,7 @@ void QVApplication::loadSettings()
     m_useCheckeredPattern  = m_settings->value("UseCheckeredPattern", true).toBool();
     m_dontEnlargeSmallImagesOnFitting  = m_settings->value("DontEnlargeSmallImagesOnFitting", true).toBool();
     m_showFullscreenSignage  = m_settings->value("ShowFullscreenSignage", false).toBool();
-    m_dontShrinkForLargeImage  = m_settings->value("DontShrinkForLargeImage", true).toBool();
+    m_dontShrinkForLargeImage  = m_settings->value("DontShrinkForLargeImage", false).toBool();
 //    m_showFullscreenTitleBar = m_settings->value("ShowFullscreenTitleBar", true).toBool();
     m_useDirect2D = m_settings->value("UseDirect2D", false).toBool();
     m_useFastDCTForJPEG = m_settings->value("UseFastDCTForJPEG", true).toBool();
