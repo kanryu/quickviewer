@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.2.1
+VERSION = 1.2.2
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -286,7 +286,7 @@ win32 : !CONFIG(debug, debug|release) {
         install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats
         install_qrawspeed.files = \
             ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qrawspeed0.dll \
-            ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng2.dll \
+            ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qapng.dll \
             ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qjp2.dll \
             ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qdds.dll \
             ../../../qrawspeed/imageformats-$${TARGET_ARCH}/qjpegxr.dll \
