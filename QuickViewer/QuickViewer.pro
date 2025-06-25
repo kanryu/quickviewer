@@ -386,6 +386,7 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
 
     install_target.files = \
         $${OUT_PWD}/../bin/QuickViewer \
+        $${OUT_PWD}/../../bundle/7z.so \
 
     install_target.path = $${MY_DEFAULT_INSTALL}/usr/bin
 
@@ -405,7 +406,7 @@ linux : !CONFIG(debug, debug|release) : contains(DEFINES, QV_PORTABLE) {
         $${PWD}/../README.md \
         $${PWD}/../LICENSE \
 
-    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs
+    install_deploy_files.commands = linuxdeployqt $${MY_DEFAULT_INSTALL}/QuickViewer.desktop -qmake=$$[QT_INSTALL_BINS]/qmake -bundle-non-qt-libs -exclude-libs=libqsqlmimer,libqsqlmysql,libqsqlodbc,libqsqlpsql^M
     install_deploy_files.depends = install_install_target install_install_libs install_install_desktop
 
 #    install_translations.commands = ldd $${MY_DEFAULT_INSTALL}/usr/bin/QuickViewer | awk \'\$$1==\"libstdc++.so.$${GCC_MAJOR}\" {print \$$3}\' | xargs cp -t $${MY_DEFAULT_INSTALL}/usr/lib

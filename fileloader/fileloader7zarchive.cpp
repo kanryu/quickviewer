@@ -354,7 +354,7 @@ static Qt7zFileInfo fromC7ZipArchiveItem(C7ZipArchiveItem& item, QString package
 
 //    item.GetFileTimeProperty(PropertyIndexEnum::kpidCTime, prop.Created);
 //    item.GetFileTimeProperty(PropertyIndexEnum::kpidATime, prop.Accessed);
-    unsigned long long mtime = 0;
+    unsigned __int64 mtime = 0;
     item.GetFileTimeProperty(PropertyIndexEnum::kpidMTime, mtime);
     prop.Modified = QDateTime::fromSecsSinceEpoch(mtime);
 
