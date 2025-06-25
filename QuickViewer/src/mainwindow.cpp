@@ -229,6 +229,8 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(QString("%1 v%2").arg(qApp->applicationName()).arg(qApp->applicationVersion()));
     // WindowState Restoreing
     if(qApp->BeginAsFullscreen()) {
+        if(qApp->HideMouseCursorInFullscreen())
+            ui->graphicsView->setCursor(Qt::BlankCursor);
         showFullScreen();
     } else if(qApp->RestoreWindowState()) {
         restoreGeometry(qApp->WindowGeometry());
@@ -946,9 +948,9 @@ void MainWindow::onActionFullscreen_triggered()
         emit changingFullscreen(true);
         ui->graphicsView->setWillFullscreen(true);
         ui->graphicsView->skipRisizeEvent(true);
+        m_viewerWindowStateMaximized = isMaximized();
         if(qApp->HideMouseCursorInFullscreen())
             ui->graphicsView->setCursor(Qt::BlankCursor);
-        m_viewerWindowStateMaximized = isMaximized();
 
         menuBar()->hide();
         ui->mainToolBar->hide();
