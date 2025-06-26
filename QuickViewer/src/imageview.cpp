@@ -586,9 +586,16 @@ void ImageView::wheelEvent(QWheelEvent *event)
 {
     int delta_y = event->angleDelta().y();
     int delta = delta_y < 0 ? -Q_MOUSE_DELTA : delta_y > 0 ? Q_MOUSE_DELTA : 0;
-    if(event->buttons() & Qt::RightButton
-       || qApp->keyboardModifiers() & Qt::ControlModifier)
-        return;
+    QMouseValue mv(QKeySequence(qApp->keyboardModifiers()), event->buttons(), delta);
+    QAction* action = qApp->mouseActions().getActionByValue(mv);
+    if(action != nullptr) {
+        QString text = action->objectName();
+        if (text == "actionZoomIn" || text == "actionZoomIn") {
+            action->trigger();
+            event->accept();
+            return;
+        }
+    }
     if(m_loupeEnable) {
         if(delta_y < 0)
             m_loupeFactor = qMax(1.5, m_loupeFactor-0.5);
