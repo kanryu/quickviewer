@@ -397,6 +397,21 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
             aformat = "";
             break;
         }
+
+        if(aformat == "svg") {
+            // SVG is drawn using QGraphicsSvgItem so QImage is not needed, but I want the resolution of the graphics.
+            QSvgRenderer* renderer = new QSvgRenderer(bytes);
+            QSize size = renderer->defaultSize();
+            QImage image(size, QImage::Format_ARGB32);
+            {
+                QPainter painter(&image);
+                renderer->render(&painter);
+            }
+            ImageContent ic(image, path, size, info, bytes.length());
+            ic.SvgData = bytes;
+            return ic;
+        }
+
 //        qint64 t_canRead = et_canRead.elapsed();
 //        // Emptying the format of QImageReader will get the format of the internal QImageIoHandler
 //        reader.setFormat("");

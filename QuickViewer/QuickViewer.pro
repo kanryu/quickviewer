@@ -6,7 +6,7 @@
 
 include(../QVproject.pri)
 
-QT       += core gui concurrent sql
+QT       += core gui concurrent sql svgwidgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 contains(DEFINES, QV_WITHOUT_OPENGL) {
@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.2.2
+VERSION = 1.2.3
 
 TARGET = QuickViewer
 TEMPLATE = app
