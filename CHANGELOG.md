@@ -1,22 +1,37 @@
 # CHANGELOG
 
-## v1.2.2 (Sun Jun 22 13:12:58 2025 +0900) [f94cabf](https://github.com/kanryu/quickviewer/commit/f94cabfa0969264bc0f54153ebe1836863a41abf)
+## v1.2.3 (Sun Jul 6 20:35:25 2025 +0900) [f412f22](https://github.com/kanryu/quickviewer/commit/f412f22fda4b618ad0145ac7fd2f9643ca2c9a93)
 
-FIXED: APNG plugin didn't work
+[Commission] support for SVG images
+
+- SVG animation supported
+- SVG 1.1 or SVG Tiny 1.2 (based on Qt6)
 
 - other commits
+    - FIXED: can't zooming wth mouse wheel when unlocked ""Scroll with mouse cursor on zooming"" (Thu Jun 26 23:13:39 2025 +0900) [a51f8a6](https://github.com/kanryu/quickviewer/commit/a51f8a6a0686140bdd810b153bd1669193ce0e87)
+    - Merge branch 'master' of https://github.com/kanryu/quickviewer (Wed Jun 25 21:00:23 2025 +0900) [d4c6126](https://github.com/kanryu/quickviewer/commit/d4c6126eec66da368c9f585795f66b33bf0336f0)
+    - FIXED: Mouse cursor is not automatically hidden if QW starts in full screen mode #192 (Wed Jun 25 20:59:59 2025 +0900) [4909574](https://github.com/kanryu/quickviewer/commit/490957454d713e22fb06088884da169b63512f61)
+    - build for linux AppImage (Sun Jun 22 14:30:03 2025 +0900) [7fd9812](https://github.com/kanryu/quickviewer/commit/7fd9812f83925bb8588b8e877fef6310de844a9f)
+    - fixed for clang (Sun Jun 22 13:48:32 2025 +0900) [8c6e3bf](https://github.com/kanryu/quickviewer/commit/8c6e3bf24fdfe97267e1a8d243d277f32e96c2cb)
+
+## v1.2.2 (Sun Jun 22 13:21:35 2025 +0900) [b681652](https://github.com/kanryu/quickviewer/commit/b6816527567b3693068867276380b5d980d1fc06)
+
+changelog
+
+- other commits
+    - FIXED: APNG plugin didn't work (Sun Jun 22 13:12:58 2025 +0900) [f94cabf](https://github.com/kanryu/quickviewer/commit/f94cabfa0969264bc0f54153ebe1836863a41abf)
     - FIXED: sort by filename natural/logic order #190 (Sun Jun 22 13:11:38 2025 +0900) [7f030de](https://github.com/kanryu/quickviewer/commit/7f030de8b7b62fa8a6fe61c48a254034c0fd73e3)
     - FIXED: Doesn't display high res images #188 (Sun Jun 22 13:10:06 2025 +0900) [1e7d77b](https://github.com/kanryu/quickviewer/commit/1e7d77bd8199cdca6fa8400e246b395d773f3e7a)
-    - changelog (Thu May 22 05:59:18 2025 +0900) [127658a](https://github.com/kanryu/quickviewer/commit/127658a92445333874ba2533d502a612835c0449)
 
-## v1.2.1 (Thu May 22 05:55:40 2025 +0900) [3b635d2](https://github.com/kanryu/quickviewer/commit/3b635d26aa7a13f2d8c27d0e2ba89f1bcc5b5e3f)
+## v1.2.1 (Thu May 22 05:59:18 2025 +0900) [127658a](https://github.com/kanryu/quickviewer/commit/127658a92445333874ba2533d502a612835c0449)
 
-AppImage on Linux is now supported for the first time in a while.
-
-- FIXED: Crashes when running Next Volume twice
-- Due to limitations of Linux specifications, and distro 7z.so being completely useless, AppImage includes a complete p7zip. It does not support additional image formats supported by Windows.
+changelog
 
 - other commits
+    - AppImage on Linux is now supported for the first time in a while. (Thu May 22 05:55:40 2025 +0900) [3b635d2](https://github.com/kanryu/quickviewer/commit/3b635d26aa7a13f2d8c27d0e2ba89f1bcc5b5e3f)
+    -  (Thu May 22 05:55:40 2025 +0900) [3b635d2](https://github.com/kanryu/quickviewer/commit/3b635d26aa7a13f2d8c27d0e2ba89f1bcc5b5e3f)
+    -  FIXED: Crashes when running Next Volume twice (Thu May 22 05:55:40 2025 +0900) [3b635d2](https://github.com/kanryu/quickviewer/commit/3b635d26aa7a13f2d8c27d0e2ba89f1bcc5b5e3f)
+    -  Due to limitations of Linux specifications, and distro 7z.so being completely useless, AppImage includes a complete p7zip. It does not support additional image formats supported by Windows. (Thu May 22 05:55:40 2025 +0900) [3b635d2](https://github.com/kanryu/quickviewer/commit/3b635d26aa7a13f2d8c27d0e2ba89f1bcc5b5e3f)
     - not current dir but executable dir (Thu May 22 05:36:36 2025 +0900) [1ddf02a](https://github.com/kanryu/quickviewer/commit/1ddf02a98c3b8838baba34e53e5b3fcd649362f5)
     - addVolumeCache (Thu May 22 04:09:46 2025 +0900) [32ae999](https://github.com/kanryu/quickviewer/commit/32ae9990c89ca6d2a499913013b07d71792ef270)
     - fixed about new volume (Thu May 22 02:05:14 2025 +0900) [ba55ce3](https://github.com/kanryu/quickviewer/commit/ba55ce33d6e77a82c9241d1e6eabc9e5419a82eb)
