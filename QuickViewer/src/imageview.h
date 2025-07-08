@@ -139,7 +139,8 @@ public slots:
     void onBrightness_valueChanged(ImageRetouch params);
 
 private:
-    qreal getZoomScale() {return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second;}
+//    qreal getZoomScale() {return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second;}
+    qreal getZoomScale();
 
     RendererType m_renderer;
     QVector<PageContent> m_pages;

@@ -156,7 +156,14 @@ public:
     QString Text;
     QGraphicsTextItem* GText;
     QGraphicsRectItem* GTextSurface;
+    /**
+     * @brief Actual drawing scale
+     */
     qreal DrawScale;
+    /**
+     * @brief Notational scale
+     */
+    qreal NotationalScale;
     SeparationState Separation;
 
     PageContent(QObject* parent=nullptr);

@@ -824,3 +824,12 @@ void ImageView::onBrightness_valueChanged(ImageRetouch params)
     readyForPaint();
 }
 
+qreal ImageView::getZoomScale()
+{
+    // Some OS allow you to change the display magnification.
+    // In this case, the content drawn is automatically scaled by devicePixelRatio,
+    // but avoid scaling only the image.
+    QScreen* screen0 = screen();
+    return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second/screen0->devicePixelRatio();
+}
+

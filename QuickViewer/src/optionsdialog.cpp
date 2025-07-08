@@ -27,8 +27,8 @@ public:
                             easyexif::EXIFInfo(),
                             1234567))
                   };
-        m_pages[0].DrawScale = 0.5;
-        m_pages[1].DrawScale = 0.5;
+        m_pages[0].NotationalScale = 0.5;
+        m_pages[1].NotationalScale = 0.5;
     }
     int size() { return m_size; }
     int currentPage() { return m_currentPage; }

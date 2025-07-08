@@ -83,6 +83,7 @@ PageContent::PageContent(const PageContent &rhs)
     , GText(rhs.GText)
     , GTextSurface(rhs.GTextSurface)
     , DrawScale(rhs.DrawScale)
+    , NotationalScale(rhs.NotationalScale)
     , Separation(rhs.Separation)
     , m_imageView(rhs.m_imageView)
 {
@@ -99,6 +100,7 @@ PageContent &PageContent::operator=(const PageContent &rhs) {
     GTextSurface  = rhs.GTextSurface;
     m_resizeGeneratingState = 0;
     DrawScale = rhs.DrawScale;
+    NotationalScale = rhs.NotationalScale;
     Separation = rhs.Separation;
     m_imageView = rhs.m_imageView;
     return *this;
@@ -132,6 +134,7 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign a
             ? currentSize.scaled(viewport.size(), Qt::KeepAspectRatio)
             : QSize(viewport.width(), currentSize.height()*viewport.width()/currentSize.width()) ;
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
+    NotationalScale = scale * m_imageView->screen()->devicePixelRatio();
     if(loupe > 1.0) {
         return setPageLayoutManual(viewport, align, scale*loupe, rotateOffset, true);
     }
@@ -173,6 +176,7 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::PageAlign al
         currentSize = QSize(currentSize.width()/2, currentSize.height());
     QSize newsize = currentSize * scale;
     DrawScale = scale;
+    NotationalScale = scale * m_imageView->screen()->devicePixelRatio();
 
     QPoint of = Offset(rotateOffset);
     of *= scale;

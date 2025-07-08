@@ -96,7 +96,7 @@ QString ImageString::formatString(QString fmt)
             // Image size, e.g. '1920x1080'
         case 's': result << QString("%1x%2").arg(page.Ic.BaseSize.width()).arg(page.Ic.BaseSize.height()); break;
             // Display magnification of image, e.g. '25%'
-        case 'm': result << QString("%1%").arg((int)(100*page.DrawScale)); break;
+        case 'm': result << QString("%1%").arg((int)(100*page.NotationalScale)); break;
             // Image file size with usefull, e.g. '63.23 KB'
         case 'f': {
             double filelength = page.Ic.FileLength;
