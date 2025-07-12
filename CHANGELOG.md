@@ -1,13 +1,21 @@
 # CHANGELOG
 
-## v1.2.3 (Sun Jul 6 20:35:25 2025 +0900) [f412f22](https://github.com/kanryu/quickviewer/commit/f412f22fda4b618ad0145ac7fd2f9643ca2c9a93)
+## v1.2.4 (Sat Jul 12 20:07:13 2025 +0900) [b7ec27d](https://github.com/kanryu/quickviewer/commit/b7ec27d864579a744712fa854e957e63b58e2d54)
 
-[Commission] support for SVG images
-
-- SVG animation supported
-- SVG 1.1 or SVG Tiny 1.2 (based on Qt6)
+replace to QSVGRenderer for svg
 
 - other commits
+    - FIXED: [Feature request] HiDPI scaling images (Tue Jul 8 15:33:37 2025 +0900) [8823d7c](https://github.com/kanryu/quickviewer/commit/8823d7c3e951318e2d1137e440fcfe74ed6af410)
+
+## v1.2.3 (Sun Jul 6 20:40:20 2025 +0900) [84765fd](https://github.com/kanryu/quickviewer/commit/84765fddf38d1c8879a8b0840aa7ab04f1629c13)
+
+changelog
+
+- other commits
+    - [Commission] support for SVG images (Sun Jul 6 20:35:25 2025 +0900) [f412f22](https://github.com/kanryu/quickviewer/commit/f412f22fda4b618ad0145ac7fd2f9643ca2c9a93)
+    -  (Sun Jul 6 20:35:25 2025 +0900) [f412f22](https://github.com/kanryu/quickviewer/commit/f412f22fda4b618ad0145ac7fd2f9643ca2c9a93)
+    -  SVG animation supported (Sun Jul 6 20:35:25 2025 +0900) [f412f22](https://github.com/kanryu/quickviewer/commit/f412f22fda4b618ad0145ac7fd2f9643ca2c9a93)
+    -  SVG 1.1 or SVG Tiny 1.2 (based on Qt6) (Sun Jul 6 20:35:25 2025 +0900) [f412f22](https://github.com/kanryu/quickviewer/commit/f412f22fda4b618ad0145ac7fd2f9643ca2c9a93)
     - FIXED: can't zooming wth mouse wheel when unlocked ""Scroll with mouse cursor on zooming"" (Thu Jun 26 23:13:39 2025 +0900) [a51f8a6](https://github.com/kanryu/quickviewer/commit/a51f8a6a0686140bdd810b153bd1669193ce0e87)
     - Merge branch 'master' of https://github.com/kanryu/quickviewer (Wed Jun 25 21:00:23 2025 +0900) [d4c6126](https://github.com/kanryu/quickviewer/commit/d4c6126eec66da368c9f585795f66b33bf0336f0)
     - FIXED: Mouse cursor is not automatically hidden if QW starts in full screen mode #192 (Wed Jun 25 20:59:59 2025 +0900) [4909574](https://github.com/kanryu/quickviewer/commit/490957454d713e22fb06088884da169b63512f61)
@@ -43,7 +51,7 @@ changelog
     -  (Sat May 17 18:03:58 2025 +0900) [ef17ba9](https://github.com/kanryu/quickviewer/commit/ef17ba9976d86f6dd2926b3179652045ea74b91c)
     - Updated using Qt-9.6.0, support AVIF, 2 bugfixed (Sat May 17 18:03:58 2025 +0900) [ef17ba9](https://github.com/kanryu/quickviewer/commit/ef17ba9976d86f6dd2926b3179652045ea74b91c)
 
-## v1.2.0, origin/dev/qt69, dev/qt69 (Sat May 17 17:43:57 2025 +0900) [9ddf17b](https://github.com/kanryu/quickviewer/commit/9ddf17b48994457179af563f9f51c37546b3de52)
+## v1.2.0, origin/dev/qt69 (Sat May 17 17:43:57 2025 +0900) [9ddf17b](https://github.com/kanryu/quickviewer/commit/9ddf17b48994457179af563f9f51c37546b3de52)
 
 CHANGELOG
 
