@@ -6,7 +6,7 @@
 
 include(../QVproject.pri)
 
-QT       += core gui concurrent sql svgwidgets
+QT       += core gui concurrent sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 contains(DEFINES, QV_WITHOUT_OPENGL) {
@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.2.3
+VERSION = 1.2.4
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -39,6 +39,7 @@ INCLUDEPATH += ../ResizeHalf/ResizeHalf
 INCLUDEPATH += ../easyexif/easyexif
 INCLUDEPATH += ../fileloader
 INCLUDEPATH += ../zimg
+INCLUDEPATH += ../qsvgrenderer/svg-native-viewer/svgnative/include
 INCLUDEPATH += ./src ./src/catalog ./src/widgets ./src/models ./src/folderview
 INCLUDEPATH += ./src/qfullscreenframe ./src/qlanguageselector ./src/qnamedpipe ./src/qactionmanager
 
@@ -70,10 +71,12 @@ win32 {
             QMAKE_LFLAGS += /LARGEADDRESSAWARE
         }
     }
-    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32 -luuid
+    LIBS += -luser32 -ladvapi32 -lShlwapi -loleaut32 -lole32 -luuid -lQSVGNative0
 
     # copy official 7z.dll to build/bin/
-    QMAKE_POST_LINK += $$QMAKE_COPY /B $$shell_quote($$shell_path($$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll)) $$shell_path($${DESTDIR})
+    QMAKE_POST_LINK += $$QMAKE_COPY /B $$shell_quote($$shell_path($$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll)) $$shell_path($${DESTDIR}) $$escape_expand(\n\t)
+    # copy QSVGNative.dll to build/bin/
+    QMAKE_POST_LINK += $$QMAKE_COPY /B $$shell_quote($$shell_path($${DESTDIR}/../lib/QSVGNative0.dll)) $$shell_path($${DESTDIR})
 }
 linux {
     DEFINES += _UNIX
@@ -266,7 +269,7 @@ win32 : !CONFIG(debug, debug|release) {
     mingw {
         MY_DEFAULT_INSTALL = ../../QuickViewer-$${VERSION}-mingw-$${TARGET_ARCH}
 
-        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/fileloader.dll $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll
+        install_target.files = $${DESTDIR}/QuickViewer.exe $${DESTDIR}/AssociateFilesWithQuickViewer.exe $${LIBDIR}/QSVGNative0.dll $${LIBDIR}/fileloader.dll $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll
 
         INSTALLS += install_target install_deploy_files install_translations install_assoc_icons
     } else {
@@ -281,6 +284,7 @@ win32 : !CONFIG(debug, debug|release) {
         install_target.files = \
             $${DESTDIR}/QuickViewer.exe \
             $${DESTDIR}/AssociateFilesWithQuickViewer.exe \
+            $${LIBDIR}/QSVGNative0.dll \
             $$PWD/../Qt7z/Qt7z/windll/$${TARGET_ARCH}/7z.dll \
 
         install_qrawspeed.path = $${MY_DEFAULT_INSTALL}/imageformats

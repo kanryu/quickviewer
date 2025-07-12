@@ -7,7 +7,10 @@
 #include "qzimg.h"
 #include "pagemanager.h"
 #include "fileloader.h"
+#include "svgnative/SVGDocument.h"
+#include "svgnative/ports/qt/QSVGRenderer.h"
 
+using namespace SVGNative;
 static ImageContent pathThrough(ImageContent ic) { return ic; }
 
 VolumeManager::VolumeManager(QObject *parent, IFileLoader* loader, PageManager* pageManager)
@@ -399,16 +402,32 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         }
 
         if(aformat == "svg") {
-            // SVG is drawn using QGraphicsSvgItem so QImage is not needed, but I want the resolution of the graphics.
-            QSvgRenderer* renderer = new QSvgRenderer(bytes);
-            QSize size = renderer->defaultSize();
+            // // SVG is drawn using QGraphicsSvgItem so QImage is not needed, but I want the resolution of the graphics.
+            // QSvgRenderer* renderer = new QSvgRenderer(bytes);
+            // QSize size = renderer->defaultSize();
+            // QImage image(size, QImage::Format_ARGB32);
+            // {
+            //     QPainter painter(&image);
+            //     renderer->render(&painter);
+            // }
+
+            // offline rendering into QImage
+            auto renderer = std::shared_ptr<QSVGRenderer>(new QSVGRenderer);
+            auto svgDocument = SVGDocument::CreateSVGDocument(bytes.constData(), renderer);
+
+            // render twice size
+            QSize svgSize(svgDocument.get()->Width(), svgDocument.get()->Height());
+            QSize maxSize(3840, 2160);
+            QSize size = svgSize.scaled(maxSize, Qt::KeepAspectRatio);
             QImage image(size, QImage::Format_ARGB32);
             {
                 QPainter painter(&image);
-                renderer->render(&painter);
+                painter.setWindow(0, 0, svgSize.width(), svgSize.height());
+                renderer->SetPainter(&painter);
+                svgDocument->Render();
             }
+
             ImageContent ic(image, path, size, info, bytes.length());
-            ic.SvgData = bytes;
             return ic;
         }
 

@@ -37,3 +37,7 @@
 [submodule "Qt7z/Qt7z/lib7zip"]
 	path = Qt7z/Qt7z/lib7zip
 	url = https://github.com/kanryu/lib7zip
+[submodule "qsvgrenderer/svg-native-viewer"]
+	path = qsvgrenderer/svg-native-viewer
+	url = https://github.com/kanryu/svg-native-viewer
+	branch = kanryu/qt6port

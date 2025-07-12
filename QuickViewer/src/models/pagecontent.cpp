@@ -1,5 +1,4 @@
 #include <QtConcurrent>
-#include <QGraphicsSvgItem>
 
 #include "pagecontent.h"
 #include "qvapplication.h"
@@ -308,29 +307,13 @@ QImage &PageContent::applyRetouched()
 
 void PageContent::initializePage(bool resetResized)
 {
-    if (Ic.SvgData.isNull()) {
-        if(GrItem) {
-            Scene->removeItem(GrItem);
-            delete GrItem;
-        }
-        if(Scene) {
-            GrItem = Scene->addPixmap(QPixmap::fromImage(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? applyRetouched() : Ic.ResizedImage));
-            GrItem->setRotation(Rotate);
-        }
-    } else if (!resetResized) {
-        if(GrItem) {
-            Scene->removeItem(GrItem);
-            delete GrItem;
-        }
-        if(Scene) {
-            QGraphicsSvgItem* svgItem = new QGraphicsSvgItem();
-            svgItem->renderer()->load(Ic.SvgData);
-
-            svgItem->setElementId("");
-            GrItem = svgItem;
-            GrItem->setRotation(Rotate);
-            Scene->addItem(GrItem);
-        }
+    if(GrItem) {
+        Scene->removeItem(GrItem);
+        delete GrItem;
+    }
+    if(Scene) {
+        GrItem = Scene->addPixmap(QPixmap::fromImage(qApp->Effect() > qvEnums::UsingFixedShader || Ic.ResizedImage.isNull() ? applyRetouched() : Ic.ResizedImage));
+        GrItem->setRotation(Rotate);
     }
 
     if(resetResized)

@@ -8,13 +8,14 @@ SUBDIRS = \
     unrar \
     fileloader \
     zimg \
+    qsvgrenderer \
     QuickViewer \
 
 #   qvtest
 
 
 fileloader.depends = Qt7z/Qt7z unrar
-QuickViewer.depends = ResizeHalf easyexif fileloader zimg
+QuickViewer.depends = ResizeHalf easyexif fileloader zimg qsvgrenderer
 qvtest.depends = fileloader
 
 contains(DEFINES, QV_WITH_LUMINOR) {

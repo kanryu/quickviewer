@@ -3,7 +3,6 @@
 
 #include <QtCore>
 #include <QtWidgets>
-#include <QtSvg>
 
 #include "exif.h"
 #include "qvmovie.h"
@@ -68,7 +67,6 @@ public:
      * @brief Info is Exif Information of the image(JPEG only)
      */
     easyexif::EXIFInfo Info;
-    QByteArray SvgData;
 
     size_t FileLength;
     ImageRetouch RetouchParam;
@@ -86,7 +84,6 @@ public:
         , ImportSize(rhs.ImportSize)
         , Path(rhs.Path)
         , Info(rhs.Info)
-        , SvgData(rhs.SvgData)
         , FileLength(rhs.FileLength)
         , ResizeMode(rhs.ResizeMode)
     {}
@@ -99,7 +96,6 @@ public:
         BaseSize = rhs.BaseSize;
         ImportSize = rhs.ImportSize;
         Info = rhs.Info;
-        SvgData = rhs.SvgData;
         FileLength = rhs.FileLength;
         ResizeMode = rhs.ResizeMode;
         return *this;
