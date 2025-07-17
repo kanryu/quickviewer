@@ -174,8 +174,8 @@ void ImageView::on_clearImages_triggered()
     }
 
     m_pages.resize(0);
-    horizontalScrollBar()->setValue(0);
-    verticalScrollBar()->setValue(0);
+    // horizontalScrollBar()->setValue(0);
+    // verticalScrollBar()->setValue(0);
 }
 //static int paintCnt=0;
 void ImageView::readyForPaint() {
@@ -306,13 +306,10 @@ void ImageView::scrollOnLoupeMode()
 void ImageView::scrollOnZoomMode()
 {
     QPoint cursorPos = QCursor::pos();
-//    QPoint cursorPos0 = QCursor::pos();
     cursorPos = mapFromGlobal(cursorPos);
     cursorPos = QPoint(cursorPos.x() < width()/4 ? 0 : (cursorPos.x()- width()/4)*4/2,
                        cursorPos.y() < height()/4 ? 0 : (cursorPos.y()- height()/4)*4/2);
     const QRectF sceneRect = scene()->sceneRect();
-//    qDebug() << cursorPos0 << cursorPos << QPoint(cursorPos.x()*horizontalScrollBar()->maximum()/width(), cursorPos.y()*verticalScrollBar()->maximum()/height());
-//    qDebug() << horizontalScrollBar()->maximum() << verticalScrollBar()->maximum();
     horizontalScrollBar()->setValue(horizontalScrollBar()->minimum()+cursorPos.x()*(horizontalScrollBar()->maximum()-horizontalScrollBar()->minimum())/width());
     verticalScrollBar()->setValue(horizontalScrollBar()->minimum()+cursorPos.y()*(verticalScrollBar()->maximum()-horizontalScrollBar()->minimum())/height());
 }
@@ -639,8 +636,13 @@ void ImageView::mouseReleaseEvent(QMouseEvent *event)
 
 void ImageView::on_fitting_triggered(bool enable)
 {
-    qApp->setFitting(enable);
-    readyForPaint();
+    if (enable) {
+        qApp->setFitting(enable);
+        readyForPaint();
+    } else {
+        // When turning off fitting mode, use the scale up event handler instead.
+        on_scaleUp_triggered();
+    }
 }
 
 void ImageView::on_fitToWindow_triggered(bool enable)
