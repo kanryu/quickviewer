@@ -130,6 +130,8 @@ public:
     void setMaxTextureSize(int maxTextureSize) { m_maxTextureSize = maxTextureSize; }
     bool UseFastDCTForJPEG() { return m_useFastDCTForJPEG; }
     void setUseFastDCTForJPEG(bool useFastDCTForJPEG) { m_useFastDCTForJPEG = useFastDCTForJPEG; }
+    QString HowToLoadSVG() { return m_howToLoadSVG; }
+    void setHowToLoadSVG(QString howToLoadSVG) { m_howToLoadSVG = howToLoadSVG; }
 
     // Navigations
 
@@ -384,6 +386,7 @@ private:
 //    bool m_showFullscreenTitleBar;
     bool m_useDirect2D;
     bool m_useFastDCTForJPEG;
+    QString m_howToLoadSVG;
     bool m_showPanelSeparateWindow;
     bool m_largeToolbarIcons;
 

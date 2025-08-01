@@ -116,6 +116,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     if(!ui->radioButtonStatusBarUserDefined->isChecked())
         ui->lineEditStatusBarUserStyle->setEnabled(false);
 
+
+    ui->comboBoxHowToLoadSVG->setCurrentText(qApp->HowToLoadSVG());
     ui->comboBoxThemeSelector->setCurrentText(qApp->UiTheme());
 }
 
@@ -166,6 +168,7 @@ void OptionsDialog::reflectResults()
     else
         qApp->setStatusTextFormat(ui->lineEditStatusBarUserStyle->text());
 
+    qApp->setHowToLoadSVG(ui->comboBoxHowToLoadSVG->currentText());
     qApp->setUiTheme(ui->comboBoxThemeSelector->currentText());
 }
 

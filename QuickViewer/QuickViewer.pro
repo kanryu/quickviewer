@@ -6,7 +6,7 @@
 
 include(../QVproject.pri)
 
-QT       += core gui concurrent sql
+QT       += core gui concurrent sql svgwidgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 contains(DEFINES, QV_WITHOUT_OPENGL) {
@@ -305,7 +305,7 @@ win32 : !CONFIG(debug, debug|release) {
         #install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
         install_msvcrt.PATH = C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Redist/MSVC/14.38.33130/x64/Microsoft.VC143.CRT
         install_msvcrt.path = $${MY_DEFAULT_INSTALL}
-        install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vcredist_$${TARGET_ARCH}.exe)
+        install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vc_redist.$${TARGET_ARCH}.exe)
         install_msvcrt.commands = -$(DEL_FILE) "$${install_msvcrt.removefiles}"
         install_msvcrt.depends = install_install_deploy_files
         install_msvcrt.files = \

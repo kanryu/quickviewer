@@ -421,6 +421,7 @@ void QVApplication::loadSettings()
 //    m_showFullscreenTitleBar = m_settings->value("ShowFullscreenTitleBar", true).toBool();
     m_useDirect2D = m_settings->value("UseDirect2D", false).toBool();
     m_useFastDCTForJPEG = m_settings->value("UseFastDCTForJPEG", true).toBool();
+    m_howToLoadSVG = m_settings->value("HowToLoadSVG", "imageformat").toString();
     m_showPanelSeparateWindow  = m_settings->value("ShowPanelSeparateWindow", false).toBool();
     m_largeToolbarIcons  = m_settings->value("LargeToolbarIcons", false).toBool();
 
@@ -600,6 +601,7 @@ void QVApplication::saveSettings()
 //    m_settings->setValue("ShowFullscreenTitleBar", m_showFullscreenTitleBar);
     m_settings->setValue("UseDirect2D", m_useDirect2D);
     m_settings->setValue("UseFastDCTForJPEG", m_useFastDCTForJPEG);
+    m_settings->setValue("HowToLoadSVG", m_howToLoadSVG);
     m_settings->setValue("ShowPanelSeparateWindow", m_showPanelSeparateWindow);
     m_settings->setValue("LargeToolbarIcons", m_largeToolbarIcons);
 

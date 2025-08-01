@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <random>
+#include <QSvgRenderer>
 
 #include "volumemanager.h"
 #include "ResizeHalf.h"
@@ -402,29 +403,34 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         }
 
         if(aformat == "svg") {
-            // // SVG is drawn using QGraphicsSvgItem so QImage is not needed, but I want the resolution of the graphics.
-            // QSvgRenderer* renderer = new QSvgRenderer(bytes);
-            // QSize size = renderer->defaultSize();
-            // QImage image(size, QImage::Format_ARGB32);
-            // {
-            //     QPainter painter(&image);
-            //     renderer->render(&painter);
-            // }
-
-            // offline rendering into QImage
-            auto renderer = std::shared_ptr<QSVGRenderer>(new QSVGRenderer);
-            auto svgDocument = SVGDocument::CreateSVGDocument(bytes.constData(), renderer);
-
-            // render twice size
-            QSize svgSize(svgDocument.get()->Width(), svgDocument.get()->Height());
+            QSize baseSize = reader.size();
             QSize maxSize(3840, 2160);
-            QSize size = svgSize.scaled(maxSize, Qt::KeepAspectRatio);
-            QImage image(size, QImage::Format_ARGB32);
-            {
-                QPainter painter(&image);
-                painter.setWindow(0, 0, svgSize.width(), svgSize.height());
-                renderer->SetPainter(&painter);
-                svgDocument->Render();
+            QSize size = baseSize.scaled(maxSize, Qt::KeepAspectRatio);
+            QImage image;
+            if (qApp->HowToLoadSVG() == "imageformat") {
+                reader.setScaledSize(size);
+                image = reader.read();
+            } else if (qApp->HowToLoadSVG() == "qsvg") {
+                // SVG is drawn using QGraphicsSvgItem so QImage is not needed, but I want the resolution of the graphics.
+                QSvgRenderer* renderer = new QSvgRenderer(bytes);
+                image = QImage(size, QImage::Format_ARGB32);
+                {
+                    QPainter painter(&image);
+                    renderer->render(&painter);
+                }
+            } else {
+                // offline rendering into QImage
+                auto renderer = std::shared_ptr<QSVGRenderer>(new QSVGRenderer);
+                auto svgDocument = SVGDocument::CreateSVGDocument(bytes.constData(), renderer);
+
+                // render twice size
+                image = QImage(size, QImage::Format_ARGB32);
+                {
+                    QPainter painter(&image);
+                    painter.setWindow(0, 0, baseSize.width(), baseSize.height());
+                    renderer->SetPainter(&painter);
+                    svgDocument->Render();
+                }
             }
 
             ImageContent ic(image, path, size, info, bytes.length());
