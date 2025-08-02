@@ -57,14 +57,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionCheckVersion->setMenuRole(QAction::ApplicationSpecificRole);
 #endif
 
-	m_fullscreenButton = new QToolButton(this);
-    m_fullscreenButton->setToolTip(tr("&Fullscreen"));
-    m_fullscreenButton->setCheckable(true);
-    m_fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
-    connect(m_fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
-    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), m_fullscreenButton, SLOT(setChecked(bool)));
-    ui->menuBar->setCornerWidget(m_fullscreenButton);
-
     ui->graphicsView->setPageManager(&m_pageManager);
     setAcceptDrops(true);
 
@@ -105,6 +97,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->actionStayOnTop->setChecked(qApp->StayOnTop());
     ui->actionStayOnTop->triggered(qApp->StayOnTop());
+
+    m_fullscreenButton = new QToolButton(this);
+    m_fullscreenButton->setToolTip(tr("&Fullscreen"));
+    m_fullscreenButton->setCheckable(true);
+    m_fullscreenButton->setIcon(QIcon(":/icons/fullscreen"));
+    connect(m_fullscreenButton, SIGNAL(clicked(bool)), this, SLOT(onActionFullscreen_triggered()));
+    connect(ui->actionFullscreen, SIGNAL(toggled(bool)), m_fullscreenButton, SLOT(setChecked(bool)));
+    ui->menuBar->setCornerWidget(m_fullscreenButton);
 
     ui->actionLargeToolbarIcons->setChecked(qApp->LargeToolbarIcons());
     ui->actionLargeToolbarIcons->triggered(qApp->LargeToolbarIcons());
@@ -975,7 +975,13 @@ void MainWindow::onActionStayOnTop_triggered(bool top)
     } else {
         flags &= ~Qt::WindowStaysOnTopHint;
     }
-//    flags |= Qt::WindowFullscreenButtonHint;
+
+    // If show() is called here when the application starts,
+    // there will be problems, so skip it.
+    if (!m_fullscreenButton) {
+        return;
+    }
+
     bool full = isFullScreen();
     setWindowFlags(flags);
     if(!full) {

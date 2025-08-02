@@ -55,19 +55,20 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         return result;
     }
 
-    VolumeManagerBuilder builder(qpath, this);
-    VolumeManager* newer = builder.buildForAssoc();
-    if(!newer) {
-//        return false;
-        return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
-    }
-    emit volumeChanged("");
-    m_volumes.insert(pathbase, QtConcurrent::run([=]{return newer;}));
-    m_fileVolume = newer;
-    clearPages();
-    m_currentPage = 0;
-    addNewPage(builder.Ic, true);
-    emit readyForPaint();
+    QtConcurrent::run([=]{
+        VolumeManagerBuilder builder(qpath, this);
+        VolumeManager* newer = builder.buildForAssoc();
+        if(!newer) {
+            return loadVolume(QString("%1::%2").arg(pathbase).arg(qpath.mid(pathbase.length()+1)));
+        }
+        emit volumeChanged("");
+        m_volumes.insert(pathbase, QtConcurrent::run([=]{return newer;}));
+        m_fileVolume = newer;
+        clearPages();
+        m_currentPage = 0;
+        addNewPage(builder.Ic, true);
+        emit readyForPaint();
+    });
     return true;
 }
 

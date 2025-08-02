@@ -70,7 +70,11 @@ int main(int argc, char *argv[])
                 w.loadVolumeWithAssoc(string);
             }
         });
-        w.show();
+        if(app.BeginAsFullscreen()){
+            w.showFullScreen();
+        } else {
+            w.show();
+        }
         result = app.exec();
     }
     return result;
