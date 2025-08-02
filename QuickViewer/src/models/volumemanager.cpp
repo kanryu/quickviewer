@@ -394,6 +394,16 @@ static ImageContent loadWithSpecifiedFormat(QString path, QSize pageSize, QByteA
         int maxTextureSize = qApp->MaxTextureSize();
         easyexif::EXIFInfo info;
         QBuffer buffer(&bytes);
+
+        // I think the excessive normalization of recent years is really ridiculous.
+        // Calling what we've traditionally called JPEG something else, like JFIF, is causing confusion for many people.
+        // And it hasn't helped solve any of the problems with the JPEG file format.
+        // The incompatibility with EXIF remains unresolved.
+        if (aformat == "jif"
+            || aformat == "jfif"
+            || aformat == "jfi") {
+            aformat = "jpg";
+        }
         QImageReader reader(&buffer, aformat.toUtf8());
 
 //        QElapsedTimer et_canRead; et_canRead.start();
