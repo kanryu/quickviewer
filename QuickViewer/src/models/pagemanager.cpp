@@ -68,6 +68,8 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         m_currentPage = 0;
         addNewPage(builder.Ic, true);
         emit readyForPaint();
+        emit pageChanged();
+        emit volumeChanged(m_fileVolume->volumePath());
     });
     return true;
 }
