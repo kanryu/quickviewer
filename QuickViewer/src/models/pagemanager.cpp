@@ -65,7 +65,7 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         m_volumes.insert(pathbase, QtConcurrent::run([=]{return newer;}));
         m_fileVolume = newer;
         clearPages();
-        m_currentPage = 0;
+        m_currentPage = newer->pageCount();
         addNewPage(builder.Ic, true);
         emit readyForPaint();
         emit pageChanged();
