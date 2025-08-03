@@ -1,5 +1,9 @@
 # CHANGELOG
 
+- other commits
+    - The page count was incorrect when dropping an image file. (Sun Aug 3 20:17:35 2025 +0900) [de1b4cc](https://github.com/kanryu/quickviewer/commit/de1b4cc872886c92171f0979ed2f3027daff66f0)
+    - CHANGELOG (Sun Aug 3 19:24:38 2025 +0900) [9ff7b42](https://github.com/kanryu/quickviewer/commit/9ff7b4272595d77154fc46acb25acf63ecefc153)
+
 ## v1.2.5, origin/master, origin/HEAD (Sun Aug 3 19:19:21 2025 +0900) [d0bc4e1](https://github.com/kanryu/quickviewer/commit/d0bc4e1197948035faed81137c91acd54f8fd00b)
 
 The page bar and status bar did not update when an image file was dropped
