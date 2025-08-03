@@ -1,10 +1,26 @@
 # CHANGELOG
 
-## v1.2.4 (Sat Jul 12 20:07:13 2025 +0900) [b7ec27d](https://github.com/kanryu/quickviewer/commit/b7ec27d864579a744712fa854e957e63b58e2d54)
+## v1.2.5, origin/master, origin/HEAD (Sun Aug 3 19:19:21 2025 +0900) [d0bc4e1](https://github.com/kanryu/quickviewer/commit/d0bc4e1197948035faed81137c91acd54f8fd00b)
 
-replace to QSVGRenderer for svg
+The page bar and status bar did not update when an image file was dropped
 
 - other commits
+    - When displaying large images in full-screen mode, the display was incorrect. (Sat Aug 2 17:43:07 2025 +0900) [bc5e9b4](https://github.com/kanryu/quickviewer/commit/bc5e9b428ca3d1f00f8a1924524b77352c34a796)
+    - When displaying large images in full-screen mode, the display was incorrect. (Sat Aug 2 17:43:07 2025 +0900) [bb578fc](https://github.com/kanryu/quickviewer/commit/bb578fc1e5a58aeeb23ef64c72c27e751d9e7f3f)
+    - Long filenames were not displayed properly when the window was maximized. (Sat Aug 2 17:34:44 2025 +0900) [1440450](https://github.com/kanryu/quickviewer/commit/1440450354a0316364deaec80953713b549e5ff8)
+    - Display JPEG files with the JIF extension (Sat Aug 2 17:01:20 2025 +0900) [eecfcf3](https://github.com/kanryu/quickviewer/commit/eecfcf379d76d37c98774be186863c90434531dd)
+    - Make SVG loading method selectable in the options dialog (Fri Aug 1 17:29:23 2025 +0900) [cb0aba8](https://github.com/kanryu/quickviewer/commit/cb0aba8950bc6f0d62d82d2274d9f1c4e50633fa)
+    - [Improved] for manual display scaling (Fri Jul 18 03:45:57 2025 +0900) [b36e534](https://github.com/kanryu/quickviewer/commit/b36e53413ead8ae5b6813c78d76741bd05395963)
+    -  (Fri Jul 18 03:45:57 2025 +0900) [b36e534](https://github.com/kanryu/quickviewer/commit/b36e53413ead8ae5b6813c78d76741bd05395963)
+    -  When the fit mode is turned off, the manual magnification is displayed at a larger scale. (Fri Jul 18 03:45:57 2025 +0900) [b36e534](https://github.com/kanryu/quickviewer/commit/b36e53413ead8ae5b6813c78d76741bd05395963)
+    -  When the scroll bar is displayed in manual scale, the displayed position is maintained when switching to the next image. (Fri Jul 18 03:45:57 2025 +0900) [b36e534](https://github.com/kanryu/quickviewer/commit/b36e53413ead8ae5b6813c78d76741bd05395963)
+
+## v1.2.4 (Sat Jul 12 20:27:11 2025 +0900) [c670d91](https://github.com/kanryu/quickviewer/commit/c670d91b6fc26098d2d0d1a51bbd702c5f64548b)
+
+changelog
+
+- other commits
+    - replace to QSVGRenderer for svg (Sat Jul 12 20:07:13 2025 +0900) [b7ec27d](https://github.com/kanryu/quickviewer/commit/b7ec27d864579a744712fa854e957e63b58e2d54)
     - FIXED: [Feature request] HiDPI scaling images (Tue Jul 8 15:33:37 2025 +0900) [8823d7c](https://github.com/kanryu/quickviewer/commit/8823d7c3e951318e2d1137e440fcfe74ed6af410)
 
 ## v1.2.3 (Sun Jul 6 20:40:20 2025 +0900) [84765fd](https://github.com/kanryu/quickviewer/commit/84765fddf38d1c8879a8b0840aa7ab04f1629c13)
