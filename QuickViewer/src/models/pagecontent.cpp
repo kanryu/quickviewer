@@ -390,15 +390,6 @@ void PageContent::checkInitialize()
     initialized = true;
 }
 
-void PageContent::on_animateFrameChanged_trigger(int frameNumber)
-{
-//    qDebug() << frameNumber;
-    QGraphicsPixmapItem *pi = dynamic_cast<QGraphicsPixmapItem *>(GrItem);
-    QMovie* movie = Ic.Movie.data();
-    movie->jumpToFrame(frameNumber);
-    pi->setPixmap(movie->currentPixmap());
-}
-
 void PageContent::on_animateFinished_trigger()
 {
     QGraphicsPixmapItem *pi = dynamic_cast<QGraphicsPixmapItem *>(GrItem);
@@ -408,6 +399,16 @@ void PageContent::on_animateFinished_trigger()
     pi->setPixmap(movie->currentPixmap());
     movie->start();
 }
+
+void PageContent::on_animateFrameChanged_trigger(int frameNumber)
+{
+//    qDebug() << frameNumber;
+    QGraphicsPixmapItem *pi = dynamic_cast<QGraphicsPixmapItem *>(GrItem);
+    QMovie* movie = Ic.Movie.data();
+    movie->jumpToFrame(frameNumber);
+    pi->setPixmap(movie->currentPixmap());
+}
+
 
 void PageContent::on_brightnessChanged_trigger(ImageRetouch param)
 {

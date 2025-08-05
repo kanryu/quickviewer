@@ -126,6 +126,7 @@ signals:
 
 public slots:
     void on_pageEnumerated();
+    void on_relordTimer();
     void onSlideShowStarted();
     void onSlideShowStopped();
 
@@ -147,6 +148,9 @@ private:
 
     VolumeManager* m_fileVolume;
     ImageView * m_imaveView;
+
+    QTimer m_reloadTimer;
+    bool m_waitForReloaded;
 
 //    VolumeManagerBuilder m_builderForAssoc;
 };

@@ -12,9 +12,11 @@ PageManager::PageManager(QObject* parent)
     , m_volumes(qApp->MaxVolumesCache())
     , m_fileVolume(nullptr)
     , m_imaveView(nullptr)
+    , m_waitForReloaded(false)
 //    , m_builderForAssoc("", this)
 {
-
+    connect(&m_reloadTimer, SIGNAL(timeout()), this, SLOT(on_relordTimer()));
+    m_reloadTimer.start(50);
 }
 
 bool PageManager::loadVolume(QString path, bool coverOnly)
@@ -66,10 +68,9 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         m_fileVolume = newer;
         clearPages();
         m_currentPage = newer->pageCount();
-        addNewPage(builder.Ic, true);
-        emit readyForPaint();
         emit pageChanged();
         emit volumeChanged(m_fileVolume->volumePath());
+        m_waitForReloaded = true;
     });
     return true;
 }
@@ -80,6 +81,14 @@ void PageManager::on_pageEnumerated()
     m_currentPage = m_fileVolume->pageCount();
     emit volumeChanged(m_fileVolume->volumePath());
     emit pageChanged();
+}
+
+void PageManager::on_relordTimer()
+{
+    if (m_waitForReloaded) {
+        reloadCurrentPage(true);
+        m_waitForReloaded = false;
+    }
 }
 
 void PageManager::onSlideShowStarted()
