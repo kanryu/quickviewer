@@ -347,15 +347,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(this->focusWidget() != ui->graphicsView)
         return;
     if(ui->graphicsView->isScrollMode() && !qApp->ScrollWithCursorWhenZooming()) {
-        if(QString("Left, Right, Up, Down").contains(seq.toString())) {
-            if(seq.toString()=="Left")
-                ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()-300);
-            if(seq.toString()=="Right")
-                ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()+300);
-            if(seq.toString()=="Up")
-                ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()-300);
-            if(seq.toString()=="Down")
-                ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()+300);
+        if(seq.toString()=="Left") {
+            ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()-300);
+            return;
+        }
+        if(seq.toString()=="Right") {
+            ui->graphicsView->horizontalScrollBar()->setValue(ui->graphicsView->horizontalScrollBar()->value()+300);
+            return;
+        }
+        if(seq.toString()=="Up") {
+            ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()-300);
+            return;
+        }
+        if(seq.toString()=="Down") {
+            ui->graphicsView->verticalScrollBar()->setValue(ui->graphicsView->verticalScrollBar()->value()+300);
             return;
         }
     }
