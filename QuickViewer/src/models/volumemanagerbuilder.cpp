@@ -129,10 +129,12 @@ VolumeManager *VolumeManagerBuilder::buildForAssoc()
         return m_volumeManager = nullptr;
     }
 
-    //m_volumeManager->moveToThread(QThread::currentThread());
     // load the image
-    Ic = m_volumeManager->getImageBeforeEnmumerate(m_subfilename);
+    // Ic = m_volumeManager->getImageBeforeEnmumerate(m_subfilename);
+    // m_volumeManager->findImageByName(m_subfilename);
+    m_volumeManager->enumerate();
     m_volumeManager->findImageByName(m_subfilename);
+    Ic = m_volumeManager->currentImage();
 
     return m_volumeManager;
 }

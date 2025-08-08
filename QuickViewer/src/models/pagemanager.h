@@ -16,6 +16,13 @@ public:
     virtual QString volumePath()=0;
 };
 
+#define ReloadedEventType (QEvent::Type)(QEvent::Type::User + 50)
+
+class ReloadedEvent : public QEvent {
+public:
+    ReloadedEvent() : QEvent(ReloadedEventType) {}
+};
+
 
 class PageManager : public QObject, public PageManagerProtocol
 {
@@ -47,6 +54,7 @@ public:
     void setImageView(ImageView* view){m_imaveView = view;}
     void bookProgress();
     void sort(qvEnums::ImageSortBy sortBy);
+    virtual bool eventFilter(QObject *obj, QEvent *event) override;
 
     // Get String
     int currentPageCount() { return m_pages.size(); }
@@ -126,7 +134,6 @@ signals:
 
 public slots:
     void on_pageEnumerated();
-    void on_relordTimer();
     void onSlideShowStarted();
     void onSlideShowStopped();
 
@@ -149,7 +156,6 @@ private:
     VolumeManager* m_fileVolume;
     ImageView * m_imaveView;
 
-    QTimer m_reloadTimer;
     bool m_waitForReloaded;
 
 //    VolumeManagerBuilder m_builderForAssoc;

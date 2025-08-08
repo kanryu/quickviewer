@@ -19,9 +19,7 @@ bool IFileLoader::isImageFile(QString path)
         st_exifRawImageFormats << "crw" << "cr2" << "arw" << "nef" << "raf" << "dng" << "tif" << "tiff"; // raw images
         st_animatedImageFormats << "gif" << "apng";
         st_supportedImageFormats = QImageReader::supportedImageFormats();
-//        foreach(const QString& e, st_supportedImageFormats) {
-//            qDebug()<<  QString(e);
-//        }
+        st_supportedImageFormats << "jif" << "jfif" << "jfi";
 //#ifdef QT_DEBUG
         qDebug() << st_supportedImageFormats;
 //#endif

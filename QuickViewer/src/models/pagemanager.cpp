@@ -12,11 +12,9 @@ PageManager::PageManager(QObject* parent)
     , m_volumes(qApp->MaxVolumesCache())
     , m_fileVolume(nullptr)
     , m_imaveView(nullptr)
-    , m_waitForReloaded(false)
 //    , m_builderForAssoc("", this)
 {
-    connect(&m_reloadTimer, SIGNAL(timeout()), this, SLOT(on_relordTimer()));
-    m_reloadTimer.start(50);
+    installEventFilter(this);
 }
 
 bool PageManager::loadVolume(QString path, bool coverOnly)
@@ -70,7 +68,7 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         m_currentPage = newer->pageCount();
         emit pageChanged();
         emit volumeChanged(m_fileVolume->volumePath());
-        m_waitForReloaded = true;
+        qApp->postEvent(this, new ReloadedEvent());
     });
     return true;
 }
@@ -81,14 +79,6 @@ void PageManager::on_pageEnumerated()
     m_currentPage = m_fileVolume->pageCount();
     emit volumeChanged(m_fileVolume->volumePath());
     emit pageChanged();
-}
-
-void PageManager::on_relordTimer()
-{
-    if (m_waitForReloaded) {
-        reloadCurrentPage(true);
-        m_waitForReloaded = false;
-    }
 }
 
 void PageManager::onSlideShowStarted()
@@ -454,6 +444,18 @@ void PageManager::sort(qvEnums::ImageSortBy sortBy)
 }
 
 
+bool PageManager::eventFilter(QObject *obj, QEvent *event)
+{
+    switch (event->type()) {
+    case ReloadedEventType:
+        reloadCurrentPage(true);
+        return true;
+
+    default:
+        break;
+    }
+    return QObject::eventFilter(obj, event);
+}
 
 QString PageManager::currentPageNumAsString() const
 {
