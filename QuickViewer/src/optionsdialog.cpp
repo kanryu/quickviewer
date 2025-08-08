@@ -34,6 +34,11 @@ public:
     int currentPage() { return m_currentPage; }
     QString volumePath() { return m_volumePath; }
     QVector<PageContent>* pages() { return &m_pages; }
+    QString currentPagePath() override {
+        return QString("%1\\%2")
+            .arg(m_volumePath)
+            .arg("page11.jpg");
+    }
 
 private:
     int m_size;

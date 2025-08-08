@@ -14,6 +14,7 @@ public:
     virtual int size()=0;
     virtual int currentPage()=0;
     virtual QString volumePath()=0;
+    virtual QString currentPagePath()=0;
 };
 
 #define ReloadedEventType (QEvent::Type)(QEvent::Type::User + 50)
@@ -60,7 +61,7 @@ public:
     int currentPageCount() { return m_pages.size(); }
     int currentPage() override { return m_currentPage; }
     QVector<ImageContent>& currentPageContent() { return m_pages; }
-    QString currentPagePath() {
+    QString currentPagePath() override {
         if(!m_fileVolume)
             return "";
         return QDir::toNativeSeparators(m_fileVolume->getPathByFileName(m_pages[0].Path));

@@ -42,6 +42,7 @@ QString ImageString::getFormatUsage()
     addString(tags, "%V", tr("Volume full path, e.g. 'C:/Users/qv/Desktop/Sample Book'", "Format tag of text displayed in title bar and status bar"));
     addString(tags, "%p", tr("Image file name (only file name), e.g. 'page01.jpg'", "Format tag of text displayed in title bar and status bar"));
     addString(tags, "%P", tr("Image file path in volume, e.g. 'subpath/page01.jpg'", "Format tag of text displayed in title bar and status bar"));
+    addString(tags, "%Q", tr("Image file full path in volume, e.g. 'C:/Users/qv/Desktop/Sample Book/subpath/page01.jpg'", "Format tag of text displayed in title bar and status bar"));
     addString(tags, "%s", tr("Image size, e.g. '1920x1080'", "Format tag of text displayed in title bar and status bar"));
     addString(tags, "%m", tr("Display magnification of image, e.g. '25%'", "Format tag of text displayed in title bar and status bar"));
     addString(tags, "%f", tr("Image file size with usefull, e.g. '63.23 KB'", "Format tag of text displayed in title bar and status bar"));
@@ -93,6 +94,11 @@ QString ImageString::formatString(QString fmt)
         }
             // Image file path in volume, e.g. 'subpath/page01.jpg'
         case 'P': result << page.Ic.Path; break;
+            // Image file full path in volume, e.g. 'C:/Users/qv/Desktop/Sample Book/subpath/page01.jpg'
+        case 'Q':
+        {
+            result << m_pageManager->currentPagePath(); break;
+        }
             // Image size, e.g. '1920x1080'
         case 's': result << QString("%1x%2").arg(page.Ic.BaseSize.width()).arg(page.Ic.BaseSize.height()); break;
             // Display magnification of image, e.g. '25%'
