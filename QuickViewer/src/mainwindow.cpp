@@ -1007,10 +1007,12 @@ void MainWindow::onGraphicsView_fittingChanged(qvEnums::FitMode mode)
 void MainWindow::onPageManager_pageChanged()
 {
     //qDebug() << "on_pageChanged_triggered";
+    int maxVolume = m_pageManager.size();
+    if (maxVolume <= 0)
+        return;
     // PageSlider
     ui->pageLabel->setText(m_pageManager.currentPageNumAsString());
     m_sliderChanging = true;
-    int maxVolume = m_pageManager.size();
 
     // at DualView Mode, last 2 page should be [volume.size()-2, volume.size()-1]
     // so the last page should not changed by the slider

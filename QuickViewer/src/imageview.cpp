@@ -365,6 +365,7 @@ void ImageView::resizeEvent(QResizeEvent *event)
     if(m_skipResizeEvent)
         return;
     readyForPaint();
+    m_pageManager->pageChanged();
 }
 
 void ImageView::on_nextPage_triggered()
