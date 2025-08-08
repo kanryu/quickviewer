@@ -66,8 +66,6 @@ bool PageManager::loadVolumeWithFile(QString path, bool prohibitProhibit2Page)
         m_fileVolume = newer;
         clearPages();
         m_currentPage = newer->pageCount();
-        emit pageChanged();
-        emit volumeChanged(m_fileVolume->volumePath());
         qApp->postEvent(this, new ReloadedEvent());
     });
     return true;
@@ -449,6 +447,8 @@ bool PageManager::eventFilter(QObject *obj, QEvent *event)
     switch (event->type()) {
     case ReloadedEventType:
         reloadCurrentPage(true);
+        emit pageChanged();
+        emit volumeChanged(m_fileVolume->volumePath());
         return true;
 
     default:
