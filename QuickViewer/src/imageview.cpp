@@ -58,7 +58,7 @@ ImageView::ImageView(QWidget *parent)
 
     setMouseTracking(true);
     resetBackgroundColor();
-	setAttribute(Qt::WA_AcceptTouchEvents);
+    setAttribute(Qt::WA_AcceptTouchEvents);
 
 }
 
@@ -527,7 +527,7 @@ void ImageView::mouseMoveEvent(QMouseEvent *e)
     QGraphicsView::mouseMoveEvent(e);
 //    qDebug() << "qApp->HideMouseCursorInFullscreen()" << qApp->HideMouseCursorInFullscreen();
     int NOT_HOVER_AREA = width() / 3;
-	int hover_border = qApp->LargeToolbarIcons() ? 3 * HOVER_BORDER : HOVER_BORDER;
+    int hover_border = qApp->LargeToolbarIcons() ? 3 * HOVER_BORDER : HOVER_BORDER;
     if(e->pos().x() < hover_border && e->pos().y() < height()- hover_border) {
         if(m_hoverState != Qt::AnchorLeft)
             emit anchorHovered(Qt::AnchorLeft);
@@ -689,7 +689,7 @@ void ImageView::on_scaleUp_triggered()
     if(qApp->Fitting()) {
         qApp->setFitting(false);
         emit fittingChanged(qApp->ImageFitMode());
-        qreal scale = m_pages[0].GrItem->scale();
+        qreal scale = m_pages[0].DrawScale;
         viewSizeIdx = 0;
         qDebug() << viewSizeIdx << (viewSizeList.size()-1) << scale << getZoomScale();
         while(viewSizeIdx < viewSizeList.size()-1 && getZoomScale() < scale)
