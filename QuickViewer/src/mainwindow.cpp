@@ -128,6 +128,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionBeginAsFullscreen->setChecked(qApp->BeginAsFullscreen());
     ui->actionShowFullscreenSignage->setChecked(qApp->ShowFullscreenSignage());
     ui->actionShowPanelSeparateWindow->setChecked(qApp->ShowPanelSeparateWindow());
+    ui->actionHideMouseCursorInFullscreen->setChecked(qApp->HideMouseCursorInFullscreenForMenu());
 //    ui->actionShowFullscreenTitleBar->setChecked(qApp->ShowFullscreenTitleBar());
 
     // Languages
