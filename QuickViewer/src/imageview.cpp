@@ -24,6 +24,8 @@ ImageView::ImageView(QWidget *parent)
     , m_scrollMode(false)
     , m_pageBacking(false)
     , m_loupeEnable(false)
+    , m_beforeScale(0)
+    , m_readyStack(0)
 {
     //viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeList
@@ -195,6 +197,10 @@ void ImageView::readyForPaint() {
             }
             PageContent::PageAlign pageAlign = PageContent::PageCenter;
             QRect pageRect = QRect(QPoint(), viewport()->size());
+            // if(m_lastScreenPixelRatio != 1.0) {
+            //     pageRect = QRect(pageRect.left()*m_lastScreenPixelRatio,pageRect.top()*m_lastScreenPixelRatio,
+            //                      pageRect.width()*m_lastScreenPixelRatio,pageRect.height()*m_lastScreenPixelRatio);
+            // }
             if(m_pages.size() == 2) {
                 pageAlign = ((i==0 && !qApp->RightSideBook()) || (i==1 && qApp->RightSideBook()))
                             ? PageContent::PageLeft : PageContent::PageRight;
@@ -228,6 +234,12 @@ static bool s_lastLoupeMode;
 
 void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
 {
+    // readyForPaint() and setSceneRectMode() may be called multiple times, and the scroll value from the second time onwards will not be accurate.
+    // Therefore, the original scroll value is traced the first time, and the scroll value is corrected when the last call is completed.
+    int sx = horizontalScrollBar()->value();
+    int sy = verticalScrollBar()->value();
+    m_readyStack++;
+
     if(!m_loupeEnable) {
         m_sceneRect = sceneRect;
     }
@@ -268,10 +280,31 @@ void ImageView::setSceneRectMode(bool scrolled, const QRect &sceneRect)
     } else {
         setDragMode(QGraphicsView::NoDrag);
     }
+
+    // Correct the scroll bar so that it keep at the center of the viewport
+    // when the image display magnification is changed.
+    if (m_readyStack == 1) {
+        qreal newScale = m_pages[0].DrawScale;
+        if(!qApp->Fitting()) {
+            if (!m_loupeEnable && m_beforeScale > 0 && m_beforeScale != newScale) {
+                int vw = 0.5*viewport()->width();
+                int vh = 0.5*viewport()->height();
+                int sx2 = (sx+vw)/m_beforeScale*newScale-vw;
+                int sy2 = (sy+vh)/m_beforeScale*newScale-vh;
+
+                horizontalScrollBar()->setValue(sx2);
+                verticalScrollBar()->setValue(sy2);
+            }
+        }
+        m_beforeScale = newScale;
+    }
+
     if(m_scrollMode != newMode)
         emit scrollModeChanged(m_scrollMode = newMode);
     if(oldrect != newrect)
         emit zoomingChanged();
+
+    m_readyStack--;
 }
 
 void ImageView::scrollOnLoupeMode()
@@ -832,7 +865,8 @@ qreal ImageView::getZoomScale()
     // Some OS allow you to change the display magnification.
     // In this case, the content drawn is automatically scaled by devicePixelRatio,
     // but avoid scaling only the image.
-    QScreen* screen0 = screen();
-    return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second/screen0->devicePixelRatio();
+    // QScreen* screen0 = screen();
+    // return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second/screen0->devicePixelRatio();
+    return 1.0*viewSizeList[viewSizeIdx].first/viewSizeList[viewSizeIdx].second;
 }
 

@@ -166,6 +166,9 @@ private:
     qreal m_beginRotateFactor;
     qreal m_loupeFactor;
 
+    int m_readyStack;
+    qreal m_beforeScale;
+
     bool m_isMouseDown;
     bool m_wideImage;
     bool m_skipResizeEvent;
