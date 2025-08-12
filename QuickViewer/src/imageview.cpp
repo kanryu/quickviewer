@@ -26,6 +26,7 @@ ImageView::ImageView(QWidget *parent)
     , m_loupeEnable(false)
     , m_beforeScale(0)
     , m_readyStack(0)
+    , m_lastScreenPixelRatio(1.0)
 {
     //viewSizeList << 16 << 20 << 25 << 33 << 50 << 75 << 100 << 150 << 200 << 300 << 400 << 800;
     viewSizeList
@@ -225,7 +226,10 @@ void ImageView::readyForPaint() {
         }
         // if Size of Image overs Size of View, use Image's size
 //        setSceneRectMode(!qApp->Fitting() && !m_isFullScreen, sceneRect);
-        setSceneRectMode(!(qApp->Fitting() && qApp->ImageFitMode() == qvEnums::FitToRect) || m_loupeEnable, sceneRect);
+        setSceneRectMode(
+          !(qApp->Fitting() && qApp->ImageFitMode() == qvEnums::FitToRect)
+          || m_loupeEnable
+          || m_lastScreenPixelRatio > 1.0, sceneRect);
     }
     m_effectManager.prepareFinished();
 }
@@ -395,6 +399,13 @@ void ImageView::resizeEvent(QResizeEvent *event)
         scene()->setSceneRect(QRect(QPoint(), event->size()));
     }
     QGraphicsView::resizeEvent(event);
+    qreal newRatio = screen()->devicePixelRatio();
+    if (m_lastScreenPixelRatio != newRatio) {
+
+        QTransform scaling(1.0/newRatio, 0, 0, 1.0/newRatio, 0, 0);
+        setTransform(scaling);
+        m_lastScreenPixelRatio = newRatio;
+    }
     if(m_skipResizeEvent)
         return;
     readyForPaint();

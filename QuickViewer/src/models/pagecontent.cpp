@@ -121,19 +121,27 @@ QSize PageContent::CurrentSize(int rotateOffset) {
 }
 
 QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign align, qvEnums::FitMode fitMode, qreal loupe, int rotateOffset) {
+    QRect viewport1 = viewport;
+    if (m_imageView->currentPixelRatio() != 1.0) {
+        // If pixelRatio > 1, you are changing the worldTransport and need to compensate the viewport
+        qreal ratio = m_imageView->currentPixelRatio();
+        viewport1 = QRect(viewport.left()*ratio,viewport.top()*ratio,
+                         viewport.width()*ratio,viewport.height()*ratio);
+    }
+
     if(!Ic.ImportSize.width()) {
         applyResize(1.0, 0, viewport.topLeft(), QSize(100,100));
         return QRect(viewport.topLeft(), QSize(100, 100));
     }
     QSize currentSize = CurrentSize(rotateOffset);
-    bool goSeparate = viewport.height() > viewport.width() && Separation != NoSeparated;
+    bool goSeparate = viewport.height() > viewport1.width() && Separation != NoSeparated;
     if(goSeparate)
         currentSize = QSize(currentSize.width()/2, currentSize.height());
     QSize newsize = fitMode == qvEnums::FitToRect
-            ? currentSize.scaled(viewport.size(), Qt::KeepAspectRatio)
-            : QSize(viewport.width(), currentSize.height()*viewport.width()/currentSize.width()) ;
+            ? currentSize.scaled(viewport1.size(), Qt::KeepAspectRatio)
+            : QSize(viewport1.width(), currentSize.height()*viewport1.width()/currentSize.width()) ;
     qreal scale = DrawScale = 1.0*newsize.width()/currentSize.width();
-    NotationalScale = scale * m_imageView->screen()->devicePixelRatio();
+    NotationalScale = scale;
     if(loupe > 1.0) {
         return setPageLayoutManual(viewport, align, scale*loupe, rotateOffset, true);
     }
@@ -144,11 +152,13 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign a
     of *= scale;
 
     QRect drawRect;
-    if(newsize.height() == viewport.height()) { // fitting on upper and bottom
+    if(newsize.height() == viewport1.height()) { // fitting on upper and bottom
         int ofsinviewport = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
         drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
     } else if(fitMode == qvEnums::FitToRect) { // fitting on left and right
-        drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + (viewport.height()-newsize.height())/2), newsize);
+        int ofsinviewport = (viewport.height()-newsize.height())/2;
+        ofsinviewport = m_imageView->currentPixelRatio() != 1.0 ? 0 : ofsinviewport; // If pixelRatio > 1, no correction is required
+        drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + ofsinviewport), newsize);
     } else {
         drawRect = QRect(QPoint(of.x() + viewport.x(), of.y()), newsize);
     }
@@ -175,7 +185,7 @@ QRect PageContent::setPageLayoutManual(QRect viewport, PageContent::PageAlign al
         currentSize = QSize(currentSize.width()/2, currentSize.height());
     QSize newsize = currentSize * scale;
     DrawScale = scale;
-    NotationalScale = scale * m_imageView->screen()->devicePixelRatio();
+    NotationalScale = scale;
 
     QPoint of = Offset(rotateOffset);
     of *= scale;

@@ -64,6 +64,7 @@ public:
     void commitViewportFactors();
     void resetViewportFactors();
     ImageRetouch brightness() { return m_retouchParams; }
+    qreal currentPixelRatio() { return m_lastScreenPixelRatio; }
 
 signals:
     /**
@@ -168,6 +169,7 @@ private:
 
     int m_readyStack;
     qreal m_beforeScale;
+    qreal m_lastScreenPixelRatio;
 
     bool m_isMouseDown;
     bool m_wideImage;
