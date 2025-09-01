@@ -395,21 +395,26 @@ void ImageView::resetViewportFactors()
 
 void ImageView::resizeEvent(QResizeEvent *event)
 {
+    static int resizeCount = 0;
     if(scene() && !m_isFullScreen) {
         scene()->setSceneRect(QRect(QPoint(), event->size()));
     }
     QGraphicsView::resizeEvent(event);
-    qreal newRatio = screen()->devicePixelRatio();
-    if (m_lastScreenPixelRatio != newRatio) {
+    if (resizeCount == 0) {
+        resizeCount++;
+        qreal newRatio = screen()->devicePixelRatio();
+        if (m_lastScreenPixelRatio != newRatio) {
 
-        QTransform scaling(1.0/newRatio, 0, 0, 1.0/newRatio, 0, 0);
-        setTransform(scaling);
-        m_lastScreenPixelRatio = newRatio;
+            QTransform scaling(1.0/newRatio, 0, 0, 1.0/newRatio, 0, 0);
+            setTransform(scaling);
+            m_lastScreenPixelRatio = newRatio;
+        }
+        if(!m_skipResizeEvent) {
+            readyForPaint();
+            m_pageManager->pageChanged();
+        }
+        resizeCount--;
     }
-    if(m_skipResizeEvent)
-        return;
-    readyForPaint();
-    m_pageManager->pageChanged();
 }
 
 void ImageView::on_nextPage_triggered()

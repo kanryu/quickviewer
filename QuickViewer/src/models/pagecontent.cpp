@@ -152,15 +152,27 @@ QRect PageContent::setPageLayoutFitting(QRect viewport, PageContent::PageAlign a
     of *= scale;
 
     QRect drawRect;
-    if(newsize.height() == viewport1.height()) { // fitting on upper and bottom
-        int ofsinviewport = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
-        drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
-    } else if(fitMode == qvEnums::FitToRect) { // fitting on left and right
-        int ofsinviewport = (viewport.height()-newsize.height())/2;
-        ofsinviewport = m_imageView->currentPixelRatio() != 1.0 ? 0 : ofsinviewport; // If pixelRatio > 1, no correction is required
-        drawRect = QRect(QPoint(of.x() + viewport.x(), of.y() + ofsinviewport), newsize);
+    if(fitMode == qvEnums::FitToRect) {
+        if(newsize.height() == viewport1.height()) { // fitting on upper and bottom
+            int ofsinviewport = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+            drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewport, of.y()), newsize);
+        } else { // fitting on left and right
+            int ofsinviewportX = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+            int ofsinviewportY = (viewport.height()-newsize.height())/2;
+            ofsinviewportY = m_imageView->currentPixelRatio() != 1.0 ? 0 : ofsinviewportY; // If pixelRatio > 1, no correction is required
+            drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewportX, of.y() + ofsinviewportY), newsize);
+        }
     } else {
-        drawRect = QRect(QPoint(of.x() + viewport.x(), of.y()), newsize);
+        if(viewport.height() < newsize.height() && newsize.height() < viewport1.height()) {
+            // Display magnification is automatically corrected, so special correction is required.
+            int ofsinviewportX = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+            int ofsinviewportY = m_imageView->currentPixelRatio() == 1.0 ? 0 :  (-viewport1.height()+newsize.height())/2;
+            drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewportX, of.y() + ofsinviewportY), newsize);
+        } else {
+            int ofsinviewportX = align==PageRight ? 0 : align==PageCenter ? (viewport.width()-newsize.width())/2 : viewport.width()-newsize.width();
+            int ofsinviewportY = m_imageView->currentPixelRatio() == 1.0 ? 0 : (viewport.height() - viewport1.height())/2;
+            drawRect = QRect(QPoint(of.x() + viewport.x() + ofsinviewportX, of.y() + ofsinviewportY), newsize);
+        }
     }
 
     QPoint imagePos = drawRect.topLeft();
