@@ -188,10 +188,10 @@ void PageManager::reloadVolumeAfterRemoveImage()
     if(!m_fileVolume)
         return;
     clearPages();
-    QString volumepath = m_fileVolume->volumePath();
+    QString volumepath = QDir::fromNativeSeparators(m_fileVolume->volumePath());
     if(m_fileVolume->size() > 1) {
-        if(!m_fileVolume->nextPage())
-            m_fileVolume->prevPage();
+        // if(!m_fileVolume->nextPage())
+        //     m_fileVolume->prevPage();
         QString fullpath = m_fileVolume->currentPathWithSeparator();
         m_volumes.remove(volumepath);
         m_fileVolume = nullptr;
