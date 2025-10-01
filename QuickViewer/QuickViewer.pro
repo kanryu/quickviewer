@@ -359,11 +359,21 @@ win32 : !CONFIG(debug, debug|release) {
     install_shaders.path = $${MY_DEFAULT_INSTALL}/shaders
     install_shaders.files = $$SHADERS
     install_db.path = $${MY_DEFAULT_INSTALL}/database
+    install_db.depends = install_install_assoc_icons
     install_db.files = \
         $$DBS \
         $$DBBIN \
 
     INSTALLS += install_db
+
+    # App installer with NSIS
+    install_nsis.path = $${MY_DEFAULT_INSTALL}/..
+    install_nsis.commands = "C:\Program Files (x86)\NSIS\makensis.exe"  /DAPPVERSION=$${VERSION} $${PWD}/install.nsi
+    install_nsis.depends = install_install_db install_install_deploy_files
+    install_nsis.files = $${MY_DEFAULT_INSTALL}/../QuickViewer-Installer-$${VERSION}.exe
+
+    INSTALLS += install_nsis
+
     !contains(DEFINES, QV_WITHOUT_OPENGL) {
         INSTALLS += install_shaders
     }
