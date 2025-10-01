@@ -174,7 +174,7 @@ public:
     void setHidePageBarInFullscreen(bool hidePageBarInFullscreen) { m_hidePageBarInFullscreen = hidePageBarInFullscreen; }
     bool HideScrollBarInFullscreen() { return m_hideScrollBarInFullscreen; }
     void setHideScrollBarInFullscreen(bool hideScrollBarInFullscreen) { m_hideScrollBarInFullscreen = hideScrollBarInFullscreen; }
-    bool HideMouseCursorInFullscreen() { return !InnerFrameShowing() && m_hideMouseCursorInFullscreen; }
+    bool HideMouseCursorInFullscreen() { return m_hideMouseCursorInFullscreen; }
     bool HideMouseCursorInFullscreenForMenu() { return m_hideMouseCursorInFullscreen; }
     void setHideMouseCursorInFullscreen(bool hideMouseCursorInFullscreen) { m_hideMouseCursorInFullscreen = hideMouseCursorInFullscreen; }
     bool InnerFrameShowing() { return m_innerFrameShowing; }

@@ -65,6 +65,7 @@ public:
     void resetViewportFactors();
     ImageRetouch brightness() { return m_retouchParams; }
     qreal currentPixelRatio() { return m_lastScreenPixelRatio; }
+    void setCursor(const QCursor& cursor);
 
 signals:
     /**

@@ -387,6 +387,20 @@ void ImageView::resetViewportFactors()
     setTransform(QTransform());
 }
 
+void ImageView::setCursor(const QCursor &cursor)
+{
+    // QGraphicsView is made up of layers of widgets, views, and items, all of which have setCursor()
+    QGraphicsView::setCursor(cursor);
+    if (qApp->HideMouseCursorInFullscreen()){
+        viewport()->setCursor(cursor);
+        for (auto& page : m_pages) {
+            if(page.GrItem != nullptr){
+                page.GrItem->setCursor(cursor);
+            }
+        }
+    }
+}
+
 //void ImageView::paintEvent(QPaintEvent *event)
 //{
 ////    readyForPaint();
