@@ -370,7 +370,7 @@ win32 : !CONFIG(debug, debug|release) {
     install_nsis.path = $${MY_DEFAULT_INSTALL}/..
     install_nsis.commands = "C:\Program Files (x86)\NSIS\makensis.exe"  /DAPPVERSION=$${VERSION} $${PWD}/install.nsi
     install_nsis.depends = install_install_db install_install_deploy_files
-    install_nsis.files = $${MY_DEFAULT_INSTALL}/../QuickViewer-Installer-$${VERSION}.exe
+    #install_nsis.files = $${MY_DEFAULT_INSTALL}/../QuickViewer-Installer-$${VERSION}.exe
 
     INSTALLS += install_nsis
 
