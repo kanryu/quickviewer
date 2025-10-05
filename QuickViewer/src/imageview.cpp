@@ -225,12 +225,15 @@ void ImageView::readyForPaint() {
             sceneRect = sceneRect.united(drawRect);
         }
         // if Size of Image overs Size of View, use Image's size
-//        setSceneRectMode(!qApp->Fitting() && !m_isFullScreen, sceneRect);
         setSceneRectMode(
           !(qApp->Fitting() && qApp->ImageFitMode() == qvEnums::FitToRect)
           || m_loupeEnable
           || m_lastScreenPixelRatio > 1.0, sceneRect);
     }
+    // QGraphicsView updates the cursor internally,
+    // but QV cannot trap this event, so it forcibly clears the cursor.
+    if(m_isFullScreen && qApp->HideMouseCursorInFullscreen())
+        setCursor(Qt::BlankCursor);
     m_effectManager.prepareFinished();
 }
 
@@ -391,7 +394,7 @@ void ImageView::setCursor(const QCursor &cursor)
 {
     // QGraphicsView is made up of layers of widgets, views, and items, all of which have setCursor()
     QGraphicsView::setCursor(cursor);
-    if (qApp->HideMouseCursorInFullscreen()){
+    if (m_isFullScreen && qApp->HideMouseCursorInFullscreen()){
         viewport()->setCursor(cursor);
         for (auto& page : m_pages) {
             if(page.GrItem != nullptr){

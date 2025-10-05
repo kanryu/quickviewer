@@ -52,6 +52,7 @@ public:
     void skipRisizeEvent(bool skipped) { m_skipResizeEvent = skipped; }
     bool isSlideShow() const { return m_slideshowTimer != nullptr; }
     void toggleSlideShow();
+    bool isFullscreen() { return m_isFullScreen; }
     void setWillFullscreen(bool fullscreen) { m_isFullScreen = fullscreen; }
     void resetBackgroundColor();
     void setSceneRectMode(bool scrolled, const QRect& sceneRect);
