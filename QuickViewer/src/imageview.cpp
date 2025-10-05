@@ -776,7 +776,7 @@ void ImageView::on_scaleDown_triggered()
     if(qApp->Fitting()) {
         qApp->setFitting(false);
         emit fittingChanged(qApp->ImageFitMode());
-        qreal scale = m_pages[0].GrItem->scale();
+        qreal scale = m_pages[0].DrawScale;
         viewSizeIdx = viewSizeList.size()-1;
         while(viewSizeIdx > 0 && getZoomScale() > scale)
             viewSizeIdx--;
