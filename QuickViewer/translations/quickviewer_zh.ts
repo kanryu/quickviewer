@@ -7,34 +7,34 @@
         <location filename="../src/brightnesswindow.ui" line="22"/>
         <source>Brightness</source>
         <extracomment>label text which describes about changing brightness of the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>亮度</translation>
     </message>
     <message>
         <location filename="../src/brightnesswindow.ui" line="75"/>
         <source>Contrast</source>
         <extracomment>label text which describes about changing contrast of the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>对比度</translation>
     </message>
     <message>
         <location filename="../src/brightnesswindow.ui" line="128"/>
         <source>Gamma Value</source>
         <extracomment>label text which describes about changing gamma value of the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>伽马值</translation>
     </message>
     <message>
         <location filename="../src/brightnesswindow.ui" line="179"/>
         <source>Change all images of the volume</source>
-        <translation type="unfinished"></translation>
+        <translation>更改目录内全部图片</translation>
     </message>
     <message>
         <location filename="../src/brightnesswindow.ui" line="186"/>
         <source>Reset</source>
-        <translation type="unfinished">复位</translation>
+        <translation>复位</translation>
     </message>
     <message>
         <location filename="../src/brightnesswindow.ui" line="14"/>
         <source>Brightness Window</source>
-        <translation type="unfinished"></translation>
+        <translation>窗口亮度</translation>
     </message>
 </context>
 <context>
@@ -966,90 +966,90 @@
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="146"/>
         <source>Add Sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>添加到序列</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="216"/>
         <source>Option Keys</source>
-        <translation type="unfinished"></translation>
+        <translation>设置快捷键</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="222"/>
         <source>Ctrl</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="229"/>
         <source>Shift</source>
-        <translation type="unfinished"></translation>
+        <translation>Shift</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="236"/>
         <source>Alt</source>
         <extracomment>maybe &apos;Option&apos; in OSX</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Alt</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="243"/>
         <source>Meta</source>
         <extracomment>maybe &apos;Command&apos; in OSX</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Meta</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="253"/>
         <source>Mouse Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>鼠标键</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="259"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>右键</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="266"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>左键</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="273"/>
         <source>Wheel</source>
-        <translation type="unfinished"></translation>
+        <translation>滚轮</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="280"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>返回</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="287"/>
         <source>Forward</source>
-        <translation type="unfinished"></translation>
+        <translation>前进</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="300"/>
         <source>Wheel Scrolling</source>
-        <translation type="unfinished"></translation>
+        <translation>滚动</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="306"/>
         <source>Scroll Up</source>
-        <translation type="unfinished"></translation>
+        <translation>向上滚动</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="313"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.ui" line="323"/>
         <source>Scroll Down</source>
-        <translation type="unfinished"></translation>
+        <translation>向下滚动</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/keyconfigdialog.cpp" line="188"/>
         <source>Group</source>
         <comment>Group of the Action to be registered with the shortcut key</comment>
-        <translation type="unfinished"></translation>
+        <translation>组</translation>
     </message>
 </context>
 <context>
@@ -1624,7 +1624,7 @@
         <location filename="../src/mainwindow.ui" line="1123"/>
         <source>Don&apos;t update history</source>
         <extracomment>Flag for prohibiting update of history</extracomment>
-        <translation>不更新历史</translation>
+        <translation>禁用更新历史</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1135"/>
@@ -1672,130 +1672,130 @@
     <message>
         <location filename="../src/mainwindow.ui" line="1193"/>
         <source>Fit to width</source>
-        <translation type="unfinished"></translation>
+        <translation>自适应宽度</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="394"/>
         <source>Edit the image</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑图片</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="406"/>
         <location filename="../src/mainwindow.ui" line="462"/>
         <source>Fit mode</source>
-        <translation type="unfinished"></translation>
+        <translation>适配模式</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1205"/>
         <source>Fit to window</source>
-        <translation type="unfinished"></translation>
+        <translation>自适应窗口</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1217"/>
         <source>Change Brightness, Contrast or Gamma value</source>
         <extracomment>a menu test which show window changes brightness of the image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>调整亮度、对比度或伽马值</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1225"/>
         <source>Spline16 interpolation by CPU</source>
         <extracomment>Menu that performs Spline16 interpolation with CPU when resizing image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>CPU 实现的 Spline16 插值</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1233"/>
         <source>Spline36 interpolation by CPU</source>
         <extracomment>Menu that performs Spline36 interpolation with CPU when resizing image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>CPU 实现的 Spline36 插值</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1241"/>
         <source>Lanczos3 interpolation by CPU</source>
         <extracomment>Menu that performs Lanczos3 interpolation with CPU when resizing image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>CPU实现Lanczos 3插值法</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1249"/>
         <source>Lanczos4 interpolation by CPU</source>
         <extracomment>Menu that performs Lanczos4 interpolation with CPU when resizing image</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>CPU实现Lanczos 4插值法</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1254"/>
         <source>Next page or volume</source>
         <extracomment>Switch to next image, or to next volume if the page is first button</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>下一页/卷</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1259"/>
         <source>Prev page or volume</source>
         <extracomment>Switch to previous image, or to previous volume if the page is last button</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>上一页/卷</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1267"/>
         <source>Save the Catalog view width</source>
         <extracomment>Flag to restore the width of Catalog view</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>保存目录视图宽度</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1275"/>
         <source>Save the Folder display width</source>
         <extracomment>Flag to restore the width of Folder view</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>保存文件夹显示宽度</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1283"/>
         <source>Save how far you read</source>
         <extracomment>Flag to save progress.ini</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>保存阅读进度</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1291"/>
         <source>Hide the mouse cursor on fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>全屏时隐藏鼠标光标</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1382"/>
         <source>All Files( *.* );;Images ( *.jpg *.jpeg *.png *.tif *.tiff *.ico);;Archives( *.zip *.7z *.rar)</source>
         <comment>Text that specifies the file extension to be displayed when opening a file with OpenFileFolder</comment>
-        <translation type="unfinished">全文件( *.* );;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
+        <translation>全文件( *.* );;图像 (*.jpg *.jpeg *.png *.tif *.tiff *.ico);;档案( *.zip *.7z *.rar)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="274"/>
         <location filename="../src/mainwindow.ui" line="1296"/>
         <source>&amp;Sort by</source>
-        <translation type="unfinished"></translation>
+        <translation>排序方式(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1304"/>
         <source>Filename</source>
-        <translation type="unfinished">文件名</translation>
+        <translation>文件名</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1312"/>
         <source>Filename(descending)</source>
-        <translation type="unfinished"></translation>
+        <translation>文件名（降序）</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1320"/>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>文件大小</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1328"/>
         <source>File size(descending)</source>
-        <translation type="unfinished"></translation>
+        <translation>文件大小（降序）</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1336"/>
         <source>Modified Time</source>
-        <translation type="unfinished"></translation>
+        <translation>修改时间</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="1344"/>
         <source>Modified Time(descending)</source>
-        <translation type="unfinished"></translation>
+        <translation>修改时间（降序）</translation>
     </message>
 </context>
 <context>
@@ -1940,50 +1940,50 @@
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="23"/>
         <source>Command</source>
         <comment>caption of Command key</comment>
-        <translation type="unfinished">命令</translation>
+        <translation>命令</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="15"/>
         <source>Mouse Config</source>
         <comment>Title of the dialog to customize the mouse sequences</comment>
-        <translation type="unfinished"></translation>
+        <translation>鼠标设置</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="16"/>
         <source>Mouse Sequence:</source>
         <comment>Title of LineEdit label to which mouse sequence is input</comment>
-        <translation type="unfinished"></translation>
+        <translation>鼠标序列：</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="17"/>
         <source>Select the combination of the checks below, press the &apos;Add Sequence&apos; button</source>
         <comment>Placeholder text urging the mouse input setting procedure</comment>
-        <translation type="unfinished"></translation>
+        <translation>选择以下复选框的组合，点击“添加序列”按钮</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="24"/>
         <source>Option</source>
         <comment>caption of Option key</comment>
-        <translation type="unfinished"></translation>
+        <translation>设置</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="53"/>
         <source>Current Mouse Sequence</source>
         <comment>Title of the column of the content of the mouse sequence registered for Action</comment>
-        <translation type="unfinished"></translation>
+        <translation>当前鼠标序列</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="123"/>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="168"/>
         <source>Mouse sequence has potential conflicts.</source>
         <comment>Text to be displayed when the entered mouse sequence conflicts with another mouse sequence</comment>
-        <translation type="unfinished"></translation>
+        <translation>鼠标序列可能存在冲突。</translation>
     </message>
     <message>
         <location filename="../src/qactionmanager/mouseconfigdialog.cpp" line="51"/>
         <source>Group</source>
         <comment>Group of the Action to be registered with the shortcut key</comment>
-        <translation type="unfinished"></translation>
+        <translation>组</translation>
     </message>
 </context>
 <context>
@@ -2110,7 +2110,7 @@
     <message>
         <location filename="../src/optionsdialog.ui" line="195"/>
         <source>Keeps even large images at their original size</source>
-        <translation type="unfinished"></translation>
+        <translation>即使是大尺寸图片也保持原始尺寸</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="514"/>
@@ -2164,7 +2164,7 @@
     <message>
         <location filename="../src/optionsdialog.ui" line="192"/>
         <source>(Performance degradation)Disables automatic shrinking of images on loading.</source>
-        <translation type="unfinished"></translation>
+        <translation>(性能下降)禁用加载时图片的自动缩小功能。</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="215"/>
@@ -2187,73 +2187,73 @@
     <message>
         <location filename="../src/optionsdialog.ui" line="409"/>
         <source>Tool bars</source>
-        <translation type="unfinished"></translation>
+        <translation>工具栏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="424"/>
         <source>Hide permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>永久隐藏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="430"/>
         <source>Hide menu bar permanently</source>
         <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>永久隐藏菜单栏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="437"/>
         <source>Hide tool bar permanently</source>
         <extracomment>Flag to suppress the automatic display of the page bar</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>永久隐藏工具栏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="460"/>
         <source>Hide in full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏全屏模式</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="466"/>
         <source>Hide menu bar in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>全屏模式下隐藏菜单栏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="473"/>
         <source>Hide tool bar in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>全屏模式下隐藏工具栏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="480"/>
         <source>Hide page bar in full screen</source>
         <extracomment>Flag to suppress the automatic display of the scrollbars in fullscreen</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>全屏模式下隐藏页面栏</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="2365"/>
         <source>Show the usage</source>
-        <translation type="unfinished"></translation>
+        <translation>显示指导教程</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="253"/>
         <source>Randomly display in slideshow</source>
         <extracomment>The text of the check box. Slideshow usually moves to the next page in the current sorting order, but displays it in random order</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>随机显示幻灯片</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="260"/>
         <source>QuickViewer theme</source>
-        <translation type="unfinished"></translation>
+        <translation>QuickViewer 主题</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="274"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Default</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.ui" line="279"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dark</translation>
     </message>
 </context>
 <context>
@@ -2271,7 +2271,7 @@
         <location filename="../src/qlanguageselector/qlanguageselector.cpp" line="148"/>
         <source>Always use text translation</source>
         <comment>Menu text that uses textual translation rather than regular qm format</comment>
-        <translation type="unfinished"></translation>
+        <translation>始终使用文本翻译</translation>
     </message>
 </context>
 <context>
@@ -2334,13 +2334,13 @@
         <location filename="../src/models/qvapplication.cpp" line="200"/>
         <source>Navigation</source>
         <comment>Navigation Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>导航</translation>
     </message>
     <message>
         <location filename="../src/models/qvapplication.cpp" line="241"/>
         <source>Dual View</source>
         <comment>Dual View Action Group</comment>
-        <translation type="unfinished"></translation>
+        <translation>双页查看</translation>
     </message>
 </context>
 <context>
