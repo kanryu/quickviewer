@@ -1096,18 +1096,18 @@
         <location filename="../src/mainwindow.cpp" line="1085"/>
         <source>LoadBookmark</source>
         <extracomment>Button to restore saved image page from registered bookmark</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>LoadBookmark</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="360"/>
         <location filename="../src/mainwindow.ui" line="379"/>
         <source>&amp;Shader</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Shaders</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="375"/>
         <location filename="../src/mainwindow.ui" line="1100"/>
-        <source>ContextMenu</source>
+        <source>Context Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1119,7 +1119,7 @@
         <location filename="../src/mainwindow.ui" line="406"/>
         <location filename="../src/mainwindow.ui" line="462"/>
         <source>Fit mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Fit method</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="428"/>
@@ -1146,13 +1146,13 @@
         <location filename="../src/mainwindow.ui" line="506"/>
         <source>&amp;NextImage</source>
         <extracomment>Switch to the next image button</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Next page</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="515"/>
         <source>&amp;PrevImage</source>
         <extracomment>Switch to previous image button</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Previous page</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="524"/>
@@ -1180,13 +1180,13 @@
         <location filename="../src/mainwindow.ui" line="551"/>
         <source>&amp;Fitting</source>
         <extracomment>Automatically resize the image according to the size of the window</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fit Mode</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="563"/>
         <source>2page &amp;Spread</source>
         <extracomment>Arranging two images side by side like when opening a book</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Double page &amp;spread view</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="575"/>
@@ -1210,7 +1210,7 @@
         <location filename="../src/mainwindow.ui" line="600"/>
         <source>Bound on the &amp;right side</source>
         <extracomment>Books written in vertical writing such as Japanese and Chinese read from right, so read from right page to left page</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Bound to the &amp;right side</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="605"/>
@@ -1222,13 +1222,13 @@
         <location filename="../src/mainwindow.ui" line="613"/>
         <source>&amp;Always display one landscape image even in 2 page display</source>
         <extracomment>Automatically switch because it may spread 2 pages are combined into one image in the digital book</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Always display landscape image as single page</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="622"/>
         <source>&amp;LastPage</source>
         <extracomment>Switch to the last image of Volume currently displayed button</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Last page</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.ui" line="631"/>
