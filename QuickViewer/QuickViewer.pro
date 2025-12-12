@@ -16,7 +16,7 @@ contains(DEFINES, QV_WITHOUT_OPENGL) {
     QT += opengl opengl-private
 }
 
-VERSION = 1.2.7
+VERSION = 1.2.8
 
 TARGET = QuickViewer
 TEMPLATE = app
@@ -302,7 +302,6 @@ win32 : !CONFIG(debug, debug|release) {
             ../../../qt-avif-image-plugin/imageformats-$${TARGET_ARCH}/qavif6.dll \
 
         # dlls instead of vcredist_xxx.exe
-        #install_msvcrt.PATH = C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/redist/$${TARGET_ARCH}/Microsoft.VC140.CRT
         install_msvcrt.PATH = C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Redist/MSVC/14.38.33130/x64/Microsoft.VC143.CRT
         install_msvcrt.path = $${MY_DEFAULT_INSTALL}
         install_msvcrt.removefiles = $$shell_path($${MY_DEFAULT_INSTALL}/vc_redist.$${TARGET_ARCH}.exe)
