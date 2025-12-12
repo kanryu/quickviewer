@@ -14,8 +14,6 @@
   #define FILE_BAD_HANDLE NULL
 #endif
 
-class RAROptions;
-
 enum FILE_HANDLETYPE {FILE_HANDLENORMAL,FILE_HANDLESTD};
 
 enum FILE_ERRORTYPE {FILE_SUCCESS,FILE_NOTFOUND,FILE_READERROR};
@@ -39,8 +37,17 @@ enum FILE_MODE_FLAGS {
   // Provide read access to created file for other programs.
   FMF_SHAREREAD=16,
 
+  // Use standard NTFS names without trailing dots and spaces.
+  FMF_STANDARDNAMES=32,
+
   // Mode flags are not defined yet.
-  FMF_UNDEFINED=256
+  // FMF_UNDEFINED=256
+};
+
+enum FILE_READ_ERROR_MODE {
+  FREM_ASK,          // Propose to use the already read part, retry or abort.
+  FREM_TRUNCATE,     // Use the already read part without additional prompt.
+  FREM_IGNORE        // Try to skip unreadable block and read further.
 };
 
 
@@ -50,34 +57,50 @@ class File
     FileHandle hFile;
     bool LastWrite;
     FILE_HANDLETYPE HandleType;
+    
+    // If we read the user input in console prompts from stdin, we shall
+    // process the available line immediately, not waiting for rest of data.
+    // Otherwise apps piping user responses to multiple Ask() prompts can
+    // hang if no more data is available yet and pipe isn't closed.
+    // If we read RAR archive or other file data from stdin, we shall collect
+    // the entire requested block as long as pipe isn't closed, so we get
+    // complete archive headers, not split between different reads.
+    bool LineInput;
+
     bool SkipClose;
-    bool IgnoreReadErrors;
+    FILE_READ_ERROR_MODE ReadErrorMode;
     bool NewFile;
     bool AllowDelete;
     bool AllowExceptions;
 #ifdef _WIN_ALL
-    bool NoSequentialRead;
-    uint CreateMode;
+    // uint CreateMode;
 #endif
+    bool PreserveAtime;
+    bool TruncatedAfterReadError;
+
+    int64 CurFilePos; // Used for forward seeks in stdin files.
   protected:
     bool OpenShared; // Set by 'Archive' class.
   public:
-    wchar FileName[NM];
+    std::wstring FileName;
 
     FILE_ERRORTYPE ErrorType;
   public:
     File();
     virtual ~File();
     void operator = (File &SrcFile);
-    virtual bool Open(const wchar *Name,uint Mode=FMF_READ);
-    void TOpen(const wchar *Name);
-    bool WOpen(const wchar *Name);
-    bool Create(const wchar *Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
-    void TCreate(const wchar *Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
-    bool WCreate(const wchar *Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
-    bool Close();
+
+    // Several functions below are 'virtual', because they are redefined
+    // by Archive for QOpen and by MultiFile for split files in WinRAR.
+    virtual bool Open(const std::wstring &Name,uint Mode=FMF_READ);
+    void TOpen(const std::wstring &Name);
+    bool WOpen(const std::wstring &Name);
+    bool Create(const std::wstring &Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
+    void TCreate(const std::wstring &Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
+    bool WCreate(const std::wstring &Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
+    virtual bool Close(); // 'virtual' for MultiFile class.
     bool Delete();
-    bool Rename(const wchar *NewName);
+    bool Rename(const std::wstring &NewName);
     bool Write(const void *Data,size_t Size);
     virtual int Read(void *Data,size_t Size);
     int DirectRead(void *Data,size_t Size);
@@ -91,23 +114,27 @@ class File
     void Flush();
     void SetOpenFileTime(RarTime *ftm,RarTime *ftc=NULL,RarTime *fta=NULL);
     void SetCloseFileTime(RarTime *ftm,RarTime *fta=NULL);
-    static void SetCloseFileTimeByName(const wchar *Name,RarTime *ftm,RarTime *fta);
-    void GetOpenFileTime(RarTime *ft);
-    bool IsOpened() {return hFile!=FILE_BAD_HANDLE;};
-    int64 FileLength();
+    static void SetCloseFileTimeByName(const std::wstring &Name,RarTime *ftm,RarTime *fta);
+#ifdef _UNIX
+    static void StatToRarTime(struct stat &st,RarTime *ftm,RarTime *ftc,RarTime *fta);
+#endif
+    void GetOpenFileTime(RarTime *ftm,RarTime *ftc=NULL,RarTime *fta=NULL);
+    virtual bool IsOpened() {return hFile!=FILE_BAD_HANDLE;} // 'virtual' for MultiFile class.
+    virtual int64 FileLength(); // 'virtual' for MultiFile class.
     void SetHandleType(FILE_HANDLETYPE Type) {HandleType=Type;}
+    void SetLineInputMode(bool Mode) {LineInput=Mode;}
     FILE_HANDLETYPE GetHandleType() {return HandleType;}
+    bool IsSeekable() {return HandleType!=FILE_HANDLESTD;}
     bool IsDevice();
     static bool RemoveCreated();
     FileHandle GetHandle() {return hFile;}
     void SetHandle(FileHandle Handle) {Close();hFile=Handle;}
-    void SetIgnoreReadErrors(bool Mode) {IgnoreReadErrors=Mode;}
+    void SetReadErrorMode(FILE_READ_ERROR_MODE Mode) {ReadErrorMode=Mode;}
     int64 Copy(File &Dest,int64 Length=INT64NDF);
     void SetAllowDelete(bool Allow) {AllowDelete=Allow;}
     void SetExceptions(bool Allow) {AllowExceptions=Allow;}
-#ifdef _WIN_ALL
-    void RemoveSequentialFlag() {NoSequentialRead=true;}
-#endif
+    void SetPreserveAtime(bool Preserve) {PreserveAtime=Preserve;}
+    bool IsTruncatedAfterReadError() {return TruncatedAfterReadError;}
 #ifdef _UNIX
     int GetFD()
     {
@@ -118,6 +145,12 @@ class File
 #endif
     }
 #endif
+    static size_t CopyBufferSize()
+    {
+      // Values in 0x100000 - 0x400000 range are ok, but multithreaded CRC32
+      // seems to benefit from 0x400000, especially on ARM CPUs.
+      return 0x400000;
+    }
 };
 
 #endif

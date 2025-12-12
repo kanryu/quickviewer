@@ -1,3 +1,5 @@
+// 2023.09.09: 0x400000 and 2 are optimal for i9-12900K.
+// Further increasing the buffer size reduced the extraction speed.
 #define UNP_READ_SIZE_MT        0x400000
 #define UNP_BLOCKS_PER_THREAD          2
 
@@ -133,11 +135,13 @@ void Unpack::Unpack5MT(bool Solid)
         if (!CurData->HeaderRead)
         {
           CurData->HeaderRead=true;
-          if (!ReadBlockHeader(CurData->Inp,CurData->BlockHeader))
+          if (!ReadBlockHeader(CurData->Inp,CurData->BlockHeader) ||
+              !CurData->BlockHeader.TablePresent && !TablesRead5)
           {
             Done=true;
             break;
           }
+          TablesRead5=true;
         }
 
         // To prevent too high memory use we switch to single threaded mode
@@ -163,7 +167,7 @@ void Unpack::Unpack5MT(bool Solid)
         if (DataLeft<TooSmallToProcess)
           break;
       }
-      
+
 //#undef USE_THREADS
       UnpackThreadDataList UTDArray[MaxPoolThreads];
       uint UTDArrayPos=0;
@@ -178,7 +182,7 @@ void Unpack::Unpack5MT(bool Solid)
         UnpackThreadDataList *UTD=UTDArray+UTDArrayPos++;
         UTD->D=UnpThreadData+CurBlock;
         UTD->BlockCount=Min(MaxBlockPerThread,BlockNumberMT-CurBlock);
-      
+
 #ifdef USE_THREADS
         if (BlockNumber==1)
           UnpackDecode(*UTD->D);
@@ -198,7 +202,7 @@ void Unpack::Unpack5MT(bool Solid)
 #endif
 
       bool IncompleteThread=false;
-      
+
       for (uint Block=0;Block<BlockNumber;Block++)
       {
         UnpackThreadData *CurData=UnpThreadData+Block;
@@ -249,7 +253,7 @@ void Unpack::Unpack5MT(bool Solid)
             break;
           }
       }
-      
+
       if (IncompleteThread || Done)
         break; // Current buffer is done, read more data or quit.
       else
@@ -275,7 +279,7 @@ void Unpack::Unpack5MT(bool Solid)
       }
     }
   }
-  UnpPtr&=MaxWinMask; // ProcessDecoded and maybe others can leave UnpPtr > MaxWinMask here.
+  UnpPtr=WrapUp(UnpPtr); // ProcessDecoded and maybe others can leave UnpPtr >= MaxWinSize here.
   UnpWriteBuf();
 
   BlockHeader=UnpThreadData[LastBlockNum].BlockHeader;
@@ -301,7 +305,7 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
     D.DamagedData=true;
     return;
   }
-  
+
   D.DecodedSize=0;
   int BlockBorder=D.BlockHeader.BlockStart+D.BlockHeader.BlockSize-1;
 
@@ -343,7 +347,7 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
       if (D.DecodedSize>1)
       {
         UnpackDecodedItem *PrevItem=CurItem-1;
-        if (PrevItem->Type==UNPDT_LITERAL && PrevItem->Length<3)
+        if (PrevItem->Type==UNPDT_LITERAL && PrevItem->Length<ASIZE(PrevItem->Literal)-1)
         {
           PrevItem->Length++;
           PrevItem->Literal[PrevItem->Length]=(byte)MainSlot;
@@ -360,7 +364,8 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
     {
       uint Length=SlotToLength(D.Inp,MainSlot-262);
 
-      uint DBits,Distance=1,DistSlot=DecodeNumber(D.Inp,&D.BlockTables.DD);
+      size_t Distance=1;
+      uint DBits,DistSlot=DecodeNumber(D.Inp,&D.BlockTables.DD);
       if (DistSlot<4)
       {
         DBits=0;
@@ -369,7 +374,7 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
       else
       {
         DBits=DistSlot/2 - 1;
-        Distance+=(2 | (DistSlot & 1)) << DBits;
+        Distance+=size_t(2 | (DistSlot & 1)) << DBits;
       }
 
       if (DBits>0)
@@ -378,15 +383,27 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
         {
           if (DBits>4)
           {
-            Distance+=((D.Inp.getbits32()>>(36-DBits))<<4);
+            // It is also possible to always use getbits64() here.
+            if (DBits>36)
+              Distance+=( ( size_t(D.Inp.getbits64() ) >> (68-DBits) ) << 4 );
+            else
+              Distance+=( ( size_t(D.Inp.getbits32() ) >> (36-DBits) ) << 4 );
             D.Inp.addbits(DBits-4);
           }
           uint LowDist=DecodeNumber(D.Inp,&D.BlockTables.LDD);
           Distance+=LowDist;
+
+          // Distance can be 0 for multiples of 4 GB as result of size_t
+          // overflow in 32-bit build. Its lower 32-bit can also erroneously
+          // fit into dictionary after truncating upper 32-bits. Replace such
+          // invalid distances with -1, so CopyString sets 0 data for them.
+          // DBits>=30 also as DistSlot>=62 indicate distances >=0x80000001.
+          if (sizeof(Distance)==4 && DBits>=30)
+            Distance=(size_t)-1;
         }
         else
         {
-          Distance+=D.Inp.getbits32()>>(32-DBits);
+          Distance+=D.Inp.getbits()>>(16-DBits);
           D.Inp.addbits(DBits);
         }
       }
@@ -411,7 +428,7 @@ void Unpack::UnpackDecode(UnpackThreadData &D)
     {
       UnpackFilter Filter;
       ReadFilter(D.Inp,Filter);
-      
+
       CurItem->Type=UNPDT_FILTER;
       CurItem->Length=Filter.Type;
       CurItem->Distance=Filter.BlockStart;
@@ -448,8 +465,12 @@ bool Unpack::ProcessDecoded(UnpackThreadData &D)
   UnpackDecodedItem *Item=D.Decoded,*Border=D.Decoded+D.DecodedSize;
   while (Item<Border)
   {
-    UnpPtr&=MaxWinMask;
-    if (((WriteBorder-UnpPtr) & MaxWinMask)<MAX_LZ_MATCH+3 && WriteBorder!=UnpPtr)
+    UnpPtr=WrapUp(UnpPtr);
+
+    FirstWinDone|=(PrevPtr>UnpPtr);
+    PrevPtr=UnpPtr;
+
+    if (WrapDown(WriteBorder-UnpPtr)<=MAX_INC_LZ_MATCH && WriteBorder!=UnpPtr)
     {
       UnpWriteBuf();
       if (WrittenFileSize>DestUnpSize)
@@ -459,15 +480,15 @@ bool Unpack::ProcessDecoded(UnpackThreadData &D)
     if (Item->Type==UNPDT_LITERAL)
     {
 #if defined(LITTLE_ENDIAN) && defined(ALLOW_MISALIGNED)
-      if (Item->Length==3 && UnpPtr<MaxWinSize-4)
+      if (Item->Length==7 && UnpPtr<MaxWinSize-8)
       {
-        *(uint32 *)(Window+UnpPtr)=*(uint32 *)Item->Literal;
-        UnpPtr+=4;
+        *(uint64 *)(Window+UnpPtr)=*(uint64 *)(Item->Literal);
+         UnpPtr+=8;
       }
       else
 #endif
         for (uint I=0;I<=Item->Length;I++)
-          Window[UnpPtr++ & MaxWinMask]=Item->Literal[I];
+          Window[WrapUp(UnpPtr++)]=Item->Literal[I];
     }
     else
       if (Item->Type==UNPDT_MATCH)
@@ -479,8 +500,8 @@ bool Unpack::ProcessDecoded(UnpackThreadData &D)
       else
         if (Item->Type==UNPDT_REP)
         {
-          uint Distance=OldDist[Item->Distance];
-          for (uint I=Item->Distance;I>0;I--)
+          size_t Distance=OldDist[Item->Distance];
+          for (size_t I=Item->Distance;I>0;I--)
             OldDist[I]=OldDist[I-1];
           OldDist[0]=Distance;
           LastLength=Item->Length;
@@ -496,14 +517,14 @@ bool Unpack::ProcessDecoded(UnpackThreadData &D)
             if (Item->Type==UNPDT_FILTER)
             {
               UnpackFilter Filter;
-              
+
               Filter.Type=(byte)Item->Length;
               Filter.BlockStart=Item->Distance;
 
               Item++;
 
               Filter.Channels=(byte)Item->Length;
-              Filter.BlockLength=Item->Distance;
+              Filter.BlockLength=(uint)Item->Distance;
 
               AddFilter(Filter);
             }
@@ -532,7 +553,7 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
     D.DamagedData=true;
     return false;
   }
-  
+
   int BlockBorder=D.BlockHeader.BlockStart+D.BlockHeader.BlockSize-1;
 
   // Reserve enough space even for filter entry.
@@ -541,7 +562,11 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
 
   while (true)
   {
-    UnpPtr&=MaxWinMask;
+    UnpPtr=WrapUp(UnpPtr);
+    
+    FirstWinDone|=(PrevPtr>UnpPtr);
+    PrevPtr=UnpPtr;
+
     if (D.Inp.InAddr>=ReadBorder)
     {
       if (D.Inp.InAddr>BlockBorder || D.Inp.InAddr==BlockBorder && 
@@ -557,7 +582,7 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
         break;
       }
     }
-    if (((WriteBorder-UnpPtr) & MaxWinMask)<MAX_LZ_MATCH+3 && WriteBorder!=UnpPtr)
+    if (WrapDown(WriteBorder-UnpPtr)<=MAX_INC_LZ_MATCH && WriteBorder!=UnpPtr)
     {
       UnpWriteBuf();
       if (WrittenFileSize>DestUnpSize)
@@ -574,7 +599,8 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
     {
       uint Length=SlotToLength(D.Inp,MainSlot-262);
 
-      uint DBits,Distance=1,DistSlot=DecodeNumber(D.Inp,&D.BlockTables.DD);
+      size_t Distance=1;
+      uint DBits,DistSlot=DecodeNumber(D.Inp,&D.BlockTables.DD);
       if (DistSlot<4)
       {
         DBits=0;
@@ -583,7 +609,7 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
       else
       {
         DBits=DistSlot/2 - 1;
-        Distance+=(2 | (DistSlot & 1)) << DBits;
+        Distance+=size_t(2 | (DistSlot & 1)) << DBits;
       }
 
       if (DBits>0)
@@ -592,11 +618,23 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
         {
           if (DBits>4)
           {
-            Distance+=((D.Inp.getbits32()>>(36-DBits))<<4);
+            // It is also possible to always use getbits64() here.
+            if (DBits>36)
+              Distance+=( ( size_t(D.Inp.getbits64() ) >> (68-DBits) ) << 4 );
+            else
+              Distance+=( ( size_t(D.Inp.getbits32() ) >> (36-DBits) ) << 4 );
             D.Inp.addbits(DBits-4);
           }
           uint LowDist=DecodeNumber(D.Inp,&D.BlockTables.LDD);
           Distance+=LowDist;
+
+          // Distance can be 0 for multiples of 4 GB as result of size_t
+          // overflow in 32-bit build. Its lower 32-bit can also erroneously
+          // fit into dictionary after truncating upper 32-bits. Replace such
+          // invalid distances with -1, so CopyString sets 0 data for them.
+          // DBits>=30 also as DistSlot>=62 indicate distances >=0x80000001.
+          if (sizeof(Distance)==4 && DBits>=30)
+            Distance=(size_t)-1;
         }
         else
         {
@@ -637,7 +675,7 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
     if (MainSlot<262)
     {
       uint DistNum=MainSlot-258;
-      uint Distance=OldDist[DistNum];
+      size_t Distance=OldDist[DistNum];
       for (uint I=DistNum;I>0;I--)
         OldDist[I]=OldDist[I-1];
       OldDist[0]=Distance;

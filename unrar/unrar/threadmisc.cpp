@@ -1,7 +1,3 @@
-// Typically we use the same global thread pool for all RAR modules.
-static ThreadPool *GlobalPool=NULL;
-static uint GlobalPoolUseCount=0;
-
 static inline bool CriticalSectionCreate(CRITSECT_HANDLE *CritSection)
 {
 #ifdef _WIN_ALL
@@ -40,57 +36,6 @@ static inline void CriticalSectionEnd(CRITSECT_HANDLE *CritSection)
 #elif defined(_UNIX)
   pthread_mutex_unlock(CritSection);
 #endif
-}
-
-
-static struct GlobalPoolCreateSync
-{
-  CRITSECT_HANDLE CritSection;
-  GlobalPoolCreateSync()  { CriticalSectionCreate(&CritSection); }
-  ~GlobalPoolCreateSync() { CriticalSectionDelete(&CritSection); }
-} PoolCreateSync;
-
-
-ThreadPool* CreateThreadPool()
-{
-  CriticalSectionStart(&PoolCreateSync.CritSection); 
-
-  if (GlobalPoolUseCount++ == 0)
-    GlobalPool=new ThreadPool(MaxPoolThreads);
-
-  // We use a simple thread pool, which does not allow to add tasks from
-  // different functions and threads in the same time. It is ok for RAR,
-  // but UnRAR.dll can be used in multithreaded environment. So if one of
-  // threads requests a copy of global pool and another copy is already
-  // in use, we create and return a new pool instead of existing global.
-  if (GlobalPoolUseCount > 1)
-  {
-    ThreadPool *Pool = new ThreadPool(MaxPoolThreads);
-    CriticalSectionEnd(&PoolCreateSync.CritSection); 
-    return Pool;
-  }
-
-  CriticalSectionEnd(&PoolCreateSync.CritSection); 
-  return GlobalPool;
-}
-
-
-void DestroyThreadPool(ThreadPool *Pool)
-{
-  if (Pool!=NULL)
-  {
-    CriticalSectionStart(&PoolCreateSync.CritSection); 
-
-    if (Pool==GlobalPool && GlobalPoolUseCount > 0 && --GlobalPoolUseCount == 0)
-      delete GlobalPool;
-
-    // To correctly work in multithreaded environment UnRAR.dll creates
-    // new pools if global pool is already in use. We delete such pools here.
-    if (Pool!=GlobalPool)
-      delete Pool;
-
-    CriticalSectionEnd(&PoolCreateSync.CritSection); 
-  }
 }
 
 
@@ -178,6 +123,42 @@ uint GetNumberOfCPU()
   return sysctlbyname("hw.ncpu",&Count,&Size,NULL,0)==0 ? Count:1;
 #endif
 #else // !_UNIX
+
+#ifdef WIN32_CPU_GROUPS
+  // https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getprocessaffinitymask
+  // "Starting with Windows 11 and Windows Server 2022, on a system with
+  //  more than 64 processors, process and thread affinities span all
+  //  processors in the system, across all processor groups, by default."
+  // Supposing there are 80 CPUs in 2 processor groups 40 CPUs each.
+  // Looks like, beginning from Windows 11 an app can use them all by default,
+  // not resorting to processor groups API. But if we use GetProcessAffinityMask
+  // to count CPUs, we would be limited to 40 CPUs only. So we call 
+  // GetActiveProcessorCount() if it is available anf if there are multiple
+  // processor groups. For a single group we prefer the affinity aware
+  // GetProcessAffinityMask(). Out thread pool code handles the case
+  // with restricted processor group affinity. So we avoid the complicated
+  // code to calculate all processor groups affinity here, such as using
+  // GetLogicalProcessorInformationEx, and resort to GetActiveProcessorCount().
+  HMODULE hKernel=GetModuleHandle(L"kernel32.dll");
+  if (hKernel!=nullptr)
+  {
+    typedef DWORD (WINAPI *GETACTIVEPROCESSORCOUNT)(WORD GroupNumber);
+    GETACTIVEPROCESSORCOUNT pGetActiveProcessorCount=(GETACTIVEPROCESSORCOUNT)GetProcAddress(hKernel,"GetActiveProcessorCount");
+    typedef WORD (WINAPI *GETACTIVEPROCESSORGROUPCOUNT)();
+    GETACTIVEPROCESSORGROUPCOUNT pGetActiveProcessorGroupCount=(GETACTIVEPROCESSORGROUPCOUNT)GetProcAddress(hKernel,"GetActiveProcessorGroupCount");
+    if (pGetActiveProcessorCount!=nullptr && pGetActiveProcessorGroupCount!=nullptr &&
+        pGetActiveProcessorGroupCount()>1)
+    {
+      // Once the thread pool called SetThreadGroupAffinity(),
+      // GetProcessAffinityMask() below will return 0. So we shall always
+      // use GetActiveProcessorCount() here if there are multiple processor
+      // groups, which makes SetThreadGroupAffinity() call possible.
+      DWORD Count=pGetActiveProcessorCount(ALL_PROCESSOR_GROUPS);
+      return Count;
+    }
+  }
+#endif
+
   DWORD_PTR ProcessMask;
   DWORD_PTR SystemMask;
 
@@ -203,4 +184,6 @@ uint GetNumberOfThreads()
     return MaxPoolThreads;
   return NumCPU;
 }
+
+
 

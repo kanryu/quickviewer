@@ -5,7 +5,7 @@ static bool ReadSacl=false;
 
 
 #ifndef SFX_MODULE
-void ExtractACL20(Archive &Arc,const wchar *FileName)
+void ExtractACL20(Archive &Arc,const std::wstring &FileName)
 {
   SetACLPrivileges();
 
@@ -27,7 +27,7 @@ void ExtractACL20(Archive &Arc,const wchar *FileName)
   Unpack Unpack(&DataIO);
   Unpack.Init(0x10000,false);
 
-  Array<byte> UnpData(Arc.EAHead.UnpSize);
+  std::vector<byte> UnpData(Arc.EAHead.UnpSize);
   DataIO.SetUnpackToMemory(&UnpData[0],Arc.EAHead.UnpSize);
   DataIO.SetPackedSizeToRead(Arc.EAHead.DataSize);
   DataIO.EnableShowProgress(false);
@@ -49,22 +49,25 @@ void ExtractACL20(Archive &Arc,const wchar *FileName)
     si|=SACL_SECURITY_INFORMATION;
   SECURITY_DESCRIPTOR *sd=(SECURITY_DESCRIPTOR *)&UnpData[0];
 
-  int SetCode=SetFileSecurity(FileName,si,sd);
+  int SetCode=SetFileSecurity(FileName.c_str(),si,sd);
 
   if (!SetCode)
   {
     uiMsg(UIERROR_ACLSET,Arc.FileName,FileName);
+    DWORD LastError=GetLastError();
     ErrHandler.SysErrMsg();
+    if (LastError==ERROR_ACCESS_DENIED && !IsUserAdmin())
+      uiMsg(UIERROR_NEEDADMIN);
     ErrHandler.SetErrorCode(RARX_WARNING);
   }
 }
 #endif
 
 
-void ExtractACL(Archive &Arc,const wchar *FileName)
+void ExtractACL(Archive &Arc,const std::wstring &FileName)
 {
-  Array<byte> SubData;
-  if (!Arc.ReadSubData(&SubData,NULL))
+  std::vector<byte> SubData;
+  if (!Arc.ReadSubData(&SubData,NULL,false))
     return;
 
   SetACLPrivileges();
@@ -75,18 +78,21 @@ void ExtractACL(Archive &Arc,const wchar *FileName)
     si|=SACL_SECURITY_INFORMATION;
   SECURITY_DESCRIPTOR *sd=(SECURITY_DESCRIPTOR *)&SubData[0];
 
-  int SetCode=SetFileSecurity(FileName,si,sd);
+  int SetCode=SetFileSecurity(FileName.c_str(),si,sd);
   if (!SetCode)
   {
-    wchar LongName[NM];
-    if (GetWinLongPath(FileName,LongName,ASIZE(LongName)))
-      SetCode=SetFileSecurity(LongName,si,sd);
+    std::wstring LongName;
+    if (GetWinLongPath(FileName,LongName))
+      SetCode=SetFileSecurity(LongName.c_str(),si,sd);
   }
 
   if (!SetCode)
   {
     uiMsg(UIERROR_ACLSET,Arc.FileName,FileName);
+    DWORD LastError=GetLastError();
     ErrHandler.SysErrMsg();
+    if (LastError==ERROR_ACCESS_DENIED && !IsUserAdmin())
+      uiMsg(UIERROR_NEEDADMIN);
     ErrHandler.SetErrorCode(RARX_WARNING);
   }
 }
@@ -103,27 +109,4 @@ void SetACLPrivileges()
   SetPrivilege(SE_RESTORE_NAME);
 
   InitDone=true;
-}
-
-
-bool SetPrivilege(LPCTSTR PrivName)
-{
-  bool Success=false;
-
-  HANDLE hToken;
-  if (OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken))
-  {
-    TOKEN_PRIVILEGES tp;
-    tp.PrivilegeCount = 1;
-    tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    if (LookupPrivilegeValue(NULL,PrivName,&tp.Privileges[0].Luid) &&
-        AdjustTokenPrivileges(hToken, FALSE, &tp, 0, NULL, NULL) &&
-        GetLastError() == ERROR_SUCCESS)
-      Success=true;
-
-    CloseHandle(hToken);
-  }
-
-  return Success;
 }

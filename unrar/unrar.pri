@@ -45,6 +45,8 @@ SOURCES += \
     $$PWD/unrar/rs16.cpp \
     $$PWD/unrar/cmddata.cpp \
     $$PWD/unrar/ui.cpp \
+    $$PWD/unrar/largepage.cpp \
+    $$PWD/unrar/motw.cpp \
 
 contains(DEFINES, RAR_BUILD_UNRAR) {
     SOURCES += \

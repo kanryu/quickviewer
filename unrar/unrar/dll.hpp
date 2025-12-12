@@ -1,7 +1,7 @@
-#ifndef _1_DLL_
+#ifndef _UNRAR_DLL_
 #define _UNRAR_DLL_
 
-#pragma pack(1)
+#pragma pack(push, 1)
 
 #define ERAR_SUCCESS             0
 #define ERAR_END_ARCHIVE        10
@@ -19,6 +19,7 @@
 #define ERAR_MISSING_PASSWORD   22
 #define ERAR_EREFERENCE         23
 #define ERAR_BAD_PASSWORD       24
+#define ERAR_LARGE_DICT         25
 
 #define RAR_OM_LIST              0
 #define RAR_OM_EXTRACT           1
@@ -31,7 +32,7 @@
 #define RAR_VOL_ASK           0
 #define RAR_VOL_NOTIFY        1
 
-#define RAR_DLL_VERSION       8
+#define RAR_DLL_VERSION       9
 
 #define RAR_HASH_NONE         0
 #define RAR_HASH_CRC32        1
@@ -108,7 +109,11 @@ struct RARHeaderDataEx
   unsigned int CtimeHigh;
   unsigned int AtimeLow;
   unsigned int AtimeHigh;
-  unsigned int Reserved[988];
+  wchar_t      *ArcNameEx;
+  unsigned int ArcNameExSize;
+  wchar_t      *FileNameEx;
+  unsigned int FileNameExSize;
+  unsigned int Reserved[982];
 };
 
 
@@ -125,6 +130,18 @@ struct RAROpenArchiveData
 
 typedef int (CALLBACK *UNRARCALLBACK)(UINT msg,LPARAM UserData,LPARAM P1,LPARAM P2);
 
+#define ROADF_VOLUME       0x0001
+#define ROADF_COMMENT      0x0002
+#define ROADF_LOCK         0x0004
+#define ROADF_SOLID        0x0008
+#define ROADF_NEWNUMBERING 0x0010
+#define ROADF_SIGNED       0x0020
+#define ROADF_RECOVERY     0x0040
+#define ROADF_ENCHEADERS   0x0080
+#define ROADF_FIRSTVOLUME  0x0100
+
+#define ROADOF_KEEPBROKEN  0x0001
+
 struct RAROpenArchiveDataEx
 {
   char         *ArcName;
@@ -138,12 +155,15 @@ struct RAROpenArchiveDataEx
   unsigned int  Flags;
   UNRARCALLBACK Callback;
   LPARAM        UserData;
-  unsigned int  Reserved[28];
+  unsigned int  OpFlags;
+  wchar_t      *CmtBufW;
+  wchar_t      *MarkOfTheWeb;
+  unsigned int  Reserved[23];
 };
 
 enum UNRARCALLBACK_MESSAGES {
   UCM_CHANGEVOLUME,UCM_PROCESSDATA,UCM_NEEDPASSWORD,UCM_CHANGEVOLUMEW,
-  UCM_NEEDPASSWORDW
+  UCM_NEEDPASSWORDW,UCM_LARGEDICT
 };
 
 typedef int (PASCAL *CHANGEVOLPROC)(char *ArcName,int Mode);
@@ -170,6 +190,6 @@ int    PASCAL RARGetDllVersion();
 }
 #endif
 
-#pragma pack()
+#pragma pack(pop)
 
 #endif
