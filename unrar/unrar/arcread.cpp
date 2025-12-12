@@ -734,7 +734,7 @@ size_t Archive::ReadHeader50()
           ProcessExtra50(&Raw,(size_t)ExtraSize,&MainHead);
 
 #ifdef USE_QOPEN
-        if (MainHead.Locator && MainHead.QOpenOffset>0 && Cmd->QOpenMode!=QOPEN_NONE)
+        if (!ProhibitQOpen && MainHead.Locator && MainHead.QOpenOffset>0 && Cmd->QOpenMode!=QOPEN_NONE)
         {
           // We seek to QO block in the end of archive when processing
           // QOpen.Load, so we need to preserve current block positions
@@ -1070,7 +1070,7 @@ void Archive::ProcessExtra50(RawRead *Raw,size_t ExtraSize,BaseBlock *bb)
 
               wchar VerText[20];
               swprintf(VerText,ASIZE(VerText),L";%u",Version);
-              wcsncatz(FileHead.FileName,VerText,ASIZE(FileHead.FileName));
+              wcsncatz(hd->FileName,VerText,ASIZE(hd->FileName));
             }
           }
           break;

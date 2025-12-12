@@ -55,6 +55,10 @@ class Archive:public File
     bool SilentOpen;
 #ifdef USE_QOPEN
     QuickOpen QOpen;
+    bool ProhibitQOpen;
+#endif
+#ifdef USE_ARCMEM
+    ArcMemory ArcMem;
 #endif
   public:
     Archive(RAROptions *InitCmd=NULL);
@@ -89,12 +93,15 @@ class Archive:public File
 #if 0
     void GetRecoveryInfo(bool Required,int64 *Size,int *Percent);
 #endif
-#ifdef USE_QOPEN
     bool Open(const wchar *Name,uint Mode=FMF_READ);
+    bool Close();
     int Read(void *Data,size_t Size);
     void Seek(int64 Offset,int Method);
     int64 Tell();
+    bool IsOpened();
+#ifdef USE_QOPEN
     void QOpenUnload() {QOpen.Unload();}
+    void SetProhibitQOpen(bool Mode) {ProhibitQOpen=Mode;}
 #endif
 
     BaseBlock ShortBlock;

@@ -449,7 +449,7 @@ bool Unpack::ProcessDecoded(UnpackThreadData &D)
   while (Item<Border)
   {
     UnpPtr&=MaxWinMask;
-    if (((WriteBorder-UnpPtr) & MaxWinMask)<MAX_LZ_MATCH+3 && WriteBorder!=UnpPtr)
+    if (((WriteBorder-UnpPtr) & MaxWinMask)<MAX_INC_LZ_MATCH && WriteBorder!=UnpPtr)
     {
       UnpWriteBuf();
       if (WrittenFileSize>DestUnpSize)
@@ -557,7 +557,7 @@ bool Unpack::UnpackLargeBlock(UnpackThreadData &D)
         break;
       }
     }
-    if (((WriteBorder-UnpPtr) & MaxWinMask)<MAX_LZ_MATCH+3 && WriteBorder!=UnpPtr)
+    if (((WriteBorder-UnpPtr) & MaxWinMask)<MAX_INC_LZ_MATCH && WriteBorder!=UnpPtr)
     {
       UnpWriteBuf();
       if (WrittenFileSize>DestUnpSize)

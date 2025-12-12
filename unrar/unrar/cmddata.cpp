@@ -96,7 +96,7 @@ void CommandData::ParseArg(wchar *Arg)
   else
     if (*Command==0)
     {
-      wcsncpy(Command,Arg,ASIZE(Command));
+      wcsncpyz(Command,Arg,ASIZE(Command));
 
 
       *Command=toupperw(*Command);
@@ -1208,8 +1208,8 @@ int CommandData::IsProcessFile(FileHeader &FileHead,bool *ExactMatch,int MatchTy
 {
   if (MatchedArg!=NULL && MatchedArgSize>0)
     *MatchedArg=0;
-  if (wcslen(FileHead.FileName)>=NM)
-    return 0;
+//  if (wcslen(FileHead.FileName)>=NM)
+//    return 0;
   bool Dir=FileHead.Dir;
   if (ExclCheck(FileHead.FileName,Dir,false,true))
     return 0;
@@ -1267,7 +1267,7 @@ void CommandData::ProcessCommand()
       wcsncpyz(ArcName,Name,ASIZE(ArcName));
   }
 
-  if (wcschr(L"AFUMD",*Command)==NULL)
+  if (wcschr(L"AFUMD",*Command)==NULL && !ArcInMem)
   {
     if (GenerateArcName)
       GenerateArchiveName(ArcName,ASIZE(ArcName),GenerateMask,false);

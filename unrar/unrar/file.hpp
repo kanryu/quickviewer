@@ -75,7 +75,7 @@ class File
     bool Create(const wchar *Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
     void TCreate(const wchar *Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
     bool WCreate(const wchar *Name,uint Mode=FMF_UPDATE|FMF_SHAREREAD);
-    bool Close();
+    virtual bool Close();
     bool Delete();
     bool Rename(const wchar *NewName);
     bool Write(const void *Data,size_t Size);
@@ -93,7 +93,7 @@ class File
     void SetCloseFileTime(RarTime *ftm,RarTime *fta=NULL);
     static void SetCloseFileTimeByName(const wchar *Name,RarTime *ftm,RarTime *fta);
     void GetOpenFileTime(RarTime *ft);
-    bool IsOpened() {return hFile!=FILE_BAD_HANDLE;};
+    virtual bool IsOpened() {return hFile!=FILE_BAD_HANDLE;};
     int64 FileLength();
     void SetHandleType(FILE_HANDLETYPE Type) {HandleType=Type;}
     FILE_HANDLETYPE GetHandleType() {return HandleType;}

@@ -354,7 +354,7 @@ bool Unpack::ReadVMCodePPM()
 }
 
 
-bool Unpack::AddVMCode(uint FirstByte,byte *Code,int CodeSize)
+bool Unpack::AddVMCode(uint FirstByte,byte *Code,uint CodeSize)
 {
   VMCodeInp.InitBitInput();
   memcpy(VMCodeInp.InBuf,Code,Min(BitInput::MAX_SIZE,CodeSize));
@@ -466,7 +466,7 @@ bool Unpack::AddVMCode(uint FirstByte,byte *Code,int CodeSize)
   if (NewFilter)
   {
     uint VMCodeSize=RarVM::ReadData(VMCodeInp);
-    if (VMCodeSize>=0x10000 || VMCodeSize==0)
+    if (VMCodeSize>=0x10000 || VMCodeSize==0 || VMCodeInp.InAddr+VMCodeSize>CodeSize)
       return false;
     Array<byte> VMCode(VMCodeSize);
     for (uint I=0;I<VMCodeSize;I++)

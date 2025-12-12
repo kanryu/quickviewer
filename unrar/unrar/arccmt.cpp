@@ -111,7 +111,7 @@ bool Archive::GetComment(Array<wchar> *CmtData)
     // 4x memory for OEM to UTF-8 output here.
     OemToCharA((char *)&CmtRaw[0],(char *)&CmtRaw[0]);
 #endif
-    CharToWide((char *)&CmtRaw[0],CmtData->Addr(0),CmtLength);
+    CharToWide((char *)&CmtRaw[0],CmtData->Addr(0),CmtData->Size());
     CmtData->Alloc(wcslen(CmtData->Addr(0)));
   }
 #endif

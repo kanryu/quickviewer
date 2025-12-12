@@ -3,6 +3,10 @@
 #include "arccmt.cpp"
 
 
+#ifdef USE_ARCMEM
+#include "arcmem.cpp"
+#endif
+
 Archive::Archive(RAROptions *InitCmd)
 {
   Cmd=NULL; // Just in case we'll have an exception in 'new' below.
@@ -47,6 +51,10 @@ Archive::Archive(RAROptions *InitCmd)
   NewArchive=false;
 
   SilentOpen=false;
+
+#ifdef USE_QOPEN
+  ProhibitQOpen=false;
+#endif
 
 }
 
@@ -294,39 +302,92 @@ uint Archive::FullHeaderSize(size_t Size)
 
 
 
-#ifdef USE_QOPEN
 bool Archive::Open(const wchar *Name,uint Mode)
 {
+#ifdef USE_QOPEN
   // Important if we reuse Archive object and it has virtual QOpen
   // file position not matching real. For example, for 'l -v volname'.
   QOpen.Unload();
+#endif
+
+#ifdef USE_ARCMEM
+  if (Cmd->ArcInMem)
+  {
+    wcsncpyz(FileName,Name,ASIZE(FileName));
+    ArcMem.Load(Cmd->ArcMemData,Cmd->ArcMemSize);
+    Cmd->SetArcInMem(NULL,0); // Return in memory data for first volume only, not for next volumes.
+    return true;
+  }
+#endif
 
   return File::Open(Name,Mode);
 }
 
 
+
+bool Archive::Close()
+{
+#ifdef USE_ARCMEM
+  if (ArcMem.Unload())
+    return true;
+#endif
+  return File::Close();
+}
+
+
+
 int Archive::Read(void *Data,size_t Size)
 {
-  size_t Result;
-  if (QOpen.Read(Data,Size,Result))
-    return (int)Result;
+#ifdef USE_QOPEN
+  size_t QResult;
+  if (QOpen.Read(Data,Size,QResult))
+    return (int)QResult;
+#endif
+#ifdef USE_ARCMEM
+  size_t AResult;
+  if (ArcMem.Read(Data,Size,AResult))
+    return (int)AResult;
+#endif
   return File::Read(Data,Size);
 }
 
 
 void Archive::Seek(int64 Offset,int Method)
 {
-  if (!QOpen.Seek(Offset,Method))
-    File::Seek(Offset,Method);
+#ifdef USE_QOPEN
+  if (QOpen.Seek(Offset,Method))
+    return;
+#endif
+#ifdef USE_ARCMEM
+  if (ArcMem.Seek(Offset,Method))
+    return;
+#endif
+  File::Seek(Offset,Method);
 }
 
 
 int64 Archive::Tell()
 {
+#ifdef USE_QOPEN
   int64 QPos;
   if (QOpen.Tell(&QPos))
     return QPos;
+#endif
+#ifdef USE_ARCMEM
+  int64 APos;
+  if (ArcMem.Tell(&APos))
+    return APos;
+#endif
   return File::Tell();
 }
-#endif
 
+
+
+bool Archive::IsOpened()
+{
+#ifdef USE_ARCMEM
+  if (ArcMem.IsLoaded())
+    return true;
+#endif
+  return File::IsOpened();
+};
