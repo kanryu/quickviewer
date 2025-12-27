@@ -15,6 +15,9 @@ An image/comic viewer for Windows, Mac, and Linux. It can show images very fast!
 ![opencollective yearly](https://badgen.net/opencollective/yearly/quickviewer)
 [![Join the chat at https://gitter.im/kanryu/quickviewer](https://badges.gitter.im/kanryu/quickviewer.svg)](https://gitter.im/kanryu/quickviewer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## TERMINATED
+
+[This project has been discontinued due to my fatal illness.](https://github.com/kanryu/quickviewer/discussions/206) If you wish to continue this project, please create a new repository and form a new team.
 
 ## Project Website (in English/Japanese)
 
